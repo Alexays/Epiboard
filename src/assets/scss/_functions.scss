@@ -1,8 +1,0 @@
-
-// Converts px values to rem values based on the baseline
-// of 10 i.e. html { font-size: 62.5%; }
-
-@function pxrem($value) {
-    $size: $value / 10px;
-    @return #{$size}rem;
-}

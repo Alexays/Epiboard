@@ -6,4 +6,4 @@
     </header>
 </template>
 <script src="./main.js"></script>
-<style lang="sass" src="./style.scss" scoped></style>
+<style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>
