@@ -2,7 +2,6 @@ import fs from 'fs';
 import WebPack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
 import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 
 const srcDir = 'src';
@@ -18,9 +17,8 @@ fs.readdirSync('./src/components', { encoding: 'utf8' }).forEach((file) => {
 module.exports = {
     entry: `./${srcDir}/app/index.js`,
     output: {
-        path: __dirname,
-        publicPath: '/',
-        filename: 'js/bundle.[hash].js'
+        path: __dirname + '/dist',
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -58,7 +56,7 @@ module.exports = {
             },
             {
                 test: /\.vue/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
             },
             {
                 test: /\.js$/,
@@ -105,35 +103,31 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['css', 'js', 'img', 'fonts'], {
-            root: __dirname,
-            verbose: true,
-            dry: !isProduction
-        }),
         new ExtractTextPlugin({
-            filename: 'css/bundle.[hash].css',
-            disable: false,
-            allChunks: true
+            filename: '[name].css'
         }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            inject: true,
-            template: `${srcDir}/index.html`
-        }),
-        new ScriptExtHtmlWebpackPlugin({
-            async: /bundle\.([0-9a-zA-Z])+\.js/
-        }),
+        // new HtmlWebpackPlugin({
+        //     filename: 'index.html',
+        //     inject: true,
+        //     template: `${srcDir}/index.html`
+        // }),
+        // new ScriptExtHtmlWebpackPlugin({
+        //     async: /bundle\.([0-9a-zA-Z])+\.js/
+        // }),
         new WebPack.optimize.UglifyJsPlugin({
             minimize: isProduction,
             compress: {
                 warnings: false
             },
         }),
+        new WebPack.LoaderOptionsPlugin({
+            minimize: true
+        }),
         new WebPack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
             vars: JSON.stringify({
                 components
             })
-        })
+        }),
     ]
 };

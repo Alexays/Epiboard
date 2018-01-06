@@ -1,2 +1,0 @@
-# Epiboard
-New tab page
