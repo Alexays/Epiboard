@@ -1,0 +1,45 @@
+@import '../../assets/scss/mixins';
+
+.dribbble {
+
+    @include clearfix;
+    margin: 20px;
+
+    &__shot {
+
+        margin-top: 20px;
+        display: block;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        img {
+            display: block;
+            height: auto;
+            width: 100%;
+        }
+
+        @include mq(m) {
+            margin: 10px;
+            width: calc(50% - 20px);
+            float: left;
+        }
+
+        @include mq(l) {
+            margin: 10px;
+            width: calc(33.33333% - 20px);
+            float: left;
+        }
+
+    }
+
+    @include mq(m) {
+        margin: 10px;
+    }
+
+    @include mq(l) {
+        margin: 10px;
+    }
+
+}

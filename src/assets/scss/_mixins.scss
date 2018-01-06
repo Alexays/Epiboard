@@ -1,0 +1,32 @@
+
+// Box "media queries"
+
+@mixin mq($size) {
+    .size-#{$size} & {
+        @content;
+    }
+}
+
+// Retina
+
+@mixin retina($density: 2) {
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: $density),
+    only screen and (   min--moz-device-pixel-ratio: $density),
+    only screen and (     -o-min-device-pixel-ratio: #{$density}/1),
+    only screen and (        min-device-pixel-ratio: $density),
+    only screen and (                min-resolution: #{$density * 96}dpi),
+    only screen and (                min-resolution: #{$density}dppx) {
+        @content;
+    }
+}
+
+// Clearfix
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

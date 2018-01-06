@@ -1,0 +1,13 @@
+@import '../../assets/scss/variables';
+
+h2 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-weight: $font-weight-light;
+    text-align: center;
+    width: 100%;
+    color: $color-grey;
+}
