@@ -7,13 +7,13 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "watch": "webpack --watch",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
   "dependencies": {
     "draggabilly": "^2.1.1",
     "lodash": "^4.17.4",
+    "material-design-icons": "^3.0.1",
     "materialize-css": "^0.100.2",
     "packery": "^2.1.1",
     "vue": "^2.5.2",

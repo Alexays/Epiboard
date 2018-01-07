@@ -1,10 +1,8 @@
 <template>
     <div id="container">
         <div id="card-container">
-            <div v-for="card in cards" :key="card.id" class="card">
-                <div class="card-content">
-                    {{card.id}}
-                </div>
+            <div v-for="card in cards" :key="card.name" class="card">
+              <component :is="card" :key="card.name"></component>
             </div>
         </div>
     </div>

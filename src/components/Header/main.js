@@ -137,6 +137,16 @@ const data = {
       },
     },
   ],
+  welcomeMessages: [
+    "Hey, how's your day?",
+    "Hope you're doing well",
+    'Someone think of you ;)',
+    'Hello !',
+    'Try smiling, it works !',
+    'Did you know you rock ?',
+    "Let's get motivated shall we ?",
+    'Come on buddy, you can be whoever you want'
+  ],
 };
 
 export default {
@@ -148,16 +158,7 @@ export default {
   },
   data() {
     return {
-      welcomeMessages: [
-        "Hey, how's your day?",
-        "Hope you're doing well",
-        'Someone think of you ;)',
-        'Hello !',
-        'Try smiling, it works !',
-        'Did you know you rock ?',
-        "Let's get motivated shall we ?",
-        'Come on buddy, you can be whoever you want'
-      ],
+      welcomeMessage: 'Loading...',
       background: '',
     };
   },
@@ -180,6 +181,7 @@ export default {
         return url.night;
       };
       this.background = getBackgroundTime(_.sample(data.backgrounds).url);
+      this.welcomeMessage = _.sample(data.welcomeMessages);
     },
   },
   mounted() {

@@ -4,7 +4,23 @@
     "description": "New tab page",
     "version": "1.0",
     "permissions": [
-        "<all_urls>"
+        "storage",
+        "sessions",
+        "browsingData",
+        "downloads",
+        "downloads.open",
+        "system.cpu",
+        "system.memory",
+        "system.storage",
+        "https://hawttrends.appspot.com/api/terms/",
+        "https://www.google.com/doodles/search"
+    ],
+    "optional_permissions": [
+      "tabs",
+      "topSites",
+      "bookmarks",
+      "management",
+      "history"
     ],
     "chrome_url_overrides" : {
         "newtab": "index.html"
