@@ -17,8 +17,8 @@ body {
 .vue-typer {
   .custom.char {
       color: white!important;
-      mix-blend-mode: difference;
-      //text-shadow: 1px 1px #00575f;
+      // mix-blend-mode: difference;
+      text-shadow: 1px 1px #00575f;
   }
 }
 
@@ -34,5 +34,15 @@ body {
 
 .card.is-dragging {
   z-index: 1;
+}
+
+.muuri-item-dragging {
+  z-index: 3;
+}
+.muuri-item-releasing {
+  z-index: 2;
+}
+.muuri-item-hidden {
+  z-index: 0;
 }
 

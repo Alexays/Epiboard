@@ -2,7 +2,20 @@
   margin: 20px;
 }
 
-.card {
-  width: 400px;
-  visibility: hidden;
+#card-container {
+  position: relative;
+  .card {
+    width: 400px;
+    margin: 15px;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: all 1s;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
