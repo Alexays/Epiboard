@@ -1,12 +1,5 @@
-import _ from 'lodash';
 import Muuri from 'muuri';
-// Cards
-import System from '@/components/System';
-
-const cards = [
-  System,
-  System,
-];
+import Cards from '../cards';
 
 export default {
   name: 'Home',
@@ -14,16 +7,12 @@ export default {
   components: {},
   data() {
     return {
-      cards: [],
+      cards: Cards,
     };
   },
   methods: {
-    fetchCards() {
-      this.cards = cards;
-    },
   },
   mounted() {
-    this.fetchCards();
     this.$nextTick(() => {
       const grid = new Muuri('#card-container', {
         items: '.card',

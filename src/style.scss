@@ -1,5 +1,6 @@
 @import '../node_modules/materialize-css/dist/css/materialize.min.css';
 @import '../node_modules/material-design-icons/iconfont/material-icons.css';
+@import './assets/scss/_cards.scss';
 
 body {
   margin: 0;
@@ -15,34 +16,12 @@ body {
 }
 
 .vue-typer {
+  font-weight: 400;
+  font-size: 5vw;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  white-space: nowrap;
   .custom.char {
       color: white!important;
-      // mix-blend-mode: difference;
-      text-shadow: 1px 1px #00575f;
   }
 }
-
-.packery-drop-placeholder {
-  background-color: rgba(128, 128, 128, 0.05);
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-  /* transition position changing */
-  -webkit-transition: -webkit-transform 0.2s;
-          transition: transform 0.2s;
-  z-index:  -1;
-}
-
-.card.is-dragging {
-  z-index: 1;
-}
-
-.muuri-item-dragging {
-  z-index: 3;
-}
-.muuri-item-releasing {
-  z-index: 2;
-}
-.muuri-item-hidden {
-  z-index: 0;
-}
-

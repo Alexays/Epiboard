@@ -186,6 +186,6 @@ export default {
   },
   mounted() {
     this.fetchEvents();
-  }
+  },
 };
 
