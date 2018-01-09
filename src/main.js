@@ -13,3 +13,25 @@ new Vue({
   template: '<App/>',
   components: { App },
 });
+
+Vue.filter('bytes', (nb) => {
+  let bytes = nb;
+  const thresh = 1024;
+  if (Math.abs(bytes) < thresh) {
+    return `${bytes} B`;
+  }
+  const units = ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  let i = -1;
+  do {
+    bytes /= thresh;
+    i += 1;
+  } while (Math.abs(bytes) >= thresh && i < units.length - 1);
+  return `${bytes.toFixed(1)} ${units[i]}`;
+});
+
+Vue.filter('truncate', (string, nb) => {
+  if (string.length < nb) {
+    return string;
+  }
+  return `${string.substring(0, nb)}...`;
+});

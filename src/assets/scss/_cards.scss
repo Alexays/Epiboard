@@ -3,6 +3,10 @@
       padding: 15px;
       cursor: pointer;
   }
+  width: 400px;
+  margin: 15px;
+  position: absolute;
+  z-index: 1;
 }
 
 .packery-drop-placeholder {
@@ -15,17 +19,13 @@
   z-index:  -1;
 }
 
-.card.is-dragging {
-  z-index: 1;
-}
-
 .muuri-item-dragging {
-  z-index: 3;
+  z-index: 3!important;
 }
 .muuri-item-releasing {
-  z-index: 2;
+  z-index: 2!important;
 }
 .muuri-item-hidden {
-  z-index: 0;
+  z-index: 0!important;
 }
 

@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper-name {
+  margin-right: 20px;
+  text-align: center;
+  width: 50px;
+}
+.wrapper-info {
+  width: 100%;
+  .storage-unit {
+    width: 100%;
+    list-style: none;
+  }
+}
