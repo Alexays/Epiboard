@@ -19,11 +19,10 @@ export default {
       });
       chrome.system.storage.getInfo((storage) => {
         if (!chrome.system.storage.getAvailableCapacity) {
-          storage.dev = false;
           this.storage = storage;
+          this.storage.dev = false;
           return;
         }
-        storage.dev = true;
         const disk = storage.slice(0);
         for (let i = 0; i < storage.length; i += 1) {
           chrome.system.storage.getAvailableCapacity(storage[i].id, (res) => {
@@ -33,6 +32,7 @@ export default {
             disk[i].used = disk[i].capacity - disk[i].available;
             if (i === (storage.length - 1)) {
               this.storage = disk;
+              this.storage.dev = true;
             }
           });
         }
