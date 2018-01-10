@@ -35,3 +35,5 @@ Vue.filter('truncate', (string, nb) => {
   }
   return `${string.substring(0, nb)}...`;
 });
+
+Vue.filter('filename', string => string.substring(string.lastIndexOf('/') + 1));

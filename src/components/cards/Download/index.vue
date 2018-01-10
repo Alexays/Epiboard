@@ -4,12 +4,17 @@
       <span class="card-title">Download</span>
     </div>
     <div class="card-content white">
-        <div class="wrapper cpu">
-                <div class="wrapper-name">
-                    <i class="material-icons">nfc</i>
-                    <div>CPU</div>
-                </div>
-            </div>
+      <li class="download" v-for="download in downloads" :key="download.id">
+        <div class="icon">
+          <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
+        </div>
+				<div class="info">
+					<div class="name">{{download.filename | filename}}</div>
+					<span class="size"><span v-if="download.state == 'in_progress'">
+            {{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}</span> -
+					<a :href="download.url" class="host">{{download.url}}</a>
+				</div>
+      </li>
     </div>
 </div>
 </template>

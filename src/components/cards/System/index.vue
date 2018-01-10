@@ -14,8 +14,7 @@
                     <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
                     <div v-for="(core, key) in cpu.processors" :key="key" class="progress">
                         <div class="determinate"
-                        :style="{'width': ((core.usage.kernel +
-                        core.usage.user) / core.usage.total) * 100 + '%'}"></div>
+                        :style="{'width': getCpuLoad(key) + '%'}"></div>
                     </div>
                 </div>
             </div>

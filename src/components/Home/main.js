@@ -13,6 +13,7 @@ export default {
   methods: {
   },
   mounted() {
+    /* eslint-disable */
     this.$nextTick(() => {
       chrome.storage.sync.get('dragPositions', (initPositions) => {
         const grid = new Muuri('#card-container', {
@@ -39,6 +40,7 @@ export default {
         });
       });
     });
+    /* eslint-enable */
   },
 };
 

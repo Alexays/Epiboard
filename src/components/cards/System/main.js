@@ -5,13 +5,25 @@ export default {
   data() {
     return {
       cpu: {},
+      prevCpu: {},
       memory: {},
       storage: {},
     };
   },
   methods: {
+    getCpuLoad(coreKey) {
+      const core = this.cpu.processors[coreKey].usage;
+      if (this.prevCpu && this.prevCpu.processors) {
+        const prevCore = this.prevCpu.processors[coreKey].usage;
+        return Math.floor((((core.kernel + core.user)
+          - prevCore.kernel - prevCore.user) /
+          (core.total - prevCore.total)) * 100);
+      }
+      return Math.floor(((core.kernel + core.user) / core.total) * 100);
+    },
     getInfos() {
       chrome.system.cpu.getInfo((cpu) => {
+        this.prevCpu = this.cpu;
         this.cpu = cpu;
       });
       chrome.system.memory.getInfo((memory) => {
