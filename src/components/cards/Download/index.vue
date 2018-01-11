@@ -8,7 +8,7 @@
         <div class="icon">
           <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
         </div>
-				<div class="info">
+				<div class="info" v-on:click="open(download)">
 					<div class="name">{{download.filename | filename}}</div>
 					<span class="size"><span v-if="download.state == 'in_progress'">
             {{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}</span> -
