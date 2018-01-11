@@ -5,11 +5,12 @@
     </div>
     <div class="card-content white">
       <li class="download" v-for="download in downloads" :key="download.id">
-        <div class="icon" v-on:click="open(download)">
+        <div title="Open Download" class="icon" v-on:click="open(download)">
           <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
+          <i v-if="!download.filename || !download.icon" class="material-icons">insert_drive_file</i>
         </div>
-				<div class="info" v-on:click="open(download)">
-					<div class="name">{{download.filename | filename}}</div>
+				<div class="info">
+					<div title="Open Download" class="name" v-on:click="open(download)">{{download.filename | filename}}</div>
 					<span class="size"><span v-if="download.state == 'in_progress'">
             {{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}</span> -
 					<a :href="download.url" class="host">{{download.url}}</a>

@@ -9,10 +9,17 @@
   }
   .icon {
     flex-shrink: 0;
+    cursor: pointer;
     width: 38px;
     height: 38px;
     margin-right: 7px;
     overflow: hidden;
+    display: table;
+    i {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
   }
   .fileicon {
 		height: inherit;
@@ -20,13 +27,13 @@
 		background-position: center;
 	}
   .info {
-    cursor: pointer;
     flex-grow: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 5px;
     .name {
+      cursor: pointer;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

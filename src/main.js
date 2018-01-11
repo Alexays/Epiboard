@@ -8,6 +8,7 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+Vue.use(VueAxios, axios);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -15,7 +16,6 @@ new Vue({
   template: '<App/>',
   components: { App },
 });
-Vue.use(VueAxios, axios);
 
 Vue.filter('bytes', (nb) => {
   let bytes = nb;
