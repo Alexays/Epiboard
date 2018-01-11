@@ -19,14 +19,11 @@ export default {
       };
       const cards = document.querySelectorAll('.card');
       for (let i = 0; i < cards.length; i += 1) {
-        /* eslint-disable */
-        new ResizeSensor(cards[i], resize);
-        /* eslint-enable */
+        new ResizeSensor(cards[i], resize); // eslint-disable-line no-new
       }
     },
   },
   mounted() {
-    /* eslint-disable */
     this.$nextTick(() => {
       chrome.storage.sync.get('dragPositions', (initPositions) => {
         if (chrome.runtime.lastError) return;
@@ -45,9 +42,15 @@ export default {
             id: (item, element) => element.getAttribute('data-item-id'),
           },
         });
-        const pos = JSON.parse(initPositions.dragPositions || '{}');
-        grid.sort((a, b) => (pos.indexOf(a._sortData.id) > pos.indexOf(b._sortData.id) ? 1 : -1),
-          { layout: 'instant' });
+        const pos = initPositions.dragPositions ? JSON.parse(initPositions.dragPositions) : null;
+        if (pos) {
+          grid.sort(
+            (a, b) => ((pos.indexOf(a._sortData.id) > pos.indexOf(b._sortData.id) ? 1 : -1)),
+            { layout: 'instant' },
+          );
+        } else {
+          grid.layout();
+        }
         this.handleSize(grid);
         grid.on('dragEnd', () => {
           const order = grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
@@ -55,7 +58,6 @@ export default {
         });
       });
     });
-    /* eslint-enable */
   },
 };
 
