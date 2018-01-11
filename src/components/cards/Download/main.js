@@ -11,10 +11,12 @@ export default {
     // Get recent Downloads
     getDownloads() {
       chrome.downloads.search({ limit: 5, orderBy: ['-startTime'] }, (downloads) => {
+        if (chrome.runtime.lastError) return;
         this.downloads = downloads;
         for (let i = 0; i < downloads.length; i += 1) {
           if (downloads[i].filename) {
             chrome.downloads.getFileIcon(downloads[i].id, (data) => {
+              if (chrome.runtime.lastError) return;
               this.downloads[i].icon = data;
               this.downloads = this.downloads.slice(0);
             });
@@ -25,6 +27,7 @@ export default {
     listenChange() {
       // Watch changes in download states and apply them to the model
       chrome.downloads.onChanged.addListener((downloadDelta) => {
+        if (chrome.runtime.lastError) return;
         for (let i = 0; i < this.downloads.length; i += 1) {
           if (this.downloads[i].id === downloadDelta.id) {
             const keys = Object.keys(downloadDelta);
@@ -39,14 +42,15 @@ export default {
       });
       // Watch if a download is created and add it to the card
       chrome.downloads.onCreated.addListener((download) => {
+        if (chrome.runtime.lastError) return;
         this.downloads.pop();
         this.downloads.unshift(download);
-
         // wait 500ms after download starts to get the icon
         Promise.delay(500).then(() => {
           // Avoid a case where fetching icons with no filename throws an error
           if (download.filename) {
-            return chrome.downloads.getFileIconAsync(download.id, (dataUrl) => {
+            return chrome.downloads.getFileIcon(download.id, (dataUrl) => {
+              if (chrome.runtime.lastError) return;
               for (let i = 0; i < this.downloads.length; i += 1) {
                 if (this.downloads[i].id === download.id) {
                   this.downloads[i].icon = dataUrl;

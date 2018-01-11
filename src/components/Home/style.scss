@@ -7,9 +7,8 @@
 }
 
 .slide-fade-enter-active, .slide-fade-leave-active {
-  transition: all 1s;
+  transition: opacity 1s;
 }
 .slide-fade-enter, .slide-fade-leave-to {
   opacity: 0;
-  transform: translateY(30px);
 }

@@ -16,6 +16,7 @@ export default {
     /* eslint-disable */
     this.$nextTick(() => {
       chrome.storage.sync.get('dragPositions', (initPositions) => {
+        if (chrome.runtime.lastError) return;
         const grid = new Muuri('#card-container', {
           items: '.card',
           dragEnabled: true,
