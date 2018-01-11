@@ -5,7 +5,7 @@
     </div>
     <div class="card-content white">
       <li class="download" v-for="download in downloads" :key="download.id">
-        <div class="icon">
+        <div class="icon" v-on:click="open(download)">
           <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
         </div>
 				<div class="info" v-on:click="open(download)">
