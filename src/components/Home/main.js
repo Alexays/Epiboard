@@ -49,7 +49,7 @@ export default {
             { layout: 'instant' },
           );
         } else {
-          grid.layout();
+          grid.layout(true);
         }
         this.handleSize(grid);
         grid.on('dragEnd', () => {
