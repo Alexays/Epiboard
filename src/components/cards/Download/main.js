@@ -18,16 +18,14 @@ export default {
       if (isUpper(input.charAt(0))) {
         input = `_${input}`;
       }
-
       input = input.replace(/_id$/, '').replace(/_/g, ' ').replace(/(^\s*|\s*$)/g, '');
-      input = input.substr(0, 1).toUpperCase() + input.substring(1).toLowerCase();
-
-      return input;
+      return input.substr(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     },
     open(download) {
       if (download.state === 'interrupted') {
         Materialize.toast(this.humanize(download.error), 4000);
-      } else if (download.state === 'complete') {
+      }
+      if (download.state === 'complete') {
         if (download.exists) {
           chrome.downloads.open(download.id);
         } else {
