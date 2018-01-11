@@ -1,5 +1,7 @@
 # epiboard
 
+Chrome >= 54
+
 > New tab page
 
 ## Build Setup
