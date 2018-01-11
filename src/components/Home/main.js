@@ -15,7 +15,7 @@ export default {
     handleSize(grid) {
       const resize = () => {
         grid.refreshItems();
-        grid.layout();
+        grid.layout(true);
       };
       const cards = document.querySelectorAll('.card');
       for (let i = 0; i < cards.length; i += 1) {

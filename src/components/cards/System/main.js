@@ -11,15 +11,14 @@ export default {
     };
   },
   methods: {
-    getCpuLoad(coreKey) {
-      const core = this.cpu.processors[coreKey].usage;
+    getCpuLoad(coreUsage, key) {
       if (this.prevCpu && this.prevCpu.processors) {
-        const prevCore = this.prevCpu.processors[coreKey].usage;
-        return Math.floor((((core.kernel + core.user)
+        const prevCore = this.prevCpu.processors[key].usage;
+        return Math.floor((((coreUsage.kernel + coreUsage.user)
           - prevCore.kernel - prevCore.user) /
-          (core.total - prevCore.total)) * 100);
+          (coreUsage.total - prevCore.total)) * 100);
       }
-      return Math.floor(((core.kernel + core.user) / core.total) * 100);
+      return Math.floor(((coreUsage.kernel + coreUsage.user) / coreUsage.total) * 100);
     },
     getCpu() {
       chrome.system.cpu.getInfo((cpu) => {
