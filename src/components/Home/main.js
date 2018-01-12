@@ -42,8 +42,8 @@ export default {
             id: (item, element) => element.getAttribute('data-item-id'),
           },
         });
-        const pos = initPositions.dragPositions ? JSON.parse(initPositions.dragPositions) : null;
-        if (pos) {
+        if (initPositions.dragPositionspos) {
+          const pos = JSON.parse(initPositions.dragPositions);
           grid.sort(
             (a, b) => ((pos.indexOf(a._sortData.id) > pos.indexOf(b._sortData.id) ? 1 : -1)),
             { layout: 'instant' },
