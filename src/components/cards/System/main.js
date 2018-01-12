@@ -5,15 +5,15 @@ export default {
   data() {
     return {
       cpu: {},
-      prevCpu: {},
+      cpuInterval: {},
       memory: {},
       storage: {},
     };
   },
   methods: {
     getCpuLoad(coreUsage, key) {
-      if (this.prevCpu && this.prevCpu.processors) {
-        const prevCore = this.prevCpu.processors[key].usage;
+      if (this.cpu.prev && this.cpu.prev.processors) {
+        const prevCore = this.cpu.prev.processors[key].usage;
         return Math.floor((((coreUsage.kernel + coreUsage.user)
           - prevCore.kernel - prevCore.user) /
           (coreUsage.total - prevCore.total)) * 100);
@@ -23,8 +23,7 @@ export default {
     getCpu() {
       chrome.system.cpu.getInfo((cpu) => {
         if (chrome.runtime.lastError) return;
-        this.prevCpu = this.cpu;
-        this.cpu = cpu;
+        this.cpu = Object.assign({}, cpu, { prev: this.cpu });
       });
     },
     getMemory() {
@@ -57,11 +56,14 @@ export default {
       });
     },
   },
+  beforeDestroy() {
+    clearInterval(this.cpuInterval);
+  },
   mounted() {
     this.getCpu();
     this.getMemory();
     this.getStorage();
-    setInterval(() => {
+    this.cpuInterval = setInterval(() => {
       this.getCpu();
     }, 3000);
     setInterval(() => {
