@@ -14,4 +14,10 @@
     width: 100%;
     list-style: none;
   }
+  .disk-name {
+    text-overflow: ellipsis;
+  }
+  .disk-capacity {
+    float: right;
+  }
 }

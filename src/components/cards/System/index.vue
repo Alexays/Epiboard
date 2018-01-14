@@ -38,15 +38,15 @@
                         <p v-if="unit.name && storage.dev" class="disk-name" :title="unit.name">
                           {{ unit.name | truncate(25) }}
                         </p>
-                        <p v-if="!unit.name && storage.dev" class="disk-name ">{{unit.capacity | bytes}} Volume</p>
-                        <p v-if="storage.dev" class="disk-capacity ">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
+                        <p v-if="!unit.name && storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</p>
+                        <p v-if="storage.dev" class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
                         <v-progress-linear v-if="storage.dev"
                         :value="unit.percent"></v-progress-linear>
                         <p v-if="unit.name && !storage.dev" class="disk-name" :title="unit.name">
                             {{ unit.name | truncate(25) }}
                         </p>
-                        <p v-if="!unit.name && !storage.dev" class="disk-name ">{{unit.capacity | bytes}} Volume</p>
-                        <p v-if="!storage.dev" class="disk-capacity ">{{unit.capacity | bytes}}</p>
+                        <p v-if="!unit.name && !storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</p>
+                        <p v-if="!storage.dev" class="disk-capacity">{{unit.capacity | bytes}}</p>
                     </li>
                 </div>
             </div>
