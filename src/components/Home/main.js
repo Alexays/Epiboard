@@ -31,7 +31,7 @@ export default {
           items: '.card',
           dragEnabled: true,
           dragStartPredicate: {
-            handle: '.card-header',
+            handle: '.card__title',
           },
           layout: {
             fillGaps: true,
@@ -42,7 +42,7 @@ export default {
             id: (item, element) => element.getAttribute('data-item-id'),
           },
         });
-        if (initPositions.dragPositionspos) {
+        if (initPositions.dragPositions) {
           const pos = JSON.parse(initPositions.dragPositions);
           grid.sort(
             (a, b) => ((pos.indexOf(a._sortData.id) > pos.indexOf(b._sortData.id) ? 1 : -1)),

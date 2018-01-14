@@ -1,7 +1,9 @@
 <template>
     <div id="container">
         <transition-group name="slide-fade" appear tag="div" id="card-container">
-            <component v-for="card in cards" :data-item-id="card.name" class="card" :is="card" :key="card.name"></component>
+          <v-card v-for="card in cards" :data-item-id="card.name" :key="card.name">
+            <component :is="card"></component>
+          </v-card>
         </transition-group>
     </div>
 </template>

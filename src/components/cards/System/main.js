@@ -5,7 +5,6 @@ export default {
   data() {
     return {
       cpu: {},
-      cpuInterval: {},
       memory: {},
       storage: {},
     };
@@ -63,7 +62,7 @@ export default {
     this.getCpu();
     this.getMemory();
     this.getStorage();
-    this.cpuInterval = setInterval(() => {
+    setInterval(() => {
       this.getCpu();
     }, 3000);
     setInterval(() => {

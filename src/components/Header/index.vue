@@ -1,5 +1,5 @@
 <template>
-    <header class="z-depth-3 valign-wrapper grey"
+    <header class="grey"
     :style="{ 'background-size': 'cover', 'background': 'url(' + background + ') no-repeat center center fixed' }">
         <vue-typer tag="h1" :text="welcomeMessage" :repeat='0'></vue-typer>
     </header>

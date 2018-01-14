@@ -1,5 +1,3 @@
-import Materialize from 'materialize-css';
-
 export default {
   name: 'Download',
   props: ['settings'],
@@ -23,13 +21,13 @@ export default {
     },
     open(download) {
       if (download.state === 'interrupted') {
-        Materialize.toast(this.humanize(download.error), 4000);
+        // Materialize.toast(this.humanize(download.error), 4000);
       }
       if (download.state === 'complete') {
         if (download.exists) {
           chrome.downloads.open(download.id);
         } else {
-          Materialize.toast('File moved or deleted', 4000);
+          // Materialize.toast('File moved or deleted', 4000);
         }
       }
     },

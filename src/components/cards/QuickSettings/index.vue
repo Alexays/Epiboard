@@ -1,9 +1,9 @@
 <template>
 <div class="blue-grey">
-    <div class="card-header white-text">
-      <span class="card-title">Quick Settings</span>
-    </div>
-    <div class="card-content white">
+    <v-card-title class="white--text">
+      <span class="headline">Quick Settings</span>
+    </v-card-title>
+    <v-card-text class="white">
       <p>
 				<input type="checkbox" id="checkCache" />
 				<label for="checkCache">Cache</label>
@@ -21,7 +21,7 @@
 				<label for="checkLocalStorage">Local Storage</label>
 			</p>
 			<button ng-click="clear(); track(card.name, 'Cleared')" class="btn-flat white">Clear</button>
-    </div>
+    </v-card-text>
 </div>
 </template>
 <script src="./main.js"></script>

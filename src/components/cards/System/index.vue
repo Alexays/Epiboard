@@ -1,9 +1,9 @@
 <template>
 <div class="blue-grey">
-    <div class="card-header white-text">
-      <span class="card-title">System</span>
-    </div>
-    <div class="card-content white">
+    <v-card-title class="white--text">
+      <span class="headline">System</span>
+    </v-card-title>
+    <v-card-text class="white">
         <div class="wrapper">
                 <div class="wrapper-name">
                     <i class="material-icons">nfc</i>
@@ -12,10 +12,8 @@
                 <div class="wrapper-info">
                     <p>{{cpu.modelName}}</p>
                     <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
-                    <div v-for="(core, key) in cpu.processors" :key="key" class="progress">
-                        <div class="determinate"
-                        :style="{'width': getCpuLoad(core.usage, key) + '%'}"></div>
-                    </div>
+                    <v-progress-linear v-for="(core, key) in cpu.processors" :key="key"
+                    :value="getCpuLoad(core.usage, key)"></v-progress-linear>
                 </div>
             </div>
           <div class="wrapper">
@@ -25,10 +23,8 @@
                 </div>
                 <div class="wrapper-info">
                     <p>{{memory.availableCapacity | bytes}} available of {{memory.capacity | bytes}}</p>
-                    <div class="progress">
-                        <div class="determinate"
-                        :style="{'width': ((memory.capacity - memory.availableCapacity) / memory.capacity) * 100 + '%'}"></div>
-                    </div>
+                    <v-progress-linear
+                        :value="((memory.capacity - memory.availableCapacity) / memory.capacity) * 100 "></v-progress-linear>
                 </div>
             </div>
             <div class="wrapper">
@@ -44,9 +40,8 @@
                         </p>
                         <p v-if="!unit.name && storage.dev" class="disk-name ">{{unit.capacity | bytes}} Volume</p>
                         <p v-if="storage.dev" class="disk-capacity ">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
-                        <div v-if="storage.dev" class="progress">
-                          <div class="determinate" :style="{'width': unit.percent + '%'}"></div>
-                        </div>
+                        <v-progress-linear v-if="storage.dev"
+                        :value="unit.percent"></v-progress-linear>
                         <p v-if="unit.name && !storage.dev" class="disk-name" :title="unit.name">
                             {{ unit.name | truncate(25) }}
                         </p>
@@ -55,7 +50,7 @@
                     </li>
                 </div>
             </div>
-    </div>
+    </v-card-text>
 </div>
 </template>
 <script src="./main.js"></script>

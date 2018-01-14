@@ -1,5 +1,5 @@
-@import '../node_modules/materialize-css/dist/css/materialize.min.css';
-@import '../node_modules/material-design-icons/iconfont/material-icons.css';
+@import 'vuetify/dist/vuetify.min.css';
+@import 'material-design-icons/iconfont/material-icons.css';
 @import './assets/scss/_cards.scss';
 
 body {
@@ -13,6 +13,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+p {
+  margin: 0;
 }
 
 .vue-typer {

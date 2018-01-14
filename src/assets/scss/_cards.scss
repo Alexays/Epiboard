@@ -3,11 +3,11 @@
   margin: 15px;
   position: absolute;
   z-index: 1;
-  .card-header {
+  .card__title {
       padding: 15px;
       cursor: pointer;
   }
-  .progress {
+  .progress-linear {
     margin: .5rem 0;
   }
 }
