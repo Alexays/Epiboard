@@ -13,7 +13,7 @@
         "system.cpu",
         "system.memory",
         "system.storage",
-        "https://hawttrends.appspot.com/api/terms/",
+        "https://trends.google.com/trends/hottrends/visualize/internal/data",
         "https://www.google.com/doodles/search",
         "*://intra.epitech.eu/"
     ],

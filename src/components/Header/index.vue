@@ -2,7 +2,7 @@
     <header tag="header" class="grey">
     <progressive-background no-ratio :src="background"
     :style="{ 'background-size': 'cover' }">
-        <vue-typer tag="h1" :text="welcomeMessage" :repeat='0'></vue-typer>
+        <vue-typer tag="h1" :text="messages" :shuffle='true' @erased='addTrends'></vue-typer>
     </progressive-background>
     </header>
 </template>

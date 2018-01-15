@@ -2,6 +2,8 @@ import _ from 'lodash';
 import { VueTyper } from 'vue-typer';
 
 const data = {
+  trendsApi: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
+  //trendsApi: 'https://hawttrends.appspot.com/api/terms/',
   // imgur album: https://imgur.com/a/NAaUE
   backgrounds: [
     {
@@ -159,13 +161,20 @@ export default {
   },
   data() {
     return {
-      welcomeMessage: 'Loading...',
+      messages: '',
       background: '',
+      trends: [],
+      welcomeMessage: false,
     };
   },
   methods: {
-    fetchEvents() {
-      this.welcomeMessage = _.sample(data.welcomeMessages);
+    addTrends() {
+      if (this.welcomeMessage || _.isEmpty(this.trends))
+        return;
+      this.messages = this.messages.concat(this.trends);
+      this.welcomeMessage = true;
+    },
+    getBackground() {
       const getBackgroundTime = (url) => {
         const date = new Date();
         date.setTime(date);
@@ -182,11 +191,17 @@ export default {
         return url.night;
       };
       this.background = getBackgroundTime(_.sample(data.backgrounds).url);
-      this.welcomeMessage = _.sample(data.welcomeMessages);
+    },
+    getMessage() {
+      this.messages = [_.sample(data.welcomeMessages)];
+      this.axios.get(data.trendsApi).then((res) => {
+        this.trends = res.data['france']; // TODO: select country
+      });
     },
   },
   mounted() {
-    this.fetchEvents();
+    this.getBackground();
+    this.getMessage();
   },
 };
 
