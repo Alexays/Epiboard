@@ -3,7 +3,7 @@
     <v-card-title class="white--text">
       <span class="headline">Epitech</span>
     </v-card-title>
-    <v-card-text v-if="loading">
+    <v-card-text v-if="loading" class="white">
       <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
     </v-card-text>
     <v-card-text v-if="!loading && !logged" class="white">

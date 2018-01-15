@@ -35,6 +35,7 @@ export default {
           this.loading = false;
           return;
         }
+        this.loading = false;
         this.title = response.data.title;
         this.gpa = response.data.gpa[0].gpa;
       });
