@@ -13,7 +13,13 @@
                     <p>{{cpu.modelName}}</p>
                     <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
                     <v-progress-linear height="6" v-for="(core, key) in cpu.processors" :key="key"
-                    :value="getCpuLoad(core.usage, key)"></v-progress-linear>
+                    :value="getLoad({
+                        progress: core.usage.kernel + core.usage.user,
+                        total: core.usage.total
+                    }, (cpu.prev || {}).processors ? {
+                        progress: cpu.prev.processors[key].usage.kernel + cpu.prev.processors[key].usage.user,
+                        total: cpu.prev.processors[key].usage.total
+                    } : null)"></v-progress-linear>
                 </div>
             </div>
           <div class="wrapper">
@@ -24,7 +30,13 @@
                 <div class="wrapper-info">
                     <p>{{memory.availableCapacity | bytes}} available of {{memory.capacity | bytes}}</p>
                     <v-progress-linear height="6"
-                        :value="((memory.capacity - memory.availableCapacity) / memory.capacity) * 100"></v-progress-linear>
+                        :value="getLoad({
+                            progress: memory.capacity - memory.availableCapacity,
+                            total: memory.capacity
+                        }, (memory.prev || {}).capacity ? {
+                            progress: memory.prev.capacity - memory.prev.availableCapacity,
+                            total: memory.prev.capacity
+                        } : null)"></v-progress-linear>
                 </div>
             </div>
             <div class="wrapper">

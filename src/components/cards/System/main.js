@@ -10,14 +10,12 @@ export default {
     };
   },
   methods: {
-    getCpuLoad(coreUsage, key) {
-      if (this.cpu.prev && this.cpu.prev.processors) {
-        const prevCore = this.cpu.prev.processors[key].usage;
-        return Math.floor((((coreUsage.kernel + coreUsage.user)
-          - prevCore.kernel - prevCore.user) /
-          (coreUsage.total - prevCore.total)) * 100);
+    getLoad(current, prev) {
+      if (prev) {
+        return Math.floor(((current.progress - prev.progress)
+          / (current.total - prev.total)) * 100);
       }
-      return Math.floor(((coreUsage.kernel + coreUsage.user) / coreUsage.total) * 100);
+      return Math.floor((current.progress / current.total) * 100)
     },
     getCpu() {
       chrome.system.cpu.getInfo((cpu) => {
@@ -28,7 +26,7 @@ export default {
     getMemory() {
       chrome.system.memory.getInfo((memory) => {
         if (chrome.runtime.lastError) return;
-        this.memory = memory;
+        this.memory = Object.assign({}, memory, { prev: this.memory });
       });
     },
     getStorage() {
@@ -67,7 +65,7 @@ export default {
     }, 3000);
     setInterval(() => {
       this.getMemory();
-    }, 5000);
+    }, 10000);
   },
 };
 
