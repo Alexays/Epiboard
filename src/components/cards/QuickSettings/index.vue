@@ -9,7 +9,7 @@
 				<v-checkbox label="History" v-model="types.history" color="primary" hide-details></v-checkbox>
 				<v-checkbox label="Local Storage" v-model="types.localStorage" color="primary" hide-details></v-checkbox>
 				<v-progress-linear v-if="loading" v-bind:indeterminate="true"></v-progress-linear>
-				<v-btn v-if="!loading" :disabled="isFalse()" v-on:click="clear()" flat>Clear</v-btn>
+				<v-btn :disabled="isFalse() || loading" v-on:click="clear()" flat>Clear</v-btn>
     </v-card-text>
 </div>
 </template>
