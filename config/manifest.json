@@ -5,6 +5,7 @@
     "version": "1.0",
     "permissions": [
         "storage",
+        "cookies",
         "sessions",
         "browsingData",
         "downloads",
@@ -13,7 +14,8 @@
         "system.memory",
         "system.storage",
         "https://hawttrends.appspot.com/api/terms/",
-        "https://www.google.com/doodles/search"
+        "https://www.google.com/doodles/search",
+        "*://intra.epitech.eu/"
     ],
     "optional_permissions": [
       "tabs",
