@@ -171,7 +171,7 @@ export default {
     addTrends() {
       if (this.welcomeMessage || _.isEmpty(this.trends))
         return;
-      this.messages = this.messages.concat(this.trends);
+      this.messages = this.trends;
       this.welcomeMessage = true;
     },
     getBackground() {
