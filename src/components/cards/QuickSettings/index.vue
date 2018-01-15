@@ -4,12 +4,12 @@
       <span class="headline">Quick Settings</span>
     </v-card-title>
     <v-card-text class="white">
-				<v-checkbox label="Cache" v-model="type.cache" color="primary" value="primary" hide-details></v-checkbox>
-				<v-checkbox label="Cookies" v-model="type.cookies" color="primary" value="primary" hide-details></v-checkbox>
-				<v-checkbox label="History" v-model="type.history" color="primary" value="primary" hide-details></v-checkbox>
-				<v-checkbox label="Local Storage" v-model="type.localStorage" color="primary" value="primary" hide-details></v-checkbox>
+				<v-checkbox label="Cache" v-model="types.cache" color="primary" hide-details></v-checkbox>
+				<v-checkbox label="Cookies" v-model="types.cookies" color="primary" hide-details></v-checkbox>
+				<v-checkbox label="History" v-model="types.history" color="primary" hide-details></v-checkbox>
+				<v-checkbox label="Local Storage" v-model="types.localStorage" color="primary" hide-details></v-checkbox>
 				<v-progress-linear v-if="loading" v-bind:indeterminate="true"></v-progress-linear>
-				<v-btn v-if="!loading" disabled="{{isFalse()}}" v-click="clear()" flat>Clear</v-btn>
+				<v-btn v-if="!loading" :disabled="isFalse()" v-on:click="clear()" flat>Clear</v-btn>
     </v-card-text>
 </div>
 </template>

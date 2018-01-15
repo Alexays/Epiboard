@@ -35,18 +35,18 @@
                 <div class="wrapper-info">
                     <li class="storage-unit" v-for="unit in storage" :key="unit">
                         <i v-if="unit.type == 'removable'" class="material-icons">usb</i>
-                        <p v-if="unit.name && storage.dev" class="disk-name" :title="unit.name">
+                        <span v-if="unit.name && storage.dev" class="disk-name" :title="unit.name">
                           {{ unit.name | truncate(25) }}
-                        </p>
-                        <p v-if="!unit.name && storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</p>
-                        <p v-if="storage.dev" class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
+                        </span>
+                        <span v-if="!unit.name && storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</span>
+                        <span v-if="storage.dev" class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</span>
                         <v-progress-linear v-if="storage.dev"
                         :value="unit.percent"></v-progress-linear>
-                        <p v-if="unit.name && !storage.dev" class="disk-name" :title="unit.name">
+                        <span v-if="unit.name && !storage.dev" class="disk-name" :title="unit.name">
                             {{ unit.name | truncate(25) }}
-                        </p>
-                        <p v-if="!unit.name && !storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</p>
-                        <p v-if="!storage.dev" class="disk-capacity">{{unit.capacity | bytes}}</p>
+                        </span>
+                        <span v-if="!unit.name && !storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</span>
+                        <span v-if="!storage.dev" class="disk-capacity">{{unit.capacity | bytes}}</span>
                     </li>
                 </div>
             </div>
