@@ -145,7 +145,8 @@ const data = {
     'Try smiling, it works !',
     'Did you know you rock ?',
     "Let's get motivated shall we ?",
-    'Come on buddy, you can be whoever you want'
+    'Come on buddy !',
+    'You can be whoever you want'
   ],
 };
 
