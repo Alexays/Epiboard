@@ -1,6 +1,10 @@
 header {
     height: 233px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
+    > div {
+        display: flex;
+        align-items: center;
+    }
+    .typer {
+        padding: 20px;
+    }
 }

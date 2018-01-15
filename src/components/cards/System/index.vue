@@ -12,7 +12,7 @@
                 <div class="wrapper-info">
                     <p>{{cpu.modelName}}</p>
                     <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
-                    <v-progress-linear v-for="(core, key) in cpu.processors" :key="key"
+                    <v-progress-linear height="6" v-for="(core, key) in cpu.processors" :key="key"
                     :value="getCpuLoad(core.usage, key)"></v-progress-linear>
                 </div>
             </div>
@@ -23,8 +23,8 @@
                 </div>
                 <div class="wrapper-info">
                     <p>{{memory.availableCapacity | bytes}} available of {{memory.capacity | bytes}}</p>
-                    <v-progress-linear
-                        :value="((memory.capacity - memory.availableCapacity) / memory.capacity) * 100 "></v-progress-linear>
+                    <v-progress-linear height="6"
+                        :value="((memory.capacity - memory.availableCapacity) / memory.capacity) * 100"></v-progress-linear>
                 </div>
             </div>
             <div class="wrapper">
@@ -40,7 +40,7 @@
                         </span>
                         <span v-if="!unit.name && storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</span>
                         <span v-if="storage.dev" class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</span>
-                        <v-progress-linear v-if="storage.dev"
+                        <v-progress-linear height="6" v-if="storage.dev"
                         :value="unit.percent"></v-progress-linear>
                         <span v-if="unit.name && !storage.dev" class="disk-name" :title="unit.name">
                             {{ unit.name | truncate(25) }}

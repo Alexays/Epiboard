@@ -1,7 +1,11 @@
 <template>
-    <header class="grey"
-    :style="{ 'background-size': 'cover', 'background': 'url(' + background + ') no-repeat center center fixed' }">
-        <vue-typer tag="h1" :text="welcomeMessage" :repeat='0'></vue-typer>
+    <header tag="header" class="grey">
+    <progressive-background no-ratio :src="background"
+    :style="{ 'background-size': 'cover' }">
+        <div class="typer">
+            <vue-typer tag="h1" :text="welcomeMessage" :repeat='0'></vue-typer>
+        </div>
+    </progressive-background>
     </header>
 </template>
 <script src="./main.js"></script>

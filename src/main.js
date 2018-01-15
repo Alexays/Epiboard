@@ -4,12 +4,14 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VueProgressiveImage from 'vue-progressive-image';
 import App from './App';
 import router from './router';
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
+Vue.use(VueProgressiveImage);
 Vue.use(VueAxios, axios);
 /* eslint-disable no-new */
 new Vue({
