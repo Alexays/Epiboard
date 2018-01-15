@@ -164,7 +164,6 @@ export default {
       messages: '',
       background: '',
       trends: [],
-      welcomeMessage: false,
     };
   },
   methods: {
@@ -172,7 +171,6 @@ export default {
       if (this.welcomeMessage || _.isEmpty(this.trends))
         return;
       this.messages = this.trends;
-      this.welcomeMessage = true;
     },
     getBackground() {
       const getBackgroundTime = (url) => {
@@ -193,7 +191,7 @@ export default {
       this.background = getBackgroundTime(_.sample(data.backgrounds).url);
     },
     getMessage() {
-      this.messages = [_.sample(data.welcomeMessages)];
+      this.messages = data.welcomeMessages;
       this.axios.get(data.trendsApi).then((res) => {
         this.trends = res.data['france']; // TODO: select country
       });
