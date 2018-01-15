@@ -6,6 +6,7 @@ export default {
   components: {},
   data() {
     return {
+      loading: true,
       logged: true,
       title: '',
       gpa: '',
@@ -16,11 +17,13 @@ export default {
       chrome.cookies.get({ url: API, name: 'user' }, (cookie) => {
         if (chrome.runtime.lastError) {
           this.logged = false;
+          this.loading = false;
           return;
         }
         const date = new Date(cookie.expirationDate * 1000);
         if (date < new Date()) {
           this.logged = false;
+          this.loading = false;
           return;
         }
       });
@@ -29,6 +32,7 @@ export default {
       this.axios.get(API + '/user/?format=json').then((response) => {
         if (!response.data) {
           this.logged = false;
+          this.loading = false;
           return;
         }
         this.title = response.data.title;
