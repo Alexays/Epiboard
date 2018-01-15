@@ -2,9 +2,7 @@
     <header tag="header" class="grey">
     <progressive-background no-ratio :src="background"
     :style="{ 'background-size': 'cover' }">
-        <div class="typer">
-            <vue-typer tag="h1" :text="welcomeMessage" :repeat='0'></vue-typer>
-        </div>
+        <vue-typer tag="h1" :text="welcomeMessage" :repeat='0'></vue-typer>
     </progressive-background>
     </header>
 </template>
