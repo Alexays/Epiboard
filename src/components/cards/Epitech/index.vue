@@ -10,8 +10,14 @@
       <h4>You're not logged !</h4>
     </v-card-text>
     <v-card-text v-if="!loading && logged" class="white">
-      <h3>{{title}}</h3>
-      <p>{{gpa}}</p>
+      <h3 class="subheading">
+        {{user.title}} 
+        <v-chip label>{{user.gpa[0].gpa}}</v-chip>
+      </h3>
+      <p class="body-2">
+        {{user.studentyear}}<sup>{{user.studentyear > 1 ? 'nd' : 'st'}}</sup> year,
+         Promo {{user.promo}}
+      </p>
     </v-card-text>
 </div>
 </template>

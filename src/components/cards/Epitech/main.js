@@ -8,8 +8,7 @@ export default {
     return {
       loading: true,
       logged: true,
-      title: '',
-      gpa: '',
+      user: {},
     };
   },
   methods: {
@@ -36,8 +35,7 @@ export default {
           return;
         }
         this.loading = false;
-        this.title = response.data.title;
-        this.gpa = response.data.gpa[0].gpa;
+        this.user = response.data;
       });
     },
   },
