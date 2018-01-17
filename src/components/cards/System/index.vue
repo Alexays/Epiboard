@@ -28,7 +28,7 @@
                     <div>Memory</div>
                 </div>
                 <div class="wrapper-info">
-                    <p>{{memory.availableCapacity | bytes}} available of {{memory.capacity | bytes}}</p>
+                    <p>{{memory.capacity - memory.availableCapacity | bytes}} used of {{memory.capacity | bytes}}</p>
                     <v-progress-linear height="6"
                         :value="getLoad({
                             progress: memory.capacity - memory.availableCapacity,

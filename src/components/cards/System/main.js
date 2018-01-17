@@ -53,9 +53,6 @@ export default {
       });
     },
   },
-  beforeDestroy() {
-    clearInterval(this.cpuInterval);
-  },
   mounted() {
     this.getCpu();
     this.getMemory();
