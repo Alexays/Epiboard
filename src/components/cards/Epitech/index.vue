@@ -16,7 +16,7 @@
       </div>
       <div v-if="!projects.loading">
         <div class="p-timeline" v-for="(project, key) in projects" :key="key">
-          <h4>{{project.title}}</h4>
+          <h4>{{project.title}}</h4><small class="end_date">{{project.timeline_end}}</small>
           <v-progress-linear height="6" :value="project.timeline_barre"></v-progress-linear>
         </div>
       </div>

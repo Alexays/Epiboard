@@ -17,16 +17,19 @@ export default {
   },
   methods: {
     getCookie() {
-      chrome.cookies.get({ url: API, name: 'user' }, (cookie) => {
-        if (chrome.runtime.lastError) {
-          this.logged = false;
-          return;
-        }
-        const date = new Date(cookie.expirationDate * 1000);
-        if (date < new Date()) {
-          this.logged = false;
-          return;
-        }
+      return new Promise((resolve, reject) => {
+        chrome.cookies.get({ url: API, name: 'user' }, (cookie) => {
+          if (chrome.runtime.lastError) {
+            this.logged = false;
+            return reject(true);
+          }
+          const date = new Date(cookie.expirationDate * 1000);
+          if (date < new Date()) {
+            this.logged = false;
+            return reject(true);
+          }
+          return resolve(true);
+        });
       });
     },
     getUserInfo() {
@@ -41,7 +44,6 @@ export default {
     },
     getProjects() {
       this.axios.get(API + '/?format=json').then((response) => {
-        console.log(response);
         if (!response.data) {
           this.projects.loading = false;
           return;
@@ -49,15 +51,20 @@ export default {
         this.projects = response.data.board.projets
           .filter(f => f.timeline_barre < 100)
           .sort((a, b) => {
-            const [aDate, aTime] = a.timeline_start.split(', ');
+            const aDate = a.timeline_end.replace(', ', '/').replace('h', '/').split('/');
+            const bDate = b.timeline_end.replace(', ', '/').replace('h', '/').split('/');
+            const aParsed = new Date(aDate[2], aDate[1] - 1, aDate[0], aDate[3], aDate[4]);
+            const bParsed = new Date(bDate[2], bDate[1] - 1, bDate[0], bDate[3], bDate[4]);
+            return aParsed > bParsed;
           });
         this.projects.loading = false;
       });
     },
   },
   mounted() {
-    this.getCookie();
-    this.getUserInfo();
-    this.getProjects();
+    this.getCookie().then(() => {
+      this.getUserInfo();
+      this.getProjects();
+    });
   },
 };
