@@ -1,7 +1,7 @@
 <template>
     <div id="container">
         <transition-group name="slide-fade" appear tag="div" id="card-container">
-          <v-card v-for="card in cards" :data-item-id="card.name" :key="card.name">
+          <v-card v-for="(card, key) in cards" :data-item-id="key" :key="key">
             <div class="blue-grey">
               <v-card-title class="white--text">
                 <span class="headline">{{card.name}}</span>
@@ -11,7 +11,7 @@
                   </v-btn>
                   <v-list>
                     <v-list-tile>
-                      <v-list-tile-title>test</v-list-tile-title>
+                      <v-list-tile-title v-on:click="deleteCard(key)">Remove</v-list-tile-title>
                     </v-list-tile>
                   </v-list>
                 </v-menu>

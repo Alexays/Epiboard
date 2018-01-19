@@ -1,5 +1,7 @@
 import Muuri from 'muuri';
-import { ResizeSensor } from 'css-element-queries';
+import {
+  ResizeSensor
+} from 'css-element-queries';
 import Cards from '../cards';
 
 export default {
@@ -12,11 +14,24 @@ export default {
     };
   },
   methods: {
+    deleteCard(id) {
+      this.$delete(this.cards, id);
+    },
     handleSize(grid) {
-      const resize = () => {
+      const resize = (value) => {
+        if (value) {
+          const keys = Object.keys(value);
+          const oldCards = [].filter.call(document.querySelectorAll('.card'),
+            f => keys.indexOf(f.getAttribute('data-item-id')) < 0);
+          grid.remove(oldCards, {
+            removeElements: true
+          });
+          return;
+        }
         grid.refreshItems();
         grid.layout(true);
       };
+      this.$watch('$data.cards', resize);
       const cards = document.querySelectorAll('.card');
       for (let i = 0; i < cards.length; i += 1) {
         new ResizeSensor(cards[i], resize); // eslint-disable-line no-new
@@ -44,8 +59,9 @@ export default {
       if ((initPositions || {}).dragPositions) {
         const pos = JSON.parse(initPositions.dragPositions);
         grid.sort(
-          (a, b) => ((pos.indexOf(a._sortData.id) > pos.indexOf(b._sortData.id) ? 1 : -1)),
-          { layout: 'instant' },
+          (a, b) => ((pos.indexOf(a._sortData.id) > pos.indexOf(b._sortData.id) ? 1 : -1)), {
+            layout: 'instant'
+          },
         );
       } else {
         grid.layout(true);
@@ -53,9 +69,10 @@ export default {
       this.handleSize(grid);
       grid.on('dragEnd', () => {
         const order = grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
-        chrome.storage.sync.set({ dragPositions: JSON.stringify(order) });
+        chrome.storage.sync.set({
+          dragPositions: JSON.stringify(order)
+        });
       });
     });
   },
 };
-
