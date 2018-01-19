@@ -50,6 +50,7 @@ export default {
         }
         this.projects = response.data.board.projets
           .filter(f => f.timeline_barre < 100)
+          .slice(0, 5)
           .sort((a, b) => {
             const aDate = a.timeline_end.replace(', ', '/').replace('h', '/').split('/');
             const bDate = b.timeline_end.replace(', ', '/').replace('h', '/').split('/');
