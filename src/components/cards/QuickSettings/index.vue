@@ -1,8 +1,5 @@
 <template>
-<div class="blue-grey">
-    <v-card-title class="white--text">
-      <span class="headline">Quick Settings</span>
-    </v-card-title>
+<div id="quick-settings">
     <v-card-text class="white">
 				<v-checkbox label="Cache" v-model="types.cache" color="primary" hide-details></v-checkbox>
 				<v-checkbox label="Cookies" v-model="types.cookies" color="primary" hide-details></v-checkbox>

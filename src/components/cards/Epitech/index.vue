@@ -1,9 +1,6 @@
 <template>
-<div class="blue-grey">
-    <v-card-title class="white--text">
-      <span class="headline">Epitech</span>
-    </v-card-title>
-    <v-card-text v-if="logged" class="white">
+<div id="epitech">
+  <div v-if="logged">
       <div v-if="!user.loading">
       <h3 class="subheading">
         {{user.title}} 
@@ -22,13 +19,13 @@
           <v-progress-linear height="6" :value="project.timeline_barre"></v-progress-linear>
         </div>
       </div>
-    </v-card-text>
-    <v-card-text v-if="user.loading || projects.loading" class="white">
+    </div>
+    <div v-if="user.loading || projects.loading" class="white">
       <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
-    </v-card-text>
-    <v-card-text v-if="!user.loading && !logged" class="white">
+    </div>
+    <div v-if="!user.loading && !logged" class="white">
       <h4>You're not logged !</h4>
-    </v-card-text>
+    </div>
 </div>
 </template>
 <script src="./main.js"></script>

@@ -1,23 +1,25 @@
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.wrapper-name {
-  margin-right: 20px;
-  text-align: center;
-  width: 50px;
-}
-.wrapper-info {
-  width: 100%;
-  .storage-unit {
+#system {
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper-name {
+    margin-right: 20px;
+    text-align: center;
+    width: 50px;
+  }
+  .wrapper-info {
     width: 100%;
-    list-style: none;
-  }
-  .disk-name {
-    text-overflow: ellipsis;
-  }
-  .disk-capacity {
-    float: right;
+    .storage-unit {
+      width: 100%;
+      list-style: none;
+    }
+    .disk-name {
+      text-overflow: ellipsis;
+    }
+    .disk-capacity {
+      float: right;
+    }
   }
 }

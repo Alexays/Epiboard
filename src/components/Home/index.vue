@@ -2,7 +2,24 @@
     <div id="container">
         <transition-group name="slide-fade" appear tag="div" id="card-container">
           <v-card v-for="card in cards" :data-item-id="card.name" :key="card.name">
-            <component :is="card"></component>
+            <div class="blue-grey">
+              <v-card-title class="white--text">
+                <span class="headline">{{card.name}}</span>
+                <v-menu bottom offset-y>
+                  <v-btn flat icon slot="activator">
+                    <i class="material-icons small white--text">more_vert</i>
+                  </v-btn>
+                  <v-list>
+                    <v-list-tile>
+                      <v-list-tile-title>test</v-list-tile-title>
+                    </v-list-tile>
+                  </v-list>
+                </v-menu>
+              </v-card-title>
+              <v-card-text class="white">
+                <component :is="card"></component>
+              </v-card-text>
+            </div>
           </v-card>
         </transition-group>
     </div>

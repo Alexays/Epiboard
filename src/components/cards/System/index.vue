@@ -1,9 +1,5 @@
 <template>
-<div class="blue-grey">
-    <v-card-title class="white--text">
-      <span class="headline">System</span>
-    </v-card-title>
-    <v-card-text class="white">
+<div id="system">
         <div class="wrapper">
                 <div class="wrapper-name">
                     <i class="material-icons">nfc</i>
@@ -62,7 +58,6 @@
                     </li>
                 </div>
             </div>
-    </v-card-text>
 </div>
 </template>
 <script src="./main.js"></script>
