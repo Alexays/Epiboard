@@ -54,7 +54,7 @@ export default {
           return;
         }
         this.projects = response.data.board.projets
-          .filter(f => f.timeline_barre < 100 && !f.date_inscription && this.parseDate(f.timeline_start) <= Date())
+          .filter(f => f.timeline_barre < 100 && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
           .slice(0, 5)
           .sort((a, b) => this.parseDate(a.timeline_end) > this.parseDate(b.timeline_end));
         this.projects.loading = false;
