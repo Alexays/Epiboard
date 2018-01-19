@@ -16,6 +16,11 @@ export default {
     };
   },
   methods: {
+    parseDate(epiDate) {
+      const date = epiDate.replace(', ', '/').replace('h', '/').split('/');
+      const parsed = new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
+      return parse;
+    },
     getCookie() {
       return new Promise((resolve, reject) => {
         chrome.cookies.get({ url: API, name: 'user' }, (cookie) => {
@@ -49,15 +54,9 @@ export default {
           return;
         }
         this.projects = response.data.board.projets
-          .filter(f => f.timeline_barre < 100)
+          .filter(f => f.timeline_barre < 100 && !f.date_inscription && this.parseDate(f.timeline_start) <= Date())
           .slice(0, 5)
-          .sort((a, b) => {
-            const aDate = a.timeline_end.replace(', ', '/').replace('h', '/').split('/');
-            const bDate = b.timeline_end.replace(', ', '/').replace('h', '/').split('/');
-            const aParsed = new Date(aDate[2], aDate[1] - 1, aDate[0], aDate[3], aDate[4]);
-            const bParsed = new Date(bDate[2], bDate[1] - 1, bDate[0], bDate[3], bDate[4]);
-            return aParsed > bParsed;
-          });
+          .sort((a, b) => this.parseDate(a.timeline_end) > this.parseDate(b.timeline_end));
         this.projects.loading = false;
       });
     },
