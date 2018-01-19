@@ -19,7 +19,7 @@ export default {
     parseDate(epiDate) {
       const date = epiDate.replace(', ', '/').replace('h', '/').split('/');
       const parsed = new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
-      return parse;
+      return parsed;
     },
     getCookie() {
       return new Promise((resolve, reject) => {
