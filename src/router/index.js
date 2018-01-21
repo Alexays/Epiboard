@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Header from '@/components/Header';
 import Home from '@/components/Home';
+import Settings from '@/components/Settings';
 
 Vue.use(Router);
 
@@ -12,6 +13,14 @@ export default new Router({
       name: 'Home',
       components: {
         default: Home,
+        header: Header,
+      },
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      components: {
+        default: Settings,
         header: Header,
       },
     },

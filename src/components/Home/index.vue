@@ -10,8 +10,8 @@
                     <i class="material-icons small white--text">more_vert</i>
                   </v-btn>
                   <v-list>
-                    <v-list-tile>
-                      <v-list-tile-title v-on:click="deleteCard(key)">Remove</v-list-tile-title>
+                    <v-list-tile @click="deleteCard(key)">
+                      <v-list-tile-title>Remove</v-list-tile-title>
                     </v-list-tile>
                   </v-list>
                 </v-menu>

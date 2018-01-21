@@ -10,6 +10,7 @@ export default {
   components: {},
   data() {
     return {
+      settings: false,
       cards: Cards,
     };
   },

@@ -1,14 +1,17 @@
 #container {
   margin: 20px;
-}
-
-#card-container {
-  position: relative;
-}
-
-.slide-fade-enter-active, .slide-fade-leave-active {
-  transition: opacity 1s;
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  opacity: 0;
+  #card-container {
+    position: relative;
+  }
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: opacity 1s;
+  }
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    opacity: 0;
+  }
+  .btn--floating {
+    bottom: 28px!important;
+  }
 }
