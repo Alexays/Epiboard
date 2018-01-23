@@ -2,7 +2,7 @@
   <div id="apps">
     <ul class="app-list">
       <li class="app" v-for="app in apps" :key="app">
-        <a>
+        <a href="{{app.appLaunchUrl}}">
           <i v-bind:style="{ 'background-image': 'url('+app.icon+')' }"></i>
         </a>
       </li>
