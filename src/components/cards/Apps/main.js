@@ -31,6 +31,10 @@ export default {
         }
       });
     },
+    launch(app) {
+      if (app.launchType === "OPEN_AS_WINDOW")
+        chrome.management.launchApp(app.id);
+    },
   },
   mounted() {
     this.getAll();
