@@ -13,6 +13,7 @@
         "system.cpu",
         "system.memory",
         "system.storage",
+        "management",
         "https://trends.google.com/trends/hottrends/visualize/internal/data",
         "https://www.google.com/doodles/search",
         "*://intra.epitech.eu/"
@@ -21,7 +22,6 @@
       "tabs",
       "topSites",
       "bookmarks",
-      "management",
       "history"
     ],
     "chrome_url_overrides" : {

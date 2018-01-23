@@ -1,0 +1,28 @@
+#apps {
+  max-height: 440px;
+  .app-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: hidden;
+    .app {
+      list-style: none;
+       :hover {
+        background-color: #f5f5f5;
+      }
+      a {
+        width: 120px;
+        height: 120px;
+        i {
+          display: block;
+          width: inherit;
+          height: inherit;
+          background-size: 90px;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+    }
+  }
+}
