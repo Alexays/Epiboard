@@ -1,3 +1,4 @@
+// DEPRECATED: Chrome apps will be removed soon
 export default {
   name: 'Apps',
   props: ['settings'],
