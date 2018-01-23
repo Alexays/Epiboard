@@ -42,7 +42,7 @@ export default {
           chrome.system.storage.getAvailableCapacity(storage[i].id, (res) => {
             if (chrome.runtime.lastError) return;
             disk[i].available = res.availableCapacity;
-            disk[i].percent = (disk[i].available / disk[i].capacity) * 100;
+            disk[i].percent = 100 - (disk[i].available / disk[i].capacity) * 100;
             disk[i].used = disk[i].capacity - disk[i].available;
             if (i === (storage.length - 1)) {
               this.storage = disk;
