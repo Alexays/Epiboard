@@ -10,35 +10,57 @@ export default {
   components: {},
   data() {
     return {
+      grid: null,
       settings: false,
       cards: {},
     };
   },
+  computed: {
+    nCards() {
+      return _.omit(Cards, Object.keys(this.cards));
+    },
+  },
   methods: {
+    resize(value) {
+      if (value) {
+        const keys = Object.keys(value);
+        const oldCards = [].filter.call(document.querySelectorAll('.card'),
+          f => keys.indexOf(f.getAttribute('data-item-id')) < 0);
+        this.grid.remove(oldCards, {
+          removeElements: true,
+          layout: false,
+        });
+        this.grid.refreshItems();
+        this.grid.layout();
+        return;
+      }
+      this.grid.refreshItems();
+      this.grid.layout(true);
+    },
     deleteCard(id) {
       this.$delete(this.cards, id);
       chrome.storage.sync.set({
         cards: Object.keys(this.cards)
       });
     },
-    handleSize(grid) {
-      const resize = (value) => {
-        if (value) {
-          const keys = Object.keys(value);
-          const oldCards = [].filter.call(document.querySelectorAll('.card'),
-            f => keys.indexOf(f.getAttribute('data-item-id')) < 0);
-          grid.remove(oldCards, {
-            removeElements: true
-          });
-          return;
-        }
-        grid.refreshItems();
-        grid.layout(true);
-      };
-      this.$watch('$data.cards', resize);
+    addCard(card, key) {
+      this.$set(this.cards, key, card);
+      this.$nextTick(() => {
+        const elem = document.querySelector('[data-item-id=' + key + ']');
+        this.grid.add(elem, {
+          layout: false
+        });
+        new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
+      });
+      chrome.storage.sync.set({
+        cards: Object.keys(this.cards)
+      });
+    },
+    handleSize() {
+      this.$watch('$data.cards', this.resize);
       const cards = document.querySelectorAll('.card');
       for (let i = 0; i < cards.length; i += 1) {
-        new ResizeSensor(cards[i], resize); // eslint-disable-line no-new
+        new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
       }
     },
   },
@@ -48,7 +70,7 @@ export default {
       const cards = (saved || {}).cards;
       this.cards = _.pick(Cards, saved.cards);
       this.$nextTick(() => {
-        const grid = new Muuri('#card-container', {
+        this.grid = new Muuri('#card-container', {
           items: '.card',
           dragEnabled: true,
           dragStartPredicate: {
@@ -64,22 +86,22 @@ export default {
           },
         });
         if (cards) {
-          grid.sort(
+          this.grid.sort(
             (a, b) => ((cards.indexOf(a._sortData.id) > cards.indexOf(b._sortData.id) ? 1 : -1)), {
               layout: 'instant'
             },
           );
         } else {
-          grid.layout(true);
+          this.grid.layout(true);
         }
-        this.handleSize(grid);
-        grid.on('dragEnd', () => {
-          const order = grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
+        this.handleSize();
+        this.grid.on('dragEnd', () => {
+          const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
           chrome.storage.sync.set({
             cards: order
           });
         });
       });
-    });  
+    });
   },
 };
