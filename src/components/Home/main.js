@@ -21,6 +21,9 @@ export default {
     },
   },
   methods: {
+    availableCards() {
+      return Object.keys(this.cards).length !== Object.keys(Cards).length;
+    },
     resize(value) {
       if (value) {
         const keys = Object.keys(value);
