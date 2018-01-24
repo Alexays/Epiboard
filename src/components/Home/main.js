@@ -30,8 +30,10 @@ export default {
           removeElements: true,
           layout: false,
         });
-        this.grid.refreshItems();
-        this.grid.layout();
+        this.$nextTick(() => {
+          this.grid.refreshItems();
+          this.grid.layout();
+        });  
         return;
       }
       this.grid.refreshItems();
