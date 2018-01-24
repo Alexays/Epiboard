@@ -16,14 +16,16 @@ export default {
     };
   },
   computed: {
+    emptyCards() {
+      if (_.isEmpty(this.cards))
+        return true;
+      return _.isEmpty(_.omit(Cards, Object.keys(this.cards)));
+    },
     nCards() {
       return _.omit(Cards, Object.keys(this.cards));
     },
   },
   methods: {
-    availableCards() {
-      return Object.keys(this.cards).length !== Object.keys(Cards).length;
-    },
     resize(value) {
       if (value) {
         const keys = Object.keys(value);

@@ -1,7 +1,7 @@
 <template>
   <div id="container">
-    <v-speed-dial :top="true" :right="true" direction="bottom" transition="slide-y-reverse-transition">
-        <v-btn slot="activator" v-show="availableCards()" dark fab color="blue">
+    <v-speed-dial v-show="!emptyCards" :top="true" :right="true" direction="bottom" transition="slide-y-reverse-transition">
+        <v-btn slot="activator" dark fab color="blue">
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>
