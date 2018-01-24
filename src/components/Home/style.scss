@@ -1,7 +1,8 @@
 #container {
-  margin: 20px;
+  position: relative;
   #card-container {
     position: relative;
+    margin: 20px;
   }
   .slide-fade-enter-active,
   .slide-fade-leave-active {
