@@ -42,7 +42,7 @@ export default {
         return;
       }
       this.grid.refreshItems();
-      this.grid.layout(true);
+      this.grid.layout();
     },
     deleteCard(id) {
       this.$delete(this.cards, id);
