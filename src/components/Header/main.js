@@ -1,12 +1,13 @@
 import _ from 'lodash';
-import { VueTyper } from 'vue-typer';
+import {
+  VueTyper
+} from 'vue-typer';
 
 const data = {
   trendsApi: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
   //trendsApi: 'https://hawttrends.appspot.com/api/terms/',
   // imgur album: https://imgur.com/a/NAaUE
-  backgrounds: [
-    {
+  backgrounds: [{
       id: 0,
       name: 'Austin',
       type: 'Google Now',
@@ -202,4 +203,3 @@ export default {
     this.getMessage();
   },
 };
-

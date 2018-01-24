@@ -1,10 +1,10 @@
 <template>
-  <div id="container">
+  <div id="home">
     <v-speed-dial v-show="!emptyCards" :top="true" :right="true" direction="bottom" transition="slide-y-reverse-transition">
-        <v-btn slot="activator" dark fab color="blue">
-          <v-icon>add</v-icon>
-          <v-icon>close</v-icon>
-        </v-btn>
+      <v-btn slot="activator" dark fab color="blue">
+        <v-icon>add</v-icon>
+        <v-icon>close</v-icon>
+      </v-btn>
       <v-btn v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark small color="green">
         <v-icon v-if="card.icon">{{card.icon}}</v-icon>
         <span v-if="!card.icon">{{card.name}}</span>

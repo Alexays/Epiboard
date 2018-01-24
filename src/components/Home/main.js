@@ -38,7 +38,7 @@ export default {
         this.$nextTick(() => {
           this.grid.refreshItems();
           this.grid.layout();
-        });  
+        });
         return;
       }
       this.grid.refreshItems();

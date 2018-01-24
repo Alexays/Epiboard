@@ -23,7 +23,10 @@ export default {
     },
     getCookie() {
       return new Promise((resolve, reject) => {
-        chrome.cookies.get({ url: API, name: 'user' }, (cookie) => {
+        chrome.cookies.get({
+          url: API,
+          name: 'user'
+        }, (cookie) => {
           if (chrome.runtime.lastError) {
             this.logged = false;
             return reject(true);

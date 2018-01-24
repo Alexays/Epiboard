@@ -1,14 +1,14 @@
 header {
-    height: 233px;
-    > div {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-    }
-    #settings {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        z-index: 1;
-    }
+  height: 233px;
+  >div {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  #settings {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+  }
 }

@@ -12,21 +12,25 @@ export default {
   methods: {
     getLoad(current, prev) {
       if (prev) {
-        return Math.floor(((current.progress - prev.progress)
-          / (current.total - prev.total)) * 100);
+        return Math.floor(((current.progress - prev.progress) /
+          (current.total - prev.total)) * 100);
       }
       return Math.floor((current.progress / current.total) * 100)
     },
     getCpu() {
       chrome.system.cpu.getInfo((cpu) => {
         if (chrome.runtime.lastError) return;
-        this.cpu = Object.assign({}, cpu, { prev: this.cpu });
+        this.cpu = Object.assign({}, cpu, {
+          prev: this.cpu
+        });
       });
     },
     getMemory() {
       chrome.system.memory.getInfo((memory) => {
         if (chrome.runtime.lastError) return;
-        this.memory = Object.assign({}, memory, { prev: this.memory });
+        this.memory = Object.assign({}, memory, {
+          prev: this.memory
+        });
       });
     },
     getStorage() {
@@ -65,4 +69,3 @@ export default {
     }, 10000);
   },
 };
-

@@ -7,9 +7,11 @@
       </div>
       <div class="d-info">
         <div title="Open Download" class="name" v-on:click="open(download)">{{download.filename | filename}}</div>
-        <span class="size"><span v-if="download.state == 'in_progress'">
-          {{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}
-        </span> - <a :href="download.url" class="host">{{download.url}}</a>
+        <span class="size">
+          <span v-if="download.state == 'in_progress'">
+            {{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}
+        </span> -
+        <a :href="download.url" class="host">{{download.url}}</a>
       </div>
     </li>
   </div>
