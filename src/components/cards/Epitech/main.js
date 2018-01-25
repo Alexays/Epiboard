@@ -25,23 +25,23 @@ export default {
       return new Promise((resolve, reject) => {
         chrome.cookies.get({
           url: API,
-          name: 'user'
+          name: 'user',
         }, (cookie) => {
-          if (chrome.runtime.lastError) {
+          if (chrome.runtime.lastError || !cookie) {
             this.logged = false;
-            return reject(true);
+            return reject(new Error('Not logged'));
           }
           const date = new Date(cookie.expirationDate * 1000);
           if (date < new Date()) {
             this.logged = false;
-            return reject(true);
+            return reject(new Error('Expired'));
           }
           return resolve(true);
         });
       });
     },
     getUserInfo() {
-      this.axios.get(API + '/user/?format=json').then((response) => {
+      this.axios.get(`${API}/user/?format=json`).then((response) => {
         if (!response.data) {
           this.user.loading = false;
           return;
@@ -51,13 +51,14 @@ export default {
       });
     },
     getProjects() {
-      this.axios.get(API + '/?format=json').then((response) => {
+      this.axios.get(`${API}/?format=json`).then((response) => {
         if (!response.data) {
           this.projects.loading = false;
           return;
         }
         this.projects = response.data.board.projets
-          .filter(f => f.timeline_barre < 100 && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
+          .filter(f => f.timeline_barre < 100
+            && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
           .slice(0, 5)
           .sort((a, b) => this.parseDate(a.timeline_end) > this.parseDate(b.timeline_end));
         this.projects.loading = false;

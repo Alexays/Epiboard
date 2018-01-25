@@ -1,7 +1,8 @@
 import Muuri from 'muuri';
 import {
-  ResizeSensor
+  ResizeSensor,
 } from 'css-element-queries';
+import _ from 'lodash';
 import Cards from '../cards';
 
 export default {
@@ -17,8 +18,9 @@ export default {
   },
   computed: {
     emptyCards() {
-      if (_.isEmpty(this.cards))
+      if (_.isEmpty(this.cards) && this.grid == null) {
         return true;
+      }
       return _.isEmpty(_.omit(Cards, Object.keys(this.cards)));
     },
     nCards() {
@@ -29,8 +31,10 @@ export default {
     resize(value) {
       if (value) {
         const keys = Object.keys(value);
-        const oldCards = [].filter.call(document.querySelectorAll('.card'),
-          f => keys.indexOf(f.getAttribute('data-item-id')) < 0);
+        const oldCards = [].filter.call(
+          document.querySelectorAll('.card'),
+          f => keys.indexOf(f.getAttribute('data-item-id')) < 0,
+        );
         this.grid.remove(oldCards, {
           removeElements: true,
           layout: false,
@@ -47,20 +51,20 @@ export default {
     deleteCard(id) {
       this.$delete(this.cards, id);
       chrome.storage.sync.set({
-        cards: Object.keys(this.cards)
+        cards: Object.keys(this.cards),
       });
     },
     addCard(card, key) {
       this.$set(this.cards, key, card);
       this.$nextTick(() => {
-        const elem = document.querySelector('[data-item-id=' + key + ']');
+        const elem = document.querySelector(`[data-item-id=${key}]`);
         this.grid.add(elem, {
-          layout: false
+          layout: false,
         });
         new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
       });
       chrome.storage.sync.set({
-        cards: Object.keys(this.cards)
+        cards: Object.keys(this.cards),
       });
     },
     handleSize() {
@@ -74,7 +78,7 @@ export default {
   mounted() {
     chrome.storage.sync.get('cards', (saved) => {
       if (chrome.runtime.lastError) return;
-      const cards = (saved || {}).cards;
+      const { cards } = (saved || {});
       this.cards = _.pick(Cards, saved.cards);
       this.$nextTick(() => {
         this.grid = new Muuri('#card-container', {
@@ -93,11 +97,11 @@ export default {
           },
         });
         if (cards) {
-          this.grid.sort(
-            (a, b) => ((cards.indexOf(a._sortData.id) > cards.indexOf(b._sortData.id) ? 1 : -1)), {
-              layout: 'instant'
-            },
-          );
+          this.grid
+            .sort((a, b) => ((cards.indexOf(a._sortData.id)
+              > cards.indexOf(b._sortData.id) ? 1 : -1)), {
+              layout: 'instant',
+            });
         } else {
           this.grid.layout(true);
         }
@@ -105,7 +109,7 @@ export default {
         this.grid.on('dragEnd', () => {
           const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
           chrome.storage.sync.set({
-            cards: order
+            cards: order,
           });
         });
       });
