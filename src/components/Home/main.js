@@ -46,7 +46,7 @@ export default {
         return;
       }
       this.grid.refreshItems();
-      this.grid.layout();
+      this.grid.layout(true);
     },
     deleteCard(id) {
       this.$delete(this.cards, id);
