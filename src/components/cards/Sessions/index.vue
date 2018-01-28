@@ -1,6 +1,6 @@
 <template>
   <div class="no-margins" id="sessions">
-    <v-tabs dark show-arrows color="blue-grey">
+    <v-tabs dark grow show-arrows color="blue-grey">
       <v-tabs-slider color="white"></v-tabs-slider>
       <v-tab ripple>Recently Closed</v-tab>
       <v-tab v-for="(device, key) in devices" :key="key">
@@ -17,7 +17,7 @@
             </a>
           </li>
         </v-tab-item>
-        <v-tab-item v-for="(device, key) in devices" :key="key">
+        <v-tab-item lazy v-for="(device, key) in devices" :key="key">
           <li v-for="(tab, subKey) in device.tabs" :key="subKey">
             <a :href="tab.url" class="session">
               <i v-if="tab.favIconUrl" :style="{'background-image': 'url('+ tab.favIconUrl +')'}"></i>
