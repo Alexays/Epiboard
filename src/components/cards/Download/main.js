@@ -9,9 +9,7 @@ export default {
   },
   methods: {
     humanize(error) {
-      const isUpper = (s) => {
-        return !/[^a-z\xC0-\xFF]/.test(s.toLowerCase()) && s.toUpperCase() === s;
-      };
+      const isUpper = s => !/[^a-z\xC0-\xFF]/.test(s.toLowerCase()) && s.toUpperCase() === s;
       let input = error.replace(/(^\s*|\s*$)/g, '').replace(/([a-z\d])([A-Z]+)/g, '$1_$2').replace(/[-\s]+/g, '_').toLowerCase();
       if (isUpper(input.charAt(0))) {
         input = `_${input}`;
@@ -34,7 +32,7 @@ export default {
     getDownloads() {
       chrome.downloads.search({
         limit: 5,
-        orderBy: ['-startTime']
+        orderBy: ['-startTime'],
       }, (downloads) => {
         if (chrome.runtime.lastError) return;
         this.downloads = downloads;
@@ -70,8 +68,7 @@ export default {
         this.downloads.unshift(download);
         // wait 500ms after download starts to get the icon
         Promise.delay(500).then(() => {
-          if (!download.filename)
-            throw new Error('No filename');
+          if (!download.filename) throw new Error('No filename');
           return chrome.downloads.getFileIcon(download.id, (dataUrl) => {
             if (chrome.runtime.lastError) return;
             for (let i = 0; i < this.downloads.length; i += 1) {

@@ -5,7 +5,6 @@
     "version": "1.0",
     "permissions": [
         "storage",
-        "cookies",
         "sessions",
         "browsingData",
         "downloads",
@@ -14,15 +13,15 @@
         "system.memory",
         "system.storage",
         "management",
+        "tabs",
+        "topSites",
+        "bookmarks",
+        "history",
         "https://trends.google.com/trends/hottrends/visualize/internal/data",
         "https://www.google.com/doodles/search",
         "*://intra.epitech.eu/"
     ],
     "optional_permissions": [
-      "tabs",
-      "topSites",
-      "bookmarks",
-      "history"
     ],
     "chrome_url_overrides" : {
         "newtab": "index.html"

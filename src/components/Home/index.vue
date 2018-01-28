@@ -1,19 +1,19 @@
 <template>
   <div id="home">
     <v-fab-transition>
-    <v-speed-dial v-show="!emptyCards" :top="true" :right="true" direction="bottom" transition="slide-y-reverse-transition">
-      <v-btn slot="activator" dark fab color="blue">
-        <v-icon>add</v-icon>
-        <v-icon>close</v-icon>
-      </v-btn>
-      <v-btn v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark small color="green">
-        <v-icon v-if="card.icon">{{card.icon}}</v-icon>
-        <span v-if="!card.icon">{{card.name}}</span>
-      </v-btn>
-    </v-speed-dial>
+      <v-speed-dial v-show="!emptyCards" :top="true" :right="true" direction="bottom" transition="slide-y-reverse-transition">
+        <v-btn slot="activator" dark fab color="blue">
+          <v-icon>add</v-icon>
+          <v-icon>close</v-icon>
+        </v-btn>
+        <v-btn v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark small color="green">
+          <v-icon v-if="card.icon">{{card.icon}}</v-icon>
+          <span v-if="!card.icon">{{card.name}}</span>
+        </v-btn>
+      </v-speed-dial>
     </v-fab-transition>
     <transition-group name="slide-fade" appear tag="div" id="card-container">
-      <v-card v-for="(card, key) in cards" :data-item-id="key" :key="key">
+      <v-card v-for="(card, key) in cards" :key="key" :data-item-id="key">
         <div class="blue-grey">
           <v-card-title class="white--text">
             <span class="headline">{{card.name}}</span>

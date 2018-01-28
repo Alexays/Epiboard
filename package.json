@@ -23,7 +23,7 @@
     "vue-progressive-image": "^2.4.4",
     "vue-router": "^3.0.1",
     "vue-typer": "^1.2.0",
-    "vuetify": "^0.17.6",
+    "vuetify": "^1.0.0-beta.5",
     "web-animations-js": "^2.3.1"
   },
   "devDependencies": {

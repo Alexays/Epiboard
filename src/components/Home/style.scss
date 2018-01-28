@@ -11,9 +11,10 @@
     position: relative;
     margin: 20px;
     z-index: 0;
-    .card:not(.muuri-item-shown) {
-      visibility: hidden;
-    }
+    // Cause bugs check in future update
+    // .card:not(.muuri-item-shown) {
+    //   visibility: hidden;
+    // }
   }
   .slide-fade-enter-active,
   .slide-fade-leave-active {

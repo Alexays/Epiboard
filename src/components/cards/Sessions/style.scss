@@ -1,0 +1,46 @@
+#sessions {
+    min-height: 286px;
+    li {
+        list-style: none;
+        .session {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 7px 15px;
+            margin: 0;
+            text-transform: none;
+            text-decoration: none;
+             :hover {
+                background-color: #f5f5f5;
+            }
+            .session-title {
+                color: #424242;
+                margin-left: 9px;
+                font-size: 13px;
+                flex-grow: 1;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            i {
+                width: 20px;
+                height: 20px;
+                background-size: 16px;
+                background-repeat: no-repeat;
+                background-position: center;
+                font-size: 20px;
+                line-height: 18px;
+                color: #757575;
+                flex-shrink: 0;
+            }
+            .more {
+                flex-shrink: 0;
+                color: #757575;
+                margin-left: 10px;
+            }
+            .time {
+                font-size: 11px;
+            }
+        }
+    }
+}
