@@ -2,7 +2,9 @@ import Muuri from 'muuri';
 import {
   ResizeSensor,
 } from 'css-element-queries';
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
+import pick from 'lodash/pick';
 import Cards from '../cards';
 
 export default {
@@ -18,13 +20,13 @@ export default {
   },
   computed: {
     emptyCards() {
-      if (_.isEmpty(this.cards) && this.grid == null) {
+      if (isEmpty(this.cards) && this.grid == null) {
         return true;
       }
-      return _.isEmpty(_.omit(Cards, Object.keys(this.cards)));
+      return isEmpty(omit(Cards, Object.keys(this.cards)));
     },
     nCards() {
-      return _.omit(Cards, Object.keys(this.cards));
+      return omit(Cards, Object.keys(this.cards));
     },
   },
   methods: {
@@ -79,7 +81,7 @@ export default {
     chrome.storage.sync.get('cards', (saved) => {
       if (chrome.runtime.lastError) return;
       const { cards } = (saved || {});
-      this.cards = _.pick(Cards, saved.cards);
+      this.cards = pick(Cards, saved.cards);
       this.$nextTick(() => {
         this.grid = new Muuri('#card-container', {
           items: '.card',
