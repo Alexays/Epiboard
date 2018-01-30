@@ -2,8 +2,9 @@
   <div id="epitech">
     <div v-if="!user.loading && user.loaded" class="text-xs-center">
       <h3>
-        {{user.title}}
+        {{user.title}}<br>
         <v-chip label>{{user.gpa[0].gpa}}</v-chip>
+      	<v-chip label>{{user.credits}} <b> Crédits</b></v-chip>
       </h3>
       <p>
         {{user.studentyear}}
