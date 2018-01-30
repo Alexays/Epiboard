@@ -11,10 +11,11 @@ export default {
     };
   },
   methods: {
-    getFavicon(url) {
-      const regex = /(chrome:\/\/|view-source:)/ig;
-      if (!regex.test(url)) {
-        return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
+    getFavicon(tab) {
+      const regex = /^(chrome:|chrome-extension:|view-source:)/ig;
+      if (tab.favIconUrl && !regex.test(tab.favIconUrl)) return tab.favIconUrl;
+      if (!regex.test(tab.url)) {
+        return `https://www.google.com/s2/favicons?domain_url=${encodeURI(tab.url)}`;
       }
       return null;
     },
@@ -27,7 +28,7 @@ export default {
         if (item.tab) {
           const { tab } = item;
           tab.lastModified = new Date(item.lastModified * 1e3).toISOString();
-          tab.favIconUrl = tab.favIconUrl || this.getFavicon(tab.url);
+          tab.favIconUrl = this.getFavicon(tab);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
           // e.g: we don't care about the difference between tabs and windows
@@ -36,7 +37,7 @@ export default {
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
             tab.lastModified = new Date(item.lastModified * 1e3).toISOString();
-            tab.favIconUrl = tab.favIconUrl || this.getFavicon(tab.url);
+            tab.favIconUrl = this.getFavicon(tab);
             tabs.push(tab);
           }
         }
