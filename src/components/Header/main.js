@@ -1,13 +1,14 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import sample from 'lodash/sample';
 import {
-  VueTyper
+  VueTyper,
 } from 'vue-typer';
 
 const data = {
   trendsApi: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
-  //trendsApi: 'https://hawttrends.appspot.com/api/terms/',
   // imgur album: https://imgur.com/a/NAaUE
-  backgrounds: [{
+  backgrounds: [
+    {
       id: 0,
       name: 'Austin',
       type: 'Google Now',
@@ -149,7 +150,7 @@ const data = {
     'Did you know you rock ?',
     "Let's get motivated shall we ?",
     'Come on buddy !',
-    'You can be whoever you want !'
+    'You can be whoever you want !',
   ],
 };
 
@@ -169,8 +170,7 @@ export default {
   },
   methods: {
     addTrends() {
-      if (this.welcomeMessage || _.isEmpty(this.trends))
-        return;
+      if (this.welcomeMessage || isEmpty(this.trends)) return;
       this.messages = this.trends;
     },
     getBackground() {
@@ -189,7 +189,7 @@ export default {
         }
         return url.night;
       };
-      this.background = getBackgroundTime(_.sample(data.backgrounds).url);
+      this.background = getBackgroundTime(sample(data.backgrounds).url);
     },
     getMessage() {
       this.messages = data.welcomeMessages;

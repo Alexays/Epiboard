@@ -2,12 +2,16 @@
   <div class="no-margins" id="sessions">
     <v-tabs dark grow show-arrows color="blue-grey">
       <v-tabs-slider color="white"></v-tabs-slider>
-      <v-tab ripple>Recently Closed</v-tab>
+      <v-tab>Recently Closed</v-tab>
       <v-tab v-for="(device, key) in devices" :key="key">
         {{ device.deviceName }}
       </v-tab>
       <v-tabs-items>
         <v-tab-item>
+          <div v-if="!recentlyClosed.length" class="white text-xs-center session-empty">
+            <i class="material-icons md-48">wb_sunny</i>
+            <h2 class="subheading">You have no recently closed page.</h2>
+          </div>
           <li v-for="(session, key) in recentlyClosed" :key="key">
             <a :href="session.url" class="session">
               <i v-if="session.favIconUrl" :style="{'background-image': 'url(' + session.favIconUrl +')'}"></i>
