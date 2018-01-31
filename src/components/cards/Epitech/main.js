@@ -1,11 +1,10 @@
-const API = 'https://intra.epitech.eu';
-
 export default {
   name: 'Epitech',
   props: ['settings'],
   components: {},
   data() {
     return {
+      API: 'https://intra.epitech.eu',
       user: {
         loading: true,
       },
@@ -16,12 +15,12 @@ export default {
   },
   methods: {
     parseDate(epiDate) {
-      const date = epiDate.replace(', ', '/').replace('h', '/').split('/');
+      const date = epiDate.replace(', ', '/').replace(':', '/').split('/');
       const parsed = new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
       return parsed;
     },
     getUserInfo() {
-      this.axios.get(`${API}/user/?format=json`)
+      this.axios.get(`${this.API}/user/?format=json`)
         .then((response) => {
           if (!response.data) return;
           this.user = response.data;
@@ -31,7 +30,7 @@ export default {
         });
     },
     getProjects() {
-      this.axios.get(`${API}/?format=json`)
+      this.axios.get(`${this.API}/?format=json`)
         .then((response) => {
           if (!response.data) return;
           this.projects = response.data.board.projets
