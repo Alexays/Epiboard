@@ -1,35 +1,34 @@
-.card {
-  min-height: 200px;
-  width: 400px;
-  margin: 15px;
-  position: absolute;
-  z-index: 1;
-  .card__title {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    .btn {
-      margin: 0;
-      padding: 0;
+#home {
+  .card {
+    min-height: 200px;
+    width: 400px;
+    margin: 15px;
+    position: absolute;
+    z-index: 1;
+    .card__title {
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      .btn {
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .no-margins {
+      margin: -16px;
+    }
+    .progress-linear {
+      margin: .5rem 0;
     }
   }
-  .no-margins {
-    margin: -16px;
+  .muuri-item-dragging {
+    z-index: 3 !important;
   }
-  .progress-linear {
-    margin: .5rem 0;
+  .muuri-item-releasing {
+    z-index: 2 !important;
   }
-}
-
-.muuri-item-dragging {
-  z-index: 3!important;
-}
-
-.muuri-item-releasing {
-  z-index: 2!important;
-}
-
-.muuri-item-hidden {
-  z-index: 0!important;
+  .muuri-item-hidden {
+    z-index: 0 !important;
+  }
 }

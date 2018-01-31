@@ -1,13 +1,16 @@
 <template>
   <header tag="header" class="grey">
     <progressive-background no-ratio :src="background">
-      <vue-typer tag="h1" :text="messages" pre-erase-delay='5000' erase-delay='250' :shuffle='true' @erased='addTrends'></vue-typer>
+      <vue-typer v-show="$route.path === '/'" tag="h1" :text="messages" pre-erase-delay='5000' erase-delay='250' :shuffle='true'
+        @erased='addTrends'></vue-typer>
+      <vue-typer v-if="$route.path !== '/'" tag="h1" :text="$route.name" :repeat='0'></vue-typer>
     </progressive-background>
-    <router-link to="/settings">
-      <v-btn id="settings" flat icon color="white">
-        <v-icon>more_vert</v-icon>
-      </v-btn>
-    </router-link>
+    <v-btn v-if="$route.path === '/settings'" id="settings" flat icon color="white" to="/">
+      <v-icon x-large>arrow_back</v-icon>
+    </v-btn>
+    <v-btn v-show="$route.path !== '/settings'" id="settings" flat icon color="white" to="/settings">
+      <v-icon>more_vert</v-icon>
+    </v-btn>
   </header>
 </template>
 <script src="./main.js"></script>

@@ -5,8 +5,8 @@ import Vuetify from 'vuetify';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueProgressiveImage from 'vue-progressive-image';
-import App from './App';
-import router from './router';
+import App from '@/App';
+import router from '@/router';
 
 Vue.config.productionTip = false;
 

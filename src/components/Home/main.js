@@ -5,7 +5,7 @@ import {
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
-import Cards from '../cards';
+import Cards from '@/components/cards';
 
 export default {
   name: 'Home',

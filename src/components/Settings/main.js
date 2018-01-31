@@ -1,13 +1,19 @@
+import Config from '@/components/Config';
+import Settings from './settings';
+
 export default {
   name: 'Settings',
   props: ['settings'],
-  components: {},
+  components: {
+    Config,
+  },
   data() {
     return {
+      settings: [],
     };
   },
-  methods: {
-  },
+  methods: {},
   mounted() {
+    this.settings = Settings;
   },
 };
