@@ -32,7 +32,7 @@ export default {
       });
     },
     launch(app) {
-      if (app.launchType === "OPEN_AS_WINDOW")
+      if (app.launchType === "OPEN_AS_REGULAR_TAB")
         chrome.management.launchApp(app.id);
     },
   },
