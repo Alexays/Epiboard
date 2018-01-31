@@ -2,8 +2,9 @@
   <div id="epitech">
     <div v-if="!user.loading && user.loaded" class="text-xs-center">
       <h3>
-        {{user.title}}
+        {{user.title}}<br>
         <v-chip label>{{user.gpa[0].gpa}}</v-chip>
+      	<v-chip label>{{user.credits}} <b> Crédits</b></v-chip>
       </h3>
       <p>
         {{user.studentyear}}
@@ -12,7 +13,7 @@
     </div>
     <div v-if="!projects.loading && projects.loaded">
       <div class="p-timeline" v-for="(project, key) in projects" :key="key">
-        <h4>{{project.title}}</h4>
+       	<a target="_blank" v-bind:href="'http://intra.epitech.eu' + project.title_link"><h4>{{project.title}}</h4></a>
         <small>{{project.timeline_start}}</small>
         <small class="end_date">{{project.timeline_end}}</small>
         <v-progress-linear height="6" :value="project.timeline_barre"></v-progress-linear>
