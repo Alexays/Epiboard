@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     parseDate(epiDate) {
-      const date = epiDate.replace(', ', '/').replace(':', '/').split('/');
+      const date = epiDate.replace(', ', '/').replace(':', '/').replace('h', '/').split('/');
       const parsed = new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
       return parsed;
     },
