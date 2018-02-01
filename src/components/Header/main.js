@@ -173,12 +173,16 @@ export default {
     country() {
       return this.$store.state.settings.country;
     },
+    google_now() {
+      return this.$store.state.settings.google_now;
+    },
   },
   watch: {
-    country(newC, oldC) {
-      if (newC !== oldC) {
-        this.getMessage();
-      }
+    country(val, old) {
+      if (val !== old) this.getMessage();
+    },
+    google_now(val, old) {
+      if (val !== old) this.getBackground();
     },
   },
   methods: {
@@ -202,7 +206,11 @@ export default {
         }
         return url.night;
       };
-      this.background = getBackgroundTime(sample(data.backgrounds).url);
+      if (this.$store.state.settings.google_now === 'Random') {
+        this.background = getBackgroundTime(sample(data.backgrounds).url);
+      } else {
+        this.background = getBackgroundTime(data.backgrounds.find(f => f.name === this.$store.state.settings.google_now).url);
+      }
     },
     getMessage() {
       this.messages = data.welcomeMessages;
