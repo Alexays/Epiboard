@@ -165,8 +165,21 @@ export default {
     return {
       messages: '',
       background: '',
+      $trends: null,
       trends: [],
     };
+  },
+  computed: {
+    country() {
+      return this.$store.state.settings.country;
+    },
+  },
+  watch: {
+    country(newC, oldC) {
+      if (newC !== oldC) {
+        this.getMessage();
+      }
+    },
   },
   methods: {
     addTrends() {
@@ -193,12 +206,13 @@ export default {
     },
     getMessage() {
       this.messages = data.welcomeMessages;
-      this.axios.get(data.trendsApi).then((res) => {
-        this.trends = res.data[this.$store.state.settings.country];
+      this.$trends.then((res) => {
+        this.trends = res[this.$store.state.settings.country];
       });
     },
   },
   mounted() {
+    this.$trends = this.axios.get(data.trendsApi).then(res => res.data);
     this.getBackground();
     this.getMessage();
   },
