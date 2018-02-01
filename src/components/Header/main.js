@@ -190,26 +190,27 @@ export default {
       if (this.welcomeMessage || isEmpty(this.trends)) return;
       this.messages = this.trends;
     },
+    getBackgroundTime(url) {
+      const date = new Date();
+      date.setTime(date);
+      const hour = date.getHours();
+      if (hour > 5 && hour < 8) {
+        return url.dawn;
+      }
+      if (hour > 8 && hour < 19) {
+        return url.day;
+      }
+      if (hour > 19 && hour < 21) {
+        return url.dusk;
+      }
+      return url.night;
+    },
     getBackground() {
-      const getBackgroundTime = (url) => {
-        const date = new Date();
-        date.setTime(date);
-        const hour = date.getHours();
-        if (hour > 5 && hour < 8) {
-          return url.dawn;
-        }
-        if (hour > 8 && hour < 19) {
-          return url.day;
-        }
-        if (hour > 19 && hour < 21) {
-          return url.dusk;
-        }
-        return url.night;
-      };
       if (this.$store.state.settings.google_now === 'Random') {
-        this.background = getBackgroundTime(sample(data.backgrounds).url);
+        this.background = this.getBackgroundTime(sample(data.backgrounds).url);
       } else {
-        this.background = getBackgroundTime(data.backgrounds.find(f => f.name === this.$store.state.settings.google_now).url);
+        this.background = this.getBackgroundTime(data.backgrounds
+          .find(f => f.name === this.$store.state.settings.google_now).url);
       }
     },
     getMessage() {
