@@ -194,7 +194,7 @@ export default {
     getMessage() {
       this.messages = data.welcomeMessages;
       this.axios.get(data.trendsApi).then((res) => {
-        this.trends = res.data['france']; // TODO: select country
+        this.trends = res.data[this.$store.state.settings.country];
       });
     },
   },

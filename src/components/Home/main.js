@@ -9,12 +9,10 @@ import Cards from '@/components/cards';
 
 export default {
   name: 'Home',
-  props: ['settings'],
   components: {},
   data() {
     return {
       grid: null,
-      settings: false,
       cards: {},
     };
   },
@@ -80,7 +78,9 @@ export default {
   mounted() {
     chrome.storage.sync.get('cards', (saved) => {
       if (chrome.runtime.lastError) return;
-      const { cards } = (saved || {});
+      const {
+        cards,
+      } = (saved || {});
       this.cards = pick(Cards, saved.cards);
       this.$nextTick(() => {
         this.grid = new Muuri('#card-container', {
@@ -100,8 +100,8 @@ export default {
         });
         if (cards) {
           this.grid
-            .sort((a, b) => ((cards.indexOf(a._sortData.id)
-              > cards.indexOf(b._sortData.id) ? 1 : -1)), {
+            .sort((a, b) => ((cards.indexOf(a._sortData.id) >
+              cards.indexOf(b._sortData.id) ? 1 : -1)), {
               layout: 'instant',
             });
         } else {
