@@ -5,13 +5,10 @@ import {
 } from 'vue-typer';
 
 const data = {
-  trendsApi: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
   // imgur album: https://imgur.com/a/NAaUE
   backgrounds: [
     {
-      id: 0,
       name: 'Austin',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/7ndeJog.png',
         day: 'https://i.imgur.com/FsJ8mCW.png',
@@ -20,9 +17,7 @@ const data = {
       },
     },
     {
-      id: 1,
       name: 'Beach',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/Q5Tn8u9.png',
         day: 'https://i.imgur.com/dTFXUxt.png',
@@ -31,9 +26,7 @@ const data = {
       },
     },
     {
-      id: 2,
       name: 'Berlin',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/jG1OdPc.png',
         day: 'https://i.imgur.com/lnILrRU.png',
@@ -42,9 +35,7 @@ const data = {
       },
     },
     {
-      id: 3,
       name: 'Chicago',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/f4HUPlZ.png',
         day: 'https://i.imgur.com/t5wzT8j.png',
@@ -53,9 +44,7 @@ const data = {
       },
     },
     {
-      id: 4,
       name: 'Default',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/kJFNQLr.png',
         day: 'https://i.imgur.com/foVYQ6T.png',
@@ -64,9 +53,7 @@ const data = {
       },
     },
     {
-      id: 5,
       name: 'Great Plains',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/dWzcGbr.png',
         day: 'https://i.imgur.com/huGlyp2.png',
@@ -75,9 +62,7 @@ const data = {
       },
     },
     {
-      id: 6,
       name: 'London',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/ZD0XBoz.jpg',
         day: 'https://i.imgur.com/C2Sg6JG.jpg',
@@ -86,9 +71,7 @@ const data = {
       },
     },
     {
-      id: 7,
       name: 'New York',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/JVK8ID7.png',
         day: 'https://i.imgur.com/yB93g10.png',
@@ -97,9 +80,7 @@ const data = {
       },
     },
     {
-      id: 8,
       name: 'Paris',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/c3wAjp2.png',
         day: 'https://i.imgur.com/c3wAjp2.png',
@@ -108,9 +89,7 @@ const data = {
       },
     },
     {
-      id: 9,
       name: 'San Francisco',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/fqewVsW.png',
         day: 'https://i.imgur.com/lUZp177.png',
@@ -119,9 +98,7 @@ const data = {
       },
     },
     {
-      id: 10,
       name: 'Seattle',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/7nsrzRK.jpg',
         day: 'https://i.imgur.com/0E2xXb0.jpg',
@@ -130,9 +107,7 @@ const data = {
       },
     },
     {
-      id: 11,
       name: 'Tahoe',
-      type: 'Google Now',
       url: {
         dawn: 'https://i.imgur.com/ZSXPIkL.jpg',
         day: 'https://i.imgur.com/xeVYGPU.jpg',
@@ -163,6 +138,7 @@ export default {
   },
   data() {
     return {
+      API: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
       messages: '',
       background: '',
       $trends: null,
@@ -221,7 +197,7 @@ export default {
     },
   },
   mounted() {
-    this.$trends = this.axios.get(data.trendsApi).then(res => res.data);
+    this.$trends = this.axios.get(this.API).then(res => res.data);
     this.getBackground();
     this.getMessage();
   },

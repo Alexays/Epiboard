@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <router-view name="header" />
-      <transition name="slide">
+      <transition name="fade">
         <router-view/>
       </transition>
     </v-app>
