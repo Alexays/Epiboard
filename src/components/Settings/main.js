@@ -1,8 +1,5 @@
 import Config from '@/components/Config';
 import Settings from '@/settings';
-import flow from 'lodash/fp/flow';
-import groupBy from 'lodash/fp/groupBy';
-import map from 'lodash/fp/map';
 
 export default {
   name: 'Settings',
@@ -16,11 +13,15 @@ export default {
   },
   methods: {},
   mounted() {
-    chrome.storage.sync.get('settings_global', (data) => {
-      this.settings = flow(
-        groupBy('name'),
-        map(values => [{}].concat(values).reduce((a, x) => Object.assign(a, x))),
-      )([...this.settings, ...((data || {}).settings_global || [])]);
-    });
+    setTimeout(() => {
+      console.log(this.$store.state.settings);
+    }, 100);
+    // this.settings = this.settings.map((f) => {
+    //   if (this.$store.state.settings.global[f.name]) {
+    //     /* eslint-disable no-param-reassign */
+    //     f.value = this.$store.state.settings.global[f.name];
+    //   }
+    //   return f;
+    // });
   },
 };

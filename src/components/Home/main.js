@@ -50,9 +50,7 @@ export default {
     },
     deleteCard(id) {
       this.$delete(this.cards, id);
-      chrome.storage.sync.set({
-        cards: Object.keys(this.cards),
-      });
+      this.$store.commit('updateCards', Object.keys(this.cards));
     },
     addCard(card, key) {
       this.$set(this.cards, key, card);
@@ -63,9 +61,7 @@ export default {
         });
         new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
       });
-      chrome.storage.sync.set({
-        cards: Object.keys(this.cards),
-      });
+      this.$store.commit('updateCards', Object.keys(this.cards));
     },
     handleSize() {
       this.$watch('$data.cards', this.resize);
@@ -76,44 +72,39 @@ export default {
     },
   },
   mounted() {
-    chrome.storage.sync.get('cards', (saved) => {
-      if (chrome.runtime.lastError) return;
-      const {
-        cards,
-      } = (saved || {});
-      this.cards = pick(Cards, saved.cards);
-      this.$nextTick(() => {
-        this.grid = new Muuri('#card-container', {
-          items: '.card',
-          dragEnabled: true,
-          dragStartPredicate: {
-            handle: '.card__title',
-          },
-          layout: {
-            fillGaps: true,
-          },
-          dragSortInterval: 0,
-          layoutOnInit: false,
-          sortData: {
-            id: (item, element) => element.getAttribute('data-item-id'),
-          },
-        });
-        if (cards) {
-          this.grid
-            .sort((a, b) => ((cards.indexOf(a._sortData.id) >
-              cards.indexOf(b._sortData.id) ? 1 : -1)), {
-              layout: 'instant',
-            });
-        } else {
-          this.grid.layout(true);
-        }
-        this.handleSize();
-        this.grid.on('dragEnd', () => {
-          const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
-          chrome.storage.sync.set({
-            cards: order,
+    const {
+      cards,
+    } = (this.$store.state.cards || {});
+    this.cards = pick(Cards, cards);
+    this.$nextTick(() => {
+      this.grid = new Muuri('#card-container', {
+        items: '.card',
+        dragEnabled: true,
+        dragStartPredicate: {
+          handle: '.card__title',
+        },
+        layout: {
+          fillGaps: true,
+        },
+        dragSortInterval: 0,
+        layoutOnInit: false,
+        sortData: {
+          id: (item, element) => element.getAttribute('data-item-id'),
+        },
+      });
+      if (cards) {
+        this.grid
+          .sort((a, b) => ((cards.indexOf(a._sortData.id) >
+            cards.indexOf(b._sortData.id) ? 1 : -1)), {
+            layout: 'instant',
           });
-        });
+      } else {
+        this.grid.layout(true);
+      }
+      this.handleSize();
+      this.grid.on('dragEnd', () => {
+        const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
+        this.$store.commit('updateCards', order);
       });
     });
   },
