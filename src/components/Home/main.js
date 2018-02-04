@@ -74,7 +74,7 @@ export default {
   mounted() {
     const {
       cards,
-    } = (this.$store.state.cards || {});
+    } = (this.$store.state || {});
     this.cards = pick(Cards, cards);
     this.$nextTick(() => {
       this.grid = new Muuri('#card-container', {

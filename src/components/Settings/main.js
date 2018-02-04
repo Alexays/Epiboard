@@ -13,15 +13,12 @@ export default {
   },
   methods: {},
   mounted() {
-    setTimeout(() => {
-      console.log(this.$store.state.settings);
-    }, 100);
-    // this.settings = this.settings.map((f) => {
-    //   if (this.$store.state.settings.global[f.name]) {
-    //     /* eslint-disable no-param-reassign */
-    //     f.value = this.$store.state.settings.global[f.name];
-    //   }
-    //   return f;
-    // });
+    this.settings = this.settings.map((f) => {
+      if (this.$store.state.settings.global[f.name]) {
+        /* eslint-disable no-param-reassign */
+        f.value = this.$store.state.settings.global[f.name];
+      }
+      return f;
+    });
   },
 };
