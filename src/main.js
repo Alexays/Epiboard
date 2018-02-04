@@ -8,7 +8,7 @@ import VueAxios from 'vue-axios';
 import VueProgressiveImage from 'vue-progressive-image';
 import App from '@/App';
 import router from '@/router';
-import storePlugin from '@/helpers/storePlugin';
+import store from '@/helpers/store';
 
 Vue.config.productionTip = false;
 
@@ -16,11 +16,11 @@ Vue.use(Vuex);
 Vue.use(Vuetify);
 Vue.use(VueProgressiveImage);
 Vue.use(VueAxios, axios);
-Vue.use(storePlugin);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: {
     App,
