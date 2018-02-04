@@ -2,10 +2,9 @@
   position: relative;
   .speed-dial {
     position: absolute;
+    top: -35px;
+    right: 5px;
     z-index: 1;
-    top: -6px;
-    right: 6px;
-    height: 40px;
   }
   #card-container {
     position: relative;
@@ -48,8 +47,5 @@
   .slide-fade-enter,
   .slide-fade-leave-to {
     opacity: 0;
-  }
-  .btn--floating {
-    bottom: 28px !important;
   }
 }
