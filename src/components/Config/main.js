@@ -14,13 +14,11 @@ export default {
   },
   methods: {
     save() {
-      if (this.id === 'global') {
-        this.$store.commit('update', this.settings.map(f => pick(f, ['value', 'name'])).map(f => ({
+      this.$store.commit('SET_SETTINGS', {
+        key: this.id,
+        settings: this.settings.map(f => pick(f, ['value', 'name'])).map(f => ({
           [f.name]: f.value,
-        })).reduce((a, x) => Object.assign(a, x)));
-      }
-      chrome.storage.sync.set({
-        [`settings_${this.id}`]: this.settings.map(f => pick(f, ['value', 'name'])),
+        })).reduce((a, x) => Object.assign(a, x)),
       });
     },
   },

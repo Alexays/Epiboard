@@ -9,9 +9,6 @@ import VueProgressiveImage from 'vue-progressive-image';
 import App from '@/App';
 import router from '@/router';
 import storePlugin from '@/helpers/storePlugin';
-import flow from 'lodash/fp/flow';
-import groupBy from 'lodash/fp/groupBy';
-import map from 'lodash/fp/map';
 
 Vue.config.productionTip = false;
 
@@ -27,16 +24,6 @@ new Vue({
   template: '<App/>',
   components: {
     App,
-  },
-  created() {
-    chrome.storage.sync.get('settings_global', (data) => {
-      this.$store.commit('update', flow(
-        groupBy('name'),
-        map(values => [{}].concat(values).reduce((a, x) => Object.assign(a, x))),
-      )([...this.$store.state.settings, ...((data || {}).settings_global || [])]).map(f => ({
-        [f.name]: f.value,
-      })).reduce((a, x) => Object.assign(a, x)));
-    });
   },
 });
 Vue.filter('bytes', (nb) => {

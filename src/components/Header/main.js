@@ -147,10 +147,10 @@ export default {
   },
   computed: {
     country() {
-      return this.$store.state.settings.country;
+      return this.$store.state.settings.global.country;
     },
     google_now() {
-      return this.$store.state.settings.google_now;
+      return this.$store.state.settings.global.google_now;
     },
   },
   watch: {
@@ -182,17 +182,17 @@ export default {
       return url.night;
     },
     getBackground() {
-      if (this.$store.state.settings.google_now === 'Random') {
+      if (this.$store.state.settings.global.google_now === 'Random') {
         this.background = this.getBackgroundTime(sample(data.backgrounds).url);
       } else {
         this.background = this.getBackgroundTime(data.backgrounds
-          .find(f => f.name === this.$store.state.settings.google_now).url);
+          .find(f => f.name === this.$store.state.settings.global.google_now).url);
       }
     },
     getMessage() {
       this.messages = data.welcomeMessages;
       this.$trends.then((res) => {
-        this.trends = res[this.$store.state.settings.country];
+        this.trends = res[this.$store.state.settings.global.country];
       });
     },
   },
