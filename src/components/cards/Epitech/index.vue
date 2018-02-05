@@ -16,7 +16,7 @@
         <sup>{{user.studentyear > 1 ? 'nd' : 'st'}}</sup> year, Promo {{user.promo}}
       </p>
     </div>
-    <div v-if="!projects.loading && projects.loaded">
+    <div class="project" v-if="!projects.loading && projects.loaded">
       <div class="p-timeline" v-for="(project, key) in projects" :key="key">
         <a target="_blank" v-bind:href="API + project.title_link">
           <h4>{{project.title}}</h4>
