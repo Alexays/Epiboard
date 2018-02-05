@@ -13,7 +13,7 @@
       </v-speed-dial>
     </v-fab-transition>
     <transition-group name="slide-fade" appear tag="div" id="card-container">
-      <v-card v-for="(card, key) in cards" :key="key" :data-item-id="key" v-bind:width="card.size * 415 + 'px'">
+      <v-card v-for="(card, key) in cards" :key="key" :data-item-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
         <div class="blue-grey">
           <v-card-title class="white--text">
             <span class="headline">{{card.name}}</span>
