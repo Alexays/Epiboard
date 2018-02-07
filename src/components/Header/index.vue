@@ -1,6 +1,6 @@
 <template>
   <header tag="header" class="grey">
-    <progressive-background no-ratio :src="background">
+    <progressive-background v-if="background" no-ratio :src="background + '.jpg'" :placeholder="background + 't.jpg'">
         <a :href="current.length > 0 ? 'https://www.google.com/#q=' + current : null" v-show="$route.path === '/'">
             <vue-typer tag="h1" :text="messages" pre-erase-delay='5000' erase-delay='250' :shuffle='true'
                 @erased='addTrends' @typed='onTyped'></vue-typer>

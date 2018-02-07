@@ -10,109 +10,109 @@ const data = {
     {
       name: 'Austin',
       url: {
-        dawn: 'https://i.imgur.com/7ndeJog.png',
-        day: 'https://i.imgur.com/FsJ8mCW.png',
-        dusk: 'https://i.imgur.com/Mmwv5GQ.png',
-        night: 'https://i.imgur.com/brJBKA3.png',
+        dawn: 'https://i.imgur.com/7ndeJog',
+        day: 'https://i.imgur.com/FsJ8mCW',
+        dusk: 'https://i.imgur.com/Mmwv5GQ',
+        night: 'https://i.imgur.com/brJBKA3',
       },
     },
     {
       name: 'Beach',
       url: {
-        dawn: 'https://i.imgur.com/Q5Tn8u9.png',
-        day: 'https://i.imgur.com/dTFXUxt.png',
-        dusk: 'https://i.imgur.com/vdO9Ote.png',
-        night: 'https://i.imgur.com/YaoPX9P.png',
+        dawn: 'https://i.imgur.com/Q5Tn8u9',
+        day: 'https://i.imgur.com/dTFXUxt',
+        dusk: 'https://i.imgur.com/vdO9Ote',
+        night: 'https://i.imgur.com/YaoPX9P',
       },
     },
     {
       name: 'Berlin',
       url: {
-        dawn: 'https://i.imgur.com/jG1OdPc.png',
-        day: 'https://i.imgur.com/lnILrRU.png',
-        dusk: 'https://i.imgur.com/ZCJVfSn.png',
-        night: 'https://i.imgur.com/5mN7Iau.png',
+        dawn: 'https://i.imgur.com/jG1OdPc',
+        day: 'https://i.imgur.com/lnILrRU',
+        dusk: 'https://i.imgur.com/ZCJVfSn',
+        night: 'https://i.imgur.com/5mN7Iau',
       },
     },
     {
       name: 'Chicago',
       url: {
-        dawn: 'https://i.imgur.com/f4HUPlZ.png',
-        day: 'https://i.imgur.com/t5wzT8j.png',
-        dusk: 'https://i.imgur.com/XrJi3O1.png',
-        night: 'https://i.imgur.com/xDWHJ45.png',
+        dawn: 'https://i.imgur.com/f4HUPlZ',
+        day: 'https://i.imgur.com/t5wzT8j',
+        dusk: 'https://i.imgur.com/XrJi3O1',
+        night: 'https://i.imgur.com/xDWHJ45',
       },
     },
     {
       name: 'Default',
       url: {
-        dawn: 'https://i.imgur.com/kJFNQLr.png',
-        day: 'https://i.imgur.com/foVYQ6T.png',
-        dusk: 'https://i.imgur.com/dW217U5.png',
-        night: 'https://i.imgur.com/87UObPk.png',
+        dawn: 'https://i.imgur.com/kJFNQLr',
+        day: 'https://i.imgur.com/foVYQ6T',
+        dusk: 'https://i.imgur.com/dW217U5',
+        night: 'https://i.imgur.com/87UObPk',
       },
     },
     {
       name: 'Great Plains',
       url: {
-        dawn: 'https://i.imgur.com/dWzcGbr.png',
-        day: 'https://i.imgur.com/huGlyp2.png',
-        dusk: 'https://i.imgur.com/XNUMKAT.png',
-        night: 'https://i.imgur.com/d7KaqQ1.png',
+        dawn: 'https://i.imgur.com/dWzcGbr',
+        day: 'https://i.imgur.com/huGlyp2',
+        dusk: 'https://i.imgur.com/XNUMKAT',
+        night: 'https://i.imgur.com/d7KaqQ1',
       },
     },
     {
       name: 'London',
       url: {
-        dawn: 'https://i.imgur.com/ZD0XBoz.jpg',
-        day: 'https://i.imgur.com/C2Sg6JG.jpg',
-        dusk: 'https://i.imgur.com/Qb8PHnA.jpg',
-        night: 'https://i.imgur.com/k0idCJG.jpg',
+        dawn: 'https://i.imgur.com/ZD0XBoz',
+        day: 'https://i.imgur.com/C2Sg6JG',
+        dusk: 'https://i.imgur.com/Qb8PHnA',
+        night: 'https://i.imgur.com/k0idCJG',
       },
     },
     {
       name: 'New York',
       url: {
-        dawn: 'https://i.imgur.com/JVK8ID7.png',
-        day: 'https://i.imgur.com/yB93g10.png',
-        dusk: 'https://i.imgur.com/z4elpiG.png',
-        night: 'https://i.imgur.com/lh0LV5L.png',
+        dawn: 'https://i.imgur.com/JVK8ID7',
+        day: 'https://i.imgur.com/yB93g10',
+        dusk: 'https://i.imgur.com/z4elpiG',
+        night: 'https://i.imgur.com/lh0LV5L',
       },
     },
     {
       name: 'Paris',
       url: {
-        dawn: 'https://i.imgur.com/c3wAjp2.png',
-        day: 'https://i.imgur.com/c3wAjp2.png',
+        dawn: 'https://i.imgur.com/c3wAjp2',
+        day: 'https://i.imgur.com/c3wAjp2',
         dusk: 'https://i.imgur.com/vmfdH9T.png',
-        night: 'https://i.imgur.com/vmfdH9T.png',
+        night: 'https://i.imgur.com/vmfdH9T',
       },
     },
     {
       name: 'San Francisco',
       url: {
-        dawn: 'https://i.imgur.com/fqewVsW.png',
-        day: 'https://i.imgur.com/lUZp177.png',
-        dusk: 'https://i.imgur.com/XP6Omxa.png',
-        night: 'https://i.imgur.com/NATsgio.png',
+        dawn: 'https://i.imgur.com/fqewVsW',
+        day: 'https://i.imgur.com/lUZp177',
+        dusk: 'https://i.imgur.com/XP6Omxa',
+        night: 'https://i.imgur.com/NATsgio',
       },
     },
     {
       name: 'Seattle',
       url: {
-        dawn: 'https://i.imgur.com/7nsrzRK.jpg',
-        day: 'https://i.imgur.com/0E2xXb0.jpg',
-        dusk: 'https://i.imgur.com/wYytDhF.jpg',
-        night: 'https://i.imgur.com/ddI0eBh.jpg',
+        dawn: 'https://i.imgur.com/7nsrzRK',
+        day: 'https://i.imgur.com/0E2xXb0',
+        dusk: 'https://i.imgur.com/wYytDhF',
+        night: 'https://i.imgur.com/ddI0eBh',
       },
     },
     {
       name: 'Tahoe',
       url: {
-        dawn: 'https://i.imgur.com/ZSXPIkL.jpg',
-        day: 'https://i.imgur.com/xeVYGPU.jpg',
-        dusk: 'https://i.imgur.com/Buxx2Cs.jpg',
-        night: 'https://i.imgur.com/g761v2t.jpg',
+        dawn: 'https://i.imgur.com/ZSXPIkL',
+        day: 'https://i.imgur.com/xeVYGPU',
+        dusk: 'https://i.imgur.com/Buxx2Cs',
+        night: 'https://i.imgur.com/g761v2t',
       },
     },
   ],
@@ -175,9 +175,7 @@ export default {
       this.messages = this.trends;
     },
     getBackgroundTime(url) {
-      const date = new Date();
-      date.setTime(date);
-      const hour = date.getHours();
+      const hour = new Date().getHours();
       if (hour > 5 && hour < 8) {
         return url.dawn;
       }
