@@ -130,7 +130,6 @@ const data = {
 };
 
 export default {
-
   name: 'Header',
   props: ['settings'],
   components: {
@@ -141,6 +140,7 @@ export default {
       API: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
       messages: '',
       background: '',
+      current: '',
       $trends: null,
       trends: [],
     };
@@ -162,7 +162,15 @@ export default {
     },
   },
   methods: {
+    onTyped(typed) {
+      if (data.welcomeMessages.indexOf(typed) > -1) {
+        this.current = '';
+        return;
+      }
+      this.current = typed;
+    },
     addTrends() {
+      this.current = '';
       if (this.welcomeMessage || isEmpty(this.trends)) return;
       this.messages = this.trends;
     },
