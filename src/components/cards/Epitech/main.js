@@ -16,8 +16,7 @@ export default {
   methods: {
     parseDate(epiDate) {
       const date = epiDate.replace(', ', '/').replace(':', '/').replace('h', '/').split('/');
-      const parsed = new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
-      return parsed;
+      return new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
     },
     getUserInfo() {
       this.axios.get(`${this.API}/user/?format=json`)
@@ -36,7 +35,7 @@ export default {
           this.projects = response.data.board.projets
             .filter(f => f.timeline_barre < 100
               && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
-            .sort((a, b) => this.parseDate(a.timeline_end) > this.parseDate(b.timeline_end));
+            .sort((a, b) => this.parseDate(a.timeline_end) - this.parseDate(b.timeline_end));
           this.projects.loaded = true;
         }).finally(() => {
           this.projects.loading = false;

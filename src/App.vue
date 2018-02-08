@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <v-app>
-      <router-view name="header" />
+      <router-view name="header" keep-alive></router-view>
       <transition name="fade">
-        <router-view/>
+        <router-view keep-alive></router-view>
       </transition>
     </v-app>
   </div>
