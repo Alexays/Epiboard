@@ -7,18 +7,20 @@ export default {
 		return {
 			name: "Loading ...",
 			position: null,
-			meteo_datas: null
+			meteo_datas: null,
+			API: "http://api.openweathermap.org/data/2.5/weather",
+			app_id: "0c9042777e3128fab0244da248184801"
 		}
 	},
 	methods: {
 		setMeteo(position) {
 			var crd = position.coords;
 			console.log(crd);
-			this.$http.get(`http://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&units=metric&appid=0c9042777e3128fab0244da248184801`)
+			this.$http.get(`${this.API}?lat=${crd.latitude}&lon=${crd.longitude}&units=metric&appid=${this.app_id}`)
 			.then((response) => {
 				this.meteo_datas = response.data;
 				this.name = this.meteo_datas.name;
-			}, {headers: {"Access-Control-Allow-Origin": "*"}});
+			});
 		}
 	},
 	mounted() {
