@@ -23,6 +23,7 @@
         "*://intra.epitech.eu/"
     ],
     "optional_permissions": [
+		"http://api.openweathermap.org"
     ],
     "chrome_url_overrides" : {
         "newtab": "index.html"

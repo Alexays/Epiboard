@@ -14,7 +14,7 @@ export default {
 		setMeteo(position) {
 			var crd = position.coords;
 			console.log(crd);
-			this.$http.get(`http://apperau.fr/meteo.php?lon=${crd.longitude}&lat=${crd.latitude}`)
+			this.$http.get(`http://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&units=metric&appid=0c9042777e3128fab0244da248184801`)
 			.then((response) => {
 				this.meteo_datas = response.data;
 				this.name = this.meteo_datas.name;
