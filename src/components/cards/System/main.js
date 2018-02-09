@@ -15,13 +15,13 @@ export default {
         return Math.floor(((current.progress - prev.progress) /
           (current.total - prev.total)) * 100);
       }
-      return Math.floor((current.progress / current.total) * 100)
+      return Math.floor((current.progress / current.total) * 100);
     },
     getCpu() {
       chrome.system.cpu.getInfo((cpu) => {
         if (chrome.runtime.lastError) return;
         this.cpu = Object.assign({}, cpu, {
-          prev: this.cpu
+          prev: this.cpu,
         });
       });
     },
@@ -29,7 +29,7 @@ export default {
       chrome.system.memory.getInfo((memory) => {
         if (chrome.runtime.lastError) return;
         this.memory = Object.assign({}, memory, {
-          prev: this.memory
+          prev: this.memory,
         });
       });
     },
@@ -46,7 +46,7 @@ export default {
           chrome.system.storage.getAvailableCapacity(storage[i].id, (res) => {
             if (chrome.runtime.lastError) return;
             disk[i].available = res.availableCapacity;
-            disk[i].percent = 100 - (disk[i].available / disk[i].capacity) * 100;
+            disk[i].percent = 100 - ((disk[i].available / disk[i].capacity) * 100);
             disk[i].used = disk[i].capacity - disk[i].available;
             if (i === (storage.length - 1)) {
               this.storage = disk;

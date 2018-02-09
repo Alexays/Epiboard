@@ -5,36 +5,34 @@
     top: -35px;
     right: 5px;
     z-index: 1;
+    .icon {
+      display: inline-flex;
+    }
   }
   #card-container {
     position: relative;
     margin: 20px auto;
-    z-index: 0;
-    // Causes bugs due to tabs in the session cards, see next updates
+    z-index: 0; // Causes bugs due to tabs in the session cards, see next updates
     // .card:not(.muuri-item-shown) {
     //   visibility: hidden;
     // }
-  }
-  // While waiting for a muuri update this is the easiest way to center the cards.
+  } // While waiting for a muuri update this is the easiest way to center the cards.
   // 1 column
   @media (max-width: 859px) {
     #card-container {
       width: 430px;
     }
-  }
-  // 2 columns
+  } // 2 columns
   @media (min-width: 860px) and (max-width: 1289px) {
     #card-container {
       width: 860px;
     }
-  }
-  // 3 columns
+  } // 3 columns
   @media (min-width: 1290px) and (max-width: 1719px) {
     #card-container {
       width: 1290px;
     }
-  }
-  // 4 columns
+  } // 4 columns
   @media (min-width: 1720px) {
     #card-container {
       width: 1720px;

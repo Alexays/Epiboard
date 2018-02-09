@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <v-fab-transition>
-      <v-speed-dial v-show="!emptyCards" :top="true" :right="true" direction="bottom" transition="slide-y-transition">
-        <v-btn slot="activator" dark fab color="blue">
+      <v-speed-dial v-show="!emptyCards" v-model="fab" :top="true" :right="true" direction="bottom" transition="slide-y-transition">
+        <v-btn v-model="fab" slot="activator" dark fab color="blue">
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>

@@ -23,16 +23,16 @@
         </a>
         <small>{{project.timeline_start}}</small>
         <small class="end_date">{{project.timeline_end}}</small>
-		<div v-if="project.timeline_barre < 60">
-        	<v-progress-linear height="6" :value="project.timeline_barre"></v-progress-linear>
-		</div>
-		<div v-if="project.timeline_barre >= 60 && project.timeline_barre < 80">
-        	<v-progress-linear color="orange" background-color="orange lighten-2" height="6" :value="project.timeline_barre"></v-progress-linear>
-		</div>
-		<div v-if="project.timeline_barre >= 80">
-        	<v-progress-linear color="red" background-color="red lighten-2" height="6" :value="project.timeline_barre"></v-progress-linear>
-		</div>
-	  </div>
+        <div v-if="project.timeline_barre < 60">
+          <v-progress-linear height="6" :value="project.timeline_barre"></v-progress-linear>
+        </div>
+        <div v-if="project.timeline_barre >= 60 && project.timeline_barre < 80">
+          <v-progress-linear color="orange" background-color="orange lighten-2" height="6" :value="project.timeline_barre"></v-progress-linear>
+        </div>
+        <div v-if="project.timeline_barre >= 80">
+          <v-progress-linear color="red" background-color="red lighten-2" height="6" :value="project.timeline_barre"></v-progress-linear>
+        </div>
+      </div>
     </div>
     <div v-if="user.loading || projects.loading" class="white">
       <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>

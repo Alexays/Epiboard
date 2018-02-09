@@ -1,28 +1,28 @@
 #epitech {
-    ::-webkit-scrollbar {
-        width: 5px;
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+  }
+  .project {
+    max-height: 250px;
+    padding-right: 10px;
+    overflow: auto;
+    .p-timeline {
+      margin: 10px 0;
+      a {
+        text-decoration: none;
+      }
+      .end_date {
+        float: right;
+      }
     }
-    ::-webkit-scrollbar-track {
-        background: #ddd;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #666;
-    }
-    .project {
-        max-height: 250px;
-        padding-right: 10px;
-        overflow: auto;
-        .p-timeline {
-            margin: 10px 0;
-            a {
-                text-decoration: none;
-            }
-            .end_date {
-                float: right;
-            }
-        }
-    }
-    .progress-linear {
-        margin: 10px 0;
-    }
+  }
+  .progress-linear {
+    margin: 10px 0;
+  }
 }

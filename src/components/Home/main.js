@@ -12,6 +12,7 @@ export default {
   components: {},
   data() {
     return {
+      fab: false,
       grid: null,
       cards: {},
     };

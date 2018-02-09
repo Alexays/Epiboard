@@ -33,8 +33,8 @@ export default {
         .then((response) => {
           if (!response.data) return;
           this.projects = response.data.board.projets
-            .filter(f => f.timeline_barre < 100
-              && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
+            .filter(f => f.timeline_barre < 100 &&
+              !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
             .sort((a, b) => this.parseDate(a.timeline_end) - this.parseDate(b.timeline_end));
           this.projects.loaded = true;
         }).finally(() => {

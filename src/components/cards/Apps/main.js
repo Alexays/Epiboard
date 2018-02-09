@@ -14,26 +14,29 @@ export default {
     getAll() {
       chrome.management.getAll((all) => {
         for (let i = 0; i < all.length; i += 1) {
-          if (all[i].type === 'extension')
+          if (all[i].type === 'extension') {
             this.extensions.push(all[i]);
-          else if (all[i].type === 'theme')
+          } else if (all[i].type === 'theme') {
             this.themes.push(all[i]);
-          else {
+          } else {
             const app = all[i];
-            if (app.icons)
+            if (app.icons) {
               app.icon = app.icons[app.icons.length - 1].url;
-            else
+            } else {
               app.icon = 'chrome://extension-icon/khopmbdjffemhegeeobelklnbglcdgfh/256/1';
-            if (!app.enabled)
+            }
+            if (!app.enabled) {
               app.icon += '?grayscale=true';
+            }
             this.apps.push(app);
           }
         }
       });
     },
     launch(app) {
-      if (app.launchType === "OPEN_AS_REGULAR_TAB" || app.launchType == "OPEN_AS_WINDOW")
+      if (app.launchType === 'OPEN_AS_REGULAR_TAB' || app.launchType === 'OPEN_AS_WINDOW') {
         chrome.management.launchApp(app.id);
+      }
     },
   },
   mounted() {
