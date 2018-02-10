@@ -23,7 +23,7 @@
         <div>Memory</div>
       </div>
       <div class="wrapper-info">
-        <p>{{memory.capacity - memory.availableCapacity | bytes}} used of {{memory.capacity | bytes}}</p>
+        <p>{{memory.capacity - memory.availableCapacity | bytes}} / <span class="grey--text">{{memory.capacity | bytes}}</span></p>
         <v-progress-linear height="6" :value="getLoad({
                             progress: memory.capacity - memory.availableCapacity,
                             total: memory.capacity
@@ -45,7 +45,7 @@
             {{ unit.name | truncate(25) }}
           </span>
           <span v-if="!unit.name && storage.dev" class="disk-name">{{unit.capacity | bytes}} Volume</span>
-          <span v-if="storage.dev" class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</span>
+          <span v-if="storage.dev" class="disk-capacity">{{unit.used | bytes}} / <span class="grey--text">{{unit.capacity | bytes}}</span></span>
           <v-progress-linear height="6" v-if="storage.dev" :value="unit.percent"></v-progress-linear>
           <span v-if="unit.name && !storage.dev" class="disk-name" :title="unit.name">
             {{ unit.name | truncate(25) }}
