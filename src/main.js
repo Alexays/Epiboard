@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 import Vuetify from 'vuetify';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueProgressiveImage from 'vue-progressive-image';
+import VueLazyload from 'vue-lazyload';
 import App from '@/App';
 import router from '@/router';
 import store from '@/helpers/store';
@@ -14,8 +14,20 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuex);
 Vue.use(Vuetify);
-Vue.use(VueProgressiveImage);
 Vue.use(VueAxios, axios);
+Vue.use(VueLazyload, {
+  filter: {
+    progressive(listener) {
+      const isCDN = /i.imgur.com/;
+      if (isCDN.test(listener.src)) {
+        /* eslint-disable no-param-reassign */
+        listener.el.setAttribute('lazy-progressive', 'true');
+        const idx = listener.src.lastIndexOf('.');
+        listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
+      }
+    },
+  },
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
