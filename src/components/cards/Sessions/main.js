@@ -29,7 +29,7 @@ export default {
           const {
             tab,
           } = item;
-          tab.lastModified = new Date(item.lastModified * 1e3).toISOString();
+          tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
           tab.favIconUrl = this.getFavicon(tab);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
@@ -38,7 +38,7 @@ export default {
           const subKeys = Object.keys(item.window.tabs);
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
-            tab.lastModified = new Date(item.lastModified * 1e3).toISOString();
+            tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
             tab.favIconUrl = this.getFavicon(tab);
             tabs.push(tab);
           }

@@ -17,7 +17,7 @@
               <i v-if="session.favIconUrl" :style="{'background-image': 'url(' + session.favIconUrl +')'}"></i>
               <i v-else class="material-icons">insert_drive_file</i>
               <span class="session-title">{{session.title}}</span>
-              <span class="more time">{{session.lastModified | fromNow}}</span>
+              <span class="more time">{{session.lastModified}}</span>
             </a>
           </li>
         </v-tab-item>
@@ -27,7 +27,7 @@
               <i v-if="tab.favIconUrl" :style="{'background-image': 'url('+ tab.favIconUrl +')'}"></i>
               <i v-else class="material-icons">insert_drive_file</i>
               <span class="session-title">{{tab.title}}</span>
-              <span class="more time">{{tab.lastModified | fromNow}}</span>
+              <span class="more time">{{tab.lastModified}}</span>
             </a>
           </li>
         </v-tab-item>
