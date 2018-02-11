@@ -19,7 +19,7 @@ export default {
       return new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
     },
     getUserInfo() {
-      this.axios.get(`${this.API}/user/?format=json`)
+      return this.axios.get(`${this.API}/user/?format=json`)
         .then((response) => {
           if (!response.data) return;
           this.user = response.data;
@@ -29,7 +29,7 @@ export default {
         });
     },
     getProjects() {
-      this.axios.get(`${this.API}/?format=json`)
+      return this.axios.get(`${this.API}/?format=json`)
         .then((response) => {
           if (!response.data) return;
           this.projects = response.data.board.projets
@@ -43,7 +43,7 @@ export default {
     },
   },
   mounted() {
-    this.getUserInfo();
-    this.getProjects();
+    Promise.all([this.getUserInfo(), this.getProjects()])
+      .finally(() => this.$emit('init'));
   },
 };

@@ -15,6 +15,7 @@ export default {
       fab: false,
       grid: null,
       cards: {},
+      initCards: [],
     };
   },
   computed: {

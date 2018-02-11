@@ -50,28 +50,38 @@ export default {
       return tabs;
     },
     getDevices() {
-      chrome.sessions.getDevices({
-        maxResults: this.maxDevices,
-      }, (devices) => {
-        this.devices = devices;
-        for (let i = 0; i < devices.length; i += 1) {
-          this.devices[i].tabs = this.mergeTabsAndWindows(devices[i].sessions);
-          if (!devices[i].tabs.length) {
-            this.devices.splice(i, 1);
+      return new Promise((resolve, reject) => {
+        chrome.sessions.getDevices({
+          maxResults: this.maxDevices,
+        }, (devices) => {
+          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+          this.devices = devices;
+          for (let i = 0; i < devices.length; i += 1) {
+            this.devices[i].tabs = this.mergeTabsAndWindows(devices[i].sessions);
+            if (!devices[i].tabs.length) {
+              this.devices.splice(i, 1);
+            }
           }
-        }
+          return resolve();
+        });
       });
     },
     getRecentlyClosed() {
-      chrome.sessions.getRecentlyClosed({
-        maxResults: this.maxRecentlyClosed,
-      }, (recentlyClosed) => {
-        this.recentlyClosed = this.mergeTabsAndWindows(recentlyClosed);
+      return new Promise((resolve, reject) => {
+        chrome.sessions.getRecentlyClosed({
+          maxResults: this.maxRecentlyClosed,
+        }, (recentlyClosed) => {
+          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+          this.recentlyClosed = this.mergeTabsAndWindows(recentlyClosed);
+          return resolve();
+        });
       });
     },
   },
   mounted() {
-    this.getDevices();
-    this.getRecentlyClosed();
+    Promise.all([this.getDevices(), this.getRecentlyClosed()])
+      .finally(() => {
+        this.$emit('init');
+      });
   },
 };

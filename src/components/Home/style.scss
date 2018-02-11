@@ -12,7 +12,13 @@
   #card-container {
     position: relative;
     margin: 20px auto;
-    z-index: 0; // Causes bugs due to tabs in the session cards, see next updates
+    z-index: 0;
+    .card__title {
+      .progress-circular {
+        vertical-align: middle;
+      }
+    }
+    // Causes bugs due to tabs in the session cards, see next updates
     // .card:not(.muuri-item-shown) {
     //   visibility: hidden;
     // }

@@ -30,5 +30,7 @@ export default {
       });
     },
   },
-  mounted() {},
+  mounted() {
+    this.$emit('init');
+  },
 };

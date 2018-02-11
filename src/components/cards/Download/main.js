@@ -30,21 +30,25 @@ export default {
       }
     },
     getDownloads() {
-      chrome.downloads.search({
-        limit: 5,
-        orderBy: ['-startTime'],
-      }, (downloads) => {
-        if (chrome.runtime.lastError) return;
-        this.downloads = downloads;
-        for (let i = 0; i < downloads.length; i += 1) {
-          if (downloads[i].filename) {
-            chrome.downloads.getFileIcon(downloads[i].id, (data) => {
-              if (chrome.runtime.lastError) return;
-              this.downloads[i].icon = data;
-              this.downloads = this.downloads.slice(0);
-            });
+      return new Promise((resolve, reject) => {
+        chrome.downloads.search({
+          limit: 5,
+          orderBy: ['-startTime'],
+        }, (downloads) => {
+          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+          this.downloads = downloads;
+          for (let i = 0; i < downloads.length; i += 1) {
+            if (downloads[i].filename) {
+              chrome.downloads.getFileIcon(downloads[i].id, (data) => {
+                if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+                this.downloads[i].icon = data;
+                this.downloads = this.downloads.slice(0);
+                return resolve();
+              });
+            }
           }
-        }
+          return resolve();
+        });
       });
     },
     listenChange() {
@@ -62,14 +66,16 @@ export default {
           }
         }
       });
+    },
+    listenCreate() {
       chrome.downloads.onCreated.addListener((download) => {
         if (chrome.runtime.lastError) return;
         this.downloads.pop();
         this.downloads.unshift(download);
         // wait 500ms after download starts to get the icon
         Promise.delay(500).then(() => {
-          if (!download.filename) throw new Error('No filename');
-          return chrome.downloads.getFileIcon(download.id, (dataUrl) => {
+          if (!download.filename) return;
+          chrome.downloads.getFileIcon(download.id, (dataUrl) => {
             if (chrome.runtime.lastError) return;
             for (let i = 0; i < this.downloads.length; i += 1) {
               if (this.downloads[i].id === download.id) {
@@ -84,6 +90,11 @@ export default {
     },
   },
   mounted() {
-    this.getDownloads();
+    Promise.all([this.getDownloads()])
+      .finally(() => {
+        this.listenChange();
+        this.listenCreate();
+        this.$emit('init');
+      });
   },
 };

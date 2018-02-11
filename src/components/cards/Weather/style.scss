@@ -1,0 +1,29 @@
+#weather {
+  .w-head {
+    span {
+      padding-right: 15px;
+    }
+  }
+  .info-center {
+    height: 100px;
+    padding: 8px;
+    margin-bottom: 12px;
+    .temp {
+      font-size: 48px;
+      font-weight: lighter;
+    }
+    .temp-cond {
+      letter-spacing: 2px;
+      color: #a5b1c2;
+      position: relative;
+      left: -8px;
+    }
+    .detail {
+      padding: 4px;
+      color: #a5b1c2;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: capitalize;
+    }
+  }
+}

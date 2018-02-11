@@ -17,19 +17,24 @@
         <div class="blue-grey">
           <v-card-title class="white--text">
             <span class="headline">{{card.name}}</span>
-            <v-menu bottom offset-y>
-              <v-btn flat icon slot="activator">
-                <i class="material-icons small white--text">more_vert</i>
-              </v-btn>
-              <v-list>
-                <v-list-tile @click="deleteCard(key)">
-                  <v-list-tile-title>Remove</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
+            <div>
+              <v-progress-circular v-show="initCards.indexOf(card.name) === -1" size="25" indeterminate color="white"></v-progress-circular>
+              <v-menu bottom offset-y>
+                <v-btn flat icon slot="activator">
+                  <v-icon color="white">more_vert</v-icon>
+                </v-btn>
+                <v-list>
+                  <v-list-tile @click="deleteCard(key)">
+                    <v-list-tile-title>Remove</v-list-tile-title>
+                  </v-list-tile>
+                </v-list>
+              </v-menu>
+            </div>
           </v-card-title>
           <v-card-text class="white">
-            <component :is="card"></component>
+            <keep-alive>
+              <component v-on:init="initCards.push(card.name)" :is="card"></component>
+            </keep-alive>
           </v-card-text>
         </div>
       </v-card>
