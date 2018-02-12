@@ -19,10 +19,10 @@
     "history",
     "geolocation",
     "https://trends.google.com/trends/hottrends/visualize/internal/data",
-    "https://www.google.com/doodles/search"
+    "https://www.google.com/doodles/search",
+    "https://intra.epitech.eu/"
   ],
   "optional_permissions": [
-    "https://intra.epitech.eu/",
     "https://api.openweathermap.org/"
   ],
   "chrome_url_overrides": {
