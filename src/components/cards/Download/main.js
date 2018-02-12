@@ -30,25 +30,19 @@ export default {
       }
     },
     getDownloads() {
-      return new Promise((resolve, reject) => {
-        chrome.downloads.search({
-          limit: 5,
-          orderBy: ['-startTime'],
-        }, (downloads) => {
-          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
-          this.downloads = downloads;
-          for (let i = 0; i < downloads.length; i += 1) {
-            if (downloads[i].filename) {
-              chrome.downloads.getFileIcon(downloads[i].id, (data) => {
-                if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
-                this.downloads[i].icon = data;
-                this.downloads = this.downloads.slice(0);
-                return resolve();
-              });
-            }
+      return chrome.downloads.search({
+        limit: 5,
+        orderBy: ['-startTime'],
+      }).then((downloads) => {
+        this.downloads = downloads;
+        for (let i = 0; i < downloads.length; i += 1) {
+          if (downloads[i].filename) {
+            chrome.downloads.getFileIcon(downloads[i].id).then((data) => {
+              this.downloads[i].icon = data;
+              this.downloads = this.downloads.slice(0);
+            });
           }
-          return resolve();
-        });
+        }
       });
     },
     listenChange() {
