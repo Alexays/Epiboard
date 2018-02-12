@@ -15,7 +15,7 @@
       </div>
     </li>
     <div v-if="downloads.length === 0" class="white text-xs-center">
-      <i class="material-icons md-48">hourglass_empty</i>
+      <i class="material-icons md-48">file_download</i>
       <h2 class="subheading">You have no downloads.</h2>
     </div>
   </div>
