@@ -7,6 +7,10 @@
         </a>
       </li>
     </ul>
+    <div v-if="apps.length === 0" class="white text-xs-center">
+      <i class="material-icons md-48">hourglass_empty</i>
+      <h2 class="subheading">You have no apps.</h2>
+    </div>
   </div>
 </template>
 <script src="./main.js"></script>
