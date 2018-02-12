@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     getFavicon(url) {
-      const regex = /(chrome:|chrome-extension:|view-source:)/;
+      const regex = /(chrome:|chrome-extension:|view-source:|moz-extension:)/;
       if (!regex.test(url)) {
         return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
       }
@@ -21,7 +21,9 @@ export default {
         chrome.topSites.get((topSites) => {
           if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
           this.topSites = topSites.slice(0, this.maxSites);
-          console.log(this.topSites);
+          this.topSites = this.topSites.map(f => Object.assign(f, {
+            icon: this.getFavicon(f.url),
+          }));
           return resolve();
         });
       });

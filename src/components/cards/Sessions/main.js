@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     getFavicon(tab) {
-      const regex = /(chrome:|chrome-extension:|view-source:)/;
+      const regex = /(chrome:|chrome-extension:|view-source:|moz-extension:)/;
       if (tab.favIconUrl && !regex.test(tab.favIconUrl)) return tab.favIconUrl;
       if (!regex.test(tab.url)) {
         return `https://www.google.com/s2/favicons?domain_url=${encodeURI(tab.url)}`;

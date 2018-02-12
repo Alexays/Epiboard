@@ -6,7 +6,7 @@
           <span class="subheading">Today</span>
           <span class="subheading">{{today.name}}</span>
         </div>
-        <img v-bind:src="'http://openweathermap.org/img/w/' + today.weather[0].icon + '.png'">
+        <img v-bind:src="'https://openweathermap.org/img/w/' + today.weather[0].icon + '.png'">
         <v-layout row wrap class="info-center">
           <v-flex xs6 class="text-xs-center">
             <p class="temp">{{today.main.temp}}°C</p>

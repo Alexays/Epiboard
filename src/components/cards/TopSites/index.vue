@@ -3,7 +3,8 @@
     <ul>
 			<li v-for="node in topSites" :key="node">
 				<a :href="node.url">
-				  <i :style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
+				  <i v-if="node.icon" :style="{'background-image': 'url('+node.icon+')'}"></i>
+          <i v-else class="material-icons">insert_drive_file</i>
 				  <span class="n-title">{{node.title}}</span>
 			  </a>
 			</li>

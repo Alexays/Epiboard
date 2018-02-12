@@ -25,7 +25,7 @@ module.exports = {
     // linting errors and warnings will be shown in the console.
     useEslint: true,
     // If true, eslint errors and warnings will also be shown in the error overlay
-    // in the browser.
+    // in the chrome.
     showEslintErrorsInOverlay: false,
 
     /**

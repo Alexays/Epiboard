@@ -10,6 +10,8 @@ import App from '@/App';
 import router from '@/router';
 import store from '@/helpers/store';
 
+window.chrome = require('webextension-polyfill');
+
 Vue.config.productionTip = false;
 
 Vue.use(Vuex);

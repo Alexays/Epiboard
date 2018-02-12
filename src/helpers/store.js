@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
+import chrome from 'webextension-polyfill';
 import settings from './settings';
 
 Vue.use(Vuex);
@@ -9,28 +10,15 @@ const vuexLocal = new VuexPersistence({
   strictMode: true,
   asyncStorage: true,
   storage: {
-    getItem: key => new Promise((resolve, reject) => {
-      chrome.storage.sync.get(key, (data) => {
-        if (chrome.runtime.error) return reject(chrome.runtime.error);
-        if (!data[key]) return resolve(null);
-        return resolve(data[key]);
-      });
+    getItem: key => chrome.storage.sync.get(key).then((data) => {
+      if (!data[key]) return null;
+      return data[key];
     }),
-    setItem: (key, value) => new Promise((resolve, reject) => {
-      chrome.storage.sync.set({
-        [key]: value,
-      }, () => {
-        if (chrome.runtime.error) return reject(chrome.runtime.error);
-        return resolve(value);
-      });
+    setItem: (key, value) => chrome.storage.sync.set({
+      [key]: value,
     }),
     removeItem: key => chrome.storage.sync.remove(key),
-    clear: () => new Promise((resolve, reject) => {
-      chrome.storage.sync.clear(() => {
-        if (chrome.runtime.error) return reject(chrome.runtime.error);
-        return resolve(true);
-      });
-    }),
+    clear: () => chrome.storage.sync.clear(),
   },
 });
 

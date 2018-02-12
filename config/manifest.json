@@ -1,32 +1,38 @@
 {
-    "manifest_version": 2,
-    "name": "epiboard",
-    "description": "New tab page",
-    "version": "1.0",
-    "permissions": [
-        "storage",
-        "sessions",
-        "browsingData",
-        "downloads",
-        "downloads.open",
-        "system.cpu",
-        "system.memory",
-        "system.storage",
-        "management",
-        "tabs",
-        "topSites",
-        "bookmarks",
-		"history",
-		"geolocation",
-        "https://trends.google.com/trends/hottrends/visualize/internal/data",
-        "https://www.google.com/doodles/search",
-        "*://intra.epitech.eu/"
-    ],
-    "optional_permissions": [
-		"http://api.openweathermap.org"
-    ],
-    "chrome_url_overrides" : {
-        "newtab": "index.html"
-    },
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "manifest_version": 2,
+  "name": "epiboard",
+  "description": "New tab page",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "sessions",
+    "browsingData",
+    "downloads",
+    "downloads.open",
+    "system.cpu",
+    "system.memory",
+    "system.storage",
+    "management",
+    "tabs",
+    "topSites",
+    "bookmarks",
+    "history",
+    "geolocation",
+    "https://trends.google.com/trends/hottrends/visualize/internal/data",
+    "https://www.google.com/doodles/search"
+  ],
+  "optional_permissions": [
+    "https://intra.epitech.eu/",
+    "https://api.openweathermap.org/"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "applications": {
+    "gecko": {
+      "id": "contact@arouillard.fr",
+      "strict_min_version": "53.0"
+    }
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
