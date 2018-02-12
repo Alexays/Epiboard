@@ -1,0 +1,37 @@
+#top-sites {
+  ul {
+    list-style: none;
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 7px 15px;
+      margin: 0;
+      text-transform: none;
+      :hover {
+        background-color: #f5f5f5;
+      }
+      .n-title {
+        color: #424242;
+        margin-left: 9px;
+        font-size: 13px;
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      i {
+        width: 20px;
+        height: 20px;
+        background-size: 16px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 20px;
+        line-height: 18px;
+        color: #757575;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
