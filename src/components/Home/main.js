@@ -20,6 +20,9 @@ export default {
   },
   computed: {
     emptyCards() {
+      return isEmpty(this.cards);
+    },
+    showFab() {
       if (isEmpty(this.cards) && this.grid == null) {
         return true;
       }

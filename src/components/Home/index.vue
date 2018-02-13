@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <v-fab-transition>
-      <v-speed-dial v-show="!emptyCards" v-model="fab" :top="true" :right="true" direction="bottom" transition="slide-y-transition">
+      <v-speed-dial v-show="!showFab" v-model="fab" :top="true" :right="true" direction="bottom" transition="slide-y-transition">
         <v-btn v-model="fab" slot="activator" dark fab color="blue">
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
@@ -39,6 +39,10 @@
         </div>
       </v-card>
     </transition-group>
+    <div v-show="emptyCards" class="text-xs-center">
+        <i class="material-icons md-48">tag_faces</i>
+        <h2 class="subheading">You have no cards.</h2>
+      </div>
   </div>
 </template>
 <script src="../../../node_modules/web-animations-js/web-animations.min.js"></script>
