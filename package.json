@@ -21,7 +21,7 @@
     "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1",
     "vue-typer": "^1.2.0",
-    "vuetify": "^1.0.0",
+    "vuetify": "^1.0.1",
     "vuex": "^3.0.1",
     "vuex-persist": "Alexays/vuex-persist",
     "web-animations-js": "^2.3.1"
@@ -69,7 +69,7 @@
     "url-loader": "^0.6.2",
     "vue-lazyload": "^1.2.1",
     "vue-loader": "^14.1.1",
-    "vue-style-loader": "^3.1.2",
+    "vue-style-loader": "^4.0.2",
     "vue-template-compiler": "^2.5.13",
     "webextension-polyfill": "^0.2.1",
     "webpack": "^3.11.0",
