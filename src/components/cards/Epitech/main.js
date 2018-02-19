@@ -6,9 +6,12 @@ export default {
     return {
       API: 'https://intra.epitech.eu',
       user: {
+        loaded: false,
         loading: true,
       },
       projects: {
+        data: [],
+        loaded: false,
         loading: true,
       },
     };
@@ -22,22 +25,34 @@ export default {
       return this.axios.get(`${this.API}/user/?format=json`)
         .then((response) => {
           if (!response.data) return;
-          this.user = response.data;
+          Object.assign(this.user, response.data);
           this.user.loaded = true;
         }).finally(() => {
           this.user.loading = false;
         });
     },
+    isRegistered(project) {
+      return this.axios.get(`${this.API}${project.title_link}project?format=json`)
+        .then(res => !!res.data.user_project_code);
+    },
     getProjects() {
       return this.axios.get(`${this.API}/?format=json`)
         .then((response) => {
-          if (!response.data) return;
-          this.projects = response.data.board.projets
-            .filter(f => f.timeline_barre < 100 &&
-              !f.date_inscription && this.parseDate(f.timeline_start) <= new Date())
-            .sort((a, b) => this.parseDate(a.timeline_end) - this.parseDate(b.timeline_end));
+          if (!response.data) return Promise.resolve();
+          this.projects.data = response.data.board.projets
+            .filter(async f => f.timeline_barre < 100 &&
+              !f.date_inscription && this.parseDate(f.timeline_start) <= new Date());
+          return Promise.all(this.projects.data.map(f => this.isRegistered(f).then((isRegistered) => {
+            f.isRegistered = isRegistered;
+            return f;
+          })));
+        }).then((res) => {
+          this.projects.data = res.filter(f => f.isRegistered)
+            .sort((a, b) =>
+              this.parseDate(a.timeline_end) - this.parseDate(b.timeline_end));
           this.projects.loaded = true;
-        }).finally(() => {
+        })
+        .finally(() => {
           this.projects.loading = false;
         });
     },

@@ -17,7 +17,7 @@
       </p>
     </div>
     <div class="project" v-if="!projects.loading && projects.loaded">
-      <div class="p-timeline" v-for="(project, key) in projects" :key="key">
+      <div class="p-timeline" v-for="(project, key) in projects.data" :key="key">
         <a target="_blank" v-bind:href="API + project.title_link">
           <h4>{{project.title}}</h4>
         </a>
