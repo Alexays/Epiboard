@@ -4,10 +4,10 @@
       <h3>
         {{user.title}}
         <br>
-        <v-chip label>{{user.gpa[0].gpa}}
+        <v-chip label disabled>{{user.gpa[0].gpa}}
           <small>&nbsp;G.P.A.</small>
         </v-chip>
-        <v-chip label>{{user.credits}}
+        <v-chip label disabled>{{user.credits}}
           <small>&nbsp;Credits</small>
         </v-chip>
       </h3>
