@@ -42,10 +42,11 @@ export default {
           this.projects.data = response.data.board.projets
             .filter(async f => f.timeline_barre < 100 &&
               !f.date_inscription && this.parseDate(f.timeline_start) <= new Date());
-          return Promise.all(this.projects.data.map(f => this.isRegistered(f).then((isRegistered) => {
-            f.isRegistered = isRegistered;
-            return f;
-          })));
+          return Promise.all(this.projects.data
+            .map(f => this.isRegistered(f).then((isRegistered) => {
+              f.isRegistered = isRegistered;
+              return f;
+            })));
         }).then((res) => {
           this.projects.data = res.filter(f => f.isRegistered)
             .sort((a, b) =>
