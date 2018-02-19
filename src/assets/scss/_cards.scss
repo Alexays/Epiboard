@@ -16,6 +16,9 @@
     }
     .no-margins {
       margin: -16px;
+      .tabs__items {
+        margin: 16px;
+      }
     }
     .progress-linear {
       margin: .5rem 0;
