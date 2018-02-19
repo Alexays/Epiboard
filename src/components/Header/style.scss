@@ -1,13 +1,24 @@
 header {
   height: 233px;
+  padding: 20px 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
   .background {
+    position: absolute;
     height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 20px 50px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+  .background[lazy=loading] {
+    filter: blur(10px);
+  }
+  a, .vue-typer {
+    z-index: 1;
   }
   #settings {
     position: absolute;
