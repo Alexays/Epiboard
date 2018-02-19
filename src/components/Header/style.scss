@@ -1,23 +1,38 @@
 header {
   height: 233px;
-  padding: 20px 50px;
+  padding: 15px 50px;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   .background {
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
-    object-fit: cover;
-    object-position: center;
     z-index: 0;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .35));
+    }
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+    }
   }
   .background[lazy=loading] {
-    filter: blur(10px);
+    filter: blur(15px);
   }
-  a, .vue-typer {
+  a,
+  .vue-typer {
     z-index: 1;
   }
   #settings {

@@ -64,6 +64,10 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
+              <div v-if="!rooms.data.length" class="white text-xs-center session-empty">
+                <i class="material-icons md-48">room</i>
+                <h2 class="subheading">No occuped rooms, have fun !</h2>
+              </div>
             </v-list>
             <div v-else class="white">
               <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
