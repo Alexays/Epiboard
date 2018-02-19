@@ -25,4 +25,8 @@
   .progress-linear {
     margin: 10px 0;
   }
+  .rooms {
+    max-height: 250px;
+    overflow: auto;
+  }
 }

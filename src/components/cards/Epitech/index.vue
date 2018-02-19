@@ -49,7 +49,7 @@
           </div>
         </v-tab-item>
         <v-tab-item>
-          <div>
+          <div class="rooms">
             <v-list v-if="!rooms.loading" three-line dense>
               <template v-for="room of rooms.data">
                 <v-list-tile :key="room">
@@ -65,7 +65,7 @@
                 </v-list-tile>
               </template>
             </v-list>
-            <div v-if="rooms.loading" class="white">
+            <div v-else class="white">
               <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
             </div>
           </div>
