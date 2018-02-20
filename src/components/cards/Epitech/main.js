@@ -76,7 +76,6 @@ export default {
         .then((res) => {
           this.rooms.data = res.data.filter(f => f.instance_location === this.location && f.room)
             .map((f) => {
-              f.room.name = f.room.code.substring(f.room.code.lastIndexOf('/') + 1);
               f.start = this.parseCalendarDate(f.start);
               f.end = this.parseCalendarDate(f.end);
               f.dateString = `Taken from <b>${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}</b>
