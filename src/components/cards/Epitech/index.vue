@@ -58,9 +58,9 @@
                     <v-list-tile-sub-title v-html="room.acti_title + '<br/>' + room.dateString"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
-                    <v-btn icon dark color="blue">
+                    <v-chip label disabled>
                       {{room.total_students_registered}}/{{room.room.seats}}
-                    </v-btn>
+                    </v-chip>
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
