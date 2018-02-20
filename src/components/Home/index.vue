@@ -18,7 +18,7 @@
           <v-card-title class="white--text">
             <span class="headline">{{card.name}}</span>
             <div>
-              <v-progress-circular v-show="initCards.indexOf(card.name) === -1" size="25" indeterminate color="white"></v-progress-circular>
+              <v-progress-circular :title="card.name + ' is fetching some data'" v-show="initCards.indexOf(card.name) === -1" size="25" indeterminate color="white"></v-progress-circular>
               <v-menu bottom offset-y>
                 <v-btn flat icon slot="activator">
                   <v-icon color="white">more_vert</v-icon>
