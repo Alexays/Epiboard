@@ -11,7 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "css-element-queries": "^1.0.1",
     "hammerjs": "^2.0.8",
     "lodash": "^4.17.5",
@@ -49,7 +49,7 @@
     "eslint-plugin-html": "^4.0.2",
     "eslint-plugin-import": "^2.8.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
+    "file-loader": "^1.1.7",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "node-notifier": "^5.2.1",

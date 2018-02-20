@@ -50,10 +50,10 @@ export default {
         .then((response) => {
           if (!response.data) return Promise.resolve();
           this.location = response.data.infos.location;
-          this.projects.data = response.data.board.projets
+          const data = response.data.board.projets
             .filter(async f => f.timeline_barre < 100 &&
               !f.date_inscription && this.parseDate(f.timeline_start) <= new Date());
-          return Promise.all(this.projects.data
+          return Promise.all(data
             .map(f => this.isRegistered(f).then((isRegistered) => {
               f.isRegistered = isRegistered;
               return f;
@@ -92,6 +92,6 @@ export default {
   mounted() {
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
-      .finally(() => this.$emit('init'));
+      .finally(() => this.$emit('init', this.$data));
   },
 };

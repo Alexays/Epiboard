@@ -40,6 +40,13 @@ new Vue({
     App,
   },
 });
+Vue.directive('init', {
+  isLiteral: true,
+  bind: (el, binding, vnode) => {
+    if (!binding.value) return;
+    Object.assign(vnode.componentInstance.$data, JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {});
+  },
+});
 Vue.filter('bytes', (nb) => {
   let bytes = nb;
   const thresh = 1024;

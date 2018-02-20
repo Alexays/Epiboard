@@ -88,7 +88,7 @@ export default {
       .finally(() => {
         this.listenChange();
         this.listenCreate();
-        this.$emit('init');
+        this.$emit('init', this.$data);
       });
   },
 };

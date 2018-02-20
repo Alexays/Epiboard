@@ -33,7 +33,7 @@
           </v-card-title>
           <v-card-text class="white">
             <keep-alive>
-              <component v-on:init="initCards.push(card.name)" :is="card"></component>
+              <component @init="setCards($event, card.name)" v-init="card.name" :is="card"></component>
             </keep-alive>
           </v-card-text>
         </div>

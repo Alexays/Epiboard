@@ -19,7 +19,7 @@ export default {
       this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
         .then((response) => {
           this.today = response.data;
-          this.$emit('init');
+          this.$emit('init', this.$data);
         });
     },
   },

@@ -33,6 +33,17 @@ export default {
     },
   },
   methods: {
+    setCards(data, name) {
+      if (!name) return;
+      this.initCards.push(name);
+      if (!data) {
+        if (localStorage.getItem(`cache_${name}`)) {
+          localStorage.removeItem(`cache_${name}`);
+        }
+        return;
+      }
+      localStorage.setItem(`cache_${name}`, JSON.stringify(data));
+    },
     resize(value) {
       if (value) {
         const keys = Object.keys(value);

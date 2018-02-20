@@ -31,6 +31,6 @@ export default {
   },
   mounted() {
     Promise.all([this.getTopSites()])
-      .finally(() => this.$emit('init'));
+      .finally(() => this.$emit('init', this.$data));
   },
 };
