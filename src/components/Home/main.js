@@ -1,7 +1,5 @@
 import Muuri from 'muuri';
-import {
-  ResizeSensor,
-} from 'css-element-queries';
+import { ResizeSensor } from 'css-element-queries';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
@@ -33,7 +31,7 @@ export default {
     },
   },
   methods: {
-    setCards(data, name) {
+    setCards(name, data) {
       if (!name) return;
       this.initCards.push(name);
       if (!data) {
@@ -64,8 +62,9 @@ export default {
       this.grid.refreshItems();
       this.grid.layout(true);
     },
-    deleteCard(id) {
+    deleteCard(name, id) {
       this.$delete(this.cards, id);
+      this.setCards(name);
       this.$store.commit('updateCards', Object.keys(this.cards));
     },
     addCard(card, key) {

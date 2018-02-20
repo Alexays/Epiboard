@@ -24,7 +24,7 @@
                   <v-icon color="white">more_vert</v-icon>
                 </v-btn>
                 <v-list>
-                  <v-list-tile @click="deleteCard(key)">
+                  <v-list-tile @click="deleteCard(card.name, key)">
                     <v-list-tile-title>Remove</v-list-tile-title>
                   </v-list-tile>
                 </v-list>
@@ -33,7 +33,7 @@
           </v-card-title>
           <v-card-text class="white">
             <keep-alive>
-              <component @init="setCards($event, card.name)" v-init="card.name" :is="card"></component>
+              <component @init="setCards(card.name, $event)" v-init="card.name" :is="card"></component>
             </keep-alive>
           </v-card-text>
         </div>
