@@ -1,5 +1,15 @@
 #apps {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+  }
   max-height: 440px;
+  overflow: auto;
   .app-list {
     display: flex;
     flex-wrap: wrap;
