@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "epiboard",
-  "description": "New tab page",
-  "version": "1.0",
+  "name": "Epiboard",
+  "description": "A new tab page extension with material design",
+  "author": "Alexays",
+  "version": "1.0.0",
   "permissions": [
     "storage",
     "sessions",
