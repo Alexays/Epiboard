@@ -40,7 +40,7 @@
       </div>
       <div class="wrapper-info">
         <li class="storage-unit" v-for="unit in storage" :key="unit">
-          <i v-if="unit.type == 'removable'" class="material-icons">usb</i>
+          <i v-if="unit.type == 'removable'" class="material-icons md-18">usb</i>
           <span v-if="unit.name && storage.dev" class="disk-name" :title="unit.name">
             {{ unit.name | truncate(25) }}
           </span>
