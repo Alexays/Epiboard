@@ -10,6 +10,8 @@
 
 ## Build Setup
 
+> If you want the stable version take it on [Chrome store](https://chrome.google.com/webstore/detail/epiboard)
+
 ``` bash
 # install dependencies
 npm install
