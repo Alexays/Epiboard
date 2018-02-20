@@ -6,7 +6,7 @@
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark small color="green">
+        <v-btn :title="card.name" v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark small color="green">
           <v-icon v-if="card.icon">{{card.icon}}</v-icon>
           <span v-if="!card.icon">{{card.name}}</span>
         </v-btn>
