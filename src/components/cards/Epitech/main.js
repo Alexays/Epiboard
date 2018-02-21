@@ -7,6 +7,7 @@ export default {
       API: 'https://intra.epitech.eu',
       is_logged: true,
       location: null,
+      planningData: null,
       user: {
         loading: true,
       },
@@ -15,6 +16,10 @@ export default {
         loading: true,
       },
       rooms: {
+        data: [],
+        loading: true,
+      },
+      upcommings: {
         data: [],
         loading: true,
       },
@@ -74,12 +79,13 @@ export default {
       const dString = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
       return this.axios.get(`${this.API}/planning/load?format=json&start=${dString}&end=${dString}`)
         .then((res) => {
-          this.rooms.data = res.data.filter(f => f.instance_location === this.location && f.room)
+          this.planningData = res.data.filter(f => f.instance_location === this.location);
+          this.rooms.data = this.planningData.filter(f => f.room)
             .map((f) => {
               f.start = this.parseCalendarDate(f.start);
               f.end = this.parseCalendarDate(f.end);
-              f.dateString = `Taken from <b>${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}</b>
-              to <b>${f.end.getHours()}h${(`0${f.end.getMinutes()}`).substr(-2)}</b>`;
+              f.startString = `${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}`;
+              f.endString = `${f.end.getHours()}h${(`0${f.end.getMinutes()}`).substr(-2)}`;
               return f;
             }).filter(f => f.end > new Date())
             .sort((a, b) => a.start - b.start);
@@ -87,10 +93,17 @@ export default {
           this.rooms.loading = false;
         });
     },
+    getUpcomming() {
+      this.upcommings.data = this.planningData
+        .filter(f => f.event_registered && f.start > new Date())
+        .sort((a, b) => a.start - b.start);
+      this.upcommings.loading = false;
+    },
   },
   mounted() {
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
+      .then(() => this.getUpcomming())
       .finally(() => this.$emit('init', this.$data));
   },
 };

@@ -1,8 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import sample from 'lodash/sample';
-import {
-  VueTyper,
-} from 'vue-typer';
+import { VueTyper } from 'vue-typer';
 
 const data = {
   // imgur album: https://imgur.com/a/NAaUE

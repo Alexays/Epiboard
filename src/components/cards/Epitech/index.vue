@@ -7,6 +7,7 @@
     <v-tabs v-else dark grow show-arrows color="blue-grey" class="no-margins">
       <v-tabs-slider color="white"></v-tabs-slider>
       <v-tab>Infos</v-tab>
+      <v-tab>Upcomming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
         <v-tab-item>
@@ -49,13 +50,39 @@
           </div>
         </v-tab-item>
         <v-tab-item>
+          <div class="upcommings">
+            <v-list v-if="!upcommings.loading" three-line dense>
+              <template v-for="upcomming of upcommings.data">
+                <v-list-tile :key="upcomming">
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{upcomming.room.code | filename}}</v-list-tile-title>
+                    <v-list-tile-sub-title v-html="upcomming.acti_title  + '<br/> From ' + upcomming.startString + ' to ' + upcomming.endString"></v-list-tile-sub-title>
+                  </v-list-tile-content>
+                  <v-list-tile-action :title="upcomming.total_students_registered + ' student(s) for ' + upcomming.room.seats + ' seats'">
+                    <v-chip label disabled>
+                      {{upcomming.total_students_registered}}/{{upcomming.room.seats}}
+                    </v-chip>
+                  </v-list-tile-action>
+                </v-list-tile>
+              </template>
+              <div v-if="!upcommings.data.length" class="white text-xs-center session-empty">
+                <i class="material-icons md-48">room</i>
+                <h2 class="subheading">No upcomming activity, have fun !</h2>
+              </div>
+            </v-list>
+            <div v-else class="white">
+              <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+            </div>
+          </div>
+        </v-tab-item>
+        <v-tab-item>
           <div class="rooms">
             <v-list v-if="!rooms.loading" three-line dense>
               <template v-for="room of rooms.data">
                 <v-list-tile :key="room">
                   <v-list-tile-content>
                     <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
-                    <v-list-tile-sub-title v-html="room.acti_title + '<br/>' + room.dateString"></v-list-tile-sub-title>
+                    <v-list-tile-sub-title v-html="room.acti_title + '<br/> Taken from ' + room.startString + ' to ' + room.endString"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
                     <v-chip label disabled>
