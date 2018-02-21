@@ -44,7 +44,7 @@ export default {
         chrome.system.storage.getInfo((storage) => {
           if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
           if (!chrome.system.storage.getAvailableCapacity) {
-            this.storage = storage;
+            this.storage = storage.filter(f => f.capacity > 0);
             this.storage.dev = false;
             return resolve();
           }

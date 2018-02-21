@@ -54,7 +54,7 @@
               <template v-for="room of rooms.data">
                 <v-list-tile :key="room">
                   <v-list-tile-content>
-                    <v-list-tile-title v-html="room.room.code | filename"></v-list-tile-title>
+                    <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
                     <v-list-tile-sub-title v-html="room.acti_title + '<br/>' + room.dateString"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
