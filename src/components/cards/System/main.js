@@ -67,7 +67,8 @@ export default {
     },
   },
   mounted() {
-    Promise.all([this.getCpu(), this.getMemory(), this.getStorage()])
+    if (!chrome.system) return this.$emit('init');
+    return Promise.all([this.getCpu(), this.getMemory(), this.getStorage()])
       .finally(() => {
         setInterval(this.getCpu, 3000);
         setInterval(this.getMemory, 10000);
