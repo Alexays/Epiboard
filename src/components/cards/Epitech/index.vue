@@ -21,6 +21,10 @@
               <v-chip label disabled>{{user.credits}}
                 <small>&nbsp;Credits</small>
               </v-chip>
+              <v-chip v-if="user.spice && user.spice.available_spice" label disabled>
+                {{user.spice.available_spice - (user.spice.consumed_spice || 0)}}
+                <small>&nbsp;Spices</small>
+              </v-chip>
             </h3>
             <p>
               {{user.studentyear}}

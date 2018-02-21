@@ -38,6 +38,7 @@ export default {
       return this.axios.get(`${this.API}/user/?format=json`)
         .then((response) => {
           if (!response.data) return;
+          this.is_logged = true;
           Object.assign(this.user, response.data);
         }).catch(() => {
           this.is_logged = false;
