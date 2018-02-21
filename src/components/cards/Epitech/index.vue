@@ -71,7 +71,7 @@
               </template>
               <div v-if="!upcommings.data.length" class="white text-xs-center session-empty">
                 <i class="material-icons md-48">room</i>
-                <h2 class="subheading">No upcomming activity, have fun !</h2>
+                <h2 class="subheading">No upcomming activities, go get some rest !</h2>
               </div>
             </v-list>
             <div v-else class="white">
