@@ -26,6 +26,12 @@ export default {
       chrome.browsingData.remove({
         since: 0,
       }, this.types, () => {
+        this.types = {
+          cache: false,
+          cookies: false,
+          history: false,
+          localStorage: false,
+        };
         this.loading = false;
       });
     },
