@@ -1,7 +1,7 @@
 # Epiboard
 
 > A new tab page extension with material design.<br />
-> Hightly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
+> Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
 
 ## Requirement
 
