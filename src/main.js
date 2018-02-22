@@ -36,9 +36,7 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: {
-    App,
-  },
+  render: h => h(App),
 });
 Vue.directive('init', {
   isLiteral: true,
