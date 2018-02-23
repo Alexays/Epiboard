@@ -7,7 +7,7 @@
     <v-tabs v-else dark grow show-arrows color="blue-grey" class="no-margins">
       <v-tabs-slider color="white"></v-tabs-slider>
       <v-tab>Infos</v-tab>
-      <v-tab>Upcomming</v-tab>
+      <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
         <v-tab-item>
