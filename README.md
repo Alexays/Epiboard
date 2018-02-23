@@ -3,10 +3,12 @@
 > A new tab page extension with material design.<br />
 > Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
 
+![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.jpg)
+
 ## Requirement
 
 > Chromium based browser >= 54.0<br />
-> Firefox >= 53.0
+> Firefox >= 54.0
 
 ## Build Setup
 
