@@ -28,18 +28,19 @@ header {
       width: 100%;
     }
   }
+  .toolbar {
+    transform: translateX(-50%)!important;
+    position: absolute;
+    z-index: 1;
+    width: 66%;
+    bottom: -30px;
+    left: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.03);
+    .input-group--text-field {
+      flex-basis: 100%;
+    }
+  }
   .background[lazy=loading] {
     filter: blur(15px);
-  }
-  a,
-  .vue-typer {
-    z-index: 1;
-    cursor: pointer!important;
-  }
-  #settings {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 1;
   }
 }

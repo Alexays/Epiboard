@@ -1,5 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import sample from 'lodash/sample';
+import shuffle from 'lodash/shuffle';
 import { VueTyper } from 'vue-typer';
 
 const data = {
@@ -138,7 +139,13 @@ export default {
       API: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
       messages: '',
       background: '',
-      current: '',
+      typer: {
+        typed: '',
+        current: '',
+        index: 0,
+        nb: 0,
+        part: '',
+      },
       $trends: null,
       trends: [],
     };
@@ -160,12 +167,30 @@ export default {
     },
   },
   methods: {
-    onTyped(typed) {
-      if (data.welcomeMessages.indexOf(typed) > -1) {
-        this.current = '';
-        return;
+    search(ev) {
+      if (ev.keyCode === 13) {
+        window.open(`https://www.google.com/#q=${this.typer.typed.length > 0 ? this.typer.typed : this.typer.current}`, '_self');
       }
-      this.current = typed;
+    },
+    Type() {
+      if (this.typer.typed.length > 0) return;
+      this.typer.part += this.typer.current[this.typer.index];
+      if (this.typer.part.length < this.typer.current.length) {
+        this.typer.index += 1;
+        setTimeout(this.Type, 70);
+      } else {
+        setTimeout(() => {
+          if (this.typer.typed.length > 0) return;
+          if (this.typer.nb >= this.messages.length) {
+            this.typer.nb = 0;
+          }
+          this.typer.current = this.messages[this.typer.nb];
+          this.typer.index = 0;
+          this.typer.part = '';
+          this.typer.nb += 1;
+          setTimeout(this.Type, 70);
+        }, 5000);
+      }
     },
     addTrends() {
       this.current = '';
@@ -195,8 +220,11 @@ export default {
     },
     getMessage() {
       this.messages = data.welcomeMessages;
+      this.typer.current = sample(this.messages);
+      this.Type();
       this.$trends.then((res) => {
         this.trends = res[this.$store.state.settings.global.country];
+        this.messages = shuffle(this.trends);
       });
     },
   },
