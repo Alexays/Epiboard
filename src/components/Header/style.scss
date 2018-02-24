@@ -30,10 +30,9 @@ header {
   }
   .toolbar {
     transform: translateX(-50%)!important;
-    position: absolute;
-    z-index: 1;
     width: 66%;
-    bottom: -30px;
+    bottom: -32px;
+    top: auto;
     left: 50%;
     box-shadow: 0 3px 6px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.03);
     .input-group--text-field {

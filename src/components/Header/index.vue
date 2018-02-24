@@ -3,7 +3,7 @@
     <div class="background" v-if="background">
       <img v-lazy="background" />
     </div>
-    <v-toolbar card prominent>
+    <v-toolbar card absolute prominent>
       <v-text-field v-on:keyup.native="search" prepend-icon="search" :value="typer.part" @input="typer.typed = $event" autofocus hide-details single-line></v-text-field>
       <v-spacer></v-spacer>
       <v-btn title="Go to settings" v-show="$route.path !== '/settings'" to="/settings" icon>
