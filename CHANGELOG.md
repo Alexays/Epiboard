@@ -3,12 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.1.3] - 2018-02-24
+## [1.1.3] - 2018-02-25
 ### Added
 - Changelog card
 ### Changed
 - Correct typo
 - Update deps
+- Fix disk name non alpha num char
 
 ## [1.1.2] - 2018-02-22
 ### Changed
