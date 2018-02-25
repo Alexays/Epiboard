@@ -27,7 +27,7 @@ export default {
       return isEmpty(omit(Cards, Object.keys(this.cards)));
     },
     nCards() {
-      return omit(Cards, Object.keys(this.cards));
+      return omit(Cards, Object.keys(this.cards).concat(['Changelog']));
     },
   },
   methods: {
@@ -90,7 +90,14 @@ export default {
     const {
       cards,
     } = (this.$store.state || {});
+    const lastVersion = localStorage.getItem('version');
+    const { version } = chrome.runtime.getManifest();
+    if (lastVersion !== version) {
+      cards.unshift('Changelog');
+      this.$store.commit('updateCards', cards);
+    }
     this.cards = pick(Cards, cards);
+    localStorage.setItem('version', version);
     this.$nextTick(() => {
       this.grid = new Muuri('#card-container', {
         items: '.card',

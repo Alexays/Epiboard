@@ -44,7 +44,11 @@ export default {
         chrome.system.storage.getInfo((storage) => {
           if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
           if (!chrome.system.storage.getAvailableCapacity) {
-            this.storage = storage.filter(f => f.capacity > 0);
+            this.storage = storage.filter(f => f.capacity > 0)
+              .map((f) => {
+                f.name = f.name.replace(/\W/g, '');
+                return f;
+              });
             this.storage.dev = false;
             return resolve();
           }
@@ -56,7 +60,10 @@ export default {
               disk[i].percent = 100 - ((disk[i].available / disk[i].capacity) * 100);
               disk[i].used = disk[i].capacity - disk[i].available;
               if (i === (storage.length - 1)) {
-                this.storage = disk;
+                this.storage = disk.map((f) => {
+                  f.name = f.name.replace(/\W/g, '');
+                  return f;
+                });
                 this.storage.dev = true;
               }
             });
