@@ -57,8 +57,9 @@ export default {
           if (!response.data) return Promise.resolve();
           this.location = response.data.infos.location;
           const data = response.data.board.projets
-            .filter(async f => f.timeline_barre < 100 &&
-              !f.date_inscription && this.parseDate(f.timeline_start) <= new Date());
+            .filter(f => f.timeline_barre < 100
+              && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date()
+              && this.parseDate(f.timeline_end) > new Date());
           return Promise.all(data
             .map(f => this.isRegistered(f).then((isRegistered) => {
               f.isRegistered = isRegistered;

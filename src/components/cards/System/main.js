@@ -46,7 +46,7 @@ export default {
           if (!chrome.system.storage.getAvailableCapacity) {
             this.storage = storage.filter(f => f.capacity > 0)
               .map((f) => {
-                f.name = f.name.replace(/\W/g, '');
+                f.name = f.name.replace(/[^a-zA-Z0-9_/\\]/g, '');
                 return f;
               });
             this.storage.dev = false;
@@ -61,7 +61,7 @@ export default {
               disk[i].used = disk[i].capacity - disk[i].available;
               if (i === (storage.length - 1)) {
                 this.storage = disk.map((f) => {
-                  f.name = f.name.replace(/\W/g, '');
+                  f.name = f.name.replace(/[^a-zA-Z0-9_/\\]/g, '');
                   return f;
                 });
                 this.storage.dev = true;
