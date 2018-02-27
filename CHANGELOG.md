@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.1.3] - 2018-02-25
+## [1.1.3] - 2018-02-27
 ### Added
 - Changelog card
 ### Changed
