@@ -54,24 +54,24 @@
           </div>
         </v-tab-item>
         <v-tab-item>
-          <div class="upcommings">
-            <v-list v-if="!upcommings.loading" three-line dense>
-              <template v-for="upcomming of upcommings.data">
-                <v-list-tile :key="upcomming">
+          <div class="upcomings">
+            <v-list v-if="!upcomings.loading" three-line dense>
+              <template v-for="upcoming of upcomings.data">
+                <v-list-tile :key="upcoming">
                   <v-list-tile-content>
-                    <v-list-tile-title>{{upcomming.room.code | filename}}</v-list-tile-title>
-                    <v-list-tile-sub-title v-html="upcomming.acti_title  + '<br/> From ' + upcomming.startString + ' to ' + upcomming.endString"></v-list-tile-sub-title>
+                    <v-list-tile-title>{{upcoming.room.code | filename}}</v-list-tile-title>
+                    <v-list-tile-sub-title v-html="upcoming.acti_title  + '<br/> From ' + upcoming.startString + ' to ' + upcoming.endString"></v-list-tile-sub-title>
                   </v-list-tile-content>
-                  <v-list-tile-action :title="upcomming.total_students_registered + ' student(s) for ' + upcomming.room.seats + ' seats'">
-                    <v-chip label disabled>
-                      {{upcomming.total_students_registered}}/{{upcomming.room.seats}}
+                  <v-list-tile-action :title="upcoming.total_students_registered + ' student(s) for ' + upcoming.room.seats + ' seats'">
+                    <v-chip v-if="!upcoming.is_rdv" label disabled>
+                      {{upcoming.total_students_registered}}/{{upcoming.room.seats}}
                     </v-chip>
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
-              <div v-if="!upcommings.data.length" class="white text-xs-center session-empty">
+              <div v-if="!upcomings.data.length" class="white text-xs-center session-empty">
                 <i class="material-icons md-48">room</i>
-                <h2 class="subheading">No upcomming activities, go get some rest !</h2>
+                <h2 class="subheading">No upcoming activities, go get some rest !</h2>
               </div>
             </v-list>
             <div v-else class="white">
@@ -89,7 +89,7 @@
                     <v-list-tile-sub-title v-html="room.acti_title + '<br/> Taken from ' + room.startString + ' to ' + room.endString"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
-                    <v-chip label disabled>
+                    <v-chip v-if="!room.is_rdv" label disabled>
                       {{room.total_students_registered}}/{{room.room.seats}}
                     </v-chip>
                   </v-list-tile-action>

@@ -19,7 +19,7 @@ export default {
         data: [],
         loading: true,
       },
-      upcommings: {
+      upcomings: {
         data: [],
         loading: true,
       },
@@ -95,17 +95,17 @@ export default {
           this.rooms.loading = false;
         });
     },
-    getUpcomming() {
-      this.upcommings.data = this.planningData
+    getUpcoming() {
+      this.upcomings.data = this.planningData
         .filter(f => f.event_registered && f.start > new Date())
         .sort((a, b) => a.start - b.start);
-      this.upcommings.loading = false;
+      this.upcomings.loading = false;
     },
   },
   mounted() {
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
-      .then(() => this.getUpcomming())
+      .then(() => this.getUpcoming())
       .finally(() => this.$emit('init', this.$data));
   },
 };
