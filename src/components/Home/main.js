@@ -93,7 +93,7 @@ export default {
     const lastVersion = localStorage.getItem('version');
     const { version } = chrome.runtime.getManifest();
     if (lastVersion !== version) {
-      (cards || []).unshift('Changelog');
+      ['Changelog'].concat(cards || []);
       this.$store.commit('updateCards', cards);
     }
     this.cards = pick(Cards, cards);
