@@ -1,7 +1,7 @@
 export default {
   name: 'Weather',
   props: ['settings'],
-  size: 2,
+  size: 1,
   components: {},
   data() {
     return {
@@ -14,11 +14,12 @@ export default {
   methods: {
     getToday(position) {
       const {
-        latitude, longitude,
+        latitude,
+        longitude,
       } = position.coords;
       this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
-        .then((response) => {
-          this.today = response.data;
+        .then((res) => {
+          this.today = res.data;
           this.$emit('init', this.$data);
         });
     },

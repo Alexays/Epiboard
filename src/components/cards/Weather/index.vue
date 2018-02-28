@@ -1,6 +1,5 @@
 <template>
-	<v-layout row wrap id="weather">
-    <v-flex xs6>
+	<div id="weather">
       <div v-if="today">
         <div class="w-head">
           <span class="subheading">Today</span>
@@ -19,10 +18,7 @@
           </v-flex>
         </v-layout>
       </div>
-    </v-flex>
-    <v-flex xs6>
-    </v-flex>
-	</v-layout>
+    </div>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>
