@@ -176,8 +176,10 @@ export default {
     },
     trends_settings(val, old) {
       if (val !== old) {
-        if (!val) this.trends = [];
-        else this.getMessage();
+        if (!val)  {
+          this.trends = [];
+          this.messages = [sample(data.welcomeMessages)];
+        } else this.getMessage();
       }
     },
   },
