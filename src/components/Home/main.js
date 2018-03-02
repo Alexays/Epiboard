@@ -20,14 +20,14 @@ export default {
     emptyCards() {
       return isEmpty(this.cards);
     },
+    nCards() {
+      return omit(Cards, Object.keys(this.cards).concat(['Changelog']));
+    },
     showFab() {
       if (isEmpty(this.cards) && this.grid == null) {
         return true;
       }
-      return isEmpty(omit(Cards, Object.keys(this.cards)));
-    },
-    nCards() {
-      return omit(Cards, Object.keys(this.cards).concat(['Changelog']));
+      return isEmpty(this.nCards);
     },
   },
   methods: {
