@@ -1,5 +1,6 @@
 #home {
   position: relative;
+  z-index: 0;
   .speed-dial {
     position: absolute;
     top: -35px;
@@ -12,6 +13,9 @@
   #card-container {
     position: relative;
     margin: 20px auto;
+    &.dtoolbar {
+      margin: 35px auto;
+    }
     z-index: 0;
     .card__title {
       .progress-circular {

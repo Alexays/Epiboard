@@ -1,5 +1,15 @@
 export default [
   {
+    name: 'header_design',
+    title: 'Header design',
+    type: 'select',
+    value: 'full',
+    items: [
+      'full',
+      'toolbar',
+    ],
+  },
+  {
     name: 'country',
     title: 'Google trends country',
     type: 'select',

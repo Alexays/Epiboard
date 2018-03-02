@@ -28,13 +28,24 @@ header {
       width: 100%;
     }
   }
+  .toolbar {
+    transform: translateX(-50%) !important;
+    width: 66%;
+    bottom: -32px;
+    top: auto;
+    left: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.03);
+    .input-group--text-field {
+      flex-basis: 100%;
+    }
+  }
   .background[lazy=loading] {
     filter: blur(15px);
   }
   a,
   .vue-typer {
     z-index: 1;
-    cursor: pointer!important;
+    cursor: pointer !important;
   }
   #settings {
     position: absolute;
