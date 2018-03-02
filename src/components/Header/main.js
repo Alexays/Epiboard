@@ -160,6 +160,9 @@ export default {
     header_design() {
       return this.$store.state.settings.global.header_design;
     },
+    trends_settings() {
+      return this.$store.state.settings.global.trends;
+    },
   },
   watch: {
     country(val, old) {
@@ -170,6 +173,12 @@ export default {
     },
     header_design(val, old) {
       if (val !== old) this.getMessage();
+    },
+    trends_settings(val, old) {
+      if (val !== old) {
+        if (!val) this.trends = [];
+        else this.getMessage();
+      }
     },
   },
   methods: {
@@ -191,7 +200,7 @@ export default {
         this.typer.part += this.typer.current[this.typer.index];
         this.typer.index += 1;
         setTimeout(this.Type, 70);
-      } else {
+      } else if (this.trends.length > 0) {
         setTimeout(() => {
           if (this.typer.typed.length > 0) return;
           if (this.typer.nb >= this.messages.length) {
@@ -232,7 +241,7 @@ export default {
       }
     },
     getMessage() {
-      this.messages = data.welcomeMessages;
+      this.messages = [sample(data.welcomeMessages)];
       if (this.$store.state.settings.global.header_design === 'toolbar') {
         this.typer = {
           typed: '',
@@ -241,17 +250,20 @@ export default {
           nb: 0,
           part: '',
         };
-        this.typer.current = sample(this.messages);
+        [this.typer.current] = this.messages;
         this.Type();
       }
-      this.$trends.then((res) => {
-        this.trends = res[this.$store.state.settings.global.country];
-        this.messages = shuffle(this.trends);
-      });
+      if (this.$store.state.settings.global.trends) {
+        this.$trends = this.axios.get(this.API)
+          .then(res => res.data)
+          .then((res) => {
+            this.trends = res[this.$store.state.settings.global.country];
+            this.messages = shuffle(this.trends);
+          });
+      }
     },
   },
   mounted() {
-    this.$trends = this.axios.get(this.API).then(res => res.data);
     this.getBackground();
     this.getMessage();
   },

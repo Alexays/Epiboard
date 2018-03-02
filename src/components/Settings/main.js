@@ -14,7 +14,7 @@ export default {
   methods: {},
   mounted() {
     this.settings = this.settings.map((f) => {
-      if (this.$store.state.settings.global[f.name]) {
+      if (this.$store.state.settings.global[f.name] !== undefined) {
         f.value = this.$store.state.settings.global[f.name];
       }
       return f;

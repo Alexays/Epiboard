@@ -1,9 +1,17 @@
 export default [
   {
+    name: 'trends',
+    title: 'Trends',
+    type: 'switch',
+    label: 'Show Google trends',
+    value: true,
+  },
+  {
     name: 'header_design',
     title: 'Header design',
     type: 'select',
     value: 'full',
+    label: 'Pick a design',
     items: [
       'full',
       'toolbar',
@@ -14,6 +22,7 @@ export default [
     title: 'Google trends country',
     type: 'select',
     value: 'france',
+    label: 'Pick a country',
     items: [
       'romania',
       'finland',
@@ -71,6 +80,7 @@ export default [
     title: 'Google now background',
     type: 'select',
     value: 'Random',
+    lable: 'Pick a city',
     items: [
       'Random',
       'Austin',
