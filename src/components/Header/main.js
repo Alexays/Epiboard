@@ -176,7 +176,7 @@ export default {
     },
     trends_settings(val, old) {
       if (val !== old) {
-        if (!val)  {
+        if (!val) {
           this.trends = [];
           this.messages = [sample(data.welcomeMessages)];
         } else this.getMessage();
