@@ -187,10 +187,8 @@ export default {
     },
     Type() {
       if (this.typer.typed.length > 0) return;
-      if (this.typer.current[this.typer.index]) {
-        this.typer.part += this.typer.current[this.typer.index];
-      }
       if (this.typer.part.length < this.typer.current.length) {
+        this.typer.part += this.typer.current[this.typer.index];
         this.typer.index += 1;
         setTimeout(this.Type, 70);
       } else {
