@@ -4,6 +4,7 @@
       <v-container fluid>
         <v-card class="container">
           <Config :settings="settings" id="global"/>
+          <p class="text-xs-right">Made with <v-icon small color="red">favorite</v-icon> by <a href="https://arouillard.fr">Alexis Rouillard</a></p>
         </v-card>
       </v-container>
     </v-content>
