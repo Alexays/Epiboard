@@ -2,9 +2,9 @@
   <div id="apps">
     <ul class="app-list">
       <li class="app" v-for="app in apps" :key="app">
-        <a href="#" v-on:click="launch(app)">
+        <div v-on:click="launch(app)">
           <i v-bind:style="{ 'background-image': 'url('+app.icon+')' }"></i>
-        </a>
+        </div>
       </li>
     </ul>
     <div v-if="apps.length === 0" class="white text-xs-center">
