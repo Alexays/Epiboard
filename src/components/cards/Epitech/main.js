@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 export default {
   name: 'Epitech',
   props: ['settings'],
@@ -53,10 +55,10 @@ export default {
     },
     getProjects() {
       return this.axios.get(`${this.API}/?format=json`)
-        .then((response) => {
-          if (!response.data) return Promise.resolve();
-          this.location = response.data.infos.location;
-          const data = response.data.board.projets
+        .then((res) => {
+          if (isEmpty(res.data)) return Promise.resolve();
+          this.location = res.data.infos.location;
+          const data = res.data.board.projets
             .filter(f => f.timeline_barre < 100
               && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date()
               && this.parseDate(f.timeline_end) > new Date());
@@ -81,6 +83,7 @@ export default {
       const dString = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
       return this.axios.get(`${this.API}/planning/load?format=json&start=${dString}&end=${dString}`)
         .then((res) => {
+          if (isEmpty(res.data)) return;
           this.planningData = res.data.filter(f => f.instance_location === this.location);
           this.rooms.data = this.planningData.filter(f => f.room)
             .map((f) => {
