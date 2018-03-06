@@ -3,7 +3,7 @@
   "name": "Epiboard",
   "description": "A new tab page extension with material design",
   "author": "Alexays",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "permissions": [
     "storage",
     "sessions",

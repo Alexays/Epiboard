@@ -85,7 +85,7 @@ export default {
         .then((res) => {
           this.planningData = (isEmpty(res.data) ? [] : res.data)
             .filter(f => f.instance_location === this.location);
-          this.rooms.data = this.planningData.filter(f => f.room)
+          this.rooms.data = this.planningData.filter(f => f.room && f.room.code)
             .map((f) => {
               f.start = this.parseCalendarDate(f.start);
               f.end = this.parseCalendarDate(f.end);
