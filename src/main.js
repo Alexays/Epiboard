@@ -61,6 +61,7 @@ Vue.filter('bytes', (nb) => {
 });
 
 Vue.filter('truncate', (string, nb) => {
+  if (!string) return '';
   const trimmed = string.trim();
   if (trimmed.length < nb) {
     return trimmed;
@@ -68,4 +69,4 @@ Vue.filter('truncate', (string, nb) => {
   return `${trimmed.substring(0, nb)}...`;
 });
 
-Vue.filter('filename', string => string.substring(string.lastIndexOf('/') + 1));
+Vue.filter('filename', string => (string ? string.substring(string.lastIndexOf('/') + 1) : ''));

@@ -59,9 +59,9 @@ export default {
           if (isEmpty(res.data)) return Promise.resolve();
           this.location = res.data.infos.location;
           const data = res.data.board.projets
-            .filter(f => f.timeline_barre < 100
-              && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date()
-              && this.parseDate(f.timeline_end) > new Date());
+            .filter(f => f.timeline_barre < 100 &&
+              !f.date_inscription && this.parseDate(f.timeline_start) <= new Date() &&
+              this.parseDate(f.timeline_end) > new Date());
           return Promise.all(data
             .map(f => this.isRegistered(f).then((isRegistered) => {
               f.isRegistered = isRegistered;
@@ -83,8 +83,8 @@ export default {
       const dString = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
       return this.axios.get(`${this.API}/planning/load?format=json&start=${dString}&end=${dString}`)
         .then((res) => {
-          if (isEmpty(res.data)) return;
-          this.planningData = res.data.filter(f => f.instance_location === this.location);
+          this.planningData = (isEmpty(res.data) ? [] : res.data)
+            .filter(f => f.instance_location === this.location);
           this.rooms.data = this.planningData.filter(f => f.room)
             .map((f) => {
               f.start = this.parseCalendarDate(f.start);

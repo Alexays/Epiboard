@@ -3,9 +3,9 @@
       <div v-if="today">
         <div class="w-head">
           <span class="subheading">Today</span>
+          <i :class="'owf owf-' + today.weather[0]['id'] + getSuffix()"></i>
           <span class="subheading">{{today.name}}</span>
         </div>
-        <img v-bind:src="'https://openweathermap.org/img/w/' + today.weather[0].icon + '.png'">
         <v-layout row wrap class="info-center">
           <v-flex xs6 class="text-xs-center">
             <p class="temp">{{today.main.temp}}°C</p>

@@ -1,13 +1,15 @@
 #weather {
   .w-head {
-    span {
-      padding-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    .owf {
+      margin: 10px 0;
+      font-size: 85px;
     }
   }
   .info-center {
     height: 100px;
-    padding: 8px;
-    margin-bottom: 12px;
+    margin: 8px 0;
     .temp {
       font-size: 48px;
       font-weight: lighter;

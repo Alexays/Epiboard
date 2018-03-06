@@ -12,6 +12,13 @@ export default {
     };
   },
   methods: {
+    getSuffix() {
+      const date = Date.now() / 1000 | 0;
+      if (date > this.today.sys.sunrise && date < this.today.sys.sunset) {
+        return '-d';
+      }
+      return '-n';
+    },
     getToday(position) {
       const {
         latitude,
