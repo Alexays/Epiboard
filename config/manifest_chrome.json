@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
   "name": "Epiboard",
+  "short_name": "Epiboard",
   "description": "A new tab page extension with material design",
   "author": "Alexays",
-  "version": "1.2.1",
+  "version": "$version",
   "permissions": [
     "storage",
     "sessions",
@@ -21,18 +22,16 @@
     "geolocation",
     "https://trends.google.com/trends/hottrends/visualize/internal/data",
     "https://www.google.com/doodles/search",
-    "https://intra.epitech.eu/"
+    "https://intra.epitech.eu/",
+    "https://nantes.campus-isefac.fr/bachelor/"
   ],
   "optional_permissions": [
     "https://api.openweathermap.org/"
   ],
+  "browser_action": {
+    "default_title": "Epiboard"
+  },
   "chrome_url_overrides": {
     "newtab": "index.html"
-  },
-  "applications": {
-    "gecko": {
-      "id": "contact@arouillard.fr",
-      "strict_min_version": "54.0"
-    }
   }
 }

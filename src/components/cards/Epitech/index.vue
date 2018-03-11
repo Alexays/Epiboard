@@ -2,7 +2,7 @@
   <div id="epitech">
     <div v-if="!is_logged" class="white text-xs-center">
       <i class="material-icons md-48">error_outline</i>
-      <h2 class="subheading">You must be logged to epitech to use this card.</h2>
+      <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </div>
     <v-tabs v-else dark grow show-arrows color="blue-grey" class="no-margins">
       <v-tabs-slider color="white"></v-tabs-slider>

@@ -14,6 +14,8 @@ const WebpackShellPlugin = require('webpack-shell-plugin')
 
 const env = require('../config/prod.env')
 
+const version = require('../package.json').version;
+
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -117,12 +119,12 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       },
       {
-        from: path.resolve(__dirname, '../config/manifest.json'),
+        from: path.resolve(__dirname, `../config/manifest_${process.env.BUILD_TARGET || 'chrome'}.json`),
         to: path.resolve(config.build.assetsRoot, './manifest.json'),
       }
     ]),
     new WebpackShellPlugin({
-      onBuildEnd: ['node ./build/remove-evals.js']
+      onBuildEnd: ['node ./build/remove-evals.js', `sed -i -e s/$version/${version}/g ./dist/manifest.json`]
     }),
   ]
 })

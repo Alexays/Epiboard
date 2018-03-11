@@ -42,7 +42,7 @@ export default new Vuex.Store({
     vuexPersistEmitter(),
   ],
   state: {
-    cards: {},
+    cards: [],
   },
   mutations: {
     RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION,
