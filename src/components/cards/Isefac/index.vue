@@ -20,11 +20,11 @@
             </v-list-tile-content>
           </v-list-tile>
         </template>
-        <div v-if="!dates.length" class="white text-xs-center session-empty">
-          <i class="material-icons md-48">room</i>
-          <h2 class="subheading">No more activities today, go get some rest !</h2>
-        </div>
       </v-list>
+      <div v-if="!dates.length" class="white text-xs-center session-empty">
+        <i class="material-icons md-48">room</i>
+        <h2 class="subheading">No more activities today, go get some rest !</h2>
+      </div>
     </div>
     <div v-else class="white">
         <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>

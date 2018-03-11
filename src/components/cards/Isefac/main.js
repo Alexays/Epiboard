@@ -21,7 +21,7 @@ export default {
       return a === b;
     },
     getCalendar() {
-      this.axios.get(`${this.API}index.php/apps/planning/`)
+      return this.axios.get(`${this.API}index.php/apps/planning/`)
         .then((res) => {
           if (res.data.indexOf('name="login"') > -1) {
             this.is_logged = false;
