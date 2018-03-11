@@ -14,6 +14,12 @@ export default {
     };
   },
   methods: {
+    compareDate(a, b) {
+      if (!a || !b) return false;
+      a.setHours(0, 0, 0, 0);
+      b.setHours(0, 0, 0, 0);
+      return a === b;
+    },
     getCalendar() {
       this.axios.get(`${this.API}index.php/apps/planning/`)
         .then((res) => {
@@ -38,6 +44,7 @@ export default {
             .map((f) => {
               f.startString = `${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}`;
               f.endString = `${f.end.getHours()}h${(`0${f.end.getMinutes()}`).substr(-2)}`;
+              f.header = f.start.toLocaleDateString('en-Us', { weekday: 'long' });
               return f;
             })
             .sort((a, b) => a.start - b.start);
