@@ -25,6 +25,7 @@ import directives from 'vuetify/es5/directives';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueLazyload from 'vue-lazyload';
+import pick from 'lodash/pick';
 import App from '@/App';
 import router from '@/router';
 import store from '@/helpers/store';
@@ -85,7 +86,8 @@ Vue.directive('init', {
   isLiteral: true,
   bind: (el, binding, vnode) => {
     if (!binding.value) return;
-    Object.assign(vnode.componentInstance.$data, JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {});
+    const keys = Object.keys(vnode.componentInstance.$data);
+    Object.assign(vnode.componentInstance.$data, pick(JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {}, keys));
   },
 });
 Vue.filter('bytes', (nb) => {

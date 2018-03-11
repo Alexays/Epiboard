@@ -6,7 +6,7 @@ export default {
     return {
       API: 'https://nantes.campus-isefac.fr/bachelor/',
       is_logged: true,
-      loaded: false,
+      loading: true,
       dates: [],
       user: {
         name: '',
@@ -14,12 +14,6 @@ export default {
     };
   },
   methods: {
-    compareDate(a, b) {
-      if (!a || !b) return false;
-      a.setHours(0, 0, 0, 0);
-      b.setHours(0, 0, 0, 0);
-      return a === b;
-    },
     getCalendar() {
       return this.axios.get(`${this.API}index.php/apps/planning/`)
         .then((res) => {
@@ -44,7 +38,9 @@ export default {
             .map((f) => {
               f.startString = `${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}`;
               f.endString = `${f.end.getHours()}h${(`0${f.end.getMinutes()}`).substr(-2)}`;
-              f.header = f.start.toLocaleDateString('en-Us', { weekday: 'long' });
+              f.header = `${f.start.toLocaleDateString('en-Us', {
+                weekday: 'long',
+              })} ${f.start.getDate()}/${f.start.getMonth() + 1}`;
               return f;
             })
             .sort((a, b) => a.start - b.start);
@@ -54,7 +50,7 @@ export default {
   mounted() {
     Promise.all([this.getCalendar()])
       .finally(() => {
-        this.loaded = true;
+        this.loading = false;
         this.$emit('init', this.$data);
       });
   },

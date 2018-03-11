@@ -4,13 +4,13 @@
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Isefac to use this card.</h2>
     </div>
-    <div v-else-if="loaded">
+    <div v-else-if="!loading">
       <div class="text-xs-center">
         <h3>{{user.name}}</h3>
       </div>
       <v-list class="dates" three-line dense>
         <template v-for="(date, index) of dates">
-          <v-subheader v-if="index === 0 || (dates[index - 1].header !== date.header && !compareDate(dates[index - 1].start, date.start))" :key="date.header">{{ date.header }}</v-subheader>
+          <v-subheader v-if="index === 0 || (dates[index - 1].header !== date.header)" :key="index">{{ date.header }}</v-subheader>
           <v-list-tile :key="date">
             <v-list-tile-content>
               <v-list-tile-title>{{date.title}}</v-list-tile-title>
