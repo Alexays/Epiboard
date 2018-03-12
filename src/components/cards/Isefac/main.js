@@ -21,6 +21,7 @@ export default {
             this.is_logged = false;
             return Promise.reject(new Error('You must be logged to Isefac to use this card.'));
           }
+          this.is_logged = true;
           const name = res.data.substring(res.data.indexOf('expandDisplayName">') + 19);
           this.user.name = name.substring(0, name.indexOf('<'));
           const part = res.data.substring(res.data.indexOf('events:') + 7);
