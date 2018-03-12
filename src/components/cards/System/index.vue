@@ -23,7 +23,7 @@
         <div>Memory</div>
       </div>
       <div class="wrapper-info">
-        <p>{{memory.capacity - memory.availableCapacity | bytes}} / <span class="grey--text">{{memory.capacity | bytes}}</span></p>
+        <span>{{memory.capacity - memory.availableCapacity | bytes}} / <span class="grey--text">{{memory.capacity | bytes}}</span></span>
         <v-progress-linear height="6" :value="getLoad({
                             progress: memory.capacity - memory.availableCapacity,
                             total: memory.capacity
