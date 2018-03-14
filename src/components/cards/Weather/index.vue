@@ -1,24 +1,39 @@
 <template>
-	<div id="weather">
-      <div v-if="today">
-        <div class="w-head">
-          <span class="subheading">Today</span>
-          <i :class="'owf owf-' + today.weather[0]['id'] + getSuffix()"></i>
-          <span class="subheading">{{today.name}}</span>
-        </div>
-        <v-layout row wrap class="info-center">
-          <v-flex xs6 class="text-xs-center">
-            <p class="temp">{{today.main.temp}}°C</p>
-            <p class="temp-cond">{{today.weather[0].main}}</p>
-          </v-flex>
-          <v-flex xs6>
-            <p class="detail">{{today.weather[0].description}}</p>
-            <p class="detail">Humidity: {{today.main.humidity}}%</p>
-            <p class="detail">Min: {{today.main.temp_min}}°C&emsp;Max: {{today.main.temp_max}}°C</p>
-          </v-flex>
-        </v-layout>
-      </div>
+  <div id="weather">
+    <div class="no-margins" v-if="today">
+      <v-layout row wrap>
+        <v-flex xs8 class="main">
+          <v-layout column>
+            <v-flex>
+              <v-layout row wrap>
+                <v-flex>
+                  <i :class="'owf owf-' + today.weather[0]['id'] + getSuffix()"></i>
+                </v-flex>
+                <v-flex>
+                  <p class="temp">{{today.main.temp}}
+                    <span class="unit">°C</span>
+                  </p>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+            <v-flex class="city">
+              <span class="subheading">{{today.name}} - {{today.weather[0].description}}</span>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+        <v-flex xs4 class="weather-info blue-grey">
+          <v-layout column>
+            <v-flex class="detail">
+              <v-icon medium color="white">opacity</v-icon> {{today.main.humidity}}%
+            </v-flex>
+            <v-flex class="detail">
+              <i class="owf owf-905 white--text"></i> {{today.wind.speed}}km/h
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
     </div>
+  </div>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

@@ -1,6 +1,12 @@
+
+
 export default {
   name: 'Weather',
   props: ['settings'],
+  title: new Date().toLocaleDateString('en-Us', {
+    weekday: 'long',
+  }),
+  custom: true,
   size: 1,
   components: {},
   data() {
@@ -27,6 +33,8 @@ export default {
       this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
         .then((res) => {
           this.today = res.data;
+          this.today.wind.speed |= 0;
+          this.today.main.temp |= 0;
           this.$emit('init', this.$data);
         });
     },
