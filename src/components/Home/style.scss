@@ -18,6 +18,10 @@
     }
     z-index: 0;
     .card__title {
+      &.custom {
+        position: absolute;
+        width: 100%;
+      }
       .progress-circular {
         vertical-align: middle;
       }
@@ -26,8 +30,7 @@
     // .card:not(.muuri-item-shown) {
     //   visibility: hidden;
     // }
-  }
-  // While waiting for a muuri update this is the easiest way to center the cards.
+  } // While waiting for a muuri update this is the easiest way to center the cards.
   // 1 column
   @media (max-width: 859px) {
     #card-container {
