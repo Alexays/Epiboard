@@ -2,10 +2,10 @@
   <div id="weather">
     <div class="no-margins" v-if="today">
       <v-layout row wrap>
-        <v-flex xs8 class="main">
+        <v-flex xs8 class="left">
           <v-layout column>
             <v-flex>
-              <v-layout row wrap>
+              <v-layout row wrap class="main">
                 <v-flex>
                   <i :class="'owf owf-' + today.weather[0]['id'] + getSuffix()"></i>
                 </v-flex>
@@ -17,7 +17,7 @@
               </v-layout>
             </v-flex>
             <v-flex class="city">
-              <span class="subheading">{{today.name}} - {{today.weather[0].description}}</span>
+              <v-icon>location_on</v-icon> {{today.name}}
             </v-flex>
           </v-layout>
         </v-flex>

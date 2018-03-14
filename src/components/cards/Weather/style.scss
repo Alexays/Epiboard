@@ -1,20 +1,28 @@
 #weather {
-  .main {
-    padding: 66px 16px 16px;;
+  .left {
+    padding: 66px 16px 16px;
+    ;
     i {
       font-size: 80px;
     }
-    .temp {
-      font-size: 45px;
-      display: flex;
-      align-items: flex-start;
-      .unit {
-        font-size: 15px;
-        padding: 15px 0;
+    .main {
+      padding: 15px 0px;
+      .temp {
+        font-size: 45px;
+        display: flex;
+        align-items: flex-start;
+        .unit {
+          font-size: 15px;
+          padding: 15px 0;
+        }
       }
     }
     .city {
+      i {
+        font-size: 14px;
+      }
       padding: 0 15px;
+      font-size: 10px;
     }
   }
   .weather-info {
