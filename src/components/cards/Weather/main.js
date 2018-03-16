@@ -1,5 +1,3 @@
-
-
 export default {
   name: 'Weather',
   props: ['settings'],
@@ -18,12 +16,22 @@ export default {
     };
   },
   methods: {
-    getSuffix() {
+    getImg(nb) {
+      const available = ['200', '200-n', '201', '300', '500', '500-n', '501', '501-n', '502', '502-n', '503', '503-n', '511', '600', '600-n', '601', '602', '700', '800', '800-n', '801', '801-n', '803', '804', '952', '953'];
       const date = Date.now() / 1000 | 0;
       if (date > this.today.sys.sunrise && date < this.today.sys.sunset) {
-        return '-d';
+        if (available.includes(nb)) {
+          return nb;
+        } else if (available.includes(`${nb.toString()[0]}00`)) {
+          return `${nb.toString()[0]}00`;
+        }
       }
-      return '-n';
+      if (available.includes(`${nb}-n`)) {
+        return `${nb}-n`;
+      } else if (available.includes(`${nb.toString()[0]}00-n`)) {
+        return `${nb.toString()[0]}00-n`;
+      }
+      return 'none';
     },
     getToday(position) {
       const {

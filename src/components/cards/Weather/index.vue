@@ -7,7 +7,7 @@
             <v-flex>
               <v-layout row wrap class="main">
                 <v-flex>
-                  <i :class="'owf owf-' + today.weather[0]['id'] + getSuffix()"></i>
+                  <img :src="'./static/img/weather-'+ getImg(today.weather[0]['id']) +'.png'"/>
                 </v-flex>
                 <v-flex>
                   <p class="temp">{{today.main.temp}}
@@ -27,7 +27,7 @@
               <v-icon medium color="white">opacity</v-icon> {{today.main.humidity}}%
             </v-flex>
             <v-flex class="detail">
-              <i class="owf owf-905 white--text"></i> {{today.wind.speed}}km/h
+              <v-icon medium color="white">fast_forwards</v-icon> {{today.wind.speed}}km/h
             </v-flex>
           </v-layout>
         </v-flex>

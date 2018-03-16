@@ -6,9 +6,12 @@
       font-size: 80px;
     }
     .main {
-      padding: 15px 0px;
+      padding-bottom: 15px;
+      img {
+        width: 100px;
+      }
       .temp {
-        font-size: 45px;
+        font-size: 60px;
         display: flex;
         align-items: flex-start;
         .unit {
