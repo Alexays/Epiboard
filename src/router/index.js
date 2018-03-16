@@ -8,6 +8,8 @@ import store from '@/helpers/store';
 Vue.use(Router);
 
 const router = new Router({
+  mode: 'history',
+  base: window.location.pathname,
   routes: [
     {
       path: '/',
