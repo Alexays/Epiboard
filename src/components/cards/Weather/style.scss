@@ -21,11 +21,11 @@
       }
     }
     .city {
+      display: flex;
+      font-size: 10px;
       i {
         font-size: 14px;
       }
-      padding: 0 15px;
-      font-size: 10px;
     }
   }
   .weather-info {

@@ -24,14 +24,17 @@
         <v-flex xs4 class="weather-info blue-grey">
           <v-layout column>
             <v-flex class="detail">
-              <v-icon medium color="white">opacity</v-icon> {{today.main.humidity}}%
+              <v-icon medium color="white">opacity</v-icon> <span><b>{{today.main.humidity}}</b>%</span>
             </v-flex>
             <v-flex class="detail">
-              <v-icon medium color="white">fast_forwards</v-icon> {{today.wind.speed}}km/h
+              <v-icon medium color="white">wrap_text</v-icon> <span><b>{{today.wind.speed}}</b> <small>km/h</small></span>
             </v-flex>
           </v-layout>
         </v-flex>
       </v-layout>
+    </div>
+    <div v-else>
+        <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
     </div>
   </div>
 </template>

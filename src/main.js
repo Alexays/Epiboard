@@ -74,7 +74,7 @@ Vue.use(VueLazyload, {
     },
   },
 });
-/* eslint-disable no-new */
+// eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   router,
