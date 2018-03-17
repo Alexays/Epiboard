@@ -43,7 +43,6 @@ export default {
           this.today = res.data;
           this.today.wind.speed |= 0;
           this.today.main.temp |= 0;
-          console.log(this.today);
           this.$emit('init', this.$data);
         });
     },

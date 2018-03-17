@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "9"
+
+install:
+  - npm install --production
+
+script:
+  - npm run lint
+  - npm run build
+
+branches:
+  only:
+  - master
