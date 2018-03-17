@@ -3,7 +3,7 @@ node_js:
   - "9"
 
 install:
-  - npm install --production
+  - npm install
 
 script:
   - npm run lint
