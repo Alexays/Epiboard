@@ -18,13 +18,13 @@
           <v-card-title :class="{'blue-grey white--text': !card.custom, custom: card.custom}">
             <span class="headline">{{card.title || card.name}}</span>
             <div>
-              <v-progress-circular :title="card.name + ' is fetching some data'" v-show="initCards.indexOf(card.name) === -1" size="25" indeterminate color="white"></v-progress-circular>
+              <v-progress-circular :title="card.name + ' is fetching some data'" v-show="!card.init" size="25" indeterminate color="white"></v-progress-circular>
               <v-menu bottom offset-y>
                 <v-btn flat icon slot="activator">
                   <v-icon color="white">more_vert</v-icon>
                 </v-btn>
                 <v-list>
-                  <v-list-tile @click="deleteCard(card.name, key)">
+                  <v-list-tile @click="deleteCard(key)">
                     <v-list-tile-title>Remove</v-list-tile-title>
                   </v-list-tile>
                 </v-list>
@@ -33,7 +33,7 @@
           </v-card-title>
           <v-card-text class="white">
             <keep-alive>
-              <component @init="setCards(card.name, $event)" v-init="card.name" :is="card"></component>
+              <component @init="setCards(key, $event)" v-init="key" :is="card"></component>
             </keep-alive>
           </v-card-text>
         </div>

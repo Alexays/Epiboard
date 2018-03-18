@@ -13,7 +13,7 @@ export default {
       fab: false,
       grid: null,
       cards: {},
-      initCards: [],
+      cards$: {},
     };
   },
   computed: {
@@ -31,24 +31,21 @@ export default {
     },
   },
   methods: {
-    setCards(name, data) {
-      if (!name) return;
-      this.initCards.push(name);
+    setCards(key, data) {
+      if (!key) return;
+      if (this.cards[key]) this.$set(this.cards[key], 'init', true);
       if (!data) {
-        if (localStorage.getItem(`cache_${name}`)) {
-          localStorage.removeItem(`cache_${name}`);
+        if (localStorage.getItem(`cache_${key}`)) {
+          localStorage.removeItem(`cache_${key}`);
         }
         return;
       }
-      localStorage.setItem(`cache_${name}`, JSON.stringify(data));
+      localStorage.setItem(`cache_${key}`, JSON.stringify(data));
     },
     resize(value) {
       if (value) {
         const keys = Object.keys(value);
-        const oldCards = [].filter.call(
-          document.querySelectorAll('.card'),
-          f => keys.indexOf(f.getAttribute('data-item-id')) < 0,
-        );
+        const oldCards = [...document.getElementsByClassName('card')].filter(f => keys.indexOf(f.getAttribute('data-item-id')) < 0);
         this.grid.remove(oldCards, {
           removeElements: true,
           layout: false,
@@ -62,27 +59,29 @@ export default {
       this.grid.refreshItems();
       this.grid.layout(true);
     },
-    deleteCard(name, id) {
-      this.$delete(this.cards, id);
-      this.setCards(name);
+    deleteCard(key) {
+      this.$delete(this.cards, key);
+      this.cards$[key].detach(this.resize);
+      this.$delete(this.cards$, key);
+      this.setCards(key);
       this.$store.commit('updateCards', Object.keys(this.cards));
     },
     addCard(card, key) {
       this.$set(this.cards, key, card);
       this.$nextTick(() => {
-        const elem = document.querySelector(`[data-item-id=${key}]`);
+        const elem = document.querySelector(`[data-item-id='${key}']`);
         this.grid.add(elem, {
           layout: false,
         });
-        new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
+        this.cards$[elem.getAttribute('data-item-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
       });
       this.$store.commit('updateCards', Object.keys(this.cards));
     },
     handleSize() {
       this.$watch('$data.cards', this.resize);
-      const cards = document.querySelectorAll('.card');
+      const cards = document.getElementsByClassName('card');
       for (let i = 0; i < cards.length; i += 1) {
-        new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
+        this.cards$[cards[i].getAttribute('data-item-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
       }
     },
   },
