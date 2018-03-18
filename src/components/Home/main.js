@@ -104,9 +104,6 @@ export default {
         dragStartPredicate: {
           handle: '.card__title',
         },
-        layout: {
-          fillGaps: true,
-        },
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
@@ -115,8 +112,7 @@ export default {
       });
       if (cards) {
         this.grid
-          .sort((a, b) => ((cards.indexOf(a._sortData.id) >
-            cards.indexOf(b._sortData.id) ? 1 : -1)), {
+          .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
             layout: 'instant',
           });
       } else {
