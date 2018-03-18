@@ -13,7 +13,7 @@
       </v-speed-dial>
     </v-fab-transition>
     <transition-group name="slide-fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.global.header_design === 'toolbar' }">
-      <v-card v-for="(card, key) in cards" :key="key" :data-item-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
+      <v-card hover raised v-for="(card, key) in cards" :key="key" :data-item-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
         <div class="white">
           <v-card-title :class="{'blue-grey white--text': !card.custom, custom: card.custom}">
             <span class="headline">{{card.title || card.name}}</span>

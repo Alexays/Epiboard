@@ -27,7 +27,18 @@
               <v-icon medium color="white">opacity</v-icon> <span><b>{{today.main.humidity}}</b>%</span>
             </v-flex>
             <v-flex class="detail">
-              <v-icon medium color="white">wrap_text</v-icon> <span><b>{{today.wind.speed}}</b> <small>km/h</small></span>
+              <v-icon medium color="white">wrap_text</v-icon> <span><b>{{today.wind.speed}}</b> <small>m/s</small></span>
+            </v-flex>
+            <v-flex class="detail">
+              <v-icon medium color="white">brightness_4</v-icon>
+              <v-layout column class="sun">
+                <v-flex>
+                  {{getTime(today.sys.sunrise)}}
+                </v-flex>
+                <v-flex>
+                  {{getTime(today.sys.sunset)}}
+                </v-flex>
+              </v-layout>
             </v-flex>
           </v-layout>
         </v-flex>
