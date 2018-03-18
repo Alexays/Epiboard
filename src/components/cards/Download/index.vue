@@ -2,7 +2,7 @@
   <div id="download">
     <li class="download" v-for="download in downloads" :key="download.id">
       <div title="Open Download" class="icon" v-on:click="open(download)">
-        <v-progress-circular v-if="download.state === 'in_progress'" :value="download.bytesReceived / download.totalBytes"></v-progress-circular>
+        <v-progress-circular v-if="download.state === 'in_progress'" :value="(download.bytesReceived / download.totalBytes) * 100 | 0"></v-progress-circular>
         <template v-else>
           <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
           <i v-if="!download.filename || !download.icon" class="material-icons">insert_drive_file</i>
