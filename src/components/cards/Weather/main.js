@@ -45,7 +45,6 @@ export default {
       this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
         .then((res) => {
           this.today = res.data;
-          console.log(this.today);
           this.today.wind.speed |= 0;
           this.today.main.temp |= 0;
           this.$emit('init', this.$data);
