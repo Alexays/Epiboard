@@ -17,8 +17,8 @@
       </v-btn>
     </template>
     <v-toolbar v-else card absolute prominent>
-      <v-text-field v-on:keyup.native="search" prepend-icon="search" :value="typer.part"
-      @input="typer.typed = $event" hide-details single-line></v-text-field>
+      <v-text-field v-on:keyup.native="search" prepend-icon="search" :value="$route.path === '/' ? typer.part : $route.name"
+      @input="typer.typed = $event" hide-details single-line :readonly="$route.path !== '/'"></v-text-field>
       <v-spacer></v-spacer>
       <v-btn title="Go to settings" v-show="$route.path !== '/settings'" to="/settings" icon>
         <v-icon>more_vert</v-icon>

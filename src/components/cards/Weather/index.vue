@@ -33,7 +33,7 @@
         </v-flex>
       </v-layout>
     </div>
-    <div v-else>
+    <div v-else class="weather-loader">
         <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
     </div>
   </div>

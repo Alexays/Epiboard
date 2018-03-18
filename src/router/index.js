@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Header from '@/components/Header';
-import Home from '@/components/Home';
-import Settings from '@/components/Settings';
 import store from '@/helpers/store';
+
+const Header = () => import('@/components/Header');
+const Home = () => import('@/components/Home');
+const Settings = () => import('@/components/Settings');
 
 Vue.use(Router);
 
@@ -12,7 +13,7 @@ const router = new Router({
   base: window.location.pathname,
   routes: [
     {
-      path: '/',
+      path: '*',
       name: 'Home',
       components: {
         default: Home,

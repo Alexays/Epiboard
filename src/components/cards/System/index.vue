@@ -6,7 +6,7 @@
         <div>CPU</div>
       </div>
       <div class="wrapper-info">
-        <p>{{cpu.modelName}}</p>
+        <span>{{cpu.modelName}}</span>
         <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
         <v-progress-linear height="6" v-for="(core, key) in cpu.processors" :key="key" :value="getLoad({
                         progress: core.usage.kernel + core.usage.user,
