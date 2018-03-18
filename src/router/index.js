@@ -37,9 +37,7 @@ router.beforeEach((to, from, next) => {
     store._vm.$root.$on('storageReady', () => {
       next();
     });
-    return;
-  }
-  next();
+  } else next();
 });
 
 export default router;

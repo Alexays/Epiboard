@@ -5,8 +5,12 @@ node_js:
 install:
   - npm install
 
+before_script:
+  - npm install -g jsinspect
+
 script:
   - npm run lint
+  - jsinspect ./src
   - npm run build
 
 branches:

@@ -2,14 +2,26 @@
   <div id="download">
     <li class="download" v-for="download in downloads" :key="download.id">
       <div title="Open Download" class="icon" v-on:click="open(download)">
-        <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
-        <i v-if="!download.filename || !download.icon" class="material-icons">insert_drive_file</i>
+        <v-progress-circular v-if="download.state === 'in_progress'" :value="download.bytesReceived / download.totalBytes"></v-progress-circular>
+        <template v-else>
+          <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
+          <i v-if="!download.filename || !download.icon" class="material-icons">insert_drive_file</i>
+        </template>
       </div>
       <div class="d-info">
-        <div title="Open Download" class="name" v-on:click="open(download)">{{download.filename | filename}}</div>
+        <div title="Open Download" class="name" v-on:click="open(download)">
+          <strike v-if="download.state === 'interrupted'">
+            {{download.filename | filename}}
+          </strike>
+          <span v-else>
+            {{download.filename | filename}}
+          </span>
+        </div>
         <span class="size">
-          <span v-if="download.state == 'in_progress'">
-            {{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}
+          <span v-if="download.state === 'in_progress'">
+            {{download.bytesReceived | bytes}} /
+          </span>
+          {{download.totalBytes | bytes}}
         </span> -
         <a :href="download.url" class="host">{{download.url}}</a>
       </div>

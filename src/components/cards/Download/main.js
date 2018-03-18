@@ -38,8 +38,7 @@ export default {
         for (let i = 0; i < downloads.length; i += 1) {
           if (downloads[i].filename) {
             chrome.downloads.getFileIcon(downloads[i].id).then((data) => {
-              this.downloads[i].icon = data;
-              this.downloads = this.downloads.slice(0);
+              this.$set(this.downloads[i], 'icon', data);
             });
           }
         }
@@ -48,15 +47,18 @@ export default {
     listenChange() {
       chrome.downloads.onChanged.addListener((downloadDelta) => {
         if (chrome.runtime.lastError) return;
-        for (let i = 0; i < this.downloads.length; i += 1) {
-          if (this.downloads[i].id === downloadDelta.id) {
-            const keys = Object.keys(downloadDelta);
-            for (let j = 0; j < keys.length; j += 1) {
-              if (keys[j] === 'id') {
-                this.downloads[i][j] = downloadDelta[j].current;
-                this.downloads = this.downloads.slice(0);
-              }
-            }
+        const id = this.downloads.findIndex(f => f.id === downloadDelta.id || f.id === undefined);
+        if (id === -1) return;
+        this.$set(this.downloads[id], 'id', downloadDelta.id);
+        if (!this.downloads[id].icon) {
+          chrome.downloads.getFileIcon(this.downloads[id].id).then((data) => {
+            this.$set(this.downloads[id], 'icon', data);
+          });
+        }
+        const keys = Object.keys(downloadDelta);
+        for (let i = 0; i < keys.length; i += 1) {
+          if (keys[i] !== 'id') {
+            this.$set(this.downloads[id], keys[i], downloadDelta[keys[i]].current);
           }
         }
       });
@@ -66,20 +68,6 @@ export default {
         if (chrome.runtime.lastError) return;
         this.downloads.pop();
         this.downloads.unshift(download);
-        // wait 500ms after download starts to get the icon
-        Promise.delay(500).then(() => {
-          if (!download.filename) return;
-          chrome.downloads.getFileIcon(download.id, (dataUrl) => {
-            if (chrome.runtime.lastError) return;
-            for (let i = 0; i < this.downloads.length; i += 1) {
-              if (this.downloads[i].id === download.id) {
-                this.downloads[i].icon = dataUrl;
-                this.downloads = this.downloads.slice(0);
-                break;
-              }
-            }
-          });
-        });
       });
     },
   },

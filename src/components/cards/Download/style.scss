@@ -14,7 +14,6 @@
       height: 38px;
       margin-right: 8px;
       overflow: hidden;
-      display: table;
       i {
         display: table-cell;
         vertical-align: middle;
@@ -23,6 +22,7 @@
     }
     .fileicon {
       height: inherit;
+      width: inherit;
       background-repeat: no-repeat;
       background-size: contain;
     }
