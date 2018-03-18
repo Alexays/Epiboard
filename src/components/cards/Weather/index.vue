@@ -7,7 +7,7 @@
             <v-flex>
               <v-layout row wrap class="main">
                 <v-flex>
-                  <img :src="'./static/img/weather-'+ getImg(today.weather[0]['id']) +'.png'"/>
+                  <img :src="'/static/img/weather-'+ getImg(today.weather[0]['id']) +'.png'"/>
                 </v-flex>
                 <v-flex>
                   <p class="temp">{{today.main.temp}}
