@@ -101,6 +101,9 @@ export default {
       this.grid = new Muuri('#card-container', {
         items: '.card',
         dragEnabled: true,
+        layout: {
+          fillGaps: true,
+        },
         dragStartPredicate: {
           handle: '.card__title',
         },
