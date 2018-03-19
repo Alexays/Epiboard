@@ -86,9 +86,7 @@ export default {
     },
   },
   mounted() {
-    let {
-      cards,
-    } = (this.$store.state || {});
+    let { cards } = (this.$store.state || {});
     const lastVersion = localStorage.getItem('version');
     const { version } = chrome.runtime.getManifest();
     if (lastVersion && lastVersion !== version) {

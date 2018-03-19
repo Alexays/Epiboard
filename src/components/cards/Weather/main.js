@@ -38,30 +38,28 @@ export default {
       return `${date.getHours()}:${date.getMinutes()}`;
     },
     getToday(position) {
-      const {
-        latitude,
-        longitude,
-      } = position.coords;
-      this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
+      const { latitude, longitude } = position.coords;
+      return this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
         .then((res) => {
           this.today = res.data;
           this.today.wind.speed |= 0;
           this.today.main.temp |= 0;
-          this.$emit('init', this.$data);
         });
+    },
+    getLocalisation() {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          timeout: 30000,
+          enableHighAccuracy: true,
+          maximumAge: 75000,
+        });
+      });
     },
   },
   mounted() {
-    if (!navigator.geolocation) return this.$emit('init', false);
-    return navigator.geolocation.getCurrentPosition(
-      this.getToday,
-      (err) => {
-        throw err;
-      }, {
-        timeout: 30000,
-        enableHighAccuracy: true,
-        maximumAge: 75000,
-      },
-    );
+    this.getLocalisation()
+      .then(this.getToday)
+      .then(() => this.$emit('init', this.$data))
+      .catch(() => this.$emit('init', false));
   },
 };
