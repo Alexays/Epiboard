@@ -5,6 +5,7 @@ export default {
     global: Settings.map(f => ({
       [f.name]: f.value,
     })).reduce((a, x) => Object.assign(a, x)),
+    dark: false,
   },
   mutations: {
     SET_SETTINGS(state, {

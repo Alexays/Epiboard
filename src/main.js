@@ -20,6 +20,7 @@ import VSwitch from 'vuetify/es5/components/VSwitch';
 import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
 import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
+import VTimePicker from 'vuetify/es5/components/VTimePicker';
 import transitions from 'vuetify/es5/components/transitions';
 import directives from 'vuetify/es5/directives';
 import axios from 'axios';
@@ -56,6 +57,7 @@ Vue.use(Vuetify, {
     VSpeedDial,
     VProgressLinear,
     VProgressCircular,
+    VTimePicker,
   },
   directives,
   transitions,

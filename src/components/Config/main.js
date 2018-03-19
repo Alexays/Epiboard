@@ -20,6 +20,7 @@ export default {
           [f.name]: f.value,
         })).reduce((a, x) => Object.assign(a, x)),
       });
+      this.$emit('save');
     },
   },
   mounted() {},
