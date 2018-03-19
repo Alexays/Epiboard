@@ -1,11 +1,10 @@
 <template>
   <div id="epitech">
-    <div v-if="!is_logged" class="white text-xs-center">
+    <div v-if="!is_logged" class="text-xs-center">
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </div>
-    <v-tabs v-else dark grow show-arrows color="blue-grey" class="no-margins">
-      <v-tabs-slider color="white"></v-tabs-slider>
+    <v-tabs v-else dark grow show-arrows slider-color="white" color="blue-grey" class="no-margins">
       <v-tab>Infos</v-tab>
       <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
@@ -49,7 +48,7 @@
               </div>
             </div>
           </div>
-          <div v-if="projects.loading || user.loading" class="white">
+          <div v-if="projects.loading || user.loading">
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
         </v-tab-item>
@@ -69,12 +68,12 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
-              <div v-if="!upcomings.data.length" class="white text-xs-center session-empty">
+              <div v-if="!upcomings.data.length" class="text-xs-center session-empty">
                 <i class="material-icons md-48">room</i>
                 <h2 class="subheading">No upcoming activities, go get some rest !</h2>
               </div>
             </v-list>
-            <div v-else class="white">
+            <div v-else>
               <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
             </div>
           </div>
@@ -95,12 +94,12 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
-              <div v-if="!rooms.data.length" class="white text-xs-center session-empty">
+              <div v-if="!rooms.data.length" class="text-xs-center session-empty">
                 <i class="material-icons md-48">room</i>
                 <h2 class="subheading">No occuped rooms, have fun !</h2>
               </div>
             </v-list>
-            <div v-else class="white">
+            <div v-else>
               <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
             </div>
           </div>

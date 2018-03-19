@@ -8,7 +8,7 @@
       </v-tab>
       <v-tabs-items>
         <v-tab-item>
-          <div v-if="!recentlyClosed.length" class="white text-xs-center session-empty">
+          <div v-if="!recentlyClosed.length" class="text-xs-center session-empty">
             <i class="material-icons md-48">find_in_page</i>
             <h2 class="subheading">You have no recently closed page.</h2>
           </div>

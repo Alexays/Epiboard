@@ -6,7 +6,8 @@
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn :title="card.name" v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark small color="green">
+        <v-btn :title="card.name" v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark
+          small color="green">
           <v-icon v-if="card.icon">{{card.icon}}</v-icon>
           <span v-if="!card.icon">{{card.name}}</span>
         </v-btn>
@@ -14,35 +15,33 @@
     </v-fab-transition>
     <transition-group name="slide-fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.global.header_design === 'toolbar' }">
       <v-card hover raised v-for="(card, key) in cards" :key="key" :data-item-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
-        <div class="white">
-          <v-card-title :class="{'blue-grey white--text': !card.custom, custom: card.custom}">
-            <span class="headline">{{card.title || card.name}}</span>
-            <div>
-              <v-progress-circular :title="card.name + ' is fetching some data'" v-show="!card.init" size="25" indeterminate color="white"></v-progress-circular>
-              <v-menu bottom offset-y>
-                <v-btn flat icon slot="activator">
-                  <v-icon color="white">more_vert</v-icon>
-                </v-btn>
-                <v-list>
-                  <v-list-tile @click="deleteCard(key)">
-                    <v-list-tile-title>Remove</v-list-tile-title>
-                  </v-list-tile>
-                </v-list>
-              </v-menu>
-            </div>
-          </v-card-title>
-          <v-card-text class="white">
-            <keep-alive>
-              <component @init="setCards(key, $event)" v-init="key" :is="card"></component>
-            </keep-alive>
-          </v-card-text>
-        </div>
+        <v-card-title class="white--text" :class="{'blue-grey': !card.custom, custom: card.custom}">
+          <span class="headline">{{card.title || card.name}}</span>
+          <div>
+            <v-progress-circular :title="card.name + ' is fetching some data'" v-show="!card.init" size="25" indeterminate color="white"></v-progress-circular>
+            <v-menu bottom offset-y>
+              <v-btn flat icon slot="activator">
+                <v-icon color="white">more_vert</v-icon>
+              </v-btn>
+              <v-list>
+                <v-list-tile @click="deleteCard(key)">
+                  <v-list-tile-title>Remove</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <keep-alive>
+            <component @init="setCards(key, $event)" v-init="key" :is="card"></component>
+          </keep-alive>
+        </v-card-text>
       </v-card>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">
-        <i class="material-icons md-48">tag_faces</i>
-        <h2 class="subheading">You have no cards.</h2>
-      </div>
+      <i class="material-icons md-48">tag_faces</i>
+      <h2 class="subheading">You have no cards.</h2>
+    </div>
   </div>
 </template>
 <script src="../../../node_modules/web-animations-js/web-animations.min.js"></script>

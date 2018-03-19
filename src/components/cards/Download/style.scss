@@ -1,11 +1,11 @@
 #download {
   .download {
+    padding: 5px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0px;
-    :hover {
-      background-color: #f5f5f5;
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
     }
     .icon {
       flex-shrink: 0;

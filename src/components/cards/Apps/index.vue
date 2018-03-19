@@ -7,7 +7,7 @@
         </div>
       </li>
     </ul>
-    <div v-if="apps.length === 0" class="white text-xs-center">
+    <div v-if="!apps.length" class="text-xs-center">
       <i class="material-icons md-48">apps</i>
       <h2 class="subheading">You have no apps.</h2>
     </div>

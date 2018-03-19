@@ -1,6 +1,6 @@
 <template>
   <div id="isefac">
-    <div v-if="!is_logged" class="white text-xs-center">
+    <div v-if="!is_logged" class="text-xs-center">
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Isefac to use this card.</h2>
     </div>
@@ -21,12 +21,12 @@
           </v-list-tile>
         </template>
       </v-list>
-      <div v-if="!dates.length" class="white text-xs-center session-empty">
+      <div v-if="!dates.length" class="text-xs-center session-empty">
         <i class="material-icons md-48">room</i>
         <h2 class="subheading">No more activities today, go get some rest !</h2>
       </div>
     </div>
-    <div v-else class="white">
+    <div v-else>
         <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
     </div>
   </div>

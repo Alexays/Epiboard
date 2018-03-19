@@ -21,7 +21,7 @@
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs4 class="weather-info blue-grey">
+        <v-flex xs4 class="weather-info blue-grey white--text">
           <v-layout column>
             <v-flex class="detail">
               <v-icon medium color="white">opacity</v-icon> <span><b>{{today.main.humidity}}</b>%</span>

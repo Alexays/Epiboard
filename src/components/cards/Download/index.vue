@@ -26,7 +26,7 @@
         <a :href="download.url" class="host">{{download.url}}</a>
       </div>
     </li>
-    <div v-if="downloads.length === 0" class="white text-xs-center">
+    <div v-if="!downloads.length" class="text-xs-center">
       <i class="material-icons md-48">file_download</i>
       <h2 class="subheading">You have no downloads.</h2>
     </div>
