@@ -32,11 +32,14 @@ export default {
     },
   },
   mounted() {
-    const dark = JSON.parse(localStorage.getItem('dark') || '{}');
-    this.dark = dark.enabled;
-    this.dark_auto = dark.auto;
-    this.from = dark.from;
-    this.to = dark.to;
+    const dark = localStorage.getItem('dark');
+    if (dark) {
+      const p = JSON.parse(dark);
+      this.dark = p.enabled;
+      this.dark_auto = p.auto;
+      this.from = p.from;
+      this.to = p.to;
+    }
     this.settings = this.settings.map((f) => {
       if (this.$store.state.settings.global[f.name] !== undefined) {
         f.value = this.$store.state.settings.global[f.name];
