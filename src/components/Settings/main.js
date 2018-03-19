@@ -27,7 +27,7 @@ export default {
       }));
       this.$store.commit('SET_SETTINGS', {
         key: 'dark',
-        settings: this.dark,
+        settings: `${this.dark}${this.auto}${this.from}${this.to}`,
       });
     },
   },
