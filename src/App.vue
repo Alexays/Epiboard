@@ -19,7 +19,7 @@ export default {
   },
   watch: {
     enabled() {
-      this.getDark();
+      this.dark = this.getDark();
     },
   },
   data() {
@@ -30,7 +30,6 @@ export default {
   methods: {
     getDark() {
       const tmp = JSON.parse(localStorage.getItem('dark') || '{}');
-      this.dark = false;
       if (tmp.enabled) {
         if (tmp.auto) {
           const from = (tmp.from || '22:00').split(':').map(Number);
@@ -52,22 +51,12 @@ export default {
             to[1],
             0,
           );
-          if (fromDate > toDate && date > toDate && fromDate < date) {
-            this.dark = true;
-            return;
-          } else if (date > fromDate && date < toDate) {
-            this.dark = true;
-            return;
-          }
-          this.dark = false;
-          return;
+          return (fromDate > toDate && date > toDate && fromDate < date) || (date > fromDate && date < toDate);
         }
-        this.dark = true;
+        return true;
       }
+      return false;
     },
-  },
-  mounted() {
-    this.getDark();
   },
 };
 </script>
