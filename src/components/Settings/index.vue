@@ -6,7 +6,7 @@
           <h4 class="headline">Dark mode</h4>
           <v-layout row>
             <v-flex class="dark-p">
-              <v-switch :label="`On`" v-model="dark.enabled"></v-switch>
+              <v-switch :label="dark.enabled ? `On` : `Off`" v-model="dark.enabled"></v-switch>
             </v-flex>
             <v-flex class="dark-p">
               <v-checkbox :label="`Auto`" :disabled="!dark.enabled" v-model="dark.auto"></v-checkbox>
