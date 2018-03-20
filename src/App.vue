@@ -18,8 +18,11 @@ export default {
     },
   },
   watch: {
-    enabled() {
-      this.dark = this.getDark();
+    enabled: {
+      handler(val) {
+        this.dark = this.getDark(val);
+      },
+      deep: true,
     },
   },
   data() {
@@ -28,8 +31,7 @@ export default {
     };
   },
   methods: {
-    getDark() {
-      const tmp = JSON.parse(localStorage.getItem('dark') || '{}');
+    getDark(tmp) {
       if (tmp.enabled) {
         if (tmp.auto) {
           const from = (tmp.from || '22:00').split(':').map(Number);
@@ -51,7 +53,8 @@ export default {
             to[1],
             0,
           );
-          return (fromDate > toDate && date > toDate && fromDate < date) || (date > fromDate && date < toDate);
+          return ((fromDate > toDate && date > toDate && fromDate < date) ||
+          (date > fromDate && date < toDate));
         }
         return true;
       }

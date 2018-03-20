@@ -5,7 +5,12 @@ export default {
     global: Settings.map(f => ({
       [f.name]: f.value,
     })).reduce((a, x) => Object.assign(a, x)),
-    dark: false,
+    dark: {
+      enabled: true,
+      auto: true,
+      from: '22:00',
+      to: '9:00',
+    },
   },
   mutations: {
     SET_SETTINGS(state, {
