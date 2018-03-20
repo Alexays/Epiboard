@@ -15,7 +15,7 @@
     </v-fab-transition>
     <transition-group name="slide-fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.global.header_design === 'toolbar' }">
       <v-card hover raised v-for="(card, key) in cards" :key="key" :data-item-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
-        <v-card-title class="white--text" :class="{'blue-grey': !card.custom, custom: card.custom}">
+        <v-card-title :class="{'blue-grey': !card.custom, custom: card.custom, 'white--text': !card.custom}">
           <span class="headline">{{card.title || card.name}}</span>
           <div>
             <v-progress-circular :title="card.name + ' is fetching some data'" v-show="!card.init" size="25" indeterminate color="white"></v-progress-circular>
