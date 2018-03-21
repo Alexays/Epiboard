@@ -76,6 +76,39 @@ Vue.use(VueLazyload, {
     },
   },
 });
+Vue.mixin({
+  methods: {
+    isDark: (dark) => {
+      if (dark.enabled) {
+        if (dark.auto) {
+          const from = (dark.from || '22:00').split(':').map(Number);
+          const to = (dark.to || '9:00').split(':').map(Number);
+          const date = new Date();
+          const fromDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            from[0],
+            from[1],
+            0,
+          );
+          const toDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            to[0],
+            to[1],
+            0,
+          );
+          return ((fromDate > toDate && date > toDate && fromDate < date) ||
+          (date > fromDate && date < toDate));
+        }
+        return true;
+      }
+      return false;
+    },
+  },
+});
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',

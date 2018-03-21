@@ -139,6 +139,7 @@ export default {
       API: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
       messages: '',
       background: '',
+      dark: false,
       typer: {
         typed: '',
         current: '',
@@ -182,6 +183,13 @@ export default {
         } else this.getMessage();
       }
     },
+    dark: {
+      handler(val) {
+        this.dark = this.isDark(val);
+        if (this.dark) this.getBackground();
+      },
+      deep: true,
+    },
   },
   methods: {
     onTyped(typed) {
@@ -222,6 +230,7 @@ export default {
       this.messages = this.trends;
     },
     getBackgroundTime(url) {
+      if (this.dark) return url.night;
       const hour = new Date().getHours();
       if (hour > 5 && hour < 8) {
         return url.dawn;
