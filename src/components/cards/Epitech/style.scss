@@ -1,3 +1,13 @@
+.theme--dark {
+  #epitech {
+    ::-webkit-scrollbar-thumb {
+      background: #ddd;
+    }
+    ::-webkit-scrollbar-track {
+      background: #666;
+    }
+  }
+}
 #epitech {
   ::-webkit-scrollbar {
     width: 5px;

@@ -1,3 +1,13 @@
+.theme--dark {
+  #apps {
+    ::-webkit-scrollbar-thumb {
+      background: #ddd;
+    }
+    ::-webkit-scrollbar-track {
+      background: #666;
+    }
+  }
+}
 #apps {
   ::-webkit-scrollbar {
     width: 5px;
