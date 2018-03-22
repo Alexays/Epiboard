@@ -281,6 +281,7 @@ export default {
     },
   },
   mounted() {
+    this.dark = this.isDark(this.dark_mode);
     this.getBackground();
     this.getMessage();
   },
