@@ -164,6 +164,9 @@ export default {
     trends_settings() {
       return this.$store.state.settings.global.trends;
     },
+    dark_mode() {
+      return this.$store.state.settings.dark;
+    },
   },
   watch: {
     country(val, old) {
@@ -183,10 +186,13 @@ export default {
         } else this.getMessage();
       }
     },
-    dark: {
+    dark_mode: {
       handler(val) {
-        this.dark = this.isDark(val);
-        if (this.dark) this.getBackground();
+        const tmp = this.isDark(val);
+        if (tmp !== this.dark) {
+          this.dark = tmp;
+          this.getBackground();
+        }
       },
       deep: true,
     },
