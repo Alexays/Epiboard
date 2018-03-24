@@ -45,7 +45,7 @@ export default {
     resize(value) {
       if (value) {
         const keys = Object.keys(value);
-        const oldCards = [...document.getElementsByClassName('card')].filter(f => keys.indexOf(f.getAttribute('data-item-id')) < 0);
+        const oldCards = [...document.getElementsByClassName('card')].filter(f => keys.indexOf(f.getAttribute('data-id')) < 0);
         this.grid.remove(oldCards, {
           removeElements: true,
           layout: false,
@@ -69,11 +69,11 @@ export default {
     addCard(card, key) {
       this.$set(this.cards, key, card);
       this.$nextTick(() => {
-        const elem = document.querySelector(`[data-item-id='${key}']`);
+        const elem = document.querySelector(`[data-id='${key}']`);
         this.grid.add(elem, {
           layout: false,
         });
-        this.cards$[elem.getAttribute('data-item-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
+        this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
       });
       this.$store.commit('updateCards', Object.keys(this.cards));
     },
@@ -81,14 +81,14 @@ export default {
       this.$watch('$data.cards', this.resize);
       const cards = document.getElementsByClassName('card');
       for (let i = 0; i < cards.length; i += 1) {
-        this.cards$[cards[i].getAttribute('data-item-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
+        this.cards$[cards[i].getAttribute('data-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
       }
     },
   },
   mounted() {
     let { cards } = (this.$store.state || {});
     const lastVersion = localStorage.getItem('version');
-    const { version } = chrome.runtime.getManifest();
+    const { version } = browser.runtime.getManifest();
     if (lastVersion && lastVersion !== version) {
       cards = ['Changelog'].concat(cards || []);
       this.$store.commit('updateCards', cards);
@@ -103,12 +103,12 @@ export default {
           fillGaps: true,
         },
         dragStartPredicate: {
-          handle: '.card__title',
+          handle: '.head-drag',
         },
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
-          id: (item, element) => element.getAttribute('data-item-id'),
+          id: (item, element) => element.getAttribute('data-id'),
         },
       });
       if (cards) {
@@ -121,7 +121,7 @@ export default {
       }
       this.handleSize();
       this.grid.on('dragEnd', () => {
-        const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-item-id'));
+        const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
         this.$store.commit('updateCards', order);
       });
     });

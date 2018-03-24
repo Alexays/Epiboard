@@ -8,11 +8,13 @@
       padding: 15px;
       display: flex;
       justify-content: space-between;
-      cursor: grab;
       .btn {
         margin: 0;
         padding: 0;
       }
+    }
+    .head-drag {
+      cursor: grab;
     }
     .no-margins {
       margin: -16px;
@@ -26,7 +28,7 @@
   }
   .muuri-item-dragging {
     z-index: 3 !important;
-    .card__title {
+    .head-drag {
       cursor: grabbing;
     }
   }

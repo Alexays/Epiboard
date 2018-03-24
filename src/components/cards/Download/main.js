@@ -23,21 +23,21 @@ export default {
       }
       if (download.state === 'complete') {
         if (download.exists) {
-          chrome.downloads.open(download.id);
+          browser.downloads.open(download.id);
         } else {
           // Materialize.toast('File moved or deleted', 4000);
         }
       }
     },
     getDownloads() {
-      return chrome.downloads.search({
+      return browser.downloads.search({
         limit: 5,
         orderBy: ['-startTime'],
       }).then((downloads) => {
         this.downloads = downloads;
         for (let i = 0; i < downloads.length; i += 1) {
           if (downloads[i].filename) {
-            chrome.downloads.getFileIcon(downloads[i].id).then((data) => {
+            browser.downloads.getFileIcon(downloads[i].id).then((data) => {
               this.$set(this.downloads[i], 'icon', data);
             });
           }
@@ -45,13 +45,13 @@ export default {
       });
     },
     listenChange() {
-      chrome.downloads.onChanged.addListener((downloadDelta) => {
-        if (chrome.runtime.lastError) return;
+      browser.downloads.onChanged.addListener((downloadDelta) => {
+        if (browser.runtime.lastError) return;
         const id = this.downloads.findIndex(f => f.id === downloadDelta.id || f.id === undefined);
         if (id === -1) return;
         this.$set(this.downloads[id], 'id', downloadDelta.id);
         if (!this.downloads[id].icon) {
-          chrome.downloads.getFileIcon(this.downloads[id].id).then((data) => {
+          browser.downloads.getFileIcon(this.downloads[id].id).then((data) => {
             this.$set(this.downloads[id], 'icon', data);
           });
         }
@@ -64,8 +64,8 @@ export default {
       });
     },
     listenCreate() {
-      chrome.downloads.onCreated.addListener((download) => {
-        if (chrome.runtime.lastError) return;
+      browser.downloads.onCreated.addListener((download) => {
+        if (browser.runtime.lastError) return;
         this.downloads.pop();
         this.downloads.unshift(download);
       });

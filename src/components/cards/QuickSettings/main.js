@@ -23,7 +23,7 @@ export default {
     },
     clear() {
       this.loading = true;
-      chrome.browsingData.remove({}, Object.assign({}, this.types), () => {
+      browser.browsingData.remove({}, Object.assign({}, this.types), () => {
         this.types = {
           cache: false,
           cookies: false,

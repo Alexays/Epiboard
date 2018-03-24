@@ -1,6 +1,6 @@
 import Marked from 'marked';
 
-const { version } = chrome.runtime.getManifest();
+const { version } = browser.runtime.getManifest();
 
 export default {
   name: 'Changelog',

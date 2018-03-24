@@ -19,8 +19,8 @@ export default {
     },
     getCpu() {
       return new Promise((resolve, reject) => {
-        chrome.system.cpu.getInfo((cpu) => {
-          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+        browser.system.cpu.getInfo((cpu) => {
+          if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.cpu = Object.assign({}, cpu, {
             prev: this.cpu,
           });
@@ -30,8 +30,8 @@ export default {
     },
     getMemory() {
       return new Promise((resolve, reject) => {
-        chrome.system.memory.getInfo((memory) => {
-          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+        browser.system.memory.getInfo((memory) => {
+          if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.memory = Object.assign({}, memory, {
             prev: this.memory,
           });
@@ -41,9 +41,9 @@ export default {
     },
     getStorage() {
       return new Promise((resolve, reject) => {
-        chrome.system.storage.getInfo((storage) => {
-          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
-          if (!chrome.system.storage.getAvailableCapacity) {
+        browser.system.storage.getInfo((storage) => {
+          if (browser.runtime.lastError) return reject(browser.runtime.lastError);
+          if (!browser.system.storage.getAvailableCapacity) {
             this.storage = storage.filter(f => f.capacity > 0)
               .map((f) => {
                 f.name = f.name.replace(/[^ -~]+/g, '');
@@ -54,8 +54,8 @@ export default {
           }
           const disk = storage.slice(0);
           for (let i = 0; i < storage.length; i += 1) {
-            chrome.system.storage.getAvailableCapacity(storage[i].id, (res) => {
-              if (chrome.runtime.lastError) return;
+            browser.system.storage.getAvailableCapacity(storage[i].id, (res) => {
+              if (browser.runtime.lastError) return;
               disk[i].available = res.availableCapacity;
               disk[i].percent = 100 - ((disk[i].available / disk[i].capacity) * 100);
               disk[i].used = disk[i].capacity - disk[i].available;
@@ -74,7 +74,7 @@ export default {
     },
   },
   mounted() {
-    if (!chrome.system) return this.$emit('init');
+    if (!browser.system) return this.$emit('init');
     return Promise.all([this.getCpu(), this.getMemory(), this.getStorage()])
       .finally(() => {
         setInterval(this.getCpu, 3000);

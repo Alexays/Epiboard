@@ -11,14 +11,6 @@ export default {
     };
   },
   methods: {
-    getFavicon(tab) {
-      const regex = /(chrome:|chrome-extension:|view-source:|moz-extension:)/;
-      if (tab.favIconUrl && !regex.test(tab.favIconUrl)) return tab.favIconUrl;
-      if (!regex.test(tab.url)) {
-        return `https://www.google.com/s2/favicons?domain_url=${encodeURI(tab.url)}`;
-      }
-      return null;
-    },
     mergeTabsAndWindows(sessionItem) {
       const tabs = [];
       const keys = Object.keys(sessionItem);
@@ -30,7 +22,7 @@ export default {
             tab,
           } = item;
           tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
-          tab.favIconUrl = this.getFavicon(tab);
+          tab.favIconUrl = this.getFavicon(tab.favIconUrl || tab.url);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
           // e.g: we don't care about the difference between tabs and windows
@@ -39,7 +31,9 @@ export default {
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
             tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
-            tab.favIconUrl = this.getFavicon(tab);
+            if (!tab.favIconUrl) {
+              tab.favIconUrl = this.getFavicon(tab.favIconUrl || tab.url);
+            }
             tabs.push(tab);
           }
         }
@@ -51,10 +45,10 @@ export default {
     },
     getDevices() {
       return new Promise((resolve, reject) => {
-        chrome.sessions.getDevices({
+        browser.sessions.getDevices({
           maxResults: this.maxDevices,
         }, (devices) => {
-          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+          if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.devices = devices;
           for (let i = 0; i < devices.length; i += 1) {
             this.devices[i].tabs = this.mergeTabsAndWindows(devices[i].sessions);
@@ -68,10 +62,10 @@ export default {
     },
     getRecentlyClosed() {
       return new Promise((resolve, reject) => {
-        chrome.sessions.getRecentlyClosed({
+        browser.sessions.getRecentlyClosed({
           maxResults: this.maxRecentlyClosed,
         }, (recentlyClosed) => {
-          if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+          if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.recentlyClosed = this.mergeTabsAndWindows(recentlyClosed);
           return resolve();
         });

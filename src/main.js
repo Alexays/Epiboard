@@ -32,8 +32,6 @@ import router from '@/router';
 import store from '@/helpers/store';
 import 'vuetify/src/stylus/app.styl';
 
-window.chrome = require('webextension-polyfill');
-
 Vue.config.productionTip = false;
 
 Vue.use(Vuex);
@@ -78,6 +76,13 @@ Vue.use(VueLazyload, {
 });
 Vue.mixin({
   methods: {
+    getFavicon: (url) => {
+      const regex = /^(http:|https:)/;
+      if (regex.test(url)) {
+        return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
+      }
+      return null;
+    },
     isDark: (dark) => {
       if (dark.enabled) {
         if (dark.auto) {

@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     getAll() {
-      return chrome.management.getAll().then((all) => {
+      return browser.management.getAll().then((all) => {
         for (let i = 0; i < all.length; i += 1) {
           if (all[i].type === 'extension') {
             this.extensions.push(all[i]);
@@ -35,7 +35,7 @@ export default {
     },
     launch(app) {
       if (app.launchType === 'OPEN_AS_REGULAR_TAB' || app.launchType === 'OPEN_AS_WINDOW') {
-        chrome.management.launchApp(app.id);
+        browser.management.launchApp(app.id);
       }
     },
   },

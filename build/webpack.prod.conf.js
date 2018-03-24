@@ -18,11 +18,18 @@ const version = require('../package.json').version;
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true,
-      usePostCSS: true
-    })
+    rules: [
+      ...utils.styleLoaders({
+        sourceMap: config.build.productionSourceMap,
+        extract: true,
+        usePostCSS: true
+      }),
+      // Required until https://github.com/mozilla/webextension-polyfill/pull/86 is merged
+      {
+        test: require.resolve('webextension-polyfill'),
+        use: 'imports-loader?browser=>undefined',
+      },
+    ],
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
@@ -84,7 +91,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks (module) {
+      minChunks(module) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
@@ -123,6 +130,9 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: path.resolve(config.build.assetsRoot, './manifest.json'),
       }
     ]),
+    new webpack.ProvidePlugin({
+      'browser': 'webextension-polyfill',
+    }),
     new WebpackShellPlugin({
       onBuildEnd: ['node ./build/remove-evals.js', `sed -i -e s/$version/${version}/g ./dist/manifest.json`]
     }),
