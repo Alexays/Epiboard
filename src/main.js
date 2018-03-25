@@ -123,6 +123,7 @@ new Vue({
   store,
   render: h => h(App),
 });
+router.replace('/');
 Vue.directive('init', {
   isLiteral: true,
   bind: (el, binding, vnode) => {

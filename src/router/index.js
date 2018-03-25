@@ -9,11 +9,10 @@ const Settings = () => import('@/components/Settings');
 Vue.use(Router);
 
 const router = new Router({
-  mode: 'history',
-  base: window.location.pathname,
+  mode: 'abstract',
   routes: [
     {
-      path: '*',
+      path: '/',
       name: 'Home',
       components: {
         default: Home,
