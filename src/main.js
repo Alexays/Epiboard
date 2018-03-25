@@ -105,8 +105,10 @@ Vue.mixin({
             to[1],
             0,
           );
-          return ((fromDate > toDate && date > toDate && fromDate < date) ||
-          (date > fromDate && date < toDate));
+          if (fromDate > toDate) {
+            fromDate.setDate(fromDate.getDate() - 1);
+          }
+          return (date > fromDate && date < toDate);
         }
         return true;
       }
