@@ -34,7 +34,6 @@ export default {
         limit: 5,
         orderBy: ['-startTime'],
       }).then((downloads) => {
-        console.log(downloads);
         this.downloads = downloads;
         for (let i = 0; i < downloads.length; i += 1) {
           if (downloads[i].filename) {
