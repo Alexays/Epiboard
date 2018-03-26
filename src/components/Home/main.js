@@ -17,17 +17,25 @@ export default {
     };
   },
   computed: {
+    cardsKeys() {
+      const cards = {};
+      const keys = Cards.keys();
+      for (let i = 0; i < keys.length; i += 1) {
+        cards[keys[i].split('/')[1]] = keys[i];
+      }
+      return cards;
+    },
     emptyCards() {
       return isEmpty(this.cards);
     },
-    nCards() {
-      return omit(Cards, Object.keys(this.cards).concat(['Changelog']));
+    availableCards() {
+      return omit(this.cardsKeys, Object.keys(this.cards).concat(['Changelog']));
     },
     showFab() {
       if (isEmpty(this.cards) && this.grid == null) {
         return true;
       }
-      return isEmpty(this.nCards);
+      return isEmpty(this.availableCards);
     },
   },
   methods: {
@@ -35,12 +43,12 @@ export default {
       if (!key) return;
       if (this.cards[key]) this.$set(this.cards[key], 'init', true);
       if (!data) {
-        if (localStorage.getItem(`cache_${key}`)) {
-          localStorage.removeItem(`cache_${key}`);
+        if (this.$store.state.cache[key]) {
+          this.$store.commit('DEL_CARD_CACHE', key);
         }
         return;
       }
-      localStorage.setItem(`cache_${key}`, JSON.stringify(data));
+      this.$store.commit('SET_CARD_CACHE', { key, data });
     },
     resize(value) {
       if (value) {
@@ -64,10 +72,10 @@ export default {
       this.cards$[key].detach(this.resize);
       this.$delete(this.cards$, key);
       this.setCards(key);
-      this.$store.commit('updateCards', Object.keys(this.cards));
+      this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
-    addCard(card, key) {
-      this.$set(this.cards, key, card);
+    addCard(key, value) {
+      this.$set(this.cards, key, Cards(value).default);
       this.$nextTick(() => {
         const elem = document.querySelector(`[data-id='${key}']`);
         this.grid.add(elem, {
@@ -75,7 +83,7 @@ export default {
         });
         this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
       });
-      this.$store.commit('updateCards', Object.keys(this.cards));
+      this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
     handleSize() {
       this.$watch('$data.cards', this.resize);
@@ -84,17 +92,25 @@ export default {
         this.cards$[cards[i].getAttribute('data-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
       }
     },
+    getCards() {
+      let { cards } = (this.$store.state || {});
+      const lastVersion = this.$store.state.cache.version;
+      const { version } = browser.runtime.getManifest();
+      if (cards.indexOf('Changelog') === -1 && lastVersion && lastVersion !== version) {
+        cards = ['Changelog'].concat(cards || []);
+        this.$store.commit('SET_CARDS', cards);
+      }
+      this.$store.commit('SET_VERSION', version);
+      this.cards = pick(this.cardsKeys, cards);
+      const keys = Object.keys(this.cards);
+      for (let i = 0; i < keys.length; i += 1) {
+        this.cards[keys[i]] = Cards(this.cards[keys[i]]).default;
+      }
+      return cards;
+    },
   },
   mounted() {
-    let { cards } = (this.$store.state || {});
-    const lastVersion = localStorage.getItem('version');
-    const { version } = browser.runtime.getManifest();
-    if (lastVersion && lastVersion !== version) {
-      cards = ['Changelog'].concat(cards || []);
-      this.$store.commit('updateCards', cards);
-    }
-    this.cards = pick(Cards, cards);
-    localStorage.setItem('version', version);
+    const cards = this.getCards();
     this.$nextTick(() => {
       this.grid = new Muuri('#card-container', {
         items: '.card',
@@ -122,7 +138,7 @@ export default {
       this.handleSize();
       this.grid.on('dragEnd', () => {
         const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
-        this.$store.commit('updateCards', order);
+        this.$store.commit('SET_CARDS', order);
       });
     });
   },

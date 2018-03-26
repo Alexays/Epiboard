@@ -1,13 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
+import cards from './cards';
 import settings from './settings';
+import cache from './cache';
 
 Vue.use(Vuex);
 
-const vuexLocal = new VuexPersistence({
+const vuexSync = new VuexPersistence({
   strictMode: true,
   asyncStorage: true,
+  modules: ['settings', 'cards'],
   storage: {
     getItem: key => browser.storage.sync.get(key).then((data) => {
       if (!data[key]) return null;
@@ -21,6 +24,11 @@ const vuexLocal = new VuexPersistence({
   },
 });
 
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+  modules: ['cache'],
+});
+
 const vuexPersistEmitter = () => (store) => {
   /* eslint-disable no-param-reassign */
   store._vm.$root.$data['vue-persist-patch-delay'] = true;
@@ -30,23 +38,21 @@ const vuexPersistEmitter = () => (store) => {
       store._vm.$root.$emit('storageReady');
     }
   });
+  /* eslint-enable no-param-reassign */
 };
 
 export default new Vuex.Store({
   modules: {
+    cards,
     settings,
+    cache,
   },
   plugins: [
+    vuexSync.plugin,
     vuexLocal.plugin,
     vuexPersistEmitter(),
   ],
-  state: {
-    cards: [],
-  },
   mutations: {
-    RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION,
-    updateCards(state, cards) {
-      state.cards = cards;
-    },
+    RESTORE_MUTATION: vuexSync.RESTORE_MUTATION,
   },
 });

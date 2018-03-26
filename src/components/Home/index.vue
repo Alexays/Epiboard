@@ -6,10 +6,9 @@
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn :title="card.name" v-for="(card, key) in nCards" :key="key" v-on:click="addCard(card, key)" :fab="!!card.icon" dark
+        <v-btn :title="key" v-for="(value, key) in availableCards" :key="key" v-on:click="addCard(key, value)" dark
           small color="green">
-          <v-icon v-if="card.icon">{{card.icon}}</v-icon>
-          <span v-if="!card.icon">{{card.name}}</span>
+          <span>{{key}}</span>
         </v-btn>
       </v-speed-dial>
     </v-fab-transition>

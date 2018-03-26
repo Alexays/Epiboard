@@ -13,17 +13,12 @@ export default {
     },
   },
   mutations: {
-    SET_SETTINGS(state, {
-      key,
-      settings,
-    }) {
+    SET_SETTINGS(state, { key, settings }) {
       state[key] = settings;
     },
   },
   actions: {
-    setSettings({
-      commit,
-    }, settings) {
+    setSettings({ commit }, settings) {
       commit('SET_SETTINGS', settings);
     },
   },

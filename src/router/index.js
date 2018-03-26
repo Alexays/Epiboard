@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import store from '@/helpers/store';
+import store from '@/store';
 
 const Header = () => import('@/components/Header');
 const Home = () => import('@/components/Home');

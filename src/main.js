@@ -29,7 +29,7 @@ import VueLazyload from 'vue-lazyload';
 import pick from 'lodash/pick';
 import App from '@/App';
 import router from '@/router';
-import store from '@/helpers/store';
+import store from '@/store';
 import 'vuetify/src/stylus/app.styl';
 
 Vue.config.productionTip = false;
@@ -129,7 +129,10 @@ Vue.directive('init', {
   bind: (el, binding, vnode) => {
     if (!binding.value) return;
     const keys = Object.keys(vnode.componentInstance.$data);
-    Object.assign(vnode.componentInstance.$data, pick(JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {}, keys));
+    Object.assign(
+      vnode.componentInstance.$data,
+      pick(vnode.componentInstance.$store.state.cache.cards[binding.value] || {}, keys),
+    );
   },
 });
 Vue.filter('bytes', (nb) => {
