@@ -1,14 +1,18 @@
-# Epiboard
+# Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard)
 
-> A new tab page extension with material design.<br />
-> Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
+<h4 align="center">
+  A new tab page extension with material design.<br />
+  Highly inspired and full rework of <a href="https://github.com/dotlouis/cardboard">Cardboard</a> by <a href="https://github.com/dotlouis">dotlouis</a>.
+</h4>
 
-![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.jpg" alt="Epibaord"/>
+</p>
 
 ## Requirement
 
-> Chromium based browser >= 54.0<br />
-> Firefox >= 54.0
+- [Chromium based browser](https://www.google.com/chrome/) >= 54.0<br />
+- [Firefox](https://www.mozilla.org/firefox/) >= 54.0
 
 ## Build Setup
 
@@ -16,22 +20,22 @@
 
 ``` bash
 # install dependencies
-npm install
+$ npm install
 
 # build for production with minification for Chrome
-npm run build
+$ npm run build
 
-# or for Firfox
-BUILD_TARGET=firefox npm run build
+# or for Firefox
+$ BUILD_TARGET=firefox npm run build
 
 # build for production and view the bundle analyzer report
-npm run build --report
+$ npm run build --report
 
 # in your browser extension page
-Load unpacked extension from dist folder.
+# load unpacked extension from dist folder.
 
 # or generate zip
-npm run build-zip
+$ npm run build-zip
 ```
 
 ## License
