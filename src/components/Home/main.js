@@ -43,12 +43,12 @@ export default {
       if (!key) return;
       if (this.cards[key]) this.$set(this.cards[key], 'init', true);
       if (!data) {
-        if (this.$store.state.cache[key]) {
-          this.$store.commit('DEL_CARD_CACHE', key);
+        if (localStorage.getItem(`cache_${key}`)) {
+          localStorage.removeItem(`cache_${key}`);
         }
         return;
       }
-      this.$store.commit('SET_CARD_CACHE', { key, data });
+      localStorage.setItem(`cache_${key}`, JSON.stringify(data));
     },
     resize(value) {
       if (value) {

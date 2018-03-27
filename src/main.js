@@ -129,10 +129,7 @@ Vue.directive('init', {
   bind: (el, binding, vnode) => {
     if (!binding.value) return;
     const keys = Object.keys(vnode.componentInstance.$data);
-    Object.assign(
-      vnode.componentInstance.$data,
-      pick(vnode.componentInstance.$store.state.cache.cards[binding.value] || {}, keys),
-    );
+    Object.assign(vnode.componentInstance.$data, pick(JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {}, keys));
   },
 });
 Vue.filter('bytes', (nb) => {
