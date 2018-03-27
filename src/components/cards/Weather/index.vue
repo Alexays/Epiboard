@@ -27,7 +27,7 @@
               <v-icon medium color="white">opacity</v-icon> <span><b>{{today.main.humidity}}</b>%</span>
             </v-flex>
             <v-flex class="detail">
-              <v-icon medium color="white">wrap_text</v-icon> <span><b>{{today.wind.speed}}</b> <small>m/s</small></span>
+              <v-icon medium color="white">wrap_text</v-icon> <span><b>{{today.wind.speed}}</b> <span class="unit">km/h</span></span>
             </v-flex>
             <v-flex class="detail">
               <v-icon medium color="white">brightness_4</v-icon>

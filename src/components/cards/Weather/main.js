@@ -42,7 +42,7 @@ export default {
       return this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
         .then((res) => {
           this.today = res.data;
-          this.today.wind.speed |= 0;
+          this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
           this.today.main.temp |= 0;
         });
     },
