@@ -106,7 +106,7 @@ Vue.mixin({
             0,
           );
           if (fromDate > toDate) {
-            fromDate.setDate(fromDate.getDate() - 1);
+            toDate.setDate(toDate.getDate() + 1);
           }
           return (date > fromDate && date < toDate);
         }
