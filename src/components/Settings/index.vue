@@ -26,6 +26,8 @@
               </v-menu>
             </v-flex>
           </v-layout>
+          <h4 class="headline">Google Analytics</h4>
+          <v-switch :label="analytics.enabled ? `On` : `Off`" v-model="analytics.enabled"></v-switch>
           <Config @save="save()" :settings="settings" id="global" />
           <p class="text-xs-right">Made with
             <v-icon small color="red">favorite</v-icon> by

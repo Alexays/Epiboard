@@ -43,7 +43,7 @@ export default {
       if (!key) return;
       if (this.cards[key]) {
         this.$set(this.cards[key], 'init', true);
-        this.$ga.event('cards', 'used', key, true);
+        this.$ga.event('cards', 'used', key, 2);
       }
       if (!data) {
         if (localStorage.getItem(`cache_${key}`)) {
@@ -75,7 +75,7 @@ export default {
       this.cards$[key].detach(this.resize);
       this.$delete(this.cards$, key);
       this.setCards(key);
-      this.$ga.event('cards', 'delete', key, true);
+      this.$ga.event('cards', 'delete', key, 0);
       this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
     addCard(key, value) {
@@ -87,7 +87,7 @@ export default {
         });
         this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
       });
-      this.$ga.event('cards', 'add', key, true);
+      this.$ga.event('cards', 'add', key, 1);
       this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
     handleSize() {

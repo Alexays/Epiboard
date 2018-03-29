@@ -40,6 +40,9 @@ Vue.use(VueAnalytics, {
   // In Chrome extension, must close checking protocol.
   set: [{ field: 'checkProtocolTask', value: null }],
   router,
+  debug: {
+    sendHitTask: JSON.parse(localStorage.getItem('analytics') || 'true'),
+  },
 });
 Vue.use(Vuex);
 Vue.use(Vuetify, {
