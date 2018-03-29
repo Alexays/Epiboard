@@ -26,6 +26,7 @@ import directives from 'vuetify/es5/directives';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueLazyload from 'vue-lazyload';
+import VueAnalytics from 'vue-analytics';
 import pick from 'lodash/pick';
 import App from '@/App';
 import router from '@/router';
@@ -34,6 +35,10 @@ import 'vuetify/src/stylus/app.styl';
 
 Vue.config.productionTip = false;
 
+Vue.use(VueAnalytics, {
+  id: 'UA-78514802-2',
+  router,
+});
 Vue.use(Vuex);
 Vue.use(Vuetify, {
   components: {
@@ -106,7 +111,7 @@ Vue.mixin({
             0,
           );
           if (fromDate > toDate) {
-            toDate.setDate(toDate.getDate() + 1);
+            return (!(date > toDate && date < fromDate));
           }
           return (date > fromDate && date < toDate);
         }
