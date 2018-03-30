@@ -10,6 +10,10 @@ export default {
       is_logged: true,
       location: null,
       planningData: null,
+      timeline: {
+        enabled: false,
+        data: null,
+      },
       user: {
         loading: true,
       },
@@ -104,8 +108,34 @@ export default {
         .sort((a, b) => a.start - b.start);
       this.upcomings.loading = false;
     },
+    getTimeline() {
+      if (this.user.loading) return;
+      this.timeline.enabled = true;
+      this.axios.get(`${this.API}/course/filter?format=json&location[]=${this.location}&course[]=${this.user.course_code}&scolaryear[]=${this.user.scolaryear}`)
+        .then(res => res.data.filter((f) => {
+          const end = f.end.split('-');
+          const credits = parseInt(f.credits, 10);
+          return f.status !== 'notregistered' && credits > 0 && new Date() < new Date(end[0], end[1] - 1, end[2]);
+        }).map(f => this.axios.get(`${this.API}/module/${this.user.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
+        .then(data => Promise.all(data))
+        .then((res) => {
+          const timeline = [];
+          const data = res.map(f => f.data);
+          for (let i = 0; i < data.length; i += 1) {
+            for (let j = 0; j < data[i].activites.length; j += 1) {
+              if (data[i].activites[j].type_code === 'proj') {
+                const begin = this.parseCalendarDate(data[i].activites[j].begin);
+                const end = this.parseCalendarDate(data[i].activites[j].end);
+                timeline.push([data[i].title, data[i].activites[j].title, begin, end]);
+              }
+            }
+          }
+          this.timeline.data = timeline;
+        });
+    },
   },
   mounted() {
+    this.timeline.enabled = false;
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())

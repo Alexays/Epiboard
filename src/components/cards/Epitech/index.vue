@@ -51,6 +51,7 @@
           <div v-if="projects.loading || user.loading">
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
+          <a @click="getTimeline()">Open timeline</a>
         </v-tab-item>
         <v-tab-item>
           <div class="upcomings">
@@ -106,6 +107,13 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
+    <v-dialog v-model="timeline.enabled" max-width="80%">
+        <v-card>
+          <v-card-text>
+            <vue-chart v-if="timeline.data" chart-type="Timeline" :packages="['timeline']" :columns="[{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }]" :rows="timeline.data" :options="{ height: 500 }"></vue-chart>
+          </v-card-text>
+        </v-card>
+    </v-dialog>
   </div>
 </template>
 <script src="./main.js"></script>

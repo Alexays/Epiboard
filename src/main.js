@@ -21,12 +21,14 @@ import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
 import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
 import VTimePicker from 'vuetify/es5/components/VTimePicker';
+import VDialog from 'vuetify/es5/components/VDialog';
 import transitions from 'vuetify/es5/components/transitions';
 import directives from 'vuetify/es5/directives';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueLazyload from 'vue-lazyload';
 import VueAnalytics from 'vue-analytics';
+import VueCharts from 'vue-charts';
 import pick from 'lodash/pick';
 import App from '@/App';
 import router from '@/router';
@@ -45,6 +47,7 @@ Vue.use(VueAnalytics, {
   },
 });
 Vue.use(Vuex);
+Vue.use(VueCharts);
 Vue.use(Vuetify, {
   components: {
     Vuetify,
@@ -66,6 +69,7 @@ Vue.use(Vuetify, {
     VProgressLinear,
     VProgressCircular,
     VTimePicker,
+    VDialog,
   },
   directives,
   transitions,
@@ -139,7 +143,12 @@ Vue.directive('init', {
   bind: (el, binding, vnode) => {
     if (!binding.value) return;
     const keys = Object.keys(vnode.componentInstance.$data);
-    Object.assign(vnode.componentInstance.$data, pick(JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {}, keys));
+    const data = pick(JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {}, keys);
+    for (let i = 0; i < keys.length; i += 1) {
+      if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
+        vnode.componentInstance.$data[keys[i]] = data[keys[i]];
+      }
+    }
   },
 });
 Vue.filter('bytes', (nb) => {

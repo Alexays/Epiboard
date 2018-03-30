@@ -25,7 +25,7 @@
     "https://intra.epitech.eu/",
     "https://nantes.campus-isefac.fr/bachelor/"
   ],
-  "content_security_policy": "script-src 'self' https://www.google-analytics.com/; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com/ https://www.gstatic.com/charts/; object-src 'self'",
   "optional_permissions": [
     "https://api.openweathermap.org/"
   ],

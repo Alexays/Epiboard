@@ -21,6 +21,7 @@
     "vue": "^2.5.16",
     "vue-analytics": "^5.9.1",
     "vue-axios": "^2.1.0",
+    "vue-charts": "^0.2.1",
     "vue-router": "^3.0.1",
     "vue-typer": "^1.2.0",
     "vuetify": "^1.0.11",
