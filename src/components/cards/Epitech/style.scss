@@ -1,23 +1,4 @@
-.theme--dark {
-  #epitech {
-    ::-webkit-scrollbar-thumb {
-      background: #ddd;
-    }
-    ::-webkit-scrollbar-track {
-      background: #666;
-    }
-  }
-}
 #epitech {
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #ddd;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #666;
-  }
   .project {
     max-height: 250px;
     padding-right: 10px;

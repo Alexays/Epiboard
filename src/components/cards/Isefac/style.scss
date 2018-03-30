@@ -1,23 +1,4 @@
-.theme--dark {
-  #isefac {
-    ::-webkit-scrollbar-thumb {
-      background: #ddd;
-    }
-    ::-webkit-scrollbar-track {
-      background: #666;
-    }
-  }
-}
 #isefac {
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #ddd;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #666;
-  }
   .dates {
     max-height: 300px;
     padding-right: 10px;

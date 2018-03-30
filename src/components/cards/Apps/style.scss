@@ -1,23 +1,4 @@
-.theme--dark {
-  #apps {
-    ::-webkit-scrollbar-thumb {
-      background: #ddd;
-    }
-    ::-webkit-scrollbar-track {
-      background: #666;
-    }
-  }
-}
 #apps {
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #ddd;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #666;
-  }
   max-height: 440px;
   overflow: auto;
   .app-list {
