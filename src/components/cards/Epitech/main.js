@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/isEmpty';
+const API = 'https://intra.epitech.eu';
 
 export default {
   name: 'Epitech',
@@ -6,13 +6,12 @@ export default {
   components: {},
   data() {
     return {
-      API: 'https://intra.epitech.eu',
       is_logged: true,
       location: null,
-      planningData: null,
+      planningData: [],
       timeline: {
         enabled: false,
-        data: null,
+        data: [],
       },
       user: {
         loading: true,
@@ -41,7 +40,7 @@ export default {
       return new Date(date[2], date[1] - 1, date[0], date[3], date[4]);
     },
     getUserInfo() {
-      return this.axios.get(`${this.API}/user/?format=json`)
+      return this.axios.get(`${API}/user/?format=json`)
         .then((response) => {
           if (!response.data) return;
           this.is_logged = true;
@@ -54,13 +53,13 @@ export default {
         });
     },
     isRegistered(project) {
-      return this.axios.get(`${this.API}${project.title_link}project?format=json`)
+      return this.axios.get(`${API}${project.title_link}project?format=json`)
         .then(res => !!res.data.user_project_code);
     },
     getProjects() {
-      return this.axios.get(`${this.API}/?format=json`)
+      return this.axios.get(`${API}/?format=json`)
         .then((res) => {
-          if (isEmpty(res.data)) return Promise.resolve();
+          if (!res.data) return Promise.resolve();
           this.location = res.data.infos.location;
           const data = res.data.board.projets
             .filter(f => f.timeline_barre < 100 &&
@@ -85,9 +84,9 @@ export default {
     getRoom() {
       const d = new Date();
       const dString = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-      return this.axios.get(`${this.API}/planning/load?format=json&start=${dString}&end=${dString}`)
+      return this.axios.get(`${API}/planning/load?format=json&start=${dString}&end=${dString}`)
         .then((res) => {
-          this.planningData = (isEmpty(res.data) ? [] : res.data)
+          this.planningData = (Array.isArray(res.data) ? res.data : [])
             .filter(f => f.instance_location === this.location);
           this.rooms.data = this.planningData.filter(f => f.room && f.room.code)
             .map((f) => {
@@ -108,15 +107,19 @@ export default {
         .sort((a, b) => a.start - b.start);
       this.upcomings.loading = false;
     },
+    redrawTimeline() {
+      const keys = Object.keys(this.$children);
+      console.log(keys);
+    },
     getTimeline() {
       if (this.user.loading) return;
       this.timeline.enabled = true;
-      this.axios.get(`${this.API}/course/filter?format=json&location[]=${this.location}&course[]=${this.user.course_code}&scolaryear[]=${this.user.scolaryear}`)
+      this.axios.get(`${API}/course/filter?format=json&location[]=${this.location}&course[]=${this.user.course_code}&scolaryear[]=${this.user.scolaryear}`)
         .then(res => res.data.filter((f) => {
           const end = f.end.split('-');
           const credits = parseInt(f.credits, 10);
           return f.status !== 'notregistered' && credits > 0 && new Date() < new Date(end[0], end[1] - 1, end[2]);
-        }).map(f => this.axios.get(`${this.API}/module/${this.user.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
+        }).map(f => this.axios.get(`${API}/module/${this.user.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
         .then(data => Promise.all(data))
         .then((res) => {
           const timeline = [];

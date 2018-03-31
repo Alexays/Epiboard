@@ -5,7 +5,7 @@
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,
   "scripts": {
-    "start": "npm run dev",
+    "start": "npm run build",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
     "build-zip": "node build/build-zip.js"

@@ -110,7 +110,7 @@
     <v-dialog v-model="timeline.enabled" max-width="80%">
         <v-card>
           <v-card-text>
-            <vue-chart v-if="timeline.data" chart-type="Timeline" :packages="['timeline']" :columns="[{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }]" :rows="timeline.data" :options="{ height: 500 }"></vue-chart>
+            <vue-chart v-if="timeline.enabled && timeline.data" chart-type="Timeline" :packages="['timeline']" :columns="[{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }]" :rows="timeline.data" :options="{ height: 500 }"></vue-chart>
             <v-progress-linear v-else v-bind:indeterminate="true"></v-progress-linear>
           </v-card-text>
         </v-card>

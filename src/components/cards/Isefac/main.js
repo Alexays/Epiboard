@@ -1,10 +1,11 @@
+const API = 'https://nantes.campus-isefac.fr/bachelor/';
+
 export default {
   name: 'Isefac',
   props: ['settings'],
   components: {},
   data() {
     return {
-      API: 'https://nantes.campus-isefac.fr/bachelor/',
       is_logged: true,
       loading: true,
       dates: [],
@@ -15,7 +16,7 @@ export default {
   },
   methods: {
     getCalendar() {
-      return this.axios.get(`${this.API}index.php/apps/planning/`)
+      return this.axios.get(`${API}index.php/apps/planning/`)
         .then((res) => {
           if (res.data.indexOf('name="login"') > -1) {
             this.is_logged = false;

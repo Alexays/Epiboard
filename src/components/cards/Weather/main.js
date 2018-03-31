@@ -1,3 +1,6 @@
+const API = 'https://api.openweathermap.org/data/2.5/weather';
+const APP_ID = '0c9042777e3128fab0244da248184801';
+
 export default {
   name: 'Weather',
   props: ['settings'],
@@ -9,10 +12,7 @@ export default {
   components: {},
   data() {
     return {
-      position: null,
       today: null,
-      API: 'https://api.openweathermap.org/data/2.5/weather',
-      app_id: '0c9042777e3128fab0244da248184801',
     };
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
     },
     getToday(position) {
       const { latitude, longitude } = position.coords;
-      return this.$http.get(`${this.API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${this.app_id}`)
+      return this.$http.get(`${API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${APP_ID}`)
         .then((res) => {
           this.today = res.data;
           this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
