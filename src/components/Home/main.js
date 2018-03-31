@@ -41,7 +41,10 @@ export default {
   methods: {
     setCards(key, data) {
       if (!key) return;
-      if (this.cards[key]) this.$set(this.cards[key], 'init', true);
+      if (this.cards[key]) {
+        this.$set(this.cards[key], 'init', true);
+        this.$ga.event('cards', 'used', key, 2);
+      }
       if (!data) {
         if (localStorage.getItem(`cache_${key}`)) {
           localStorage.removeItem(`cache_${key}`);

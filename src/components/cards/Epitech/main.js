@@ -30,6 +30,19 @@ export default {
       },
     };
   },
+  computed: {
+    options() {
+      const dark = this.isDark(this.$store.state.settings.dark);
+      return {
+        title: 'Timeline',
+        height: 500,
+        backgroundColor: dark ? '#424242' : '#ffffff',
+        timeline: {
+          rowLabelStyle: { color: dark ? '#ffffff' : '#000000' },
+        },
+      };
+    },
+  },
   methods: {
     parseCalendarDate(epiDate) {
       const date = epiDate.replace(' ', '-').replace(/:/g, '-').split('-');
@@ -106,10 +119,6 @@ export default {
         .filter(f => f.event_registered && f.start > new Date())
         .sort((a, b) => a.start - b.start);
       this.upcomings.loading = false;
-    },
-    redrawTimeline() {
-      const keys = Object.keys(this.$children);
-      console.log(keys);
     },
     getTimeline() {
       if (this.user.loading) return;
