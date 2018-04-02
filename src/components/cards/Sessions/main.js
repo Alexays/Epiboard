@@ -22,7 +22,7 @@ export default {
             tab,
           } = item;
           tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
-          tab.favIconUrl = this.getFavicon(tab.favIconUrl || tab.url);
+          tab.favIconUrl = this.$utils.getFavicon(tab.favIconUrl || tab.url);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
           // e.g: we don't care about the difference between tabs and windows
@@ -32,7 +32,7 @@ export default {
             const tab = item.window.tabs[subKeys[j]];
             tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
             if (!tab.favIconUrl) {
-              tab.favIconUrl = this.getFavicon(tab.favIconUrl || tab.url);
+              tab.favIconUrl = this.$utils.getFavicon(tab.favIconUrl || tab.url);
             }
             tabs.push(tab);
           }

@@ -20,7 +20,7 @@ export default {
   watch: {
     enabled: {
       handler(val) {
-        this.dark = this.isDark(val);
+        this.dark = this.$utils.isDark(val);
       },
       deep: true,
     },

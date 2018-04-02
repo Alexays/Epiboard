@@ -15,7 +15,7 @@ export default {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.topSites = topSites.slice(0, this.maxSites);
           this.topSites = this.topSites.map(f => Object.assign(f, {
-            icon: this.getFavicon(f.url),
+            icon: this.$utils.getFavicon(f.url),
           }));
           return resolve();
         });

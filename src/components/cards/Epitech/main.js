@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     options() {
-      const dark = this.isDark(this.$store.state.settings.dark);
+      const dark = this.$utils.isDark(this.$store.state.settings.dark);
       return {
         title: 'Timeline',
         height: 500,

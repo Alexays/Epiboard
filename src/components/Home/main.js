@@ -98,18 +98,18 @@ export default {
       }
     },
     getCards() {
-      let { cards } = (this.$store.state || {});
+      const cards = (this.$store.state || {}).cards || [];
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
       if (cards.indexOf('Changelog') === -1 && lastVersion && lastVersion !== version) {
-        cards = ['Changelog'].concat(cards || []);
+        cards.unshift('Changelog');
         this.$store.commit('SET_CARDS', cards);
       }
       this.$store.commit('SET_VERSION', version);
-      this.cards = pick(this.cardsKeys, cards);
-      const keys = Object.keys(this.cards);
+      const cardsMap = pick(this.cardsKeys, cards);
+      const keys = Object.keys(cardsMap);
       for (let i = 0; i < keys.length; i += 1) {
-        this.cards[keys[i]] = Cards(this.cards[keys[i]]).default;
+        this.$set(this.cards, keys[i], Cards(cardsMap[keys[i]]).default);
       }
       return cards;
     },
@@ -132,7 +132,7 @@ export default {
           id: (item, element) => element.getAttribute('data-id'),
         },
       });
-      if (cards) {
+      if (cards.length) {
         this.grid
           .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
             layout: 'instant',

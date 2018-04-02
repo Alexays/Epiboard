@@ -188,7 +188,7 @@ export default {
     },
     dark_mode: {
       handler(val) {
-        const tmp = this.isDark(val);
+        const tmp = this.$utils.isDark(val);
         if (tmp !== this.dark) {
           this.dark = tmp;
           this.getBackground();
@@ -281,7 +281,7 @@ export default {
     },
   },
   mounted() {
-    this.dark = this.isDark(this.dark_mode);
+    this.dark = this.$utils.isDark(this.dark_mode);
     this.getBackground();
     this.getMessage();
   },
