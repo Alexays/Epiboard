@@ -39,7 +39,7 @@ export default {
       const dark = this.$utils.isDark(this.$store.state.settings.dark);
       return {
         title: 'Timeline',
-        height: 500,
+        height: 650,
         backgroundColor: dark ? '#424242' : '#ffffff',
         timeline: {
           rowLabelStyle: { color: dark ? '#ffffff' : '#000000' },
