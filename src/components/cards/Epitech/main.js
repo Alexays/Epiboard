@@ -151,7 +151,7 @@ export default {
     },
     getGpa() {
       this.gpa_precision.loading = true;
-      this.axios.get(`${API}/course/filter?format=json`)
+      this.axios.get(`${API}/course/filter?format=json&course[]=${this.user.course_code}`)
         .then(res => res.data.map(f => this.axios.get(`${API}/module/${f.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
         .then(res => Promise.all(res))
         .then((res) => {
