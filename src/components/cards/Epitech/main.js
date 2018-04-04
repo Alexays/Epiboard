@@ -175,6 +175,8 @@ export default {
     },
   },
   mounted() {
+    this.gpa_precision.loading = false;
+    this.gpa_precision.val = null;
     this.timeline.enabled = false;
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
