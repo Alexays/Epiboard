@@ -162,7 +162,7 @@ export default {
           };
           for (let i = 0; i < res.length; i += 1) {
             if (res[i].data.student_credits > 0 && res[i].data.student_credits !== 'N/A') {
-              GPA += res[i].data.student_credits * grade[res[i].data.student_grade];
+              GPA += res[i].data.student_credits * (grade[res[i].data.student_grade] || 1);
               sum += res[i].data.student_credits;
             }
           }
