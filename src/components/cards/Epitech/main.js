@@ -151,7 +151,7 @@ export default {
     },
     getGpa() {
       this.gpa_precision.loading = true;
-      this.axios.get(`${API}/course/filter?format=json&location[]=FR/NAN`)
+      this.axios.get(`${API}/course/filter?format=json`)
         .then(res => res.data.map(f => this.axios.get(`${API}/module/${f.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
         .then(res => Promise.all(res))
         .then((res) => {
@@ -161,8 +161,8 @@ export default {
             A: 4, B: 3, C: 2, D: 1, E: 0,
           };
           for (let i = 0; i < res.length; i += 1) {
-            if (res[i].data.student_credits > 0 && res[i].data.student_credits !== 'N/A') {
-              GPA += res[i].data.student_credits * (grade[res[i].data.student_grade] || 4);
+            if (res[i].data.student_credits > 0 && res[i].data.student_credits !== 'N/A' && grade[res[i].data.student_grade] >= 0) {
+              GPA += res[i].data.student_credits * grade[res[i].data.student_grade];
               sum += res[i].data.student_credits;
             }
           }
