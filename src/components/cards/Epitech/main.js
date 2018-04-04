@@ -158,16 +158,17 @@ export default {
           let GPA = 0;
           let sum = 0;
           const grade = {
-            A: 4, B: 3, C: 2, D: 1, E: 0,
+            A: 4, B: 3, C: 2, D: 1, Echec: 0,
           };
           for (let i = 0; i < res.length; i += 1) {
-            if (res[i].data.student_credits > 0 && res[i].data.student_credits !== 'N/A' && grade[res[i].data.student_grade] >= 0) {
-              GPA += res[i].data.student_credits * grade[res[i].data.student_grade];
-              sum += res[i].data.student_credits;
+            const credits = parseInt(res[i].data.user_credits, 10);
+            if (credits && credits > 0 && grade[res[i].data.student_grade] >= 0) {
+              GPA += credits * grade[res[i].data.student_grade];
+              sum += credits;
             }
           }
           GPA /= sum;
-          this.gpa_precision.val = GPA;
+          this.gpa_precision.val = GPA.toFixed(4);
         })
         .finally(() => {
           this.gpa_precision.loading = false;
