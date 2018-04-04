@@ -14,7 +14,7 @@
             <h3>
               {{user.title}}
               <br>
-              <v-chip label v-on:click="getGpa()">
+              <v-chip label v-on:click="getGpa()" title="Click to get a precision gpa">
                 <span v-if="gpa_precision.loading" title="Calculating GPA">
                   <v-progress-circular indeterminate :size="16" :width="2"></v-progress-circular>
                 </span>

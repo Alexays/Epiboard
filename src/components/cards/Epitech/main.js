@@ -152,7 +152,9 @@ export default {
     getGpa() {
       this.gpa_precision.loading = true;
       this.axios.get(`${API}/course/filter?format=json&course[]=${this.user.course_code}`)
-        .then(res => res.data.map(f => this.axios.get(`${API}/module/${f.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
+        .then(res => res.data
+          .filter(f => f.status !== 'notregistered' && f.status !== 'ongoing')
+          .map(f => this.axios.get(`${API}/module/${f.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
         .then(res => Promise.all(res))
         .then((res) => {
           let GPA = 0;
@@ -162,13 +164,15 @@ export default {
           };
           for (let i = 0; i < res.length; i += 1) {
             const credits = parseInt(res[i].data.user_credits, 10);
-            if (credits && credits > 0 && grade[res[i].data.student_grade] >= 0) {
-              GPA += credits * grade[res[i].data.student_grade];
+            if (!Number.isNaN(credits) && credits > 0) {
+              if (grade[res[i].data.student_grade] > 0) {
+                GPA += credits * grade[res[i].data.student_grade];
+              }
               sum += credits;
             }
           }
           GPA /= sum;
-          this.gpa_precision.val = GPA.toFixed(4);
+          this.gpa_precision.val = GPA.toFixed(5);
         })
         .finally(() => {
           this.gpa_precision.loading = false;
