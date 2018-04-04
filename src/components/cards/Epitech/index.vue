@@ -14,8 +14,14 @@
             <h3>
               {{user.title}}
               <br>
-              <v-chip label disabled>{{user.gpa[0].gpa}}
-                <small>&nbsp;G.P.A.</small>
+              <v-chip label v-on:click="getGpa()">
+                <span v-if="gpa_precision.loading" title="Calculating GPA">
+                  <v-progress-circular indeterminate :size="16" :width="2"></v-progress-circular>
+                </span>
+                <span v-else>
+                  {{gpa_precision.val || user.gpa[0].gpa}}
+                  <small>&nbsp;G.P.A.</small>
+                </span>
               </v-chip>
               <v-chip label disabled>{{user.credits}}
                 <small>&nbsp;Credits</small>
