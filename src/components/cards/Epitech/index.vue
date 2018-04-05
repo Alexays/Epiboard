@@ -113,7 +113,7 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
-    <v-dialog v-model="timeline.enabled" max-width="80%">
+    <v-dialog v-model="timeline.enabled" :scrollable="true" :lazy="true" max-width="80%">
         <v-card>
           <v-card-text>
             <vue-chart v-if="timeline.enabled && timeline.data" chart-type="Timeline" :packages="['timeline']" :columns="[{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }]" :rows="timeline.data" :options="options"></vue-chart>
