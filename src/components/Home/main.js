@@ -98,11 +98,11 @@ export default {
       }
     },
     getCards() {
-      const cards = (this.$store.state || {}).cards || [];
+      let cards = (this.$store.state || {}).cards || [];
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
       if (cards.indexOf('Changelog') === -1 && lastVersion && lastVersion !== version) {
-        cards.unshift('Changelog');
+        cards = ['Changelog'].concat(cards);
         this.$store.commit('SET_CARDS', cards);
       }
       this.$store.commit('SET_VERSION', version);
