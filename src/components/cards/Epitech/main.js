@@ -48,6 +48,9 @@ export default {
     },
   },
   methods: {
+    getLink(href) {
+      return `${API}${href}`;
+    },
     parseCalendarDate(epiDate) {
       const date = epiDate.replace(' ', '-').replace(/:/g, '-').split('-');
       return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
