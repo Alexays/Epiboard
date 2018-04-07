@@ -1,5 +1,5 @@
 <template>
-  <div id="apps">
+  <div id="apps" class="padding">
     <ul class="app-list">
       <li class="app" v-for="app in apps" :key="app">
         <div v-on:click="launch(app)">

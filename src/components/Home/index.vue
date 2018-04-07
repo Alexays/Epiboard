@@ -30,11 +30,9 @@
             </v-menu>
           </div>
         </v-card-title>
-        <v-card-text>
-          <keep-alive>
-            <component @init="setCards(key, $event)" v-init="key" :is="card"></component>
-          </keep-alive>
-        </v-card-text>
+        <keep-alive>
+          <component @init="setCards(key, $event)" v-init="key" :is="card"></component>
+        </keep-alive>
       </v-card>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">

@@ -1,5 +1,5 @@
 <template>
-  <div id="system">
+  <div id="system" class="padding">
     <div class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">nfc</i>

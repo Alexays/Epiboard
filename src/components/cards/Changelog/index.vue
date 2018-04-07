@@ -1,5 +1,5 @@
 <template>
-  <div class="blue-grey" id="changelog">
+  <div class="blue-grey padding" id="changelog">
     <div class="markdown" v-html="body"></div>
   </div>
 </template>

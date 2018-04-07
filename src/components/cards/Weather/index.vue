@@ -1,6 +1,6 @@
 <template>
   <div id="weather">
-    <div class="no-margins" v-if="today">
+    <div v-if="today">
       <v-layout row wrap>
         <v-flex xs8 class="left">
           <v-layout column>

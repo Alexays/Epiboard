@@ -1,12 +1,12 @@
 <template>
-  <div class="no-margins" id="sessions">
+  <div id="sessions">
     <v-tabs dark grow show-arrows color="blue-grey">
       <v-tabs-slider color="white"></v-tabs-slider>
       <v-tab>Recently Closed</v-tab>
       <v-tab v-for="(device, key) in devices" :key="key">
         {{ device.deviceName }}
       </v-tab>
-      <v-tabs-items>
+      <v-tabs-items class="padding">
         <v-tab-item>
           <div v-if="!recentlyClosed.length" class="text-xs-center session-empty">
             <i class="material-icons md-48">find_in_page</i>

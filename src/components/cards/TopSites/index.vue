@@ -1,6 +1,6 @@
 <template>
 	<div id="top-sites">
-    <ul>
+    <ul class="padding">
 			<li v-for="node in topSites" :key="node">
 				<a :href="node.url">
 				  <i v-if="node.icon" :style="{'background-image': 'url('+node.icon+')'}"></i>

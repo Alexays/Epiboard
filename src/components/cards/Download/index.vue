@@ -1,5 +1,5 @@
 <template>
-  <div id="download">
+  <div id="download" class="padding">
     <li class="download" v-for="download in downloads" :key="download.id">
       <div title="Open Download" class="icon" v-on:click="open(download)">
         <v-progress-circular v-if="download.state === 'in_progress'" :value="(download.bytesReceived / download.totalBytes) * 100 | 0"></v-progress-circular>

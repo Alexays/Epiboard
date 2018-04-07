@@ -1,5 +1,5 @@
 <template>
-  <div id="isefac">
+  <div id="isefac" class="padding">
     <div v-if="!is_logged" class="text-xs-center">
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Isefac to use this card.</h2>

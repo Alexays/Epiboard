@@ -1,16 +1,16 @@
 <template>
   <div id="epitech">
-    <div v-if="!is_logged" class="text-xs-center">
+    <div v-if="!is_logged" class="text-xs-center padding">
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </div>
-    <v-tabs v-else dark grow show-arrows slider-color="white" color="blue-grey" class="no-margins">
+    <v-tabs v-else dark grow show-arrows slider-color="white" color="blue-grey">
       <v-tab>Infos</v-tab>
       <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
         <v-tab-item>
-          <div v-if="!user.loading" class="text-xs-center">
+          <div v-if="!user.loading" class="user text-xs-center">
             <h3>
               {{user.title}}
               <br>
@@ -54,13 +54,13 @@
               </div>
             </div>
           </div>
-          <div v-if="projects.loading || user.loading">
+          <div class="padding" v-if="projects.loading || user.loading">
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
-          <a @click="getTimeline()">Open timeline</a>
+          <v-btn class="no-margins" v-else block depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
         </v-tab-item>
         <v-tab-item>
-          <div class="upcomings">
+          <div class="upcomings padding">
             <v-list v-if="!upcomings.loading" three-line dense>
               <template v-for="upcoming of upcomings.data">
                 <v-list-tile :key="upcoming">
@@ -86,7 +86,7 @@
           </div>
         </v-tab-item>
         <v-tab-item>
-          <div class="rooms">
+          <div class="rooms padding">
             <v-list v-if="!rooms.loading" three-line dense>
               <template v-for="room of rooms.data">
                 <v-list-tile :key="room">
