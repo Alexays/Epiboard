@@ -61,7 +61,7 @@
               <i class="material-icons md-48">work</i>
               <h2 class="subheading">No on going projects, well done !</h2>
           </div>
-          <v-btn class="no-margins" v-if="!projects.loading && !user.loading" block dark depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
+          <v-btn class="no-margins" v-if="!user.loading" block dark depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
         </v-tab-item>
         <v-tab-item>
           <div class="upcomings padding">
