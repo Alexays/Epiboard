@@ -48,7 +48,7 @@ p {
 }
 
 rect[fill="#4285f4"] {
-  height: 90%;
+  height: calc(100% - 60px);
   width: 1px;
   pointer-events: none;
 }
