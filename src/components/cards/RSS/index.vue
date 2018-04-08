@@ -9,6 +9,9 @@
           </v-list-tile-content>
         </v-list-tile>
       </template>
+      <div class="padding" v-if="!items.length">
+        <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+      </div>
     </v-list>
   </div>
 </template>
