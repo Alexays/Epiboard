@@ -47,6 +47,12 @@ p {
   }
 }
 
+rect[fill="#4285f4"] {
+  height: 90%;
+  width: 1px;
+  z-index: -1;
+}
+
 .no-margins {
   margin: 0!important;
 }

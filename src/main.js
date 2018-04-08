@@ -29,7 +29,6 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueLazyload from 'vue-lazyload';
 import VueAnalytics from 'vue-analytics';
-import VueCharts from 'vue-charts';
 import pick from 'lodash/pick';
 import App from '@/App';
 import router from '@/router';
@@ -49,7 +48,6 @@ Vue.use(VueAnalytics, {
   },
 });
 Vue.use(Vuex);
-Vue.use(VueCharts);
 Vue.use(Vuetify, {
   components: {
     Vuetify,

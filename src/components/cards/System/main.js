@@ -35,8 +35,10 @@ export default {
           this.cpu = Object.assign({}, cpu, {
             prev: this.cpu,
           });
-          return resolve();
+          return resolve(browser.runtime.getPlatformInfo());
         });
+      }).then((data) => {
+        this.$set(this.cpu, 'modelName', `${data.os[0].toUpperCase()}${data.os.slice(1)} - ${this.cpu.modelName}`);
       });
     },
     getMemory() {

@@ -1,3 +1,5 @@
+import { GoogleCharts } from 'google-charts';
+
 const API = 'https://intra.epitech.eu';
 
 export default {
@@ -16,6 +18,7 @@ export default {
       },
       timeline: {
         enabled: false,
+        loading: false,
         data: [],
       },
       user: {
@@ -34,19 +37,6 @@ export default {
         loading: true,
       },
     };
-  },
-  computed: {
-    options() {
-      const dark = this.$utils.isDark(this.$store.state.settings.dark);
-      return {
-        title: 'Timeline',
-        height: 650,
-        backgroundColor: dark ? '#424242' : '#ffffff',
-        timeline: {
-          rowLabelStyle: { color: dark ? '#ffffff' : '#000000' },
-        },
-      };
-    },
   },
   methods: {
     getLink(href) {
@@ -128,9 +118,29 @@ export default {
         .sort((a, b) => a.start - b.start);
       this.upcomings.loading = false;
     },
+    drawTimeline() {
+      const date = new Date();
+      const data = GoogleCharts.api.visualization.arrayToDataTable([
+        [{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }],
+        [date.toLocaleDateString(), 'Now', date, date],
+        ...this.timeline.data,
+      ]);
+      const chart = new GoogleCharts.api.visualization.Timeline(document.getElementById('timeline'));
+      const dark = this.$utils.isDark(this.$store.state.settings.dark);
+      chart.draw(data, {
+        title: 'Timeline',
+        height: data.getNumberOfRows() * 21,
+        backgroundColor: dark ? '#424242' : '#ffffff',
+        timeline: {
+          rowLabelStyle: { color: dark ? '#ffffff' : '#000000' },
+        },
+      });
+      this.timeline.loading = false;
+    },
     getTimeline() {
       if (this.user.loading) return;
       this.timeline.enabled = true;
+      this.timeline.loading = true;
       this.axios.get(`${API}/course/filter?format=json&location[]=${this.location}&course[]=${this.user.course_code}&scolaryear[]=${this.user.scolaryear}`)
         .then(res => res.data.filter((f) => {
           const end = f.end.split('-');
@@ -151,6 +161,7 @@ export default {
             }
           }
           this.timeline.data = timeline;
+          GoogleCharts.load(this.drawTimeline, 'timeline');
         });
     },
     getGpa() {
@@ -183,9 +194,8 @@ export default {
     },
   },
   mounted() {
-    this.gpa_precision.loading = false;
-    this.gpa_precision.val = null;
-    this.timeline.enabled = false;
+    this.gpa_precision = {};
+    this.timeline = { enabled: false };
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())

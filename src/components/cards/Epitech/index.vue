@@ -113,11 +113,12 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
-    <v-dialog v-model="timeline.enabled" :scrollable="true" :lazy="true" max-width="80%">
+    <v-dialog v-model="timeline.enabled" :scrollable="true" max-width="80%">
         <v-card>
           <v-card-text>
-            <vue-chart v-if="timeline.enabled && timeline.data" chart-type="Timeline" :packages="['timeline']" :columns="[{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }]" :rows="timeline.data" :options="options"></vue-chart>
-            <v-progress-linear v-else v-bind:indeterminate="true"></v-progress-linear>
+            <div id="timeline">
+              <v-progress-linear v-show="timeline.loading" v-bind:indeterminate="true"></v-progress-linear>
+            </div>
           </v-card-text>
         </v-card>
     </v-dialog>
