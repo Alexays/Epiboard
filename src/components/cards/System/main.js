@@ -17,6 +17,17 @@ export default {
       }
       return Math.floor((current.progress / current.total) * 100);
     },
+    getInfo() {
+      return browser.runtime.getPlatformInfo().then((data) => {
+        this.cpu = {
+          modelName: data.os,
+          archName: data.arch,
+          numOfProcessors: window.navigator.hardwareConcurrency,
+        };
+        this.memory = null;
+        this.storage = null;
+      });
+    },
     getCpu() {
       return new Promise((resolve, reject) => {
         browser.system.cpu.getInfo((cpu) => {
@@ -74,7 +85,12 @@ export default {
     },
   },
   mounted() {
-    if (!browser.system) return this.$emit('init');
+    if (!browser.system) {
+      return Promise.all([this.getInfo()])
+        .finally(() => {
+          this.$emit('init');
+        });
+    }
     return Promise.all([this.getCpu(), this.getMemory(), this.getStorage()])
       .finally(() => {
         setInterval(this.getCpu, 3000);

@@ -17,7 +17,7 @@
                     } : null)"></v-progress-linear>
       </div>
     </div>
-    <div class="wrapper">
+    <div v-if="memory" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">memory</i>
         <div>Memory</div>
@@ -33,7 +33,7 @@
                         } : null)"></v-progress-linear>
       </div>
     </div>
-    <div class="wrapper">
+    <div v-if="storage" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">storage</i>
         <div>Storage</div>
