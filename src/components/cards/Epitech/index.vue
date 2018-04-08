@@ -10,7 +10,7 @@
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
         <v-tab-item>
-          <div v-if="!user.loading" class="user text-xs-center">
+          <div v-if="!user.loading" class="padding text-xs-center">
             <h3>
               {{user.title}}
               <br>
@@ -31,10 +31,10 @@
                 <small>&nbsp;Spices</small>
               </v-chip>
             </h3>
-            <p>
+            <span>
               {{user.studentyear}}
               <sup>{{user.studentyear > 1 ? 'nd' : 'st'}}</sup> year, Promo {{user.promo}}
-            </p>
+            </span>
           </div>
           <div v-if="!projects.loading && projects.data.length" class="project">
             <div class="p-timeline" v-for="(project, key) in projects.data" :key="key">
@@ -57,7 +57,7 @@
           <div class="padding" v-if="projects.loading || user.loading">
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
-          <div v-else-if="!projects.data.length" class="text-xs-center padding">
+          <div v-else-if="!projects.data.length" class="text-xs-center no-projects">
               <i class="material-icons md-48">work</i>
               <h2 class="subheading">No on going projects, well done !</h2>
           </div>
