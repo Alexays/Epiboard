@@ -22,6 +22,7 @@ import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
 import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
 import VTimePicker from 'vuetify/es5/components/VTimePicker';
 import VDialog from 'vuetify/es5/components/VDialog';
+import VSnackbar from 'vuetify/es5/components/VSnackbar';
 import transitions from 'vuetify/es5/components/transitions';
 import directives from 'vuetify/es5/directives';
 import axios from 'axios';
@@ -71,6 +72,7 @@ Vue.use(Vuetify, {
     VProgressCircular,
     VTimePicker,
     VDialog,
+    VSnackbar,
   },
   directives,
   transitions,

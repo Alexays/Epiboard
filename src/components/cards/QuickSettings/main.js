@@ -1,3 +1,5 @@
+import Toast from '@/components/Toast';
+
 export default {
   name: 'Quick Settings',
   props: ['settings'],
@@ -24,6 +26,7 @@ export default {
     clear() {
       this.loading = true;
       browser.browsingData.remove({}, Object.assign({}, this.types), () => {
+        Toast.show({ text: 'Cleared !' });
         this.types = {
           cache: false,
           cookies: false,

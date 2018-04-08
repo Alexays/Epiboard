@@ -5,6 +5,7 @@ const { version } = browser.runtime.getManifest();
 export default {
   name: 'Changelog',
   title: `What's new in ${version} ?`,
+  origins: ['https://api.github.com/'],
   components: {},
   data() {
     return {

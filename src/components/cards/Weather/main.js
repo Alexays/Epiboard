@@ -8,7 +8,7 @@ export default {
     weekday: 'long',
   }),
   custom: true,
-  size: 1,
+  origins: ['https://api.openweathermap.org/'],
   components: {},
   data() {
     return {

@@ -1,3 +1,5 @@
+import Toast from '@/components/Toast';
+
 export default {
   name: 'Download',
   props: ['settings'],
@@ -19,13 +21,19 @@ export default {
     },
     open(download) {
       if (download.state === 'interrupted') {
-        // Materialize.toast(this.humanize(download.error), 4000);
+        Toast.show({
+          text: this.humanize(download.error),
+          timeout: 4000,
+        });
       }
       if (download.state === 'complete') {
         if (download.exists) {
           browser.downloads.open(download.id);
         } else {
-          // Materialize.toast('File moved or deleted', 4000);
+          Toast.show({
+            text: 'File moved or deleted',
+            timeout: 4000,
+          });
         }
       }
     },

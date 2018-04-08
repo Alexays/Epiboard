@@ -3,6 +3,7 @@ import { ResizeSensor } from 'css-element-queries';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
+import Toast from '@/components/Toast';
 import Cards from '@/components/cards';
 
 export default {
@@ -71,6 +72,12 @@ export default {
       this.grid.layout(true);
     },
     deleteCard(key) {
+      if (this.cards[key].permissions || this.cards[key].origins) {
+        this.$utils.permissions.remove({
+          permissions: this.cards[key].permissions || [],
+          origins: this.cards[key].origins || [],
+        });
+      }
       this.$delete(this.cards, key);
       this.cards$[key].detach(this.resize);
       this.$delete(this.cards$, key);
@@ -79,16 +86,35 @@ export default {
       this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
     addCard(key, value) {
-      this.$set(this.cards, key, Cards(value).default);
-      this.$nextTick(() => {
-        const elem = document.querySelector(`[data-id='${key}']`);
-        this.grid.add(elem, {
-          layout: false,
+      const tmp = Cards(value).default;
+      let card$ = Promise.resolve(true);
+      if (tmp.permissions || tmp.origins) {
+        card$ = this.$utils.permissions.allowed({
+          permissions: tmp.permissions || [],
+          origins: tmp.origins || [],
         });
-        this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
+      }
+      card$.then((res) => {
+        if (!res) {
+          Toast.show({
+            text: `${tmp.name} needs permissions to be added.`,
+            color: 'error',
+            timeout: 10000,
+            dismissible: false,
+          });
+          return;
+        }
+        this.$set(this.cards, key, tmp);
+        this.$nextTick(() => {
+          const elem = document.querySelector(`[data-id='${key}']`);
+          this.grid.add(elem, {
+            layout: false,
+          });
+          this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
+        });
+        this.$ga.event('cards', 'add', key, 1);
+        this.$store.commit('SET_CARDS', Object.keys(this.cards));
       });
-      this.$ga.event('cards', 'add', key, 1);
-      this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
     handleSize() {
       this.$watch('$data.cards', this.resize);
@@ -108,42 +134,64 @@ export default {
       this.$store.commit('SET_VERSION', version);
       const cardsMap = pick(this.cardsKeys, cards);
       const keys = Object.keys(cardsMap);
+      const cards$ = [];
       for (let i = 0; i < keys.length; i += 1) {
-        this.$set(this.cards, keys[i], Cards(cardsMap[keys[i]]).default);
+        const tmp = Cards(cardsMap[keys[i]]).default;
+        if (!tmp.permissions && !tmp.origins) {
+          this.$set(this.cards, keys[i], tmp);
+        } else {
+          cards$.push(this.$utils.permissions.contains({
+            permissions: tmp.permissions || [],
+            origins: tmp.origins || [],
+          }).then(res => (res ? tmp : null)));
+        }
       }
-      return cards;
+      return [cards, cards$];
     },
   },
   mounted() {
-    const cards = this.getCards();
-    this.$nextTick(() => {
-      this.grid = new Muuri('#card-container', {
-        items: '.card',
-        dragEnabled: true,
-        layout: {
-          fillGaps: true,
-        },
-        dragStartPredicate: {
-          handle: '.head-drag',
-        },
-        dragSortInterval: 0,
-        layoutOnInit: false,
-        sortData: {
-          id: (item, element) => element.getAttribute('data-id'),
-        },
-      });
-      if (cards.length) {
-        this.grid
-          .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
-            layout: 'instant',
+    const [cards, cards$] = this.getCards();
+    Promise.all(cards$).then((data) => {
+      for (let i = 0; i < data.length; i += 1) {
+        if (data[i]) this.$set(this.cards, data[i].name, data[i]);
+        else {
+          Toast.show({
+            text: `${data[i].name} needs new permissions please add it manually.`,
+            color: 'error',
+            timeout: 10000,
+            dismissible: false,
           });
-      } else {
-        this.grid.layout(true);
+        }
       }
-      this.handleSize();
-      this.grid.on('dragEnd', () => {
-        const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
-        this.$store.commit('SET_CARDS', order);
+      this.$nextTick(() => {
+        this.grid = new Muuri('#card-container', {
+          items: '.card',
+          dragEnabled: true,
+          layout: {
+            fillGaps: true,
+          },
+          dragStartPredicate: {
+            handle: '.head-drag',
+          },
+          dragSortInterval: 0,
+          layoutOnInit: false,
+          sortData: {
+            id: (item, element) => element.getAttribute('data-id'),
+          },
+        });
+        if (cards.length) {
+          this.grid
+            .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
+              layout: 'instant',
+            });
+        } else {
+          this.grid.layout(true);
+        }
+        this.handleSize();
+        this.grid.on('dragEnd', () => {
+          const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
+          this.$store.commit('SET_CARDS', order);
+        });
       });
     });
   },

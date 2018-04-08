@@ -21,13 +21,11 @@
     "history",
     "geolocation",
     "https://trends.google.com/trends/hottrends/visualize/internal/data",
-    "https://www.google.com/doodles/search",
-    "https://intra.epitech.eu/",
-    "https://nantes.campus-isefac.fr/bachelor/"
+    "https://www.google.com/doodles/search"
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com/ https://www.gstatic.com/charts/; object-src 'self'",
   "optional_permissions": [
-    "https://api.openweathermap.org/"
+    "https://*/"
   ],
   "browser_action": {
     "default_title": "Epiboard"

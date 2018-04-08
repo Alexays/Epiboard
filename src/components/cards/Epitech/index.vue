@@ -57,7 +57,7 @@
           <div class="padding" v-if="projects.loading || user.loading">
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
-          <v-btn class="no-margins" v-else block depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
+          <v-btn class="no-margins" v-else block dark depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
         </v-tab-item>
         <v-tab-item>
           <div class="upcomings padding">

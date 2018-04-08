@@ -3,6 +3,7 @@ const API = 'https://intra.epitech.eu';
 export default {
   name: 'Epitech',
   props: ['settings'],
+  origins: [`${API}/`],
   components: {},
   data() {
     return {
