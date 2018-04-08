@@ -50,7 +50,11 @@ p {
 rect[fill="#4285f4"] {
   height: 90%;
   width: 1px;
-  z-index: -1;
+  pointer-events: none;
+}
+
+rect[fill="#4285f4"] + text {
+  pointer-events: none;
 }
 
 .no-margins {
