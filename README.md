@@ -16,7 +16,7 @@
 
 ## Build Setup
 
-> If you want the stable version take it on [Chrome store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm)
+> If you want the stable version take it on [Chrome store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or [Firefox store](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
 
 ``` bash
 # install dependencies
