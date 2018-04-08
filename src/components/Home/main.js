@@ -140,7 +140,7 @@ export default {
         if (!tmp.permissions && !tmp.origins) {
           this.$set(this.cards, keys[i], tmp);
         } else {
-          cards$.push(this.$utils.permissions.contains({
+          cards$.push(this.$utils.permissions.allowed({
             permissions: tmp.permissions || [],
             origins: tmp.origins || [],
           }).then(res => (res ? tmp : null)));

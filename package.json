@@ -51,6 +51,7 @@
     "eslint-plugin-html": "^4.0.2",
     "eslint-plugin-import": "^2.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "feedparser": "^2.2.9",
     "file-loader": "^1.1.9",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "google-charts": "^1.1.0",
