@@ -21,7 +21,7 @@
           </v-list-tile>
         </template>
       </v-list>
-      <div v-if="!dates.length" class="text-xs-center session-empty">
+      <div v-if="!dates.length" class="text-xs-center">
         <i class="material-icons md-48">room</i>
         <h2 class="subheading">No more activities today, go get some rest !</h2>
       </div>

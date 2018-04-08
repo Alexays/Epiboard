@@ -36,7 +36,7 @@
               <sup>{{user.studentyear > 1 ? 'nd' : 'st'}}</sup> year, Promo {{user.promo}}
             </p>
           </div>
-          <div v-if="!projects.loading" class="project">
+          <div v-if="!projects.loading && projects.data.length" class="project">
             <div class="p-timeline" v-for="(project, key) in projects.data" :key="key">
               <a target="_blank" v-bind:href="getLink(project.title_link)">
                 <h4>{{project.title}}</h4>
@@ -57,7 +57,11 @@
           <div class="padding" v-if="projects.loading || user.loading">
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
-          <v-btn class="no-margins" v-else block dark depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
+          <div v-else-if="!projects.data.length" class="text-xs-center padding">
+              <i class="material-icons md-48">work</i>
+              <h2 class="subheading">No on going projects, well done !</h2>
+          </div>
+          <v-btn class="no-margins" v-if="!projects.loading && !user.loading" block dark depressed small color="blue-grey" @click="getTimeline()">Open timeline</v-btn>
         </v-tab-item>
         <v-tab-item>
           <div class="upcomings padding">
@@ -75,7 +79,7 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
-              <div v-if="!upcomings.data.length" class="text-xs-center session-empty">
+              <div v-if="!upcomings.data.length" class="text-xs-center">
                 <i class="material-icons md-48">room</i>
                 <h2 class="subheading">No upcoming activities, go get some rest !</h2>
               </div>
@@ -101,7 +105,7 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
-              <div v-if="!rooms.data.length" class="text-xs-center session-empty">
+              <div v-if="!rooms.data.length" class="text-xs-center">
                 <i class="material-icons md-48">room</i>
                 <h2 class="subheading">No occuped rooms, have fun !</h2>
               </div>
