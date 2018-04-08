@@ -15,6 +15,16 @@ export default {
     init() {
       return this.$utils.permissions.allowed({
         origins: this.feeds || [],
+      }).then((res) => {
+        if (res) return res;
+        throw new Error('Insufficient permission');
+      });
+    },
+    getFeed(url) {
+      return new Promise((resolve) => {
+        http.get(url, (data) => {
+          resolve(data);
+        });
       });
     },
   },
@@ -28,13 +38,12 @@ export default {
       }
     });
     this.init()
-      .then(res => new Promise((resolve, reject) => {
-        if (!res) return reject(new Error('Insufficient permission'));
-        return http.get(this.feeds[0], (data) => {
-          resolve(data);
-        });
-      }))
-      .then(res => res.pipe(feedparser))
+      .then(() => Promise.all(this.feeds.map(f => this.getFeed(f))))
+      .then((res) => {
+        for (let i = 0; i < res.length; i += 1) {
+          res[i].pipe(feedparser);
+        }
+      })
       .finally(() => this.$emit('init'));
   },
 };
