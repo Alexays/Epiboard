@@ -44,7 +44,7 @@ export default {
         ok: 'Allow',
         cancel: 'Deny',
       }).then((res) => {
-        if (res) return this.allowed(payload);
+        if (res) return this.request(payload);
         throw new Error('User has refused');
       }));
   },
