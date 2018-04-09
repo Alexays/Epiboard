@@ -38,19 +38,14 @@ export default {
       .then((res) => {
         if (res) return res;
         return this.request(payload);
-      }).catch((err) => {
-        if (err.message === 'This function must be called during a user gesture') {
-          return Dialog.show({
-            title: 'Permissions are required',
-            text: 'A card request permission that is necessary for it to work properly, are you okay?',
-            ok: 'Allow',
-            cancel: 'Deny',
-          }).then((res) => {
-            if (res) return this.allowed(payload);
-            throw new Error('User has refused');
-          });
-        }
-        throw err;
-      });
+      }).catch(() => Dialog.show({
+        title: 'Permissions are required',
+        text: 'A card request permission that is necessary for it to work properly, are you okay?',
+        ok: 'Allow',
+        cancel: 'Deny',
+      }).then((res) => {
+        if (res) return this.allowed(payload);
+        throw new Error('User has refused');
+      }));
   },
 };
