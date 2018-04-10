@@ -1,4 +1,5 @@
 import { GoogleCharts } from 'google-charts';
+import omit from 'lodash/omit';
 
 const API = 'https://intra.epitech.eu';
 
@@ -196,11 +197,9 @@ export default {
     },
   },
   mounted() {
-    this.gpa_precision = {};
-    this.timeline = { enabled: false };
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())
-      .finally(() => this.$emit('init', this.$data));
+      .finally(() => this.$emit('init', omit(this.$data, ['gpa_precision', 'timeline'])));
   },
 };
