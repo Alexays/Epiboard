@@ -9,6 +9,8 @@ export default {
     return {
       feeds: ['https://news.google.com/news/rss/'],
       items: [],
+      newFeed: '',
+      dialog: false,
     };
   },
   methods: {
@@ -26,6 +28,30 @@ export default {
           resolve(data);
         });
       });
+    },
+    addFeed(url) {
+      if (url.trim().length === 0) return;
+      this.feeds.push(url);
+      this.newFeed = '';
+      const feedparser = new FeedParser({});
+      const vue = this;
+      feedparser.on('readable', function readable() {
+        const stream = this;
+        for (let item = stream.read(); item; item = stream.read()) {
+          vue.items.unshift(item);
+        }
+      });
+      this.$utils.permissions.allowed({
+        origins: [url],
+      }).then((res) => {
+        if (res) return this.getFeed(url);
+        throw new Error('Insufficient permission');
+      }).then((res) => {
+        res.pipe(feedparser);
+      });
+    },
+    removeFeed(idx) {
+      this.feeds.splice(idx, -1);
     },
   },
   mounted() {
