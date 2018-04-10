@@ -135,6 +135,8 @@ export default {
           rowLabelStyle: { color: dark ? '#ffffff' : '#000000' },
         },
       });
+      document.querySelector('rect[fill="#4285f4"]').setAttribute('height', (data.getNumberOfRows() * 19) - 4);
+      document.querySelector('rect[fill="#4285f4"]').setAttribute('width', 1);
       this.timeline.loading = false;
     },
     getTimeline() {

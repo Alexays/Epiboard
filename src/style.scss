@@ -47,13 +47,7 @@ p {
   }
 }
 
-rect[fill="#4285f4"] {
-  height: calc(100% - 60px);
-  width: 1px;
-  pointer-events: none;
-}
-
-rect[fill="#4285f4"] + text {
+rect[fill="#4285f4"], rect[fill="#4285f4"] + text {
   pointer-events: none;
 }
 
