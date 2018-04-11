@@ -206,7 +206,7 @@ export default {
       this.typer.current = typed;
     },
     search(ev) {
-      if (ev.keyCode === 13) {
+      if (!ev || ev.keyCode === 13) {
         window.open(`https://www.google.com/#q=${this.typer.typed.length > 0 ? this.typer.typed : this.typer.current}`, '_self');
       }
     },

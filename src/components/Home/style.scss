@@ -13,10 +13,10 @@
   #card-container {
     position: relative;
     margin: 20px auto;
+    z-index: 0;
     &.dtoolbar {
       margin: 35px auto;
     }
-    z-index: 0;
     .card__title {
       &.custom {
         position: absolute;

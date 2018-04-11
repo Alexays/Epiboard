@@ -25,7 +25,8 @@
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com/ https://www.gstatic.com/charts/; object-src 'self'",
   "optional_permissions": [
-    "https://*/"
+    "https://*/",
+    "http://*/"
   ],
   "browser_action": {
     "default_title": "Epiboard"

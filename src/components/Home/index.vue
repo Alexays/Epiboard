@@ -14,25 +14,33 @@
     </v-fab-transition>
     <transition-group name="slide-fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.global.header_design === 'toolbar' }">
       <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
-        <v-card-title class="head-drag" :class="{'blue-grey': !card.custom, custom: card.custom, 'white--text': !card.custom}">
-          <span class="headline">{{card.title || card.name}}</span>
+        <v-card-title class="head-drag" :class="{'blue-grey': !card.custom || card.showSettings, custom: card.custom && !card.showSettings, 'white--text': !card.custom || card.showSettings}">
+          <span v-show="!card.showSettings" class="headline">{{card.title || card.name || key}}</span>
+          <span v-show="card.showSettings" class="headline">{{card.name || key}}</span>
           <div>
-            <v-progress-circular :title="card.name + ' is fetching some data'" v-show="!card.init" size="25" indeterminate color="white"></v-progress-circular>
-            <v-menu bottom offset-y>
+            <v-progress-circular :title="card.name || key + ' is fetching some data'" v-show="!card.init" size="25" width="2" indeterminate color="white"></v-progress-circular>
+            <v-menu v-show="!card.showSettings" bottom offset-y>
               <v-btn flat icon slot="activator">
                 <v-icon color="white">more_vert</v-icon>
               </v-btn>
               <v-list>
+                <v-list-tile v-if="cardsKeysSettings[key]" @click="getCardsSettings(key)">
+                  <v-list-tile-title>Settings</v-list-tile-title>
+                </v-list-tile>
                 <v-list-tile @click="deleteCard(key)">
                   <v-list-tile-title>Remove</v-list-tile-title>
                 </v-list-tile>
               </v-list>
             </v-menu>
+            <v-btn v-show="card.showSettings" flat icon @click.stop="card.showSettings=false" color="white">
+              <v-icon>arrow_back</v-icon>
+            </v-btn>
           </div>
         </v-card-title>
-        <keep-alive>
-          <component @init="setCards(key, $event)" v-init="key" :is="card"></component>
-        </keep-alive>
+          <keep-alive>
+            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="$store.state.cardsSettings[key]" v-init="key" :is="card"></component>
+          </keep-alive>
+          <component v-show="card.showSettings" v-if="cardsSettings[key]" :settings="$store.state.cardsSettings[key]" :is="cardsSettings[key]"></component>
       </v-card>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">

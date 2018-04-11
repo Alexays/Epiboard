@@ -11,7 +11,7 @@ export default {
       state.cards[key] = data;
     },
     DEL_CARD_CACHE(state, key) {
-      delete state.cards[key];
+      if (state.cards[key]) delete state.cards[key];
     },
   },
   actions: {

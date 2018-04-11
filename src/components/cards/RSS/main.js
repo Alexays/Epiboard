@@ -13,6 +13,11 @@ export default {
       dialog: false,
     };
   },
+  computed: {
+    sortedFeeds() {
+      return this.items.sort((a, b) => a.date - b.date);
+    },
+  },
   methods: {
     init() {
       return this.$utils.permissions.allowed({

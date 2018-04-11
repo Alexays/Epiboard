@@ -6,26 +6,22 @@ import pick from 'lodash/pick';
 import Toast from '@/components/Toast';
 import Cards from '@/components/cards';
 
+let grid = null;
+
 export default {
   name: 'Home',
   components: {},
   data() {
     return {
       fab: false,
-      grid: null,
+      cardsKeys: {},
+      cardsKeysSettings: {},
       cards: {},
       cards$: {},
+      cardsSettings: {},
     };
   },
   computed: {
-    cardsKeys() {
-      const cards = {};
-      const keys = Cards.keys();
-      for (let i = 0; i < keys.length; i += 1) {
-        cards[keys[i].split('/')[1]] = keys[i];
-      }
-      return cards;
-    },
     emptyCards() {
       return isEmpty(this.cards);
     },
@@ -33,7 +29,7 @@ export default {
       return omit(this.cardsKeys, Object.keys(this.cards).concat(['Changelog']));
     },
     showFab() {
-      if (isEmpty(this.cards) && this.grid == null) {
+      if (isEmpty(this.cards) && grid == null) {
         return true;
       }
       return isEmpty(this.availableCards);
@@ -47,29 +43,27 @@ export default {
         this.$ga.event('cards', 'used', key, 2);
       }
       if (!data) {
-        if (localStorage.getItem(`cache_${key}`)) {
-          localStorage.removeItem(`cache_${key}`);
-        }
+        this.$store.commit('DEL_CARD_CACHE', key);
         return;
       }
-      localStorage.setItem(`cache_${key}`, JSON.stringify(data));
+      this.$store.commit('SET_CARD_CACHE', { key, data });
     },
     resize(value) {
       if (value) {
         const keys = Object.keys(value);
         const oldCards = [...document.getElementsByClassName('card')].filter(f => keys.indexOf(f.getAttribute('data-id')) < 0);
-        this.grid.remove(oldCards, {
+        grid.remove(oldCards, {
           removeElements: true,
           layout: false,
         });
         this.$nextTick(() => {
-          this.grid.refreshItems();
-          this.grid.layout();
+          grid.refreshItems();
+          grid.layout();
         });
         return;
       }
-      this.grid.refreshItems();
-      this.grid.layout(true);
+      grid.refreshItems();
+      grid.layout(true);
     },
     deleteCard(key) {
       if (this.cards[key].permissions || this.cards[key].origins) {
@@ -83,6 +77,7 @@ export default {
       this.$delete(this.cards$, key);
       this.setCards(key);
       this.$ga.event('cards', 'delete', key, 0);
+      this.$store.commit('DEL_CARD_SETTINGS', key);
       this.$store.commit('SET_CARDS', Object.keys(this.cards));
     },
     addCard(key, value) {
@@ -107,7 +102,7 @@ export default {
         this.$set(this.cards, key, tmp);
         this.$nextTick(() => {
           const elem = document.querySelector(`[data-id='${key}']`);
-          this.grid.add(elem, {
+          grid.add(elem, {
             layout: false,
           });
           this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
@@ -122,6 +117,26 @@ export default {
       for (let i = 0; i < cards.length; i += 1) {
         this.cards$[cards[i].getAttribute('data-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
       }
+    },
+    getCardsSettings(key) {
+      if (!this.cardsSettings[key]) {
+        this.cardsSettings[key] = Cards(this.cardsKeysSettings[key]).default;
+      }
+      this.$set(this.cards[key], 'showSettings', true);
+    },
+    getCardsKeys() {
+      const cards = {};
+      const settings = {};
+      const keys = Cards.keys();
+      for (let i = 0; i < keys.length; i += 1) {
+        if (keys[i].endsWith('index.vue')) {
+          cards[keys[i].split('/')[1]] = keys[i];
+        } else if (keys[i].endsWith('settings.vue')) {
+          settings[keys[i].split('/')[1]] = keys[i];
+        }
+      }
+      this.cardsKeys = cards;
+      this.cardsKeysSettings = settings;
     },
     getCards() {
       let cards = (this.$store.state || {}).cards || [];
@@ -150,6 +165,7 @@ export default {
     },
   },
   mounted() {
+    this.getCardsKeys();
     const [cards, cards$] = this.getCards();
     Promise.all(cards$).then((data) => {
       for (let i = 0; i < data.length; i += 1) {
@@ -164,7 +180,7 @@ export default {
         }
       }
       this.$nextTick(() => {
-        this.grid = new Muuri('#card-container', {
+        grid = new Muuri('#card-container', {
           items: '.card',
           dragEnabled: true,
           layout: {
@@ -180,16 +196,15 @@ export default {
           },
         });
         if (cards.length) {
-          this.grid
-            .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
-              layout: 'instant',
-            });
+          grid.sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
+            layout: 'instant',
+          });
         } else {
-          this.grid.layout(true);
+          grid.layout(true);
         }
         this.handleSize();
-        this.grid.on('dragEnd', () => {
-          const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
+        grid.on('dragEnd', () => {
+          const order = grid.getItems().map(item => item.getElement().getAttribute('data-id'));
           this.$store.commit('SET_CARDS', order);
         });
       });

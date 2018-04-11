@@ -1,8 +1,8 @@
 <template>
   <div id="rss">
-    <v-btn class="no-margins" block dark depressed small color="blue-grey" @click.stop="dialog=true">{{ feeds.length }} Feed(s), You want to add more ?</v-btn>
-    <v-list two-line>
-      <template v-for="item in items">
+    <v-btn class="no-margins" block dark depressed small color="blue-grey" @click.stop="dialog=true">{{ feeds.length }} Feed{{feeds.length === 1 ? '' : 's'}}, You want to add more ?</v-btn>
+    <v-list two-line class="rss-feeds">
+      <template v-for="item in sortedFeeds">
         <v-list-tile :key="item.title" :href="item.link">
           <v-list-tile-content :title="item.title">
             <v-list-tile-title v-html="item.title"></v-list-tile-title>

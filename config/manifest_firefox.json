@@ -22,7 +22,8 @@
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com/ https://www.gstatic.com/charts/; object-src 'self'",
   "optional_permissions": [
-    "https://*/"
+    "https://*/",
+    "http://*/"
   ],
   "chrome_settings_overrides": {
     "homepage": "index.html"

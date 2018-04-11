@@ -11,31 +11,31 @@
 
 ## Requirement
 
-- [Chromium based browser](https://www.google.com/chrome/) >= 54.0<br />
+- [Chromium](https://www.google.com/chrome/) >= 54.0<br />
 - [Firefox](https://www.mozilla.org/firefox/) >= 54.0
 
 ## Build Setup
 
-> If you want the stable version take it on [Chrome store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or [Firefox store](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
+> If you want the stable version take it on [Chrome](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
 
 ``` bash
 # install dependencies
 $ npm install
 
-# build for production with minification for Chrome
-$ npm run build
-
-# or for Firefox
-$ BUILD_TARGET=firefox npm run build
+# build for production with minification
+# For Chromium browser
+$ npm run build:chrome
+# For Firefox
+$ npm run build:firefox
 
 # build for production and view the bundle analyzer report
-$ npm run build --report
+$ npm run build:chrome --report
 
 # in your browser extension page
 # load unpacked extension from dist folder.
 
 # or generate zip
-$ npm run build-zip
+$ npm run build:zip
 ```
 
 ## License

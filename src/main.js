@@ -34,7 +34,6 @@ import App from '@/App';
 import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';
-import 'vuetify/src/stylus/app.styl';
 
 Vue.config.productionTip = false;
 
@@ -103,7 +102,7 @@ Vue.directive('init', {
   bind: (el, binding, vnode) => {
     if (!binding.value) return;
     const keys = Object.keys(vnode.componentInstance.$data);
-    const data = pick(JSON.parse(localStorage.getItem(`cache_${binding.value}`)) || {}, keys);
+    const data = pick(vnode.context.$store.state.cache.cards[binding.value] || {}, keys);
     for (let i = 0; i < keys.length; i += 1) {
       if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
         vnode.componentInstance.$data[keys[i]] = data[keys[i]];
