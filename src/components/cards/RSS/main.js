@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     sortedFeeds() {
-      return this.items.sort((a, b) => a.date - b.date);
+      return this.items.sort((a, b) => b.date - a.date);
     },
   },
   methods: {
