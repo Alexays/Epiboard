@@ -4,7 +4,6 @@ export default {
   components: {},
   data() {
     return {
-      maxSites: 5,
       topSites: [],
     };
   },
@@ -13,7 +12,7 @@ export default {
       return new Promise((resolve, reject) => {
         browser.topSites.get((topSites) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          this.topSites = topSites.slice(0, this.maxSites);
+          this.topSites = topSites.slice(0, this.settings.maxSites);
           this.topSites = this.topSites.map(f => Object.assign(f, {
             icon: this.$utils.getFavicon(f.url),
           }));
