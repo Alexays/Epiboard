@@ -1,6 +1,13 @@
 import FeedParser from 'feedparser';
 import http from 'http';
 
+const onRead = vue => function readable() {
+  const stream = this;
+  for (let item = stream.read(); item; item = stream.read()) {
+    vue.items.unshift(item);
+  }
+};
+
 export default {
   name: 'RSS',
   props: ['settings'],
@@ -39,13 +46,7 @@ export default {
       this.feeds.push(url);
       this.newFeed = '';
       const feedparser = new FeedParser({});
-      const vue = this;
-      feedparser.on('readable', function readable() {
-        const stream = this;
-        for (let item = stream.read(); item; item = stream.read()) {
-          vue.items.unshift(item);
-        }
-      });
+      feedparser.on('readable', onRead(this));
       this.$utils.permissions.allowed({
         origins: [url],
       }).then((res) => {
@@ -60,14 +61,8 @@ export default {
     },
   },
   mounted() {
-    const vue = this;
     const feedparser = new FeedParser({});
-    feedparser.on('readable', function readable() {
-      const stream = this;
-      for (let item = stream.read(); item; item = stream.read()) {
-        vue.items.push(item);
-      }
-    });
+    feedparser.on('readable', onRead(this));
     this.init()
       .then(() => Promise.all(this.feeds.map(f => this.getFeed(f))))
       .then((res) => {

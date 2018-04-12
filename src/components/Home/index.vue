@@ -38,9 +38,9 @@
           </div>
         </v-card-title>
           <keep-alive>
-            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="$store.state.cardsSettings[key]" v-init="key" :is="card"></component>
+            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="$store.state.cardsSettings[key] || {}" v-init="key" :is="card"></component>
           </keep-alive>
-          <component v-show="card.showSettings" v-if="cardsSettings[key]" :settings="$store.state.cardsSettings[key]" :is="cardsSettings[key]"></component>
+          <component v-show="card.showSettings" v-if="cardsSettings[key]" :settings="$store.state.cardsSettings[key] || {}" :is="cardsSettings[key]"></component>
       </v-card>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">
