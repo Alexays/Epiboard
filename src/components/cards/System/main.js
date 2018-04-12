@@ -87,6 +87,7 @@ export default {
     },
   },
   mounted() {
+    // TODO: Firefox doesn't support system
     if (!browser.system) {
       return Promise.all([this.getInfo()])
         .finally(() => {

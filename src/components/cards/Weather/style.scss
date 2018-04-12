@@ -1,12 +1,11 @@
 #weather {
   .left {
-    padding: 66px 16px 16px;
+    padding: 28px 16px 16px;
     ;
     i {
       font-size: 80px;
     }
     .main {
-      padding-bottom: 15px;
       img {
         width: 100px;
       }
@@ -20,9 +19,17 @@
         }
       }
     }
+    .forecast {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
     .city {
+      justify-content: flex-end;
       display: flex;
       font-size: 10px;
+      padding-bottom: 15px;
       i {
         font-size: 14px;
       }

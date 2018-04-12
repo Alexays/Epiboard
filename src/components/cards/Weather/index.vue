@@ -4,6 +4,9 @@
       <v-layout row wrap>
         <v-flex xs8 class="left">
           <v-layout column>
+            <v-flex class="city">
+              <v-icon>location_on</v-icon> {{today.name}}
+            </v-flex>
             <v-flex>
               <v-layout row wrap class="main">
                 <v-flex>
@@ -16,8 +19,19 @@
                 </v-flex>
               </v-layout>
             </v-flex>
-            <v-flex class="city">
-              <v-icon>location_on</v-icon> {{today.name}}
+            <v-flex class="forecast">
+              <v-layout row wrap>
+                <v-flex v-for="day in forecast" :key="day.dt">
+                  <v-layout column align-center>
+                    <v-flex>
+                      <img :title="`${day.main.temp}°C - ${day.weather[0].description}`" :src="'/static/img/weather-'+ getImg(day.weather[0]['id']) +'.png'"/>
+                    </v-flex>
+                    <v-flex>
+                      {{ day.dayName }}
+                    </v-flex>
+                  </v-layout>
+                </v-flex>
+              </v-layout>
             </v-flex>
           </v-layout>
         </v-flex>

@@ -1,4 +1,4 @@
-const API = 'https://api.openweathermap.org/data/2.5/weather';
+const API = 'https://api.openweathermap.org/data/2.5/';
 const APP_ID = '0c9042777e3128fab0244da248184801';
 
 export default {
@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       today: null,
+      forecast: null,
     };
   },
   methods: {
@@ -39,11 +40,22 @@ export default {
     },
     getToday(position) {
       const { latitude, longitude } = position.coords;
-      return this.$http.get(`${API}?lat=${latitude}&lon=${longitude}&units=metric&appid=${APP_ID}`)
+      return this.$http.get(`${API}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APP_ID}`)
         .then((res) => {
           this.today = res.data;
           this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
           this.today.main.temp |= 0;
+        });
+    },
+    getForecast(position) {
+      const { latitude, longitude } = position.coords;
+      return this.$http.get(`${API}forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${APP_ID}`)
+        .then((res) => {
+          this.forecast = res.data.list.map((f) => {
+            f.dt = new Date(f.dt_txt);
+            f.dayName = f.dt.toLocaleString('en-US', { weekday: 'short' });
+            return f;
+          }).filter(f => f.dt.getDate() !== new Date().getDate() && f.dt.getHours() === 12);
         });
     },
     getLocalisation() {
@@ -58,7 +70,7 @@ export default {
   },
   mounted() {
     this.getLocalisation()
-      .then(this.getToday)
+      .then(pos => Promise.all([this.getToday(pos), this.getForecast(pos)]))
       .then(() => this.$emit('init', this.$data))
       .catch(() => this.$emit('init', false));
   },

@@ -49,9 +49,6 @@ export default {
           timeout: 10000,
           dismissible: false,
         });
-        this.$delete(this.cards, key);
-        this.cards$[key].detach(this.resize);
-        this.$delete(this.cards$, key);
         return;
       }
       if (data === undefined) {
