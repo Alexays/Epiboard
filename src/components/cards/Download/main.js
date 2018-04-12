@@ -39,7 +39,7 @@ export default {
     },
     getDownloads() {
       return browser.downloads.search({
-        limit: 5,
+        limit: this.settings.limitDownloads,
         orderBy: ['-startTime'],
       }).then((downloads) => {
         this.downloads = downloads;

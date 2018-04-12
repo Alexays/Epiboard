@@ -1,9 +1,9 @@
 export default {
-  name: 'TopSites',
+  name: 'Donwloads',
   components: {},
   data() {
     return {
-      maxSites: 5,
+      limitDownloads: 5,
     };
   },
   methods: {
