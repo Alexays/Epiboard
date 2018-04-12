@@ -10,7 +10,7 @@
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
         <v-tab-item>
-          <div v-if="!user.loading" class="padding text-xs-center">
+          <div v-if="!user.loading && !this.settings.hideInfo" class="padding text-xs-center">
             <h3>
               {{user.title}}
               <br>
