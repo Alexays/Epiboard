@@ -24,6 +24,7 @@ export default {
   },
   mounted() {
     Promise.all([this.getTopSites()])
-      .finally(() => this.$emit('init', this.$data));
+      .then(() => this.$emit('init', this.$data))
+      .catch(() => this.$emit('init', false));
   },
 };

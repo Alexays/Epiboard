@@ -70,6 +70,7 @@ export default {
           res[i].pipe(feedparser);
         }
       })
-      .finally(() => this.$emit('init'));
+      .then(() => this.$emit('init'))
+      .catch(() => this.$emit('init', false));
   },
 };

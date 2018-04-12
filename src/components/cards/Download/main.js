@@ -81,10 +81,11 @@ export default {
   },
   mounted() {
     Promise.all([this.getDownloads()])
-      .finally(() => {
+      .then(() => {
         this.listenChange();
         this.listenCreate();
-        this.$emit('init', this.$data);
-      });
+      })
+      .then(() => this.$emit('init', this.$data))
+      .catch(() => this.$emit('init', false));
   },
 };

@@ -42,7 +42,19 @@ export default {
         this.$set(this.cards[key], 'init', true);
         this.$ga.event('cards', 'used', key, 2);
       }
-      if (!data) {
+      if (data === false) {
+        Toast.show({
+          text: `${key} got a loading error, please try again later.`,
+          color: 'error',
+          timeout: 10000,
+          dismissible: false,
+        });
+        this.$delete(this.cards, key);
+        this.cards$[key].detach(this.resize);
+        this.$delete(this.cards$, key);
+        return;
+      }
+      if (data === undefined) {
         this.$store.commit('DEL_CARD_CACHE', key);
         return;
       }

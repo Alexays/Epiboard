@@ -41,6 +41,7 @@ export default {
   },
   mounted() {
     Promise.all([this.getAll()])
-      .finally(() => this.$emit('init'));
+      .then(() => this.$emit('init'))
+      .catch(() => this.$emit('init', false));
   },
 };

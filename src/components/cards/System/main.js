@@ -94,10 +94,11 @@ export default {
         });
     }
     return Promise.all([this.getCpu(), this.getMemory(), this.getStorage()])
-      .finally(() => {
+      .then(() => {
         setInterval(this.getCpu, 3000);
         setInterval(this.getMemory, 10000);
-        this.$emit('init');
-      });
+      })
+      .then(() => this.$emit('init'))
+      .catch(() => this.$emit('init', false));
   },
 };

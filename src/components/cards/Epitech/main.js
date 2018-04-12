@@ -200,6 +200,7 @@ export default {
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())
-      .finally(() => this.$emit('init', omit(this.$data, ['gpa_precision', 'timeline'])));
+      .then(() => this.$emit('init', omit(this.$data, ['gpa_precision', 'timeline'])))
+      .catch(() => this.$emit('init', false));
   },
 };

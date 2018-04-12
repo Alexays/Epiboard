@@ -19,6 +19,7 @@ export default {
       .then((res) => {
         this.body = Marked(res.data.body, { sanitize: true });
       })
-      .finally(() => this.$emit('init'));
+      .then(() => this.$emit('init'))
+      .catch(() => this.$emit('init', false));
   },
 };

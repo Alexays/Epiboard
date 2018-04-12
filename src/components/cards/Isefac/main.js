@@ -52,9 +52,10 @@ export default {
   },
   mounted() {
     Promise.all([this.getCalendar()])
+      .then(() => this.$emit('init', this.$data))
+      .catch(() => this.$emit('init', false))
       .finally(() => {
         this.loading = false;
-        this.$emit('init', this.$data);
       });
   },
 };
