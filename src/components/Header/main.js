@@ -205,10 +205,8 @@ export default {
       }
       this.typer.current = typed;
     },
-    search(ev) {
-      if (!ev || ev.keyCode === 13) {
-        window.open(`https://www.google.com/#q=${this.typer.typed.length > 0 ? this.typer.typed : this.typer.current}`, '_self');
-      }
+    search() {
+      window.open(`https://www.google.com/#q=${this.typer.typed.length > 0 ? this.typer.typed : this.typer.current}`, '_self');
     },
     Type() {
       if (this.typer.typed.length > 0) return;

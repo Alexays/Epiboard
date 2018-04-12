@@ -1,5 +1,4 @@
 const API = 'https://api.openweathermap.org/data/2.5/';
-const APP_ID = '0c9042777e3128fab0244da248184801';
 
 export default {
   name: 'Weather',
@@ -38,18 +37,16 @@ export default {
       const date = new Date(nb * 1000);
       return `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}`;
     },
-    getToday(position) {
-      const { latitude, longitude } = position.coords;
-      return this.$http.get(`${API}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APP_ID}`)
+    getToday(query) {
+      return this.$http.get(`${API}weather?${query}&units=metric&appid=${this.settings.appId}`)
         .then((res) => {
           this.today = res.data;
           this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
           this.today.main.temp |= 0;
         });
     },
-    getForecast(position) {
-      const { latitude, longitude } = position.coords;
-      return this.$http.get(`${API}forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${APP_ID}`)
+    getForecast(query) {
+      return this.$http.get(`${API}forecast?${query}&units=metric&appid=${this.settings.appId}`)
         .then((res) => {
           this.forecast = res.data.list.map((f) => {
             f.dt = new Date(f.dt_txt);
@@ -58,7 +55,17 @@ export default {
           }).filter(f => f.dt.getDate() !== new Date().getDate() && f.dt.getHours() === 12);
         });
     },
+    getQuery(pos) {
+      if (pos.coords) {
+        const { latitude, longitude } = pos.coords;
+        return Promise.resolve(`lat=${latitude}&lon=${longitude}`);
+      } else if (pos.city) {
+        return Promise.resolve(`q=${pos.city}`);
+      }
+      return Promise.reject(new Error('Enter valid city name'));
+    },
     getLocalisation() {
+      if (!this.settings.auto) return Promise.resolve({ city: this.settings.city });
       return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
           timeout: 30000,
@@ -70,7 +77,8 @@ export default {
   },
   mounted() {
     this.getLocalisation()
-      .then(pos => Promise.all([this.getToday(pos), this.getForecast(pos)]))
+      .then(this.getQuery)
+      .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
       .then(() => this.$emit('init', this.$data))
       .catch(() => this.$emit('init', false));
   },

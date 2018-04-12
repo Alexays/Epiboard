@@ -102,11 +102,18 @@ Vue.directive('init', {
   bind: (el, binding, vnode) => {
     if (!binding.value) return;
     const keys = Object.keys(vnode.componentInstance.$data);
-    const data = pick(vnode.context.$store.state.cache.cards[binding.value] || {}, keys);
+    const data = binding.value.settings
+      ? pick(vnode.context.$store.state.cardsSettings.cards[binding.value.key] || {}, keys)
+      : pick(vnode.context.$store.state.cache.cards[binding.value.key] || {}, keys);
     for (let i = 0; i < keys.length; i += 1) {
       if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
         vnode.componentInstance.$data[keys[i]] = data[keys[i]];
       }
+    }
+  },
+  unbind: (el, biding, vnode) => {
+    if (vnode.context && vnode.context.saveSettings) {
+      vnode.context.saveSettings(biding.value.key, vnode.componentInstance.$data);
     }
   },
 });

@@ -11,7 +11,7 @@ Vue.use(Vuex);
 const vuexSync = new VuexPersistence({
   strictMode: true,
   asyncStorage: true,
-  modules: ['settings', 'cards', 'cardSettings'],
+  modules: ['settings', 'cards', 'cardsSettings'],
   storage: {
     getItem: key => browser.storage.sync.get(key).then((data) => {
       if (!data[key]) return null;

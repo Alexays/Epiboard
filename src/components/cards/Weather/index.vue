@@ -3,8 +3,8 @@
     <div v-if="today">
       <v-layout row wrap>
         <v-flex xs8 class="left">
-          <v-layout column>
-            <v-flex class="city">
+          <v-layout column align-content-space-between fill-height>
+            <v-flex class="city" align-end>
               <v-icon>location_on</v-icon> {{today.name}}
             </v-flex>
             <v-flex>
@@ -19,7 +19,7 @@
                 </v-flex>
               </v-layout>
             </v-flex>
-            <v-flex class="forecast">
+            <v-flex v-if="settings.forecast" class="forecast">
               <v-layout row wrap>
                 <v-flex v-for="day in forecast" :key="day.dt">
                   <v-layout column align-center>

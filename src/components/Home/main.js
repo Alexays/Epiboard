@@ -57,6 +57,16 @@ export default {
       }
       this.$store.commit('SET_CARD_CACHE', { key, data });
     },
+    closeSettings(key, save) {
+      this.cards[key].saveSettings = save;
+      this.$set(this.cards[key], 'showSettings', false);
+    },
+    saveSettings(key, data) {
+      if (this.cards[key].saveSettings) {
+        this.$store.commit('SET_CARD_SETTINGS', { key, data });
+        this.cards[key].saveSettings = false;
+      }
+    },
     resize(value) {
       if (value) {
         const keys = Object.keys(value);
@@ -127,11 +137,29 @@ export default {
         this.cards$[cards[i].getAttribute('data-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
       }
     },
-    getCardsSettings(key) {
+    showCardsSettings(key) {
       if (!this.cardsSettings[key]) {
         this.cardsSettings[key] = Cards(this.cardsKeysSettings[key]).default;
       }
       this.$set(this.cards[key], 'showSettings', true);
+    },
+    getCardsSettings(key) {
+      if (this.cardsKeysSettings[key] && !this.cardsSettings[key]) {
+        this.cardsSettings[key] = Cards(this.cardsKeysSettings[key]).default;
+      }
+      if (this.cardsSettings[key]) {
+        const data = this.cardsSettings[key].data();
+        const tmp = this.$store.state.cardsSettings.cards[key];
+        if (!tmp) return data;
+        const keys = Object.keys(data);
+        for (let i = 0; i < keys.length; i += 1) {
+          if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
+            data[keys[i]] = tmp[keys[i]];
+          }
+        }
+        return data;
+      }
+      return {};
     },
     getCardsKeys() {
       const cards = {};

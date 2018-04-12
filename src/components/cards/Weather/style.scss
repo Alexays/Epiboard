@@ -1,6 +1,6 @@
 #weather {
   .left {
-    padding: 28px 16px 16px;
+    padding: 26px 16px 16px;
     ;
     i {
       font-size: 80px;
@@ -11,8 +11,6 @@
       }
       .temp {
         font-size: 60px;
-        display: flex;
-        align-items: flex-start;
         .unit {
           font-size: 15px;
           padding: 15px 0;
@@ -27,9 +25,10 @@
     }
     .city {
       justify-content: flex-end;
+      align-items: flex-start;
       display: flex;
       font-size: 10px;
-      padding-bottom: 15px;
+      padding-bottom: 10px;
       i {
         font-size: 14px;
       }

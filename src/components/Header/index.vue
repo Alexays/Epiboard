@@ -20,7 +20,7 @@
       <v-btn @click="search" icon :disabled="$route.path === '/settings'">
         <v-icon>&#xE8B6;</v-icon>
       </v-btn>
-      <v-text-field v-on:keyup.native="search" :value="$route.path === '/' ? typer.part : $route.name"
+      <v-text-field v-on:keyup.13="search" :value="$route.path === '/' ? typer.part : $route.name"
       @input="typer.typed = $event" hide-details single-line :readonly="$route.path !== '/'"></v-text-field>
       <v-spacer></v-spacer>
       <v-btn title="Go to settings" v-show="$route.path !== '/settings'" to="/settings" icon>

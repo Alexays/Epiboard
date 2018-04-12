@@ -18,13 +18,13 @@
           <span v-show="!card.showSettings" class="headline">{{card.title || card.name || key}}</span>
           <span v-show="card.showSettings" class="headline">{{card.name || key}}</span>
           <div>
-            <v-progress-circular :title="card.name || key + ' is fetching some data'" v-show="!card.init" size="25" width="2" indeterminate color="white"></v-progress-circular>
+            <v-progress-circular :title="`${card.name || key} is fetching some data`" v-show="!card.init" size="25" width="2" indeterminate color="white"></v-progress-circular>
             <v-menu v-show="!card.showSettings" bottom offset-y>
               <v-btn flat icon slot="activator">
                 <v-icon color="white">more_vert</v-icon>
               </v-btn>
               <v-list>
-                <v-list-tile v-if="cardsKeysSettings[key]" @click="getCardsSettings(key)">
+                <v-list-tile v-if="cardsKeysSettings[key]" @click="showCardsSettings(key)">
                   <v-list-tile-title>Settings</v-list-tile-title>
                 </v-list-tile>
                 <v-list-tile @click="deleteCard(key)">
@@ -32,15 +32,18 @@
                 </v-list-tile>
               </v-list>
             </v-menu>
-            <v-btn v-show="card.showSettings" flat icon @click.stop="card.showSettings=false" color="white">
-              <v-icon>arrow_back</v-icon>
+            <v-btn v-show="card.showSettings" flat icon @click="closeSettings(key, false)" color="white">
+              <v-icon>close</v-icon>
+            </v-btn>
+            <v-btn v-show="card.showSettings" flat icon @click="closeSettings(key, true)" color="white">
+              <v-icon>done</v-icon>
             </v-btn>
           </div>
         </v-card-title>
           <keep-alive>
-            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="$store.state.cardsSettings[key] || {}" v-init="key" :is="card"></component>
+            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="getCardsSettings(key)" v-init="{key}" :is="card"></component>
           </keep-alive>
-          <component v-show="card.showSettings" v-if="cardsSettings[key]" :settings="$store.state.cardsSettings[key] || {}" :is="cardsSettings[key]"></component>
+          <component v-if="card.showSettings && cardsSettings[key]" v-init="{key, settings: true}" :is="cardsSettings[key]"></component>
       </v-card>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">
