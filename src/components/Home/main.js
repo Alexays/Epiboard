@@ -62,7 +62,7 @@ export default {
       this.$set(this.cards[key], 'showSettings', false);
     },
     saveSettings(key, data) {
-      if (this.cards[key].saveSettings) {
+      if (this.cards[key] && this.cards[key].saveSettings) {
         this.$store.commit('SET_CARD_SETTINGS', { key, data });
         this.cards[key].saveSettings = false;
       }

@@ -37,8 +37,11 @@ export default {
       const date = new Date(nb * 1000);
       return `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}`;
     },
+    fetch(mode, query) {
+      return this.$http.get(`${API}${mode}?${query}&units=metric&appid=${this.settings.appId}`);
+    },
     getToday(query) {
-      return this.$http.get(`${API}weather?${query}&units=metric&appid=${this.settings.appId}`)
+      return this.fetch('weather', query)
         .then((res) => {
           this.today = res.data;
           this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
@@ -46,7 +49,7 @@ export default {
         });
     },
     getForecast(query) {
-      return this.$http.get(`${API}forecast?${query}&units=metric&appid=${this.settings.appId}`)
+      return this.fetch('forecast', query)
         .then((res) => {
           this.forecast = res.data.list.map((f) => {
             f.dt = new Date(f.dt_txt);
