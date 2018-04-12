@@ -6,8 +6,8 @@
       <v-tab v-for="(device, key) in devices" :key="key">
         {{ device.deviceName }}
       </v-tab>
-      <v-tabs-items class="padding">
-        <v-tab-item>
+      <v-tabs-items>
+        <v-tab-item class="padding">
           <div v-if="!recentlyClosed.length" class="text-xs-center session-empty">
             <i class="material-icons md-48">find_in_page</i>
             <h2 class="subheading">You have no recently closed page.</h2>
@@ -21,7 +21,7 @@
             </a>
           </li>
         </v-tab-item>
-        <v-tab-item lazy v-for="(device, key) in devices" :key="key">
+        <v-tab-item class="padding" lazy v-for="(device, key) in devices" :key="key">
           <li v-for="(tab, subKey) in device.tabs" :key="subKey">
             <a :href="tab.url" class="session">
               <i v-if="tab.favIconUrl" :style="{'background-image': 'url('+ tab.favIconUrl +')'}"></i>
