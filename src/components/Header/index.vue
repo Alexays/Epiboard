@@ -10,21 +10,24 @@
       </a>
       <vue-typer v-if="$route.path !== '/'" tag="h1" :text="$route.name" :repeat='0'></vue-typer>
       <v-btn v-if="$route.path === '/settings'" id="settings" flat icon color="white" to="/">
-        <v-icon x-large>arrow_back</v-icon>
+        <v-icon x-large>&#xE5C4;</v-icon>
       </v-btn>
       <v-btn v-show="$route.path !== '/settings'" id="settings" flat icon color="white" to="/settings">
-        <v-icon>more_vert</v-icon>
+        <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </template>
     <v-toolbar v-else card absolute prominent>
-      <v-text-field v-on:keyup.native="search" :prepend-icon-cb="search" prepend-icon="search" :value="$route.path === '/' ? typer.part : $route.name"
+      <v-btn @click="search" icon :disabled="$route.path === '/settings'">
+        <v-icon>&#xE8B6;</v-icon>
+      </v-btn>
+      <v-text-field v-on:keyup.native="search" :value="$route.path === '/' ? typer.part : $route.name"
       @input="typer.typed = $event" hide-details single-line :readonly="$route.path !== '/'"></v-text-field>
       <v-spacer></v-spacer>
       <v-btn title="Go to settings" v-show="$route.path !== '/settings'" to="/settings" icon>
-        <v-icon>more_vert</v-icon>
+        <v-icon>&#xE5D4;</v-icon>
       </v-btn>
       <v-btn title="Back to home" v-if="$route.path === '/settings'" to="/" icon>
-        <v-icon>arrow_back</v-icon>
+        <v-icon>&#xE5C4;</v-icon>
       </v-btn>
     </v-toolbar>
   </header>

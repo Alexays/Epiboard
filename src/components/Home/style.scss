@@ -52,12 +52,4 @@
       width: 1720px;
     }
   }
-  .slide-fade-enter-active,
-  .slide-fade-leave-active {
-    transition: opacity 1s;
-  }
-  .slide-fade-enter,
-  .slide-fade-leave-to {
-    opacity: 0;
-  }
 }
