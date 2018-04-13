@@ -76,7 +76,7 @@ export default {
   },
   mounted() {
     Promise.all([this.getDevices(), this.getRecentlyClosed()])
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init'))
       .catch(() => this.$emit('init', false));
   },
 };

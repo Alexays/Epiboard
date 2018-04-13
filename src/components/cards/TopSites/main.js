@@ -23,7 +23,7 @@ export default {
   },
   mounted() {
     Promise.all([this.getTopSites()])
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init'))
       .catch(() => this.$emit('init', false));
   },
 };

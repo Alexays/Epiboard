@@ -20,11 +20,9 @@ export default {
             this.themes.push(all[i]);
           } else {
             const app = all[i];
-            if (app.icons) {
-              app.icon = app.icons[app.icons.length - 1].url;
-            } else {
-              app.icon = 'chrome://extension-icon/khopmbdjffemhegeeobelklnbglcdgfh/256/1';
-            }
+            app.icon = app.icons
+              ? app.icons[app.icons.length - 1].url
+              : 'chrome://extension-icon/khopmbdjffemhegeeobelklnbglcdgfh/256/1';
             if (!app.enabled) {
               app.icon += '?grayscale=true';
             }

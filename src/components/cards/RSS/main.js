@@ -50,9 +50,9 @@ export default {
     this.init()
       .then(() => Promise.all(this.settings.feeds.map(f => this.fetch(f))))
       .then((res) => {
-        this.items = [...Array.prototype.concat(...res), ...this.items];
+        this.items = Array.prototype.concat(...res);
       })
-      .then(() => this.$emit('init'))
+      .then(() => this.$emit('init', this.$data))
       .catch(() => this.$emit('init', false));
   },
 };
