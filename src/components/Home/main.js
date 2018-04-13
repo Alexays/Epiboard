@@ -39,7 +39,7 @@ export default {
       if (!key) return;
       if (this.cards[key]) {
         this.$set(this.cards[key], 'init', true);
-        this.$ga.event('cards', 'used', key, 2);
+        this.$ga.event('cards', 'used', key, ((this.$store.state || {}).cards || []).indexOf(key));
       }
       if (data === false) {
         Toast.show({

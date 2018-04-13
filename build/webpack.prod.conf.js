@@ -16,6 +16,12 @@ const env = require('../config/prod.env')
 
 const version = require('../package.json').version;
 
+const transformManifestJson = (content) => {
+  const jsonContent = JSON.parse(content);
+  jsonContent.version = version;
+  return JSON.stringify(jsonContent, null, 2);
+};
+
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: [
@@ -63,9 +69,16 @@ const webpackConfig = merge(baseWebpackConfig, {
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
-      cssProcessorOptions: config.build.productionSourceMap
-        ? { safe: true, map: { inline: false } }
-        : { safe: true }
+      cssProcessorOptions: config.build.productionSourceMap ?
+        {
+          safe: true,
+          map: {
+            inline: false
+          }
+        } :
+        {
+          safe: true
+        }
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
@@ -119,8 +132,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
 
     // copy custom static assets
-    new CopyWebpackPlugin([
-      {
+    new CopyWebpackPlugin([{
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
@@ -128,13 +140,14 @@ const webpackConfig = merge(baseWebpackConfig, {
       {
         from: path.resolve(__dirname, `../config/manifest_${process.env.BUILD_TARGET || 'chrome'}.json`),
         to: path.resolve(config.build.assetsRoot, './manifest.json'),
+        transform: transformManifestJson,
       }
     ]),
     new webpack.ProvidePlugin({
       'browser': 'webextension-polyfill',
     }),
     new WebpackShellPlugin({
-      onBuildEnd: ['node ./build/remove-evals.js', `sed -i -e s/$version/${version}/g ./dist/manifest.json`]
+      onBuildEnd: ['node ./build/remove-evals.js']
     }),
   ]
 })
