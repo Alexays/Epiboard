@@ -25,18 +25,20 @@
       };
     },
     methods: {
-      show(options = {}, resolve) {
-        if (this.active) {
-          this.close();
-          this.$nextTick(() => this.show(options));
-          return;
-        }
-        this.resolve = resolve;
-        const keys = Object.keys(options);
-        for (let i = 0; i < keys.length; i += 1) {
-          this[keys[i]] = options[keys[i]];
-        }
-        this.active = true;
+      show(options = {}) {
+        return new Promise((resolve) => {
+          if (this.active) {
+            this.close();
+            this.$nextTick(() => this.show(options));
+            return;
+          }
+          this.resolve = resolve;
+          const keys = Object.keys(options);
+          for (let i = 0; i < keys.length; i += 1) {
+            this[keys[i]] = options[keys[i]];
+          }
+          this.active = true;
+        });
       },
       valid() {
         this.active = false;

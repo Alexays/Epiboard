@@ -24,9 +24,7 @@ function getDialogCmp() {
 }
 
 function show(options = {}) {
-  return new Promise((resolve) => {
-    getDialogCmp().show({ ...defaultOptions, ...options }, resolve);
-  });
+  return getDialogCmp().show({ ...defaultOptions, ...options });
 }
 
 function close() {
