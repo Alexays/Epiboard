@@ -6,13 +6,12 @@ import pick from 'lodash/pick';
 import Toast from '@/components/Toast';
 import Cards from '@/components/cards';
 
-let grid = null;
-
 export default {
   name: 'Home',
   components: {},
   data() {
     return {
+      grid: null,
       fab: false,
       cardsKeys: {},
       cardsKeysSettings: {},
@@ -29,7 +28,7 @@ export default {
       return omit(this.cardsKeys, Object.keys(this.cards).concat(['Changelog']));
     },
     showFab() {
-      if (isEmpty(this.cards) && grid == null) {
+      if (isEmpty(this.cards) && this.grid == null) {
         return true;
       }
       return isEmpty(this.availableCards);
@@ -71,18 +70,18 @@ export default {
       if (value) {
         const keys = Object.keys(value);
         const oldCards = [...document.getElementsByClassName('card')].filter(f => keys.indexOf(f.getAttribute('data-id')) < 0);
-        grid.remove(oldCards, {
+        this.grid.remove(oldCards, {
           removeElements: true,
           layout: false,
         });
         this.$nextTick(() => {
-          grid.refreshItems();
-          grid.layout();
+          this.grid.refreshItems();
+          this.grid.layout();
         });
         return;
       }
-      grid.refreshItems();
-      grid.layout(true);
+      this.grid.refreshItems();
+      this.grid.layout(true);
     },
     deleteCard(key) {
       if (this.cards[key].permissions || this.cards[key].origins) {
@@ -121,7 +120,7 @@ export default {
         this.$set(this.cards, key, tmp);
         this.$nextTick(() => {
           const elem = document.querySelector(`[data-id='${key}']`);
-          grid.add(elem, {
+          this.grid.add(elem, {
             layout: false,
           });
           this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
@@ -217,7 +216,7 @@ export default {
         }
       }
       this.$nextTick(() => {
-        grid = new Muuri('#card-container', {
+        this.grid = new Muuri('#card-container', {
           items: '.card',
           dragEnabled: true,
           layout: {
@@ -233,15 +232,16 @@ export default {
           },
         });
         if (cards.length) {
-          grid.sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
-            layout: 'instant',
-          });
+          this.grid
+            .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
+              layout: 'instant',
+            });
         } else {
-          grid.layout(true);
+          this.grid.layout(true);
         }
         this.handleSize();
-        grid.on('dragEnd', () => {
-          const order = grid.getItems().map(item => item.getElement().getAttribute('data-id'));
+        this.grid.on('dragEnd', () => {
+          const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
           this.$store.commit('SET_CARDS', order);
         });
       });

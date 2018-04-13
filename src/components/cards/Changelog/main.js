@@ -17,7 +17,7 @@ export default {
   mounted() {
     this.axios.get(`${this.API}${version}`)
       .then((res) => {
-        this.body = Marked(res.data.body, { sanitize: true });
+        this.body = Marked(res.data.body, { gfm: true, breaks: true, silent: true });
       })
       .then(() => this.$emit('init'))
       .catch(() => this.$emit('init', false));
