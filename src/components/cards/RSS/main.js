@@ -50,7 +50,10 @@ export default {
     this.init()
       .then(() => Promise.all(this.settings.feeds.map(f => this.fetch(f))))
       .then((res) => {
-        this.items = Array.prototype.concat(...res);
+        this.items = Array.prototype.concat(...res).map((f) => {
+          f.dateString = f.date.toDateString();
+          return f;
+        });
       })
       .then(() => this.$emit('init', this.$data))
       .catch(() => this.$emit('init', false));
