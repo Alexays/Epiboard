@@ -1,28 +1,10 @@
-import pick from 'lodash/pick';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
   name: 'Settings',
   data() {
     return {
-      settings: {
-        dark: {
-          enabled: true,
-          auto: true,
-          from: '22:00',
-          to: '9:00',
-        },
-        trends: {
-          enabled: true,
-          country: 'france',
-        },
-        header: {
-          design: 'full',
-          background: 'random',
-        },
-        debug: false,
-        analytics: true,
-      },
+      settings: {},
       artworks: [
         { text: 'Random', value: 'random' },
         { text: 'Austin', value: 'austin' },
@@ -101,9 +83,10 @@ export default {
       localStorage.setItem('analytics', JSON.stringify(this.settings.analytics));
     },
   },
-  mounted() {
-    const keys = Object.keys(this.settings);
-    this.settings = { ...this.settings, ...cloneDeep(pick(this.$store.state.settings, keys)) };
-    this.settings.analytics = localStorage.getItem('analytics') !== 'false';
+  beforeMount() {
+    this.settings = {
+      ...cloneDeep(this.$store.state.settings),
+      ...{ analytics: localStorage.getItem('analytics') !== 'false' },
+    };
   },
 };
