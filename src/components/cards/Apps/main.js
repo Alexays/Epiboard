@@ -40,6 +40,6 @@ export default {
   mounted() {
     Promise.all([this.getAll()])
       .then(() => this.$emit('init'))
-      .catch(() => this.$emit('init', false));
+      .catch(err => this.$emit('init', err));
   },
 };

@@ -7,6 +7,7 @@ export default {
     return null;
   },
   isDark: (dark) => {
+    if (!dark) return false;
     if (dark.enabled) {
       if (dark.auto) {
         const from = (dark.from || '22:00').split(':').map(Number);

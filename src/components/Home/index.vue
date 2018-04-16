@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <v-fab-transition>
-      <v-speed-dial v-show="!showFab" v-model="fab" :top="true" :right="true" direction="bottom" transition="slide-y-transition">
+      <v-speed-dial v-show="showFab" v-model="fab" :top="true" :right="true" direction="bottom" transition="slide-y-transition">
         <v-btn v-model="fab" slot="activator" dark fab color="blue">
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
@@ -12,7 +12,7 @@
         </v-btn>
       </v-speed-dial>
     </v-fab-transition>
-    <transition-group name="fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.global.header_design === 'toolbar' }">
+    <transition-group name="fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.header.design === 'toolbar' }">
       <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
         <v-card-title class="head-drag" :class="{'blue-grey': !card.custom || card.showSettings, custom: card.custom && !card.showSettings, 'white--text': !card.custom || card.showSettings}">
           <span v-show="!card.showSettings" class="headline">{{card.title || card.name || key}}</span>
@@ -24,7 +24,7 @@
                 <v-icon color="white">more_vert</v-icon>
               </v-btn>
               <v-list>
-                <v-list-tile v-if="cardsKeysSettings[key]" @click="showCardsSettings(key)">
+                <v-list-tile v-if="keys.settings[key]" @click="showCardsSettings(key)">
                   <v-list-tile-title>Settings</v-list-tile-title>
                 </v-list-tile>
                 <v-list-tile @click="deleteCard(key)">
@@ -47,12 +47,11 @@
       </v-card>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">
-      <i class="material-icons md-48">tag_faces</i>
+      <i class="material-icons md-48">grid_off</i>
       <h2 class="subheading">You have no cards.</h2>
     </div>
   </div>
 </template>
-<script src="../../../node_modules/web-animations-js/web-animations.min.js"></script>
 <script src="../../../node_modules/hammerjs/hammer.min.js"></script>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

@@ -3,7 +3,7 @@
     <div class="background" v-if="background">
       <img v-lazy="background" />
     </div>
-    <template v-if="$store.state.settings.global.header_design === 'full'">
+    <template v-if="$store.state.settings.header.design === 'full'">
       <a :href="typer.current.length > 0 ? 'https://www.google.com/#q=' + typer.current : null" v-show="$route.path === '/'">
         <vue-typer tag="h1" :text="messages" pre-erase-delay='5000' erase-delay='250'
         :shuffle='true' :repeat='messages.length === 1 ? 0 : Infinity' @erased='addTrends' @typed='onTyped'></vue-typer>

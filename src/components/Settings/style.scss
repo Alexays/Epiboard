@@ -1,5 +1,13 @@
 #settings {
-  .card {
+  .container.card {
     padding: 30px;
+    .design-layout {
+      .flex {
+        margin: 7px;
+        .design {
+          padding: 7px;
+        }
+      }
+    }
   }
 }

@@ -53,10 +53,10 @@ export default {
     },
     getUserInfo() {
       return this.axios.get(`${API}/user/?format=json`)
-        .then((response) => {
-          if (!response.data) return;
+        .then((res) => {
+          if (!res.data) return;
           this.is_logged = true;
-          Object.assign(this.user, response.data);
+          this.user = res.data;
         }).catch(() => {
           this.is_logged = false;
         })
@@ -201,6 +201,6 @@ export default {
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())
       .then(() => this.$emit('init', omit(this.$data, ['gpa_precision', 'timeline'])))
-      .catch(() => this.$emit('init', false));
+      .catch(err => this.$emit('init', err));
   },
 };

@@ -13,22 +13,9 @@
 export default {
   name: 'app',
   computed: {
-    enabled() {
-      return this.$store.state.settings.dark;
+    dark() {
+      return this.$utils.isDark(this.$store.state.settings.dark);
     },
-  },
-  watch: {
-    enabled: {
-      handler(val) {
-        this.dark = this.$utils.isDark(val);
-      },
-      deep: true,
-    },
-  },
-  data() {
-    return {
-      dark: false,
-    };
   },
 };
 </script>

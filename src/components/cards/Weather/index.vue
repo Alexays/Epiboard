@@ -10,7 +10,7 @@
             <v-flex>
               <v-layout row wrap class="main">
                 <v-flex>
-                  <img :title="today.weather[0].description" :src="'/static/img/weather-'+ getImg(today.weather[0]['id']) +'.png'"/>
+                  <img :title="today.weather[0].description" :src="'/static/img/weather/weather-'+ getImg(today.weather[0]['id']) +'.png'"/>
                 </v-flex>
                 <v-flex>
                   <p class="temp">{{today.main.temp}}
@@ -24,7 +24,7 @@
                 <v-flex v-for="day in forecast" :key="day.dt">
                   <v-layout column align-center>
                     <v-flex>
-                      <img :title="`${day.main.temp}°C - ${day.weather[0].description}`" :src="'/static/img/weather-'+ getImg(day.weather[0]['id']) +'.png'"/>
+                      <img :title="`${day.main.temp}°C - ${day.weather[0].description}`" :src="'/static/img/weather/weather-'+ getImg(day.weather[0]['id']) +'.png'"/>
                     </v-flex>
                     <v-flex>
                       {{ day.dayName }}

@@ -13,8 +13,10 @@ export default {
     return {
       grid: null,
       fab: false,
-      cardsKeys: {},
-      cardsKeysSettings: {},
+      keys: {
+        cards: {},
+        settings: {},
+      },
       cards: {},
       cards$: {},
       cardsSettings: {},
@@ -25,13 +27,10 @@ export default {
       return isEmpty(this.cards);
     },
     availableCards() {
-      return omit(this.cardsKeys, Object.keys(this.cards).concat(['Changelog']));
+      return omit(this.keys.cards, Object.keys(this.cards).concat(['Changelog']));
     },
     showFab() {
-      if (isEmpty(this.cards) && this.grid == null) {
-        return true;
-      }
-      return isEmpty(this.availableCards);
+      return !isEmpty(this.availableCards) && this.grid != null;
     },
   },
   methods: {
@@ -41,9 +40,9 @@ export default {
         this.$set(this.cards[key], 'init', true);
         this.$ga.event('cards', 'used', key, ((this.$store.state || {}).cards || []).indexOf(key));
       }
-      if (data === false) {
+      if (data instanceof Error) {
         Toast.show({
-          text: `${key} got a loading error, please try again later.`,
+          text: `${key} got a loading error, please try again later.${this.$store.state.settings.debug ? `<br/>${data.message}` : ''}`,
           color: 'error',
           timeout: 10000,
           dismissible: false,
@@ -138,13 +137,13 @@ export default {
     },
     showCardsSettings(key) {
       if (!this.cardsSettings[key]) {
-        this.cardsSettings[key] = Cards(this.cardsKeysSettings[key]).default;
+        this.cardsSettings[key] = Cards(this.keys.settings[key]).default;
       }
       this.$set(this.cards[key], 'showSettings', true);
     },
     getCardsSettings(key) {
-      if (this.cardsKeysSettings[key] && !this.cardsSettings[key]) {
-        this.cardsSettings[key] = Cards(this.cardsKeysSettings[key]).default;
+      if (this.keys.settings[key] && !this.cardsSettings[key]) {
+        this.cardsSettings[key] = Cards(this.keys.settings[key]).default;
       }
       if (this.cardsSettings[key]) {
         const data = this.cardsSettings[key].data();
@@ -171,11 +170,10 @@ export default {
           settings[keys[i].split('/')[1]] = keys[i];
         }
       }
-      this.cardsKeys = cards;
-      this.cardsKeysSettings = settings;
+      this.keys = { cards, settings };
     },
     getCards() {
-      let cards = (this.$store.state || {}).cards || [];
+      let cards = this.$store.state.cards || [];
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
       if (cards.indexOf('Changelog') === -1 && lastVersion && lastVersion !== version) {
@@ -183,61 +181,48 @@ export default {
         this.$store.commit('SET_CARDS', cards);
       }
       this.$store.commit('SET_VERSION', version);
-      const cardsMap = pick(this.cardsKeys, cards);
+      const cardsMap = pick(this.keys.cards, cards);
       const keys = Object.keys(cardsMap);
-      const cards$ = [];
+      const permissions = { origins: [], permissions: [] };
+      const cards$ = {};
       for (let i = 0; i < keys.length; i += 1) {
         const tmp = Cards(cardsMap[keys[i]]).default;
         if (!tmp.permissions && !tmp.origins) {
           this.$set(this.cards, keys[i], tmp);
         } else {
-          cards$.push(this.$utils.permissions.allowed({
-            permissions: tmp.permissions || [],
-            origins: tmp.origins || [],
-          }).then(res => (res ? tmp : null)));
+          permissions.permissions = [...permissions.permissions, ...(tmp.permissions || [])];
+          permissions.origins = [...permissions.origins, ...(tmp.origins || [])];
+          cards$[keys[i]] = tmp;
         }
       }
-      return [cards, cards$];
+      return this.$utils.permissions.allowed(permissions)
+        .then((res) => {
+          if (res) {
+            this.cards = { ...this.cards, ...cards$ };
+            return cards;
+          }
+          throw new Error(`${Object.keys(cards$).join(', ')} needs new permissions that it cannot have, retry later.`);
+        });
     },
   },
   mounted() {
     this.getCardsKeys();
-    const [cards, cards$] = this.getCards();
-    Promise.all(cards$).then((data) => {
-      for (let i = 0; i < data.length; i += 1) {
-        if (data[i]) this.$set(this.cards, data[i].name, data[i]);
-        else {
-          Toast.show({
-            text: `${data[i].name} needs new permissions please add it manually.`,
-            color: 'error',
-            timeout: 10000,
-            dismissible: false,
-          });
-        }
-      }
+    this.getCards().then((cards) => {
       this.$nextTick(() => {
         this.grid = new Muuri('#card-container', {
           items: '.card',
           dragEnabled: true,
-          layout: {
-            fillGaps: true,
-          },
-          dragStartPredicate: {
-            handle: '.head-drag',
-          },
+          layout: { fillGaps: true },
+          dragStartPredicate: { handle: '.head-drag' },
           dragSortInterval: 0,
           layoutOnInit: false,
-          sortData: {
-            id: (item, element) => element.getAttribute('data-id'),
-          },
+          sortData: { id: (item, element) => element.getAttribute('data-id') },
         });
         if (cards.length) {
           this.grid
-            .sort((a, b) => ((cards.indexOf(a._sortData.id) - cards.indexOf(b._sortData.id))), {
+            .sort((a, b) => ((cards.indexOf(a.getElement().getAttribute('data-id')) - cards.indexOf(b.getElement().getAttribute('data-id')))), {
               layout: 'instant',
             });
-        } else {
-          this.grid.layout(true);
         }
         this.handleSize();
         this.grid.on('dragEnd', () => {
@@ -245,6 +230,11 @@ export default {
           this.$store.commit('SET_CARDS', order);
         });
       });
-    });
+    }).catch(err => Toast.show({
+      text: err.message,
+      color: 'error',
+      timeout: 10000,
+      dismissible: false,
+    }));
   },
 };

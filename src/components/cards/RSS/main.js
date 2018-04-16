@@ -56,6 +56,6 @@ export default {
         });
       })
       .then(() => this.$emit('init', this.$data))
-      .catch(() => this.$emit('init', false));
+      .catch(err => this.$emit('init', err));
   },
 };

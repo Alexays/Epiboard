@@ -13,7 +13,7 @@
       v-if="icon.length > 0">
       {{ icon }}
     </v-icon>
-    {{ text }}
+    <span v-html="text"></span>
     <v-btn v-if="dismissible" flat @click="dismiss">Close</v-btn>
   </v-snackbar>
 

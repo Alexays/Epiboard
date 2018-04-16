@@ -49,6 +49,7 @@ export default {
         });
     },
     getForecast(query) {
+      if (!this.settings.forecast) return Promise.resolve();
       return this.fetch('forecast', query)
         .then((res) => {
           this.forecast = res.data.list.map((f) => {
@@ -83,6 +84,6 @@ export default {
       .then(this.getQuery)
       .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
       .then(() => this.$emit('init', this.$data))
-      .catch(() => this.$emit('init', false));
+      .catch(err => this.$emit('init', false, err));
   },
 };

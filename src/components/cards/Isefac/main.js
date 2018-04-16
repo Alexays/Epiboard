@@ -53,7 +53,7 @@ export default {
   mounted() {
     Promise.all([this.getCalendar()])
       .then(() => this.$emit('init', this.$data))
-      .catch(() => this.$emit('init', false))
+      .catch(err => this.$emit('init', err))
       .finally(() => {
         this.loading = false;
       });

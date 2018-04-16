@@ -40,7 +40,7 @@ export default {
         return this.request(payload);
       }).catch(() => Dialog.show({
         title: 'Permissions are required',
-        text: 'A card request permission that is necessary for it to work properly, are you okay?',
+        text: 'Some cards ask for permissions that are necessary for them to work properly, are they okay?',
         ok: 'Allow',
         cancel: 'Deny',
       }).then((res) => {

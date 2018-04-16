@@ -43,7 +43,7 @@ Vue.use(VueAnalytics, {
   set: [{ field: 'checkProtocolTask', value: null }],
   router,
   debug: {
-    sendHitTask: JSON.parse(localStorage.getItem('analytics') || 'true'),
+    sendHitTask: localStorage.getItem('analytics') !== 'false',
   },
 });
 Vue.use(Vuex);
@@ -84,11 +84,13 @@ Vue.use(VueLazyload, {
         listener.el.setAttribute('lazy-progressive', 'true');
         const idx = listener.src.lastIndexOf('.');
         listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
+        /* eslint-enable no-param-reassign */
       }
     },
   },
 });
 Vue.use(utils);
+router.replace('/');
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',
@@ -96,7 +98,6 @@ new Vue({
   store,
   render: h => h(App),
 });
-router.replace('/');
 Vue.directive('init', {
   isLiteral: true,
   bind: (el, binding, vnode) => {
@@ -107,6 +108,7 @@ Vue.directive('init', {
       : pick(vnode.context.$store.state.cache.cards[binding.value.key] || {}, keys);
     for (let i = 0; i < keys.length; i += 1) {
       if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
+        /* eslint-disable-next-line no-param-reassign */
         vnode.componentInstance.$data[keys[i]] = data[keys[i]];
       }
     }

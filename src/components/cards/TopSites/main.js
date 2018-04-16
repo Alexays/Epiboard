@@ -12,10 +12,8 @@ export default {
       return new Promise((resolve, reject) => {
         browser.topSites.get((topSites) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          this.topSites = topSites.slice(0, this.settings.maxSites);
-          this.topSites = this.topSites.map(f => Object.assign(f, {
-            icon: this.$utils.getFavicon(f.url),
-          }));
+          this.topSites = topSites.slice(0, this.settings.maxSites)
+            .map(f => ({ ...f, ...{ icon: this.$utils.getFavicon(f.url) } }));
           return resolve();
         });
       });
@@ -24,6 +22,6 @@ export default {
   mounted() {
     Promise.all([this.getTopSites()])
       .then(() => this.$emit('init'))
-      .catch(() => this.$emit('init', false));
+      .catch(err => this.$emit('init', false, err));
   },
 };

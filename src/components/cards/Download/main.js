@@ -86,6 +86,6 @@ export default {
         this.listenCreate();
       })
       .then(() => this.$emit('init'))
-      .catch(() => this.$emit('init', false));
+      .catch(err => this.$emit('init', err));
   },
 };
