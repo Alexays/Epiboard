@@ -144,7 +144,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       }
     ]),
     new webpack.ProvidePlugin({
-      'browser': 'webextension-polyfill',
+      browser: 'webextension-polyfill',
+      d3: 'd3',
     }),
     new WebpackShellPlugin({
       onBuildEnd: ['node ./build/remove-evals.js']

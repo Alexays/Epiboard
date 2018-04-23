@@ -26,6 +26,9 @@ header {
       object-position: center;
       height: 100%;
       width: 100%;
+      &[lazy=loading] {
+        filter: blur(5px);
+      }
     }
   }
   .toolbar {
@@ -38,9 +41,6 @@ header {
     .input-group--text-field {
       flex-basis: 100%;
     }
-  }
-  .background[lazy=loading] {
-    filter: blur(15px);
   }
   a,
   .vue-typer {

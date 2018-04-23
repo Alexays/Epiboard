@@ -117,7 +117,7 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
-    <v-dialog v-model="timeline.enabled" :scrollable="true" max-width="80%">
+    <v-dialog v-model="timeline.enabled" lazy :scrollable="true" max-width="80%">
         <v-card>
           <v-card-text>
             <div id="timeline">

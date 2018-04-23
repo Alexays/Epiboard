@@ -15,6 +15,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-element-queries": "^1.0.2",
+    "d3": "^5.1.0",
+    "d3-gtimeline": "0.0.3",
     "hammerjs": "^2.0.8",
     "lodash": "^4.17.5",
     "marked": "^0.3.19",
@@ -25,10 +27,9 @@
     "vue-axios": "^2.1.1",
     "vue-router": "^3.0.1",
     "vue-typer": "^1.2.0",
-    "vuetify": "^1.0.14",
+    "vuetify": "^1.0.16",
     "vuex": "^3.0.1",
-    "vuex-persist": "^1.1.6",
-    "google-charts": "^1.1.0"
+    "vuex-persist": "^1.1.6"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",
@@ -41,7 +42,7 @@
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.0",
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
@@ -73,7 +74,7 @@
     "style-loader": "^0.20.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "uglifyjs-webpack-plugin": "^1.2.4",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "vue-lazyload": "^1.2.3",
     "vue-loader": "^14.2.2",

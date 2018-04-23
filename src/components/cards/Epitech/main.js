@@ -1,4 +1,4 @@
-import { GoogleCharts } from 'google-charts';
+import { timeline } from 'd3-gtimeline';
 import omit from 'lodash/omit';
 
 const API = 'https://intra.epitech.eu';
@@ -121,23 +121,12 @@ export default {
     },
     drawTimeline() {
       const date = new Date();
-      const data = GoogleCharts.api.visualization.arrayToDataTable([
-        [{ type: 'string', label: 'Module' }, { type: 'string', label: 'Project' }, { type: 'date', label: 'Start' }, { type: 'date', label: 'End' }],
-        [date.toLocaleDateString(), 'Now', date, date],
-        ...this.timeline.data,
-      ]);
-      const chart = new GoogleCharts.api.visualization.Timeline(document.getElementById('timeline'));
-      const dark = this.$utils.isDark(this.$store.state.settings.dark);
-      chart.draw(data, {
-        title: 'Timeline',
-        height: data.getNumberOfRows() * 21,
-        backgroundColor: dark ? '#424242' : '#ffffff',
-        timeline: {
-          rowLabelStyle: { color: dark ? '#ffffff' : '#000000' },
-        },
-      });
-      document.querySelector('rect[fill="#4285f4"]').setAttribute('height', (data.getNumberOfRows() * 19) - 4);
-      document.querySelector('rect[fill="#4285f4"]').setAttribute('width', 1);
+      const chart = timeline();
+      chart.today(true);
+      d3.select('#timeline').datum(this.timeline.data).call(chart);
+      // const height = document.querySelector('svg.timeline').clientHeight;
+      // document.querySelector('rect[width="0"]').setAttribute('height', height - 16.5);
+      // document.querySelector(`rect[height="${height - 16.5}"]`).setAttribute('width', 1);
       this.timeline.loading = false;
     },
     getTimeline() {
@@ -152,19 +141,19 @@ export default {
         }).map(f => this.axios.get(`${API}/module/${this.user.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)))
         .then(data => Promise.all(data))
         .then((res) => {
-          const timeline = [];
+          const chart = [];
           const data = res.map(f => f.data);
           for (let i = 0; i < data.length; i += 1) {
             for (let j = 0; j < data[i].activites.length; j += 1) {
               if (data[i].activites[j].type_code === 'proj') {
                 const begin = this.parseCalendarDate(data[i].activites[j].begin);
                 const end = this.parseCalendarDate(data[i].activites[j].end);
-                timeline.push([data[i].title, data[i].activites[j].title, begin, end]);
+                chart.push([data[i].title, data[i].activites[j].title, begin, end]);
               }
             }
           }
-          this.timeline.data = timeline;
-          GoogleCharts.load(this.drawTimeline, 'timeline');
+          this.timeline.data = chart;
+          this.drawTimeline();
         });
     },
     getGpa() {

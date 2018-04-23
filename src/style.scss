@@ -47,10 +47,6 @@ p {
   }
 }
 
-rect[fill="#4285f4"], rect[fill="#4285f4"] + text {
-  pointer-events: none;
-}
-
 .no-margins {
   margin: 0!important;
 }
