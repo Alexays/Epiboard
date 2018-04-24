@@ -27,7 +27,7 @@
     "vue-axios": "^2.1.1",
     "vue-router": "^3.0.1",
     "vue-typer": "^1.2.0",
-    "vuetify": "^1.0.16",
+    "vuetify": "^1.0.17",
     "vuex": "^3.0.1",
     "vuex-persist": "^1.1.6"
   },

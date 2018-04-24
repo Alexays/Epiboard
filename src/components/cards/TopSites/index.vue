@@ -5,7 +5,7 @@
 				<a :href="node.url">
 				  <i v-if="node.icon" :style="{'background-image': 'url('+node.icon+')'}"></i>
           <i v-else class="material-icons">insert_drive_file</i>
-				  <span class="n-title">{{node.title}}</span>
+				  <span class="n-title">{{node.title || node.url}}</span>
 			  </a>
 			</li>
 		</ul>
