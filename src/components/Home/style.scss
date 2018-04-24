@@ -1,20 +1,14 @@
 #home {
   position: relative;
-  z-index: 0;
   .speed-dial {
     position: absolute;
     top: -35px;
-    right: 5px;
-    z-index: 1;
-    .icon {
-      display: inline-flex;
-    }
   }
   #card-container {
     position: relative;
     margin: 20px auto;
     z-index: 0;
-    &.dtoolbar {
+    &.design-toolbar {
       margin: 35px auto;
     }
     .card__title {
@@ -30,7 +24,8 @@
     // .card:not(.muuri-item-shown) {
     //   visibility: hidden;
     // }
-  } // While waiting for a muuri update this is the easiest way to center the cards.
+  }
+  // While waiting for a muuri update this is the easiest way to center the cards.
   // 1 column
   @media (max-width: 859px) {
     #card-container {

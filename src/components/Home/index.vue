@@ -12,8 +12,8 @@
         </v-btn>
       </v-speed-dial>
     </v-fab-transition>
-    <transition-group name="fade" appear tag="div" id="card-container" :class="{ dtoolbar: $store.state.settings.header.design === 'toolbar' }">
-      <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" v-bind:width="card.size * 430 - 30 + 'px'">
+    <transition-group name="fade" appear tag="div" id="card-container" :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }">
+      <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" :width="(card.size || 1) * 430 - 30 + 'px'">
         <v-card-title class="head-drag" :class="{'blue-grey': !card.custom || card.showSettings, custom: card.custom && !card.showSettings, 'white--text': !card.custom || card.showSettings}">
           <span v-show="!card.showSettings" class="headline">{{card.title || card.name || key}}</span>
           <span v-show="card.showSettings" class="headline">{{card.name || key}}</span>

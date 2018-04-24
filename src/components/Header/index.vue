@@ -16,7 +16,7 @@
         <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </template>
-    <v-toolbar v-else card absolute prominent>
+    <v-toolbar v-else prominent>
       <v-btn @click="search" icon :disabled="$route.path === '/settings'">
         <v-icon>&#xE8B6;</v-icon>
       </v-btn>
