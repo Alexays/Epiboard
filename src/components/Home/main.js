@@ -18,7 +18,6 @@ export default {
         settings: {},
       },
       cards: {},
-      cards$: {},
       cardsSettings: {},
     };
   },
@@ -65,23 +64,6 @@ export default {
         this.cards[key].saveSettings = false;
       }
     },
-    resize(value) {
-      if (value) {
-        const keys = Object.keys(value);
-        const oldCards = [...document.getElementsByClassName('card')].filter(f => keys.indexOf(f.getAttribute('data-id')) < 0);
-        this.grid.remove(oldCards, {
-          removeElements: true,
-          layout: false,
-        });
-        this.$nextTick(() => {
-          this.grid.refreshItems();
-          this.grid.layout();
-        });
-        return;
-      }
-      this.grid.refreshItems();
-      this.grid.layout(true);
-    },
     deleteCard(key) {
       if (this.cards[key].permissions || this.cards[key].origins) {
         this.$utils.permissions.remove({
@@ -90,12 +72,20 @@ export default {
         });
       }
       this.$delete(this.cards, key);
-      this.cards$[key].detach(this.resize);
-      this.$delete(this.cards$, key);
       this.setCards(key);
+      this.$nextTick(() => {
+        const elem = document.querySelector(`[data-id='${key}']`);
+        if (elem) this.grid.remove(elem, { removeElements: true });
+      });
       this.$ga.event('cards', 'delete', key, 0);
       this.$store.commit('DEL_CARD_SETTINGS', key);
       this.$store.commit('SET_CARDS', Object.keys(this.cards));
+    },
+    resize(elem) {
+      return () => {
+        this.grid.refreshItems(elem);
+        this.grid.layout(true);
+      };
     },
     addCard(key, value) {
       const tmp = Cards(value).default;
@@ -119,20 +109,17 @@ export default {
         this.$set(this.cards, key, tmp);
         this.$nextTick(() => {
           const elem = document.querySelector(`[data-id='${key}']`);
-          this.grid.add(elem, {
-            layout: false,
-          });
-          this.cards$[elem.getAttribute('data-id')] = new ResizeSensor(elem, this.resize); // eslint-disable-line no-new
+          this.grid.add(elem);
+          new ResizeSensor(elem, this.resize(elem)); // eslint-disable-line no-new
         });
         this.$ga.event('cards', 'add', key, 1);
         this.$store.commit('SET_CARDS', Object.keys(this.cards));
       });
     },
     handleSize() {
-      this.$watch('$data.cards', this.resize);
       const cards = document.getElementsByClassName('card');
       for (let i = 0; i < cards.length; i += 1) {
-        this.cards$[cards[i].getAttribute('data-id')] = new ResizeSensor(cards[i], this.resize); // eslint-disable-line no-new
+        new ResizeSensor(cards[i], this.resize(cards[i])); // eslint-disable-line no-new
       }
     },
     showCardsSettings(key) {
