@@ -29,6 +29,7 @@ const router = new Router({
     },
   ],
 });
+router.push('/');
 
 router.beforeEach((to, from, next) => {
   if (store._vm.$root.$data['vuex-persit-wait'] !== 2) {

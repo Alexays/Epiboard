@@ -90,7 +90,6 @@ Vue.use(VueLazyload, {
   },
 });
 Vue.use(utils);
-router.replace('/');
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',
