@@ -15,9 +15,7 @@
               {{user.title}}
               <br>
               <v-chip label v-on:click="getGpa()" title="Click to get a precision gpa">
-                <span v-if="gpa_precision.loading" title="Calculating GPA">
-                  <v-progress-circular indeterminate :size="16" :width="2"></v-progress-circular>
-                </span>
+                <v-progress-circular v-if="gpa_precision.loading" title="Calculating GPA" indeterminate :size="16" :width="2"></v-progress-circular>
                 <span v-else>
                   {{gpa_precision.val || user.gpa[0].gpa}}
                   <small>&nbsp;G.P.A.</small>
