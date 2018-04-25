@@ -1,7 +1,8 @@
 import Toast from '@/components/Toast';
 
 export default {
-  name: 'Quick Settings',
+  name: 'QuickSettings',
+  title: 'Quick Settings',
   props: ['settings'],
   components: {},
   data() {

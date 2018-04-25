@@ -35,6 +35,10 @@ import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';
 
+require('vuetify/src/stylus/app.styl');
+require('./style.scss');
+
+Vue.config.devtools = true;
 Vue.config.productionTip = false;
 
 Vue.use(VueAnalytics, {

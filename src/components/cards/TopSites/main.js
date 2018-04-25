@@ -1,5 +1,6 @@
 export default {
-  name: 'Top Sites',
+  name: 'TopSites',
+  title: 'Top Sites',
   props: ['settings'],
   components: {},
   data() {

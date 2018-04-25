@@ -9,7 +9,7 @@
       <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
-        <v-tab-item>
+        <v-tab-item lazy>
           <div v-if="!user.loading && !this.settings.hideInfo" class="padding text-xs-center">
             <h3>
               {{user.title}}
@@ -37,7 +37,7 @@
             </span>
           </div>
           <div v-if="!projects.loading && projects.data.length" class="project">
-            <div class="p-timeline" v-for="(project, key) in projects.data" :key="key">
+            <div class="p-timeline" v-for="project in projects.data" :key="project.title">
               <a target="_blank" v-bind:href="getLink(project.title_link)">
                 <h4>{{project.title}}</h4>
               </a>
@@ -58,27 +58,25 @@
             <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
           </div>
           <div v-else-if="!projects.data.length" class="text-xs-center no-projects">
-              <i class="material-icons md-48">work</i>
-              <h2 class="subheading">No on going projects, well done !</h2>
+            <i class="material-icons md-48">work</i>
+            <h2 class="subheading">No on going projects, well done !</h2>
           </div>
           <v-btn class="no-margins" v-if="!user.loading" block dark depressed small color="blue-grey" @click="getTimeline()">timeline</v-btn>
         </v-tab-item>
-        <v-tab-item>
+        <v-tab-item lazy>
           <div class="upcomings padding">
             <v-list v-if="!upcomings.loading" three-line dense>
-              <template v-for="upcoming of upcomings.data">
-                <v-list-tile :key="upcoming">
-                  <v-list-tile-content>
-                    <v-list-tile-title>{{upcoming.room.code | filename}}</v-list-tile-title>
-                    <v-list-tile-sub-title v-html="upcoming.acti_title  + '<br/> From ' + upcoming.startString + ' to ' + upcoming.endString"></v-list-tile-sub-title>
-                  </v-list-tile-content>
-                  <v-list-tile-action :title="upcoming.total_students_registered + ' student(s) for ' + upcoming.room.seats + ' seats'">
-                    <v-chip v-if="!upcoming.is_rdv" label disabled>
-                      {{upcoming.total_students_registered}}/{{upcoming.room.seats}}
-                    </v-chip>
-                  </v-list-tile-action>
-                </v-list-tile>
-              </template>
+              <v-list-tile v-for="upcoming of upcomings.data" :key="upcoming.acti_title">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{upcoming.room.code | filename}}</v-list-tile-title>
+                  <v-list-tile-sub-title v-html="upcoming.acti_title  + '<br/> From ' + upcoming.startString + ' to ' + upcoming.endString"></v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action :title="upcoming.total_students_registered + ' student(s) for ' + upcoming.room.seats + ' seats'">
+                  <v-chip v-if="!upcoming.is_rdv" label disabled>
+                    {{upcoming.total_students_registered}}/{{upcoming.room.seats}}
+                  </v-chip>
+                </v-list-tile-action>
+              </v-list-tile>
               <div v-if="!upcomings.data.length" class="text-xs-center">
                 <i class="material-icons md-48">room</i>
                 <h2 class="subheading">No upcoming activities, go get some rest !</h2>
@@ -89,22 +87,20 @@
             </div>
           </div>
         </v-tab-item>
-        <v-tab-item>
+        <v-tab-item lazy>
           <div class="rooms padding">
             <v-list v-if="!rooms.loading" three-line dense>
-              <template v-for="room of rooms.data">
-                <v-list-tile :key="room">
-                  <v-list-tile-content>
-                    <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
-                    <v-list-tile-sub-title v-html="room.acti_title + '<br/> Taken from ' + room.startString + ' to ' + room.endString"></v-list-tile-sub-title>
-                  </v-list-tile-content>
-                  <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
-                    <v-chip v-if="!room.is_rdv" label disabled>
-                      {{room.total_students_registered}}/{{room.room.seats}}
-                    </v-chip>
-                  </v-list-tile-action>
-                </v-list-tile>
-              </template>
+              <v-list-tile v-for="room of rooms.data" :key="room.acti_title">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
+                  <v-list-tile-sub-title v-html="room.acti_title + '<br/> Taken from ' + room.startString + ' to ' + room.endString"></v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
+                  <v-chip v-if="!room.is_rdv" label disabled>
+                    {{room.total_students_registered}}/{{room.room.seats}}
+                  </v-chip>
+                </v-list-tile-action>
+              </v-list-tile>
               <div v-if="!rooms.data.length" class="text-xs-center">
                 <i class="material-icons md-48">room</i>
                 <h2 class="subheading">No occuped rooms, have fun !</h2>
@@ -118,13 +114,13 @@
       </v-tabs-items>
     </v-tabs>
     <v-dialog v-model="timeline.enabled" lazy :scrollable="true" max-width="80%">
-        <v-card>
-          <v-card-text>
-            <div id="timeline">
-              <v-progress-linear v-show="timeline.loading" v-bind:indeterminate="true"></v-progress-linear>
-            </div>
-          </v-card-text>
-        </v-card>
+      <v-card>
+        <v-card-text>
+          <div id="timeline">
+            <v-progress-linear v-show="timeline.loading" v-bind:indeterminate="true"></v-progress-linear>
+          </div>
+        </v-card-text>
+      </v-card>
     </v-dialog>
   </div>
 </template>

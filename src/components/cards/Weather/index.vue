@@ -21,7 +21,7 @@
             </v-flex>
             <v-flex v-if="settings.forecast" class="forecast">
               <v-layout row wrap>
-                <v-flex v-for="day in forecast" :key="day.dt">
+                <v-flex v-for="day in forecast" :key="day.dayName">
                   <v-layout column align-center>
                     <v-flex>
                       <img :title="`${day.main.temp}°C - ${day.weather[0].description}`" :src="'/static/img/weather/weather-'+ getImg(day.weather[0]['id'], false) +'.png'"/>

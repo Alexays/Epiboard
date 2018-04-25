@@ -184,11 +184,9 @@ export default {
       }
       return this.$utils.permissions.allowed(permissions)
         .then((res) => {
-          if (res) {
-            this.cards = { ...this.cards, ...cards$ };
-            return cards;
-          }
-          throw new Error(`${Object.keys(cards$).join(', ')} needs new permissions that it cannot have, retry later.`);
+          if (!res) throw new Error(`${Object.keys(cards$).join(', ')} needs new permissions that it cannot have, retry later.`);
+          this.cards = { ...this.cards, ...cards$ };
+          return cards;
         });
     },
   },
