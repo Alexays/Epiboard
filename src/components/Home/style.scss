@@ -3,6 +3,7 @@
   .speed-dial {
     position: absolute;
     top: -35px;
+    z-index: 1;
   }
   #card-container {
     position: relative;
