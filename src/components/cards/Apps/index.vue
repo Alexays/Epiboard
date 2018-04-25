@@ -1,9 +1,9 @@
 <template>
   <div id="apps" class="padding">
     <ul class="app-list">
-      <li class="app" v-for="app in apps" :key="app">
-        <div v-on:click="launch(app)">
-          <i v-bind:style="{ 'background-image': 'url('+app.icon+')' }"></i>
+      <li class="app" v-for="app in apps" :key="app.name">
+        <div :title="app.name" v-on:click="launch(app)">
+          <i v-bind:style="{ 'background-image': `url(${app.icon})` }"></i>
         </div>
       </li>
     </ul>
