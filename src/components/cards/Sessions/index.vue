@@ -7,7 +7,7 @@
         {{ device.deviceName }}
       </v-tab>
       <v-tabs-items>
-        <v-tab-item class="padding">
+        <v-tab-item lazy class="padding">
           <div v-if="!recentlyClosed.length" class="text-xs-center session-empty">
             <i class="material-icons md-48">find_in_page</i>
             <h2 class="subheading">You have no recently closed page.</h2>
