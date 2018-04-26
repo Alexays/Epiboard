@@ -18,7 +18,7 @@
           <span v-show="card.showSettings" class="headline">{{card.name || key}}</span>
           <div>
             <v-progress-circular :title="`${card.name || key} is fetching some data...`" v-show="!card.init" size="25" :width="2" indeterminate color="white"></v-progress-circular>
-            <v-menu v-show="!card.showSettings" bottom offset-y>
+            <v-menu v-show="!card.showSettings" lazy bottom offset-y>
               <v-btn flat icon slot="activator">
                 <v-icon color="white">more_vert</v-icon>
               </v-btn>
