@@ -1,5 +1,5 @@
 import Muuri from 'muuri';
-import { ResizeSensor } from 'css-element-queries';
+import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';

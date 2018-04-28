@@ -2,9 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from '@/store';
 
-const Header = () => import('@/components/Header');
-const Home = () => import('@/components/Home');
-const Settings = () => import('@/components/Settings');
+const Header = () => import(/* webpackChunkName: "header" */ '@/components/Header');
+const Home = () => import(/* webpackChunkName: "home" */ '@/components/Home');
+const Settings = () => import(/* webpackChunkName: "settings" */ '@/components/Settings');
 
 Vue.use(Router);
 

@@ -32,7 +32,7 @@
     "vuex-persist": "^1.1.6"
   },
   "devDependencies": {
-    "autoprefixer": "^8.3.0",
+    "autoprefixer": "^8.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -78,7 +78,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "vue-lazyload": "^1.2.3",
-    "vue-loader": "^15.0.3",
+    "vue-loader": "^15.0.4",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "webextension-polyfill": "^0.2.1",
