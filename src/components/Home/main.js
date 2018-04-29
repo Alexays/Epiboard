@@ -122,7 +122,7 @@ export default {
       return {};
     },
     getCardCmp(key) {
-      return () => import(`@/components/cards/${this.keys.cards[key]}`)
+      return () => import(/* webpackMode: "lazy-once" */ `@/components/cards/${this.keys.cards[key]}`)
         .then((tmp) => {
           const cmp = tmp.default;
           const settings = ['size', 'title', 'custom'];
@@ -148,7 +148,7 @@ export default {
         })
         .then((tmp) => {
           if (this.keys.settings[key]) {
-            return import(`@/components/cards/${this.keys.settings[key]}`)
+            return import(/* webpackMode: "lazy-once" */ `@/components/cards/${this.keys.settings[key]}`)
               .then((data) => {
                 this.$set(this.cardsSettings, key, data.default);
                 return tmp;
