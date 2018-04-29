@@ -23,6 +23,23 @@ const transformManifestJson = (content) => {
   return JSON.stringify(jsonContent, null, 2);
 };
 
+const getCards = () => {
+  const keys = {
+    cards: {},
+    settings: {},
+  };
+  const cardsKeys = glob.sync('./src/components/cards/*/+(index|settings).vue')
+    .map(f => f.replace('./src/components/cards/', ''));
+  for (let i = 0; i < cardsKeys.length; i += 1) {
+    if (cardsKeys[i].endsWith('index.vue')) {
+      keys.cards[cardsKeys[i].split('/')[0]] = cardsKeys[i];
+    } else if (cardsKeys[i].endsWith('settings.vue')) {
+      keys.settings[cardsKeys[i].split('/')[0]] = cardsKeys[i];
+    }
+  }
+  return keys;
+};
+
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   module: {
@@ -100,6 +117,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.ProvidePlugin({
       browser: 'webextension-polyfill',
       d3: 'd3',
+    }),
+    new webpack.DefinePlugin({
+      Cards: JSON.stringify(getCards()),
     }),
     new WebpackShellPlugin({
       onBuildEnd: ['node ./build/remove-evals.js']

@@ -1,6 +1,7 @@
 import Marked from 'marked';
 
 const { version } = browser.runtime.getManifest();
+const API = 'https://api.github.com/repos/alexays/epiboard/releases/tags/';
 
 export default {
   name: 'Changelog',
@@ -9,13 +10,12 @@ export default {
   components: {},
   data() {
     return {
-      API: 'https://api.github.com/repos/alexays/epiboard/releases/tags/',
       body: '',
     };
   },
   methods: {},
   mounted() {
-    this.axios.get(`${this.API}${version}`)
+    this.axios.get(`${API}${version}`)
       .then((res) => {
         this.body = Marked(res.data.body, { gfm: true, breaks: true, silent: true });
       })

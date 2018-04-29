@@ -6,7 +6,7 @@
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn :title="key" v-for="(value, key) in availableCards" :key="key" v-on:click="addCard(key, value)" dark small color="green">
+        <v-btn :title="key" v-for="(value, key) in availableCards" :key="key" v-on:click="addCard(key)" dark small color="green">
           {{key}}
         </v-btn>
       </v-speed-dial>
@@ -40,7 +40,7 @@
           </div>
         </v-card-title>
           <keep-alive>
-            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="getCardsSettings(key)" v-init="{key}" :is="card"></component>
+            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="getCardsSettings(key)" v-init="{key}" :is="card.cmd"></component>
           </keep-alive>
           <component v-if="card.showSettings && cardsSettings[key]" v-init="{key, settings: true}" :is="cardsSettings[key]"></component>
       </v-card>
