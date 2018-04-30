@@ -122,7 +122,7 @@ export default {
       return {};
     },
     getCardCmp(key) {
-      return () => import(/* webpackMode: "lazy-once" */ `@/components/cards/${this.keys.cards[key]}`)
+      return () => import(/* webpackMode: "eager" */ `@/components/cards/${this.keys.cards[key]}`)
         .then((tmp) => {
           const cmp = tmp.default;
           const settings = ['size', 'title', 'custom'];
