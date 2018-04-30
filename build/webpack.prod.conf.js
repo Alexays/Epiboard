@@ -108,6 +108,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.DefinePlugin({
       Cards: JSON.stringify(getCards()),
+      browserName: JSON.stringify(process.env.BUILD_TARGET || 'chrome'),
     }),
     new WebpackShellPlugin({
       onBuildEnd: ['node ./build/remove-evals.js']

@@ -10,6 +10,7 @@ module.exports = {
     browser: true,
     d3: true,
     Cards: true,
+    browserName: true,
   },
   env: {
     browser: true,

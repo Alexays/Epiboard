@@ -48,6 +48,7 @@ Vue.use(VueAnalytics, {
   router,
   debug: {
     sendHitTask: localStorage.getItem('analytics') !== 'false',
+    disableScriptLoader: browserName !== 'chrome',
   },
 });
 Vue.use(Vuex);
