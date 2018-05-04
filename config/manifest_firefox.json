@@ -5,6 +5,11 @@
   "description": "A new tab page extension with material design",
   "author": "Alexays",
   "version": "$version",
+  "icons": {
+    "16": "static/img/icon16.png",
+    "48": "static/img/icon48.png",
+    "128": "static/img/icon128.png"
+  },
   "permissions": [
     "storage",
     "sessions",
