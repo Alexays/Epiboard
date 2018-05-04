@@ -67,7 +67,7 @@
               <v-list-tile v-for="upcoming of upcomings.data" :key="upcoming.acti_title">
                 <v-list-tile-content>
                   <v-list-tile-title>{{upcoming.room.code | filename}}</v-list-tile-title>
-                  <v-list-tile-sub-title v-html="upcoming.acti_title  + '<br/> From ' + upcoming.startString + ' to ' + upcoming.endString"></v-list-tile-sub-title>
+                  <v-list-tile-sub-title v-html="upcoming.acti_title  + '<br/> ' + upcoming.startString + '&#8594;' + upcoming.endString"></v-list-tile-sub-title>
                 </v-list-tile-content>
                 <v-list-tile-action :title="upcoming.total_students_registered + ' student(s) for ' + upcoming.room.seats + ' seats'">
                   <v-chip v-if="!upcoming.is_rdv" label disabled>
@@ -91,7 +91,7 @@
               <v-list-tile v-for="room of rooms.data" :key="room.acti_title">
                 <v-list-tile-content>
                   <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
-                  <v-list-tile-sub-title v-html="room.acti_title + '<br/> Taken from ' + room.startString + ' to ' + room.endString"></v-list-tile-sub-title>
+                  <v-list-tile-sub-title v-html="room.acti_title + '<br/> ' + room.startString + '&#8594;' + room.endString"></v-list-tile-sub-title>
                 </v-list-tile-content>
                 <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
                   <v-chip v-if="!room.is_rdv" label disabled>

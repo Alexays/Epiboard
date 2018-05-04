@@ -19,7 +19,7 @@ export default {
       .then((res) => {
         this.body = Marked(res.data.body, { gfm: true, breaks: true, silent: true });
       })
-      .then(() => this.$emit('init'))
+      .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err));
   },
 };
