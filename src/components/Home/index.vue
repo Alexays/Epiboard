@@ -40,7 +40,7 @@
           </div>
         </v-card-title>
           <keep-alive>
-            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="getCardsSettings(key)" v-init="{key}" :is="card.cmd"></component>
+            <component v-show="!card.showSettings" @init="setCards(key, $event)" :settings="getCardsSettings(key)" v-init="{key}" :is="card.cmp"></component>
           </keep-alive>
           <component v-if="card.showSettings && cardsSettings[key]" v-init="{key, settings: true}" :is="cardsSettings[key]"></component>
       </v-card>

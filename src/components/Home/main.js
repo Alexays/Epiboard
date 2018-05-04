@@ -172,7 +172,7 @@ export default {
         this.$set(this.cards, keys[i], {
           init: false,
           showSettings: false,
-          cmd: this.getCardCmp(keys[i]),
+          cmp: this.getCardCmp(keys[i]),
         });
       }
       return cards;
