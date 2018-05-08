@@ -18,7 +18,7 @@
             </v-flex>
           </v-layout>
           <h4 class="subheading">Background</h4>
-          <v-select :items="artworks" v-model="settings.header.background" label="Pick a Background" autocomplete></v-select>
+          <v-select :items="artworks" v-model="settings.header.background" label="Choose your background city" autocomplete></v-select>
           <h4 class="headline">Dark mode</h4>
           <v-layout align-center>
             <v-switch :label="settings.dark.enabled ? `On` : `Off`" hide-details v-model="settings.dark.enabled"></v-switch>
@@ -37,7 +37,7 @@
           <h4 class="headline">Google Trends</h4>
           <v-switch v-model="settings.trends.enabled" :label="settings.trends.enabled ? `On` : `Off`"></v-switch>
           <h4 class="subheading">Country</h4>
-          <v-select :items="country" v-model="settings.trends.country" label="Pick a country" autocomplete></v-select>
+          <v-select :items="country" v-model="settings.trends.country" label="Choose your Google Trends Country" autocomplete></v-select>
           <h4 class="headline">Google Analytics</h4>
           <v-switch :label="settings.analytics ? `On` : `Off`" v-model="settings.analytics"></v-switch>
           <h4 class="headline">Debug</h4>
