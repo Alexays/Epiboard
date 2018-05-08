@@ -76,7 +76,7 @@
                 </v-list-tile-action>
               </v-list-tile>
               <div v-if="!upcomings.data.length" class="text-xs-center">
-                <i class="material-icons md-48">room</i>
+                <i class="material-icons md-48">assignment_turned_in</i>
                 <h2 class="subheading">No upcoming activities, go get some rest !</h2>
               </div>
             </v-list>
