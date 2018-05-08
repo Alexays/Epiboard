@@ -1,4 +1,3 @@
-import { timeline } from 'd3-gtimeline';
 import omit from 'lodash/omit';
 
 const API = 'https://intra.epitech.eu';
@@ -120,13 +119,7 @@ export default {
       this.upcomings.loading = false;
     },
     drawTimeline() {
-      const chart = timeline();
-      chart.today(true);
-      document.getElementById('timeline').innerHTML = '';
-      d3.select('#timeline').datum(this.timeline.data).call(chart);
-      // const height = document.querySelector('svg.timeline').clientHeight;
-      // document.querySelector('rect[width="0"]').setAttribute('height', height - 16.5);
-      // document.querySelector(`rect[height="${height - 16.5}"]`).setAttribute('width', 1);
+      document.getElementById('timeline');
       this.timeline.loading = false;
     },
     getTimeline() {

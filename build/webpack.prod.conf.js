@@ -105,7 +105,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]),
     new webpack.ProvidePlugin({
       browser: 'webextension-polyfill',
-      d3: 'd3',
     }),
     new webpack.DefinePlugin({
       Cards: JSON.stringify(getCards()),

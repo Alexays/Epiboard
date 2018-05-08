@@ -46,6 +46,9 @@ export default {
           this.today = res.data;
           this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
           this.today.main.temp |= 0;
+          if (this.today.weather[0] && this.today.weather[0].description) {
+            this.today.weather[0].description = this.today.weather[0].description.split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
+          }
         });
     },
     getForecast(query) {
@@ -55,6 +58,10 @@ export default {
           this.forecast = res.data.list.map((f) => {
             f.dt = new Date(f.dt_txt);
             f.dayName = f.dt.toLocaleString('en-US', { weekday: 'short' });
+            f.main.temp |= 0;
+            if (f.weather[0] && f.weather[0].description) {
+              f.weather[0].description = f.weather[0].description.split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
+            }
             return f;
           }).filter(f => f.dt.getDate() !== new Date().getDate() && f.dt.getHours() === 12);
         });

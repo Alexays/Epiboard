@@ -27,7 +27,6 @@ import transitions from 'vuetify/es5/components/transitions';
 import directives from 'vuetify/es5/directives';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueLazyload from 'vue-lazyload';
 import VueAnalytics from 'vue-analytics';
 import pick from 'lodash/pick';
 import App from '@/App';
@@ -80,20 +79,6 @@ Vue.use(Vuetify, {
   transitions,
 });
 Vue.use(VueAxios, axios);
-Vue.use(VueLazyload, {
-  filter: {
-    progressive(listener) {
-      const isCDN = /i.imgur.com/;
-      if (isCDN.test(listener.src)) {
-        /* eslint-disable no-param-reassign */
-        listener.el.setAttribute('lazy-progressive', 'true');
-        const idx = listener.src.lastIndexOf('.');
-        listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
-        /* eslint-enable no-param-reassign */
-      }
-    },
-  },
-});
 Vue.use(utils);
 // eslint-disable-next-line no-new
 new Vue({

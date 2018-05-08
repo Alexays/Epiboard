@@ -8,7 +8,6 @@ module.exports = {
   },
   globals: {
     browser: true,
-    d3: true,
     Cards: true,
     browserName: true,
   },

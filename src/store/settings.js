@@ -20,7 +20,7 @@ export default {
     SET_SETTINGS(state, data) {
       const keys = Object.keys(data);
       for (let i = 0; i < keys.length; i += 1) {
-        if (state[keys[i]]) state[keys[i]] = data[keys[i]];
+        if (state[keys[i]] !== undefined) state[keys[i]] = data[keys[i]];
       }
     },
   },

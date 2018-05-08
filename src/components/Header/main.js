@@ -1,7 +1,23 @@
-import isEmpty from 'lodash/isEmpty';
+import Vue from 'vue';
+import VueLazyload from 'vue-lazyload';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
 import { VueTyper } from 'vue-typer';
+
+Vue.use(VueLazyload, {
+  filter: {
+    progressive(listener) {
+      const isCDN = /i.imgur.com/;
+      if (isCDN.test(listener.src)) {
+        /* eslint-disable no-param-reassign */
+        listener.el.setAttribute('lazy-progressive', 'true');
+        const idx = listener.src.lastIndexOf('.');
+        listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
+        /* eslint-enable no-param-reassign */
+      }
+    },
+  },
+});
 
 const data = {
   // imgur album: https://imgur.com/a/NAaUE
@@ -186,7 +202,7 @@ export default {
     },
     addTrends() {
       this.current = '';
-      if (this.welcomeMessage || isEmpty(this.trends)) return;
+      if (this.welcomeMessage || !this.trends.length) return;
       this.messages = this.trends;
     },
     getBackgroundTime(url) {

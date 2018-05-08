@@ -4,6 +4,7 @@ export default {
   name: 'Settings',
   data() {
     return {
+      version: browser.runtime.getManifest().version,
       settings: {},
       artworks: [
         { text: 'Random', value: 'random' },

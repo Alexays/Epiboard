@@ -1,8 +1,6 @@
 import Muuri from 'muuri';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
-import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
-import pick from 'lodash/pick';
 import Toast from '@/components/Toast';
 
 export default {
@@ -19,13 +17,17 @@ export default {
   },
   computed: {
     emptyCards() {
-      return isEmpty(this.cards);
+      return Object.keys(this.cards).length === 0;
     },
     availableCards() {
-      return omit(this.keys.cards, Object.keys(this.cards).concat(['Changelog']));
+      let keys = Object.keys(this.cards);
+      if (!this.$store.state.settings.debug) {
+        keys = keys.concat(['Changelog']);
+      }
+      return omit(this.keys.cards, keys);
     },
     showFab() {
-      return !isEmpty(this.availableCards) && this.grid != null;
+      return Object.keys(this.availableCards).length && this.grid != null;
     },
   },
   methods: {
@@ -122,7 +124,7 @@ export default {
       return {};
     },
     getCardCmp(key) {
-      return () => import(/* webpackMode: "eager" */ `@/components/cards/${this.keys.cards[key]}`)
+      return () => import(/* webpackMode: "lazy-once", webpackChunkName: "cards" */ `@/components/cards/${this.keys.cards[key]}`)
         .then((tmp) => {
           const cmp = tmp.default;
           const settings = ['size', 'title', 'custom'];
@@ -148,7 +150,7 @@ export default {
         })
         .then((tmp) => {
           if (this.keys.settings[key]) {
-            return import(/* webpackMode: "lazy-once" */ `@/components/cards/${this.keys.settings[key]}`)
+            return import(/* webpackMode: "eager", webpackChunkName: "cards" */ `@/components/cards/${this.keys.settings[key]}`)
               .then((data) => {
                 this.$set(this.cardsSettings, key, data.default);
                 return tmp;
@@ -166,14 +168,14 @@ export default {
         this.$store.commit('SET_CARDS', cards);
       }
       this.$store.commit('SET_VERSION', version);
-      const cardsMap = pick(this.keys.cards, cards);
-      const keys = Object.keys(cardsMap);
-      for (let i = 0; i < keys.length; i += 1) {
-        this.$set(this.cards, keys[i], {
-          init: false,
-          showSettings: false,
-          cmp: this.getCardCmp(keys[i]),
-        });
+      for (let i = 0; i < cards.length; i += 1) {
+        if (this.keys.cards[cards[i]]) {
+          this.$set(this.cards, cards[i], {
+            init: false,
+            showSettings: false,
+            cmp: this.getCardCmp(cards[i]),
+          });
+        }
       }
       return cards;
     },
