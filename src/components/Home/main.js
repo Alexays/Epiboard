@@ -167,7 +167,9 @@ export default {
         cards = ['Changelog'].concat(cards);
         this.$store.commit('SET_CARDS', cards);
       }
-      this.$store.commit('SET_VERSION', version);
+      if (lastVersion !== version) {
+        this.$store.commit('SET_VERSION', version);
+      }
       for (let i = 0; i < cards.length; i += 1) {
         if (this.keys.cards[cards[i]]) {
           this.$set(this.cards, cards[i], {
