@@ -46,9 +46,11 @@ const vuexPersistEmitter = () => (store) => {
   /* eslint-disable no-param-reassign */
   store._vm.$root.$data['vuex-persit-wait'] = 0;
   store.subscribe((mutation) => {
-    if (mutation.type === 'RESTORE_MUTATION') store._vm.$root.$data['vuex-persit-wait'] += 1;
-    if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
-      store._vm.$root.$emit('storageReady');
+    if (mutation.type === 'RESTORE_MUTATION') {
+      store._vm.$root.$data['vuex-persit-wait'] += 1;
+      if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
+        store._vm.$root.$emit('storageReady');
+      }
     }
   });
   /* eslint-enable no-param-reassign */

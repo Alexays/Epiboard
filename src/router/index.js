@@ -29,6 +29,7 @@ const router = new Router({
     },
   ],
 });
+
 router.push('/');
 
 router.beforeEach((to, from, next) => {

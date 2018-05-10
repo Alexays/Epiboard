@@ -30,6 +30,7 @@
     "vuex-persist": "^1.2.2"
   },
   "devDependencies": {
+    "@vue/devtools": "^1.1.0",
     "autoprefixer": "^8.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -91,5 +92,8 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": ["Firefox >= 56", "Chrome >= 56"]
+  "browserslist": [
+    "Firefox >= 56",
+    "Chrome >= 56"
+  ]
 }

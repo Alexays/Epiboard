@@ -46,7 +46,7 @@ export default {
         });
         return;
       }
-      if (data === undefined) {
+      if (data === undefined && this.$store.state.cache.cards[key] !== undefined) {
         this.$store.commit('DEL_CARD_CACHE', key);
         return;
       }

@@ -96,6 +96,10 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: path.resolve(config.build.assetsRoot, './manifest.json'),
         transform: (content) => {
           const jsonContent = JSON.parse(content);
+          // Add devtool
+          if (process.env.NODE_ENV !== 'production' && (process.env.BUILD_TARGET || 'chrome') === 'chrome') {
+            jsonContent.content_security_policy.replace("script-src 'self'", "script-src 'self' http://localhost:8098")
+          }
           jsonContent.version = version;
           return JSON.stringify(jsonContent, null, 2);
         },
