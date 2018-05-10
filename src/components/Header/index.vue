@@ -5,7 +5,7 @@
     </div>
     <template v-if="$store.state.settings.header.design === 'full'">
       <a :href="typer.current.length > 0 ? 'https://www.google.com/#q=' + typer.current : null" v-show="$route.path === '/'">
-        <vue-typer tag="h1" :text="messages" pre-erase-delay='5000' erase-delay='250' shuffle :repeat='messages.length === 1 ? 0 : Infinity' @erased='addTrends' @typed='onTyped'></vue-typer>
+        <vue-typer tag="h1" :text="messages" :pre-erase-delay='5000' :erase-delay='250' shuffle :repeat='messages.length === 1 ? 0 : Infinity' @erased='addTrends' @typed='onTyped'></vue-typer>
       </a>
       <vue-typer v-if="$route.path !== '/'" tag="h1" :text="$route.name" :repeat='0'></vue-typer>
       <v-btn title="Home" v-if="$route.path === '/settings'" id="settings" flat icon color="white" to="/">

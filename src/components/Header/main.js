@@ -117,9 +117,8 @@ export default {
   data() {
     return {
       API: 'https://trends.google.com/trends/hottrends/visualize/internal/data',
-      messages: '',
+      messages: [],
       background: '',
-      dark: false,
       typer: {
         typed: '',
         current: '',
@@ -138,8 +137,8 @@ export default {
     trendsSettings() {
       return this.$store.state.settings.trends;
     },
-    darkSettings() {
-      return this.$store.state.settings.dark;
+    dark() {
+      return this.$utils.isDark(this.$store.state.settings.dark);
     },
   },
   watch: {
@@ -158,15 +157,8 @@ export default {
       },
       deep: true,
     },
-    darkSettings: {
-      handler(val) {
-        const tmp = this.$utils.isDark(val);
-        if (tmp !== this.dark) {
-          this.dark = tmp;
-          this.getBackground();
-        }
-      },
-      deep: true,
+    dark: function dark(val, old) {
+      if (val !== old) this.getBackground();
     },
   },
   methods: {
@@ -249,7 +241,6 @@ export default {
     },
   },
   mounted() {
-    this.dark = this.$utils.isDark(this.darkSettings);
     this.getBackground();
     this.getMessage();
   },

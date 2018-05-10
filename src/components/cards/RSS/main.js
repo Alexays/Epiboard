@@ -29,12 +29,13 @@ export default {
     fetch(url) {
       return new Promise((resolve, reject) => {
         if (!url) return reject(new Error('Bad URL'));
-        const feedparser = new FeedParser();
+        const feedparser = new FeedParser({ addmeta: false });
         const items = [];
         feedparser
           .on('error', err => reject(err))
           .on('readable', () => {
             for (let item = feedparser.read(); item; item = feedparser.read()) {
+              [item.image, item.imageUrl] = item.description.match(/<img [^>]*src="([^"]+)"/);
               items.push(item);
             }
           }).on('end', () => {
