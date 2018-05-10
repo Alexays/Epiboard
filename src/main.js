@@ -28,7 +28,6 @@ import directives from 'vuetify/es5/directives';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
-import pick from 'lodash/pick';
 import App from '@/App';
 import router from '@/router';
 import store from '@/store';
@@ -93,8 +92,8 @@ Vue.directive('init', {
     if (!binding.value) return;
     const keys = Object.keys(vnode.componentInstance.$data);
     const data = binding.value.settings
-      ? pick(vnode.context.$store.state.cardsSettings.cards[binding.value.key] || {}, keys)
-      : pick(vnode.context.$store.state.cache.cards[binding.value.key] || {}, keys);
+      ? vnode.context.$store.state.cardsSettings.cards[binding.value.key] || {}
+      : vnode.context.$store.state.cache.cards[binding.value.key] || {};
     for (let i = 0; i < keys.length; i += 1) {
       if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
         /* eslint-disable-next-line no-param-reassign */
