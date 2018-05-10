@@ -32,20 +32,29 @@
     #card-container {
       width: 430px;
     }
-  } // 2 columns
+  }
+  // 2 columns
   @media (min-width: 860px) and (max-width: 1289px) {
     #card-container {
       width: 860px;
     }
-  } // 3 columns
+  }
+  // 3 columns
   @media (min-width: 1290px) and (max-width: 1719px) {
     #card-container {
       width: 1290px;
     }
-  } // 4 columns
-  @media (min-width: 1720px) {
+  }
+  // 4 columns
+  @media (min-width: 1720px) and (max-width: 2149px) {
     #card-container {
       width: 1720px;
+    }
+  }
+  // 5 columns
+  @media (min-width: 2150px) {
+    #card-container {
+      width: 2150px;
     }
   }
 }
