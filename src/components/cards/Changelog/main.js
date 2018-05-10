@@ -6,7 +6,6 @@ const API = 'https://api.github.com/repos/alexays/epiboard/releases/tags/';
 export default {
   name: 'Changelog',
   title: `What's new in ${version} ?`,
-  origins: ['https://api.github.com/'],
   components: {},
   data() {
     return {
@@ -15,6 +14,10 @@ export default {
   },
   methods: {},
   mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
     this.axios.get(`${API}${version}`)
       .then((res) => {
         this.body = Marked(res.data.body, { gfm: true, breaks: true, silent: true });

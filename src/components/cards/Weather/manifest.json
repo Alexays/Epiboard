@@ -1,0 +1,5 @@
+{
+  "custom": true,
+  "cacheValidity": 300,
+  "origins": ["https://api.openweathermap.org/"]
+}

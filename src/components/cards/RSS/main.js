@@ -48,6 +48,10 @@ export default {
     },
   },
   mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
     this.init()
       .then(() => Promise.all(this.settings.feeds.map(f => this.fetch(f))))
       .then((res) => {

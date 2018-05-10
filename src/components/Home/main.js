@@ -50,7 +50,9 @@ export default {
         this.$store.commit('DEL_CARD_CACHE', key);
         return;
       }
-      this.$store.commit('SET_CARD_CACHE', { key, data });
+      if (data !== true) {
+        this.$store.commit('SET_CARD_CACHE', { key, data });
+      }
     },
     closeSettings(key, save) {
       this.cards[key].saveSettings = save;
@@ -124,17 +126,14 @@ export default {
       return {};
     },
     getCardCmp(key) {
-      return () => import(/* webpackMode: "lazy-once", webpackChunkName: "cards" */ `@/components/cards/${this.keys.cards[key]}`)
+      return () => import(/* webpackMode: "lazy-once", webpackChunkName: "cards" */ `@/components/cards/${this.keys.cards[key].cmp}`)
         .then((tmp) => {
-          const cmp = tmp.default;
-          const settings = ['size', 'title', 'custom'];
-          for (let i = 0; i < settings.length; i += 1) {
-            this.$set(this.cards[key], settings[i], cmp[settings[i]]);
-          }
-          if (!cmp.permissions && !cmp.origins) return tmp;
+          // TODO: Title in manifest
+          if (tmp.default.title) this.$set(this.cards[key], 'title', tmp.default.title);
+          if (!this.keys.cards[key].permissions && !this.keys.cards[key].origins) return tmp;
           return this.$utils.permissions.allowed({
-            permissions: cmp.permissions || [],
-            origins: cmp.origins || [],
+            permissions: this.keys.cards[key].permissions || [],
+            origins: this.keys.cards[key].origins || [],
           }).then((res) => {
             if (!res) {
               Toast.show({

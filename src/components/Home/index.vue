@@ -12,12 +12,12 @@
       </v-speed-dial>
     </transition>
     <transition-group name="fade" appear tag="div" id="card-container" :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }">
-      <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" :width="(card.size || 1) * 430 - 30">
-        <v-card-title class="head-drag" :class="{'blue-grey': !card.custom || card.showSettings, custom: card.custom && !card.showSettings, 'white--text': !card.custom || card.showSettings}">
-          <span v-show="!card.showSettings" class="headline">{{card.title || card.name || key}}</span>
-          <span v-show="card.showSettings" class="headline">{{card.name || key}}</span>
+      <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" :width="(keys.cards[key].size || 1) * 430 - 30">
+        <v-card-title class="head-drag" :class="{'blue-grey': !keys.cards[key].custom || card.showSettings, custom: keys.cards[key].custom && !card.showSettings, 'white--text': !keys.cards[key].custom || card.showSettings}">
+          <span v-show="!card.showSettings" class="headline">{{card.title || key}}</span>
+          <span v-show="card.showSettings" class="headline">{{key}}</span>
           <div>
-            <v-progress-circular :title="`${card.name || key} is fetching some data...`" v-show="!card.init" size="25" :width="2" indeterminate color="white"></v-progress-circular>
+            <v-progress-circular :title="`${key} is fetching some data...`" v-show="!card.init" size="25" :width="2" indeterminate color="white"></v-progress-circular>
             <v-menu v-show="!card.showSettings" lazy bottom offset-y>
               <v-btn flat icon slot="activator">
                 <v-icon color="white">more_vert</v-icon>

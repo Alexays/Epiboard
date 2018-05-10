@@ -3,7 +3,6 @@ const API = 'https://nantes.campus-isefac.fr/bachelor/';
 export default {
   name: 'Isefac',
   props: ['settings'],
-  origins: [API],
   components: {},
   data() {
     return {
@@ -51,6 +50,10 @@ export default {
     },
   },
   mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
     Promise.all([this.getCalendar()])
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err))

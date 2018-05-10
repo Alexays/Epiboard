@@ -5,7 +5,6 @@ const API = 'https://intra.epitech.eu';
 export default {
   name: 'Epitech',
   props: ['settings'],
-  origins: [`${API}/`],
   components: {},
   data() {
     return {
@@ -179,6 +178,10 @@ export default {
     },
   },
   mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())

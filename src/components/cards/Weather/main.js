@@ -2,12 +2,10 @@ const API = 'https://api.openweathermap.org/data/2.5/';
 
 export default {
   name: 'Weather',
-  props: ['settings'],
   title: new Date().toLocaleDateString('en-Us', {
     weekday: 'long',
   }),
-  custom: true,
-  origins: ['https://api.openweathermap.org/'],
+  props: ['settings'],
   components: {},
   data() {
     return {
@@ -87,6 +85,10 @@ export default {
     },
   },
   mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
     this.getLocalisation()
       .then(this.getQuery)
       .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))

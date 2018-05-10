@@ -92,6 +92,14 @@ Vue.directive('init', {
     const data = binding.value.settings
       ? vnode.context.$store.state.cardsSettings.cards[binding.value.key] || {}
       : vnode.context.$store.state.cache.cards[binding.value.key] || {};
+    if (!binding.value.settings) {
+      const { CACHE_DT } = (vnode.context.$store.state.cache.cards[binding.value.key] || {});
+      if (CACHE_DT) {
+        /* eslint-disable-next-line no-param-reassign */
+        vnode.componentInstance.VALID_CACHE =
+        Date.now() < CACHE_DT + ((Cards.cards[binding.value.key].cacheValidity || 60) * 1000);
+      }
+    }
     for (let i = 0; i < keys.length; i += 1) {
       if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
         /* eslint-disable-next-line no-param-reassign */
