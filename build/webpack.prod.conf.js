@@ -13,15 +13,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const WebpackShellPlugin = require('webpack-shell-plugin')
 const glob = require('glob')
 
-const env = require('../config/prod.env')
-
 const version = require('../package.json').version;
-
-const transformManifestJson = (content) => {
-  const jsonContent = JSON.parse(content);
-  jsonContent.version = version;
-  return JSON.stringify(jsonContent, null, 2);
-};
 
 const getCards = () => {
   const keys = {
@@ -41,7 +33,7 @@ const getCards = () => {
 };
 
 const webpackConfig = merge(baseWebpackConfig, {
-  mode: 'production',
+  mode: process.env.NODE_ENV,
   module: {
     rules: [
       ...utils.styleLoaders({
@@ -65,7 +57,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': {
+        NODE_ENV: `"${process.env.NODE_ENV}"`
+      },
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
@@ -100,7 +94,11 @@ const webpackConfig = merge(baseWebpackConfig, {
       {
         from: path.resolve(__dirname, `../config/manifest_${process.env.BUILD_TARGET || 'chrome'}.json`),
         to: path.resolve(config.build.assetsRoot, './manifest.json'),
-        transform: transformManifestJson,
+        transform: (content) => {
+          const jsonContent = JSON.parse(content);
+          jsonContent.version = version;
+          return JSON.stringify(jsonContent, null, 2);
+        },
       }
     ]),
     new webpack.ProvidePlugin({
@@ -110,13 +108,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       Cards: JSON.stringify(getCards()),
       browserName: JSON.stringify(process.env.BUILD_TARGET || 'chrome'),
     }),
-    new WebpackShellPlugin({
-      onBuildEnd: ['node ./build/remove-evals.js']
-    }),
   ],
   optimization: {
-    concatenateModules: true,
-    occurrenceOrder: true,
     splitChunks: {
       chunks: 'async',
       cacheGroups: {
@@ -161,22 +154,10 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
 })
 
-if (config.build.productionGzip) {
-  const CompressionWebpackPlugin = require('compression-webpack-plugin')
-
-  webpackConfig.plugins.push(
-    new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: new RegExp(
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
-      ),
-      threshold: 10240,
-      minRatio: 0.8
-    })
-  )
+if (process.env.NODE_ENV === 'production') {
+  webpackConfig.plugins.push(new WebpackShellPlugin({
+    onBuildEnd: ['node ./build/remove-evals.js']
+  }))
 }
 
 if (config.build.bundleAnalyzerReport) {

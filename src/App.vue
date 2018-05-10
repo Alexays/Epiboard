@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'app',
+  name: 'App',
   computed: {
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);
