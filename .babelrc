@@ -3,7 +3,7 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": ["Firefox >= 56", "Chrome >= 56"]
+        "browsers": ["Firefox >= 54", "Chrome >= 54"]
       }
     }],
     "stage-2"

@@ -93,7 +93,7 @@
     "npm": ">= 3.0.0"
   },
   "browserslist": [
-    "Firefox >= 56",
-    "Chrome >= 56"
+    "Firefox >= 54",
+    "Chrome >= 54"
   ]
 }
