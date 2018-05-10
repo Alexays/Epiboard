@@ -151,7 +151,7 @@ export default {
           if (this.keys.settings[key]) {
             return import(/* webpackMode: "eager", webpackChunkName: "cards" */ `@/components/cards/${this.keys.settings[key]}`)
               .then((data) => {
-                this.$set(this.cardsSettings, key, data.default);
+                this.cardsSettings[key] = data.default;
                 return tmp;
               });
           }
@@ -169,15 +169,17 @@ export default {
       if (lastVersion !== version) {
         this.$store.commit('SET_VERSION', version);
       }
+      const tmp = {};
       for (let i = 0; i < cards.length; i += 1) {
         if (this.keys.cards[cards[i]]) {
-          this.$set(this.cards, cards[i], {
+          tmp[cards[i]] = {
             init: false,
             showSettings: false,
             cmp: this.getCardCmp(cards[i]),
-          });
+          };
         }
       }
+      this.cards = tmp;
       return cards;
     },
   },
