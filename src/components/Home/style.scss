@@ -12,19 +12,6 @@
     &.design-toolbar {
       margin: 35px auto;
     }
-    .card__title {
-      &.custom {
-        position: absolute;
-        width: 100%;
-      }
-      .progress-circular {
-        vertical-align: middle;
-      }
-    }
-    // Causes bugs due to tabs in the session cards, see next updates
-    // .card:not(.muuri-item-shown) {
-    //   visibility: hidden;
-    // }
   }
   // While waiting for a muuri update this is the easiest way to center the cards.
   // 1 column

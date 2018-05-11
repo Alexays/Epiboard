@@ -20,15 +20,15 @@ const getCards = () => {
     cards: {},
     settings: {},
   };
-  const cardsKeys = glob.sync('./src/components/cards/*/+(index.vue|settings.vue|manifest.json)')
-    .map(f => f.replace('./src/components/cards/', ''));
+  const cardsKeys = glob.sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
+    .map(f => f.replace('./src/cards/', ''));
   for (let i = 0; i < cardsKeys.length; i += 1) {
     if (cardsKeys[i].endsWith('index.vue')) {
       keys.cards[cardsKeys[i].split('/')[0]] = { ...(keys.cards[cardsKeys[i].split('/')[0]] || {}), ...{ cmp: cardsKeys[i] }};
     } else if (cardsKeys[i].endsWith('settings.vue')) {
       keys.settings[cardsKeys[i].split('/')[0]] = cardsKeys[i];
     } else if (cardsKeys[i].endsWith('manifest.json')) {
-      keys.cards[cardsKeys[i].split('/')[0]] = { ...(keys.cards[cardsKeys[i].split('/')[0]] || {}), ...require(`../src/components/cards/${cardsKeys[i]}`)};
+      keys.cards[cardsKeys[i].split('/')[0]] = { ...(keys.cards[cardsKeys[i].split('/')[0]] || {}), ...require(`../src/cards/${cardsKeys[i]}`)};
     }
   }
   return keys;

@@ -12,36 +12,7 @@
       </v-speed-dial>
     </transition>
     <transition-group name="fade" appear tag="div" id="card-container" :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }">
-      <v-card hover raised v-for="(card, key) in cards" :key="key" :data-id="key" :width="(keys.cards[key].size || 1) * 430 - 30">
-        <v-card-title class="head-drag" :class="{'blue-grey': !keys.cards[key].custom || card.showSettings, custom: keys.cards[key].custom && !card.showSettings, 'white--text': !keys.cards[key].custom || card.showSettings}">
-          <span v-show="!card.showSettings" class="headline">{{card.title || key}}</span>
-          <span v-show="card.showSettings" class="headline">{{key}}</span>
-          <div>
-            <v-progress-circular :title="`${key} is fetching some data...`" v-show="!card.init" size="25" :width="2" indeterminate color="white"></v-progress-circular>
-            <v-menu v-show="!card.showSettings" lazy bottom offset-y>
-              <v-btn flat icon slot="activator">
-                <v-icon color="white">more_vert</v-icon>
-              </v-btn>
-              <v-list>
-                <v-list-tile v-if="keys.settings[key]" @click="showCardsSettings(key)">
-                  <v-list-tile-title>Settings</v-list-tile-title>
-                </v-list-tile>
-                <v-list-tile @click="deleteCard(key)">
-                  <v-list-tile-title>Remove</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
-            <v-btn v-show="card.showSettings" flat icon @click="closeSettings(key, false)" color="white">
-              <v-icon>close</v-icon>
-            </v-btn>
-            <v-btn v-show="card.showSettings" flat icon @click="closeSettings(key, true)" color="white">
-              <v-icon>done</v-icon>
-            </v-btn>
-          </div>
-        </v-card-title>
-        <component v-if="!card.showSettings" @init="setCards(key, $event)" :settings="getCardsSettings(key)" v-init="{key}" :is="card.cmp"></component>
-        <component v-else-if="cardsSettings[key]" v-init="{key, settings: true}" :is="cardsSettings[key]"></component>
-      </v-card>
+      <cards v-for="card in cards" v-if="keys.cards[card]" :key="card" :id="card"></cards>
     </transition-group>
     <div v-show="emptyCards" class="text-xs-center">
       <i class="material-icons md-48">grid_off</i>

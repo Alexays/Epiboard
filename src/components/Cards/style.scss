@@ -1,0 +1,15 @@
+.card {
+  .card__title {
+    &.custom {
+      position: absolute;
+      width: 100%;
+    }
+    .progress-circular {
+      vertical-align: middle;
+    }
+  }
+  // Causes bugs due to tabs in the session cards, see next updates
+  // .card:not(.muuri-item-shown) {
+  //   visibility: hidden;
+  // }
+}

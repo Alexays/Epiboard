@@ -109,7 +109,7 @@ Vue.directive('init', {
   },
   unbind: (el, binding, vnode) => {
     if (binding.value.settings && vnode.context && vnode.context.saveSettings) {
-      vnode.context.saveSettings(binding.value.key, vnode.componentInstance.$data);
+      vnode.context.saveSettings(vnode.componentInstance.$data);
     }
   },
 });

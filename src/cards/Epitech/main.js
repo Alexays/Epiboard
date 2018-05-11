@@ -17,7 +17,7 @@ export default {
       },
       timeline: {
         enabled: false,
-        loading: false,
+        loading: true,
         data: [],
       },
       user: {
@@ -118,7 +118,6 @@ export default {
       this.upcomings.loading = false;
     },
     drawTimeline() {
-      document.getElementById('timeline');
       this.timeline.loading = false;
     },
     getTimeline() {
