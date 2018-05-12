@@ -12,8 +12,7 @@ export default {
     return {
       grid: null,
       fab: false,
-      keys: Cards,
-      cardsSettings: {},
+      cmp: Cards.cards,
     };
   },
   computed: {
@@ -28,7 +27,7 @@ export default {
       if (!this.$store.state.settings.debug) {
         keys = keys.concat(['Changelog']);
       }
-      return omit(this.keys.cards, keys);
+      return omit(this.cmp, keys);
     },
     showFab() {
       return Object.keys(this.availableCards).length && this.grid != null;

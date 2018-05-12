@@ -28,7 +28,7 @@
         </template>
       </div>
     </v-card-title>
-    <component v-if="!showSettings" @init="setCards($event)" :settings="settingsCmp ? getSettings() : {}" v-init="{key: id}" :is="cmp"></component>
+    <component v-if="!showSettings" @init="initCard($event)" :settings="settingsCmp ? getSettings() : {}" v-init="{key: id}" :is="cmp"></component>
     <component v-else-if="settingsCmp" v-init="{key: id, settings: true}" :is="settingsCmp"></component>
   </v-card>
 </template>

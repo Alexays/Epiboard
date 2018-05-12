@@ -31,7 +31,7 @@ export default {
       this.$store.commit('DEL_CARD_SETTINGS', this.id);
       this.$store.commit('DEL_CARD', this.id);
     },
-    setCards(data) {
+    initCard(data) {
       this.init = true;
       this.$ga.event('cards', 'used', this.id, ((this.$store.state || {}).cards || []).indexOf(this.id));
       if (data instanceof Error) {
