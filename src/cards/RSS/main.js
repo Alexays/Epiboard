@@ -35,7 +35,9 @@ export default {
           .on('error', err => reject(err))
           .on('readable', () => {
             for (let item = feedparser.read(); item; item = feedparser.read()) {
-              [item.image, item.imageUrl] = item.description.match(/<img [^>]*src="([^"]+)"/);
+              if (item.description) {
+                [item.image, item.imageUrl] = item.description.match(/<img [^>]*src="([^"]+)"/);
+              }
               items.push(item);
             }
           }).on('end', () => {
