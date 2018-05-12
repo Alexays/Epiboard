@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     cards() {
-      return this.$store.state.cards;
+      return [...new Set(this.$store.state.cards)];
     },
     emptyCards() {
       return Object.keys(this.cards).length === 0;
@@ -39,6 +39,10 @@ export default {
         this.grid.refreshItems(elem);
         this.grid.layout(true);
       };
+    },
+    delCard(key) {
+      const elem = document.querySelector(`[data-id='${key}']`);
+      this.grid.hide(elem);
     },
     addCard(key) {
       this.$store.commit('ADD_CARD', key);

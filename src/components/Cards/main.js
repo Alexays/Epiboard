@@ -15,21 +15,35 @@ export default {
     };
   },
   computed: {
-    settings() {
+    options() {
       return Cards.cards[this.id];
+    },
+    settings() {
+      if (!this.settingsCmp) return {};
+      const data = this.settingsCmp.data();
+      const tmp = this.$store.state.cardsSettings.cards[this.id];
+      if (!tmp) return data;
+      const keys = Object.keys(data);
+      for (let i = 0; i < keys.length; i += 1) {
+        if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
+          data[keys[i]] = tmp[keys[i]];
+        }
+      }
+      return data;
     },
   },
   methods: {
     deleteCard() {
-      if (this.settings.permissions || this.settings.origins) {
+      if (this.options.permissions || this.options.origins) {
         this.$utils.permissions.remove({
-          permissions: this.settings.permissions || [],
-          origins: this.settings.origins || [],
+          permissions: this.options.permissions || [],
+          origins: this.options.origins || [],
         });
       }
       this.$ga.event('cards', 'delete', this.id, 0);
       this.$store.commit('DEL_CARD_SETTINGS', this.id);
       this.$store.commit('DEL_CARD', this.id);
+      this.$emit('deleted');
     },
     initCard(data) {
       this.init = true;
@@ -63,18 +77,6 @@ export default {
         this.$store.commit('SET_CARD_SETTINGS', { key: this.id, data });
         this.save = false;
       }
-    },
-    getSettings() {
-      const data = this.settingsCmp.data();
-      const tmp = this.$store.state.cardsSettings.cards[this.id];
-      if (!tmp) return data;
-      const keys = Object.keys(data);
-      for (let i = 0; i < keys.length; i += 1) {
-        if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
-          data[keys[i]] = tmp[keys[i]];
-        }
-      }
-      return data;
     },
   },
   created() {

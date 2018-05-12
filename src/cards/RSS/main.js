@@ -36,7 +36,8 @@ export default {
           .on('readable', () => {
             for (let item = feedparser.read(); item; item = feedparser.read()) {
               if (item.description) {
-                [item.image, item.imageUrl] = item.description.match(/<img [^>]*src="([^"]+)"/);
+                const res = item.description.match(/<img [^>]*src="([^"]+)"/);
+                if (res) [item.image, item.imageUrl] = res;
               }
               items.push(item);
             }

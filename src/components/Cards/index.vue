@@ -1,6 +1,6 @@
 <template>
-  <v-card hover raised :data-id="id" :width="(settings.size || 1) * 430 - 30">
-    <v-card-title class="head-drag" :class="{'blue-grey': !settings.custom || showSettings, custom: settings.custom && !showSettings, 'white--text': !settings.custom || showSettings}">
+  <v-card hover raised :data-id="id" :width="(options.size || 1) * 430 - 30">
+    <v-card-title class="head-drag" :class="{'blue-grey': !options.custom || showSettings, custom: options.custom && !showSettings, 'white--text': !options.custom || showSettings}">
       <span v-if="!showSettings" class="headline">{{title || id}}</span>
       <span v-else class="headline">{{id}}</span>
       <div>
@@ -10,7 +10,7 @@
             <v-icon color="white">more_vert</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile v-if="settings" @click="openSettings()">
+            <v-list-tile v-if="settingsCmp" @click="openSettings()">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="deleteCard()">
@@ -28,7 +28,7 @@
         </template>
       </div>
     </v-card-title>
-    <component v-if="!showSettings" @init="initCard($event)" :settings="settingsCmp ? getSettings() : {}" v-init="{key: id}" :is="cmp"></component>
+    <component v-if="!showSettings" @init="initCard($event)" :settings="settings" v-init="{key: id}" :is="cmp"></component>
     <component v-else-if="settingsCmp" v-init="{key: id, settings: true}" :is="settingsCmp"></component>
   </v-card>
 </template>
