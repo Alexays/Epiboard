@@ -77,12 +77,14 @@ export default {
         dragStartPredicate: { handle: '.head-drag' },
         dragSortInterval: 0,
         layoutOnInit: false,
+        sortData: {
+          index: (item, element) => this.cards.indexOf(element.getAttribute('data-id')),
+        },
       });
       if (this.cards.length) {
-        this.grid
-          .sort((a, b) => ((this.cards.indexOf(a.getElement().getAttribute('data-id')) - this.cards.indexOf(b.getElement().getAttribute('data-id')))), {
-            layout: 'instant',
-          });
+        this.grid.sort('index', {
+          layout: 'instant',
+        });
       }
       this.grid.on('dragEnd', () => {
         const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
