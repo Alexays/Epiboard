@@ -80,7 +80,7 @@ export default {
   created() {
     const name = Cards.cards[this.id].cmp;
     const settingsName = Cards.settings[this.id];
-    this.cmp = () => import(`@/cards/${name}`)
+    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${name}`)
       .then((tmp) => {
         // TODO: Title in manifest
         if (tmp.default.title) this.title = tmp.default.title;

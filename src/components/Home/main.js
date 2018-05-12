@@ -50,7 +50,7 @@ export default {
       });
       this.$ga.event('cards', 'add', key, 1);
     },
-    handleSize() {
+    watchSize() {
       const cards = document.getElementsByClassName('card');
       for (let i = 0; i < cards.length; i += 1) {
         new ResizeSensor(cards[i], this.resize(cards[i])); // eslint-disable-line no-new
@@ -66,10 +66,7 @@ export default {
         this.$store.commit('SET_VERSION', version);
       }
     },
-  },
-  mounted() {
-    this.checkVersion();
-    this.$nextTick(() => {
+    initGrid() {
       this.grid = new Muuri('#card-container', {
         items: '.card',
         dragEnabled: true,
@@ -84,11 +81,15 @@ export default {
             layout: 'instant',
           });
       }
-      this.handleSize();
       this.grid.on('dragEnd', () => {
         const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
         this.$store.commit('SET_CARDS', order);
       });
-    });
+    },
+  },
+  mounted() {
+    this.checkVersion();
+    this.initGrid();
+    this.watchSize();
   },
 };
