@@ -1,0 +1,42 @@
+#typewriter {
+  z-index: 1;
+  width: 100%;
+  a {
+    text-decoration: none;
+  }
+  h1 {
+    font-weight: 400;
+    font-size: 6vw;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.35);
+  }
+  .typewriter-selected {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .typewriter-cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite;
+    position: relative;
+    top: -3px;
+    vertical-align: middle;
+  }
+  .typewriter-msg {
+    color: white;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    max-width: calc(100% - 40px);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}

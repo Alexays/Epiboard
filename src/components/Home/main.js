@@ -30,7 +30,7 @@ export default {
       return omit(this.cmp, keys);
     },
     showFab() {
-      return Object.keys(this.availableCards).length && this.grid != null;
+      return Object.keys(this.availableCards).length;
     },
   },
   methods: {

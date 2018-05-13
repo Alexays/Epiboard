@@ -37,14 +37,9 @@ header {
     top: 46px;
     left: 50%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.03);
-    .input-group--text-field {
+    #typewriter {
       flex-basis: 100%;
     }
-  }
-  a,
-  .vue-typer {
-    z-index: 1;
-    cursor: pointer !important;
   }
   #settings {
     position: absolute;
