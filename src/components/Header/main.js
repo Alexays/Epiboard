@@ -22,6 +22,7 @@ Vue.use(VueLazyload, {
 });
 
 const API = 'https://trends.google.com/trends/hottrends/visualize/internal/data';
+const EXPIRE_TRENDS = 3600000; // 1h
 
 export default {
   name: 'Header',
@@ -52,15 +53,12 @@ export default {
     'headerSettings.background': function bg(val, old) {
       if (val !== old) this.getBackground();
     },
-    'headerSettings.design': function design(val, old) {
-      if (val !== old) this.getMessage();
-    },
     trendsSettings: {
       handler(val) {
         if (!val.enabled) {
           this.trends = [];
           this.messages = [sample(welcomeMessages)];
-        } else this.getMessage();
+        } else this.getMessage(true);
       },
       deep: true,
     },
@@ -95,17 +93,24 @@ export default {
         this.background = this.getBackgroundTime(tmp);
       }
     },
-    getTrends() {
-      this.axios.get(API)
-        .then((res) => {
-          this.trends = res.data[this.trendsSettings.country];
-          this.messages = [...this.messages, ...shuffle(this.trends)];
-        });
+    getTrends(force) {
+      if (!force && Date.now() < this.$store.state.cache.trends.dt + EXPIRE_TRENDS) {
+        console.log('ss');
+        this.trends = this.$store.state.cache.trends.data;
+        this.messages = [...this.messages, ...shuffle(this.trends)];
+      } else {
+        this.axios.get(API)
+          .then((res) => {
+            this.trends = res.data[this.trendsSettings.country];
+            this.messages = [...this.messages, ...shuffle(this.trends)];
+            this.$store.commit('SET_TRENDS_CACHE', this.trends);
+          });
+      }
     },
-    getMessage() {
+    getMessage(force = false) {
       this.messages = [sample(welcomeMessages)];
       if (this.trendsSettings.enabled) {
-        this.getTrends();
+        this.getTrends(force);
       }
     },
   },
