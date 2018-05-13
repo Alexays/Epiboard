@@ -1,6 +1,6 @@
 <template>
   <div id="system" class="padding">
-    <div class="wrapper">
+    <div v-if="cpu.modelName" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">nfc</i>
         <div>CPU</div>
@@ -17,7 +17,7 @@
                     } : null)"></v-progress-linear>
       </div>
     </div>
-    <div v-if="memory" class="wrapper">
+    <div v-if="memory.capacity" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">memory</i>
         <div>Memory</div>
@@ -33,7 +33,7 @@
                         } : null)"></v-progress-linear>
       </div>
     </div>
-    <div v-if="storage" class="wrapper">
+    <div v-if="storage.length" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">storage</i>
         <div>Storage</div>
