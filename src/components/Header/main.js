@@ -1,5 +1,7 @@
 import Vue from 'vue';
+import VToolbar from 'vuetify/es5/components/VToolbar';
 import VueLazyload from 'vue-lazyload';
+import VueTyper from '@/components/Typer';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
 import backgrounds from './backgrounds';
@@ -25,7 +27,8 @@ export default {
   name: 'Header',
   props: ['settings'],
   components: {
-    VueTyper: () => import('@/components/Typer'),
+    VToolbar,
+    VueTyper,
   },
   data() {
     return {

@@ -1,9 +1,12 @@
+import VMenu from 'vuetify/es5/components/VMenu';
 import Toast from '@/components/Toast';
 
 export default {
   name: 'Cards',
   props: ['id'],
-  components: {},
+  components: {
+    VMenu,
+  },
   data() {
     return {
       title: null,

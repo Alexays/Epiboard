@@ -1,7 +1,21 @@
+import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
+import VTimePicker from 'vuetify/es5/components/VTimePicker';
+import VCheckbox from 'vuetify/es5/components/VCheckbox';
+import VSwitch from 'vuetify/es5/components/VSwitch';
+import VSelect from 'vuetify/es5/components/VSelect';
+import VMenu from 'vuetify/es5/components/VMenu';
 import cloneDeep from 'lodash/cloneDeep';
 
 export default {
   name: 'Settings',
+  components: {
+    ...VRadioGroup,
+    VTimePicker,
+    VCheckbox,
+    VSwitch,
+    VSelect,
+    VMenu,
+  },
   data() {
     return {
       version: browser.runtime.getManifest().version,

@@ -1,6 +1,12 @@
+import VCheckbox from 'vuetify/es5/components/VCheckbox';
+import VSwitch from 'vuetify/es5/components/VSwitch';
+
 export default {
   name: 'Weather',
-  components: {},
+  components: {
+    VCheckbox,
+    VSwitch,
+  },
   data() {
     return {
       auto: true,

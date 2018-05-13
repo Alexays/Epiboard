@@ -1,10 +1,13 @@
+import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import Toast from '@/components/Toast';
 
 export default {
   name: 'QuickSettings',
   title: 'Quick Settings',
   props: ['settings'],
-  components: {},
+  components: {
+    VCheckbox,
+  },
   data() {
     return {
       loading: false,

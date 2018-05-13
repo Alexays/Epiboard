@@ -1,3 +1,6 @@
+import VDialog from 'vuetify/es5/components/VDialog';
+import VChip from 'vuetify/es5/components/VChip';
+import * as VTabs from 'vuetify/es5/components/VTabs';
 import omit from 'lodash/omit';
 
 const API = 'https://intra.epitech.eu';
@@ -5,7 +8,11 @@ const API = 'https://intra.epitech.eu';
 export default {
   name: 'Epitech',
   props: ['settings'],
-  components: {},
+  components: {
+    VDialog,
+    VChip,
+    ...VTabs,
+  },
   data() {
     return {
       is_logged: true,

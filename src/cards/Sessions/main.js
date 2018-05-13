@@ -1,7 +1,11 @@
+import * as VTabs from 'vuetify/es5/components/VTabs';
+
 export default {
   name: 'Sessions',
   props: ['settings'],
-  components: {},
+  components: {
+    ...VTabs,
+  },
   data() {
     return {
       maxDevices: 10,

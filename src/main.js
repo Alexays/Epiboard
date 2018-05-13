@@ -6,21 +6,10 @@ import VGrid from 'vuetify/es5/components/VGrid';
 import * as VCard from 'vuetify/es5/components/VCard';
 import VBtn from 'vuetify/es5/components/VBtn';
 import VIcon from 'vuetify/es5/components/VIcon';
-import VMenu from 'vuetify/es5/components/VMenu';
 import VList from 'vuetify/es5/components/VList';
-import VTabs from 'vuetify/es5/components/VTabs';
-import VToolbar from 'vuetify/es5/components/VToolbar';
 import VTextField from 'vuetify/es5/components/VTextField';
-import VCheckbox from 'vuetify/es5/components/VCheckbox';
-import VChip from 'vuetify/es5/components/VChip';
-import VSelect from 'vuetify/es5/components/VSelect';
-import VSwitch from 'vuetify/es5/components/VSwitch';
-import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
 import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
-import VTimePicker from 'vuetify/es5/components/VTimePicker';
-import VDialog from 'vuetify/es5/components/VDialog';
-import VSnackbar from 'vuetify/es5/components/VSnackbar';
 import transitions from 'vuetify/es5/components/transitions';
 import directives from 'vuetify/es5/directives';
 import axios from 'axios';
@@ -56,21 +45,10 @@ Vue.use(Vuetify, {
     VGrid,
     VBtn,
     VIcon,
-    VMenu,
     VList,
-    VTabs,
-    VToolbar,
     VTextField,
-    VCheckbox,
-    VChip,
-    VSelect,
-    VSwitch,
-    VSpeedDial,
     VProgressLinear,
     VProgressCircular,
-    VTimePicker,
-    VDialog,
-    VSnackbar,
   },
   directives,
   transitions,

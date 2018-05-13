@@ -7,14 +7,16 @@
           <h4 class="subheading">Choose your preferred design</h4>
           <v-layout align-center class="design-layout">
             <v-flex>
-              <v-card hover class="design" :color="settings.header.design==='full' ? 'blue-grey': 'white'">
-                <v-card-media @click="settings.header.design='full'" src="/static/img/full.jpg" height="125px" cover></v-card-media>
+              <v-card class="design">
+                <img v-if="settings.header.design==='full'" src="/static/img/full.jpg" alt="Full design" />
+                <img v-else-if="settings.header.design==='toolbar'" src="/static/img/toolbar.jpg" alt="Toolbar design" />
               </v-card>
             </v-flex>
             <v-flex>
-              <v-card hover class="design" :color="settings.header.design==='toolbar' ? 'blue-grey': 'white'">
-                <v-card-media @click="settings.header.design='toolbar'" src="/static/img/toolbar.jpg" height="125px" cover></v-card-media>
-              </v-card>
+              <v-radio-group v-model="settings.header.design" :mandatory="false">
+                <v-radio label="Full" value="full"></v-radio>
+                <v-radio label="Toolbar" value="toolbar"></v-radio>
+              </v-radio-group>
             </v-flex>
           </v-layout>
           <h4 class="subheading">Background</h4>

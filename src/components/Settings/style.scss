@@ -2,12 +2,16 @@
   .container.card {
     padding: 30px;
     .design-layout {
+      padding: 15px 0;
       .flex {
         margin: 7px;
         .design {
-          padding: 7px;
-          max-width: 500px;
+          padding: 5px;
+          max-width: 720px;
           margin: auto;
+          img {
+            max-width: 100%;
+          }
         }
       }
     }

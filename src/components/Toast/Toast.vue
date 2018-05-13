@@ -1,5 +1,4 @@
 <template>
-
   <v-snackbar
     :timeout="timeout"
     :color="color"
@@ -16,12 +15,14 @@
     <span v-html="text"></span>
     <v-btn v-if="dismissible" flat @click="dismiss">Close</v-btn>
   </v-snackbar>
-
 </template>
-
-
 <script>
+import VSnackbar from 'vuetify/es5/components/VSnackbar';
+
 export default {
+  components: {
+    VSnackbar,
+  },
   data() {
     return {
       active: false,

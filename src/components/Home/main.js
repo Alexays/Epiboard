@@ -1,11 +1,13 @@
-import Muuri from 'muuri';
+import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
-import omit from 'lodash/omit';
 import CardsCmp from '@/components/Cards';
+import Muuri from 'muuri';
+import omit from 'lodash/omit';
 
 export default {
   name: 'Home',
   components: {
+    VSpeedDial,
     Cards: CardsCmp,
   },
   data() {
