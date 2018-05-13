@@ -95,7 +95,6 @@ export default {
     },
     getTrends(force) {
       if (!force && Date.now() < this.$store.state.cache.trends.dt + EXPIRE_TRENDS) {
-        console.log('ss');
         this.trends = this.$store.state.cache.trends.data;
         this.messages = [...this.messages, ...shuffle(this.trends)];
       } else {
