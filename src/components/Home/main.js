@@ -89,7 +89,7 @@ export default {
         });
       }
       this.grid.on('dragEnd', () => {
-        const order = this.grid.getItems().map(item => item.getElement().getAttribute('data-id'));
+        const order = this.grid.getItems('active').map(item => item.getElement().getAttribute('data-id'));
         this.$store.commit('SET_CARDS', order);
       });
     },
