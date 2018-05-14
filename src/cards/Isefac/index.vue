@@ -27,7 +27,7 @@
       </div>
     </div>
     <div v-else>
-        <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+        <v-progress-linear indeterminate></v-progress-linear>
     </div>
   </div>
 </template>

@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="padding" v-if="projects.loading || user.loading">
-            <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+            <v-progress-linear indeterminate></v-progress-linear>
           </div>
           <div v-else-if="!projects.data.length" class="text-xs-center no-projects">
             <i class="material-icons md-48">work</i>
@@ -81,7 +81,7 @@
               </div>
             </v-list>
             <div v-else>
-              <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+              <v-progress-linear indeterminate></v-progress-linear>
             </div>
           </div>
         </v-tab-item>
@@ -105,7 +105,7 @@
               </div>
             </v-list>
             <div v-else>
-              <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+              <v-progress-linear indeterminate></v-progress-linear>
             </div>
           </div>
         </v-tab-item>

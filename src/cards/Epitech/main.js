@@ -112,7 +112,7 @@ export default {
               f.startString = `${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}`;
               f.endString = `${f.end.getHours()}h${(`0${f.end.getMinutes()}`).substr(-2)}`;
               return f;
-            }).filter(f => f.end > new Date())
+            }).filter(f => f.end > d)
             .sort((a, b) => a.start - b.start);
         }).finally(() => {
           this.rooms.loading = false;
