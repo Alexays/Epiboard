@@ -22,11 +22,12 @@ export default {
       settings: {},
       artworks: [
         { text: 'Random', value: 'random' },
+        { text: 'Default', value: 'default' },
+        { text: 'Unsplash', value: 'unsplash' },
         { text: 'Austin', value: 'austin' },
         { text: 'Beach', value: 'beach' },
         { text: 'Berlin', value: 'berlin' },
         { text: 'Chicago', value: 'chicago' },
-        { text: 'Default', value: 'default' },
         { text: 'Great Plains', value: 'greatPlains' },
         { text: 'London', value: 'london' },
         { text: 'New York', value: 'newYork' },

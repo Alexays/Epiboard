@@ -1,5 +1,11 @@
 // imgur album: https://imgur.com/a/NAaUE
 export default {
+  unsplash: {
+    dawn: 'https://source.unsplash.com/random/1280x300/?dawn',
+    day: 'https://source.unsplash.com/random/1280x300/',
+    dusk: 'https://source.unsplash.com/random/1280x300/?dusk',
+    night: 'https://source.unsplash.com/random/1280x300/?night',
+  },
   austin: {
     dawn: 'https://i.imgur.com/7ndeJog.jpg',
     day: 'https://i.imgur.com/FsJ8mCW.jpg',

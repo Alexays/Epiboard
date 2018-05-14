@@ -20,7 +20,7 @@
             </v-flex>
           </v-layout>
           <h4 class="subheading">Background</h4>
-          <v-select :items="artworks" v-model="settings.header.background" label="Choose your background city" autocomplete></v-select>
+          <v-select :items="artworks" v-model="settings.header.background" label="Choose your background" autocomplete></v-select>
           <h4 class="headline">Dark mode</h4>
           <v-layout align-center>
             <v-switch :label="settings.dark.enabled ? `On` : `Off`" hide-details v-model="settings.dark.enabled"></v-switch>
