@@ -9,7 +9,7 @@ export default {
   components: {},
   data() {
     return {
-      version,
+      version: null,
       body: '',
     };
   },
@@ -21,6 +21,7 @@ export default {
     }
     this.axios.get(`${API}${version}`)
       .then((res) => {
+        this.version = version;
         this.body = Marked(res.data.body, { gfm: true, breaks: true, silent: true });
       })
       .then(() => this.$emit('init', this.$data))
