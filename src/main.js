@@ -79,7 +79,7 @@ Vue.directive('init', {
       }
     }
     for (let i = 0; i < keys.length; i += 1) {
-      if (typeof vnode.componentInstance.$data[keys[i]] === typeof data[keys[i]]) {
+      if (vnode.componentInstance.$data[keys[i]] !== undefined && data[keys[i]] !== undefined) {
         /* eslint-disable-next-line no-param-reassign */
         vnode.componentInstance.$data[keys[i]] = data[keys[i]];
       }

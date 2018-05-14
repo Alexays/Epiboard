@@ -10,7 +10,11 @@
         </v-list-tile>
       </template>
       <div class="padding" v-if="!items.length">
-        <v-progress-linear v-bind:indeterminate="true"></v-progress-linear>
+        <v-progress-linear v-if="loading" indeterminate></v-progress-linear>
+        <div v-else class="text-xs-center">
+          <i class="material-icons md-48">rss_feed</i>
+          <h2 class="subheading">Empty feeds</h2>
+        </div>
       </div>
     </v-list>
   </div>

@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       feeds: ['https://news.google.com/news/rss/'],
+      newFeed: '',
     };
   },
   methods: {

@@ -8,8 +8,7 @@ export default {
   data() {
     return {
       items: [],
-      newFeed: '',
-      dialog: false,
+      loading: true,
     };
   },
   computed: {
@@ -62,6 +61,7 @@ export default {
           f.dateString = f.date.toDateString();
           return f;
         });
+        this.loading = false;
       })
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err));
