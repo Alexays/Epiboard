@@ -23,7 +23,7 @@ export default {
       artworks: [
         { text: 'Random', value: 'random' },
         { text: 'Default', value: 'default' },
-        { text: 'Unsplash', value: 'unsplash' },
+        { text: 'Unsplash provider', value: 'unsplash' },
         { text: 'Austin', value: 'austin' },
         { text: 'Beach', value: 'beach' },
         { text: 'Berlin', value: 'berlin' },
