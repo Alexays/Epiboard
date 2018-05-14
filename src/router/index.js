@@ -30,13 +30,13 @@ const router = new Router({
   ],
 });
 
-router.push('/');
-
 router.beforeEach((to, from, next) => {
   if (store._vm.$root.$data['vuex-persit-wait'] !== 2) {
     // Hold the request, until the Storage is complete.
     store._vm.$root.$on('storageReady', () => next());
   } else next();
 });
+
+router.push('/');
 
 export default router;
