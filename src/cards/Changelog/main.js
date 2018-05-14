@@ -9,12 +9,13 @@ export default {
   components: {},
   data() {
     return {
+      version,
       body: '',
     };
   },
   methods: {},
   mounted() {
-    if (this.VALID_CACHE) {
+    if (this.version === version) {
       this.$emit('init', true);
       return;
     }

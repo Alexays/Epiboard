@@ -49,19 +49,11 @@ p {
   align-items: flex-end !important;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition-property: opacity;
-  transition-duration: .25s;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
 }
-
-.fade-enter-active {
-  transition-delay: .25s;
-}
-
-.fade-enter,
-.fade-leave-active {
-  opacity: 0
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 /* Rules for sizing the icon. */
@@ -100,8 +92,4 @@ p {
 
 .material-icons.md-light.md-inactive {
   color: rgba(255, 255, 255, 0.3);
-}
-
-i.material-icons:before{
-  display:none;
 }
