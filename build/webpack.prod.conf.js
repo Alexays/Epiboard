@@ -53,8 +53,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].js'),
-    chunkFilename: utils.assetsPath('js/[name].js')
+    filename: utils.assetsPath('js/[name].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -65,8 +64,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css'),
-      chunkFilename: utils.assetsPath('css/[id].[contenthash].css'),
+      filename: utils.assetsPath('css/[name].[chunkhash].css'),
+      chunkFilename: utils.assetsPath('css/[id].[chunkhash].css'),
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
@@ -82,10 +81,11 @@ const webpackConfig = merge(baseWebpackConfig, {
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      // necessary to consistently work with multiple chunks
       chunksSortMode: 'dependency'
     }),
     // keep module.id stable when vendor modules does not change
+    new webpack.NamedChunksPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     // copy custom static assets
     new CopyWebpackPlugin([{
@@ -121,15 +121,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       cacheGroups: {
         vendor: {
           name: 'vendor',
-          test: /[\\/]node_modules[\\/].*\.js$/,
-          chunks: 'initial',
-          priority: -10,
-        },
-        app: {
-          name: 'app',
-          minChunks: 3,
-          priority: -20,
-          reuseExistingChunk: true,
+          test: /[\\/]node_modules[\\/]/,
+          enforce: true,
         },
       },
     },
