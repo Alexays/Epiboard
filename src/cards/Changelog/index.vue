@@ -6,7 +6,7 @@
       <h2 class="subheading">No changelog, that's weird.<br/>Maybe it's just loading</h2>
     </div>
     <p class="previous">
-        Missed an update? <a href="https://github.com/Alexays/Epiboard/releases">Look at the previous changelogs</a>
+        Missed an update? <a href="https://github.com/Alexays/Epiboard/releases" target="_blank">Look at the previous changelogs</a>
     </p>
   </div>
 </template>

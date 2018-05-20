@@ -21,7 +21,7 @@
     "material-design-icons": "^3.0.1",
     "muuri": "^0.5.4",
     "vue": "^2.5.16",
-    "vue-analytics": "^5.10.6",
+    "vue-analytics": "^5.12.0",
     "vue-axios": "^2.1.1",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.18",

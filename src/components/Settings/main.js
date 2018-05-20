@@ -97,6 +97,10 @@ export default {
     save() {
       this.$store.commit('SET_SETTINGS', cloneDeep(this.settings));
       localStorage.setItem('analytics', JSON.stringify(this.settings.analytics));
+      if (this.settings.analytics !== (localStorage.getItem('analytics') !== 'false')) {
+        if (this.settings.analytics) this.$ga.enable();
+        else this.$ga.disable();
+      }
     },
   },
   beforeMount() {

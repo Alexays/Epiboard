@@ -65,7 +65,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     // extract css into its own file
     new MiniCssExtractPlugin({
       filename: utils.assetsPath('css/[name].[chunkhash].css'),
-      chunkFilename: utils.assetsPath('css/[id].[chunkhash].css'),
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
