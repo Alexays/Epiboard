@@ -2,7 +2,9 @@ import VDialog from 'vuetify/es5/components/VDialog';
 import VChip from 'vuetify/es5/components/VChip';
 import * as VTabs from 'vuetify/es5/components/VTabs';
 import omit from 'lodash/omit';
+import timeline from './timeline';
 
+/* global d3 */
 const API = 'https://intra.epitech.eu';
 
 export default {
@@ -126,6 +128,9 @@ export default {
     },
     drawTimeline() {
       this.timeline.loading = false;
+      const chart = timeline();
+      chart.today(true);
+      d3.select('#timeline').datum(this.timeline.data).call(chart);
     },
     getTimeline() {
       if (this.user.loading) return;
