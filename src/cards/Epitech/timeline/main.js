@@ -139,9 +139,7 @@ export default function () {
         .attr('y', (d) => {
           let margin = 0;
           for (let i = 0; i < rows.length; i += 1) {
-            if (rows[i] === d[0]) {
-              break;
-            }
+            if (rows[i] === d[0]) break;
             margin += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
           }
           return padding + margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
@@ -159,14 +157,12 @@ export default function () {
         .attr('pointer-events', 'none')
         .attr('dx', padding)
         .attr('y', (d) => {
-          let margin = 0;
+          let marginText = 0;
           for (let i = 0; i < rows.length; i += 1) {
-            if (rows[i] === d[0]) {
-              break;
-            }
-            margin += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
+            if (rows[i] === d[0]) break;
+            marginText += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
           }
-          return margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
+          return marginText + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
           * yScale.bandwidth()) + (yScale.bandwidth() / 2);
         })
         .attr('dy', '0.32em')
