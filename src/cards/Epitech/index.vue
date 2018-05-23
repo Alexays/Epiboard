@@ -59,7 +59,7 @@
             <i class="material-icons md-48">work</i>
             <h2 class="subheading">No on going projects, well done !</h2>
           </div>
-          <v-btn class="no-margins" v-if="!user.loading" block dark depressed small color="blue-grey" @click="getTimeline()">timeline</v-btn>
+          <timeline v-if="!user.loading" :user="user"></timeline>
         </v-tab-item>
         <v-tab-item lazy>
           <div class="upcomings padding">
@@ -111,7 +111,6 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
-    <timeline v-if="timeline.enabled" :loading="timeline.loading" :timeline-data="timeline.data"></timeline>
   </div>
 </template>
 <script src="./main.js"></script>
