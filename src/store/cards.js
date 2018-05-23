@@ -8,6 +8,9 @@ export default {
     ADD_CARD(state, card) {
       state.push(card);
     },
+    ADD_CARD_FIRST(state, card) {
+      state.unshift(card);
+    },
     DEL_CARD(state, card) {
       const idx = state.indexOf(card);
       if (idx > -1) {
@@ -21,6 +24,9 @@ export default {
     },
     addCard({ commit }, card) {
       commit('ADD_CARD', card);
+    },
+    addCardFirst({ commit }, card) {
+      commit('ADD_CARD_FIRST', card);
     },
     delCard({ commit }, card) {
       commit('DEL_CARD', card);

@@ -47,10 +47,11 @@ export default {
       this.grid.hide(elem);
     },
     addCard(key) {
-      this.$store.commit('ADD_CARD', key);
+      this.$store.commit(key === 'Changelog' ? 'ADD_CARD_FIRST' : 'ADD_CARD', key);
       this.$nextTick(() => {
         const elem = document.querySelector(`[data-id='${key}']`);
-        this.grid.add(elem);
+        if (key === 'Changelog') this.grid.add(elem, { index: 0 });
+        else this.grid.add(elem);
         new ResizeSensor(elem, this.resize(elem)); // eslint-disable-line no-new
       });
       this.$ga.event('cards', 'add', key, 1);
@@ -65,7 +66,7 @@ export default {
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
       if (this.cards.indexOf('Changelog') === -1 && lastVersion && lastVersion !== version) {
-        this.$store.commit('ADD_CARD', 'Changelog');
+        this.addCard('Changelog');
       }
       if (lastVersion !== version) {
         this.$store.commit('SET_VERSION', version);

@@ -160,7 +160,8 @@ export default function () {
           let marginText = 0;
           for (let i = 0; i < rows.length; i += 1) {
             if (rows[i] === d[0]) break;
-            marginText += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
+            marginText += yScale.bandwidth() *
+            countModuleOverlap(data.filter(c => c[0] === rows[i]));
           }
           return marginText + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
           * yScale.bandwidth()) + (yScale.bandwidth() / 2);

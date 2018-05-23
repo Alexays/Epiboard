@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn class="no-margins" block dark depressed small color="blue-grey" @click="getTimeline()">timeline</v-btn>
-    <v-dialog v-model="enabled" scrollable max-width="80%" v-resize.quiet="draw">
+    <v-dialog v-model="enabled" lazy scrollable max-width="80%" v-resize.quiet="draw">
       <v-card>
         <v-card-text>
           <div id="timeline">
@@ -66,6 +66,7 @@ export default {
         });
     },
     draw() {
+      if (!this.enabled || this.loading) return;
       const chart = timeline();
       chart.today(true);
       chart.dark(this.$utils.isDark(this.$store.state.settings.dark));
