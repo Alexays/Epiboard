@@ -33,6 +33,7 @@ export default function () {
   let padding = 5;
   let reversed = false;
   let today = false;
+  let dark = false;
   let dates;
   let constWidth;
   let duration = 0;
@@ -87,8 +88,12 @@ export default function () {
       const height2 = (rows.length + countOverlap(dataTable)) * (getFontSize(this) + (4 * padding));
       const yScale = d3.scaleBand().domain(rows).range([0, height]); // .padding(0.1);
       const xScale = d3.scaleTime().domain(dates);
-      const yAxis = (reversed ? timelineAxisRight : timelineAxisLeft)(yScale, dataTable, height2)
-        .width(width);
+      const yAxis = (reversed ? timelineAxisRight : timelineAxisLeft)(
+        yScale,
+        dataTable,
+        height2,
+        dark,
+      ).width(width);
       const node = d3.select(this);
       node.style('position', 'relative');
       node.select('div').remove();
@@ -114,6 +119,9 @@ export default function () {
 
       xGroup.select('.domain').remove();
       xGroup.selectAll('.tick line').attr('stroke', '#AAA');
+      if (dark) {
+        xGroup.selectAll('.tick text').attr('fill', '#fff');
+      }
 
       const ticks = xScale.ticks().map(xScale);
       yGroup.call(yAxis.drawTicks, ticks);
@@ -188,6 +196,9 @@ export default function () {
 
   chart.dates = (_) => {
     dates = _;
+  };
+  chart.dark = (_) => {
+    dark = _;
   };
   chart.width = (_) => {
     constWidth = _;

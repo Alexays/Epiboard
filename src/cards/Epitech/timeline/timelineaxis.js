@@ -6,9 +6,9 @@ const axisRight = 1;
 const axisLeft = 2;
 const axisNone = 0;
 
-function timelineAxis(orient, scale, data, height) {
+function timelineAxis(orient, scale, data, height, dark) {
   const lineColor = '#AAA';
-  let colors = ['#FFF', '#EEE'];
+  let colors = dark ? ['#303030', '#424242'] : ['#FFF', '#EEE'];
   let padding = 5;
   let range;
   let trim = 40;
@@ -55,6 +55,7 @@ function timelineAxis(orient, scale, data, height) {
     if (orient !== axisNone) {
       const texts = row.select('text').merge(rowEnter.append('text')
         .attr('y', scale.bandwidth() / 2)
+        .attr('fill', dark ? 'white' : 'black')
         .attr('dy', '0.32em')).text(labels);
       const textWidthLimit = width * 0.2;
       offset = maxTextWidth(texts) + padding + padding;
@@ -102,14 +103,14 @@ function timelineAxis(orient, scale, data, height) {
   return axis;
 }
 
-export function timelineAxisLeft(scale, data, height) {
-  return timelineAxis(axisLeft, scale, data, height);
+export function timelineAxisLeft(scale, data, height, dark) {
+  return timelineAxis(axisLeft, scale, data, height, dark);
 }
 
-export function timelineAxisRight(scale, data, height) {
-  return timelineAxis(axisRight, scale, data, height);
+export function timelineAxisRight(scale, data, height, dark) {
+  return timelineAxis(axisRight, scale, data, height, dark);
 }
 
-export function timelineAxisNone(scale, data, height) {
-  return timelineAxis(axisNone, scale, data, height);
+export function timelineAxisNone(scale, data, height, dark) {
+  return timelineAxis(axisNone, scale, data, height, dark);
 }

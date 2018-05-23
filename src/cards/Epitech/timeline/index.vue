@@ -68,6 +68,7 @@ export default {
     draw() {
       const chart = timeline();
       chart.today(true);
+      chart.dark(this.$utils.isDark(this.$store.state.settings.dark));
       d3.select('#timeline')
         .datum(this.timeline)
         .call(chart);
