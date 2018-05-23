@@ -111,15 +111,7 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
-    <v-dialog v-model="timeline.enabled" lazy scrollable max-width="80%">
-      <v-card>
-        <v-card-text>
-          <div id="timeline">
-            <v-progress-linear v-show="timeline.loading" indeterminate></v-progress-linear>
-          </div>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+    <timeline v-if="timeline.enabled" :loading="timeline.loading" :timeline-data="timeline.data"></timeline>
   </div>
 </template>
 <script src="./main.js"></script>

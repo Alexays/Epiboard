@@ -1,19 +1,16 @@
-import VDialog from 'vuetify/es5/components/VDialog';
 import VChip from 'vuetify/es5/components/VChip';
 import * as VTabs from 'vuetify/es5/components/VTabs';
 import omit from 'lodash/omit';
-import timeline from './timeline';
 
-/* global d3 */
 const API = 'https://intra.epitech.eu';
 
 export default {
   name: 'Epitech',
   props: ['settings'],
   components: {
-    VDialog,
     VChip,
     ...VTabs,
+    Timeline: () => import(/* webpackMode: "lazy" */'./timeline'),
   },
   data() {
     return {
@@ -126,12 +123,6 @@ export default {
         .sort((a, b) => a.start - b.start);
       this.upcomings.loading = false;
     },
-    drawTimeline() {
-      this.timeline.loading = false;
-      const chart = timeline();
-      chart.today(true);
-      d3.select('#timeline').datum(this.timeline.data).call(chart);
-    },
     getTimeline() {
       if (this.user.loading) return;
       this.timeline.enabled = true;
@@ -156,7 +147,7 @@ export default {
             }
           }
           this.timeline.data = chart;
-          this.drawTimeline();
+          this.timeline.loading = false;
         });
     },
     getGpa() {

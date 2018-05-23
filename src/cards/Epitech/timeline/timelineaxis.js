@@ -1,10 +1,12 @@
+import { countModuleOverlap } from './utils';
+
 /* global d3 */
 
 const axisRight = 1;
 const axisLeft = 2;
 const axisNone = 0;
 
-function timelineAxis(orient, scale) {
+function timelineAxis(orient, scale, data, height) {
   const lineColor = '#AAA';
   let colors = ['#FFF', '#EEE'];
   let padding = 5;
@@ -32,12 +34,21 @@ function timelineAxis(orient, scale) {
     const rowExit = row.exit();
     let offset;
     row = row.merge(rowEnter)
-      .attr('transform', d => `translate(0,${scale(d)})`);
+      .attr('transform', (d) => {
+        let margin = 0;
+        for (let i = 0; i < domain.length; i += 1) {
+          if (domain[i] === d) {
+            break;
+          }
+          margin += scale.bandwidth() * countModuleOverlap(data.filter(g => g[0] === domain[i]));
+        }
+        return `translate(0,${scale(d) + margin})`;
+      });
     rowExit.remove();
     rowEnter.append('rect')
       .attr('y', 0.5)
       .attr('width', width)
-      .attr('height', scale.bandwidth())
+      .attr('height', d => scale.bandwidth() * (countModuleOverlap(data.filter(g => g[0] === d)) + 1))
       .attr('stroke', lineColor)
       .attr('stroke-width', 0.75)
       .attr('fill', colorscale); // should be re-done if domain changed?
@@ -60,7 +71,7 @@ function timelineAxis(orient, scale) {
     }
     selection.append('path')
       .attr('stroke', lineColor)
-      .attr('d', `M${offset + 0.5},0.5V${scale.range()[1]}`);
+      .attr('d', `M${offset + 0.5},0.5V${height}`);
   }
   axis.drawTicks = function axisDrawTicks(selection, ticks) {
     selection.selectAll('.row').select('path')
@@ -91,14 +102,14 @@ function timelineAxis(orient, scale) {
   return axis;
 }
 
-export function timelineAxisLeft(scale) {
-  return timelineAxis(axisLeft, scale);
+export function timelineAxisLeft(scale, data, height) {
+  return timelineAxis(axisLeft, scale, data, height);
 }
 
-export function timelineAxisRight(scale) {
-  return timelineAxis(axisRight, scale);
+export function timelineAxisRight(scale, data, height) {
+  return timelineAxis(axisRight, scale, data, height);
 }
 
-export function timelineAxisNone(scale) {
-  return timelineAxis(axisNone, scale);
+export function timelineAxisNone(scale, data, height) {
+  return timelineAxis(axisNone, scale, data, height);
 }

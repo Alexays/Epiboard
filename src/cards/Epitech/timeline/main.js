@@ -3,7 +3,7 @@ window.d3 = require('d3');
 /* eslint-disable import/first */
 import { timelineAxisLeft, timelineAxisRight } from './timelineaxis';
 import Tooltip from './tooltip';
-import { durationFormat, f } from './utils';
+import { durationFormat, f, countOverlap, countModuleOverlap, getOverlapOffset } from './utils';
 
 function getFontSize(element) {
   return parseFloat(window.getComputedStyle(element, null).getPropertyValue('font-size'));
@@ -81,11 +81,14 @@ export default function () {
     dates = dates || [d3.min(dataTable, starts), d3.max(dataTable, ends)];
 
     selection.each(function selectionEach(data) {
+      const sortedData = data.sort((a, b) => a[2] - b[2]);
       const width = constWidth || this.getBoundingClientRect().width;
       const height = rows.length * (getFontSize(this) + (4 * padding));
+      const height2 = (rows.length + countOverlap(dataTable)) * (getFontSize(this) + (4 * padding));
       const yScale = d3.scaleBand().domain(rows).range([0, height]); // .padding(0.1);
       const xScale = d3.scaleTime().domain(dates);
-      const yAxis = (reversed ? timelineAxisRight : timelineAxisLeft)(yScale).width(width);
+      const yAxis = (reversed ? timelineAxisRight : timelineAxisLeft)(yScale, dataTable, height2)
+        .width(width);
       const node = d3.select(this);
       node.style('position', 'relative');
       node.select('div').remove();
@@ -93,7 +96,7 @@ export default function () {
       const svg = node.append('svg').attr('class', 'timeline');
 
       svg.attr('width', width);
-      svg.attr('height', height + 20); // margin.bottom
+      svg.attr('height', height2 + 20); // margin.bottom
 
       const g = svg.append('g');
 
@@ -106,7 +109,7 @@ export default function () {
       const xAxis = d3.axisBottom(xScale);
       const xGroup = g.append('g')
         .attr('class', 'x axis')
-        .attr('transform', translate(0, height))
+        .attr('transform', translate(0, height2))
         .call(xAxis);
 
       xGroup.select('.domain').remove();
@@ -115,7 +118,7 @@ export default function () {
       const ticks = xScale.ticks().map(xScale);
       yGroup.call(yAxis.drawTicks, ticks);
 
-      let tasks = g.selectAll('g.task').data(data);
+      let tasks = g.selectAll('g.task').data(sortedData);
 
       tasks.exit().remove();
 
@@ -125,7 +128,17 @@ export default function () {
 
       tasksEnter
         .append('rect')
-        .attr('y', padding)
+        .attr('y', (d) => {
+          let margin = 0;
+          for (let i = 0; i < rows.length; i += 1) {
+            if (rows[i] === d[0]) {
+              break;
+            }
+            margin += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
+          }
+          return padding + margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
+          * yScale.bandwidth());
+        })
         .attr('height', yScale.bandwidth() - (2 * padding))
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
@@ -134,10 +147,20 @@ export default function () {
       tasksEnter
         .append('text')
         .attr('text-anchor', 'start')
-        .attr('fill', d => textColor(cScale(names(d))))
+        .attr('fill', d => textColor(cScale(d)))
         .attr('pointer-events', 'none')
         .attr('dx', padding)
-        .attr('y', yScale.bandwidth() / 2)
+        .attr('y', (d) => {
+          let margin = 0;
+          for (let i = 0; i < rows.length; i += 1) {
+            if (rows[i] === d[0]) {
+              break;
+            }
+            margin += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
+          }
+          return margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
+          * yScale.bandwidth()) + (yScale.bandwidth() / 2);
+        })
         .attr('dy', '0.32em')
         .text(names);
 
@@ -158,7 +181,7 @@ export default function () {
       if (today) {
         svg.append('path')
           .attr('stroke', 'red')
-          .attr('d', `M${xScale(new Date())},0.5V${height}`);
+          .attr('d', `M${xScale(new Date())},0.5V${height2}`);
       }
     });
   }
