@@ -1,6 +1,6 @@
 <template>
   <div class="blue-grey" id="changelog">
-    <div class="markdown" v-if="body" v-html="body"></div>
+    <vue-markdown class="markdown" v-if="body">{{body}}</vue-markdown>
     <div v-else class="text-xs-center padding">
       <i class="material-icons md-48">note_add</i>
       <h2 class="subheading">No changelog, that's weird.<br/>Maybe it's just loading</h2>

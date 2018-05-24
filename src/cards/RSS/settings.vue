@@ -4,7 +4,7 @@
     <v-list>
       <v-list-tile v-for="(feed, idx) in feeds" :key="feed">
         <v-list-tile-content>
-          <v-list-tile-title v-html="feed"></v-list-tile-title>
+          <v-list-tile-title>{{feed}}</v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>
           <v-icon @click="removeFeed(idx)">close</v-icon>

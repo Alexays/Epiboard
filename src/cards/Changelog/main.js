@@ -1,4 +1,4 @@
-import Marked from 'marked';
+import VueMarkdown from 'vue-markdown';
 
 const { version } = browser.runtime.getManifest();
 const API = 'https://api.github.com/repos/alexays/epiboard/releases/tags/';
@@ -6,7 +6,9 @@ const API = 'https://api.github.com/repos/alexays/epiboard/releases/tags/';
 export default {
   name: 'Changelog',
   title: `What's new in ${version} ?`,
-  components: {},
+  components: {
+    VueMarkdown,
+  },
   data() {
     return {
       version: null,
@@ -22,7 +24,7 @@ export default {
     this.axios.get(`${API}${version}`)
       .then((res) => {
         this.version = version;
-        this.body = Marked(res.data.body, { gfm: true, breaks: true, silent: true });
+        this.body = res.data.body;
       })
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err));

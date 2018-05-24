@@ -1,10 +1,10 @@
 // imgur album: https://imgur.com/a/NAaUE
 export default {
   unsplash: {
-    dawn: 'https://source.unsplash.com/random/1280x200/?dawn',
-    day: 'https://source.unsplash.com/random/1280x200/',
-    dusk: 'https://source.unsplash.com/random/1280x200/?dusk',
-    night: 'https://source.unsplash.com/random/1280x200/?night',
+    dawn: 'https://source.unsplash.com/random/1920x200/?dawn',
+    day: 'https://source.unsplash.com/random/1920x200/',
+    dusk: 'https://source.unsplash.com/random/1920x200/?dusk',
+    night: 'https://source.unsplash.com/random/1920x200/?night',
   },
   austin: {
     dawn: 'https://i.imgur.com/7ndeJog.jpg',

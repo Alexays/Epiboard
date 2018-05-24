@@ -4,7 +4,6 @@ import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import VSwitch from 'vuetify/es5/components/VSwitch';
 import VSelect from 'vuetify/es5/components/VSelect';
 import VMenu from 'vuetify/es5/components/VMenu';
-import cloneDeep from 'lodash/cloneDeep';
 
 export default {
   name: 'Settings',
@@ -93,20 +92,22 @@ export default {
       },
     };
   },
-  methods: {
-    save() {
-      this.$store.commit('SET_SETTINGS', cloneDeep(this.settings));
-      localStorage.setItem('analytics', JSON.stringify(this.settings.analytics));
-      if (this.settings.analytics !== (localStorage.getItem('analytics') !== 'false')) {
-        if (this.settings.analytics) this.$ga.enable();
-        else this.$ga.disable();
+  watch: {
+    'settings.analytics': function analytics(val, old) {
+      if (val !== old) {
+        localStorage.setItem('analytics', JSON.stringify(this.settings.analytics));
+        if (this.settings.analytics !== (localStorage.getItem('analytics') !== 'false')) {
+          if (this.settings.analytics) this.$ga.enable();
+          else this.$ga.disable();
+        }
       }
     },
   },
+  beforeDestroy() {
+    this.$store.commit('SET_SETTINGS', this.settings);
+  },
   beforeMount() {
-    this.settings = {
-      ...cloneDeep(this.$store.state.settings),
-      ...{ analytics: localStorage.getItem('analytics') !== 'false' },
-    };
+    this.settings = this.$store.state.settings;
+    this.settings.analytics = localStorage.getItem('analytics') !== 'false';
   },
 };

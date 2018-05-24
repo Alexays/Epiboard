@@ -44,7 +44,6 @@
           <v-switch :label="settings.analytics ? `On` : `Off`" v-model="settings.analytics"></v-switch>
           <h4 class="headline">Debug</h4>
           <v-switch :label="settings.debug ? `On` : `Off`" v-model="settings.debug"></v-switch>
-          <v-btn v-on:click="save()" color="primary">Save</v-btn>
           <v-layout align-center>
             <v-flex>
               <p class="text-xs-right">

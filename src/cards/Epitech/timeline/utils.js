@@ -3,17 +3,17 @@ export function durationFormat(seconds) {
   const cutoff = 2;
   let ret;
   if (seconds < cutoff * 60) {
-    ret = `${seconds}s`;
+    ret = `${seconds | 0}s`;
   } else if (seconds < cutoff * 60 * 60) {
-    ret = `${round10(seconds / 60)} min`;
+    ret = `${round10(seconds / 60) | 0} min`;
   } else if (seconds < cutoff * 60 * 60 * 24) {
-    ret = `${round10(seconds / 3600)} hours`;
+    ret = `${round10(seconds / 3600) | 0} hours`;
   } else if (seconds < cutoff * 3600 * 24 * 30) {
-    ret = `${round10(seconds / 86400)} day(s)`;
+    ret = `${round10(seconds / 86400) | 0} day(s)`;
   } else if (seconds < cutoff * 3600 * 24 * 365) {
-    ret = `${round10(seconds / (86400 * 30))} month(s)`;
+    ret = `${round10(seconds / (86400 * 30)) | 0} month(s)`;
   } else {
-    ret = `${round10(seconds / (86400 * 365))} year(s)`;
+    ret = `${round10(seconds / (86400 * 365)) | 0} year(s)`;
   }
   return ret;
 }

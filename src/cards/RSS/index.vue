@@ -4,7 +4,7 @@
       <template v-for="item in sortedFeeds">
         <v-list-tile :key="item.title" :href="item.link">
           <v-list-tile-content :title="item.title">
-            <v-list-tile-title v-html="item.title"></v-list-tile-title>
+            <v-list-tile-title>{{item.title}}</v-list-tile-title>
             <v-list-tile-sub-title>{{ item.dateString }}</v-list-tile-sub-title>
           </v-list-tile-content>
         </v-list-tile>

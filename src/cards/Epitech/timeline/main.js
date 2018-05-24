@@ -58,7 +58,7 @@ export default function () {
       });
   }
 
-  function tooltipHtml(d) {
+  function tooltipHtml(d, ...args) {
     // Format date for human
     const seconds = (ends(d) - starts(d)) / 1000;
     let dateFormat;
@@ -70,7 +70,17 @@ export default function () {
       dateFormat = '%Y-%m-%d';
     }
     const format = x => d3.timeFormat(dateFormat)(d3.isoParse(x));
-    return `<b>${names(d)}</b><hr style="margin: 2px 0 2px 0">${format(starts(d))} - ${format(ends(d))}<br>${durationFormat(seconds)}`;
+    args[2].select('div').remove();
+    const selection = args[2].append('div');
+    selection
+      .append('b').text(names(d));
+    selection
+      .append('p')
+      .style('margin', '2px 0 2px 0')
+      .text(`${format(starts(d))} / ${format(ends(d))}`);
+    selection
+      .append('p')
+      .text(durationFormat(seconds));
   }
 
   function chart(selection) {
@@ -185,7 +195,7 @@ export default function () {
 
       if (today) {
         svg.append('path')
-          .attr('stroke', 'red')
+          .attr('stroke', '#ff4c4c')
           .attr('d', `M${xScale(new Date())},0.5V${height2}`);
       }
     });
