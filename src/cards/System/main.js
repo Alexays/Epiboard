@@ -24,8 +24,6 @@ export default {
           archName: data.arch,
           numOfProcessors: window.navigator.hardwareConcurrency,
         };
-        this.memory = null;
-        this.storage = null;
       });
     },
     getCpu() {
