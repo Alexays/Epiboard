@@ -17,7 +17,7 @@ export default {
   },
   methods: {},
   mounted() {
-    if (this.version === version) {
+    if (this.version === version && this.VALID_CACHE) {
       this.$emit('init', true);
       return;
     }

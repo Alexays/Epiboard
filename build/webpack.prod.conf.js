@@ -76,7 +76,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: true,
+        minifyCSS: true,
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
@@ -120,8 +121,10 @@ const webpackConfig = merge(baseWebpackConfig, {
       cacheGroups: {
         vendor: {
           name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-          enforce: true,
+          reuseExistingChunk: true,
+          test: module => /[\\/]node_modules[\\/]/.test(module.context),
+          minChunks: 1,
+          minSize: 0,
         },
       },
     },
