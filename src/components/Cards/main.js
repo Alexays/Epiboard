@@ -1,3 +1,4 @@
+import * as VList from 'vuetify/es5/components/VList';
 import VMenu from 'vuetify/es5/components/VMenu';
 import Toast from '@/components/Toast';
 
@@ -5,6 +6,7 @@ export default {
   name: 'Cards',
   props: ['id'],
   components: {
+    ...VList,
     VMenu,
   },
   data() {

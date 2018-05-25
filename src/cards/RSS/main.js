@@ -1,10 +1,13 @@
+import * as VList from 'vuetify/es5/components/VList';
 import FeedParser from 'feedparser';
 import http from 'http';
 
 export default {
   name: 'RSS',
   props: ['settings'],
-  components: {},
+  components: {
+    ...VList,
+  },
   data() {
     return {
       items: [],

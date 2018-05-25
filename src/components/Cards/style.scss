@@ -1,5 +1,10 @@
 .card {
+  width: 400px;
+  margin: 15px;
+  position: absolute;
+  z-index: 1;
   .card__title {
+    justify-content: space-between;
     &.custom {
       position: absolute;
       width: 100%;
@@ -7,9 +12,11 @@
     .progress-circular {
       vertical-align: middle;
     }
+    .btn {
+      margin: 0;
+    }
   }
-  // Causes bugs due to tabs in the session cards, see next updates
-  // .card:not(.muuri-item-shown) {
-  //   visibility: hidden;
-  // }
+  .head-drag {
+    cursor: grab;
+  }
 }

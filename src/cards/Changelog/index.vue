@@ -1,6 +1,6 @@
 <template>
   <div class="blue-grey" id="changelog">
-    <vue-markdown toc :toc-anchor-link="false" class="markdown" v-if="body">{{body}}</vue-markdown>
+    <vue-markdown toc :toc-anchor-link="false" :html="false" class="markdown" v-if="body">{{body}}</vue-markdown>
     <div v-else class="text-xs-center padding">
       <i class="material-icons md-48">note_add</i>
       <h2 class="subheading">No changelog, that's weird.<br/>Maybe it's just loading</h2>

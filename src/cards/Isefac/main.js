@@ -1,9 +1,13 @@
+import * as VList from 'vuetify/es5/components/VList';
+
 const API = 'https://nantes.campus-isefac.fr/bachelor/';
 
 export default {
   name: 'Isefac',
   props: ['settings'],
-  components: {},
+  components: {
+    ...VList,
+  },
   data() {
     return {
       is_logged: true,

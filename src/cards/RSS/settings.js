@@ -1,6 +1,10 @@
+import * as VList from 'vuetify/es5/components/VList';
+
 export default {
   name: 'RSS',
-  components: {},
+  components: {
+    ...VList,
+  },
   data() {
     return {
       feeds: ['https://news.google.com/news/rss/'],

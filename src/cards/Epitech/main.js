@@ -1,5 +1,6 @@
 import VChip from 'vuetify/es5/components/VChip';
 import * as VTabs from 'vuetify/es5/components/VTabs';
+import * as VList from 'vuetify/es5/components/VList';
 import omit from 'lodash/omit';
 
 const API = 'https://intra.epitech.eu';
@@ -10,6 +11,7 @@ export default {
   components: {
     VChip,
     ...VTabs,
+    ...VList,
     Timeline: () => import(/* webpackMode: "lazy" */'./timeline'),
   },
   data() {

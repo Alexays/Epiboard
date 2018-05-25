@@ -1,5 +1,4 @@
 @import 'material-design-icons/iconfont/material-icons.css';
-@import './assets/scss/_cards.scss';
 @import 'vuetify/dist/vuetify.min.css';
 body {
   margin: 0;
@@ -42,6 +41,10 @@ p {
 
 .no-margins {
   margin: 0!important;
+}
+
+.card .padding {
+  padding: 16px;
 }
 
 .speed-dial__list {
