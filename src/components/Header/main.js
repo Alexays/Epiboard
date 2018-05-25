@@ -1,25 +1,13 @@
 import Vue from 'vue';
 import VToolbar from 'vuetify/es5/components/VToolbar';
-import VueLazyload from 'vue-lazyload';
+import VueProgressiveImage from 'vue-progressive-image';
 import VueTyper from '@/components/Typer';
 import sample from 'lodash/sample';
 import shuffle from 'lodash/shuffle';
 import backgrounds from './backgrounds';
 import welcomeMessages from './welcomeMessages';
 
-Vue.use(VueLazyload, {
-  filter: {
-    progressive(listener) {
-      if (listener.src.indexOf('i.imgur.com') > -1) {
-        /* eslint-disable no-param-reassign */
-        listener.el.setAttribute('lazy-progressive', 'true');
-        const idx = listener.src.lastIndexOf('.');
-        listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
-        /* eslint-enable no-param-reassign */
-      }
-    },
-  },
-});
+Vue.use(VueProgressiveImage);
 
 const API = 'https://trends.google.com/trends/hottrends/visualize/internal/data';
 const EXPIRE_TRENDS = 3600000; // 1h

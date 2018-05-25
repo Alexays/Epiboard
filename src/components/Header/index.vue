@@ -1,8 +1,6 @@
 <template>
   <header tag="header" class="grey">
-    <div class="background" v-if="background">
-      <img v-lazy="background" />
-    </div>
+    <progressive-background class="background" v-if="background" :src="background" />
     <template v-if="$store.state.settings.header.design === 'full'">
       <vue-typer :text="$route.path === '/' ? messages : [$route.name]" full-erase :erase-delay="5000" :repeat="messages.length === 1 || $route.path !== '/' ? 0 : Infinity"></vue-typer>
       <v-btn title="Home" v-if="$route.path === '/settings'" id="settings" flat icon color="white" to="/">

@@ -1,6 +1,6 @@
 {
   "name": "epiboard",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "New tab page",
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,
@@ -24,6 +24,7 @@
     "vue-analytics": "^5.12.2",
     "vue-axios": "^2.1.1",
     "vue-markdown": "^2.2.4",
+    "vue-progressive-image": "^2.5.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.18",
     "vuex": "^3.0.1",
@@ -31,7 +32,7 @@
   },
   "devDependencies": {
     "@vue/devtools": "^1.1.0",
-    "autoprefixer": "^8.5.0",
+    "autoprefixer": "^8.5.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -75,7 +76,6 @@
     "stylus-loader": "^3.0.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
-    "vue-lazyload": "^1.2.3",
     "vue-loader": "^15.2.0",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
