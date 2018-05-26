@@ -18,9 +18,7 @@ import App from '@/App';
 import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';
-
-require('vuetify/src/stylus/app.styl');
-require('./style.scss');
+import './style.scss';
 
 Vue.config.productionTip = false;
 
