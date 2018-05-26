@@ -4,7 +4,6 @@ const API = 'https://nantes.campus-isefac.fr/bachelor/';
 
 export default {
   name: 'Isefac',
-  props: ['settings'],
   components: {
     ...VList,
   },

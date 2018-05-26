@@ -4,7 +4,6 @@ import Toast from '@/components/Toast';
 export default {
   name: 'QuickSettings',
   title: 'Quick Settings',
-  props: ['settings'],
   components: {
     VCheckbox,
   },
@@ -19,7 +18,7 @@ export default {
       },
     };
   },
-  methods: {
+  computed: {
     isFalse() {
       const keys = Object.keys(this.types);
       for (let i = 0; i < keys.length; i += 1) {
@@ -27,6 +26,8 @@ export default {
       }
       return true;
     },
+  },
+  methods: {
     clear() {
       this.loading = true;
       browser.browsingData.remove({}, Object.assign({}, this.types), () => {

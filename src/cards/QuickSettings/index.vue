@@ -7,7 +7,7 @@
       <v-checkbox label="Local Storage" v-model="types.localStorage" color="primary" hide-details></v-checkbox>
     </v-flex>
     <v-layout align-end justify-end>
-      <v-btn :disabled="isFalse() || loading" v-on:click="clear()" flat>{{ loading ? 'Clearing' : 'Clear' }}</v-btn>
+      <v-btn :disabled="isFalse || loading" v-on:click="clear()" flat :loading="loading">Clear</v-btn>
     </v-layout>
   </v-layout>
 </template>

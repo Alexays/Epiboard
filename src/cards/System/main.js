@@ -1,6 +1,5 @@
 export default {
   name: 'System',
-  props: ['settings'],
   components: {},
   data() {
     return {
