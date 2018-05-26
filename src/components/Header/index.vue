@@ -3,10 +3,10 @@
     <progressive-background class="background" no-ratio v-if="background" :src="background" :placeholder="placeholder" />
     <template v-if="$store.state.settings.header.design === 'full'">
       <vue-typer :text="$route.path === '/' ? messages : [$route.name]" full-erase :erase-delay="5000" :repeat="messages.length === 1 || $route.path !== '/' ? 0 : Infinity"></vue-typer>
-      <v-btn title="Home" v-if="$route.path === '/settings'" id="settings" flat icon color="white" to="/">
-        <v-icon x-large>&#xE5C4;</v-icon>
+      <v-btn title="Home" v-if="$route.path === '/settings'" id="settings" outline flat icon color="white" to="/">
+        <v-icon>&#xE5C4;</v-icon>
       </v-btn>
-      <v-btn title="Settings" v-else id="settings" flat icon color="white" to="/settings">
+      <v-btn title="Settings" v-else id="settings" outline flat icon color="white" to="/settings">
         <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </template>
