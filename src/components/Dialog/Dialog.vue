@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="active" persistent max-width="290">
+  <v-dialog v-model="active" persistent :max-width="290">
     <v-card>
       <v-card-title class="headline">{{ title }}</v-card-title>
       <v-card-text>{{ text }}</v-card-text>

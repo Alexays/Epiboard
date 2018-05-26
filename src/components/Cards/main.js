@@ -56,7 +56,7 @@ export default {
       this.$ga.event('cards', 'used', this.id, ((this.$store.state || {}).cards || []).indexOf(this.id));
       if (data instanceof Error) {
         Toast.show({
-          text: `${this.id} got a loading error, please try again later.${this.$store.state.settings.debug ? `<br/>${data.message}` : ''}`,
+          text: `${this.id} got a loading error, please try again later${this.$store.state.settings.debug ? `: ${data.message}` : ''}.`,
           color: 'error',
           timeout: 10000,
           dismissible: false,
@@ -86,13 +86,13 @@ export default {
     },
   },
   created() {
-    const name = Cards.cards[this.id].cmp;
-    const settingsName = Cards.settings[this.id];
-    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${name}`)
+    const { id } = this;
+    const card = Cards.cards[id];
+    const settingsName = Cards.settings[id];
+    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${card.cmp}`)
       .then((tmp) => {
         // TODO: Title in manifest
         if (tmp.default.title) this.title = tmp.default.title;
-        const card = Cards.cards[this.id];
         if (!card.permissions && !card.origins) return tmp;
         return this.$utils.permissions.allowed({
           permissions: card.permissions || [],
@@ -100,7 +100,7 @@ export default {
         }).then((res) => {
           if (!res) {
             Toast.show({
-              text: `${this.id} needs new permissions that it cannot have, retry later.`,
+              text: `${id} needs new permissions that it cannot have, retry later.`,
               color: 'error',
               timeout: 10000,
               dismissible: false,
@@ -120,7 +120,5 @@ export default {
         }
         return tmp;
       });
-  },
-  mounted() {
   },
 };

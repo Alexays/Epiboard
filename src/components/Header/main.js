@@ -22,13 +22,13 @@ export default {
   data() {
     return {
       messages: [],
-      background: '',
+      background: null,
       trends: [],
     };
   },
   computed: {
-    headerSettings() {
-      return this.$store.state.settings.header;
+    backgroundSettings() {
+      return this.$store.state.settings.header.background;
     },
     trendsSettings() {
       return this.$store.state.settings.trends;
@@ -36,9 +36,17 @@ export default {
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);
     },
+    placeholder() {
+      const url = this.background;
+      if (url.indexOf('i.imgur.com') > -1) {
+        const idx = url.lastIndexOf('.');
+        return `${url.substr(0, idx)}t${url.substr(idx)}`;
+      }
+      return null;
+    },
   },
   watch: {
-    'headerSettings.background': function bg(val, old) {
+    backgroundSettings(val, old) {
       if (val !== old) this.getBackground();
     },
     trendsSettings: {
@@ -70,7 +78,7 @@ export default {
       return url.night;
     },
     getBackground() {
-      const { background } = this.headerSettings;
+      const background = this.backgroundSettings;
       if (background === 'random') {
         const key = sample(Object.keys(backgrounds));
         const tmp = backgrounds[key];
@@ -101,7 +109,7 @@ export default {
       }
     },
   },
-  mounted() {
+  beforeMount() {
     this.getBackground();
     this.getMessage();
   },

@@ -65,7 +65,7 @@ export default {
     checkVersion() {
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
-      if (this.cards.indexOf('Changelog') === -1 && lastVersion && lastVersion !== version) {
+      if (lastVersion && lastVersion !== version && this.cards.indexOf('Changelog') === -1) {
         this.addCard('Changelog');
       }
       if (lastVersion !== version) {
@@ -95,8 +95,10 @@ export default {
       });
     },
   },
-  mounted() {
+  beforeMount() {
     this.checkVersion();
+  },
+  mounted() {
     this.initGrid();
     this.watchSize();
   },
