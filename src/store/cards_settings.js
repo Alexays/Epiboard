@@ -10,12 +10,4 @@ export default {
       if (state.cards[key]) delete state.cards[key];
     },
   },
-  actions: {
-    setCardSettings({ commit }, settings) {
-      commit('SET_CARD_SETTINGS', settings);
-    },
-    delCardSettings({ commit }, key) {
-      commit('DEL_CARD_SETTINGS', key);
-    },
-  },
 };

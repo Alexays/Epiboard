@@ -103,6 +103,11 @@ export default {
       }
     },
   },
+  methods: {
+    reset() {
+      this.$store.commit('RESET_SETTINGS');
+    },
+  },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);
   },

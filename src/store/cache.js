@@ -22,18 +22,4 @@ export default {
       state.trends.data = trends;
     },
   },
-  actions: {
-    setVersion({ commit }, version) {
-      commit('SET_VERSION', version);
-    },
-    setCardCache({ commit }, payload) {
-      commit('SET_CARD_CACHE', payload);
-    },
-    delCardCache({ commit }, key) {
-      commit('DEL_CARD_CACHE', key);
-    },
-    setTrendsCache({ commit }, trends) {
-      commit('SET_TRENDS_CACHE', trends);
-    },
-  },
 };

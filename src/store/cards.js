@@ -18,18 +18,4 @@ export default {
       }
     },
   },
-  actions: {
-    setCards({ commit }, cards) {
-      commit('SET_CARDS', cards);
-    },
-    addCard({ commit }, card) {
-      commit('ADD_CARD', card);
-    },
-    addCardFirst({ commit }, card) {
-      commit('ADD_CARD_FIRST', card);
-    },
-    delCard({ commit }, card) {
-      commit('DEL_CARD', card);
-    },
-  },
 };

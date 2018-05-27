@@ -46,6 +46,9 @@
           <v-switch :label="settings.debug ? `On` : `Off`" v-model="settings.debug"></v-switch>
           <v-layout align-center>
             <v-flex>
+              <v-btn flat small @click="reset">Reset settings</v-btn>
+            </v-flex>
+            <v-flex>
               <p class="text-xs-right">
                 Made with
                 <v-icon small color="red">favorite</v-icon> by
