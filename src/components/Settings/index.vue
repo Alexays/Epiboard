@@ -5,20 +5,10 @@
         <v-card class="container">
           <h4 class="headline">Header</h4>
           <h4 class="subheading">Choose your preferred design</h4>
-          <v-layout align-center class="design-layout">
-            <v-flex>
-              <v-card class="design">
-                <img v-if="settings.header.design==='full'" src="/static/img/full.jpg" alt="Full design" />
-                <img v-else-if="settings.header.design==='toolbar'" src="/static/img/toolbar.jpg" alt="Toolbar design" />
-              </v-card>
-            </v-flex>
-            <v-flex>
-              <v-radio-group v-model="settings.header.design" :mandatory="false">
-                <v-radio label="Full" value="full"></v-radio>
-                <v-radio label="Toolbar" value="toolbar"></v-radio>
-              </v-radio-group>
-            </v-flex>
-          </v-layout>
+          <v-radio-group v-model="settings.header.design" :mandatory="false">
+            <v-radio label="Full" value="full"></v-radio>
+            <v-radio label="Toolbar" value="toolbar"></v-radio>
+          </v-radio-group>
           <h4 class="subheading">Background</h4>
           <v-select :items="artworks" v-model="settings.header.background" label="Choose your background" autocomplete></v-select>
           <h4 class="headline">Dark mode</h4>

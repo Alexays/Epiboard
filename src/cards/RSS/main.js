@@ -24,7 +24,7 @@ export default {
       return this.$utils.permissions.allowed({
         origins: this.settings.feeds || [],
       }).then((res) => {
-        if (res) return res;
+        if (res) return this.settings.feeds;
         throw new Error('Insufficient permission');
       });
     },
@@ -39,7 +39,7 @@ export default {
             for (let item = feedparser.read(); item; item = feedparser.read()) {
               if (item.description) {
                 const res = item.description.match(/<img [^>]*src="([^"]+)"/);
-                if (res) [item.image, item.imageUrl] = res;
+                if (res)[item.image, item.imageUrl] = res;
               }
               items.push(item);
             }
@@ -58,10 +58,10 @@ export default {
       return;
     }
     this.init()
-      .then(() => Promise.all(this.settings.feeds.map(f => this.fetch(f))))
+      .then(data => Promise.all(data.map(this.fetch)))
       .then((res) => {
         this.items = Array.prototype.concat(...res).map((f) => {
-          f.dateString = f.date.toDateString();
+          f.dateString = f.date.toLocaleString();
           return f;
         });
         this.loading = false;

@@ -1,6 +1,10 @@
 #rss {
-  .rss-feeds {
-    max-height: 350px;
-    overflow: auto;
+  max-height: 350px;
+  overflow: auto;
+  img {
+    object-fit: cover;
+  }
+  .date {
+    font-size: 12px;
   }
 }

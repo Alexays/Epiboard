@@ -22,9 +22,7 @@ export default {
         const item = sessionItem[keys[i]];
         // If it's a tab we push it with lastModified value
         if (item.tab) {
-          const {
-            tab,
-          } = item;
+          const { tab } = item;
           tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
           tab.favIconUrl = this.$utils.getFavicon(tab.favIconUrl || tab.url);
           tabs.push(tab);
