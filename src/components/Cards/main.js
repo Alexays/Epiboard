@@ -17,6 +17,7 @@ export default {
       showSettings: false,
       save: false,
       init: false,
+      hash: '',
     };
   },
   computed: {
@@ -24,7 +25,7 @@ export default {
       return Cards.cards[this.id];
     },
     settings() {
-      if (!this.settingsCmp) return {};
+      if (!this.settingsCmp || this.hash == null) return {};
       const data = this.settingsCmp.data();
       const tmp = this.$store.state.cardsSettings.cards[this.id];
       if (!tmp) return data;
@@ -53,7 +54,6 @@ export default {
     },
     initCard(data) {
       this.init = true;
-      this.$ga.event('cards', 'used', this.id, ((this.$store.state || {}).cards || []).indexOf(this.id));
       if (data instanceof Error) {
         Toast.show({
           text: `${this.id} got a loading error, please try again later${this.$store.state.settings.debug ? `: ${data.message}` : ''}.`,
@@ -75,12 +75,11 @@ export default {
       this.save = save;
       this.showSettings = false;
     },
-    openSettings() {
-      this.showSettings = true;
-    },
     saveSettings(data) {
       if (this.save) {
         this.$store.commit('SET_CARD_SETTINGS', { key: this.id, data });
+        this.$store.commit('DEL_CARD_CACHE', this.id);
+        this.hash = Date.now().toString();
         this.save = false;
       }
     },

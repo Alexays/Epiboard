@@ -10,7 +10,7 @@
             <v-icon color="white">more_vert</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile v-if="settingsCmp" @click="openSettings()">
+            <v-list-tile v-if="settingsCmp" @click.stop="showSettings=true">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="deleteCard()">
@@ -28,8 +28,8 @@
         </template>
       </div>
     </v-card-title>
-    <component v-if="!showSettings" @init="initCard($event)" :settings="settings" v-init="{key: id}" :is="cmp"></component>
-    <component v-else-if="settingsCmp" v-init="{key: id, settings: true}" :is="settingsCmp"></component>
+    <component v-show="!showSettings" @init="initCard($event)" :settings="settings" v-init="{key: id}" :is="cmp" :key="hash"></component>
+    <component v-if="showSettings && settingsCmp" v-init="{key: id, settings: true}" :is="settingsCmp"></component>
   </v-card>
 </template>
 <script src="./main.js"></script>

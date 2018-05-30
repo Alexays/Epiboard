@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@vue/devtools": "^1.1.0",
-    "autoprefixer": "^8.5.1",
+    "autoprefixer": "^8.5.2",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -80,7 +80,7 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "webextension-polyfill": "^0.2.1",
-    "webpack": "^4.10.1",
+    "webpack": "^4.10.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4",
