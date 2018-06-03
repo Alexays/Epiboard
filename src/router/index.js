@@ -5,6 +5,7 @@ import store from '@/store';
 const Header = () => import(/* webpackChunkName: "header" */ '@/components/Header');
 const Home = () => import(/* webpackChunkName: "home" */ '@/components/Home');
 const Settings = () => import(/* webpackChunkName: "settings" */ '@/components/Settings');
+const OnBoarding = () => import(/* webpackChunkName: "onboarding" */ '@/components/Onboarding');
 
 Vue.use(Router);
 
@@ -27,16 +28,25 @@ const router = new Router({
         header: Header,
       },
     },
+    {
+      path: '/onboarding',
+      name: 'OnBoarding',
+      components: {
+        default: OnBoarding,
+        header: Header,
+      },
+    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   if (store._vm.$root.$data['vuex-persit-wait'] !== 2) {
     // Hold the request, until the Storage is complete.
-    store._vm.$root.$on('storageReady', () => next());
-  } else next();
+    store._vm.$root.$on('storageReady', () => (!store.state.cache.version ? next('/onboarding') : next()));
+  } else if (!store.state.cache.version) next('/onboarding');
+  else next();
 });
 
-router.push('/');
+router.replace('/');
 
 export default router;

@@ -26,10 +26,10 @@ Vue.use(VueAnalytics, {
   id: 'UA-78514802-2',
   // In Chrome extension, must close checking protocol.
   set: [{ field: 'checkProtocolTask', value: null }],
+  disableScriptLoader: browserName !== 'chrome',
   router,
   debug: {
-    sendHitTask: localStorage.getItem('analytics') !== 'false',
-    disableScriptLoader: browserName !== 'chrome',
+    sendHitTask: localStorage.getItem('analytics') !== 'false' && browserName === 'chrome',
   },
 });
 Vue.use(Vuex);
