@@ -96,7 +96,7 @@
   "bundlesize": [
     {
       "path": "./dist/static/js/*.js",
-      "maxSize": "1.5 MB"
+      "maxSize": "500 kB"
     }
   ]
 }
