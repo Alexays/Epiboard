@@ -2,7 +2,6 @@ import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import CardsCmp from '@/components/Cards';
 import Muuri from 'muuri';
-import omit from 'lodash/omit';
 
 export default {
   name: 'Home',
@@ -29,7 +28,10 @@ export default {
       if (!this.$store.state.settings.debug) {
         keys = keys.concat(['Changelog']);
       }
-      return omit(this.cmp, keys);
+      return keys.reduce((obj, key) => {
+        const { [key]: _, ...tmp } = obj;
+        return tmp;
+      }, this.cmp);
     },
     showFab() {
       return Object.keys(this.availableCards).length;
@@ -85,13 +87,12 @@ export default {
         },
       });
       if (this.cards.length) {
-        this.grid.sort('index', {
-          layout: 'instant',
-        });
+        this.grid.sort('index', { layout: 'instant' });
       }
       this.grid.on('dragEnd', () => {
         const order = this.grid.getItems('active').map(item => item.getElement().getAttribute('data-id'));
         this.$store.commit('SET_CARDS', order);
+        this.$ga.event('cards', 'order', order, 1);
       });
     },
   },

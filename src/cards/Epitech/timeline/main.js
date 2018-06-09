@@ -1,5 +1,5 @@
-window.d3 = require('d3');
 /* global d3 */
+window.d3 = require('d3');
 /* eslint-disable import/first */
 import { timelineAxisLeft, timelineAxisRight } from './timelineaxis';
 import Tooltip from './tooltip';

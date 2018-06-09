@@ -22,7 +22,7 @@
 # install dependencies
 $ npm install
 
-# build for production with minification
+# build for production with minification and generate zip
 # For Chromium browser
 $ npm run build:chrome
 # For Firefox
@@ -33,9 +33,6 @@ $ npm run build:chrome --report
 
 # in your browser extension page
 # load unpacked extension from dist folder.
-
-# or generate zip
-$ npm run build:zip
 ```
 
 ## License

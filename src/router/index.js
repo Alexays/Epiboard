@@ -2,10 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from '@/store';
 
-const Header = () => import(/* webpackChunkName: "header" */ '@/components/Header');
-const Home = () => import(/* webpackChunkName: "home" */ '@/components/Home');
-const Settings = () => import(/* webpackChunkName: "settings" */ '@/components/Settings');
-const OnBoarding = () => import(/* webpackChunkName: "onboarding" */ '@/components/Onboarding');
+const Header = () => import(/* webpackChunkName: "header" */ '@/components/Header').then(_ => _.default);
+const Home = () => import(/* webpackChunkName: "home" */ '@/components/Home').then(_ => _.default);
+const Settings = () => import(/* webpackChunkName: "settings" */ '@/components/Settings').then(_ => _.default);
+const OnBoarding = () => import(/* webpackChunkName: "onboarding" */ '@/components/Onboarding').then(_ => _.default);
 
 Vue.use(Router);
 

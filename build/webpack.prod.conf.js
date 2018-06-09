@@ -11,9 +11,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const WebpackShellPlugin = require('webpack-shell-plugin')
+const ZipPlugin = require('zip-webpack-plugin')
 const glob = require('glob')
 
-const version = require('../package.json').version;
+const { name, version } = require('../package.json');
 
 const getCards = () => {
   const keys = {
@@ -113,6 +114,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       Cards: JSON.stringify(getCards()),
       browserName: JSON.stringify(process.env.BUILD_TARGET || 'chrome'),
+    }),
+    new ZipPlugin({
+      path: '../',
+      filename: `${name}-${version}.zip`,
     }),
   ],
   optimization: {

@@ -6,6 +6,9 @@ export default {
     }
     return null;
   },
+  shuffle(a) {
+    return a.length ? a.splice(~~(Math.random() * a.length), 1).concat(this.shuffle(a)) : a;
+  },
   isDark: (dark) => {
     if (!dark) return false;
     if (dark.enabled) {

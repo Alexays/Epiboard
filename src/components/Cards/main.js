@@ -90,9 +90,8 @@ export default {
     const settingsName = Cards.settings[id];
     this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${card.cmp}`)
       .then((tmp) => {
-        // TODO: Title in manifest
         if (tmp.default.title) this.title = tmp.default.title;
-        if (!card.permissions && !card.origins) return tmp;
+        if (!card.permissions && !card.origins) return tmp.default;
         return this.$utils.permissions.allowed({
           permissions: card.permissions || [],
           origins: card.origins || [],
@@ -106,7 +105,7 @@ export default {
             });
             return null;
           }
-          return tmp;
+          return tmp.default;
         });
       })
       .then((tmp) => {

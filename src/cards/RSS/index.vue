@@ -5,7 +5,7 @@
         <v-list-tile :key="item.title" :href="item.link">
           <v-list-tile-content :title="item.title">
             <v-list-tile-sub-title>{{ item.title }}</v-list-tile-sub-title>
-            <v-list-tile-title class="date">{{item.dateString}}</v-list-tile-title>
+            <v-list-tile-title class="date">{{item.pubDate}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </template>

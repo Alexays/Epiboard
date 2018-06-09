@@ -1,7 +1,6 @@
 import VChip from 'vuetify/es5/components/VChip';
 import * as VTabs from 'vuetify/es5/components/VTabs';
 import * as VList from 'vuetify/es5/components/VList';
-import omit from 'lodash/omit';
 
 const API = 'https://intra.epitech.eu';
 
@@ -12,7 +11,7 @@ export default {
     VChip,
     ...VTabs,
     ...VList,
-    Timeline: () => import(/* webpackMode: "lazy" */'./timeline'),
+    Timeline: () => import(/* webpackMode: "lazy" */'./timeline').then(_ => _.default),
   },
   data() {
     return {
@@ -155,7 +154,13 @@ export default {
     Promise.all([this.getUserInfo(), this.getProjects()])
       .then(() => this.getRoom())
       .then(() => this.getUpcoming())
-      .then(() => this.$emit('init', omit(this.$data, ['gpa_precision'])))
+      .then(() => this.$emit('init', ['gpa_precision'].reduce((obj, key) => {
+        const {
+          [key]: _, ...tmp
+        } = obj;
+        return tmp;
+      }, this.$data)))
       .catch(err => this.$emit('init', err));
   },
+
 };

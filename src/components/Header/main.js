@@ -2,8 +2,6 @@ import Vue from 'vue';
 import VToolbar from 'vuetify/es5/components/VToolbar';
 import VueProgressiveImage from 'vue-progressive-image';
 import VueTyper from '@/components/Typer';
-import sample from 'lodash/sample';
-import shuffle from 'lodash/shuffle';
 import backgrounds from './backgrounds';
 import welcomeMessages from './welcomeMessages';
 
@@ -14,7 +12,6 @@ const EXPIRE_TRENDS = 3600000; // 1h
 
 export default {
   name: 'Header',
-  props: ['settings'],
   components: {
     VToolbar,
     VueTyper,
@@ -23,7 +20,6 @@ export default {
     return {
       messages: [],
       background: null,
-      trends: [],
     };
   },
   computed: {
@@ -52,8 +48,7 @@ export default {
     trendsSettings: {
       handler(val) {
         if (!val.enabled) {
-          this.trends = [];
-          this.messages = [sample(welcomeMessages)];
+          this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
         } else this.getMessage(true);
       },
       deep: true,
@@ -80,7 +75,7 @@ export default {
     getBackground() {
       const background = this.backgroundSettings;
       if (background === 'random') {
-        const key = sample(Object.keys(backgrounds));
+        const key = this.$utils.shuffle(Object.keys(backgrounds))[0];
         const tmp = backgrounds[key];
         this.background = this.getBackgroundTime(tmp);
       } else {
@@ -89,23 +84,22 @@ export default {
         this.background = this.getBackgroundTime(tmp);
       }
     },
-    getTrends(force) {
-      if (!force && Date.now() < this.$store.state.cache.trends.dt + EXPIRE_TRENDS) {
-        this.trends = this.$store.state.cache.trends.data;
-        this.messages = [...this.messages, ...shuffle(this.trends)];
+    getTrends(refresh) {
+      const trendsCache = this.$store.state.cache.trends;
+      if (!refresh && trendsCache.data.length && Date.now() < trendsCache.dt + EXPIRE_TRENDS) {
+        this.messages = [...this.messages, ...this.$utils.shuffle(trendsCache.data)];
       } else {
-        this.axios.get(API)
-          .then((res) => {
-            this.trends = res.data[this.trendsSettings.country];
-            this.messages = [...this.messages, ...shuffle(this.trends)];
-            this.$store.commit('SET_TRENDS_CACHE', this.trends);
-          });
+        this.axios.get(API).then((res) => {
+          const trends = res.data[this.trendsSettings.country];
+          this.messages = [...this.messages, ...this.$utils.shuffle(trends)];
+          this.$store.commit('SET_TRENDS_CACHE', trends);
+        });
       }
     },
-    getMessage(force = false) {
-      this.messages = [sample(welcomeMessages)];
+    getMessage(refresh = false) {
+      this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
       if (this.trendsSettings.enabled) {
-        this.getTrends(force);
+        this.getTrends(refresh);
       }
     },
   },

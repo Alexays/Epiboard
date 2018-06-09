@@ -7,11 +7,15 @@ install:
 
 before_script:
   - npm install -g jsinspect
+  - npm install -g web-ext
+  - npm install -g bundlesize
 
 script:
   - npm run lint
   - jsinspect ./src
-  - npm run build
+  - npm run build:firefox
+  - bundlesize
+  - cd dist && web-ext run
 
 branches:
   only:
