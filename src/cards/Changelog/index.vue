@@ -1,6 +1,6 @@
 <template>
   <div class="blue-grey" id="changelog">
-    <!-- v-html is safe here, is just markdown with no html parsing -->
+    <!-- v-html is safe here, is just markdown without html parsing -->
     <div v-html="body" class="markdown" v-if="body"></div>
     <div v-else class="text-xs-center padding">
       <i class="material-icons md-48">note_add</i>

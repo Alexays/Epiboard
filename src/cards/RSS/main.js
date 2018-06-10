@@ -1,6 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
 
-const RSS2JSONAPI = 'https://api.rss2json.com/v1/api.json?rss_url=';
+const API = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 export default {
   name: 'RSS',
@@ -29,7 +29,7 @@ export default {
       });
     },
     fetch(url) {
-      return this.axios.get(`${RSS2JSONAPI}${encodeURIComponent(url)}`).then(res => res.data.items);
+      return this.axios.get(`${API}${encodeURIComponent(url)}`).then(res => res.data.items);
     },
   },
   mounted() {
