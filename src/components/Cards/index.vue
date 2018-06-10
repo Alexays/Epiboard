@@ -5,6 +5,9 @@
       <span v-else class="headline">{{id}}</span>
       <div>
         <v-progress-circular :title="`${id} is fetching some data...`" v-show="!init" :size="25" :width="2" indeterminate color="white"></v-progress-circular>
+        <v-btn v-if="error" :title="`${error} click to reload`" flat icon @click="reload()" color="white">
+          <v-icon>warning</v-icon>
+        </v-btn>
         <v-menu v-if="!showSettings" lazy bottom offset-y>
           <v-btn flat icon slot="activator">
             <v-icon color="white">more_vert</v-icon>

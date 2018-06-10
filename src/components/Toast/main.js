@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       active: false,
-      text: '',
+      title: '',
+      desc: null,
       icon: '',
       color: 'info',
       timeout: 3000,

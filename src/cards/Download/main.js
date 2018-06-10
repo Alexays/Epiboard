@@ -22,7 +22,7 @@ export default {
     open(download) {
       if (download.state === 'interrupted') {
         Toast.show({
-          text: this.humanize(download.error),
+          title: this.humanize(download.error),
           timeout: 4000,
         });
       }
@@ -31,7 +31,7 @@ export default {
           browser.downloads.open(download.id);
         } else {
           Toast.show({
-            text: 'File moved or deleted',
+            title: 'File moved or deleted',
             timeout: 4000,
           });
         }

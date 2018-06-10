@@ -17,6 +17,7 @@ export default {
       showSettings: false,
       save: false,
       init: false,
+      error: null,
       hash: '',
     };
   },
@@ -55,8 +56,10 @@ export default {
     initCard(data) {
       this.init = true;
       if (data instanceof Error) {
+        this.error = `${this.id} got a loading error,`;
         Toast.show({
-          text: `${this.id} got a loading error, please try again later${this.$store.state.settings.debug ? `: ${data.message}` : ''}.`,
+          title: `${this.error} please try again later.`,
+          desc: this.$store.state.settings.debug ? data.message : null,
           color: 'error',
           timeout: 10000,
           dismissible: false,
@@ -71,6 +74,12 @@ export default {
         this.$store.commit('SET_CARD_CACHE', { key: this.id, data });
       }
     },
+    reload() {
+      this.init = false;
+      this.error = null;
+      this.$store.commit('DEL_CARD_CACHE', this.id);
+      this.hash = Date.now().toString();
+    },
     closeSettings(save) {
       this.save = save;
       this.showSettings = false;
@@ -78,8 +87,7 @@ export default {
     saveSettings(data) {
       if (this.save) {
         this.$store.commit('SET_CARD_SETTINGS', { key: this.id, data });
-        this.$store.commit('DEL_CARD_CACHE', this.id);
-        this.hash = Date.now().toString();
+        this.reload();
         this.save = false;
       }
     },
@@ -98,7 +106,7 @@ export default {
         }).then((res) => {
           if (!res) {
             Toast.show({
-              text: `${id} needs new permissions that it cannot have, retry later.`,
+              title: `${id} needs new permissions that it cannot have, retry later.`,
               color: 'error',
               timeout: 10000,
               dismissible: false,

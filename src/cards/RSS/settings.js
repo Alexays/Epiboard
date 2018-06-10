@@ -14,6 +14,7 @@ export default {
   methods: {
     addFeed(url) {
       if (url.trim().length === 0) return;
+      this.newFeed = '';
       this.feeds.push(url);
     },
     removeFeed(idx) {

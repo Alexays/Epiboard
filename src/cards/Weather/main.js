@@ -93,6 +93,6 @@ export default {
       .then(this.getQuery)
       .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
       .then(() => this.$emit('init', this.$data))
-      .catch(err => this.$emit('init', false, err));
+      .catch(err => this.$emit('init', err));
   },
 };

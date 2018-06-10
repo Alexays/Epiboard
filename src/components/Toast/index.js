@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Toast from './Toast';
 
 const defaultOptions = {
-  text: '',
+  title: '',
+  desc: null,
   icon: '',
   color: 'info',
   timeout: 4000,
