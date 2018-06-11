@@ -13,21 +13,21 @@
             <h2 class="subheading">You have no recently closed page.</h2>
           </div>
           <li v-for="(session, key) in recentlyClosed" :key="key">
-            <a :href="session.url" class="session">
+            <a :href="session.url" class="session text--primary">
               <i v-if="session.favIconUrl" :style="{'background-image': 'url(' + session.favIconUrl +')'}"></i>
               <i v-else class="material-icons">insert_drive_file</i>
               <span class="session-title">{{session.title}}</span>
-              <span class="text--primary time">{{session.lastModified}}</span>
+              <span class="time">{{session.lastModified}}</span>
             </a>
           </li>
         </v-tab-item>
         <v-tab-item class="padding" lazy v-for="(device, key) in devices" :key="key">
           <li v-for="(tab, subKey) in device.tabs" :key="subKey">
-            <a :href="tab.url" class="session">
+            <a :href="tab.url" class="session text--primary">
               <i v-if="tab.favIconUrl" :style="{'background-image': 'url('+ tab.favIconUrl +')'}"></i>
               <i v-else class="material-icons">insert_drive_file</i>
               <span class="session-title">{{tab.title}}</span>
-              <span class="text--primary time">{{tab.lastModified}}</span>
+              <span class="time">{{tab.lastModified}}</span>
             </a>
           </li>
         </v-tab-item>

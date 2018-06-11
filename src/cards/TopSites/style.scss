@@ -3,12 +3,9 @@
     list-style: none;
     a {
       text-decoration: none;
-      cursor: pointer;
       display: flex;
       align-items: center;
       padding: 7px 15px;
-      margin: 0;
-      text-transform: none;
       &:hover {
         background-color: rgba(0, 0, 0, .1);
       }
