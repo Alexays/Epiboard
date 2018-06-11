@@ -15,14 +15,14 @@
           <v-layout align-center>
             <v-switch :label="settings.dark.enabled ? `On` : `Off`" hide-details v-model="settings.dark.enabled"></v-switch>
             <v-checkbox :label="`Auto`" :disabled="!settings.dark.enabled" hide-details v-model="settings.dark.auto"></v-checkbox>
-            <v-menu ref="menu_from" :disabled="!settings.dark.auto" lazy :close-on-content-click="false" v-model="menu.from" transition="scale-transition"
+            <v-menu ref="menu_from" :disabled="!settings.dark.auto || !settings.dark.enabled" lazy :close-on-content-click="false" v-model="menu.from" transition="scale-transition"
               offset-y full-width :nudge-right="40" max-width="290px" min-width="290px" :return-value.sync="settings.dark.from">
-              <v-text-field :disabled="!settings.dark.auto" slot="activator" label="from" v-model="settings.dark.from" prepend-icon="access_time" readonly></v-text-field>
+              <v-text-field :disabled="!settings.dark.auto" slot="activator" label="From" v-model="settings.dark.from" prepend-icon="access_time" readonly></v-text-field>
               <v-time-picker format="24h" v-model="settings.dark.from" @change="$refs.menu_from.save(settings.dark.from)"></v-time-picker>
             </v-menu>
-            <v-menu ref="menu_to" :disabled="!settings.dark.auto" lazy :close-on-content-click="false" v-model="menu.to" transition="scale-transition"
+            <v-menu ref="menu_to" :disabled="!settings.dark.auto || !settings.dark.enabled" lazy :close-on-content-click="false" v-model="menu.to" transition="scale-transition"
               offset-y full-width :nudge-right="40" max-width="290px" min-width="290px" :return-value.sync="settings.dark.to">
-              <v-text-field :disabled="!settings.dark.auto" slot="activator" label="to" v-model="settings.dark.to" prepend-icon="access_time" readonly></v-text-field>
+              <v-text-field :disabled="!settings.dark.auto" slot="activator" label="To" v-model="settings.dark.to" prepend-icon="access_time" readonly></v-text-field>
               <v-time-picker format="24h" v-model="settings.dark.to" @change="$refs.menu_to.save(settings.dark.to)"></v-time-picker>
             </v-menu>
           </v-layout>

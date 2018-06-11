@@ -7,12 +7,9 @@
   li {
     list-style: none;
     .session {
-      cursor: pointer;
       display: flex;
       align-items: center;
       padding: 7px 15px;
-      margin: 0;
-      text-transform: none;
       text-decoration: none;
       &:hover {
         background-color: rgba(0, 0, 0, .1);
@@ -36,13 +33,10 @@
         color: #757575;
         flex-shrink: 0;
       }
-      .more {
-        flex-shrink: 0;
-        color: #757575;
-        margin-left: 10px;
-      }
       .time {
         font-size: 11px;
+        flex-shrink: 0;
+        margin-left: 10px;
       }
     }
   }
