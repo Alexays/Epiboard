@@ -1,9 +1,14 @@
 import Toast from '@/components/Toast';
+import * as VList from 'vuetify/es5/components/VList';
+import VMenu from 'vuetify/es5/components/VMenu';
 
 export default {
   name: 'Download',
   props: ['settings'],
-  components: {},
+  components: {
+    ...VList,
+    VMenu,
+  },
   data() {
     return {
       downloads: {},
@@ -18,6 +23,9 @@ export default {
       }
       input = input.replace(/_id$/, '').replace(/_/g, ' ').replace(/(^\s*|\s*$)/g, '');
       return input.substr(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+    },
+    onDrag(download) {
+      browser.downloads.drag(download);
     },
     open(download) {
       if (download.state === 'interrupted') {
@@ -36,6 +44,26 @@ export default {
           });
         }
       }
+    },
+    erase(download) {
+      browser.downloads.erase({ id: download.id }).catch((err) => {
+        Toast.show({
+          title: 'Unable to remove.',
+          desc: err.message,
+          timeout: 4000,
+        });
+      });
+      this.getDownloads();
+    },
+    remove(download) {
+      browser.downloads.removeFile(download.id).catch((err) => {
+        Toast.show({
+          title: 'Unable to remove.',
+          desc: err.message,
+          timeout: 4000,
+        });
+      });
+      this.erase(download);
     },
     getDownloads() {
       return browser.downloads.search({
@@ -78,12 +106,22 @@ export default {
         this.downloads.unshift(download);
       });
     },
+    listenErased() {
+      browser.downloads.onErased.addListener((downloadId) => {
+        if (browser.runtime.lastError) return;
+        const id = this.downloads.findIndex(f => f.id === downloadId);
+        if (id === -1) return;
+        this.downloads.splice(id, 1);
+        this.getDownloads();
+      });
+    },
   },
   mounted() {
     Promise.all([this.getDownloads()])
       .then(() => {
         this.listenChange();
         this.listenCreate();
+        this.listenErased();
       })
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
