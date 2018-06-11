@@ -36,7 +36,7 @@
           </div>
           <div v-if="!projects.loading && projects.data.length" class="project">
             <div class="p-timeline" v-for="project in projects.data" :key="project.title">
-              <a target="_blank" v-bind:href="getLink(project.title_link)">
+              <a target="_blank" :href="project.link">
                 <h4>{{project.title}}</h4>
               </a>
               <small>{{project.timeline_start}}</small>

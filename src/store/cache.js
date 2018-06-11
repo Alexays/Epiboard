@@ -12,7 +12,7 @@ export default {
       state.version = version;
     },
     SET_CARD_CACHE(state, { key, data }) {
-      if (!Object.keys(data).length) return;
+      if (!data || !Object.keys(data).length) return;
       state.cards[key] = { ...data, ...{ CACHE_DT: Date.now() } };
     },
     DEL_CARD_CACHE(state, key) {
