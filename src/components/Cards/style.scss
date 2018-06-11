@@ -21,3 +21,20 @@
     cursor: grab;
   }
 }
+
+// Causes bugs due to tabs in the session cards, see next updates
+// .card:not(.muuri-item-shown) {
+//   visibility: hidden;
+// }
+.muuri-item-dragging {
+  z-index: 3 !important;
+  .head-drag {
+    cursor: grabbing;
+  }
+}
+.muuri-item-releasing {
+  z-index: 2 !important;
+}
+.muuri-item-hidden {
+  z-index: 0 !important;
+}
