@@ -19,13 +19,13 @@
               {{download.filename | filename}}
             </span>
           </div>
-          <span class="size">
+          <span class="text--secondary">
             <span v-if="download.state === 'in_progress'">
               {{download.bytesReceived | bytes}} /
             </span>
             {{download.totalBytes | bytes}}
           </span> -
-          <a :href="download.url" class="host">{{download.url}}</a>
+          <a :href="download.url" class="text--secondary">{{download.url}}</a>
         </div>
       </li>
       <v-list>

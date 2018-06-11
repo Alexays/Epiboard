@@ -16,8 +16,8 @@
             <a :href="session.url" class="session text--primary">
               <i v-if="session.favIconUrl" :style="{'background-image': 'url(' + session.favIconUrl +')'}"></i>
               <i v-else class="material-icons">insert_drive_file</i>
-              <span class="session-title">{{session.title}}</span>
-              <span class="time">{{session.lastModified}}</span>
+              <span :title="session.title" class="session-title">{{session.title}}</span>
+              <span class="time text--secondary">{{session.lastModified}}</span>
             </a>
           </li>
         </v-tab-item>
@@ -26,8 +26,8 @@
             <a :href="tab.url" class="session text--primary">
               <i v-if="tab.favIconUrl" :style="{'background-image': 'url('+ tab.favIconUrl +')'}"></i>
               <i v-else class="material-icons">insert_drive_file</i>
-              <span class="session-title">{{tab.title}}</span>
-              <span class="time">{{tab.lastModified}}</span>
+              <span :title="tab.title" class="session-title">{{tab.title}}</span>
+              <span class="time text--secondary">{{tab.lastModified}}</span>
             </a>
           </li>
         </v-tab-item>
