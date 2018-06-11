@@ -55,6 +55,10 @@ export default {
     },
     initCard(data) {
       this.init = true;
+      if (data === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
+        this.$store.commit('DEL_CARD_CACHE', this.id);
+        return;
+      }
       if (data instanceof Error) {
         this.error = `${this.id} got a loading error,`;
         Toast.show({
@@ -66,11 +70,7 @@ export default {
         });
         return;
       }
-      if (data === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
-        this.$store.commit('DEL_CARD_CACHE', this.id);
-        return;
-      }
-      if (data !== true) {
+      if (typeof data === 'object') {
         this.$store.commit('SET_CARD_CACHE', { key: this.id, data });
       }
     },
