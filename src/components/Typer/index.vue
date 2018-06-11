@@ -3,7 +3,7 @@
     <template v-if="textField">
       <v-text-field ref="textInput" v-on:keyup.13="search" :value="typing" @input="userInput($event)" hide-details single-line :disabled="$route.path !== '/'"></v-text-field>
     </template>
-    <a v-else :href="currentWord ? `https://www.google.com/#q=${currentWord}` : null" target="_blank">
+    <a v-else :href="currentWord && $route.path === '/' ? `https://www.google.com/#q=${currentWord}` : null" target="_blank">
       <h1 :title="currentWord">
         <slot></slot>
         <span class="typewriter-msg" :class='{"typewriter-selected":isFullErasing}'>{{ typing }}</span>
