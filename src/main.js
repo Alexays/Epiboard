@@ -66,8 +66,8 @@ Vue.directive('init', {
       ? vnode.context.$store.state.cardsSettings.cards[binding.value.key] || {}
       : vnode.context.$store.state.cache.cards[binding.value.key] || {};
     if (!binding.value.settings) {
-      const { CACHE_DT } = (vnode.context.$store.state.cache.cards[binding.value.key] || {});
-      if (CACHE_DT) {
+      const { CACHE_DT } = data;
+      if (CACHE_DT && Object.keys(data).length > 1) {
         // Default cache timeout is 60s
         const cacheValidity = ((Cards.cards[binding.value.key].cacheValidity || 60) * 1000);
         /* eslint-disable-next-line no-param-reassign */
