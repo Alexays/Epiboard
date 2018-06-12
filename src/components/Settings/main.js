@@ -113,6 +113,6 @@ export default {
   },
   beforeMount() {
     this.settings = this.$store.state.settings;
-    this.settings.analytics = localStorage.getItem('analytics') !== 'false';
+    this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
 };
