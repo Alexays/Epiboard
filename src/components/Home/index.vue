@@ -14,7 +14,7 @@
     <transition-group name="fade" appear tag="div" id="card-container" :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }">
       <cards v-for="card in cards" v-if="cmp[card]" :key="card" :id="card" @deleted="delCard(card)"></cards>
     </transition-group>
-    <div v-show="emptyCards" class="text-xs-center">
+    <div v-if="emptyCards" class="text-xs-center">
       <i class="material-icons md-48">grid_off</i>
       <h2 class="subheading">You have no cards.</h2>
     </div>

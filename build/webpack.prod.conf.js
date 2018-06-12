@@ -121,14 +121,12 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
   ],
   optimization: {
-    concatenateModules: true,
     splitChunks: {
-      chunks: 'all',
       cacheGroups: {
         vendor: {
           name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
-          enforce: true,
+          chunks: 'all',
         },
       },
     },
