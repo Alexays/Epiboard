@@ -14,7 +14,9 @@
                 </v-flex>
                 <v-flex>
                   <p class="temp">{{today.main.temp}}
-                    <span class="unit">°C</span>
+                    <span v-if="settings.units === 'metric'" class="unit">°C</span>
+                    <span v-if="settings.units === 'imperial'" class="unit">°F</span>
+                    <span v-if="settings.units === 'kelvin'" class="unit">K</span>
                   </p>
                 </v-flex>
               </v-layout>
@@ -24,7 +26,7 @@
                 <v-flex v-for="day in forecast" :key="day.dayName">
                   <v-layout column align-center>
                     <v-flex>
-                      <img :title="`${day.main.temp}°C ${day.weather[0].description}`" :src="'/static/img/weather/weather-'+ getImg(day.weather[0]['id'], false) +'.png'"/>
+                      <img :title="day.title" :src="'/static/img/weather/weather-'+ getImg(day.weather[0]['id'], false) +'.png'"/>
                     </v-flex>
                     <v-flex>
                       {{ day.dayName }}
@@ -47,10 +49,10 @@
               <v-icon medium color="white">brightness_4</v-icon>
               <v-layout column class="sun">
                 <v-flex>
-                  {{getTime(today.sys.sunrise)}}
+                  {{sunrise}}
                 </v-flex>
                 <v-flex>
-                  {{getTime(today.sys.sunset)}}
+                  {{sunset}}
                 </v-flex>
               </v-layout>
             </v-flex>

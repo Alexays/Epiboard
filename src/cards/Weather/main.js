@@ -13,6 +13,14 @@ export default {
       forecast: null,
     };
   },
+  computed: {
+    sunrise() {
+      return this.getTime(this.today.sys.sunrise);
+    },
+    sunset() {
+      return this.getTime(this.today.sys.sunset);
+    },
+  },
   methods: {
     getImg(nb, night = true) {
       const available = ['200', '200-n', '201', '300', '500', '500-n', '501', '501-n', '502', '502-n', '503', '503-n', '511', '600', '600-n', '601', '602', '700', '800', '800-n', '801', '801-n', '803', '804', '952', '953'];
@@ -31,12 +39,16 @@ export default {
       }
       return 'none';
     },
-    getTime(nb) {
-      const date = new Date(nb * 1000);
+    getTime(timestamp) {
+      const date = new Date(timestamp * 1000);
       return `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}`;
     },
     fetch(mode, query) {
-      return this.$http.get(`${API}${mode}?${query}&units=metric&appid=${this.settings.appId}`);
+      let endpoint = `${API}${mode}?${query}&appid=${this.settings.appId}`;
+      if (this.settings.units !== 'kelvin') {
+        endpoint += `&units=${this.settings.units}`;
+      }
+      return this.$http.get(endpoint);
     },
     getToday(query) {
       return this.fetch('weather', query)
@@ -60,6 +72,9 @@ export default {
             if (f.weather[0] && f.weather[0].description) {
               f.weather[0].description = f.weather[0].description.split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
             }
+            if (this.settings.units === 'metric') f.title = `${f.main.temp}°C ${f.weather[0].description}`;
+            if (this.settings.units === 'imperial') f.title = `${f.main.temp}°F ${f.weather[0].description}`;
+            if (this.settings.units === 'kelvin') f.title = `${f.main.temp}K ${f.weather[0].description}`;
             return f;
           }).filter(f => f.dt.getDate() !== new Date().getDate() && f.dt.getHours() === 12);
         });
