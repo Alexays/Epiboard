@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       messages: [],
-      fallback: backgrounds.default,
+      fallback: this.getBackgroundTime(backgrounds.default),
     };
   },
   computed: {
@@ -30,10 +30,13 @@ export default {
       return this.$utils.isDark(this.$store.state.settings.dark);
     },
     background() {
-      const { background } = this.$store.state.settings.header;
+      const { background, backgroundUrl } = this.$store.state.settings.header;
       let key = background || 'default';
       if (background === 'random') {
         [key] = this.$utils.shuffle(Object.keys(backgrounds));
+      }
+      if (background === 'url') {
+        return backgroundUrl;
       }
       const tmp = backgrounds[key] || backgrounds.default;
       return this.getBackgroundTime(tmp);
@@ -58,19 +61,19 @@ export default {
     },
   },
   methods: {
-    getBackgroundTime(url) {
-      if (this.dark) return url.night;
+    getBackgroundTime(background) {
+      if (this.dark) return background.night;
       const hour = new Date().getHours();
       if (hour > 5 && hour < 8) {
-        return url.dawn;
+        return background.dawn;
       }
       if (hour > 8 && hour < 19) {
-        return url.day;
+        return background.day;
       }
       if (hour > 19 && hour < 21) {
-        return url.dusk;
+        return background.dusk;
       }
-      return url.night;
+      return background.night;
     },
     getTrends(refresh) {
       const trendsCache = this.$store.state.cache.trends;

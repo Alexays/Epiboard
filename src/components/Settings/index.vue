@@ -12,7 +12,7 @@
           <h4 class="subheading">Background</h4>
           <v-layout align-center>
             <v-select :items="artworks" v-model="settings.header.background" label="Choose your background" autocomplete></v-select>
-            <v-text-field v-if="settings.header.background === 'url'" v-model="settings.header.backgroundUrl" label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"></v-text-field>
+            <v-text-field v-if="settings.header.background === 'url'" v-model.lazy="settings.header.backgroundUrl" label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"></v-text-field>
           </v-layout>
           <h4 class="headline">Dark mode</h4>
           <v-layout align-center>
