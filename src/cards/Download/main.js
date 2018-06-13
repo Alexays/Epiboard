@@ -9,6 +9,13 @@ export default {
     ...VList,
     VMenu,
   },
+  directives: {
+    drag: {
+      bind(el) {
+        el.addEventListener('dragstart', () => browser.downloads.drag(parseInt(el.id, 10)));
+      },
+    },
+  },
   data() {
     return {
       downloads: {},
@@ -23,9 +30,6 @@ export default {
       }
       input = input.replace(/_id$/, '').replace(/_/g, ' ').replace(/(^\s*|\s*$)/g, '');
       return input.substr(0, 1).toUpperCase() + input.substring(1).toLowerCase();
-    },
-    onDrag(download) {
-      browser.downloads.drag(download);
     },
     open(download) {
       if (download.state === 'interrupted') {

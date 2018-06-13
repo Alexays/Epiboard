@@ -2,7 +2,7 @@
   <div id="download" class="padding">
     <!-- TODO: drag event -->
     <v-menu lazy bottom offset-y v-for="download in downloads" :key="download.id">
-      <li draggable="true" ondragstart="onDrag(download.id)" slot="activator" class="download">
+      <li draggable="true" v-drag :id="download.id" slot="activator" class="download">
         <div class="icon">
           <v-progress-circular v-if="download.state === 'in_progress'" :value="(download.bytesReceived / download.totalBytes) * 100 | 0"></v-progress-circular>
           <template v-else>
