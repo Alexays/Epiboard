@@ -10,7 +10,10 @@
             <v-radio label="Toolbar" value="toolbar"></v-radio>
           </v-radio-group>
           <h4 class="subheading">Background</h4>
-          <v-select :items="artworks" v-model="settings.header.background" label="Choose your background" autocomplete></v-select>
+          <v-layout align-center>
+            <v-select :items="artworks" v-model="settings.header.background" label="Choose your background" autocomplete></v-select>
+            <v-text-field v-if="settings.header.background === 'url'" v-model="settings.header.backgroundUrl" label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"></v-text-field>
+          </v-layout>
           <h4 class="headline">Dark mode</h4>
           <v-layout align-center>
             <v-switch :label="settings.dark.enabled ? `On` : `Off`" hide-details v-model="settings.dark.enabled"></v-switch>
@@ -35,9 +38,7 @@
           <h4 class="headline">Debug</h4>
           <v-switch :label="settings.debug ? `On` : `Off`" v-model="settings.debug"></v-switch>
           <v-layout align-center>
-            <v-flex>
-              <v-btn flat small @click="reset">Reset settings</v-btn>
-            </v-flex>
+            <v-btn flat small @click="reset">Reset settings</v-btn>
             <v-flex>
               <p class="text-xs-right">
                 Made with

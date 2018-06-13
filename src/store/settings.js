@@ -12,6 +12,7 @@ const initialState = {
   header: {
     design: 'full',
     background: 'random',
+    backgroundUrl: '',
   },
   debug: false,
 };

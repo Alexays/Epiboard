@@ -19,22 +19,28 @@ export default {
   data() {
     return {
       messages: [],
-      background: null,
+      fallback: backgrounds.default,
     };
   },
   computed: {
-    backgroundSettings() {
-      return this.$store.state.settings.header.background;
-    },
     trendsSettings() {
       return this.$store.state.settings.trends;
     },
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);
     },
+    background() {
+      const { background } = this.$store.state.settings.header;
+      let key = background || 'default';
+      if (background === 'random') {
+        [key] = this.$utils.shuffle(Object.keys(backgrounds));
+      }
+      const tmp = backgrounds[key] || backgrounds.default;
+      return this.getBackgroundTime(tmp);
+    },
     placeholder() {
       const url = this.background;
-      if (url.indexOf('i.imgur.com') > -1) {
+      if (url && url.indexOf('i.imgur.com') > -1) {
         const idx = url.lastIndexOf('.');
         return `${url.substr(0, idx)}t${url.substr(idx)}`;
       }
@@ -42,9 +48,6 @@ export default {
     },
   },
   watch: {
-    backgroundSettings(val, old) {
-      if (val !== old) this.getBackground();
-    },
     trendsSettings: {
       handler(val) {
         if (!val.enabled) {
@@ -52,9 +55,6 @@ export default {
         } else this.getMessage(true);
       },
       deep: true,
-    },
-    dark(val, old) {
-      if (val !== old) this.getBackground();
     },
   },
   methods: {
@@ -71,18 +71,6 @@ export default {
         return url.dusk;
       }
       return url.night;
-    },
-    getBackground() {
-      const background = this.backgroundSettings;
-      if (background === 'random') {
-        const key = this.$utils.shuffle(Object.keys(backgrounds))[0];
-        const tmp = backgrounds[key];
-        this.background = this.getBackgroundTime(tmp);
-      } else {
-        const key = background || 'default';
-        const tmp = backgrounds[key] || backgrounds.default;
-        this.background = this.getBackgroundTime(tmp);
-      }
     },
     getTrends(refresh) {
       const trendsCache = this.$store.state.cache.trends;
@@ -104,7 +92,6 @@ export default {
     },
   },
   beforeMount() {
-    this.getBackground();
     this.getMessage();
   },
 };

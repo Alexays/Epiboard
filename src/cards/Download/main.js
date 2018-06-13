@@ -31,6 +31,7 @@ export default {
       if (download.state === 'interrupted') {
         Toast.show({
           title: this.humanize(download.error),
+          color: 'error',
           timeout: 4000,
         });
       }
@@ -40,6 +41,7 @@ export default {
         } else {
           Toast.show({
             title: 'File moved or deleted',
+            color: 'error',
             timeout: 4000,
           });
         }
@@ -50,6 +52,7 @@ export default {
         Toast.show({
           title: 'Unable to remove.',
           desc: err.message,
+          color: 'error',
           timeout: 4000,
         });
       });
@@ -60,6 +63,7 @@ export default {
         Toast.show({
           title: 'Unable to remove.',
           desc: err.message,
+          color: 'error',
           timeout: 4000,
         });
       });

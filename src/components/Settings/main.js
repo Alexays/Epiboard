@@ -21,8 +21,9 @@ export default {
       settings: {},
       artworks: [
         { text: 'Random', value: 'random' },
-        { text: 'Default', value: 'default' },
         { text: 'Unsplash provider', value: 'unsplash' },
+        { text: 'From URL', value: 'url' },
+        { text: 'Default', value: 'default' },
         { text: 'Austin', value: 'austin' },
         { text: 'Beach', value: 'beach' },
         { text: 'Berlin', value: 'berlin' },
