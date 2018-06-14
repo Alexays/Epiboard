@@ -1,5 +1,13 @@
 const API = 'https://api.openweathermap.org/data/2.5/';
 
+const imgs = {
+  day: [
+    200, 201, 300, 500, 501, 502, 503, 511,
+    600, 601, 602, 700, 800, 801, 803, 804, 952, 953,
+  ],
+  night: [200, 500, 501, 502, 503, 600, 800, 801],
+};
+
 export default {
   name: 'Weather',
   title: new Date().toLocaleDateString('en-Us', {
@@ -23,21 +31,17 @@ export default {
   },
   methods: {
     getImg(nb, night = true) {
-      const img = {
-        day: [200, 201, 300, 500, 501, 502, 503, 511, 600, 601, 602, 700, 800, 801, 803, 804, 952, 953],
-        night: [200, 500, 501, 502, 503, 600, 800, 801],
-      };
       const date = Date.now() / 1000;
       if (night && !(date > this.today.sys.sunrise && date < this.today.sys.sunset)) {
-        const closest = img.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
-        if (img.night.includes(nb)) {
+        const closest = imgs.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
+        if (imgs.night.includes(nb)) {
           return `${nb}-n`;
         } else if (`${closest}`[0] === `${nb}`[0]) {
           return `${closest}-n`;
         }
       }
-      const closest = img.day.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
-      if (img.day.includes(nb)) {
+      const closest = imgs.day.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
+      if (imgs.day.includes(nb)) {
         return nb;
       } else if (`${closest}`[0] === `${nb}`[0]) {
         return closest;
