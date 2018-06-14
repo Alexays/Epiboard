@@ -32,7 +32,7 @@ export default {
           return `${nb.toString()[0]}00-n`;
         }
       }
-      if (available.includes(nb)) {
+      if (available.includes(`${nb}`)) {
         return nb;
       } else if (available.includes(`${nb.toString()[0]}00`)) {
         return `${nb.toString()[0]}00`;
