@@ -75,9 +75,17 @@ export default {
         });
       });
     },
+    listenChange() {
+      browser.sessions.onChanged.addListener(() => {
+        Promise.all([this.getDevices(), this.getRecentlyClosed()]);
+      });
+    },
   },
   mounted() {
     Promise.all([this.getDevices(), this.getRecentlyClosed()])
+      .then(() => {
+        this.listenChange();
+      })
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
