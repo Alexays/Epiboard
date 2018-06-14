@@ -110,7 +110,9 @@ export default {
     listenCreate() {
       browser.downloads.onCreated.addListener((download) => {
         if (browser.runtime.lastError) return;
-        this.downloads.pop();
+        if (this.downloads.length === this.settings.limitDownloads) {
+          this.downloads.pop();
+        }
         this.downloads.unshift(download);
       });
     },
