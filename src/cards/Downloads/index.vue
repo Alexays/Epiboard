@@ -12,7 +12,7 @@
         </div>
         <div class="d-info">
           <div class="name">
-            <strike v-if="download.state === 'interrupted'">
+            <strike v-if="download.state === 'interrupted' || !download.exists">
               {{download.filename | filename}}
             </strike>
             <span v-else>
