@@ -3,7 +3,7 @@ import * as VList from 'vuetify/es5/components/VList';
 import VMenu from 'vuetify/es5/components/VMenu';
 
 export default {
-  name: 'Download',
+  name: 'Downloads',
   props: ['settings'],
   components: {
     ...VList,

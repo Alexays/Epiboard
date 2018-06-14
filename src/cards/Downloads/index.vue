@@ -1,5 +1,5 @@
 <template>
-  <div id="download" class="padding">
+  <div id="downloads" class="padding">
     <!-- TODO: drag event -->
     <v-menu lazy bottom offset-y v-for="download in downloads" :key="download.id">
       <li draggable="true" v-drag :id="download.id" slot="activator" class="download">
