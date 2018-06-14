@@ -23,19 +23,24 @@ export default {
   },
   methods: {
     getImg(nb, night = true) {
-      const available = ['200', '200-n', '201', '300', '500', '500-n', '501', '501-n', '502', '502-n', '503', '503-n', '511', '600', '600-n', '601', '602', '700', '800', '800-n', '801', '801-n', '803', '804', '952', '953'];
+      const img = {
+        day: [200, 201, 300, 500, 501, 502, 503, 511, 600, 601, 602, 700, 800, 801, 803, 804, 952, 953],
+        night: [200, 500, 501, 502, 503, 600, 800, 801],
+      };
       const date = Date.now() / 1000;
       if (night && !(date > this.today.sys.sunrise && date < this.today.sys.sunset)) {
-        if (available.includes(`${nb}-n`)) {
+        const closest = img.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
+        if (img.night.includes(nb)) {
           return `${nb}-n`;
-        } else if (available.includes(`${nb.toString()[0]}00-n`)) {
-          return `${nb.toString()[0]}00-n`;
+        } else if (`${closest}`[0] === `${nb}`[0]) {
+          return `${closest}-n`;
         }
       }
-      if (available.includes(`${nb}`)) {
+      const closest = img.day.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
+      if (img.day.includes(nb)) {
         return nb;
-      } else if (available.includes(`${nb.toString()[0]}00`)) {
-        return `${nb.toString()[0]}00`;
+      } else if (`${closest}`[0] === `${nb}`[0]) {
+        return closest;
       }
       return 'none';
     },
