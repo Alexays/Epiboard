@@ -32,11 +32,11 @@
         <v-list-tile v-if="download.state === 'complete' && download.exists" @click="open(download)">
           <v-list-tile-title>Open</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile @click="erase(download)">
+        <v-list-tile v-if="download.state === 'complete' && download.exists" @click="remove(download)">
           <v-list-tile-title>Remove</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile v-if="download.state === 'complete' && download.exists" @click="remove(download)">
-          <v-list-tile-title>Remove with data</v-list-tile-title>
+        <v-list-tile @click="erase(download)">
+          <v-list-tile-title>Remove from list</v-list-tile-title>
         </v-list-tile>
       </v-list>
     </v-menu>

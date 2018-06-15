@@ -20,14 +20,6 @@ export default {
     },
   },
   methods: {
-    init() {
-      return this.$utils.permissions.allowed({
-        origins: this.settings.feeds || [],
-      }).then((res) => {
-        if (res) return this.settings.feeds;
-        throw new Error('Insufficient permissions');
-      });
-    },
     fetch(url) {
       return this.axios.get(`${API}${encodeURIComponent(url)}`).then(res => res.data.items);
     },
@@ -37,8 +29,7 @@ export default {
       this.$emit('init', true);
       return;
     }
-    this.init()
-      .then(data => Promise.all(data.map(this.fetch)))
+    Promise.all(this.settings.feeds.map(this.fetch))
       .then((res) => {
         this.items = Array.prototype.concat(...res);
         this.loading = false;
