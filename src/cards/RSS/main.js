@@ -30,8 +30,8 @@ export default {
       return;
     }
     Promise.all(this.settings.feeds.map(this.fetch))
-      .then((res) => {
-        this.items = Array.prototype.concat(...res);
+      .then((items) => {
+        this.items = [].concat(...items);
         this.loading = false;
       })
       .then(() => this.$emit('init', this.$data))
