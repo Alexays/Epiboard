@@ -13,12 +13,14 @@ export default {
     return {
       grid: null,
       fab: false,
-      cmp: Cards.cards,
     };
   },
   computed: {
+    cardsKey() {
+      return Cards.cards;
+    },
     cards() {
-      return [...new Set(this.$store.state.cards)];
+      return [...new Set(this.$store.state.cards)].filter(f => this.cardsKey[f]);
     },
     emptyCards() {
       return Object.keys(this.cards).length === 0;
@@ -31,7 +33,7 @@ export default {
       return keys.reduce((obj, key) => {
         const { [key]: _, ...tmp } = obj;
         return tmp;
-      }, this.cmp);
+      }, this.cardsKey);
     },
     showFab() {
       return Object.keys(this.availableCards).length;
