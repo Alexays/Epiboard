@@ -16,11 +16,11 @@ export default {
     };
   },
   computed: {
-    cardsKey() {
+    cardsCmp() {
       return Cards.cards;
     },
     cards() {
-      return [...new Set(this.$store.state.cards)].filter(f => this.cardsKey[f]);
+      return [...new Set(this.$store.state.cards)].filter(f => this.cardsCmp[f]);
     },
     emptyCards() {
       return Object.keys(this.cards).length === 0;
@@ -33,7 +33,7 @@ export default {
       return keys.reduce((obj, key) => {
         const { [key]: _, ...tmp } = obj;
         return tmp;
-      }, this.cardsKey);
+      }, this.cardsCmp);
     },
     showFab() {
       return Object.keys(this.availableCards).length;
