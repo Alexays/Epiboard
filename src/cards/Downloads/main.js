@@ -4,7 +4,7 @@ import VMenu from 'vuetify/es5/components/VMenu';
 
 export default {
   name: 'Downloads',
-  props: ['settings'],
+  props: ['settings', 'menus'],
   components: {
     ...VList,
     VMenu,
@@ -73,6 +73,16 @@ export default {
       });
       this.erase(download);
     },
+    removeAll() {
+      browser.downloads.erase({}).catch((err) => {
+        Toast.show({
+          title: 'Unable to remove all.',
+          desc: err.message,
+          color: 'error',
+          timeout: 4000,
+        });
+      });
+    },
     getDownloads() {
       return browser.downloads.search({
         limit: this.settings.limitDownloads,
@@ -127,6 +137,10 @@ export default {
     },
   },
   mounted() {
+    this.$emit('update:menus', [{
+      title: 'Remove all',
+      func: () => this.removeAll(),
+    }]);
     Promise.all([this.getDownloads()])
       .then(() => {
         this.listenChange();

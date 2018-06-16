@@ -19,6 +19,7 @@ export default {
       init: false,
       error: null,
       hash: '',
+      menus: [],
     };
   },
   computed: {
