@@ -138,7 +138,7 @@ export default {
   },
   mounted() {
     this.$emit('update:menus', [{
-      title: 'Remove all',
+      title: 'Clear downloads',
       func: () => this.removeAll(),
     }]);
     Promise.all([this.getDownloads()])

@@ -24,15 +24,12 @@ export default {
       });
     },
     updateMenu() {
-      this.$emit('update:menus', this.lists.map(f => ({
+      const menu = this.lists.map(f => ({
         title: f.title,
         active: f.id === this.currentId,
-        func: () => {
-          this.getTasksList(f.id);
-          this.currentId = f.id;
-          this.updateMenu();
-        },
-      })));
+        func: () => this.getTasksList(f.id),
+      }));
+      this.$emit('update:menus', menu);
     },
     getLists() {
       return Api.getLists(this.token).then((lists) => {
@@ -42,6 +39,8 @@ export default {
     getTasksList(id) {
       return Api.getAll(this.token, id).then((tasks) => {
         this.tasks = tasks.items;
+        this.currentId = id;
+        this.updateMenu();
       });
     },
     getAll() {
