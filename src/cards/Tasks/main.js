@@ -13,7 +13,8 @@ export default {
     return {
       token: null,
       tasks: [],
-      list: [],
+      lists: [],
+      currentId: null,
     };
   },
   methods: {
@@ -23,15 +24,19 @@ export default {
       });
     },
     updateMenu() {
-      this.$emit('update:menus', this.list.map(f => ({
+      this.$emit('update:menus', this.lists.map(f => ({
         title: f.title,
-        func: () => this.getTasksList(f.id),
+        active: f.id === this.currentId,
+        func: () => {
+          this.getTasksList(f.id);
+          this.currentId = f.id;
+          this.updateMenu();
+        },
       })));
     },
-    getList() {
-      return Api.getList(this.token).then((list) => {
-        this.list = list.items;
-        this.updateMenu();
+    getLists() {
+      return Api.getLists(this.token).then((lists) => {
+        this.lists = lists.items;
       });
     },
     getTasksList(id) {
@@ -42,6 +47,10 @@ export default {
     getAll() {
       return Api.getAll(this.token).then((tasks) => {
         this.tasks = tasks.items;
+        Api.getList(this.token).then((list) => {
+          this.currentId = list.id;
+          this.updateMenu();
+        });
       });
     },
   },
@@ -52,7 +61,7 @@ export default {
       return;
     }
     this.init()
-      .then(() => this.getList())
+      .then(() => this.getLists())
       .then(() => this.getAll())
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err));

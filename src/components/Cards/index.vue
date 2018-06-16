@@ -13,9 +13,10 @@
             <v-icon color="white">more_vert</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile v-for="menu in menus" :key="menu.title" @click="menu.func()">
+            <v-list-tile v-for="menu in menus" :key="menu.title" @click="menu.func()" :class="{ 'primary--text': menu.active }">
               <v-list-tile-title>{{menu.title}}</v-list-tile-title>
             </v-list-tile>
+            <v-divider v-if="menus.length"></v-divider>
             <v-list-tile v-if="settingsCmp" @click.stop="showSettings=true">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>

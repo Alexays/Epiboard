@@ -1,5 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
 import VMenu from 'vuetify/es5/components/VMenu';
+import VDivider from 'vuetify/es5/components/VDivider';
 import Toast from '@/components/Toast';
 
 export default {
@@ -7,6 +8,7 @@ export default {
   props: ['id'],
   components: {
     ...VList,
+    VDivider,
     VMenu,
   },
   data() {

@@ -45,9 +45,9 @@ export default {
     return this.authorize(scope)
       .then(url => this.validate(url));
   },
-  getList(token) {
+  fetch(url, token) {
     return Axios({
-      url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
+      url,
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -55,14 +55,13 @@ export default {
       },
     }).then(res => res.data);
   },
-  getAll(token, task = '@default') {
-    return Axios({
-      url: `https://www.googleapis.com/tasks/v1/lists/${task}/tasks`,
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    }).then(res => res.data);
+  getLists(token) {
+    return this.fetch('https://www.googleapis.com/tasks/v1/users/@me/lists', token);
+  },
+  getList(token, id = '@default') {
+    return this.fetch(`https://www.googleapis.com/tasks/v1/users/@me/lists/${id}`, token);
+  },
+  getAll(token, id = '@default') {
+    return this.fetch(`https://www.googleapis.com/tasks/v1/lists/${id}/tasks`, token);
   },
 };
