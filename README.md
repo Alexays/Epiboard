@@ -6,7 +6,7 @@
 </h4>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.jpg" alt="Epibaord"/>
+  <img src="https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png" alt="Epibaord"/>
 </p>
 
 ## Requirement
