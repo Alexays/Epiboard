@@ -33,9 +33,13 @@ export default {
       const { background, backgroundUrl } = this.$store.state.settings.header;
       let key = background || 'default';
       if (background === 'random') {
-        [key] = this.$utils.shuffle(Object.keys(backgrounds));
+        const keys = Object.keys(backgrounds);
+        if (backgroundUrl && backgroundUrl.length) {
+          keys.push('url');
+        }
+        [key] = this.$utils.shuffle(keys);
       }
-      if (background === 'url') {
+      if (key === 'url') {
         return backgroundUrl;
       }
       const tmp = backgrounds[key] || backgrounds.default;
