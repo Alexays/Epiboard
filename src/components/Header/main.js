@@ -8,7 +8,9 @@ import welcomeMessages from './welcomeMessages';
 Vue.use(VueProgressiveImage);
 
 const API = 'https://trends.google.com/trends/hottrends/visualize/internal/data';
+const DOODLES_API = 'https://www.google.com/doodles/json/';
 const EXPIRE_TRENDS = 3600000; // 1h
+const EXPIRE_DOODLE = 57600000; // 16h
 
 export default {
   name: 'Header',
@@ -19,12 +21,16 @@ export default {
   data() {
     return {
       messages: [],
+      doodle: null,
       fallback: this.getBackgroundTime(backgrounds.default),
     };
   },
   computed: {
     trendsSettings() {
       return this.$store.state.settings.trends;
+    },
+    doodleSettings() {
+      return this.$store.state.settings.doodle;
     },
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);
@@ -59,7 +65,17 @@ export default {
       handler(val) {
         if (!val.enabled) {
           this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
+          this.$store.commit('SET_TRENDS_CACHE', []);
         } else this.getMessage(true);
+      },
+      deep: true,
+    },
+    doodleSettings: {
+      handler(val) {
+        if (!val.enabled) {
+          this.doodle = null;
+          this.$store.commit('SET_DOODLE_CACHE', {});
+        } else this.getDoodle(true);
       },
       deep: true,
     },
@@ -97,8 +113,24 @@ export default {
         this.getTrends(refresh);
       }
     },
+    getDoodle(refresh = false) {
+      const doodleCache = this.$store.state.cache.doodle;
+      const date = new Date();
+      if (!refresh && date.getTime() < doodleCache.dt + EXPIRE_DOODLE) {
+        this.doodle = doodleCache.data;
+      } else {
+        this.axios.get(`${DOODLES_API}${date.getFullYear()}/${date.getMonth() + 1}`).then((res) => {
+          const { title, url } = res.data[0];
+          this.doodle = { title, url };
+          this.$store.commit('SET_DOODLE_CACHE', this.doodle);
+        });
+      }
+    },
   },
   beforeMount() {
     this.getMessage();
+    if (this.doodleSettings.enabled) {
+      this.getDoodle();
+    }
   },
 };

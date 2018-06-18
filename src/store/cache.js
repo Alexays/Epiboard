@@ -6,6 +6,10 @@ export default {
       data: [],
       dt: null,
     },
+    doodle: {
+      data: {},
+      dt: null,
+    },
   },
   mutations: {
     SET_VERSION(state, version) {
@@ -21,6 +25,10 @@ export default {
     SET_TRENDS_CACHE(state, trends) {
       state.trends.dt = Date.now();
       state.trends.data = trends;
+    },
+    SET_DOODLE_CACHE(state, doodle) {
+      state.doodle.dt = Date.now();
+      state.doodle.data = doodle;
     },
   },
 };

@@ -9,6 +9,9 @@ const initialState = {
     enabled: true,
     country: 'france',
   },
+  doodle: {
+    enabled: false,
+  },
   header: {
     design: 'full',
     background: 'random',

@@ -28,4 +28,12 @@ header {
     right: 15px;
     z-index: 1;
   }
+  .doodle {
+    position: absolute;
+    margin: auto;
+    max-height: 100%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    top: 50%;
+  }
 }
