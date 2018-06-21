@@ -14,26 +14,16 @@ export default {
   },
   data() {
     return {
-      is_logged: true,
+      is_logged: false,
+      loading: true,
       gpa_precision: {
         loading: false,
         val: null,
       },
-      user: {
-        loading: true,
-      },
-      projects: {
-        data: [],
-        loading: true,
-      },
-      rooms: {
-        data: [],
-        loading: true,
-      },
-      upcomings: {
-        data: [],
-        loading: true,
-      },
+      user: null,
+      projects: [],
+      rooms: [],
+      upcoming: [],
     };
   },
   methods: {
@@ -44,31 +34,24 @@ export default {
       }).catch((err) => {
         this.is_logged = false;
         throw err;
-      }).finally(() => {
-        this.user.loading = false;
       });
     },
     getProjects() {
       return API.getCurrentProjects()
         .then((projects) => {
-          this.projects.data = projects;
+          this.projects = projects;
         }).catch((err) => {
           this.is_logged = false;
           throw err;
-        })
-        .finally(() => {
-          this.projects.loading = false;
         });
     },
     getRoom(planning) {
-      this.rooms.data = API.getRoom(planning);
-      this.rooms.loading = false;
+      this.rooms = API.getRoom(planning);
     },
     getUpcoming(planning) {
-      this.upcomings.data = planning
+      this.upcoming = planning
         .filter(f => f.event_registered && f.start > new Date())
         .sort((a, b) => a.start - b.start);
-      this.upcomings.loading = false;
     },
     getGpa() {
       this.gpa_precision.loading = true;
@@ -91,6 +74,9 @@ export default {
       .then((planning) => {
         this.getRoom(planning);
         this.getUpcoming(planning);
+      })
+      .finally(() => {
+        this.loading = false;
       })
       .then(() => this.$emit('init', ['gpa_precision'].reduce((obj, key) => {
         const { [key]: _, ...tmp } = obj;

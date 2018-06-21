@@ -61,7 +61,7 @@ export default {
       this.$ga.event('cards', 'add', key, 1);
     },
     watchSize() {
-      const cards = document.getElementsByClassName('card');
+      const cards = document.getElementsByClassName('v-card');
       for (let i = 0; i < cards.length; i += 1) {
         new ResizeSensor(cards[i], this.resize(cards[i])); // eslint-disable-line no-new
       }
@@ -78,7 +78,7 @@ export default {
     },
     initGrid() {
       this.grid = new Muuri('#card-container', {
-        items: '.card',
+        items: '.v-card',
         dragEnabled: true,
         layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },

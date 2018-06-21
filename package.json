@@ -24,7 +24,7 @@
     "vue-axios": "^2.1.1",
     "vue-progressive-image": "^2.5.0",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.0.19",
+    "vuetify": "^1.1.0-rc.1",
     "vuex": "^3.0.1",
     "vuex-persist": "^1.4.0"
   },
@@ -49,7 +49,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-import-resolver-webpack": "^0.10.0",
     "eslint-loader": "^2.0.0",
-    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-html": "^4.0.4",
     "eslint-plugin-import": "^2.12.0",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",

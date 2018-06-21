@@ -1,12 +1,11 @@
 #epitech {
-  .no-projects {
-    padding: 0 0 16px;
+  .p-no-bottom {
+    padding-bottom: 0;
   }
-  .project {
-    padding: 0 16px 10px;
+  .projects {
     max-height: 200px;
     overflow: auto;
-    .p-timeline {
+    .project {
       margin: 10px 0;
       a {
         text-decoration: none;
@@ -15,9 +14,6 @@
         float: right;
       }
     }
-  }
-  .progress-linear {
-    margin: 10px 0;
   }
   .rooms {
     max-height: 325px;

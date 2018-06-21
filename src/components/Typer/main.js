@@ -164,7 +164,7 @@ export default {
         this.fullEraseTimeout = setTimeout(() => {
           this.isFullErasing = true;
           if (this.textField) {
-            this.$refs.textInput.$el.children[0].children[0].select();
+            this.$refs.textInput.$el.children[0].children[0].children[0].children[0].select();
           }
           clearTimeout(this.fullEraseTimeout);
           const tmp = setTimeout(() => {

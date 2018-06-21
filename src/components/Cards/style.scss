@@ -1,16 +1,16 @@
-.card {
+.v-card {
   width: 400px;
   min-height: 100px;
   margin: 15px;
   position: absolute;
-  z-index: 1;
-  .card__title {
+  overflow-x: hidden;
+  .v-card__title {
     justify-content: space-between;
     &.custom {
       position: absolute;
       width: 100%;
     }
-    .progress-circular {
+    .v-progress-circular {
       vertical-align: middle;
     }
     .btn {
@@ -23,7 +23,7 @@
 }
 
 // Causes bugs due to tabs in the session cards, see next updates
-// .card:not(.muuri-item-shown) {
+// .v-card:not(.muuri-item-shown) {
 //   visibility: hidden;
 // }
 .muuri-item-dragging {

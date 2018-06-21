@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <transition name="fab-transition" mode="out-in">
-      <v-speed-dial v-show="showFab" v-model="fab" top right direction="bottom" transition="slide-y-transition">
+      <v-speed-dial v-show="showFab" v-model="fab" right direction="bottom" transition="slide-y-transition">
         <v-btn v-model="fab" slot="activator" dark fab color="blue">
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
