@@ -158,8 +158,8 @@ export default function () {
             if (rows[i] === d[0]) break;
             margin += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
           }
-          return padding + margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d) *
-            yScale.bandwidth());
+          return padding + margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
+          * yScale.bandwidth());
         })
         .attr('height', yScale.bandwidth() - (2 * padding))
         .on('mouseover', tip.show)
