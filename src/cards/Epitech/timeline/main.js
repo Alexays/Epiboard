@@ -3,7 +3,13 @@ window.d3 = require('d3');
 /* eslint-disable import/first */
 import { timelineAxisLeft, timelineAxisRight } from './timelineaxis';
 import Tooltip from './tooltip';
-import { durationFormat, f, countOverlap, countModuleOverlap, getOverlapOffset } from './utils';
+import {
+  durationFormat,
+  f,
+  countOverlap,
+  countModuleOverlap,
+  getOverlapOffset,
+} from './utils';
 
 function getFontSize(element) {
   return parseFloat(window.getComputedStyle(element, null).getPropertyValue('font-size'));
@@ -152,8 +158,8 @@ export default function () {
             if (rows[i] === d[0]) break;
             margin += yScale.bandwidth() * countModuleOverlap(data.filter(c => c[0] === rows[i]));
           }
-          return padding + margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
-          * yScale.bandwidth());
+          return padding + margin + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d) *
+            yScale.bandwidth());
         })
         .attr('height', yScale.bandwidth() - (2 * padding))
         .on('mouseover', tip.show)
@@ -170,8 +176,8 @@ export default function () {
           let marginText = 0;
           for (let i = 0; i < rows.length; i += 1) {
             if (rows[i] === d[0]) break;
-            marginText += yScale.bandwidth() *
-            countModuleOverlap(data.filter(c => c[0] === rows[i]));
+            marginText += yScale.bandwidth()
+            * countModuleOverlap(data.filter(c => c[0] === rows[i]));
           }
           return marginText + (getOverlapOffset(sortedData.filter(c => c[0] === d[0]), d)
           * yScale.bandwidth()) + (yScale.bandwidth() / 2);

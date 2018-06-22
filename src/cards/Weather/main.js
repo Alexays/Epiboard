@@ -36,14 +36,16 @@ export default {
         const closest = imgs.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
         if (imgs.night.includes(nb)) {
           return `${nb}-n`;
-        } else if (`${closest}`[0] === `${nb}`[0]) {
+        }
+        if (`${closest}`[0] === `${nb}`[0]) {
           return `${closest}-n`;
         }
       }
       const closest = imgs.day.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
       if (imgs.day.includes(nb)) {
         return nb;
-      } else if (`${closest}`[0] === `${nb}`[0]) {
+      }
+      if (`${closest}`[0] === `${nb}`[0]) {
         return closest;
       }
       return 'none';
@@ -92,7 +94,8 @@ export default {
       if (pos.coords) {
         const { latitude, longitude } = pos.coords;
         return Promise.resolve(`lat=${latitude}&lon=${longitude}`);
-      } else if (pos.city) {
+      }
+      if (pos.city) {
         return Promise.resolve(`q=${pos.city}`);
       }
       return Promise.reject(new Error('Enter valid city name'));

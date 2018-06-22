@@ -28,9 +28,9 @@ export function countModuleOverlap(data) {
     let cnt = 0;
     for (let j = 0; j < dates.length; j += 1) {
       if (j !== i) {
-        cnt += ((dates[i].start <= dates[j].start && dates[j].start <= dates[i].end) ||
-        (dates[i].start <= dates[j].end && dates[j].end <= dates[i].end) ||
-        (dates[j].start < dates[i].start && dates[i].end < dates[j].end));
+        cnt += ((dates[i].start <= dates[j].start && dates[j].start <= dates[i].end)
+        || (dates[i].start <= dates[j].end && dates[j].end <= dates[i].end)
+        || (dates[j].start < dates[i].start && dates[i].end < dates[j].end));
       }
     }
     if (cnt > maxCnt) {
@@ -47,9 +47,9 @@ export function getOverlapOffset(data, el) {
   let overlap = 0;
   for (let i = index + 1; i < data.length; i += 1) {
     if (i !== index) {
-      const tmp = ((data[index][2] <= data[i][2] && data[i][2] <= data[index][3]) ||
-      (data[index][2] <= data[i][3] && data[i][3] <= data[index][3]) ||
-      (data[i][2] < data[index][2] && data[index][3] < data[i][3]));
+      const tmp = ((data[index][2] <= data[i][2] && data[i][2] <= data[index][3])
+      || (data[index][2] <= data[i][3] && data[i][3] <= data[index][3])
+      || (data[i][2] < data[index][2] && data[index][3] < data[i][3]));
       overlap += tmp;
     }
   }

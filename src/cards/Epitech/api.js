@@ -35,9 +35,9 @@ export default {
   getCurrentProjects() {
     return this.getProjects()
       .then((projects) => {
-        const data = projects.filter(f => f.timeline_barre < 100 &&
-          !f.date_inscription && this.parseDate(f.timeline_start) <= new Date() &&
-          this.parseDate(f.timeline_end) > new Date());
+        const data = projects.filter(f => f.timeline_barre < 100
+          && !f.date_inscription && this.parseDate(f.timeline_start) <= new Date()
+          && this.parseDate(f.timeline_end) > new Date());
         const check = data.map(f => this.isRegistered(f)
           .then((isRegistered) => {
             f.isRegistered = isRegistered;
