@@ -1,7 +1,6 @@
 #weather {
   .left {
     padding: 26px 16px 16px;
-    ;
     i {
       font-size: 80px;
     }
@@ -25,10 +24,10 @@
     }
     .city {
       justify-content: flex-end;
-      align-items: flex-start;
+      align-items: center;
       display: flex;
       font-size: 10px;
-      padding-bottom: 10px;
+      height: 30px;
       i {
         font-size: 14px;
       }

@@ -32,7 +32,9 @@ export default {
         this.is_logged = true;
         this.user = user;
       }).catch((err) => {
-        this.is_logged = false;
+        if (err.response.status === 401) {
+          this.is_logged = false;
+        }
         throw err;
       });
     },
@@ -41,7 +43,9 @@ export default {
         .then((projects) => {
           this.projects = projects;
         }).catch((err) => {
-          this.is_logged = false;
+          if (err.response.status === 401) {
+            this.is_logged = false;
+          }
           throw err;
         });
     },

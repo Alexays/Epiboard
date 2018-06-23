@@ -1,6 +1,6 @@
 <template>
   <div id="rss">
-    <v-list three-line subheader>
+    <v-list three-line>
       <template v-for="item in sortedFeeds">
         <v-list-tile :key="item.title" :href="item.link">
           <v-list-tile-content :title="item.title">
