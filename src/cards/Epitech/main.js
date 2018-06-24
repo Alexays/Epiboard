@@ -58,7 +58,7 @@ export default {
         this.is_logged = true;
         this.user = user;
       }).catch((err) => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           this.is_logged = false;
         }
         throw err;
@@ -68,11 +68,6 @@ export default {
       return API.getCurrentProjects()
         .then((projects) => {
           this.projects = projects;
-        }).catch((err) => {
-          if (err.response.status === 401) {
-            this.is_logged = false;
-          }
-          throw err;
         });
     },
     getRoom(planning) {
