@@ -16,7 +16,7 @@
               <a :href="session.url" class="session text--primary">
                 <i v-if="session.favIconUrl"
                    :style="{'background-image': `url(${session.favIconUrl})`}"/>
-                <v-icon>insert_drive_file</v-icon>
+                <v-icon v-else>insert_drive_file</v-icon>
                 <span :title="session.title" class="session-title">{{ session.title }}</span>
                 <span class="time text--secondary">{{ session.lastModified }}</span>
               </a>
@@ -30,7 +30,7 @@
             <li v-for="tab in device.tabs" :key="tab.url">
               <a :href="tab.url" class="session text--primary">
                 <i v-if="tab.favIconUrl" :style="{'background-image': `url(${tab.favIconUrl})`}"/>
-                <i v-else class="material-icons">insert_drive_file</i>
+                <v-icon v-else>insert_drive_file</v-icon>
                 <span :title="tab.title" class="session-title">{{ tab.title }}</span>
                 <span class="time text--secondary">{{ tab.lastModified }}</span>
               </a>

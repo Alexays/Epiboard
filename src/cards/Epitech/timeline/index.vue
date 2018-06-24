@@ -1,12 +1,14 @@
 <template>
   <div>
-    <v-btn block darkdepressed small color="blue-grey" class="ma-0" @click="getTimeline()">
+    <v-btn block dark depressed small color="blue-grey" class="ma-0" @click="getTimeline()">
       timeline
     </v-btn>
     <v-dialog v-resize.quiet="draw" v-model="enabled" lazy scrollable max-width="80%">
       <v-card>
         <v-card-text>
-          <v-progress-linear v-show="loading" id="timeline" indeterminate/>
+          <div id="timeline">
+            <v-progress-linear v-show="loading" indeterminate/>
+          </div>
         </v-card-text>
       </v-card>
     </v-dialog>

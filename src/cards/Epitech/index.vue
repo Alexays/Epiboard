@@ -24,10 +24,14 @@
               </span>
             </v-chip>
             <v-chip label disabled>
-              {{ user.credits }} <small>Credits</small>
+              <span>
+                {{ user.credits }} <small>Credits</small>
+              </span>
             </v-chip>
             <v-chip v-if="user.spice && user.spice.available_spice" label disabled>
-              {{ user.spice.available_spice }} <small>Spices</small>
+              <span>
+                {{ user.spice.available_spice }} <small>Spices</small>
+              </span>
             </v-chip>
             <p>
               {{ user.studentyear }}
