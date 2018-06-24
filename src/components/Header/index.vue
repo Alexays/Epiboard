@@ -1,13 +1,20 @@
 <template>
   <header class="grey">
-    <progressive-background class="background" no-ratio v-if="background" :src="background" :placeholder="placeholder" :fallback="fallback" />
-    <img class="doodle" v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title"/>
+    <progressive-background
+      v-if="background"
+      :src="background"
+      :placeholder="placeholder" :fallback="fallback" no-ratio class="background"/>
+    <img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle">
     <template v-if="$store.state.settings.header.design === 'full'">
-      <vue-typer :text="texts" full-erase :erase-delay="5000" :repeat="messagesRepeat"></vue-typer>
-      <v-btn title="Home" v-if="$route.path === '/settings'" id="settings" outline flat icon color="white" to="/">
+      <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
+      <v-btn
+        v-if="$route.path === '/settings'"
+        id="settings" outline flat icon title="Home" color="white" to="/">
         <v-icon>&#xE5C4;</v-icon>
       </v-btn>
-      <v-btn title="Settings" v-else-if="$route.path !== '/onboarding'" id="settings" outline flat icon color="white" to="/settings">
+      <v-btn
+        v-else-if="$route.path !== '/onboarding'"
+        id="settings" outline flat icon title="Settings" color="white" to="/settings">
         <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </template>
@@ -15,12 +22,11 @@
       <v-btn icon disabled>
         <v-icon>&#xE8B6;</v-icon>
       </v-btn>
-      <vue-typer text-field :text="texts" full-erase :erase-delay="5000" :repeat="messagesRepeat"></vue-typer>
-      <v-spacer></v-spacer>
-      <v-btn title="Home" v-if="$route.path === '/settings'" to="/" icon>
+      <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" text-field full-erase/>
+      <v-btn v-if="$route.path === '/settings'" to="/" title="Home" icon>
         <v-icon>&#xE5C4;</v-icon>
       </v-btn>
-      <v-btn title="Settings" v-else-if="$route.path !== '/onboarding'" to="/settings" icon>
+      <v-btn v-else-if="$route.path !== '/onboarding'" to="/settings" title="Settings" icon>
         <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </v-toolbar>

@@ -1,37 +1,43 @@
 <template>
   <v-card-text id="downloads">
-    <v-menu lazy bottom offset-y v-for="download in downloads" :key="download.id">
-      <li draggable="true" v-drag :id="download.id" slot="activator" class="download">
+    <v-menu v-for="download in downloads" :key="download.id" lazy bottom offset-y>
+      <li v-drag slot="activator" :id="download.id" class="download" draggable>
         <div class="icon">
-          <v-progress-circular v-if="download.state === 'in_progress'" :value="(download.bytesReceived / download.totalBytes) * 100 | 0"></v-progress-circular>
+          <v-progress-circular
+            v-if="download.state === 'in_progress'"
+            :value="(download.bytesReceived / download.totalBytes) * 100 | 0"/>
           <template v-else>
-            <div class="fileicon" v-if="download.filename && download.icon" :style="{'background-image': 'url(' + download.icon + ')'}"></div>
-            <i v-if="!download.filename || !download.icon" class="material-icons">insert_drive_file</i>
+            <div
+              v-if="download.filename && download.icon"
+              :style="{'background-image': `url(${download.icon})`}" class="fileicon"/>
+            <v-icon v-if="!download.filename || !download.icon">insert_drive_file</v-icon>
           </template>
         </div>
         <div class="d-info">
           <div class="name">
             <strike v-if="download.state === 'interrupted' || !download.exists">
-              {{download.filename | filename}}
+              {{ download.filename | filename }}
             </strike>
             <span v-else>
-              {{download.filename | filename}}
+              {{ download.filename | filename }}
             </span>
           </div>
           <span class="text--secondary">
             <span v-if="download.state === 'in_progress'">
-              {{download.bytesReceived | bytes}} /
+              {{ download.bytesReceived | bytes }} /
             </span>
-            {{download.totalBytes | bytes}}
+            {{ download.totalBytes | bytes }}
           </span> -
-          <a :href="download.url" class="text--secondary">{{download.url}}</a>
+          <a :href="download.url" class="text--secondary">{{ download.url }}</a>
         </div>
       </li>
       <v-list>
-        <v-list-tile v-if="download.state === 'complete' && download.exists" @click="open(download)">
+        <v-list-tile
+          v-if="download.state === 'complete' && download.exists" @click="open(download)">
           <v-list-tile-title>Open</v-list-tile-title>
         </v-list-tile>
-        <v-list-tile v-if="download.state === 'complete' && download.exists" @click="remove(download)">
+        <v-list-tile
+          v-if="download.state === 'complete' && download.exists" @click="remove(download)">
           <v-list-tile-title>Remove</v-list-tile-title>
         </v-list-tile>
         <v-list-tile @click="erase(download)">
@@ -40,7 +46,7 @@
       </v-list>
     </v-menu>
     <div v-if="!downloads.length" class="text-xs-center">
-      <i class="material-icons md-48">file_download</i>
+      <v-icon x-large>file_download</v-icon>
       <h2 class="subheading">You have no downloads.</h2>
     </div>
   </v-card-text>

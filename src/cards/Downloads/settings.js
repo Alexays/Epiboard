@@ -1,3 +1,4 @@
+// @vue/component
 export default {
   name: 'Donwloads',
   components: {},
@@ -5,9 +6,5 @@ export default {
     return {
       limitDownloads: 5,
     };
-  },
-  methods: {
-  },
-  mounted() {
   },
 };

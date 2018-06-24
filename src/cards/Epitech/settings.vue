@@ -1,7 +1,7 @@
 <template>
   <v-card-text id="epitech-settings">
     <h4 class="headline">Hide user information</h4>
-    <v-switch :label="hideInfo ? `On` : `Off`" hide-details v-model="hideInfo"></v-switch>
+    <v-switch :label="hideInfo ? `On` : `Off`" v-model="hideInfo" hide-details/>
   </v-card-text>
 </template>
 <script src="./settings.js"></script>

@@ -3,6 +3,7 @@ import Marked from 'marked';
 const { version } = browser.runtime.getManifest();
 const API = 'https://api.github.com/repos/alexays/epiboard/releases/tags/';
 
+// @vue/component
 export default {
   name: 'Changelog',
   title: `What's new in ${version} ?`,

@@ -1,16 +1,30 @@
 import * as VTabs from 'vuetify/es5/components/VTabs';
 
+// @vue/component
 export default {
   name: 'Sessions',
-  props: ['settings'],
   components: {
     ...VTabs,
+  },
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
       devices: [],
       recentlyClosed: [],
     };
+  },
+  mounted() {
+    Promise.all([this.getDevices(), this.getRecentlyClosed()])
+      .then(() => {
+        this.listenChange();
+      })
+      .then(() => this.$emit('init'))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     mergeTabsAndWindows(sessionItem) {
@@ -78,13 +92,5 @@ export default {
         Promise.all([this.getDevices(), this.getRecentlyClosed()]);
       });
     },
-  },
-  mounted() {
-    Promise.all([this.getDevices(), this.getRecentlyClosed()])
-      .then(() => {
-        this.listenChange();
-      })
-      .then(() => this.$emit('init'))
-      .catch(err => this.$emit('init', err));
   },
 };

@@ -1,12 +1,23 @@
+// @vue/component
 export default {
   name: 'TopSites',
   title: 'Top Sites',
-  props: ['settings'],
   components: {},
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       topSites: [],
     };
+  },
+  mounted() {
+    Promise.all([this.getTopSites()])
+      .then(() => this.$emit('init'))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     getTopSites() {
@@ -19,10 +30,5 @@ export default {
         });
       });
     },
-  },
-  mounted() {
-    Promise.all([this.getTopSites()])
-      .then(() => this.$emit('init'))
-      .catch(err => this.$emit('init', err));
   },
 };

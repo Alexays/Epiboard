@@ -3,13 +3,19 @@ import VMenu from 'vuetify/es5/components/VMenu';
 import VDivider from 'vuetify/es5/components/VDivider';
 import Toast from '@/components/Toast';
 
+// @vue/component
 export default {
   name: 'Cards',
-  props: ['id'],
   components: {
     ...VList,
     VDivider,
     VMenu,
+  },
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -41,6 +47,41 @@ export default {
       }
       return data;
     },
+  },
+  created() {
+    const { id } = this;
+    const card = Cards.cards[id];
+    const settingsName = Cards.settings[id];
+    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${card.cmp}`)
+      .then((tmp) => {
+        if (tmp.default.title) this.title = tmp.default.title;
+        if (!card.permissions && !card.origins) return tmp.default;
+        return this.$utils.permissions.allowed({
+          permissions: card.permissions || [],
+          origins: card.origins || [],
+        }).then((res) => {
+          if (!res) {
+            Toast.show({
+              title: `${id} needs new permissions that it cannot have, retry later.`,
+              color: 'error',
+              timeout: 10000,
+              dismissible: false,
+            });
+            return null;
+          }
+          return tmp.default;
+        });
+      })
+      .then((tmp) => {
+        if (settingsName) {
+          return import(`@/cards/${settingsName}`)
+            .then((data) => {
+              this.settingsCmp = data.default;
+              return tmp;
+            });
+        }
+        return tmp;
+      });
   },
   methods: {
     deleteCard() {
@@ -94,40 +135,5 @@ export default {
         this.save = false;
       }
     },
-  },
-  created() {
-    const { id } = this;
-    const card = Cards.cards[id];
-    const settingsName = Cards.settings[id];
-    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${card.cmp}`)
-      .then((tmp) => {
-        if (tmp.default.title) this.title = tmp.default.title;
-        if (!card.permissions && !card.origins) return tmp.default;
-        return this.$utils.permissions.allowed({
-          permissions: card.permissions || [],
-          origins: card.origins || [],
-        }).then((res) => {
-          if (!res) {
-            Toast.show({
-              title: `${id} needs new permissions that it cannot have, retry later.`,
-              color: 'error',
-              timeout: 10000,
-              dismissible: false,
-            });
-            return null;
-          }
-          return tmp.default;
-        });
-      })
-      .then((tmp) => {
-        if (settingsName) {
-          return import(`@/cards/${settingsName}`)
-            .then((data) => {
-              this.settingsCmp = data.default;
-              return tmp;
-            });
-        }
-        return tmp;
-      });
   },
 };

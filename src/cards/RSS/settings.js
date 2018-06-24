@@ -1,5 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
 
+// @vue/component
 export default {
   name: 'RSS',
   components: {
@@ -20,7 +21,5 @@ export default {
     removeFeed(idx) {
       this.feeds.splice(idx, 1);
     },
-  },
-  mounted() {
   },
 };

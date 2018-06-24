@@ -2,9 +2,9 @@ import Toast from '@/components/Toast';
 import * as VList from 'vuetify/es5/components/VList';
 import VMenu from 'vuetify/es5/components/VMenu';
 
+// @vue/component
 export default {
   name: 'Downloads',
-  props: ['settings', 'menus'],
   components: {
     ...VList,
     VMenu,
@@ -16,10 +16,30 @@ export default {
       },
     },
   },
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       downloads: {},
     };
+  },
+  mounted() {
+    this.$emit('update:menus', [{
+      title: 'Clear downloads',
+      func: () => this.removeAll(),
+    }]);
+    Promise.all([this.getDownloads()])
+      .then(() => {
+        this.listenChange();
+        this.listenCreate();
+        this.listenErased();
+      })
+      .then(() => this.$emit('init'))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     humanize(error) {
@@ -135,19 +155,5 @@ export default {
         this.getDownloads();
       });
     },
-  },
-  mounted() {
-    this.$emit('update:menus', [{
-      title: 'Clear downloads',
-      func: () => this.removeAll(),
-    }]);
-    Promise.all([this.getDownloads()])
-      .then(() => {
-        this.listenChange();
-        this.listenCreate();
-        this.listenErased();
-      })
-      .then(() => this.$emit('init'))
-      .catch(err => this.$emit('init', err));
   },
 };

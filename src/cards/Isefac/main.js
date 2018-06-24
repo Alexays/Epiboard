@@ -2,6 +2,7 @@ import * as VList from 'vuetify/es5/components/VList';
 
 const API = 'https://nantes.campus-isefac.fr/bachelor/';
 
+// @vue/component
 export default {
   name: 'Isefac',
   components: {
@@ -16,6 +17,18 @@ export default {
         name: '',
       },
     };
+  },
+  mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
+    Promise.all([this.getCalendar()])
+      .then(() => this.$emit('init', this.$data))
+      .catch(err => this.$emit('init', err))
+      .finally(() => {
+        this.loading = false;
+      });
   },
   methods: {
     getCalendar() {
@@ -51,17 +64,5 @@ export default {
             .sort((a, b) => a.start - b.start);
         });
     },
-  },
-  mounted() {
-    if (this.VALID_CACHE) {
-      this.$emit('init', true);
-      return;
-    }
-    Promise.all([this.getCalendar()])
-      .then(() => this.$emit('init', this.$data))
-      .catch(err => this.$emit('init', err))
-      .finally(() => {
-        this.loading = false;
-      });
   },
 };

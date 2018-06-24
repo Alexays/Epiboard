@@ -5,6 +5,7 @@ import VSwitch from 'vuetify/es5/components/VSwitch';
 import VSelect from 'vuetify/es5/components/VSelect';
 import VMenu from 'vuetify/es5/components/VMenu';
 
+// @vue/component
 export default {
   name: 'Settings',
   components: {
@@ -104,16 +105,16 @@ export default {
       }
     },
   },
-  methods: {
-    reset() {
-      this.$store.commit('RESET_SETTINGS');
-    },
-  },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);
   },
   beforeMount() {
     this.settings = this.$store.state.settings;
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
+  },
+  methods: {
+    reset() {
+      this.$store.commit('RESET_SETTINGS');
+    },
   },
 };

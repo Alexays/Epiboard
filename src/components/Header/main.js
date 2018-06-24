@@ -12,6 +12,7 @@ const DOODLES_API = 'https://www.google.com/doodles/json/';
 const EXPIRE_TRENDS = 3600000; // 1h
 const EXPIRE_DOODLE = 57600000; // 16h
 
+// @vue/component
 export default {
   name: 'Header',
   components: {
@@ -89,6 +90,12 @@ export default {
       deep: true,
     },
   },
+  beforeMount() {
+    this.getMessage();
+    if (this.doodleSettings.enabled) {
+      this.getDoodle();
+    }
+  },
   methods: {
     getBackgroundTime(background) {
       if (this.dark) return background.night;
@@ -135,11 +142,5 @@ export default {
         });
       }
     },
-  },
-  beforeMount() {
-    this.getMessage();
-    if (this.doodleSettings.enabled) {
-      this.getDoodle();
-    }
   },
 };

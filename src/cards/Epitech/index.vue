@@ -1,7 +1,7 @@
 <template>
   <div id="epitech">
     <v-card-text v-if="loading">
-      <v-progress-linear indeterminate></v-progress-linear>
+      <v-progress-linear indeterminate/>
     </v-card-text>
     <v-card-text v-else-if="!is_logged" class="text-xs-center">
       <i class="material-icons md-48">error_outline</i>
@@ -12,65 +12,68 @@
       <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
-        <v-tab-item lazy id="tab-infos">
+        <v-tab-item id="tab-infos" lazy>
           <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">
-            <h3>{{user.title}}</h3>
-            <v-chip label v-on:click="getGpa()" title="Click to get a precision gpa">
-              <v-progress-circular v-if="gpa_precision.loading" title="Calculating GPA" indeterminate :size="16" :width="2"></v-progress-circular>
+            <h3>{{ user.title }}</h3>
+            <v-chip label title="Click to get a precision gpa" @click="getGpa()">
+              <v-progress-circular
+                v-if="gpa_precision.loading"
+                :size="16" :width="2" indeterminate title="Calculating GPA"/>
               <span v-else>
-                <span>{{gpa_precision.val || user.gpa[0].gpa}} <small>G.P.A.</small></span>
+                {{ gpa_precision.val || user.gpa[0].gpa }} <small>G.P.A.</small>
               </span>
             </v-chip>
             <v-chip label disabled>
-              <span>{{user.credits}} <small>Credits</small></span>
+              {{ user.credits }} <small>Credits</small>
             </v-chip>
             <v-chip v-if="user.spice && user.spice.available_spice" label disabled>
-              <span>
-                {{user.spice.available_spice}} <small>Spices</small>
-              </span>
+              {{ user.spice.available_spice }} <small>Spices</small>
             </v-chip>
             <p>
-              {{user.studentyear}}
-              <sup>{{user.studentyear > 1 ? 'nd' : 'st'}}</sup> year, Promo {{user.promo}}
+              {{ user.studentyear }}
+              <sup>{{ user.studentyear > 1 ? 'nd' : 'st' }}</sup> year, Promo {{ user.promo }}
             </p>
           </v-card-text>
           <v-card-text v-if="projects.length" class="projects">
-            <div class="project" v-for="project in projects" :key="project.title">
-              <a target="_blank" :href="project.link">
-                <h4>{{project.title}}</h4>
+            <div v-for="project in projects" :key="project.title" class="project">
+              <a :href="project.link" target="_blank">
+                <h4>{{ project.title }}</h4>
               </a>
-              <small>{{project.timeline_start}}</small>
-              <small class="end_date">{{project.timeline_end}}</small>
-              <div v-if="project.timeline_barre < 60">
-                <v-progress-linear :height="6" :value="project.timeline_barre"></v-progress-linear>
-              </div>
-              <div v-if="project.timeline_barre >= 60 && project.timeline_barre < 80">
-                <v-progress-linear color="orange" background-color="orange lighten-2" :height="6" :value="project.timeline_barre"></v-progress-linear>
-              </div>
-              <div v-if="project.timeline_barre >= 80">
-                <v-progress-linear color="red" background-color="red lighten-2" :height="6" :value="project.timeline_barre"></v-progress-linear>
-              </div>
+              <small>{{ project.timeline_start }}</small>
+              <small class="end_date">{{ project.timeline_end }}</small>
+              <v-progress-linear
+                v-if="project.timeline_barre < 60" :value="project.timeline_barre" :height="6"/>
+              <v-progress-linear
+                v-if="project.timeline_barre >= 60 && project.timeline_barre < 80"
+                :value="project.timeline_barre"
+                :height="6" color="orange" background-color="orange lighten-2"/>
+              <v-progress-linear
+                v-if="project.timeline_barre >= 80"
+                :value="project.timeline_barre"
+                :height="6" color="red" background-color="red lighten-2"/>
             </div>
           </v-card-text>
           <v-card-text v-else-if="!projects.length" class="text-xs-center">
             <i class="material-icons md-48">work</i>
             <h2 class="subheading">No on going projects, well done !</h2>
           </v-card-text>
-          <timeline :user="user"></timeline>
+          <timeline :user="user"/>
         </v-tab-item>
-        <v-tab-item lazy id="tab-upcoming">
+        <v-tab-item id="tab-upcoming" lazy>
           <v-list v-if="upcoming.length" three-line dense>
             <v-list-tile v-for="activity of upcoming" :key="activity.acti_title">
               <v-list-tile-content>
-                <v-list-tile-title>{{activity.room.code | filename}}</v-list-tile-title>
+                <v-list-tile-title>{{ activity.room.code | filename }}</v-list-tile-title>
                 <v-list-tile-sub-title>
-                  {{activity.acti_title}}<br/>
-                  {{activity.startString}}&#8594;{{activity.endString}}
+                  {{ activity.acti_title }}
+                  <p>{{ activity.startString }}&#8594;{{ activity.endString }}</p>
                 </v-list-tile-sub-title>
               </v-list-tile-content>
-              <v-list-tile-action :title="activity.total_students_registered + ' student(s) for ' + activity.room.seats + ' seats'">
+              <v-list-tile-action
+                :title="`${activity.total_students_registered} student(s)`
+                + ` for ${activity.room.seats} seats`">
                 <v-chip v-if="!activity.is_rdv" label disabled>
-                  {{activity.total_students_registered}}/{{activity.room.seats}}
+                  {{ activity.total_students_registered }}/{{ activity.room.seats }}
                 </v-chip>
               </v-list-tile-action>
             </v-list-tile>
@@ -80,19 +83,21 @@
             <h2 class="subheading">No upcoming activities, go get some rest !</h2>
           </v-card-text>
         </v-tab-item>
-        <v-tab-item lazy id="tab-rooms">
+        <v-tab-item id="tab-rooms" lazy>
           <v-list v-if="rooms.length" three-line dense>
             <v-list-tile v-for="room of rooms" :key="room.acti_title">
               <v-list-tile-content>
-                <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
+                <v-list-tile-title>{{ room.room.code | filename }}</v-list-tile-title>
                 <v-list-tile-sub-title>
-                  {{room.acti_title}}<br/>
-                  {{room.startString}}&#8594;{{room.endString}}
+                  {{ room.acti_title }}
+                  <p>{{ room.startString }}&#8594;{{ room.endString }}</p>
                 </v-list-tile-sub-title>
               </v-list-tile-content>
-              <v-list-tile-action :title="room.total_students_registered + ' student(s) for ' + room.room.seats + ' seats'">
+              <v-list-tile-action
+                :title="`${room.total_students_registered} student(s)`
+                + ` for ${room.room.seats} seats`">
                 <v-chip v-if="!room.is_rdv" label disabled>
-                  {{room.total_students_registered}}/{{room.room.seats}}
+                  {{ room.total_students_registered }}/{{ room.room.seats }}
                 </v-chip>
               </v-list-tile-action>
             </v-list-tile>

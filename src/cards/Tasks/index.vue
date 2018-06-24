@@ -1,12 +1,14 @@
 <template>
   <div id="tasks">
     <v-list>
-      <v-list-tile avatar v-for="task in tasks" :key="task.id">
+      <v-list-tile v-for="task in tasks" :key="task.id" avatar>
         <v-list-tile-action>
-          <v-checkbox v-model="task.status" value="completed"></v-checkbox>
+          <v-checkbox v-model="task.status" value="completed"/>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title v-if="task.status === 'completed'"><strike>{{ task.title }}</strike></v-list-tile-title>
+          <v-list-tile-title v-if="task.status === 'completed'">
+            <strike>{{ task.title }}</strike>
+          </v-list-tile-title>
           <v-list-tile-title v-else>{{ task.title }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>

@@ -1,13 +1,19 @@
 <template>
   <div id="typewriter">
     <template v-if="textField">
-      <v-text-field ref="textInput" v-on:keyup.13="search" :value="typing" @input="userInput($event)" hide-details single-line :disabled="$route.path !== '/'"></v-text-field>
+      <v-text-field
+        ref="textInput"
+        :value="typing"
+        :disabled="$route.path !== '/'"
+        hide-details single-line @keyup.13="search" @input="userInput($event)"/>
     </template>
-    <a v-else :href="currentWord && $route.path === '/' ? `https://www.google.com/#q=${currentWord}` : null" target="_blank">
+    <a v-else :href="url" target="_blank">
       <h1 :title="currentWord">
-        <slot></slot>
-        <span class="typewriter-msg" :class='{"typewriter-selected":isFullErasing}'>{{ typing }}</span>
-        <span class="typewriter-cursor" v-if="cursor">{{ cursorSymbol }}</span>
+        <slot/>
+        <span :class="{ 'typewriter-selected': isFullErasing }" class="typewriter-msg">
+          {{ typing }}
+        </span>
+        <span v-if="cursor" class="typewriter-cursor">{{ cursorSymbol }}</span>
       </h1>
     </a>
   </div>

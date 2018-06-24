@@ -1,4 +1,6 @@
 // DEPRECATED: Chrome apps will be removed soon
+
+// @vue/component
 export default {
   name: 'Apps',
   components: {},
@@ -8,6 +10,11 @@ export default {
       extensions: [],
       themes: [],
     };
+  },
+  mounted() {
+    Promise.all([this.getAll()])
+      .then(() => this.$emit('init'))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     getAll() {
@@ -35,10 +42,5 @@ export default {
         browser.management.launchApp(app.id);
       }
     },
-  },
-  mounted() {
-    Promise.all([this.getAll()])
-      .then(() => this.$emit('init'))
-      .catch(err => this.$emit('init', err));
   },
 };

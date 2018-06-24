@@ -2,9 +2,9 @@ import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import * as VList from 'vuetify/es5/components/VList';
 import Api from './api';
 
+// @vue/component
 export default {
   name: 'Tasks',
-  props: ['menus'],
   components: {
     VCheckbox,
     ...VList,
@@ -16,6 +16,18 @@ export default {
       lists: [],
       currentId: null,
     };
+  },
+  mounted() {
+    if (this.VALID_CACHE) {
+      this.updateMenu();
+      this.$emit('init', true);
+      return;
+    }
+    this.init()
+      .then(() => this.getLists())
+      .then(() => this.getAll())
+      .then(() => this.$emit('init', this.$data))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     init() {
@@ -52,17 +64,5 @@ export default {
         });
       });
     },
-  },
-  mounted() {
-    if (this.VALID_CACHE) {
-      this.updateMenu();
-      this.$emit('init', true);
-      return;
-    }
-    this.init()
-      .then(() => this.getLists())
-      .then(() => this.getAll())
-      .then(() => this.$emit('init', this.$data))
-      .catch(err => this.$emit('init', err));
   },
 };

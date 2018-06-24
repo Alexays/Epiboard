@@ -3,14 +3,20 @@ import * as VTabs from 'vuetify/es5/components/VTabs';
 import * as VList from 'vuetify/es5/components/VList';
 import API from './api';
 
+// @vue/component
 export default {
   name: 'Epitech',
-  props: ['settings'],
   components: {
     VChip,
     ...VTabs,
     ...VList,
     Timeline: () => import(/* webpackMode: "lazy" */'./timeline').then(_ => _.default),
+  },
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
@@ -25,6 +31,26 @@ export default {
       rooms: [],
       upcoming: [],
     };
+  },
+  mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
+    Promise.all([this.getUser(), this.getProjects()])
+      .then(() => API.getPlanning(this.user))
+      .then((planning) => {
+        this.getRoom(planning);
+        this.getUpcoming(planning);
+      })
+      .finally(() => {
+        this.loading = false;
+      })
+      .then(() => this.$emit('init', ['gpa_precision'].reduce((obj, key) => {
+        const { [key]: _, ...tmp } = obj;
+        return tmp;
+      }, this.$data)))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     getUser() {
@@ -68,25 +94,4 @@ export default {
         });
     },
   },
-  mounted() {
-    if (this.VALID_CACHE) {
-      this.$emit('init', true);
-      return;
-    }
-    Promise.all([this.getUser(), this.getProjects()])
-      .then(() => API.getPlanning(this.user))
-      .then((planning) => {
-        this.getRoom(planning);
-        this.getUpcoming(planning);
-      })
-      .finally(() => {
-        this.loading = false;
-      })
-      .then(() => this.$emit('init', ['gpa_precision'].reduce((obj, key) => {
-        const { [key]: _, ...tmp } = obj;
-        return tmp;
-      }, this.$data)))
-      .catch(err => this.$emit('init', err));
-  },
-
 };

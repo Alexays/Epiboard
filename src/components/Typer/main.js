@@ -1,3 +1,4 @@
+// @vue/component
 export default {
   props: {
     text: {
@@ -52,6 +53,12 @@ export default {
     };
   },
   computed: {
+    url() {
+      if (this.currentWord && this.$route.path === '/') {
+        return `https://www.google.com/#q=${this.currentWord}`;
+      }
+      return null;
+    },
     isErasing() {
       return !this.isTyping;
     },
@@ -112,7 +119,10 @@ export default {
       }
     },
     search() {
-      window.open(`https://www.google.com/#q=${this.currentWord}`, '_self');
+      const { url } = this;
+      if (url) {
+        window.open(url, '_self');
+      }
     },
     userInput(text) {
       this.destroyTimers();

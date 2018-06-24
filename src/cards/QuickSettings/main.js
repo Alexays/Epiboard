@@ -1,6 +1,7 @@
 import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import Toast from '@/components/Toast';
 
+// @vue/component
 export default {
   name: 'QuickSettings',
   title: 'Quick Settings',
@@ -27,6 +28,9 @@ export default {
       return true;
     },
   },
+  mounted() {
+    this.$emit('init');
+  },
   methods: {
     clear() {
       this.loading = true;
@@ -41,8 +45,5 @@ export default {
         this.loading = false;
       });
     },
-  },
-  mounted() {
-    this.$emit('init');
   },
 };

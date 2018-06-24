@@ -3,6 +3,7 @@ import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import CardsCmp from '@/components/Cards';
 import Muuri from 'muuri';
 
+// @vue/component
 export default {
   name: 'Home',
   components: {
@@ -38,6 +39,13 @@ export default {
     showFab() {
       return Object.keys(this.availableCards).length;
     },
+  },
+  beforeMount() {
+    this.checkVersion();
+  },
+  mounted() {
+    this.initGrid();
+    this.watchSize();
   },
   methods: {
     resize(elem) {
@@ -97,12 +105,5 @@ export default {
         this.$ga.event('cards', 'order', order, 1);
       });
     },
-  },
-  beforeMount() {
-    this.checkVersion();
-  },
-  mounted() {
-    this.initGrid();
-    this.watchSize();
   },
 };

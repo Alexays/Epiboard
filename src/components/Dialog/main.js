@@ -1,5 +1,6 @@
 import VDialog from 'vuetify/es5/components/VDialog';
 
+// @vue/component
 export default {
   components: {
     VDialog,

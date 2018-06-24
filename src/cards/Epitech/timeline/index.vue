@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-btn class="ma-0" block dark depressed small color="blue-grey" @click="getTimeline()">timeline</v-btn>
-    <v-dialog v-model="enabled" lazy scrollable max-width="80%" v-resize.quiet="draw">
+    <v-btn block darkdepressed small color="blue-grey" class="ma-0" @click="getTimeline()">
+      timeline
+    </v-btn>
+    <v-dialog v-resize.quiet="draw" v-model="enabled" lazy scrollable max-width="80%">
       <v-card>
         <v-card-text>
-          <div id="timeline">
-            <v-progress-linear v-show="loading" indeterminate></v-progress-linear>
-          </div>
+          <v-progress-linear v-show="loading" id="timeline" indeterminate/>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -22,9 +22,14 @@ const API = 'https://intra.epitech.eu';
 /* global d3 */
 export default {
   name: 'EpitechTimeline',
-  props: ['user'],
   components: {
     VDialog,
+  },
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {

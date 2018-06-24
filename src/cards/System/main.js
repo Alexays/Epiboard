@@ -1,3 +1,4 @@
+// @vue/component
 export default {
   name: 'System',
   components: {},
@@ -39,6 +40,30 @@ export default {
       }
       return cores.map(f => Math.floor((f.progress / f.total) * 100));
     },
+  },
+  mounted() {
+    // TODO: Firefox doesn't support system
+    if (!browser.system) {
+      return Promise.all([this.getInfo()])
+        .finally(() => {
+          this.$emit('init');
+        });
+    }
+    return Promise.all([
+      this.getCpu(),
+      this.getMemory(),
+      this.getStorage()
+        .then(this.getDevelopper)
+        .then((storage) => {
+          this.storage = storage;
+        }),
+    ]).then(() => {
+      browser.system.storage.onAttached.addListener(this.addStorage);
+      browser.system.storage.onDetached.addListener(this.removeStorage);
+      setInterval(this.getCpu, 3000);
+      setInterval(this.getMemory, 10000);
+    }).then(() => this.$emit('init'))
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     getInfo() {
@@ -107,29 +132,5 @@ export default {
         });
       });
     },
-  },
-  mounted() {
-    // TODO: Firefox doesn't support system
-    if (!browser.system) {
-      return Promise.all([this.getInfo()])
-        .finally(() => {
-          this.$emit('init');
-        });
-    }
-    return Promise.all([
-      this.getCpu(),
-      this.getMemory(),
-      this.getStorage()
-        .then(this.getDevelopper)
-        .then((storage) => {
-          this.storage = storage;
-        }),
-    ]).then(() => {
-      browser.system.storage.onAttached.addListener(this.addStorage);
-      browser.system.storage.onDetached.addListener(this.removeStorage);
-      setInterval(this.getCpu, 3000);
-      setInterval(this.getMemory, 10000);
-    }).then(() => this.$emit('init'))
-      .catch(err => this.$emit('init', err));
   },
 };

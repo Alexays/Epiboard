@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <v-app :dark="dark">
-      <router-view name="header" keep-alive></router-view>
+      <router-view name="header" keep-alive/>
       <transition name="fade-transition">
-        <router-view keep-alive></router-view>
+        <router-view keep-alive/>
       </transition>
     </v-app>
   </div>

@@ -1,11 +1,13 @@
 <template>
-  <div class="blue-grey" id="changelog">
+  <div id="changelog" class="blue-grey">
     <!-- v-html is safe here, is just markdown without html parsing -->
-    <div v-html="body" class="markdown" v-if="body"></div>
+    <div v-if="body" class="markdown" v-html="body"/>
     <v-card-text v-else class="text-xs-center">
       <i class="material-icons md-48">note_add</i>
-      <h2 class="subheading">No changelog, that's weird.
-        <br/>Maybe it's just loading</h2>
+      <h2 class="subheading">
+        No changelog, that's weird.
+        <p>Maybe it's just loading</p>
+      </h2>
     </v-card-text>
     <p class="previous">
       Missed an update?

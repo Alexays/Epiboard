@@ -1,5 +1,6 @@
 import VSwitch from 'vuetify/es5/components/VSwitch';
 
+// @vue/component
 export default {
   name: 'Epitech',
   components: {
@@ -9,9 +10,5 @@ export default {
     return {
       hideInfo: false,
     };
-  },
-  methods: {
-  },
-  mounted() {
   },
 };

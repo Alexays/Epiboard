@@ -1,5 +1,6 @@
 import VCheckbox from 'vuetify/es5/components/VCheckbox';
 
+// @vue/component
 export default {
   name: 'Onboarding',
   components: {

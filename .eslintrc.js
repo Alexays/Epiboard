@@ -2,8 +2,8 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
+    parser: 'babel-eslint',
     sourceType: 'module'
   },
   globals: {
@@ -15,10 +15,13 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb-base',
+    'plugin:vue/recommended'
+  ],
   // required to lint *.vue files
   plugins: [
-    'html'
+    'vue'
   ],
   // check if imports actually resolve
   settings: {
@@ -30,6 +33,7 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    'vue/max-attributes-per-line': 0,
     'no-underscore-dangle': 0,
     'no-bitwise': 0,
     // don't require .vue extension when importing

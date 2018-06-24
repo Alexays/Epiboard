@@ -1,9 +1,9 @@
 <template>
   <v-card-text id="apps">
     <ul class="app-list">
-      <li class="app" v-for="app in apps" :key="app.name">
-        <div :title="app.name" v-on:click="launch(app)">
-          <i v-bind:style="{ 'background-image': `url(${app.icon})` }"></i>
+      <li v-for="app in apps" :key="app.name" class="app">
+        <div :title="app.name" @click="launch(app)">
+          <i :style="{ 'background-image': `url(${app.icon})` }"/>
         </div>
       </li>
     </ul>

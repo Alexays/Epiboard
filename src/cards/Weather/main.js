@@ -8,13 +8,19 @@ const imgs = {
   night: [200, 500, 501, 502, 503, 600, 800, 801],
 };
 
+// @vue/component
 export default {
   name: 'Weather',
   title: new Date().toLocaleDateString('en-Us', {
     weekday: 'long',
   }),
-  props: ['settings'],
   components: {},
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       today: null,
@@ -29,26 +35,38 @@ export default {
       return this.getTime(this.today.sys.sunset);
     },
   },
+  mounted() {
+    if (this.VALID_CACHE) {
+      this.$emit('init', true);
+      return;
+    }
+    this.getLocalisation()
+      .then(this.getQuery)
+      .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
+      .then(() => this.$emit('init', this.$data))
+      .catch(err => this.$emit('init', err));
+  },
   methods: {
     getImg(nb, night = true) {
+      const path = '/static/img/weather/weather-';
       const date = Date.now() / 1000;
       if (night && !(date > this.today.sys.sunrise && date < this.today.sys.sunset)) {
         const closest = imgs.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
         if (imgs.night.includes(nb)) {
-          return `${nb}-n`;
+          return `${path}${nb}-n.png`;
         }
         if (`${closest}`[0] === `${nb}`[0]) {
-          return `${closest}-n`;
+          return `${path}${closest}-n.png`;
         }
       }
       const closest = imgs.day.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
       if (imgs.day.includes(nb)) {
-        return nb;
+        return `${path}${nb}.png`;
       }
       if (`${closest}`[0] === `${nb}`[0]) {
-        return closest;
+        return `${path}${closest}.png`;
       }
-      return 'none';
+      return `${path}none.png`;
     },
     getTime(timestamp) {
       const date = new Date(timestamp * 1000);
@@ -110,16 +128,5 @@ export default {
         });
       });
     },
-  },
-  mounted() {
-    if (this.VALID_CACHE) {
-      this.$emit('init', true);
-      return;
-    }
-    this.getLocalisation()
-      .then(this.getQuery)
-      .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
-      .then(() => this.$emit('init', this.$data))
-      .catch(err => this.$emit('init', err));
   },
 };

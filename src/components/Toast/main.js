@@ -1,5 +1,6 @@
 import VSnackbar from 'vuetify/es5/components/VSnackbar';
 
+// @vue/component
 export default {
   components: {
     VSnackbar,
