@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn class="no-margins" block dark depressed small color="blue-grey" @click="getTimeline()">timeline</v-btn>
+    <v-btn class="ma-0" block dark depressed small color="blue-grey" @click="getTimeline()">timeline</v-btn>
     <v-dialog v-model="enabled" lazy scrollable max-width="80%" v-resize.quiet="draw">
       <v-card>
         <v-card-text>

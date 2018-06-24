@@ -11,7 +11,7 @@
         </v-btn>
       </v-speed-dial>
     </transition>
-    <transition-group name="fade" appear tag="div" id="card-container" :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }">
+    <transition-group name="scale-transition" appear tag="div" id="card-container" :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }">
       <cards v-for="card in cards" :key="card" :id="card" @deleted="delCard(card)"></cards>
     </transition-group>
     <div v-if="emptyCards" class="text-xs-center">

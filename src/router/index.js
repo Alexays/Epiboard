@@ -42,7 +42,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (store._vm.$root.$data['vuex-persit-wait'] !== 2) {
     // Hold the request, until the Storage is complete.
-    store._vm.$root.$on('storageReady', () => next());
+    store._vm.$root.$on('storageReady', () => {
+      const { tutorial } = store.state.settings;
+      if (!tutorial && to.path !== '/onboarding') next('/onboarding');
+      else next();
+    });
   } else next();
 });
 

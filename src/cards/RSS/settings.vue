@@ -1,5 +1,5 @@
 <template>
-  <div id="rss-settings" class="padding">
+  <v-card-text>
     <h4 class="headline">Feeds</h4>
     <v-list>
       <v-list-tile v-for="(feed, idx) in feeds" :key="feed">
@@ -15,7 +15,7 @@
       <v-text-field v-model="newFeed" name="feed" label="e.g. https://exemple.com/rss" id="feed"></v-text-field>
       <v-btn flat @click="addFeed(newFeed)">Add</v-btn>
     </v-layout>
-  </div>
+  </v-card-text>
 </template>
 <script src="./settings.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

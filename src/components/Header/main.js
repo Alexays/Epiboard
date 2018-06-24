@@ -26,6 +26,15 @@ export default {
     };
   },
   computed: {
+    texts() {
+      if (this.$route.path === '/onboarding') {
+        return ['Welcome !'];
+      }
+      return this.$route.path === '/' ? this.messages : [this.$route.name];
+    },
+    messagesRepeat() {
+      return this.messages.length === 1 || this.$route.path !== '/' ? 0 : Infinity;
+    },
     trendsSettings() {
       return this.$store.state.settings.trends;
     },

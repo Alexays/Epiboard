@@ -1,6 +1,6 @@
 <template>
-  <div id="system" class="padding">
-    <div v-if="cpu.modelName" class="wrapper">
+  <v-card-text id="system">
+    <div v-if="cpu" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">nfc</i>
         <div>CPU</div>
@@ -8,29 +8,17 @@
       <div class="wrapper-info">
         <span>{{cpu.modelName}}</span>
         <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
-        <v-progress-linear height="6" v-for="(core, key) in cpu.processors" :key="key" :value="getLoad({
-                        progress: core.usage.kernel + core.usage.user,
-                        total: core.usage.total
-                    }, (cpu.prev || {}).processors ? {
-                        progress: cpu.prev.processors[key].usage.kernel + cpu.prev.processors[key].usage.user,
-                        total: cpu.prev.processors[key].usage.total
-                    } : null)"></v-progress-linear>
+        <v-progress-linear height="6" v-for="(core, key) in cpu.processors" :key="key" :value="coresLoad[key]"></v-progress-linear>
       </div>
     </div>
-    <div v-if="memory.capacity" class="wrapper">
+    <div v-if="memory" class="wrapper">
       <div class="wrapper-name">
         <i class="material-icons">memory</i>
         <div>Memory</div>
       </div>
       <div class="wrapper-info">
         <span>{{memory.capacity - memory.availableCapacity | bytes}} / <span class="grey--text">{{memory.capacity | bytes}}</span></span>
-        <v-progress-linear height="6" :value="getLoad({
-                            progress: memory.capacity - memory.availableCapacity,
-                            total: memory.capacity
-                        }, (memory.prev || {}).capacity ? {
-                            progress: memory.prev.capacity - memory.prev.availableCapacity,
-                            total: memory.prev.capacity
-                        } : null)"></v-progress-linear>
+        <v-progress-linear height="6" :value="memoryLoad"></v-progress-linear>
       </div>
     </div>
     <div v-if="storage.length" class="wrapper">
@@ -55,7 +43,7 @@
         </li>
       </div>
     </div>
-  </div>
+  </v-card-text>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

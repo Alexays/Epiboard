@@ -3,19 +3,44 @@ export default {
   components: {},
   data() {
     return {
-      cpu: {},
-      memory: {},
+      cpu: null,
+      memory: null,
       storage: [],
       developper: false,
     };
   },
-  methods: {
-    getLoad(cur, prev) {
-      if (prev) {
-        return Math.floor(((cur.progress - prev.progress) / (cur.total - prev.total)) * 100);
+  computed: {
+    memoryLoad() {
+      const total = this.memory.capacity;
+      const progress = total - this.memory.availableCapacity;
+      if (this.memory.prev) {
+        const prev = this.memory.prev.capacity - this.memory.prev.availableCapacity;
+        const prevTotal = this.memory.prev.capacity;
+        return Math.floor(((progress - prev) / (total - prevTotal)) * 100);
       }
-      return Math.floor((cur.progress / cur.total) * 100);
+      return Math.floor((progress / total) * 100);
     },
+    coresLoad() {
+      const cores = (this.cpu.processors || []).map(f => ({
+        progress: f.usage.kernel + f.usage.user,
+        total: f.usage.total,
+      }));
+      if (this.cpu.prev) {
+        const prev = this.cpu.prev.processors.map(f => ({
+          progress: f.usage.kernel + f.usage.user,
+          total: f.usage.total,
+        }));
+        const res = [];
+        for (let i = 0; i < cores.length; i += 1) {
+          const progress = cores[i].progress - prev[i].progress;
+          res.push(Math.floor((progress / (cores[i].total - prev[i].total)) * 100));
+        }
+        return res;
+      }
+      return cores.map(f => Math.floor((f.progress / f.total) * 100));
+    },
+  },
+  methods: {
     getInfo() {
       return browser.runtime.getPlatformInfo().then((data) => {
         this.cpu = {

@@ -39,23 +39,8 @@ p {
   background: #666;
 }
 
-.no-margins {
-  margin: 0!important;
-}
-
-.v-card .padding {
-  padding: 16px;
-}
-
-.speed-dial__list {
+.v-speed-dial__list {
   align-items: flex-end !important;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .25s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 
 /* Rules for sizing the icon. */

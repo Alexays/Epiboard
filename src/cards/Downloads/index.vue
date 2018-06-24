@@ -1,6 +1,5 @@
 <template>
-  <div id="downloads" class="padding">
-    <!-- TODO: drag event -->
+  <v-card-text id="downloads">
     <v-menu lazy bottom offset-y v-for="download in downloads" :key="download.id">
       <li draggable="true" v-drag :id="download.id" slot="activator" class="download">
         <div class="icon">
@@ -44,7 +43,7 @@
       <i class="material-icons md-48">file_download</i>
       <h2 class="subheading">You have no downloads.</h2>
     </div>
-  </div>
+  </v-card-text>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

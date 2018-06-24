@@ -6,8 +6,4 @@ export default {
       maxSites: 5,
     };
   },
-  methods: {
-  },
-  mounted() {
-  },
 };

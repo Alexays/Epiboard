@@ -1,5 +1,5 @@
 <template>
-  <div id="weather-settings" class="padding">
+  <v-card-text id="weather-settings">
     <h4 class="headline">Location</h4>
     <v-layout align-center>
       <v-checkbox :label="'Auto detect'" hide-details v-model="auto"></v-checkbox>
@@ -11,7 +11,7 @@
     <v-switch :label="forecast ? `On` : `Off`" hide-details v-model="forecast"></v-switch>
     <h4 class="headline mt-4">OpenWeatherMap API Key</h4>
     <v-text-field name="api" label="API Key" id="api" v-model="appId"></v-text-field>
-  </div>
+  </v-card-text>
 </template>
 <script src="./settings.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

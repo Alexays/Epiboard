@@ -17,6 +17,7 @@ const initialState = {
     background: 'random',
     backgroundUrl: '',
   },
+  tutorial: false,
   debug: false,
 };
 
@@ -34,6 +35,9 @@ export default {
       for (let i = 0; i < keys.length; i += 1) {
         state[keys[i]] = initialState[keys[i]];
       }
+    },
+    SET_TUTORIAL(state, tutorial) {
+      state.tutorial = tutorial;
     },
   },
 };

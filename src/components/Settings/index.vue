@@ -15,12 +15,14 @@
             <v-text-field v-if="settings.header.background === 'url'" v-model.lazy="settings.header.backgroundUrl" label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"></v-text-field>
           </v-layout>
           <h4 class="subheading">Google Trends</h4>
-          <v-switch v-model="settings.trends.enabled" :label="settings.trends.enabled ? `On` : `Off`"></v-switch>
-          <h4 class="subheading">Country</h4>
-          <v-select :items="country" v-model="settings.trends.country" label="Choose your Google Trends Country" autocomplete></v-select>
+          <v-layout align-center>
+            <v-switch v-model="settings.trends.enabled" :label="settings.trends.enabled ? `On` : `Off`"></v-switch>
+            <v-select :items="country" v-model="settings.trends.country" label="Choose your Google Trends Country" autocomplete></v-select>
+          </v-layout>
           <h4 class="subheading">Google Doodles</h4>
           <v-switch :label="settings.doodle.enabled ? `On` : `Off`" v-model="settings.doodle.enabled"></v-switch>
           <h4 class="headline">Dark mode</h4>
+          <h4 class="subheading">It's gonna get all dark</h4>
           <v-layout align-center>
             <v-switch :label="settings.dark.enabled ? `On` : `Off`" hide-details v-model="settings.dark.enabled"></v-switch>
             <v-checkbox :label="`Auto`" :disabled="!settings.dark.enabled" hide-details v-model="settings.dark.auto"></v-checkbox>
@@ -36,6 +38,7 @@
             </v-menu>
           </v-layout>
           <h4 class="headline">Google Analytics</h4>
+          <h4 class="subheading">Just to see how you use cards</h4>
           <v-switch :label="settings.analytics ? `On` : `Off`" v-model="settings.analytics"></v-switch>
           <h4 class="headline">Debug</h4>
           <v-switch :label="settings.debug ? `On` : `Off`" v-model="settings.debug"></v-switch>

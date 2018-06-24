@@ -2,7 +2,7 @@
   <div id="app">
     <v-app :dark="dark">
       <router-view name="header" keep-alive></router-view>
-      <transition name="fade">
+      <transition name="fade-transition">
         <router-view keep-alive></router-view>
       </transition>
     </v-app>

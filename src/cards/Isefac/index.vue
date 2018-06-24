@@ -1,5 +1,5 @@
 <template>
-  <div id="isefac" class="padding">
+  <v-card-text id="isefac">
     <div v-if="!is_logged" class="text-xs-center">
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Isefac to use this card.</h2>
@@ -32,10 +32,8 @@
         <h2 class="subheading">No more activities today, go get some rest !</h2>
       </div>
     </div>
-    <div v-else>
-        <v-progress-linear indeterminate></v-progress-linear>
-    </div>
-  </div>
+    <v-progress-linear v-else indeterminate></v-progress-linear>
+  </v-card-text>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

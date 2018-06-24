@@ -8,8 +8,6 @@ export default {
   },
   data() {
     return {
-      maxDevices: 10,
-      maxDeviceTabs: 7,
       devices: [],
       recentlyClosed: [],
     };
@@ -40,8 +38,8 @@ export default {
           }
         }
       }
-      if (tabs.length > this.maxDeviceTabs) {
-        tabs.length = this.maxDeviceTabs;
+      if (tabs.length > this.settings.maxDeviceTabs) {
+        tabs.length = this.settings.maxDeviceTabs;
       }
       return tabs;
     },
@@ -50,7 +48,7 @@ export default {
       if (!browser.sessions.getDevices) return Promise.resolve();
       return new Promise((resolve, reject) => {
         browser.sessions.getDevices({
-          maxResults: this.maxDevices,
+          maxResults: this.settings.maxDevices,
         }, (devices) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.devices = devices;
@@ -67,7 +65,7 @@ export default {
     getRecentlyClosed() {
       return new Promise((resolve, reject) => {
         browser.sessions.getRecentlyClosed({
-          maxResults: this.maxRecentlyClosed,
+          maxResults: this.settings.maxRecentlyClosed,
         }, (recentlyClosed) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
           this.recentlyClosed = this.mergeTabsAndWindows(recentlyClosed);

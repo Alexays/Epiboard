@@ -1,14 +1,19 @@
+import VCheckbox from 'vuetify/es5/components/VCheckbox';
+
 export default {
   name: 'Onboarding',
-  components: {},
+  components: {
+    VCheckbox,
+  },
   data() {
     return {
+      index: 0,
     };
   },
-  computed: {
-  },
   methods: {
-  },
-  mounted() {
+    finish() {
+      this.$store.commit('SET_TUTORIAL', true);
+      this.$router.replace('/');
+    },
   },
 };

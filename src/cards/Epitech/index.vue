@@ -1,19 +1,19 @@
 <template>
   <div id="epitech">
-    <div v-if="loading" class="padding">
+    <v-card-text v-if="loading">
       <v-progress-linear indeterminate></v-progress-linear>
-    </div>
-    <div v-else-if="!is_logged" class="text-xs-center padding">
+    </v-card-text>
+    <v-card-text v-else-if="!is_logged" class="text-xs-center">
       <i class="material-icons md-48">error_outline</i>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
-    </div>
+    </v-card-text>
     <v-tabs v-else dark grow slider-color="white" color="blue-grey">
       <v-tab>Infos</v-tab>
       <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>
       <v-tabs-items>
         <v-tab-item lazy id="tab-infos">
-          <div v-if="!settings.hideInfo && user" class="padding p-no-bottom text-xs-center">
+          <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">
             <h3>{{user.title}}</h3>
             <v-chip label v-on:click="getGpa()" title="Click to get a precision gpa">
               <v-progress-circular v-if="gpa_precision.loading" title="Calculating GPA" indeterminate :size="16" :width="2"></v-progress-circular>
@@ -33,8 +33,8 @@
               {{user.studentyear}}
               <sup>{{user.studentyear > 1 ? 'nd' : 'st'}}</sup> year, Promo {{user.promo}}
             </p>
-          </div>
-          <div v-if="projects.length" class="projects padding">
+          </v-card-text>
+          <v-card-text v-if="projects.length" class="projects">
             <div class="project" v-for="project in projects" :key="project.title">
               <a target="_blank" :href="project.link">
                 <h4>{{project.title}}</h4>
@@ -51,15 +51,15 @@
                 <v-progress-linear color="red" background-color="red lighten-2" :height="6" :value="project.timeline_barre"></v-progress-linear>
               </div>
             </div>
-          </div>
-          <div v-else-if="!projects.length" class="text-xs-center padding">
+          </v-card-text>
+          <v-card-text v-else-if="!projects.length" class="text-xs-center">
             <i class="material-icons md-48">work</i>
             <h2 class="subheading">No on going projects, well done !</h2>
-          </div>
+          </v-card-text>
           <timeline :user="user"></timeline>
         </v-tab-item>
-        <v-tab-item lazy id="tab-upcoming" class="padding">
-          <v-list three-line dense>
+        <v-tab-item lazy id="tab-upcoming">
+          <v-list v-if="upcoming.length" three-line dense>
             <v-list-tile v-for="activity of upcoming" :key="activity.acti_title">
               <v-list-tile-content>
                 <v-list-tile-title>{{activity.room.code | filename}}</v-list-tile-title>
@@ -74,14 +74,14 @@
                 </v-chip>
               </v-list-tile-action>
             </v-list-tile>
-            <div v-if="!upcoming.length" class="text-xs-center">
-              <i class="material-icons md-48">assignment_turned_in</i>
-              <h2 class="subheading">No upcoming activities, go get some rest !</h2>
-            </div>
           </v-list>
+          <v-card-text v-else class="text-xs-center">
+            <i class="material-icons md-48">assignment_turned_in</i>
+            <h2 class="subheading">No upcoming activities, go get some rest !</h2>
+          </v-card-text>
         </v-tab-item>
-        <v-tab-item lazy id="tab-rooms" class="padding">
-          <v-list three-line dense>
+        <v-tab-item lazy id="tab-rooms">
+          <v-list v-if="rooms.length" three-line dense>
             <v-list-tile v-for="room of rooms" :key="room.acti_title">
               <v-list-tile-content>
                 <v-list-tile-title>{{room.room.code | filename}}</v-list-tile-title>
@@ -96,11 +96,11 @@
                 </v-chip>
               </v-list-tile-action>
             </v-list-tile>
-            <div v-if="!rooms.length" class="text-xs-center">
-              <i class="material-icons md-48">room</i>
-              <h2 class="subheading">No occuped rooms, have fun !</h2>
-            </div>
           </v-list>
+          <v-card-text v-else class="text-xs-center">
+            <i class="material-icons md-48">room</i>
+            <h2 class="subheading">No occuped rooms, have fun !</h2>
+          </v-card-text>
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
