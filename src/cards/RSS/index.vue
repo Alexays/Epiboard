@@ -11,7 +11,7 @@
     <v-card-text v-else>
       <v-progress-linear v-if="loading" indeterminate/>
       <div v-else class="text-xs-center">
-        <i class="material-icons md-48">rss_feed</i>
+        <v-icon x-large>rss_feed</v-icon>
         <h2 class="subheading">Empty feeds</h2>
       </div>
     </v-card-text>

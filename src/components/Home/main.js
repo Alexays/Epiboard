@@ -10,6 +10,13 @@ export default {
     VSpeedDial,
     Cards: CardsCmp,
   },
+  directives: {
+    resize: {
+      inserted(el, { value }) {
+        new ResizeSensor(el, () => value(el)); // eslint-disable-line no-new
+      },
+    },
+  },
   data() {
     return {
       grid: null,
@@ -45,14 +52,12 @@ export default {
   },
   mounted() {
     this.initGrid();
-    this.watchSize();
   },
   methods: {
-    resize(elem) {
-      return () => {
-        this.grid.refreshItems(elem);
-        this.grid.layout(true);
-      };
+    onResize(el) {
+      if (!this.grid) return;
+      this.grid.refreshItems(el);
+      this.grid.layout(true);
     },
     delCard(key) {
       const elem = document.querySelector(`[data-id='${key}']`);
@@ -64,15 +69,8 @@ export default {
         const elem = document.querySelector(`[data-id='${key}']`);
         if (key === 'Changelog') this.grid.add(elem, { index: 0 });
         else this.grid.add(elem);
-        new ResizeSensor(elem, this.resize(elem)); // eslint-disable-line no-new
       });
       this.$ga.event('cards', 'add', key, 1);
-    },
-    watchSize() {
-      const cards = document.getElementsByClassName('v-card');
-      for (let i = 0; i < cards.length; i += 1) {
-        new ResizeSensor(cards[i], this.resize(cards[i])); // eslint-disable-line no-new
-      }
     },
     checkVersion() {
       const lastVersion = this.$store.state.cache.version;

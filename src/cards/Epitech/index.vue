@@ -4,7 +4,7 @@
       <v-progress-linear indeterminate/>
     </v-card-text>
     <v-card-text v-else-if="!is_logged" class="text-xs-center">
-      <i class="material-icons md-48">error_outline</i>
+      <v-icon x-large="">error_outline</v-icon>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </v-card-text>
     <v-tabs v-else dark grow slider-color="white" color="blue-grey">
@@ -58,7 +58,7 @@
             </div>
           </v-card-text>
           <v-card-text v-else-if="!projects.length" class="text-xs-center">
-            <i class="material-icons md-48">work</i>
+            <v-icon x-large>work</v-icon>
             <h2 class="subheading">No on going projects, well done !</h2>
           </v-card-text>
           <timeline :user="user"/>
@@ -83,7 +83,7 @@
             </v-list-tile>
           </v-list>
           <v-card-text v-else class="text-xs-center">
-            <i class="material-icons md-48">assignment_turned_in</i>
+            <v-icon x-large>assignment_turned_in</v-icon>
             <h2 class="subheading">No upcoming activities, go get some rest !</h2>
           </v-card-text>
         </v-tab-item>
@@ -107,7 +107,7 @@
             </v-list-tile>
           </v-list>
           <v-card-text v-else class="text-xs-center">
-            <i class="material-icons md-48">room</i>
+            <v-icon x-large>room</v-icon>
             <h2 class="subheading">No occuped rooms, have fun !</h2>
           </v-card-text>
         </v-tab-item>

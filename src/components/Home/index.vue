@@ -20,10 +20,11 @@
       :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }"
       name="scale-transition"
       tag="div" appear>
-      <cards v-for="card in cards" :key="card" :id="card" @deleted="delCard(card)"/>
+      <cards
+        v-resize="onResize" v-for="card in cards" :key="card" :id="card" @deleted="delCard(card)"/>
     </transition-group>
     <div v-if="emptyCards" class="text-xs-center">
-      <i class="material-icons md-48">grid_off</i>
+      <v-icon x-large>grid_off</v-icon>
       <h2 class="subheading">You have no cards.</h2>
     </div>
   </div>

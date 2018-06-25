@@ -3,7 +3,7 @@
     <!-- v-html is safe here, is just markdown without html parsing -->
     <div v-if="body" class="markdown" v-html="body"/>
     <v-card-text v-else class="text-xs-center">
-      <i class="material-icons md-48">note_add</i>
+      <v-icon x-large="">note_add</v-icon>
       <h2 class="subheading">
         No changelog, that's weird.
         <p>Maybe it's just loading</p>

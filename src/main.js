@@ -10,7 +10,6 @@ import VTextField from 'vuetify/es5/components/VTextField';
 import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
 import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
 import transitions from 'vuetify/es5/components/transitions';
-import * as directives from 'vuetify/es5/directives';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -45,7 +44,6 @@ Vue.use(Vuetify, {
     VProgressLinear,
     VProgressCircular,
   },
-  directives,
   transitions,
 });
 Vue.use(VueAxios, axios);

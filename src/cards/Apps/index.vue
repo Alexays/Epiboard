@@ -8,7 +8,7 @@
       </li>
     </ul>
     <div v-if="!apps.length" class="text-xs-center">
-      <i class="material-icons md-48">apps</i>
+      <v-icon x-large="">apps</v-icon>
       <h2 class="subheading">You have no apps.</h2>
     </div>
   </v-card-text>

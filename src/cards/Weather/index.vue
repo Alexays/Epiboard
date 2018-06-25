@@ -63,7 +63,9 @@
         </v-layout>
       </v-flex>
     </v-layout>
-    <v-progress-linear v-else indeterminate class="weather-loader"/>
+    <div v-else class="weather-loader">
+      <v-progress-linear indeterminate/>
+    </div>
   </div>
 </template>
 <script src="./main.js"></script>
