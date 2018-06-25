@@ -32,6 +32,12 @@ export default {
       upcoming: [],
     };
   },
+  computed: {
+    ordinal() {
+      const n = this.user.studentyear;
+      return ['st', 'nd', 'rd'][(n % (100 >> 3) ^ 1 && n % 10) - 1] || 'th';
+    },
+  },
   mounted() {
     if (this.VALID_CACHE) {
       this.$emit('init', true);

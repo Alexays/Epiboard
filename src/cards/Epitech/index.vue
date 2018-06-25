@@ -35,7 +35,7 @@
             </v-chip>
             <p>
               {{ user.studentyear }}
-              <sup>{{ user.studentyear > 1 ? 'nd' : 'st' }}</sup> year, Promo {{ user.promo }}
+              <sup>{{ ordinal }}</sup> year, Promo {{ user.promo }}
             </p>
           </v-card-text>
           <v-card-text v-if="projects.length" class="projects">
