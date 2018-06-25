@@ -72,27 +72,4 @@ export default {
     return axios.get(`${API}/module/${f.scolaryear}/${f.code}/${f.codeinstance}/?format=json`)
       .then(res => res.data);
   },
-  getGPAPrecision(user) {
-    return axios.get(`${API}/course/filter?format=json&course[]=${user.course_code}`)
-      .then(res => res.data)
-      .then(data => Promise.all(data.map(this.getModule)))
-      .then((modules) => {
-        let GPA = 0;
-        let sum = 0;
-        const grade = {
-          A: 4, B: 3, C: 2, D: 1, Echec: 0,
-        };
-        for (let i = 0; i < modules.length; i += 1) {
-          const credits = parseInt(modules[i].user_credits, 10);
-          if (credits >= 0) {
-            if (grade[modules[i].student_grade] >= 0) {
-              GPA += credits * grade[modules[i].student_grade];
-              sum += credits;
-            }
-          }
-        }
-        GPA /= sum;
-        return GPA.toFixed(5);
-      });
-  },
 };

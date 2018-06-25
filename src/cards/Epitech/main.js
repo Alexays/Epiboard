@@ -22,10 +22,6 @@ export default {
     return {
       is_logged: false,
       loading: true,
-      gpa_precision: {
-        loading: false,
-        val: null,
-      },
       user: null,
       projects: [],
       rooms: [],
@@ -83,16 +79,6 @@ export default {
       this.upcoming = planning
         .filter(f => f.event_registered && f.start > new Date())
         .sort((a, b) => a.start - b.start);
-    },
-    getGpa() {
-      this.gpa_precision.loading = true;
-      return API.getGPAPrecision(this.user)
-        .then((gpa) => {
-          this.gpa_precision.val = gpa;
-        })
-        .finally(() => {
-          this.gpa_precision.loading = false;
-        });
     },
   },
 };

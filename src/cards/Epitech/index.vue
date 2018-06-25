@@ -15,12 +15,9 @@
         <v-tab-item id="tab-infos" lazy>
           <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">
             <h3>{{ user.title }}</h3>
-            <v-chip label title="Click to get a precision gpa" @click="getGpa()">
-              <v-progress-circular
-                v-if="gpa_precision.loading"
-                :size="16" :width="2" indeterminate title="Calculating GPA"/>
-              <span v-else>
-                {{ gpa_precision.val || user.gpa[0].gpa }} <small>G.P.A.</small>
+            <v-chip label disabled>
+              <span>
+                {{ user.gpa[0].gpa }} <small>G.P.A.</small>
               </span>
             </v-chip>
             <v-chip label disabled>
