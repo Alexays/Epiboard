@@ -81,6 +81,7 @@
           <h4 class="subheading">Just to see how you use cards</h4>
           <v-switch :label="settings.analytics ? `On` : `Off`" v-model="settings.analytics"/>
           <h4 class="headline">Debug</h4>
+          <h4 class="subheading">If you feel up to it</h4>
           <v-switch :label="settings.debug ? `On` : `Off`" v-model="settings.debug"/>
           <v-layout align-center>
             <v-btn flat small @click="reset">Reset settings</v-btn>

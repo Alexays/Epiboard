@@ -57,23 +57,24 @@ new Vue({
 });
 Vue.directive('init', {
   isLiteral: true,
-  bind: (el, binding, vnode) => {
-    if (!binding.value) return;
-    const keys = Object.keys(vnode.componentInstance.$data);
-    const data = binding.value.settings
-      ? vnode.context.$store.state.cardsSettings.cards[binding.value.key] || {}
-      : vnode.context.$store.state.cache.cards[binding.value.key] || {};
-    if (!binding.value.settings) {
+  bind: (el, { value }, vnode) => {
+    if (!value) return;
+    const data = value.settings
+      ? vnode.context.$store.state.cardsSettings.cards[value.key]
+      : vnode.context.$store.state.cache.cards[value.key];
+    if (!data) return;
+    if (!value.settings) {
       const { CACHE_DT } = data;
       if (CACHE_DT) {
         // Default cache timeout is 60s
-        const cacheValidity = ((Cards.cards[binding.value.key].cacheValidity || 60) * 1000);
+        const cacheValidity = ((Cards.cards[value.key].cacheValidity || 60) * 1000);
         /* eslint-disable-next-line no-param-reassign */
         vnode.componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
       }
     }
+    const keys = Object.keys(data);
     for (let i = 0; i < keys.length; i += 1) {
-      if (vnode.componentInstance.$data[keys[i]] !== undefined && data[keys[i]] !== undefined) {
+      if (vnode.componentInstance.$data[keys[i]] !== undefined) {
         /* eslint-disable-next-line no-param-reassign */
         vnode.componentInstance.$data[keys[i]] = data[keys[i]];
       }

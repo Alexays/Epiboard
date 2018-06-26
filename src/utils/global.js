@@ -1,5 +1,5 @@
 export default {
-  getFavicon: (url) => {
+  getFavicon(url) {
     const regex = /^(http:|https:)/;
     if (regex.test(url)) {
       return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
@@ -9,7 +9,7 @@ export default {
   shuffle(a) {
     return a.length ? a.splice(~~(Math.random() * a.length), 1).concat(this.shuffle(a)) : a;
   },
-  isDark: (dark) => {
+  isDark(dark) {
     if (!dark) return false;
     if (dark.enabled) {
       if (dark.auto) {
