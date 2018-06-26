@@ -12,9 +12,9 @@ export default {
   data() {
     return {
       token: null,
+      currentId: null,
       tasks: [],
       lists: [],
-      currentId: null,
     };
   },
   mounted() {
@@ -23,17 +23,19 @@ export default {
       this.$emit('init', true);
       return;
     }
-    this.init()
+    this.getToken()
       .then(() => this.getLists())
       .then(() => this.getAll())
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err));
   },
   methods: {
-    init() {
-      return Api.getAccessToken('https://www.googleapis.com/auth/tasks').then((token) => {
-        this.token = token;
-      });
+    getToken() {
+      return Api.validate(this.token)
+        .catch(() => Api.getAccessToken('https://www.googleapis.com/auth/tasks'))
+        .then((token) => {
+          this.token = token;
+        });
     },
     updateMenu() {
       const menu = this.lists.map(f => ({

@@ -123,7 +123,6 @@ export default {
       return new Promise((resolve, reject) => {
         browser.system.storage.getInfo((storage) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          this.developper = false;
           return resolve(storage.filter(f => f.capacity > 0)
             .map((f) => {
               f.name = f.name.replace(/[^ -~]+/g, '');

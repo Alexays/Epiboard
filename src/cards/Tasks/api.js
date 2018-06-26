@@ -2,19 +2,20 @@ import Axios from 'axios';
 
 const clientId = '746645565897-ku61ei4rknbgresomjvrn2vtu6kspsu6.apps.googleusercontent.com';
 const redirectUrl = browser.identity.getRedirectURL();
-const VALIDATION_BASE_URL = 'https://www.googleapis.com/oauth2/v3/tokeninfo';
+const validationBaseUrl = 'https://www.googleapis.com/oauth2/v3/tokeninfo';
 
 export default {
   authorize(scope) {
-    let authUrl = 'https://accounts.google.com/o/oauth2/auth';
-    authUrl += `?client_id=${clientId}`;
-    authUrl += '&response_type=token';
-    authUrl += `&redirect_uri=${encodeURIComponent(redirectUrl)}`;
-    authUrl += `&scope=${encodeURIComponent(scope)}`;
+    const params = [
+      `client_id=${clientId}`,
+      'response_type=token',
+      `redirect_uri=${encodeURIComponent(redirectUrl)}`,
+      `scope=${encodeURIComponent(scope)}`,
+    ].join('&');
     return new Promise((resolve, reject) => {
       browser.identity.launchWebAuthFlow({
         interactive: true,
-        url: authUrl,
+        url: `https://accounts.google.com/o/oauth2/auth?${params}`,
       }, (res) => {
         if (browser.runtime.lastError) return reject(browser.runtime.lastError);
         return resolve(res);
@@ -29,10 +30,9 @@ export default {
     const params = new URLSearchParams(m[1].split('#')[0]);
     return params.get('access_token');
   },
-  validate(redirectURL) {
-    const accessToken = this.extractAccessToken(redirectURL);
-    if (!accessToken) throw new Error('Authorization failure');
-    const validationURL = `${VALIDATION_BASE_URL}?access_token=${accessToken}`;
+  validate(accessToken) {
+    if (!accessToken) return Promise.reject(new Error('Authorization failure'));
+    const validationURL = `${validationBaseUrl}?access_token=${accessToken}`;
     return Axios.get(validationURL)
       .then((res) => {
         if (res.data.aud && res.data.aud === clientId) {
@@ -43,7 +43,7 @@ export default {
   },
   getAccessToken(scope) {
     return this.authorize(scope)
-      .then(url => this.validate(url));
+      .then(url => this.validate(this.extractAccessToken(url)));
   },
   fetch(url, token) {
     return Axios({

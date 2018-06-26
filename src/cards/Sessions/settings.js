@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       maxRecentlyClosed: 7,
-      maxDevices: 10,
+      maxDevices: 9,
       maxDeviceTabs: 7,
     };
   },
