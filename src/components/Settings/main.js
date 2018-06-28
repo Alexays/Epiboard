@@ -4,6 +4,7 @@ import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import VSwitch from 'vuetify/es5/components/VSwitch';
 import VSelect from 'vuetify/es5/components/VSelect';
 import VMenu from 'vuetify/es5/components/VMenu';
+import colors from 'vuetify/es5/util/colors';
 
 // @vue/component
 export default {
@@ -20,6 +21,7 @@ export default {
     return {
       version: browser.runtime.getManifest().version,
       settings: {},
+      palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),
       artworks: [
         { text: 'Random', value: 'random' },
         { text: 'Unsplash provider', value: 'unsplash' },
@@ -113,6 +115,21 @@ export default {
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
   methods: {
+    themeChange(val) {
+      this.settings.theme.primary = val;
+      const hex = parseInt(val.slice(1), 16);
+      let r = (hex >> 16) & 255;
+      let g = (hex >> 8) & 255;
+      let b = hex & 255;
+      const p = 20;
+      r = r > p ? r - p : 0;
+      g = g > p ? g - p : 0;
+      b = b > p ? b - p : 0;
+      this.settings.theme.secondary = `#${[r, g, b].map((x) => {
+        const tmp = x.toString(16);
+        return tmp.length === 1 ? `0${tmp}` : tmp;
+      }).join('')}`;
+    },
     reset() {
       this.$store.commit('RESET_SETTINGS');
     },

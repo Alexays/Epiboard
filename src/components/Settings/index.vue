@@ -33,6 +33,15 @@
           <h4 class="subheading">Google Doodles</h4>
           <v-switch
             :label="settings.doodle.enabled ? `On` : `Off`" v-model="settings.doodle.enabled"/>
+          <h4 class="headline">Theme</h4>
+          <h4 class="subheading">Choose the main color</h4>
+          <v-layout class="picker">
+            <li
+              v-for="color in palette"
+              :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
+              <div v-show="settings.theme.primary === color" class="color-dot"/>
+            </li>
+          </v-layout>
           <h4 class="headline">Dark mode</h4>
           <h4 class="subheading">It's gonna get all dark</h4>
           <v-layout align-center>

@@ -1,5 +1,21 @@
 #settings {
   .container.v-card {
     padding: 30px;
+    .picker {
+      margin: 10px 0;
+      li {
+        list-style: none;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        cursor: pointer;
+        .color-dot {
+          width: 6px;
+          height: 6px;
+          background: #fff;
+          margin: auto;
+        }
+      }
+    }
   }
 }

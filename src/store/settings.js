@@ -17,6 +17,10 @@ const initialState = {
     background: 'random',
     backgroundUrl: '',
   },
+  theme: {
+    primary: '#607D8B',
+    secondary: '#546E7A',
+  },
   tutorial: false,
   debug: false,
 };
