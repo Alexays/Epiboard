@@ -40,6 +40,9 @@ export default {
         state[keys[i]] = initialState[keys[i]];
       }
     },
+    RESET_SETTING(state, key) {
+      state[key] = initialState[key];
+    },
     SET_TUTORIAL(state, tutorial) {
       state.tutorial = tutorial;
     },

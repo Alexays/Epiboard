@@ -2,7 +2,8 @@
   .container.v-card {
     padding: 30px;
     .picker {
-      margin: 10px 0;
+      display: flex;
+      margin: auto;
       li {
         list-style: none;
         width: 25px;

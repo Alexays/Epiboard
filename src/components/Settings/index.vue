@@ -35,12 +35,19 @@
             :label="settings.doodle.enabled ? `On` : `Off`" v-model="settings.doodle.enabled"/>
           <h4 class="headline">Theme</h4>
           <h4 class="subheading">Choose the main color</h4>
-          <v-layout class="picker">
-            <li
-              v-for="color in palette"
-              :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
-              <div v-show="settings.theme.primary === color" class="color-dot"/>
-            </li>
+          <v-layout>
+            <v-flex xs6 class="picker">
+              <li
+                v-for="color in palette"
+                :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
+                <div v-show="settings.theme.primary === color" class="color-dot"/>
+              </li>
+            </v-flex>
+            <v-text-field
+              v-model.lazy="settings.theme.primary"
+              :rules="[
+              () => validateHex(settings.theme.primary) || 'Invalid hex, e.g. #607D8B']"
+              label="Main color, e.g. #607D8B" @change="themeChange"/>
           </v-layout>
           <h4 class="headline">Dark mode</h4>
           <h4 class="subheading">It's gonna get all dark</h4>

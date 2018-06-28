@@ -109,14 +109,21 @@ export default {
   },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);
+    if (!this.validateHex(this.settings.theme.primary)) {
+      this.$store.commit('RESET_SETTING', 'theme');
+    }
   },
   beforeMount() {
     this.settings = this.$store.state.settings;
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
   methods: {
+    validateHex(hex) {
+      return hex && hex[0] === '#' && hex.length === 7;
+    },
     themeChange(val) {
       this.settings.theme.primary = val;
+      if (!this.validateHex(val)) return;
       const hex = parseInt(val.slice(1), 16);
       let r = (hex >> 16) & 255;
       let g = (hex >> 8) & 255;
