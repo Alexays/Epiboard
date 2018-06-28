@@ -16,6 +16,12 @@ const glob = require('glob')
 
 const { name, version } = require('../package.json');
 
+const excludeCards = ['Tasks'];
+
+if (excludeCards.length && process.env.NODE_ENV === 'production') {
+  console.log(`Warning: "${excludeCards.join(',')}" are excludes from build.`);
+}
+
 const getCards = () => {
   const keys = {
     cards: {},
@@ -24,12 +30,16 @@ const getCards = () => {
   const cardsKeys = glob.sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
     .map(f => f.replace('./src/cards/', ''));
   for (let i = 0; i < cardsKeys.length; i += 1) {
+    const key = cardsKeys[i].split('/')[0];
+    if (excludeCards.indexOf(key) > -1 && process.env.NODE_ENV === 'production') {
+      continue;
+    }
     if (cardsKeys[i].endsWith('index.vue')) {
-      keys.cards[cardsKeys[i].split('/')[0]] = { ...(keys.cards[cardsKeys[i].split('/')[0]] || {}), ...{ cmp: cardsKeys[i] }};
+      keys.cards[key] = { ...(keys.cards[key] || {}), ...{ cmp: cardsKeys[i] }};
     } else if (cardsKeys[i].endsWith('settings.vue')) {
-      keys.settings[cardsKeys[i].split('/')[0]] = cardsKeys[i];
+      keys.settings[key] = cardsKeys[i];
     } else if (cardsKeys[i].endsWith('manifest.json')) {
-      keys.cards[cardsKeys[i].split('/')[0]] = { ...(keys.cards[cardsKeys[i].split('/')[0]] || {}), ...require(`../src/cards/${cardsKeys[i]}`)};
+      keys.cards[key] = { ...(keys.cards[key] || {}), ...require(`../src/cards/${cardsKeys[i]}`)};
     }
   }
   return keys;
