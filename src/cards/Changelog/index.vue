@@ -1,5 +1,5 @@
 <template>
-  <div id="changelog" class="blue-grey">
+  <div id="changelog" class="primary">
     <!-- v-html is safe here, is just markdown without html parsing -->
     <div v-if="body" class="markdown" v-html="body"/>
     <v-card-text v-else class="text-xs-center">

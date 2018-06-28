@@ -2,7 +2,7 @@
   <v-card :data-id="id" :width="(options.size || 1) * 430 - 30" hover raised>
     <v-card-title
       :class="{
-        'blue-grey': !options.custom || showSettings,
+        'primary': !options.custom || showSettings,
         custom: options.custom && !showSettings,
         'white--text': !options.custom || showSettings}" class="head-drag">
       <span v-if="!showSettings" class="headline">{{ title || id }}</span>

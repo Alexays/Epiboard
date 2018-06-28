@@ -44,6 +44,10 @@ Vue.use(Vuetify, {
     VProgressLinear,
     VProgressCircular,
   },
+  theme: {
+    primary: '#607D8B',
+    secondary: '#546E7A',
+  },
   transitions,
 });
 Vue.use(VueAxios, axios);
@@ -80,8 +84,8 @@ Vue.directive('init', {
       }
     }
   },
-  unbind: (el, binding, vnode) => {
-    if (binding.value.settings && vnode.context && vnode.context.saveSettings) {
+  unbind: (el, { value }, vnode) => {
+    if (value.settings && vnode.context && vnode.context.saveSettings) {
       vnode.context.saveSettings(vnode.componentInstance.$data);
     }
   },

@@ -7,7 +7,7 @@
       <v-icon x-large="">error_outline</v-icon>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </v-card-text>
-    <v-tabs v-else dark grow slider-color="white" color="blue-grey">
+    <v-tabs v-else dark grow slider-color="white" color="primary">
       <v-tab>Infos</v-tab>
       <v-tab>Upcoming</v-tab>
       <v-tab>Ocupped Rooms</v-tab>

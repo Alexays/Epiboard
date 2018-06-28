@@ -4,7 +4,7 @@
       <transition name="slide-y-transition">
         <v-card
           v-show="index === 0"
-          :width="400" hover raised class="blue-grey white--text mx-auto mt-3">
+          :width="400" hover raised class="primary white--text mx-auto mt-3">
           <v-card-title>
             <h3 class="headline">Hello there :)</h3>
           </v-card-title>
@@ -20,7 +20,7 @@
       <transition name="slide-y-transition">
         <v-card
           v-show="index === 1"
-          :width="500" hover raised class="blue-grey white--text mx-auto mt-3">
+          :width="500" hover raised class="primary white--text mx-auto mt-3">
           <v-card-title>
             <h3 class="headline">Why Epiboard is Awesome</h3>
           </v-card-title>
