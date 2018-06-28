@@ -13,7 +13,7 @@
         </p>
         <v-progress-linear
           v-for="(core, key) in cpu.processors" :key="key"
-          :height="6" :value="coresLoad[key]" color="secondary"/>
+          :height="6" :value="coresLoad[key]" color="accent"/>
       </div>
     </div>
     <div v-if="memory" class="wrapper">
@@ -26,7 +26,7 @@
           {{ memory.capacity - memory.availableCapacity | bytes }} /
           <span class="grey--text">{{ memory.capacity | bytes }}</span>
         </span>
-        <v-progress-linear :height="6" :value="memoryLoad" color="secondary"/>
+        <v-progress-linear :height="6" :value="memoryLoad" color="accent"/>
       </div>
     </div>
     <div v-if="storage.length" class="wrapper">
@@ -46,7 +46,7 @@
           <span v-if="developper" class="disk-capacity">
             {{ unit.used | bytes }} / <span class="grey--text">{{ unit.capacity | bytes }}</span>
           </span>
-          <v-progress-linear v-if="developper" :height="6" :value="unit.percent" color="secondary"/>
+          <v-progress-linear v-if="developper" :height="6" :value="unit.percent" color="accent"/>
           <span v-if="unit.name && !developper" :title="unit.name" class="disk-name">
             {{ unit.name | truncate(25) }}
           </span>

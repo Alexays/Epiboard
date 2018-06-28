@@ -4,7 +4,7 @@
       <v-speed-dial
         v-show="showFab"
         v-model="fab" direction="bottom" transition="slide-y-transition" right>
-        <v-btn slot="activator" v-model="fab" color="blue" dark fab>
+        <v-btn slot="activator" v-model="fab" color="accent" fab>
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>

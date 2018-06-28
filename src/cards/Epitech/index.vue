@@ -43,7 +43,8 @@
               <small>{{ project.timeline_start }}</small>
               <small class="end_date">{{ project.timeline_end }}</small>
               <v-progress-linear
-                v-if="project.timeline_barre < 60" :value="project.timeline_barre" :height="6"/>
+                v-if="project.timeline_barre < 60"
+                :value="project.timeline_barre" :height="6" color="accent"/>
               <v-progress-linear
                 v-if="project.timeline_barre >= 60 && project.timeline_barre < 80"
                 :value="project.timeline_barre"
