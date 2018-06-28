@@ -136,7 +136,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         vendor: {
           name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
+          chunks: 'async',
         },
       },
     },
