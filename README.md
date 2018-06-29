@@ -35,6 +35,32 @@ $ npm run build:chrome --report
 # load unpacked extension from dist folder.
 ```
 
+    "management",
+    "tabs",
+    "topSites",
+    "geolocation",
+    "identity",
+
+## Notes on permissions
+
+*Theses permissions are not optional only due to limitations of [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)*
+
+- **storage**: to save user's settings such as background image
+- **sessions**: to retreive chrome sessions linked to your account and display them in a card
+- **tabs**: to show your recently closed tabs (session card)
+- **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
+- **downloads**: to display your recent downloads
+- **downloads.open**: to open files you have downloaded from the download card
+- **system.cpu**: to collect and display your computer's cpu usage
+- **system.memory**: to collect and display your computer's memory usage
+- **system.storage**: to collect and display your computer's storage usage
+- **management**: to display your apps
+- **topSites**: to display your most visited websites
+- **geolocation**: to allow weather cards to detect your location
+- **identity**: to request a connection to your external account
+- **https://trends.google.com/trends/hottrends/visualize/internal/data**: to fetch google trends at this address
+- **https://www.google.com/doodles/search**: to fetch google doodles at this address
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
