@@ -1,6 +1,6 @@
 {
   "name": "epiboard",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "New tab page",
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,
@@ -26,7 +26,7 @@
     "vue-router": "^3.0.1",
     "vuetify": "^1.1.0-rc.1",
     "vuex": "^3.0.1",
-    "vuex-persist": "^1.4.0"
+    "vuex-persist": "^1.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.51",
@@ -79,7 +79,7 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "webextension-polyfill": "^0.2.1",
-    "webpack": "^4.12.2",
+    "webpack": "^4.13.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
