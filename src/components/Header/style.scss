@@ -4,6 +4,7 @@ header {
   position: relative;
   display: flex;
   align-items: flex-end;
+  z-index: 1;
   .background {
     position: absolute;
     height: 100%;
