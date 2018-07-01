@@ -35,12 +35,6 @@ $ npm run build:chrome --report
 # load unpacked extension from dist folder.
 ```
 
-    "management",
-    "tabs",
-    "topSites",
-    "geolocation",
-    "identity",
-
 ## Notes on permissions
 
 *Theses permissions are not optional only due to limitations of [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)*
