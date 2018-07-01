@@ -22,18 +22,12 @@ export default {
     },
   },
   watch: {
-    primary(val, old) {
-      if (val !== old) {
-        this.$vuetify.theme.primary = val;
+    primary(hex) {
+      if (hex && hex.toUpperCase() !== this.$vuetify.theme.primary) {
+        this.$vuetify.theme.primary = hex;
         this.$vuetify.theme.secondary = this.secondary;
       }
     },
-  },
-  mounted() {
-    if (this.primary !== '#607D8B') {
-      this.$vuetify.theme.primary = this.primary;
-      this.$vuetify.theme.secondary = this.secondary;
-    }
   },
 };
 </script>
