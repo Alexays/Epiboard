@@ -11,10 +11,10 @@
           </v-radio-group>
           <h4 class="subheading">Background</h4>
           <v-layout align-center>
-            <v-select
+            <v-autocomplete
               :items="artworks"
               v-model="settings.header.background"
-              label="Choose your background" autocomplete/>
+              label="Choose your background"/>
             <v-text-field
               v-if="settings.header.background === 'url'"
               v-model.lazy="settings.header.backgroundUrl"
@@ -25,10 +25,10 @@
             <v-switch
               v-model="settings.trends.enabled"
               :label="settings.trends.enabled ? `On` : `Off`"/>
-            <v-select
+            <v-autocomplete
               :items="country"
               v-model="settings.trends.country"
-              label="Choose your Google Trends Country" autocomplete/>
+              label="Choose your Google Trends Country"/>
           </v-layout>
           <h4 class="subheading">Google Doodles</h4>
           <v-switch

@@ -47,7 +47,7 @@ $ npm run build:chrome --report
 
 - **storage**: to save user's settings such as background image
 - **sessions**: to retreive chrome sessions linked to your account and display them in a card
-- **tabs**: to show your recently closed tabs (session card)
+- **tabs**: to show your recently closed tabs (sessions card)
 - **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
 - **downloads**: to display your recent downloads
 - **downloads.open**: to open files you have downloaded from the download card

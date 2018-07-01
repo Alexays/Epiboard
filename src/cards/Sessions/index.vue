@@ -12,7 +12,7 @@
               <v-icon x-large>find_in_page</v-icon>
               <h2 class="subheading">You have no recently closed page.</h2>
             </div>
-            <li v-for="session in recentlyClosed" :key="session.title">
+            <li v-for="session in recentlyClosed" :key="`${session.title}${session.lastModified}`">
               <a :href="session.url" class="session text--primary">
                 <i v-if="session.favIconUrl"
                    :style="{'background-image': `url(${session.favIconUrl})`}"/>
@@ -27,7 +27,7 @@
           v-for="device in devices"
           :key="device.deviceName" :id="`tab-${device.deviceName}`" lazy>
           <v-card-text>
-            <li v-for="tab in device.tabs" :key="tab.url">
+            <li v-for="tab in device.tabs" :key="`${tab.title}${tab.lastModified}`">
               <a :href="tab.url" class="session text--primary">
                 <i v-if="tab.favIconUrl" :style="{'background-image': `url(${tab.favIconUrl})`}"/>
                 <v-icon v-else>insert_drive_file</v-icon>

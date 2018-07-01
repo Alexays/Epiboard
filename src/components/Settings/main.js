@@ -2,7 +2,7 @@ import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
 import VTimePicker from 'vuetify/es5/components/VTimePicker';
 import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import VSwitch from 'vuetify/es5/components/VSwitch';
-import VSelect from 'vuetify/es5/components/VSelect';
+import VAutocomplete from 'vuetify/es5/components/VAutocomplete';
 import VMenu from 'vuetify/es5/components/VMenu';
 import colors from 'vuetify/es5/util/colors';
 
@@ -14,7 +14,7 @@ export default {
     VTimePicker,
     VCheckbox,
     VSwitch,
-    VSelect,
+    VAutocomplete,
     VMenu,
   },
   data() {
