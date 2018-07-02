@@ -1,5 +1,5 @@
 <template>
-  <v-card-text id="weather-settings">
+  <v-card-text>
     <h4 class="headline">Location</h4>
     <v-layout align-center>
       <v-checkbox :label="'Auto detect'" v-model="auto" hide-details/>
@@ -14,4 +14,3 @@
   </v-card-text>
 </template>
 <script src="./settings.js"></script>
-<style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

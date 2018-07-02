@@ -5,4 +5,3 @@
   </v-card-text>
 </template>
 <script src="./settings.js"></script>
-<style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>
