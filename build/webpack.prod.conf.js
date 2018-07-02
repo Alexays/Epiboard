@@ -13,12 +13,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const WebpackShellPlugin = require('webpack-shell-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 const glob = require('glob')
-
+const isProduction = process.env.NODE_ENV === 'production';
 const { name, version } = require('../package.json');
 
 const excludeCards = ['Tasks'];
 
-if (excludeCards.length && process.env.NODE_ENV === 'production') {
+if (excludeCards.length && isProduction) {
   console.log(`Warning: "${excludeCards.join(',')}" are excludes from build.`);
 }
 
@@ -31,7 +31,7 @@ const getCards = () => {
     .map(f => f.replace('./src/cards/', ''));
   for (let i = 0; i < cardsKeys.length; i += 1) {
     const key = cardsKeys[i].split('/')[0];
-    if (excludeCards.indexOf(key) > -1 && process.env.NODE_ENV === 'production') {
+    if (excludeCards.indexOf(key) > -1 && isProduction) {
       continue;
     }
     if (cardsKeys[i].endsWith('index.vue')) {
@@ -75,7 +75,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].[chunkhash].css'),
+      filename: utils.assetsPath('css/[name].[contenthash].css'),
+      chunkFilename: utils.assetsPath('css/[id].[contenthash].css'),
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
@@ -110,7 +111,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         transform: (content) => {
           const jsonContent = JSON.parse(content);
           // Add devtool
-          if (process.env.NODE_ENV !== 'production' && (process.env.BUILD_TARGET || 'chrome') === 'chrome') {
+          if (!isProduction && (process.env.BUILD_TARGET || 'chrome') === 'chrome') {
             jsonContent.content_security_policy.replace("script-src 'self'", "script-src 'self' http://localhost:8098")
           }
           jsonContent.version = version;
@@ -167,7 +168,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
 })
 
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   webpackConfig.plugins.push(new WebpackShellPlugin({
     onBuildEnd: ['node ./build/remove-evals.js']
   }))
