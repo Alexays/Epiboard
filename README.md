@@ -11,12 +11,12 @@
 
 ## Requirement
 
-- [Chromium](https://www.google.com/chrome/) >= 54.0<br />
+- [Chrome](https://www.google.com/chrome/) >= 54.0<br />
 - [Firefox](https://www.mozilla.org/firefox/) >= 54.0
 
 ## Build Setup
 
-> If you want the stable version take it on [Chrome](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
+> If you want the stable version take it from [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or for [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
 
 ``` bash
 # install dependencies

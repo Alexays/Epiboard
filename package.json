@@ -8,8 +8,8 @@
     "start": "npm run build",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "build:chrome": "BUILD_TARGET=chrome node build/build.js",
-    "build:firefox": "BUILD_TARGET=firefox node build/build.js"
+    "build:chrome": "cross-env BUILD_TARGET=chrome node build/build.js",
+    "build:firefox": "cross-env BUILD_TARGET=firefox node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -43,6 +43,7 @@
     "babel-plugin-transform-vue-jsx": "^4.0.1",
     "chalk": "^2.4.1",
     "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "eslint": "^5.0.1",
     "eslint-config-airbnb-base": "^13.0.0",
