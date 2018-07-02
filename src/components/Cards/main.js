@@ -23,8 +23,8 @@ export default {
       cmp: null,
       settingsCmp: null,
       showSettings: false,
-      save: false,
-      init: false,
+      pendingSave: false,
+      loaded: false,
       error: null,
       hash: '',
       menus: [],
@@ -51,7 +51,6 @@ export default {
   created() {
     const { id } = this;
     const card = Cards.cards[id];
-    const settingsName = Cards.settings[id];
     this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${card.cmp}`)
       .then((tmp) => {
         if (tmp.default.title) this.title = tmp.default.title;
@@ -73,18 +72,17 @@ export default {
         });
       })
       .then((tmp) => {
-        if (settingsName) {
-          return import(`@/cards/${settingsName}`)
-            .then((data) => {
-              this.settingsCmp = data.default;
-              return tmp;
-            });
-        }
-        return tmp;
+        const settingsName = Cards.settings[id];
+        if (!settingsName) return tmp;
+        return import(`@/cards/${settingsName}`)
+          .then((data) => {
+            this.settingsCmp = data.default;
+            return tmp;
+          });
       });
   },
   methods: {
-    deleteCard() {
+    remove() {
       if (this.options.permissions || this.options.origins) {
         this.$utils.permissions.remove({
           permissions: this.options.permissions || [],
@@ -97,8 +95,8 @@ export default {
       this.$store.commit('DEL_CARD', this.id);
       this.$emit('deleted');
     },
-    initCard(data) {
-      this.init = true;
+    init(data) {
+      this.loaded = true;
       if (data === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
         this.$store.commit('DEL_CARD_CACHE', this.id);
         return;
@@ -119,21 +117,19 @@ export default {
       }
     },
     reload() {
-      this.init = false;
+      this.loaded = false;
       this.error = null;
       this.$store.commit('DEL_CARD_CACHE', this.id);
       this.hash = Date.now().toString();
     },
-    closeSettings(save) {
-      this.save = save;
+    closeSettings(willSave) {
+      this.pendingSave = willSave;
       this.showSettings = false;
     },
     saveSettings(data) {
-      if (this.save) {
-        this.$store.commit('SET_CARD_SETTINGS', { key: this.id, data });
-        this.reload();
-        this.save = false;
-      }
+      this.$store.commit('SET_CARD_SETTINGS', { key: this.id, data });
+      this.reload();
+      this.pendingSave = false;
     },
   },
 };

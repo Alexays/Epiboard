@@ -85,9 +85,9 @@ Vue.directive('init', {
       }
     }
   },
-  unbind: (el, { value }, vnode) => {
-    if (value.settings && vnode.context && vnode.context.saveSettings) {
-      vnode.context.saveSettings(vnode.componentInstance.$data);
+  unbind: (el, { value }, { context, componentInstance }) => {
+    if (value.settings && context && context.$data.pendingSave && context.saveSettings) {
+      context.saveSettings(componentInstance.$data);
     }
   },
 });

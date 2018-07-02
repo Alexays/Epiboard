@@ -9,7 +9,7 @@
       <span v-else class="headline">{{ id }}</span>
       <div>
         <v-progress-circular
-          v-show="!init"
+          v-show="!loaded"
           :title="`${id} is fetching some data...`"
           :size="25" :width="2" indeterminate color="white"/>
         <v-btn
@@ -31,7 +31,7 @@
             <v-list-tile v-if="settingsCmp" @click.stop="showSettings=true">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>
-            <v-list-tile @click="deleteCard()">
+            <v-list-tile @click="remove()">
               <v-list-tile-title>Remove</v-list-tile-title>
             </v-list-tile>
           </v-list>
@@ -53,7 +53,7 @@
       :settings="settings"
       :is="cmp"
       :key="hash"
-      @init="initCard($event)"
+      @init="init"
     />
     <component
       v-init="{key: id, settings: true}"
