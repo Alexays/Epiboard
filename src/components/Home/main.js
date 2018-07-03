@@ -1,6 +1,6 @@
 import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import ResizeSensor from 'css-element-queries/src/ResizeSensor';
-import CardsCmp from '@/components/Cards';
+import Card from '@/components/Card';
 import Muuri from 'muuri';
 
 // @vue/component
@@ -8,7 +8,7 @@ export default {
   name: 'Home',
   components: {
     VSpeedDial,
-    Cards: CardsCmp,
+    Card,
   },
   directives: {
     resize: {
@@ -84,7 +84,6 @@ export default {
     },
     initGrid() {
       this.grid = new Muuri('#card-container', {
-        items: '.v-card',
         dragEnabled: true,
         layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },

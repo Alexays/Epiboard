@@ -56,7 +56,7 @@
             </div>
           </v-card-text>
           <v-card-text v-else-if="!projects.length" class="text-xs-center">
-            <v-icon x-large>work</v-icon>
+            <v-icon v-if="settings.hideInfo" x-large>work</v-icon>
             <h2 class="subheading">No on going projects, well done !</h2>
           </v-card-text>
           <timeline :user="user"/>

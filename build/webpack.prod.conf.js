@@ -129,19 +129,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
   ],
   optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'async',
-        },
-      },
-    },
     // keep module.id stable when vendor modules does not change
     namedChunks: true,
     hashedModuleIds: true,
-    runtimeChunk: 'single',
     minimizer: [
       new UglifyJsPlugin({
         uglifyOptions: {

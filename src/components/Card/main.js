@@ -5,7 +5,7 @@ import Toast from '@/components/Toast';
 
 // @vue/component
 export default {
-  name: 'Cards',
+  name: 'Card',
   components: {
     ...VList,
     VDivider,
@@ -18,7 +18,7 @@ export default {
         const data = modifiers.settings
           ? context.$store.state.cardsSettings.cards[value]
           : context.$store.state.cache.cards[value];
-        if (!data) throw new Error(`Card ${value} does not exist.`);
+        if (!data) return;
         if (!modifiers.settings) {
           const { CACHE_DT } = data;
           if (CACHE_DT) {
@@ -82,14 +82,14 @@ export default {
   },
   created() {
     const { id } = this;
-    const card = Cards.cards[id];
-    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${card.cmp}`)
+    const { cmp, permissions, origins } = Cards.cards[id];
+    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${cmp}`)
       .then((tmp) => {
         if (tmp.default.title) this.title = tmp.default.title;
-        if (!card.permissions && !card.origins) return tmp.default;
+        if (!permissions && !origins) return tmp.default;
         return this.$utils.permissions.allowed({
-          permissions: card.permissions || [],
-          origins: card.origins || [],
+          permissions: permissions || [],
+          origins: origins || [],
         }).then((res) => {
           if (!res) {
             Toast.show({

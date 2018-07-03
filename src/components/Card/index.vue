@@ -1,5 +1,5 @@
 <template>
-  <v-card :data-id="id" :width="(options.size || 1) * 430 - 30" hover raised>
+  <v-card :width="(options.size || 1) * 430 - 30" hover raised>
     <v-card-title
       :class="{
         'primary': !options.custom || showSettings,
