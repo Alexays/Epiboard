@@ -60,12 +60,6 @@ new Vue({
   store,
   render: h => h(App),
 });
-Vue.filter('bytes', (nb) => {
-  if (Number.isNaN(parseFloat(nb)) || !Number.isFinite(nb)) return '-';
-  const units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB'];
-  const idx = Math.floor(Math.log(nb) / Math.log(1024));
-  return `${(nb / (1024 ** Math.floor(idx))).toFixed(1)} ${units[idx]}`;
-});
 
 Vue.filter('truncate', (string, nb) => {
   if (!string) return '';

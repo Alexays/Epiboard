@@ -3,7 +3,6 @@
 // @vue/component
 export default {
   name: 'Apps',
-  components: {},
   data() {
     return {
       apps: [],

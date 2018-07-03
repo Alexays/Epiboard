@@ -2,7 +2,6 @@
 export default {
   name: 'TopSites',
   title: 'Top Sites',
-  components: {},
   props: {
     settings: {
       type: Object,

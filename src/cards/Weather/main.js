@@ -14,7 +14,6 @@ export default {
   title: new Date().toLocaleDateString('en-Us', {
     weekday: 'long',
   }),
-  components: {},
   props: {
     settings: {
       type: Object,

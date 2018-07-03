@@ -1,7 +1,6 @@
 // @vue/component
 export default {
   name: 'Sessions',
-  components: {},
   data() {
     return {
       maxRecentlyClosed: 7,
