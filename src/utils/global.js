@@ -16,26 +16,16 @@ export default {
         const from = (dark.from || '22:00').split(':').map(Number);
         const to = (dark.to || '9:00').split(':').map(Number);
         const date = new Date();
-        const fromDate = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          from[0],
-          from[1],
-          0,
-        );
-        const toDate = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          to[0],
-          to[1],
-          0,
-        );
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const day = date.getDate();
+        const fromDate = new Date(year, month, day, from[0], from[1]).getTime();
+        const toDate = new Date(year, month, day, to[0], to[1]).getTime();
+        const time = date.getTime();
         if (fromDate > toDate) {
-          return (!(date > toDate && date < fromDate));
+          return (!(time > toDate && time < fromDate));
         }
-        return (date > fromDate && date < toDate);
+        return (time > fromDate && time < toDate);
       }
       return true;
     }
