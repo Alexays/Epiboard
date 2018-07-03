@@ -36,8 +36,8 @@ export default {
           }
         }
       },
-      unbind: (el, { value }, { context, componentInstance }) => {
-        if (value.settings && context && context.$data.pendingSave && context.saveSettings) {
+      unbind: (el, { modifiers }, { context, componentInstance }) => {
+        if (modifiers.settings && context && context.$data.pendingSave && context.saveSettings) {
           context.saveSettings(componentInstance.$data);
         }
       },
@@ -52,8 +52,10 @@ export default {
   data() {
     return {
       title: null,
-      cmp: null,
-      settingsCmp: null,
+      cmp: {
+        card: null,
+        settings: null,
+      },
       showSettings: false,
       pendingSave: false,
       loaded: false,
@@ -67,8 +69,8 @@ export default {
       return Cards.cards[this.id];
     },
     settings() {
-      if (!this.settingsCmp || this.hash == null) return {};
-      const data = this.settingsCmp.data();
+      if (!this.cmp.settings || this.hash == null) return {};
+      const data = this.cmp.settings.data();
       const tmp = this.$store.state.cardsSettings.cards[this.id];
       if (!tmp) return data;
       const keys = Object.keys(data);
@@ -83,7 +85,7 @@ export default {
   created() {
     const { id } = this;
     const { cmp, permissions, origins } = Cards.cards[id];
-    this.cmp = () => import(/* webpackMode: "eager" */`@/cards/${cmp}`)
+    this.cmp.card = () => import(/* webpackMode: "eager" */`@/cards/${cmp}`)
       .then((tmp) => {
         if (tmp.default.title) this.title = tmp.default.title;
         if (!permissions && !origins) return tmp.default;
@@ -108,7 +110,7 @@ export default {
         if (!settingsName) return tmp;
         return import(`@/cards/${settingsName}`)
           .then((data) => {
-            this.settingsCmp = data.default;
+            this.cmp.settings = data.default;
             return tmp;
           });
       });
@@ -152,6 +154,10 @@ export default {
       this.loaded = false;
       this.error = null;
       this.$store.commit('DEL_CARD_CACHE', this.id);
+      this.hash = Date.now().toString();
+    },
+    resetSettings() {
+      this.$store.commit('DEL_CARD_SETTINGS', this.id);
       this.hash = Date.now().toString();
     },
     closeSettings(willSave) {

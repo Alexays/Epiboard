@@ -29,7 +29,7 @@
               <v-list-tile-title>{{ action.title }}</v-list-tile-title>
             </v-list-tile>
             <v-divider v-if="actions.length"/>
-            <v-list-tile v-if="settingsCmp" @click.stop="showSettings=true">
+            <v-list-tile v-if="cmp.settings" @click.stop="showSettings=true">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="remove()">
@@ -38,10 +38,13 @@
           </v-list>
         </v-menu>
         <template v-else>
-          <v-btn flat icon color="white" @click="closeSettings(false)">
+          <v-btn flat icon title="Reset Settings" color="white" @click="resetSettings()">
+            <v-icon>settings_backup_restore</v-icon>
+          </v-btn>
+          <v-btn flat icon title="Cancel" color="white" @click="closeSettings(false)">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-btn flat icon color="white" @click="closeSettings(true)">
+          <v-btn flat icon title="Save" color="white" @click="closeSettings(true)">
             <v-icon>done</v-icon>
           </v-btn>
         </template>
@@ -52,14 +55,15 @@
       v-show="!showSettings"
       :actions.sync="actions"
       :settings="settings"
-      :is="cmp"
+      :is="cmp.card"
       :key="hash"
       @init="init"
     />
     <component
       v-init.settings="id"
-      v-if="showSettings && settingsCmp"
-      :is="settingsCmp"
+      v-if="showSettings && cmp.settings"
+      :is="cmp.settings"
+      :key="hash"
     />
   </v-card>
 </template>
