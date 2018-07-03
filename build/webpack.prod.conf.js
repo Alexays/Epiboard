@@ -96,9 +96,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks
       chunksSortMode: 'dependency'
     }),
-    // keep module.id stable when vendor modules does not change
-    new webpack.NamedChunksPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
     // copy custom static assets
     new CopyWebpackPlugin([{
         from: path.resolve(__dirname, '../static'),
@@ -141,6 +138,9 @@ const webpackConfig = merge(baseWebpackConfig, {
         },
       },
     },
+    // keep module.id stable when vendor modules does not change
+    namedChunks: true,
+    hashedModuleIds: true,
     runtimeChunk: 'single',
     minimizer: [
       new UglifyJsPlugin({

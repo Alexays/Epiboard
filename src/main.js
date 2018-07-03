@@ -61,18 +61,10 @@ new Vue({
   render: h => h(App),
 });
 Vue.filter('bytes', (nb) => {
-  let bytes = nb;
-  const thresh = 1024;
-  if (Math.abs(bytes) < thresh) {
-    return `${bytes} B`;
-  }
-  const units = ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  let i = -1;
-  do {
-    bytes /= thresh;
-    i += 1;
-  } while (Math.abs(bytes) >= thresh && i < units.length - 1);
-  return `${bytes.toFixed(1)} ${units[i]}`;
+  if (Number.isNaN(parseFloat(nb)) || !Number.isFinite(nb)) return '-';
+  const units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB'];
+  const idx = Math.floor(Math.log(nb) / Math.log(1024));
+  return `${(nb / (1024 ** Math.floor(idx))).toFixed(1)} ${units[idx]}`;
 });
 
 Vue.filter('truncate', (string, nb) => {
