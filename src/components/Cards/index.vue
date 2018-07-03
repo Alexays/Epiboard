@@ -23,11 +23,12 @@
           </v-btn>
           <v-list>
             <v-list-tile
-              v-for="menu in menus"
-              :key="menu.title" :class="{ 'primary--text': menu.active }" @click="menu.func()">
-              <v-list-tile-title>{{ menu.title }}</v-list-tile-title>
+              v-for="action in actions"
+              :key="action.title"
+              :class="{ 'primary--text': action.active }" @click="action.func()">
+              <v-list-tile-title>{{ action.title }}</v-list-tile-title>
             </v-list-tile>
-            <v-divider v-if="menus.length"/>
+            <v-divider v-if="actions.length"/>
             <v-list-tile v-if="settingsCmp" @click.stop="showSettings=true">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>
@@ -47,16 +48,16 @@
       </div>
     </v-card-title>
     <component
-      v-init="{key: id}"
+      v-init="id"
       v-show="!showSettings"
-      :menus.sync="menus"
+      :actions.sync="actions"
       :settings="settings"
       :is="cmp"
       :key="hash"
       @init="init"
     />
     <component
-      v-init="{key: id, settings: true}"
+      v-init.settings="id"
       v-if="showSettings && settingsCmp"
       :is="settingsCmp"
     />

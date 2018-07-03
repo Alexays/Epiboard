@@ -38,12 +38,12 @@ export default {
         });
     },
     updateMenu() {
-      const menu = this.lists.map(f => ({
+      const action = this.lists.map(f => ({
         title: f.title,
         active: f.id === this.currentId,
         func: () => this.getTasksList(f.id),
       }));
-      this.$emit('update:menus', menu);
+      this.$emit('update:actions', action);
     },
     getLists() {
       return Api.getLists(this.token).then((lists) => {

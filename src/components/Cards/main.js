@@ -11,6 +11,38 @@ export default {
     VDivider,
     VMenu,
   },
+  directives: {
+    init: {
+      isLiteral: true,
+      bind: (el, { value, modifiers }, { context, componentInstance }) => {
+        const data = modifiers.settings
+          ? context.$store.state.cardsSettings.cards[value]
+          : context.$store.state.cache.cards[value];
+        if (!data) throw new Error(`Card ${value} does not exist.`);
+        if (!modifiers.settings) {
+          const { CACHE_DT } = data;
+          if (CACHE_DT) {
+            // Default cache timeout is 60s
+            const cacheValidity = (Cards.cards[value].cacheValidity || 60) * 1000;
+            /* eslint-disable-next-line no-param-reassign */
+            componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
+          }
+        }
+        const keys = Object.keys(data);
+        for (let i = 0; i < keys.length; i += 1) {
+          if (componentInstance.$data[keys[i]] !== undefined) {
+            /* eslint-disable-next-line no-param-reassign */
+            componentInstance.$data[keys[i]] = data[keys[i]];
+          }
+        }
+      },
+      unbind: (el, { value }, { context, componentInstance }) => {
+        if (value.settings && context && context.$data.pendingSave && context.saveSettings) {
+          context.saveSettings(componentInstance.$data);
+        }
+      },
+    },
+  },
   props: {
     id: {
       type: String,
@@ -27,7 +59,7 @@ export default {
       loaded: false,
       error: null,
       hash: '',
-      menus: [],
+      actions: [],
     };
   },
   computed: {

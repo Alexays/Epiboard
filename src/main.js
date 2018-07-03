@@ -60,37 +60,6 @@ new Vue({
   store,
   render: h => h(App),
 });
-Vue.directive('init', {
-  isLiteral: true,
-  bind: (el, { value }, vnode) => {
-    if (!value) return;
-    const data = value.settings
-      ? vnode.context.$store.state.cardsSettings.cards[value.key]
-      : vnode.context.$store.state.cache.cards[value.key];
-    if (!data) return;
-    if (!value.settings) {
-      const { CACHE_DT } = data;
-      if (CACHE_DT) {
-        // Default cache timeout is 60s
-        const cacheValidity = ((Cards.cards[value.key].cacheValidity || 60) * 1000);
-        /* eslint-disable-next-line no-param-reassign */
-        vnode.componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
-      }
-    }
-    const keys = Object.keys(data);
-    for (let i = 0; i < keys.length; i += 1) {
-      if (vnode.componentInstance.$data[keys[i]] !== undefined) {
-        /* eslint-disable-next-line no-param-reassign */
-        vnode.componentInstance.$data[keys[i]] = data[keys[i]];
-      }
-    }
-  },
-  unbind: (el, { value }, { context, componentInstance }) => {
-    if (value.settings && context && context.$data.pendingSave && context.saveSettings) {
-      context.saveSettings(componentInstance.$data);
-    }
-  },
-});
 Vue.filter('bytes', (nb) => {
   let bytes = nb;
   const thresh = 1024;

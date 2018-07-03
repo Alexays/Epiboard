@@ -28,7 +28,7 @@ export default {
     };
   },
   mounted() {
-    this.$emit('update:menus', [{
+    this.$emit('update:actions', [{
       title: 'Clear downloads',
       func: () => this.removeAll(),
     }]);
