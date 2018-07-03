@@ -91,14 +91,14 @@ export default {
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
-          index: (item, element) => this.cards.indexOf(element.getAttribute('data-id')),
+          index: (item, el) => this.cards.indexOf(el.dataset.id),
         },
       });
       if (this.cards.length) {
         this.grid.sort('index', { layout: 'instant' });
       }
       this.grid.on('dragEnd', () => {
-        const order = this.grid.getItems('active').map(item => item.getElement().getAttribute('data-id'));
+        const order = this.grid.getItems('active').map(item => item.getElement().dataset.id);
         this.$store.commit('SET_CARDS', order);
         this.$ga.event('cards', 'order', order, 1);
       });
