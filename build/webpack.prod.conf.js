@@ -84,7 +84,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
-      inject: true,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -145,14 +144,17 @@ const webpackConfig = merge(baseWebpackConfig, {
       // Compress extracted CSS. We are using this plugin so that possible
       // duplicated CSS from different components can be deduped.
       new OptimizeCSSPlugin({
-        cssProcessorOptions: config.build.productionSourceMap ? {
-          safe: true,
-          map: {
-            inline: false
-          }
-        } : {
-          safe: true
-        }
+        cssProcessorOptions: {
+          ...(config.build.productionSourceMap ? {
+            map: {
+              inline: false
+            }
+          } : {}),
+          ...{
+            safe: true,
+            cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+          },
+        },
       }),
     ],
   },

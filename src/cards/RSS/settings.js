@@ -1,10 +1,12 @@
 import * as VList from 'vuetify/es5/components/VList';
+import VTextField from 'vuetify/es5/components/VTextField';
 
 // @vue/component
 export default {
   name: 'RSS',
   components: {
     ...VList,
+    VTextField,
   },
   data() {
     return {

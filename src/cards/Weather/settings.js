@@ -1,6 +1,7 @@
 import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import VSwitch from 'vuetify/es5/components/VSwitch';
 import VSelect from 'vuetify/es5/components/VSelect';
+import VTextField from 'vuetify/es5/components/VTextField';
 
 // @vue/component
 export default {
@@ -9,6 +10,7 @@ export default {
     VCheckbox,
     VSwitch,
     VSelect,
+    VTextField,
   },
   data() {
     return {

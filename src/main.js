@@ -6,7 +6,6 @@ import VGrid from 'vuetify/es5/components/VGrid';
 import * as VCard from 'vuetify/es5/components/VCard';
 import VBtn from 'vuetify/es5/components/VBtn';
 import VIcon from 'vuetify/es5/components/VIcon';
-import VTextField from 'vuetify/es5/components/VTextField';
 import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
 import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
 import transitions from 'vuetify/es5/components/transitions';
@@ -40,7 +39,6 @@ Vue.use(Vuetify, {
     VGrid,
     VBtn,
     VIcon,
-    VTextField,
     VProgressLinear,
     VProgressCircular,
   },

@@ -4,6 +4,7 @@ import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import VSwitch from 'vuetify/es5/components/VSwitch';
 import VAutocomplete from 'vuetify/es5/components/VAutocomplete';
 import VMenu from 'vuetify/es5/components/VMenu';
+import VTextField from 'vuetify/es5/components/VTextField';
 import colors from 'vuetify/es5/util/colors';
 
 // @vue/component
@@ -16,6 +17,7 @@ export default {
     VSwitch,
     VAutocomplete,
     VMenu,
+    VTextField,
   },
   data() {
     return {
