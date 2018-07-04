@@ -12,51 +12,10 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const WebpackShellPlugin = require('webpack-shell-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
-const glob = require('glob')
+const Cards = require('./cards')
 const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
 const { name, version } = require('../package.json');
-
-const getCards = () => {
-  const excludeCards = ['Tasks'];
-  const keys = {
-    cards: {},
-    settings: {},
-  };
-  const cardsKeys = glob.sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
-    .map(f => f.replace('./src/cards/', ''));
-  for (let i = 0; i < cardsKeys.length; i += 1) {
-    const key = cardsKeys[i].split('/')[0];
-    if (excludeCards.indexOf(key) > -1 && isProduction) {
-      continue;
-    }
-    if (cardsKeys[i].endsWith('index.vue')) {
-      keys.cards[key] = { ...(keys.cards[key] || {}), ...{ cmp: cardsKeys[i] }};
-    } else if (cardsKeys[i].endsWith('settings.vue')) {
-      keys.settings[key] = cardsKeys[i];
-    } else if (cardsKeys[i].endsWith('manifest.json')) {
-      const manifest = require(`../src/cards/${cardsKeys[i]}`);
-      if (manifest.browsers && manifest.browsers.length && manifest.browsers.indexOf(browserName) === -1) {
-        excludeCards.push(key);
-        continue;
-      }
-      keys.cards[key] = { ...(keys.cards[key] || {}), ...manifest};
-    }
-  }
-  for (let i = 0; i < excludeCards.length; i += 1) {
-    if (keys.cards[excludeCards[i]]) {
-      delete keys.cards[excludeCards[i]];
-    }
-    if (keys.settings[excludeCards[i]]) {
-      delete keys.settings[excludeCards[i]];
-    }
-  }
-  if (excludeCards.length && isProduction) {
-    console.log(`Warning: "${excludeCards.join(',')}" are excludes from build.`);
-  }
-  console.log(keys);
-  return keys;
-};
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: process.env.NODE_ENV,
@@ -132,7 +91,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       browser: 'webextension-polyfill',
     }),
     new webpack.DefinePlugin({
-      Cards: JSON.stringify(getCards()),
+      Cards: JSON.stringify(Cards),
       browserName: JSON.stringify(browserName),
     }),
     new ZipPlugin({
