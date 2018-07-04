@@ -29,6 +29,25 @@
         <v-progress-linear :height="6" :value="memoryLoad" color="accent"/>
       </div>
     </div>
+    <div v-if="connection" class="wrapper">
+      <div class="wrapper-name">
+        <v-icon>network_cell</v-icon>
+        <div>Network</div>
+      </div>
+      <div class="wrapper-info">
+        <v-layout>
+          <v-flex xs3>
+            <v-icon title="Downlink estimation" small>cloud_download</v-icon>
+            <span title="Downlink estimation" >{{ connection.downlink }} Mb/s</span>
+          </v-flex>
+          <v-flex xs3>
+            <v-icon title="Round-trip time estimation" small>swap_calls</v-icon>
+            <span title="Round-trip time estimation">{{ connection.rtt }}ms</span>
+            <sup class="grey--text">RTT</sup>
+          </v-flex>
+        </v-layout>
+      </div>
+    </div>
     <div v-if="storage.length" class="wrapper">
       <div class="wrapper-name">
         <v-icon>storage</v-icon>
@@ -36,7 +55,7 @@
       </div>
       <div class="wrapper-info">
         <li v-for="unit in storage" :key="unit.name" class="storage-unit">
-          <v-icon v-if="unit.type == 'removable'">usb</v-icon>
+          <v-icon v-if="unit.type == 'removable'" small>usb</v-icon>
           <span v-if="unit.name && developper" :title="unit.name" class="disk-name">
             {{ unit.name | truncate(25) }}
           </span>
