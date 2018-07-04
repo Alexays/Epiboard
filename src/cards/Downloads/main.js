@@ -11,7 +11,8 @@ export default {
   },
   directives: {
     drag: {
-      bind(el) {
+      bind(el, { value }) {
+        if (!value) return;
         el.addEventListener('dragstart', () => browser.downloads.drag(parseInt(el.id, 10)));
       },
     },
