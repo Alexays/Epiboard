@@ -6,11 +6,10 @@
   }
   li {
     list-style: none;
-    .session {
+    a.session {
       display: flex;
       align-items: center;
       padding: 7px 15px;
-      text-decoration: none;
       &:hover {
         background-color: rgba(0, 0, 0, .1);
       }
