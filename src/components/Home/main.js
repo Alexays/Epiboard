@@ -15,6 +15,9 @@ export default {
       inserted(el, { value }) {
         new ResizeSensor(el, () => value(el)); // eslint-disable-line no-new
       },
+      unbind(el) {
+        ResizeSensor.detach(el);
+      },
     },
   },
   data() {
