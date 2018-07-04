@@ -48,7 +48,7 @@ const getCards = () => {
       delete keys.cards[excludeCards[i]];
     }
     if (keys.settings[excludeCards[i]]) {
-      delete keys.cards[excludeCards[i]];
+      delete keys.settings[excludeCards[i]];
     }
   }
   if (excludeCards.length && isProduction) {
