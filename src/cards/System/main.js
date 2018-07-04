@@ -42,50 +42,30 @@ export default {
     },
   },
   mounted() {
-    (!browser.system ? this.getFirefox() : this.getChrome())
+    return Promise.all([
+      this.getCpu(),
+      this.getMemory(),
+      this.getStorage()
+        .then(this.getDevelopper)
+        .then((storage) => {
+          this.storage = storage;
+        }),
+    ]).then(() => {
+      if (navigator.connection) {
+        this.getConnection();
+        navigator.connection.onchange = this.getConnection;
+      }
+      browser.system.storage.onAttached.addListener(this.addStorage);
+      browser.system.storage.onDetached.addListener(this.removeStorage);
+      setInterval(this.getCpu, 3000);
+      setInterval(this.getMemory, 10000);
+    })
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {
-    getFirefox() {
-      // TODO: Firefox doesn't support system
-      return Promise.all([this.getInfo()])
-        .then(() => {
-          this.getConnection();
-        });
-    },
-    getChrome() {
-      return Promise.all([
-        this.getCpu(),
-        this.getMemory(),
-        this.getStorage()
-          .then(this.getDevelopper)
-          .then((storage) => {
-            this.storage = storage;
-          }),
-      ]).then(() => {
-        this.getConnection();
-        if (this.connection) {
-          this.connection.onchange = this.getConnection;
-        }
-        browser.system.storage.onAttached.addListener(this.addStorage);
-        browser.system.storage.onDetached.addListener(this.removeStorage);
-        setInterval(this.getCpu, 3000);
-        setInterval(this.getMemory, 10000);
-      });
-    },
     getConnection() {
-      if (!navigator.connection) return;
       this.connection = navigator.connection;
-    },
-    getInfo() {
-      return browser.runtime.getPlatformInfo().then((data) => {
-        this.cpu = {
-          modelName: data.os,
-          archName: data.arch,
-          numOfProcessors: window.navigator.hardwareConcurrency,
-        };
-      });
     },
     getCpu() {
       return new Promise((resolve, reject) => {

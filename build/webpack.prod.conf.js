@@ -14,15 +14,11 @@ const WebpackShellPlugin = require('webpack-shell-plugin')
 const ZipPlugin = require('zip-webpack-plugin')
 const glob = require('glob')
 const isProduction = process.env.NODE_ENV === 'production';
+const browserName = process.env.BUILD_TARGET || 'chrome';
 const { name, version } = require('../package.json');
 
-const excludeCards = ['Tasks'];
-
-if (excludeCards.length && isProduction) {
-  console.log(`Warning: "${excludeCards.join(',')}" are excludes from build.`);
-}
-
 const getCards = () => {
+  const excludeCards = ['Tasks'];
   const keys = {
     cards: {},
     settings: {},
@@ -39,9 +35,26 @@ const getCards = () => {
     } else if (cardsKeys[i].endsWith('settings.vue')) {
       keys.settings[key] = cardsKeys[i];
     } else if (cardsKeys[i].endsWith('manifest.json')) {
-      keys.cards[key] = { ...(keys.cards[key] || {}), ...require(`../src/cards/${cardsKeys[i]}`)};
+      const manifest = require(`../src/cards/${cardsKeys[i]}`);
+      if (manifest.browsers && manifest.browsers.length && manifest.browsers.indexOf(browserName) === -1) {
+        excludeCards.push(key);
+        continue;
+      }
+      keys.cards[key] = { ...(keys.cards[key] || {}), ...manifest};
     }
   }
+  for (let i = 0; i < excludeCards.length; i += 1) {
+    if (keys.cards[excludeCards[i]]) {
+      delete keys.cards[excludeCards[i]];
+    }
+    if (keys.settings[excludeCards[i]]) {
+      delete keys.cards[excludeCards[i]];
+    }
+  }
+  if (excludeCards.length && isProduction) {
+    console.log(`Warning: "${excludeCards.join(',')}" are excludes from build.`);
+  }
+  console.log(keys);
   return keys;
 };
 
@@ -102,12 +115,12 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       },
       {
-        from: path.resolve(__dirname, `../config/manifest_${process.env.BUILD_TARGET || 'chrome'}.json`),
+        from: path.resolve(__dirname, `../config/manifest_${browserName}.json`),
         to: path.resolve(config.build.assetsRoot, './manifest.json'),
         transform: (content) => {
           const jsonContent = JSON.parse(content);
           // Add devtool
-          if (!isProduction && (process.env.BUILD_TARGET || 'chrome') === 'chrome') {
+          if (!isProduction && browserName === 'chrome') {
             jsonContent.content_security_policy.replace("script-src 'self'", "script-src 'self' http://localhost:8098")
           }
           jsonContent.version = version;
@@ -120,7 +133,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.DefinePlugin({
       Cards: JSON.stringify(getCards()),
-      browserName: JSON.stringify(process.env.BUILD_TARGET || 'chrome'),
+      browserName: JSON.stringify(browserName),
     }),
     new ZipPlugin({
       path: '../',
