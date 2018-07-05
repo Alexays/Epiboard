@@ -37,12 +37,14 @@
       <div class="wrapper-info">
         <v-layout>
           <v-flex xs3>
-            <v-icon title="Downlink estimation" small>cloud_download</v-icon>
-            <span title="Downlink estimation" >{{ connection.downlink }} Mb/s</span>
+            <span title="Downlink estimation">
+              <v-icon class="pr-1" small>cloud_download</v-icon>{{ connection.downlink }} Mb/s
+            </span>
           </v-flex>
           <v-flex xs3>
-            <v-icon title="Round-trip time estimation" small>swap_calls</v-icon>
-            <span title="Round-trip time estimation">{{ connection.rtt }}ms</span>
+            <span title="Round-trip time estimation">
+              <v-icon small>swap_calls</v-icon>{{ connection.rtt }}ms
+            </span>
             <sup class="grey--text">RTT</sup>
           </v-flex>
         </v-layout>
