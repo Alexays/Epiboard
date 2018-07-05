@@ -5,12 +5,13 @@
         <div class="icon">
           <v-progress-circular
             v-if="download.state === 'in_progress'"
-            :value="(download.bytesReceived / download.totalBytes) * 100 | 0"/>
+            :value="(download.bytesReceived / download.totalBytes) * 100 | 0"
+            :alt="`${(download.bytesReceived / download.totalBytes) * 100}%`"/>
           <template v-else>
             <div
               v-if="download.filename && download.icon"
               :style="{'background-image': `url(${download.icon})`}" class="fileicon"/>
-            <v-icon v-if="!download.filename || !download.icon">insert_drive_file</v-icon>
+            <v-icon v-if="!download.filename || !download.icon" large>insert_drive_file</v-icon>
           </template>
         </div>
         <div class="d-info">

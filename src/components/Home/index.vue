@@ -18,8 +18,7 @@
     <transition-group
       id="card-container"
       :class="{ 'design-toolbar': $store.state.settings.header.design === 'toolbar' }"
-      name="scale-transition"
-      tag="div" appear>
+      name="fade-transition" tag="div" appear>
       <card
         v-resize="onResize"
         v-for="card in cards" :key="card" :id="card" :data-id="card" @deleted="delCard(card)"/>
