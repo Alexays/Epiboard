@@ -68,6 +68,9 @@ export default {
     options() {
       return Cards.cards[this.id];
     },
+    debug() {
+      return this.$store.state.settings.debug;
+    },
     settings() {
       if (!this.cmp.settings || this.hash == null) return {};
       const data = this.cmp.settings.data();

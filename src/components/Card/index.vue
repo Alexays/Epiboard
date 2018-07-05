@@ -32,6 +32,9 @@
             <v-list-tile v-if="cmp.settings" @click.stop="showSettings=true">
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile>
+            <v-list-tile v-if="debug" @click="reload()">
+              <v-list-tile-title>Reload</v-list-tile-title>
+            </v-list-tile>
             <v-list-tile @click="remove()">
               <v-list-tile-title>Remove</v-list-tile-title>
             </v-list-tile>
