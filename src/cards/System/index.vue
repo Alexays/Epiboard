@@ -8,8 +8,8 @@
       <div class="wrapper-info">
         <span>{{ cpu.modelName }}</span>
         <p>
-          <span>{{ cpu.archName }} - {{ cpu.numOfProcessors }} core</span>
-          {{ cpu.numOfProcessors > 1 ? 's' : '' }}
+          {{ cpu.archName }} -
+          {{ cpu.numOfProcessors }} core{{ cpu.numOfProcessors > 1 ? 's' : '' }}
         </p>
         <v-progress-linear
           v-for="(core, key) in cpu.processors" :key="key"
