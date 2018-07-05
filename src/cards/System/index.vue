@@ -55,24 +55,18 @@
       </div>
       <div class="wrapper-info">
         <li v-for="unit in storage" :key="unit.name" class="storage-unit">
-          <v-icon v-if="unit.type == 'removable'" small>usb</v-icon>
-          <span v-if="unit.name && developper" :title="unit.name" class="disk-name">
-            {{ unit.name | truncate(25) }}
+          <v-icon v-if="unit.type === 'removable'" small>usb</v-icon>
+          <span class="disk-name">
+            <template v-if="unit.name">{{ unit.name | truncate(25) }}</template>
+            <template v-else>{{ unit.capacity | bytes }} Volume</template>
           </span>
-          <span v-if="!unit.name && developper" class="disk-name">
-            {{ unit.capacity | bytes }} Volume
-          </span>
-          <span v-if="developper" class="disk-capacity">
-            {{ unit.used | bytes }} / <span class="grey--text">{{ unit.capacity | bytes }}</span>
-          </span>
-          <v-progress-linear v-if="developper" :height="6" :value="unit.percent" color="accent"/>
-          <span v-if="unit.name && !developper" :title="unit.name" class="disk-name">
-            {{ unit.name | truncate(25) }}
-          </span>
-          <span v-if="!unit.name && !developper" class="disk-name">
-            {{ unit.capacity | bytes }} Volume
-          </span>
-          <span v-if="!developper" class="disk-capacity">{{ unit.capacity | bytes }}</span>
+          <template v-if="developper">
+            <span class="disk-capacity">
+              {{ unit.used | bytes }} / <span class="grey--text">{{ unit.capacity | bytes }}</span>
+            </span>
+            <v-progress-linear :height="6" :value="unit.percent" color="accent"/>
+          </template>
+          <span v-else class="disk-capacity">{{ unit.capacity | bytes }}</span>
         </li>
       </div>
     </div>
