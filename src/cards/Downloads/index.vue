@@ -1,7 +1,9 @@
 <template>
   <v-card-text id="downloads">
     <v-menu v-for="download in downloads" :key="download.id" lazy bottom offset-y>
-      <li v-drag="download.exists" slot="activator" :id="download.id" class="download" draggable>
+      <li
+        v-drag="download.exists && download.state === 'complete'"
+        slot="activator" :id="download.id" class="download" draggable>
         <div class="icon">
           <v-progress-circular
             v-if="download.state === 'in_progress'"
