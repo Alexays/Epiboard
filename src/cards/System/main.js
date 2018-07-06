@@ -85,8 +85,10 @@ export default {
         });
       });
     },
-    addStorage(storage) {
-      this.storage.push(storage);
+    addStorage(f) {
+      if (f.capacity <= 0) return;
+      f.name = f.name.replace(/[^ -~]+/g, '');
+      this.storage.push(f);
     },
     removeStorage(storageId) {
       this.storage = this.storage.filter(f => f.id !== storageId);
