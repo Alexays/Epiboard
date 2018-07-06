@@ -1,12 +1,12 @@
 <template>
   <v-card-text id="apps">
-    <ul class="app-list">
+    <div class="app-list">
       <li v-for="app in apps" :key="app.name" class="app">
         <div :title="app.name" @click="launch(app)">
           <i :style="{ 'background-image': `url(${app.icon})` }"/>
         </div>
       </li>
-    </ul>
+    </div>
     <div v-if="!apps.length" class="text-xs-center">
       <v-icon x-large="">apps</v-icon>
       <h2 class="subheading">You have no apps.</h2>
