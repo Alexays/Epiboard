@@ -42,12 +42,12 @@
       </v-flex>
     </v-layout>
     <v-card-text v-else-if="!user || !user.length" class="text-xs-center">
-      <v-icon x-large="">music_off</v-icon>
+      <v-icon x-large="">library_music</v-icon>
       <h2 class="subheading">Please enter your username in the card settings.</h2>
     </v-card-text>
     <v-card-text v-else class="text-xs-center">
-      <v-icon x-large="">music_off</v-icon>
-      <h2 class="subheading">Obviously you don't have any top artists</h2>
+      <v-icon x-large="">library_music</v-icon>
+      <h2 class="subheading">Obviously you don't have any top</h2>
     </v-card-text>
   </div>
 </template>
