@@ -35,11 +35,8 @@ export default {
     },
   },
   mounted() {
-    if (this.VALID_CACHE) {
-      this.$emit('init', true);
-      return;
-    }
-    Promise.all([this.getUser(), this.getProjects()])
+    if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
+    return Promise.all([this.getUser(), this.getProjects()])
       .then(() => API.getPlanning(this.user))
       .then((planning) => {
         this.getRoom(planning);

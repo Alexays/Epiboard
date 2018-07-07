@@ -21,7 +21,7 @@ export default {
     };
   },
   mounted() {
-    if (this.VALID_CACHE) {
+    if (this.VALID_CACHE && !this.loading) {
       this.$emit('init', true);
       return;
     }
