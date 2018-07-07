@@ -41,7 +41,7 @@
         </v-layout>
       </v-flex>
     </v-layout>
-    <v-card-text v-else-if="user && user.length" class="text-xs-center">
+    <v-card-text v-else-if="!user || !user.length" class="text-xs-center">
       <v-icon x-large="">music_off</v-icon>
       <h2 class="subheading">Please enter your username in the card settings.</h2>
     </v-card-text>
