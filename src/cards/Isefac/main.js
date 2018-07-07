@@ -19,11 +19,8 @@ export default {
     };
   },
   mounted() {
-    if (this.VALID_CACHE) {
-      this.$emit('init', true);
-      return;
-    }
-    Promise.all([this.getCalendar()])
+    if (this.VALID_CACHE) return this.$emit('init', true);
+    return Promise.all([this.getCalendar()])
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err))
       .finally(() => {

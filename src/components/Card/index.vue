@@ -5,7 +5,7 @@
         'primary': !options.custom || showSettings,
         custom: options.custom && !showSettings,
         'white--text': !options.custom || showSettings}" class="head-drag">
-      <span v-if="!showSettings" :title="id" class="headline">{{ title || id }}</span>
+      <span v-if="!showSettings && title" :title="id" class="headline">{{ title }}</span>
       <span v-else class="headline">{{ id }}</span>
       <div>
         <v-progress-circular
