@@ -1,0 +1,11 @@
+#lastfm {
+  overflow: hidden;
+  .topGrid {
+    height: 200px;
+    .cover {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
