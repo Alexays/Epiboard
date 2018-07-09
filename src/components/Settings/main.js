@@ -134,6 +134,7 @@ export default {
       r = r > p ? r - p : 0;
       g = g > p ? g - p : 0;
       b = b > p ? b - p : 0;
+      this.settings.theme.light = (r + g + b) / 3 >= 128;
       this.settings.theme.secondary = `#${[r, g, b].map((x) => {
         const tmp = x.toString(16);
         return tmp.length === 1 ? `0${tmp}` : tmp;

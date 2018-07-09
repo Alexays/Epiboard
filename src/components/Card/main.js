@@ -68,11 +68,17 @@ export default {
     };
   },
   computed: {
-    custom() {
-      return this.options.custom && !this.showSettings;
+    theme() {
+      if (this.options.theme && !this.showSettings) {
+        return this.options.theme;
+      }
+      return null;
     },
     options() {
       return Cards.cards[this.id];
+    },
+    lightPrimary() {
+      return this.$store.state.settings.theme.light;
     },
     debug() {
       return this.$store.state.settings.debug;

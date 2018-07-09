@@ -1,29 +1,32 @@
 <template>
   <v-card :width="(options.size || 1) * 430 - 30" hover raised>
     <v-toolbar
-      :color="custom ? 'elevation-0' : 'primary'"
-      :dark="!custom"
-      :absolute="custom" class="head-drag" card prominent>
-      <v-layout column wrap>
+      :color="theme ? 'elevation-0' : 'primary'"
+      :dark="!lightPrimary"
+      :absolute="theme" class="head-drag" card prominent>
+      <v-layout :style="{ color: theme && theme.title ? theme.title : undefined }" column wrap>
         <v-toolbar-title v-if="!showSettings && title" :title="id">
           {{ title }}
         </v-toolbar-title>
         <v-toolbar-title v-else>{{ id }}</v-toolbar-title>
-        <span v-if="subTitle" class="subheading">{{ subTitle }}</span>
+        <span v-if="subTitle" :title="subTitle" class="subheading">{{ subTitle }}</span>
       </v-layout>
       <v-spacer/>
       <v-progress-circular
         v-show="!loaded"
         :title="`${id} is fetching some data...`"
-        :size="25" :width="2" indeterminate color="white"/>
+        :color="theme && theme.actions ? theme.actions : undefined"
+        :size="25" :width="2" indeterminate/>
       <v-btn
         v-if="error"
-        :title="`${error} click to reload`" flat icon color="white" @click="reload()">
+        :color="theme && theme.actions ? theme.actions : undefined"
+        :title="`${error} click to reload`" flat icon @click="reload()">
         <v-icon>warning</v-icon>
       </v-btn>
       <v-menu v-if="!showSettings" lazy bottom offset-y>
-        <v-btn slot="activator" flat icon>
-          <v-icon color="white">more_vert</v-icon>
+        <v-btn
+          slot="activator" :color="theme && theme.actions ? theme.actions : undefined" flat icon>
+          <v-icon>more_vert</v-icon>
         </v-btn>
         <v-list>
           <v-list-tile
@@ -45,13 +48,13 @@
         </v-list>
       </v-menu>
       <template v-else>
-        <v-btn flat icon title="Reset Settings" color="white" @click="resetSettings()">
+        <v-btn flat icon title="Reset Settings" @click="resetSettings()">
           <v-icon>settings_backup_restore</v-icon>
         </v-btn>
-        <v-btn flat icon title="Cancel" color="white" @click="closeSettings(false)">
+        <v-btn flat icon title="Cancel" @click="closeSettings(false)">
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn flat icon title="Save" color="white" @click="closeSettings(true)">
+        <v-btn flat icon title="Save" @click="closeSettings(true)">
           <v-icon>done</v-icon>
         </v-btn>
       </template>

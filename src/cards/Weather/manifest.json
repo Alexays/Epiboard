@@ -1,4 +1,6 @@
 {
-  "custom": true,
+  "theme": {
+    "title": "black"
+  },
   "cacheValidity": 3600
 }

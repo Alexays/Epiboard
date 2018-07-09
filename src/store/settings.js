@@ -20,6 +20,7 @@ const initialState = {
   theme: {
     primary: '#607D8B',
     secondary: '#546E7A',
+    light: false,
   },
   tutorial: false,
   debug: false,
