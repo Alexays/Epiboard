@@ -17,7 +17,7 @@ export default {
       lists: [],
     };
   },
-  mounted() {
+  created() {
     if (this.VALID_CACHE) {
       this.updateMenu();
       this.$emit('init', true);

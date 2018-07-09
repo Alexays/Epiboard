@@ -34,7 +34,7 @@ export default {
       return this.getTime(this.today.sys.sunset);
     },
   },
-  mounted() {
+  created() {
     if (this.VALID_CACHE) {
       this.$emit('init', true);
       return;

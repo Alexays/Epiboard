@@ -13,7 +13,7 @@ export default {
       topSites: [],
     };
   },
-  mounted() {
+  created() {
     Promise.all([this.getTopSites()])
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));

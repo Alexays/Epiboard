@@ -28,7 +28,7 @@ export default {
       return true;
     },
   },
-  mounted() {
+  created() {
     this.$emit('init');
   },
   methods: {

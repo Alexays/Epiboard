@@ -10,7 +10,7 @@ export default {
       themes: [],
     };
   },
-  mounted() {
+  created() {
     Promise.all([this.getAll()])
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));

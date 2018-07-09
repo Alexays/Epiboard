@@ -24,7 +24,7 @@ export default {
       return this.settings.user;
     },
   },
-  mounted() {
+  created() {
     this.updateActions();
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
     return Promise.all([this.getTopArtists()])

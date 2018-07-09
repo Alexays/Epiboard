@@ -28,7 +28,7 @@ export default {
       downloads: {},
     };
   },
-  mounted() {
+  created() {
     this.$emit('update:actions', [{
       title: 'Clear downloads',
       func: () => this.removeAll(),

@@ -18,7 +18,7 @@ export default {
       recentlyClosed: [],
     };
   },
-  mounted() {
+  created() {
     Promise.all([this.getDevices(), this.getRecentlyClosed()])
       .then(() => {
         this.listenChange();

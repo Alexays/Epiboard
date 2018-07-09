@@ -13,7 +13,7 @@ export default {
       body: null,
     };
   },
-  mounted() {
+  created() {
     if (this.version === version && this.VALID_CACHE) {
       this.$emit('init', true);
       return;

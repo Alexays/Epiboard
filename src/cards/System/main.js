@@ -41,7 +41,7 @@ export default {
       return cores.map(f => Math.floor((f.progress / f.total) * 100));
     },
   },
-  mounted() {
+  created() {
     return Promise.all([
       this.getCpu(),
       this.getMemory(),
