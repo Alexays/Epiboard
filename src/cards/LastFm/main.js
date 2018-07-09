@@ -5,7 +5,6 @@ const Period = ['overall', '7day', '1month', '3month', '6month', '12month'];
 // @vue/component
 export default {
   name: 'LastFm',
-  title: 'Top Artists',
   props: {
     settings: {
       type: Object,
@@ -16,19 +15,28 @@ export default {
     return {
       loading: true,
       period: 'overall',
-      artists: [],
+      items: {},
     };
   },
   computed: {
     user() {
       return this.settings.user;
     },
+    itemsLength() {
+      return Object.keys(this.items);
+    },
   },
   created() {
     this.updateActions();
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
     return Promise.all([this.getTopArtists(), this.getNowPlaying()])
-      .then(() => this.$emit('init', this.$data))
+      .then(() => {
+        const keys = Object.keys(this.items);
+        if (keys.length) {
+          this.$emit('update:title', this.items[keys[0]].title);
+        }
+        this.$emit('init', this.$data);
+      })
       .catch(err => this.$emit('init', err))
       .finally(() => {
         this.loading = false;
@@ -50,7 +58,12 @@ export default {
     getTopArtists() {
       API.getTopArtists(this.settings.apiKey, this.user, 5, this.period)
         .then((data) => {
-          this.artists = data.artist;
+          if (data.artist && data.artist.length) {
+            this.items.artists = {
+              title: 'Top Artists',
+              data: data.artist,
+            };
+          }
         });
     },
     getNowPlaying() {

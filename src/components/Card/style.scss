@@ -4,6 +4,9 @@
   margin: 15px;
   position: absolute;
   overflow-x: hidden;
+  .v-toolbar__title {
+    font-weight: normal;
+  }
   .v-toolbar--absolute {
     background-color: transparent!important;
   }

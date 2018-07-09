@@ -2,9 +2,8 @@
   <v-card :width="(options.size || 1) * 430 - 30" hover raised>
     <v-toolbar
       :color="theme ? 'elevation-0' : 'primary'"
-      :dark="!lightPrimary"
       :absolute="theme" class="head-drag" card prominent>
-      <v-layout :style="{ color: theme && theme.title ? theme.title : undefined }" column wrap>
+      <v-layout :style="{ color: titleColor }" column wrap>
         <v-toolbar-title v-if="!showSettings && title" :title="id">
           {{ title }}
         </v-toolbar-title>
@@ -15,17 +14,16 @@
       <v-progress-circular
         v-show="!loaded"
         :title="`${id} is fetching some data...`"
-        :color="theme && theme.actions ? theme.actions : undefined"
+        :style="{ color: actionsColor }"
         :size="25" :width="2" indeterminate/>
       <v-btn
         v-if="error"
-        :color="theme && theme.actions ? theme.actions : undefined"
+        :style="{ color: actionsColor }"
         :title="`${error} click to reload`" flat icon @click="reload()">
         <v-icon>warning</v-icon>
       </v-btn>
       <v-menu v-if="!showSettings" lazy bottom offset-y>
-        <v-btn
-          slot="activator" :color="theme && theme.actions ? theme.actions : undefined" flat icon>
+        <v-btn slot="activator" :style="{ color: actionsColor }" flat icon>
           <v-icon>more_vert</v-icon>
         </v-btn>
         <v-list>
@@ -48,13 +46,13 @@
         </v-list>
       </v-menu>
       <template v-else>
-        <v-btn flat icon title="Reset Settings" @click="resetSettings()">
+        <v-btn flat icon color="foreground" title="Reset Settings" @click="resetSettings()">
           <v-icon>settings_backup_restore</v-icon>
         </v-btn>
-        <v-btn flat icon title="Cancel" @click="closeSettings(false)">
+        <v-btn flat icon color="foreground" title="Cancel" @click="closeSettings(false)">
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn flat icon title="Save" @click="closeSettings(true)">
+        <v-btn flat icon color="foreground" title="Save" @click="closeSettings(true)">
           <v-icon>done</v-icon>
         </v-btn>
       </template>
@@ -63,6 +61,7 @@
       v-init="id"
       v-show="!showSettings"
       :actions.sync="actions"
+      :title.sync="title"
       :subtitle.sync="subTitle"
       :settings="settings"
       :is="cmp.card"

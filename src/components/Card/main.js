@@ -77,11 +77,22 @@ export default {
     options() {
       return Cards.cards[this.id];
     },
-    lightPrimary() {
-      return this.$store.state.settings.theme.light;
-    },
     debug() {
       return this.$store.state.settings.debug;
+    },
+    titleColor() {
+      if (this.theme && this.theme.title) {
+        if (this.theme.title === 'auto') return undefined;
+        return this.theme.title;
+      }
+      return this.$vuetify.theme.foreground;
+    },
+    actionsColor() {
+      if (this.theme && this.theme.actions) {
+        if (this.theme.actions === 'auto') return undefined;
+        return this.theme.actions;
+      }
+      return this.$vuetify.theme.foreground;
     },
     settings() {
       if (!this.cmp.settings || this.hash == null) return {};
