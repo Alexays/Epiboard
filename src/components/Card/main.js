@@ -113,7 +113,6 @@ export default {
     const { cmp, permissions, origins } = Cards.cards[id];
     this.cmp.card = () => import(/* webpackMode: "eager" */`@/cards/${cmp}`)
       .then((tmp) => {
-        if (tmp.default.title) this.title = tmp.default.title;
         if (!permissions && !origins) return tmp.default;
         return this.$utils.permissions.allowed({
           permissions: permissions || [],

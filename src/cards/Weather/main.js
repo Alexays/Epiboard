@@ -11,9 +11,6 @@ const imgs = {
 // @vue/component
 export default {
   name: 'Weather',
-  title: new Date().toLocaleDateString('en-Us', {
-    weekday: 'long',
-  }),
   props: {
     settings: {
       type: Object,
@@ -35,6 +32,9 @@ export default {
     },
   },
   created() {
+    this.$emit('update:title', new Date().toLocaleDateString('en-Us', {
+      weekday: 'long',
+    }));
     if (this.VALID_CACHE) {
       this.$emit('init', true);
       return;
