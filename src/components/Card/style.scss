@@ -4,18 +4,13 @@
   margin: 15px;
   position: absolute;
   overflow-x: hidden;
-  .v-card__title {
-    justify-content: space-between;
-    &.custom {
-      position: absolute;
-      width: 100%;
-    }
-    .v-progress-circular {
-      vertical-align: middle;
-    }
-    .btn {
-      margin: 0;
-    }
+  .v-toolbar--absolute {
+    background-color: transparent;
+  }
+  .subheading {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .head-drag {
     cursor: grab;

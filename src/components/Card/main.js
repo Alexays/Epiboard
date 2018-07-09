@@ -1,5 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
 import VMenu from 'vuetify/es5/components/VMenu';
+import * as VToolbar from 'vuetify/es5/components/VToolbar';
 import VDivider from 'vuetify/es5/components/VDivider';
 import Toast from '@/components/Toast';
 
@@ -8,6 +9,7 @@ export default {
   name: 'Card',
   components: {
     ...VList,
+    ...VToolbar,
     VDivider,
     VMenu,
   },
@@ -66,6 +68,9 @@ export default {
     };
   },
   computed: {
+    custom() {
+      return this.options.custom && !this.showSettings;
+    },
     options() {
       return Cards.cards[this.id];
     },
