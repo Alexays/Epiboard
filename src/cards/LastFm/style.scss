@@ -1,7 +1,8 @@
 #lastfm {
   overflow: hidden;
-  .topGrid {
+  .top-grid {
     height: 200px;
+    overflow: hidden;
     .cover {
       position: relative;
       &:hover .overlay {

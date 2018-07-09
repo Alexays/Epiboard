@@ -3,7 +3,7 @@
     <v-card-text v-if="loading">
       <v-progress-linear indeterminate/>
     </v-card-text>
-    <v-layout v-else-if="artists.length" class="topGrid" wrap>
+    <v-layout v-else-if="artists.length" class="top-grid" wrap>
       <v-flex xs6>
         <div class="cover">
           <img :src="artists[0].image[3]['#text']">

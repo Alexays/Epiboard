@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       title: null,
+      subTitle: null,
       cmp: {
         card: null,
         settings: null,

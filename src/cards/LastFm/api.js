@@ -7,4 +7,8 @@ export default {
     return axios.get(`${API}&method=user.gettopartists&api_key=${apiKey}&user=${user}&limit=${limit}&period=${period}`)
       .then(res => res.data.topartists);
   },
+  getRecentTracks(apiKey, user, limit) {
+    return axios.get(`${API}&method=user.getrecenttracks&api_key=${apiKey}&user=${user}&limit=${limit}`)
+      .then(res => res.data.recenttracks);
+  },
 };

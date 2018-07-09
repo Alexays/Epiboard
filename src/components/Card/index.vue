@@ -5,8 +5,15 @@
         'primary': !options.custom || showSettings,
         custom: options.custom && !showSettings,
         'white--text': !options.custom || showSettings}" class="head-drag">
-      <span v-if="!showSettings && title" :title="id" class="headline">{{ title }}</span>
-      <span v-else class="headline">{{ id }}</span>
+      <v-layout column wrap>
+        <v-flex>
+          <span v-if="!showSettings && title" :title="id" class="headline">{{ title }}</span>
+          <span v-else class="headline">{{ id }}</span>
+        </v-flex>
+        <v-flex v-if="subTitle">
+          <span class="subheading">{{ subTitle }}</span>
+        </v-flex>
+      </v-layout>
       <div>
         <v-progress-circular
           v-show="!loaded"
@@ -57,6 +64,7 @@
       v-init="id"
       v-show="!showSettings"
       :actions.sync="actions"
+      :subtitle.sync="subTitle"
       :settings="settings"
       :is="cmp.card"
       :key="hash"
