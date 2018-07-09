@@ -12,7 +12,8 @@
               <div class="overlay">
                 <span>
                   <h4 class="subheading">{{ item.data[0].name }}</h4>
-                  <p>{{ item.data[0].playcount }} play{{ item.data[0].playcount !== 1 ? 's' : '' }}</p>
+                  <p>{{ item.data[0].playcount }}
+                    play{{ item.data[0].playcount !== 1 ? 's' : '' }}</p>
                 </span>
               </div>
             </div>
@@ -24,7 +25,8 @@
                 <div class="overlay">
                   <span>
                     <h4 class="caption">{{ item.data[i].name }}</h4>
-                    <p>{{ item.data[i].playcount }} play{{ item.data[i].playcount !== 1 ? 's' : '' }}</p>
+                    <p>{{ item.data[i].playcount }}
+                      play{{ item.data[i].playcount !== 1 ? 's' : '' }}</p>
                   </span>
                 </div>
               </div>
