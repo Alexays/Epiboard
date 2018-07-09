@@ -1,5 +1,5 @@
 <template>
-  <div id="changelog" class="primary">
+  <div id="changelog" class="primary foreground--text">
     <!-- v-html is safe here, is just markdown without html parsing -->
     <div v-if="body" class="markdown" v-html="body"/>
     <v-card-text v-else class="text-xs-center">
@@ -11,7 +11,9 @@
     </v-card-text>
     <p class="previous">
       Missed an update?
-      <a href="https://github.com/Alexays/Epiboard/releases" target="_blank">Look at the previous changelogs</a>
+      <a
+        href="https://github.com/Alexays/Epiboard/releases"
+        target="_blank" class="foreground--text">Look at the previous changelogs</a>
     </p>
   </div>
 </template>

@@ -1,6 +1,9 @@
 <template>
   <div id="sessions">
-    <v-tabs dark grow show-arrows slider-color="white" color="primary">
+    <v-tabs
+      :dark="!$store.state.settings.theme.light"
+      slider-color="foreground" color="primary"
+      grow show-arrows>
       <v-tab>Recently Closed</v-tab>
       <v-tab v-for="device in devices" :key="device.deviceName">
         {{ device.deviceName }}

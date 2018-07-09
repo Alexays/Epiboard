@@ -14,6 +14,9 @@ export default {
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);
     },
+    light() {
+      return this.$store.state.settings.theme.light;
+    },
     primary() {
       return this.$store.state.settings.theme.primary;
     },
@@ -26,6 +29,7 @@ export default {
       if (hex && hex.toUpperCase() !== this.$vuetify.theme.primary) {
         this.$vuetify.theme.primary = hex;
         this.$vuetify.theme.secondary = this.secondary;
+        this.$vuetify.theme.foreground = this.light ? '#000000' : '#ffffff';
       }
     },
   },

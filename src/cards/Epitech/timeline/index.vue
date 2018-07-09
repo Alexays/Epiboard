@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-btn block dark depressed small color="primary" class="ma-0" @click="getTimeline()">
+    <v-btn
+      color="primary" class="ma-0 foreground--text"
+      block dark depressed small @click="getTimeline()">
       timeline
     </v-btn>
     <v-dialog v-model="enabled" lazy scrollable max-width="80%">

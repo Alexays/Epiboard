@@ -37,20 +37,20 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs4 class="weather-info primary white--text head-drag">
+      <v-flex xs4 class="weather-info primary foreground--text head-drag">
         <v-layout column>
           <v-flex class="detail">
-            <v-icon medium color="white">opacity</v-icon>
+            <v-icon medium color="foreground">opacity</v-icon>
             <span title="Humidity"><b>{{ today.main.humidity }}</b>%</span>
           </v-flex>
           <v-flex class="detail">
-            <v-icon medium color="white">wrap_text</v-icon>
+            <v-icon medium color="foreground">wrap_text</v-icon>
             <span title="Wind speed">
               <b>{{ today.wind.speed }}</b> <span class="unit">km/h</span>
             </span>
           </v-flex>
           <v-flex class="detail">
-            <v-icon medium color="white">brightness_4</v-icon>
+            <v-icon medium color="foreground">brightness_4</v-icon>
             <v-layout column class="sun">
               <v-flex>
                 <span title="Sunrise">{{ sunrise }}</span>

@@ -4,7 +4,7 @@
       <v-layout align-center>
         <v-card
           v-show="index === 0"
-          :width="400" hover raised class="primary white--text mx-auto mt-3">
+          :width="400" hover raised class="primary foreground--text mx-auto mt-3">
           <v-card-title class="secondary">
             <h3 class="headline">Hello there</h3>
           </v-card-title>
@@ -19,7 +19,7 @@
         </v-card>
         <v-card
           v-show="index === 1"
-          :width="500" hover raised class="primary white--text mx-auto mt-3">
+          :width="500" hover raised class="primary foreground--text mx-auto mt-3">
           <v-card-title class="secondary">
             <h3 class="headline">Why Epiboard is Awesome</h3>
           </v-card-title>
