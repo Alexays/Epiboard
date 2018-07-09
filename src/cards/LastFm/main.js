@@ -27,7 +27,7 @@ export default {
   created() {
     this.updateActions();
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
-    return Promise.all([this.getTopArtists(), this.getNowPlayings()])
+    return Promise.all([this.getTopArtists(), this.getNowPlaying()])
       .then(() => this.$emit('init', this.$data))
       .catch(err => this.$emit('init', err))
       .finally(() => {
@@ -53,12 +53,11 @@ export default {
           this.artists = data.artist;
         });
     },
-    getNowPlayings() {
+    getNowPlaying() {
       API.getRecentTracks(this.settings.apiKey, this.user, 1)
         .then((data) => {
           const tracks = data.track;
-          if (!tracks.length || !tracks[0]['@attr']) return;
-          if (tracks[0]['@attr'].nowplaying) {
+          if (tracks.length && tracks[0]['@attr'] && tracks[0]['@attr'].nowplaying) {
             this.$emit('update:subtitle', `Now playing: ${tracks[0].name} / ${tracks[0].artist['#text']}`);
           }
         });
