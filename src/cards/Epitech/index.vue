@@ -70,7 +70,9 @@
                 <v-list-tile-title>{{ activity.room.code | filename }}</v-list-tile-title>
                 <v-list-tile-sub-title>
                   {{ activity.acti_title }}
-                  <p>{{ activity.startString }}&#8594;{{ activity.endString }}</p>
+                </v-list-tile-sub-title>
+                <v-list-tile-sub-title>
+                  {{ activity.startString }}&#8594;{{ activity.endString }}
                 </v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action
@@ -94,7 +96,9 @@
                 <v-list-tile-title>{{ room.room.code | filename }}</v-list-tile-title>
                 <v-list-tile-sub-title>
                   {{ room.acti_title }}
-                  <p>{{ room.startString }}&#8594;{{ room.endString }}</p>
+                </v-list-tile-sub-title>
+                <v-list-tile-sub-title>
+                  {{ room.startString }}&#8594;{{ room.endString }}
                 </v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action
