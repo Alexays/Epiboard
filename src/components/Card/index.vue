@@ -2,7 +2,7 @@
   <v-card :width="(options.size || 1) * 430 - 30" hover raised>
     <v-toolbar
       :color="theme ? 'elevation-0' : 'primary'"
-      :absolute="theme" class="head-drag" card prominent>
+      :absolute="!!theme" class="head-drag" card prominent>
       <v-layout :style="{ color: titleColor }" column wrap>
         <v-toolbar-title v-if="!showSettings && title" :title="id">
           {{ title }}
@@ -61,7 +61,7 @@
       v-init="id"
       v-show="!showSettings"
       :actions.sync="actions"
-      :title.sync="title"
+      :cardtitle.sync="title"
       :subtitle.sync="subTitle"
       :settings="settings"
       :is="cmp.card"

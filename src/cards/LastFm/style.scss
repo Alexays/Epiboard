@@ -1,5 +1,8 @@
 #lastfm {
   overflow: hidden;
+  .v-tabs__bar {
+    display: none;
+  }
   .top-grid {
     height: 200px;
     overflow: hidden;

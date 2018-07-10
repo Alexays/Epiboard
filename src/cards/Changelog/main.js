@@ -6,7 +6,6 @@ const API = 'https://api.github.com/repos/alexays/epiboard/releases/tags/';
 // @vue/component
 export default {
   name: 'Changelog',
-  title: `What's new in ${version} ?`,
   data() {
     return {
       version: null,
@@ -14,6 +13,7 @@ export default {
     };
   },
   created() {
+    this.$emit('update:cardtitle', `What's new in ${version} ?`);
     if (this.version === version && this.VALID_CACHE) {
       this.$emit('init', true);
       return;

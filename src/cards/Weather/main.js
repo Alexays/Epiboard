@@ -32,7 +32,7 @@ export default {
     },
   },
   created() {
-    this.$emit('update:title', new Date().toLocaleDateString('en-Us', {
+    this.$emit('update:cardtitle', new Date().toLocaleDateString('en-Us', {
       weekday: 'long',
     }));
     if (this.VALID_CACHE) {

@@ -1,3 +1,4 @@
+import * as VTabs from 'vuetify/es5/components/VTabs';
 import API from './api';
 
 const Period = ['overall', '7day', '1month', '3month', '6month', '12month'];
@@ -5,6 +6,9 @@ const Period = ['overall', '7day', '1month', '3month', '6month', '12month'];
 // @vue/component
 export default {
   name: 'LastFm',
+  components: {
+    ...VTabs,
+  },
   props: {
     settings: {
       type: Object,
@@ -14,6 +18,7 @@ export default {
   data() {
     return {
       loading: true,
+      active: null,
       period: 'overall',
       items: {},
     };
@@ -33,7 +38,7 @@ export default {
       .then(() => {
         const keys = Object.keys(this.items);
         if (keys.length) {
-          this.$emit('update:title', this.items[keys[0]].title);
+          this.$emit('update:cardtitle', this.items[keys[0]].title);
         }
         this.$emit('init', this.$data);
       })

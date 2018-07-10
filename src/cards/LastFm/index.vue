@@ -3,8 +3,8 @@
     <v-card-text v-if="loading">
       <v-progress-linear indeterminate/>
     </v-card-text>
-    <v-tabs v-else-if="itemsLength" v-model="active">
-      <v-tab-item v-for="(item, key) in items" :key="item.title" :id="`tab_${key}`">
+    <v-tabs v-else-if="itemsLength" v-model="active" grow hide-slider>
+      <v-tab-item v-for="(item, key) in items" :key="key">
         <v-layout class="top-grid" wrap>
           <v-flex xs6>
             <div class="cover">
@@ -18,7 +18,7 @@
               </div>
             </div>
           </v-flex>
-          <v-flex v-for="i in 2" :key="i" xs3>
+          <v-flex v-for="i in 2" v-if="item.data[i]" :key="i" xs3>
             <v-layout row wrap>
               <div class="cover">
                 <img :src="item.data[i].image[2]['#text']">
@@ -30,7 +30,7 @@
                   </span>
                 </div>
               </div>
-              <div class="cover">
+              <div v-if="item.data[i + 2]" class="cover">
                 <img :src="item.data[i + 2].image[2]['#text']">
                 <div class="overlay">
                   <span>
