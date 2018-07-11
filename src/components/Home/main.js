@@ -68,7 +68,7 @@ export default {
         .filter(f => f.isActive())
         .map(item => item.getElement().dataset.id);
       this.$store.commit('SET_CARDS', cards);
-      this.$ga.event('cards', 'order', cards, 1);
+      this.$ga.event('cards', 'order', cards.join(', '), 1);
     },
     delCard(key) {
       const elem = document.querySelector(`[data-id='${key}']`);

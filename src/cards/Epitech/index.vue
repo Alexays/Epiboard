@@ -78,7 +78,7 @@
               <v-list-tile-action
                 :title="`${activity.total_students_registered} student(s)`
                 + ` for ${activity.room.seats} seats`">
-                <v-chip v-if="!activity.is_rdv" label disabled>
+                <v-chip v-if="!activity.is_rdv" label>
                   {{ activity.total_students_registered }}/{{ activity.room.seats }}
                 </v-chip>
               </v-list-tile-action>
@@ -104,7 +104,7 @@
               <v-list-tile-action
                 :title="`${room.total_students_registered} student(s)`
                 + ` for ${room.room.seats} seats`">
-                <v-chip v-if="!room.is_rdv" label disabled>
+                <v-chip v-if="!room.is_rdv" label>
                   {{ room.total_students_registered }}/{{ room.room.seats }}
                 </v-chip>
               </v-list-tile-action>
