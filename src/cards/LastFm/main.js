@@ -57,7 +57,7 @@ export default {
       }
     },
   },
-  created() {
+  mounted() {
     this.updateActions();
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
     return this.getAll()

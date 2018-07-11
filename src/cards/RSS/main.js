@@ -20,7 +20,7 @@ export default {
       loading: true,
     };
   },
-  created() {
+  mounted() {
     if (this.VALID_CACHE && !this.loading) {
       this.$emit('init', true);
       return;

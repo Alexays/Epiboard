@@ -12,7 +12,7 @@ export default {
       body: null,
     };
   },
-  created() {
+  mounted() {
     this.$emit('update:cardtitle', `What's new in ${version} ?`);
     if (this.version === version && this.VALID_CACHE) {
       this.$emit('init', true);

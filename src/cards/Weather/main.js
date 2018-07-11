@@ -31,7 +31,7 @@ export default {
       return this.getTime(this.today.sys.sunset);
     },
   },
-  created() {
+  mounted() {
     this.$emit('update:cardtitle', new Date().toLocaleDateString('en-Us', {
       weekday: 'long',
     }));
