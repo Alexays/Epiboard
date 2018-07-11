@@ -36,7 +36,7 @@
             <li
               v-for="color in palette"
               :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
-              <div v-show="settings.theme.primary === color" class="color-dot"/>
+              <div v-show="settings.theme.primary.toLowerCase() === color" class="color-dot"/>
             </li>
           </v-flex>
           <v-text-field

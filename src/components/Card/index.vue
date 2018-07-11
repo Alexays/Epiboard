@@ -8,7 +8,8 @@
           {{ title }}
         </v-toolbar-title>
         <v-toolbar-title v-else>{{ id }}</v-toolbar-title>
-        <span v-if="subTitle" :title="subTitle" class="subheading">{{ subTitle }}</span>
+        <span v-if="showSettings" class="subheading">Settings</span>
+        <span v-else-if="subTitle" :title="subTitle" class="subheading">{{ subTitle }}</span>
       </v-layout>
       <v-spacer/>
       <v-progress-circular
