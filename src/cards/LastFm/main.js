@@ -83,8 +83,9 @@ export default {
     },
     changePeriod(period) {
       this.period = period;
-      this.updateActions();
-      this.getTopArtists();
+      this.getAll().then(() => {
+        this.updateActions();
+      });
     },
     getAll() {
       return Promise.all([
@@ -95,7 +96,7 @@ export default {
       ]);
     },
     getTopArtists() {
-      API.getTopArtists(this.settings.apiKey, this.user, 5, this.period)
+      return API.getTopArtists(this.settings.apiKey, this.user, 5, this.period)
         .then((artists) => {
           if (!artists || !artists.length) return;
           this.items.artists = {
@@ -105,7 +106,7 @@ export default {
         });
     },
     getTopAlbums() {
-      API.getTopAlbums(this.settings.apiKey, this.user, 5, this.period)
+      return API.getTopAlbums(this.settings.apiKey, this.user, 5, this.period)
         .then((albums) => {
           if (!albums || !albums.length) return;
           this.items.albums = {
@@ -115,7 +116,7 @@ export default {
         });
     },
     getTopTracks() {
-      API.getTopTracks(this.settings.apiKey, this.user, 5, this.period)
+      return API.getTopTracks(this.settings.apiKey, this.user, 5, this.period)
         .then((tracks) => {
           if (!tracks || !tracks.length) return;
           this.items.tracks = {
@@ -125,7 +126,7 @@ export default {
         });
     },
     getNowPlaying() {
-      API.getRecentTracks(this.settings.apiKey, this.user, 1)
+      return API.getRecentTracks(this.settings.apiKey, this.user, 1)
         .then((tracks) => {
           if (tracks.length && tracks[0]['@attr'] && tracks[0]['@attr'].nowplaying) {
             this.$emit('update:subtitle', `Now playing: ${tracks[0].name} / ${tracks[0].artist['#text']}`);
