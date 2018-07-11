@@ -31,7 +31,8 @@ export default {
       return Cards.cards;
     },
     cards() {
-      return [...new Set(this.$store.state.cards)].filter(f => this.cardsCmp[f]);
+      const { cards } = this.$store.state;
+      return [...new Set(cards)].filter(f => this.cardsCmp[f]);
     },
     emptyCards() {
       return Object.keys(this.cards).length === 0;
@@ -50,7 +51,7 @@ export default {
       return Object.keys(this.availableCards).length;
     },
   },
-  beforeMount() {
+  created() {
     this.checkVersion();
   },
   mounted() {
@@ -61,6 +62,13 @@ export default {
       if (!this.grid) return;
       this.grid.refreshItems(el);
       this.grid.layout(true);
+    },
+    onDrag() {
+      const cards = this.grid.getItems()
+        .filter(f => f.isActive())
+        .map(item => item.getElement().dataset.id);
+      this.$store.commit('SET_CARDS', cards);
+      this.$ga.event('cards', 'order', cards, 1);
     },
     delCard(key) {
       const elem = document.querySelector(`[data-id='${key}']`);
@@ -99,11 +107,7 @@ export default {
       if (this.cards.length) {
         this.grid.sort('index', { layout: 'instant' });
       }
-      this.grid.on('dragEnd', () => {
-        const order = this.grid.getItems('active').map(item => item.getElement().dataset.id);
-        this.$store.commit('SET_CARDS', order);
-        this.$ga.event('cards', 'order', order, 1);
-      });
+      this.grid.on('dragEnd', this.onDrag);
     },
   },
 };

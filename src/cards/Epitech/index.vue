@@ -17,17 +17,17 @@
         <v-tab-item id="tab-infos" lazy>
           <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">
             <h3>{{ user.title }}</h3>
-            <v-chip label disabled>
+            <v-chip label>
               <span>
                 {{ user.gpa[0].gpa }} <small>G.P.A.</small>
               </span>
             </v-chip>
-            <v-chip label disabled>
+            <v-chip label>
               <span>
                 {{ user.credits }} <small>Credits</small>
               </span>
             </v-chip>
-            <v-chip v-if="user.spice && user.spice.available_spice" label disabled>
+            <v-chip v-if="user.spice && user.spice.available_spice" label>
               <span>
                 {{ user.spice.available_spice }} <small>Spices</small>
               </span>
