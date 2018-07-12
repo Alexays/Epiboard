@@ -24,6 +24,7 @@
             v-model="settings.trends.enabled" :label="settings.trends.enabled ? `On` : `Off`"/>
           <v-autocomplete
             :items="country"
+            :disabled="!settings.trends.enabled"
             v-model="settings.trends.country" label="Choose your Google Trends Country"/>
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>

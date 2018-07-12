@@ -61,6 +61,9 @@ export default {
     this.updateActions();
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
     return this.getAll()
+      .finally(() => {
+        this.loading = false;
+      })
       .then(() => {
         const keys = Object.keys(this.items);
         if (keys.length) {
@@ -68,10 +71,7 @@ export default {
         }
         this.$emit('init', this.$data);
       })
-      .catch(err => this.$emit('init', err))
-      .finally(() => {
-        this.loading = false;
-      });
+      .catch(err => this.$emit('init', err));
   },
   methods: {
     updateActions() {
