@@ -100,9 +100,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
   ],
   optimization: {
-    // keep module.id stable when vendor modules does not change
-    namedChunks: true,
-    hashedModuleIds: true,
+    chunkIds: isProduction ? 'size' : 'named',
+    moduleIds: isProduction ? 'size' : 'named',
     minimizer: [
       new UglifyJsPlugin({
         uglifyOptions: {

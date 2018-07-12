@@ -3,7 +3,27 @@ import axios from 'axios';
 const API = 'http://ws.audioscrobbler.com/2.0/?format=json';
 const fallback = 'https://lastfm-img2.akamaized.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb';
 
-export default {
+export const Periods = [{
+  title: 'All times',
+  value: 'overall',
+}, {
+  title: '1 year',
+  value: '12month',
+}, {
+  title: '6 months',
+  value: '6month',
+}, {
+  title: '3 months',
+  value: '3month',
+}, {
+  title: '1 month',
+  value: '1month',
+}, {
+  title: '7 days',
+  value: '7day',
+}];
+
+export const Api = {
   parseRes(res) {
     return res.map((f) => {
       f.image = {
