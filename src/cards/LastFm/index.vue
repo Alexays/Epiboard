@@ -14,24 +14,24 @@
             <v-flex xs6>
               <div class="cover">
                 <img :src="item.data[0].image.extralarge">
-                <div class="overlay">
+                <a :href="item.data[0].url" target="_blank" class="overlay">
                   <h4 class="subheading">{{ item.data[0].name }}</h4>
                   <p v-if="item.data[0].artist">{{ item.data[0].artist.name }}</p>
                   <p>{{ item.data[0].playcount }}
                     play{{ item.data[0].playcount !== 1 ? 's' : '' }}</p>
-                </div>
+                </a>
               </div>
             </v-flex>
             <v-flex v-for="i in 2" v-if="item.data[i]" :key="i" xs3>
               <v-layout row wrap>
                 <div v-for="j in [i, i + 2]" v-if="item.data[j]" :key="j" class="cover">
                   <img :src="item.data[j].image.large">
-                  <div class="overlay">
+                  <a :href="item.data[j].url" target="_blank" class="overlay">
                     <h4 class="caption">{{ item.data[j].name }}</h4>
                     <p v-if="item.data[j].artist">{{ item.data[j].artist.name }}</p>
                     <p>{{ item.data[j].playcount }}
                       play{{ item.data[j].playcount !== 1 ? 's' : '' }}</p>
-                  </div>
+                  </a>
                 </div>
               </v-layout>
             </v-flex>
