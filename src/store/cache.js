@@ -23,11 +23,11 @@ export default {
       if (state.cards[key]) delete state.cards[key];
     },
     SET_TRENDS_CACHE(state, trends) {
-      state.trends.dt = Date.now();
+      state.trends.dt = trends && trends.length ? Date.now() : null;
       state.trends.data = trends;
     },
     SET_DOODLE_CACHE(state, doodle) {
-      state.doodle.dt = Date.now();
+      state.doodle.dt = doodle && Object.keys(doodle).length ? Date.now() : null;
       state.doodle.data = doodle;
     },
   },

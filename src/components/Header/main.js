@@ -76,7 +76,7 @@ export default {
         if (!val.enabled) {
           this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
           this.$store.commit('SET_TRENDS_CACHE', []);
-        } else this.getMessage(true);
+        } else this.getMessage();
       },
       deep: true,
     },
@@ -85,12 +85,12 @@ export default {
         if (!val.enabled) {
           this.doodle = null;
           this.$store.commit('SET_DOODLE_CACHE', {});
-        } else this.getDoodle(true);
+        } else this.getDoodle();
       },
       deep: true,
     },
   },
-  beforeMount() {
+  created() {
     this.getMessage();
     if (this.doodleSettings.enabled) {
       this.getDoodle();
@@ -111,29 +111,29 @@ export default {
       }
       return background.night;
     },
-    getTrends(refresh) {
-      const trendsCache = this.$store.state.cache.trends;
-      if (!refresh && trendsCache.data.length && Date.now() < trendsCache.dt + EXPIRE_TRENDS) {
-        this.messages = [...this.messages, ...this.$utils.shuffle(trendsCache.data)];
+    getTrends() {
+      const { data, dt } = this.$store.state.cache.trends;
+      if (dt && data.length && Date.now() < dt + EXPIRE_TRENDS) {
+        this.messages = [...this.messages, ...this.$utils.shuffle(data)];
       } else {
         this.axios.get(API).then((res) => {
           const trends = res.data[this.trendsSettings.country];
+          this.$store.commit('SET_TRENDS_CACHE', trends.slice());
           this.messages = [...this.messages, ...this.$utils.shuffle(trends)];
-          this.$store.commit('SET_TRENDS_CACHE', trends);
         });
       }
     },
-    getMessage(refresh = false) {
+    getMessage() {
       this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
       if (this.trendsSettings.enabled) {
-        this.getTrends(refresh);
+        this.getTrends();
       }
     },
-    getDoodle(refresh = false) {
-      const doodleCache = this.$store.state.cache.doodle;
+    getDoodle() {
+      const { data, dt } = this.$store.state.cache.doodle;
       const date = new Date();
-      if (!refresh && date.getTime() < doodleCache.dt + EXPIRE_DOODLE) {
-        this.doodle = doodleCache.data;
+      if (dt && date.getTime() < dt + EXPIRE_DOODLE) {
+        this.doodle = data;
       } else {
         this.axios.get(`${DOODLES_API}${date.getFullYear()}/${date.getMonth() + 1}`).then((res) => {
           const { title, url } = res.data[0];
