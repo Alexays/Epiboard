@@ -59,6 +59,7 @@ export default {
   },
   mounted() {
     this.updateActions();
+    this.getNowPlaying();
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
     return this.getAll()
       .finally(() => {
@@ -92,7 +93,6 @@ export default {
         this.getTopArtists(),
         this.getTopAlbums(),
         this.getTopTracks(),
-        this.getNowPlaying(),
       ]);
     },
     getTopArtists() {

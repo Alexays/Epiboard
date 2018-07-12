@@ -27,7 +27,7 @@ export default {
       state.trends.data = trends;
     },
     SET_DOODLE_CACHE(state, doodle) {
-      state.doodle.dt = doodle && Object.keys(doodle).length ? Date.now() : null;
+      state.doodle.dt = doodle && doodle.url ? Date.now() : null;
       state.doodle.data = doodle;
     },
   },
