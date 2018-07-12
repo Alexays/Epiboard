@@ -118,7 +118,7 @@ export default {
       } else {
         this.axios.get(API).then((res) => {
           const trends = res.data[this.trendsSettings.country];
-          this.$store.commit('SET_TRENDS_CACHE', trends.slice());
+          this.$store.commit('SET_TRENDS_CACHE', trends);
           this.messages = [...this.messages, ...this.$utils.shuffle(trends)];
         });
       }

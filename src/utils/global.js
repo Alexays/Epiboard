@@ -6,8 +6,8 @@ export default {
     }
     return null;
   },
-  shuffle(a) {
-    return a.length ? a.splice(~~(Math.random() * a.length), 1).concat(this.shuffle(a)) : a;
+  shuffle(f) {
+    return f.map(a => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map(a => a[1]);
   },
   isDark(dark) {
     if (!dark || !dark.enabled) return false;
