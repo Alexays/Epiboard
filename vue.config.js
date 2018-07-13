@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ZipPlugin = require('zip-webpack-plugin');
 const { log } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
-const { version } = require('./package.json');
+const { version, name } = require('./package.json');
 const glob = require('glob');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -73,7 +73,13 @@ module.exports = {
       Cards: JSON.stringify(cards),
       browserName: JSON.stringify(browserName),
     }));
+    // Create dist zip
+    config.plugins.push(new ZipPlugin({
+      path: '../',
+      filename: `${name}-${version}.zip`,
+    }));
     // Add bundle analyzer
-    config.plugins.push(new BundleAnalyzerPlugin());
+    // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+    // config.plugins.push(new BundleAnalyzerPlugin());
   },
 };
