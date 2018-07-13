@@ -38,6 +38,7 @@
     "babel-plugin-transform-imports": "^1.4.1",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
+    "eslint-plugin-vue": "^4.5.0",
     "glob": "^7.1.2",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3",
