@@ -92,6 +92,13 @@ module.exports = {
       config.optimization.chunkIds = 'size';
       config.output.filename = config.output.filename.replace('[chunkhash:8]', id);
       config.output.chunkFilename = config.output.chunkFilename.replace('[chunkhash:8]', id);
+      // MiniCssExtractPlugin
+      const miniCss = config.plugins.find(f => f.options && f.options.filename);
+      if (miniCss) {
+        const { options } = miniCss;
+        options.filename = options.filename.replace('[contenthash:8]', id);
+        options.chunkFilename = options.chunkFilename.replace('[contenthash:8]', id);
+      }
       /* eslint-enable no-param-reassign */
     }
     // Copy proper manifest to dist
