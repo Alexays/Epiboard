@@ -96,7 +96,7 @@ module.exports = {
     }
     // Copy proper manifest to dist
     config.plugins.push(new CopyWebpackPlugin([{
-      from: `./src/manifest_${browserName}.json`,
+      from: `./src/manifest-${browserName}.json`,
       to: 'manifest.json',
       transform: (content) => {
         const jsonContent = JSON.parse(content);
