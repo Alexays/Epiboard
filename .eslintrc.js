@@ -9,16 +9,13 @@ module.exports = {
     browserName: true,
   },
   'extends': [
-    'plugin:vue/essential',
+    'plugin:vue/recommended',
     '@vue/airbnb'
-  ],
-  // required to lint *.vue files
-  plugins: [
-    'vue'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'vue/max-attributes-per-line': 0,
     'no-bitwise': 0,
     'no-underscore-dangle': 0,
     // don't require .vue extension when importing
