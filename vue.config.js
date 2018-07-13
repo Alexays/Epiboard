@@ -82,6 +82,18 @@ module.exports = {
     });
   },
   configureWebpack: (config) => {
+    if (isProduction) {
+      /* eslint-disable no-param-reassign */
+      // Disable source-map in production
+      config.devtool = false;
+      // Prefer use size as hash & add version in production
+      const id = `[id].${version}`;
+      config.optimization.moduleIds = 'size';
+      config.optimization.chunkIds = 'size';
+      config.output.filename = config.output.filename.replace('[chunkhash:8]', id);
+      config.output.chunkFilename = config.output.chunkFilename.replace('[chunkhash:8]', id);
+      /* eslint-enable no-param-reassign */
+    }
     // Copy proper manifest to dist
     config.plugins.push(new CopyWebpackPlugin([{
       from: `./src/manifest_${browserName}.json`,
@@ -109,8 +121,7 @@ module.exports = {
           const BUNDLE_DIR = path.join(__dirname, './dist/js');
           glob(`${BUNDLE_DIR}/*.js`, {}, (er, files) => {
             for (let i = 0; i < files.length; i += 1) {
-              removeEvals(files[i])
-                .catch(console.error);
+              removeEvals(files[i]).catch(console.error);
             }
           });
         });
