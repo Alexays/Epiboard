@@ -50,5 +50,11 @@
   "browserslist": [
     "Firefox >= 54",
     "Chrome >= 54"
+  ],
+  "bundlesize": [
+    {
+      "path": "./dist/js/*.js",
+      "maxSize": "500 kB"
+    }
   ]
 }
