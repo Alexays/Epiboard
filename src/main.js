@@ -54,11 +54,10 @@ Vue.use(VueAxios, axios);
 Vue.use(utils);
 // eslint-disable-next-line no-new
 new Vue({
-  el: '#app',
   router,
   store,
   render: h => h(App),
-});
+}).$mount('#app');
 
 Vue.filter('bytes', (nb) => {
   if (!nb || Number.isNaN(parseFloat(nb)) || !Number.isFinite(nb)) return '-';

@@ -1,11 +1,21 @@
 module.exports = {
-  presets: [
-    ["@babel/preset-env", {
-      "modules": false
-    }],
-    ["@babel/preset-stage-2", {
-      decoratorsLegacy: true
-    }]
+  "presets": [
+    [
+      "@vue/app",
+      {
+        "useBuiltIns": "entry"
+      }
+    ]
   ],
-  plugins: ["transform-vue-jsx", "@babel/plugin-transform-runtime"],
+  "plugins": [
+    [
+      "transform-imports",
+      {
+        "vuetify": {
+          "transform": "vuetify/es5/components/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
 }

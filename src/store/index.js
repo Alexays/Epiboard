@@ -6,6 +6,8 @@ import settings from './settings';
 import cache from './cache';
 import cardsSettings from './cards_settings';
 
+window.browser = require('webextension-polyfill');
+
 Vue.use(Vuex);
 
 const vuexSync = new VuexPersistence({
