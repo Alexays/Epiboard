@@ -18,7 +18,7 @@ export default {
       bind: (el, { value, modifiers }, { context, componentInstance }) => {
         /* eslint-disable no-param-reassign */
         if (modifiers.settings) {
-          componentInstance.$data.settings = value;
+          componentInstance.$data.settings = { ...value };
           return;
         }
         const data = context.$store.state.cache.cards[value];
@@ -38,8 +38,7 @@ export default {
         /* eslint-enable no-param-reassign */
       },
       unbind: (el, { modifiers }, { context, componentInstance }) => {
-        if (modifiers.settings && context.$data.pendingSave && context.saveSettings
-          && componentInstance.$data.settings) {
+        if (modifiers.settings && context.$data.pendingSave && componentInstance.$data.settings) {
           context.saveSettings(componentInstance.$data.settings);
         }
       },
