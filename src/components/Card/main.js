@@ -13,14 +13,21 @@ export default {
     VMenu,
   },
   directives: {
+    initSettings: {
+      isLiteral: true,
+      bind: (el, { value }, { componentInstance }) => {
+        componentInstance.$data.settings = { ...value }; // eslint-disable-line no-param-reassign
+      },
+      unbind: (el, binding, { context, componentInstance }) => {
+        if (context.$data.pendingSave && componentInstance.$data.settings) {
+          context.saveSettings(componentInstance.$data.settings);
+        }
+      },
+    },
     init: {
       isLiteral: true,
-      bind: (el, { value, modifiers }, { context, componentInstance }) => {
+      bind: (el, { value }, { context, componentInstance }) => {
         /* eslint-disable no-param-reassign */
-        if (modifiers.settings) {
-          componentInstance.$data.settings = { ...value };
-          return;
-        }
         const data = context.$store.state.cache.cards[value];
         if (!data) return;
         const keys = Object.keys(data);
@@ -31,16 +38,12 @@ export default {
           componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
         }
         for (let i = 0; i < keys.length; i += 1) {
-          if (componentInstance.$data[keys[i]] !== undefined) {
-            componentInstance.$data[keys[i]] = data[keys[i]];
+          const key = keys[i];
+          if (componentInstance.$data[key] !== undefined) {
+            componentInstance.$data[key] = data[key];
           }
         }
         /* eslint-enable no-param-reassign */
-      },
-      unbind: (el, { modifiers }, { context, componentInstance }) => {
-        if (modifiers.settings && context.$data.pendingSave && componentInstance.$data.settings) {
-          context.saveSettings(componentInstance.$data.settings);
-        }
       },
     },
   },

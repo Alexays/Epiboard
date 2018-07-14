@@ -70,7 +70,7 @@
       @init="init"
     />
     <component
-      v-init.settings="settings"
+      v-initSettings="settings"
       v-if="showSettings && cmp.settings"
       :is="cmp.settings"
       :key="hash"
