@@ -8,7 +8,6 @@
           <v-radio label="Full" value="full"/>
           <v-radio label="Toolbar" value="toolbar"/>
         </v-radio-group>
-        <h4 class="subheading">Background</h4>
         <v-layout align-center>
           <v-autocomplete
             :items="artworks"
