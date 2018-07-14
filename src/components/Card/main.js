@@ -35,7 +35,7 @@ export default {
         /* eslint-enable no-param-reassign */
       },
       unbind: (el, { modifiers }, { context, componentInstance }) => {
-        if (modifiers.settings && context && context.$data.pendingSave && context.saveSettings
+        if (modifiers.settings && context.$data.pendingSave && context.saveSettings
           && componentInstance.settings) {
           context.saveSettings(componentInstance.settings);
         }
