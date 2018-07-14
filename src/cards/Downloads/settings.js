@@ -6,10 +6,9 @@ export default {
   components: {
     VTextField,
   },
-  props: {
-    settings: {
-      type: Object,
-      required: true,
-    },
+  data() {
+    return {
+      settings: {},
+    };
   },
 };

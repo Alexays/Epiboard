@@ -6,10 +6,9 @@ export default {
   components: {
     VSwitch,
   },
-  props: {
-    settings: {
-      type: Object,
-      required: true,
-    },
+  data() {
+    return {
+      settings: {},
+    };
   },
 };

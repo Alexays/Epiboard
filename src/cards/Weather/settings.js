@@ -12,14 +12,9 @@ export default {
     VSelect,
     VTextField,
   },
-  props: {
-    settings: {
-      type: Object,
-      required: true,
-    },
-  },
   data() {
     return {
+      settings: {},
       allUnits: [
         { text: 'Metric', value: 'metric' },
         { text: 'Imperial', value: 'imperial' },

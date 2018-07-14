@@ -8,14 +8,9 @@ export default {
     ...VList,
     VTextField,
   },
-  props: {
-    settings: {
-      type: Object,
-      required: true,
-    },
-  },
   data() {
     return {
+      settings: {},
       newFeed: '',
     };
   },

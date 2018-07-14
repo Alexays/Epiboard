@@ -17,7 +17,10 @@ export default {
       isLiteral: true,
       bind: (el, { value, modifiers }, { context, componentInstance }) => {
         /* eslint-disable no-param-reassign */
-        if (modifiers.settings) return;
+        if (modifiers.settings) {
+          componentInstance.$data.settings = value;
+          return;
+        }
         const data = context.$store.state.cache.cards[value];
         if (!data) return;
         const keys = Object.keys(data);
@@ -36,8 +39,8 @@ export default {
       },
       unbind: (el, { modifiers }, { context, componentInstance }) => {
         if (modifiers.settings && context.$data.pendingSave && context.saveSettings
-          && componentInstance.settings) {
-          context.saveSettings(componentInstance.settings);
+          && componentInstance.$data.settings) {
+          context.saveSettings(componentInstance.$data.settings);
         }
       },
     },
