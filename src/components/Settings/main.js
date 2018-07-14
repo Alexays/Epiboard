@@ -1,10 +1,5 @@
+import { VTimePicker, VCheckbox, VSwitch, VAutocomplete, VMenu, VTextField } from 'vuetify';
 import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
-import VTimePicker from 'vuetify/es5/components/VTimePicker';
-import VCheckbox from 'vuetify/es5/components/VCheckbox';
-import VSwitch from 'vuetify/es5/components/VSwitch';
-import VAutocomplete from 'vuetify/es5/components/VAutocomplete';
-import VMenu from 'vuetify/es5/components/VMenu';
-import VTextField from 'vuetify/es5/components/VTextField';
 import colors from 'vuetify/es5/util/colors';
 
 // @vue/component

@@ -1,7 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
-import VMenu from 'vuetify/es5/components/VMenu';
 import * as VToolbar from 'vuetify/es5/components/VToolbar';
-import VDivider from 'vuetify/es5/components/VDivider';
+import { VMenu, VDivider } from 'vuetify';
 import Toast from '@/components/Toast';
 
 // @vue/component

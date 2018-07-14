@@ -1,6 +1,6 @@
 import Toast from '@/components/Toast';
 import * as VList from 'vuetify/es5/components/VList';
-import VMenu from 'vuetify/es5/components/VMenu';
+import { VMenu } from 'vuetify';
 
 // @vue/component
 export default {

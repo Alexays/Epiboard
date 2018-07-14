@@ -1,4 +1,4 @@
-import VDialog from 'vuetify/es5/components/VDialog';
+import { VDialog } from 'vuetify';
 
 // @vue/component
 export default {

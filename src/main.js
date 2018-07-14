@@ -1,14 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import VApp from 'vuetify/es5/components/VApp';
-import Vuetify from 'vuetify/es5/components/Vuetify';
-import VGrid from 'vuetify/es5/components/VGrid';
-import * as VCard from 'vuetify/es5/components/VCard';
-import VBtn from 'vuetify/es5/components/VBtn';
-import VIcon from 'vuetify/es5/components/VIcon';
-import VProgressLinear from 'vuetify/es5/components/VProgressLinear';
-import VProgressCircular from 'vuetify/es5/components/VProgressCircular';
-import transitions from 'vuetify/es5/components/transitions';
+import {
+  Vuetify,
+  VApp,
+  VGrid,
+  VCard,
+  VBtn,
+  VIcon,
+  VProgressLinear,
+  VProgressCircular,
+  transitions,
+} from 'vuetify';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -16,6 +18,7 @@ import App from '@/App';
 import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';
+import '@babel/polyfill'; // eslint-disable-line
 import './style.scss';
 
 Vue.config.productionTip = false;
@@ -35,7 +38,7 @@ Vue.use(Vuetify, {
   components: {
     Vuetify,
     VApp,
-    ...VCard,
+    VCard,
     VGrid,
     VBtn,
     VIcon,

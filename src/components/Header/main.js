@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VToolbar from 'vuetify/es5/components/VToolbar';
+import { VToolbar } from 'vuetify';
 import VueProgressiveImage from 'vue-progressive-image';
 import VueTyper from '@/components/Typer';
 import backgrounds from './backgrounds';

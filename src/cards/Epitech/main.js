@@ -1,15 +1,15 @@
-import VChip from 'vuetify/es5/components/VChip';
 import * as VTabs from 'vuetify/es5/components/VTabs';
 import * as VList from 'vuetify/es5/components/VList';
+import { VChip } from 'vuetify';
 import API from './api';
 
 // @vue/component
 export default {
   name: 'Epitech',
   components: {
-    VChip,
     ...VTabs,
     ...VList,
+    VChip,
     Timeline: () => import(/* webpackMode: "lazy" */'./timeline').then(_ => _.default),
   },
   props: {
