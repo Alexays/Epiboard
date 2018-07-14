@@ -1,5 +1,5 @@
-import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import Toast from '@/components/Toast';
+import { VCheckbox } from 'vuetify';
 
 // @vue/component
 export default {

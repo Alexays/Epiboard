@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     getImg(nb, night = true) {
-      const path = '/static/img/weather/weather-';
+      const path = '/imgs/weather/weather-';
       const date = Date.now() / 1000;
       if (night && !(date > this.today.sys.sunrise && date < this.today.sys.sunset)) {
         const closest = imgs.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));

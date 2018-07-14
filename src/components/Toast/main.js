@@ -1,4 +1,4 @@
-import VSnackbar from 'vuetify/es5/components/VSnackbar';
+import { VSnackbar } from 'vuetify';
 
 // @vue/component
 export default {

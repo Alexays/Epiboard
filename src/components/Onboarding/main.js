@@ -1,4 +1,4 @@
-import VCheckbox from 'vuetify/es5/components/VCheckbox';
+import { VCheckbox } from 'vuetify';
 
 // @vue/component
 export default {

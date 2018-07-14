@@ -11,7 +11,8 @@
 
 ## Requirement
 
-- [Chrome](https://www.google.com/chrome/) >= 54.0<br />
+- [Node](https://nodejs.org/en/) >= 8
+- [Chrome](https://www.google.com/chrome/) >= 54.0
 - [Firefox](https://www.mozilla.org/firefox/) >= 54.0
 
 ## Build Setup

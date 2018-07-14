@@ -6,9 +6,9 @@
   "author": "Alexays",
   "version": "$version",
   "icons": {
-    "16": "static/img/icon16.png",
-    "48": "static/img/icon48.png",
-    "128": "static/img/icon128.png"
+    "16": "imgs/icon16.png",
+    "48": "imgs/icon48.png",
+    "128": "imgs/icon128.png"
   },
   "permissions": [
     "storage",

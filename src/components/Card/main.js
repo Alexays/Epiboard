@@ -1,7 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
-import VMenu from 'vuetify/es5/components/VMenu';
 import * as VToolbar from 'vuetify/es5/components/VToolbar';
-import VDivider from 'vuetify/es5/components/VDivider';
+import { VMenu, VDivider } from 'vuetify';
 import Toast from '@/components/Toast';
 
 // @vue/component
@@ -17,30 +16,28 @@ export default {
     init: {
       isLiteral: true,
       bind: (el, { value, modifiers }, { context, componentInstance }) => {
-        const data = modifiers.settings
-          ? context.$store.state.cardsSettings.cards[value]
-          : context.$store.state.cache.cards[value];
+        /* eslint-disable no-param-reassign */
+        if (modifiers.settings) return;
+        const data = context.$store.state.cache.cards[value];
         if (!data) return;
-        if (!modifiers.settings) {
-          const { CACHE_DT } = data;
-          if (CACHE_DT) {
-            // Default cache timeout is 60s
-            const cacheValidity = (Cards.cards[value].cacheValidity || 60) * 1000;
-            /* eslint-disable-next-line no-param-reassign */
-            componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
-          }
-        }
         const keys = Object.keys(data);
+        const { CACHE_DT } = data;
+        if (CACHE_DT) {
+          // Default cache timeout is 60s
+          const cacheValidity = ((Cards[value].manifest || {}).cacheValidity || 60) * 1000;
+          componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
+        }
         for (let i = 0; i < keys.length; i += 1) {
           if (componentInstance.$data[keys[i]] !== undefined) {
-            /* eslint-disable-next-line no-param-reassign */
             componentInstance.$data[keys[i]] = data[keys[i]];
           }
         }
+        /* eslint-enable no-param-reassign */
       },
       unbind: (el, { modifiers }, { context, componentInstance }) => {
-        if (modifiers.settings && context && context.$data.pendingSave && context.saveSettings) {
-          context.saveSettings(componentInstance.$data);
+        if (modifiers.settings && context.$data.pendingSave && context.saveSettings
+          && componentInstance.settings) {
+          context.saveSettings(componentInstance.settings);
         }
       },
     },
@@ -75,7 +72,7 @@ export default {
       return null;
     },
     options() {
-      return Cards.cards[this.id];
+      return Cards[this.id].manifest || {};
     },
     debug() {
       return this.$store.state.settings.debug;
@@ -96,7 +93,7 @@ export default {
     },
     settings() {
       if (!this.cmp.settings || this.hash == null) return {};
-      const data = this.cmp.settings.data();
+      const data = Cards[this.id].settings;
       const tmp = this.$store.state.cardsSettings.cards[this.id];
       if (!tmp) return data;
       const keys = Object.keys(data);
@@ -109,9 +106,9 @@ export default {
     },
   },
   created() {
-    const { id } = this;
-    const { cmp, permissions, origins } = Cards.cards[id];
-    this.cmp.card = () => import(/* webpackMode: "eager" */`@/cards/${cmp}`)
+    const { id, options } = this;
+    const { permissions, origins } = options;
+    this.cmp.card = () => import(/* webpackInclude: /\.vue$/, webpackMode: "eager" */`@/cards/${id}/index.vue`)
       .then((tmp) => {
         if (!permissions && !origins) return tmp.default;
         return this.$utils.permissions.allowed({
@@ -129,16 +126,11 @@ export default {
           }
           return tmp.default;
         });
-      })
-      .then((tmp) => {
-        const settingsName = Cards.settings[id];
-        if (!settingsName) return tmp;
-        return import(`@/cards/${settingsName}`)
-          .then((data) => {
-            this.cmp.settings = data.default;
-            return tmp;
-          });
       });
+    if (Cards[id].settings) {
+      this.cmp.settings = () => import(/* webpackInclude: /\.vue$/, webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${id}/settings.vue`)
+        .then(tmp => tmp.default);
+    }
   },
   methods: {
     remove() {

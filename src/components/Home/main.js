@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     cardsCmp() {
-      return Cards.cards;
+      return Cards;
     },
     cards() {
       const { cards } = this.$store.state;

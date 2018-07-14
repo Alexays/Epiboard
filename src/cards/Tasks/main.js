@@ -1,13 +1,13 @@
-import VCheckbox from 'vuetify/es5/components/VCheckbox';
 import * as VList from 'vuetify/es5/components/VList';
+import { VCheckbox } from 'vuetify';
 import Api from './api';
 
 // @vue/component
 export default {
   name: 'Tasks',
   components: {
-    VCheckbox,
     ...VList,
+    VCheckbox,
   },
   data() {
     return {

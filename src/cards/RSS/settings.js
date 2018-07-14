@@ -8,9 +8,14 @@ export default {
     ...VList,
     VTextField,
   },
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-      feeds: ['https://news.google.com/news/rss/'],
       newFeed: '',
     };
   },
@@ -18,10 +23,10 @@ export default {
     addFeed(url) {
       if (url.trim().length === 0) return;
       this.newFeed = '';
-      this.feeds.push(url);
+      this.settings.feeds.push(url);
     },
     removeFeed(idx) {
-      this.feeds.splice(idx, 1);
+      this.settings.feeds.splice(idx, 1);
     },
   },
 };

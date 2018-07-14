@@ -12,22 +12,19 @@ export default {
     VSelect,
     VTextField,
   },
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-      auto: true,
-      city: '',
-      forecast: true,
-      appId: '0c9042777e3128fab0244da248184801',
-      units: 'metric',
-    };
-  },
-  computed: {
-    allUnits() {
-      return [
+      allUnits: [
         { text: 'Metric', value: 'metric' },
         { text: 'Imperial', value: 'imperial' },
         { text: 'Kelvin', value: 'kelvin' },
-      ];
-    },
+      ],
+    };
   },
 };

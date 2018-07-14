@@ -72,6 +72,7 @@
     <component
       v-init.settings="id"
       v-if="showSettings && cmp.settings"
+      :settings="settings"
       :is="cmp.settings"
       :key="hash"
     />

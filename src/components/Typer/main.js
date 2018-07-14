@@ -1,4 +1,4 @@
-import VTextField from 'vuetify/es5/components/VTextField';
+import { VTextField } from 'vuetify';
 
 // @vue/component
 export default {

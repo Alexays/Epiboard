@@ -6,9 +6,10 @@ export default {
   components: {
     VSwitch,
   },
-  data() {
-    return {
-      hideInfo: false,
-    };
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
   },
 };
