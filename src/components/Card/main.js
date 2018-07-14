@@ -108,14 +108,14 @@ export default {
   created() {
     const { id, options } = this;
     const { permissions, origins } = options;
-    this.cmp.card = () => import(/* webpackInclude: /\.vue$/, webpackMode: "eager" */`@/cards/${id}/index.vue`)
+    this.cmp.card = () => import(/* webpackInclude: /index\.vue$/, webpackMode: "eager" */`@/cards/${id}/index.vue`)
       .then((tmp) => {
         if (!permissions && !origins) return tmp.default;
         return this.$utils.permissions.allowed({
           permissions: permissions || [],
           origins: origins || [],
         }).then(() => tmp.default)
-          .catch(() => {
+          .catch((err) => {
             Toast.show({
               title: `${id} needs new permissions that it cannot have, retry later.`,
               color: 'error',
@@ -123,10 +123,11 @@ export default {
               dismissible: false,
             });
             this.remove();
+            throw err;
           });
       });
     if (Cards[id].settings) {
-      this.cmp.settings = () => import(/* webpackInclude: /\.vue$/, webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${id}/settings.vue`)
+      this.cmp.settings = () => import(/* webpackInclude: /settings\.vue$/, webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${id}/settings.vue`)
         .then(tmp => tmp.default);
     }
   },
