@@ -6,9 +6,10 @@ export default {
   components: {
     VTextField,
   },
-  data() {
-    return {
-      maxSites: 5,
-    };
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
   },
 };

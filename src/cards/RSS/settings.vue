@@ -2,7 +2,7 @@
   <v-card-text>
     <h4 class="headline">Feeds</h4>
     <v-list>
-      <v-list-tile v-for="(feed, idx) in feeds" :key="feed">
+      <v-list-tile v-for="(feed, idx) in settings.feeds" :key="feed">
         <v-list-tile-content>
           <v-list-tile-title>{{ feed }}</v-list-tile-title>
         </v-list-tile-content>

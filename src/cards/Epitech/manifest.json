@@ -1,3 +1,6 @@
 {
-  "origins": ["https://intra.epitech.eu/"]
+  "origins": ["https://intra.epitech.eu/"],
+  "settings": {
+    "hideInfo": false
+  }
 }

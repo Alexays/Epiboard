@@ -12,32 +12,37 @@ const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
 const excludeCards = ['Tasks'];
 
-const keys = {
-  cards: {},
-  settings: {},
-};
+const keys = {};
 
 const paths = glob
   .sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
   .map(f => f.replace('./src/cards/', ''))
-  .filter(f => excludeCards.indexOf(f.split('/')[0]) === -1 || !isProduction);
+  .filter(f => excludeCards.indexOf(f.split('/')[0]) === -1 || !isProduction)
+  .sort((a, b) => (b.endsWith('index.vue') - a.endsWith('index.vue')
+  || b.endsWith('settings.vue') - a.endsWith('settings.vue')));
 
 for (let i = 0; i < paths.length; i += 1) {
   const src = paths[i].replace('./src/cards/', '');
   const [key, file] = src.split('/');
   if (file === 'index.vue') {
-    keys.cards[key] = { ...(keys.cards[key] || {}), ...{ cmp: src } };
+    keys[key] = {};
   }
-  if (file === 'settings.vue') {
-    keys.settings[key] = src;
+  if (file === 'settings.vue' && keys[key]) {
+    keys[key].settings = true;
   }
-  if (file === 'manifest.json') {
+  if (file === 'manifest.json' && keys[key]) {
     const manifest = require(`./src/cards/${src}`); // eslint-disable-line
     const { browsers } = manifest;
     if (browsers && browsers.length && browsers.indexOf(browserName) === -1) {
       excludeCards.push(key);
     } else {
-      keys.cards[key] = { ...(keys.cards[key] || {}), ...manifest };
+      if (keys[key].settings) {
+        keys[key].settings = manifest.settings;
+        if (manifest.settings) delete manifest.settings;
+      }
+      if (Object.keys(manifest).length) {
+        keys[key].manifest = manifest;
+      }
     }
   }
 }
@@ -45,8 +50,7 @@ for (let i = 0; i < paths.length; i += 1) {
 // Remove cards not compatible with browsers listed in manifest
 for (let i = 0; i < excludeCards.length; i += 1) {
   const key = excludeCards[i];
-  if (keys.cards[key]) delete keys.cards[key];
-  if (keys.settings[key]) delete keys.settings[key];
+  if (keys[key]) delete keys[key];
 }
 
 if (excludeCards.length && isProduction) {

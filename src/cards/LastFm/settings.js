@@ -6,10 +6,10 @@ export default {
   components: {
     VTextField,
   },
-  data() {
-    return {
-      apiKey: '10ca053a6585f6de17bde3736500de8b',
-      user: '',
-    };
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
   },
 };
