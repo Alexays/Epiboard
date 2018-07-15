@@ -1,5 +1,6 @@
 import VDialog from 'vuetify/es5/components/VDialog';
 import { CanvasGantt } from 'gantt';
+import Api from '../api';
 
 const API = 'https://intra.epitech.eu';
 
@@ -24,10 +25,6 @@ export default {
     };
   },
   methods: {
-    parseCalendarDate(epiDate) {
-      const date = epiDate.replace(' ', '-').replace(/:/g, '-').split('-');
-      return new Date(date[0], date[1] - 1, date[2], date[3], date[4]);
-    },
     getTimeline() {
       this.enabled = true;
       this.loading = true;
@@ -45,8 +42,8 @@ export default {
             children: f.data.activites
               .filter(activity => activity.type_code === 'proj')
               .map((activity) => {
-                const from = this.parseCalendarDate(activity.begin);
-                const to = this.parseCalendarDate(activity.end);
+                const from = Api.parseCalendarDate(activity.begin);
+                const to = Api.parseCalendarDate(activity.end);
                 return {
                   name: activity.title,
                   from,
