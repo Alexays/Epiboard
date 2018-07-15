@@ -61,7 +61,7 @@ const removeEvals = file => new Promise((resolve, reject) => {
   fs.readFile(file, 'utf8', (readErr, data) => {
     if (readErr) return reject(readErr);
     const regex = isProduction
-      ? /;([a-z])=function\(\){return this}\(\);try{\1=\1\|\|Function\("return this"\)\(\)\|\|\(0,eval\)\("this"\)}catch\(t\){"object"==typeof window&&\(\1=window\)}/g
+      ? /;([a-z])=function\(\){return this}\(\);try{\1=\1\|\|Function\("return this"\)\(\)\|\|\([0,1],eval\)\("this"\)}catch\(t\){"object"==typeof window&&\(\1=window\)}/g
       : /;\\r\\n\\r\\n\/\/ This works in non-strict mode(?:.){1,304}/g;
     if (!regex.test(data)) return resolve();
     const cleaned = data.replace(regex, '=window;');
@@ -90,6 +90,8 @@ module.exports = {
       /* eslint-disable no-param-reassign */
       // Disable source-map in production
       config.devtool = false;
+      // Remove node polyfill
+      config.node = false;
       // Prefer use size as hash & add version in production
       const id = `[id].${version}`;
       config.optimization.moduleIds = 'size';
