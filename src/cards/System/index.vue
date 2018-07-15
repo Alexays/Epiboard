@@ -37,8 +37,10 @@
       <div class="wrapper-info">
         <v-layout>
           <v-flex xs3>
-            <span title="Downlink estimation">
-              <v-icon class="pr-1" small>cloud_download</v-icon>{{ connection.downlink }} Mb/s
+            <span title="Downlink estimation with a max of 10 Mb/s">
+              <v-icon class="pr-1" small>cloud_download</v-icon>
+              <span v-if="connection.downlink === 10">></span>
+              {{ connection.downlink }} Mb/s
             </span>
           </v-flex>
           <v-flex xs3>
