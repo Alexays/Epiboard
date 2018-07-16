@@ -1,19 +1,14 @@
-# Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard) [![Paypal Donate](https://img.shields.io/badge/Donate-Paypal-2244dd.svg)](https://paypal.me/ARouillard)
+# Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard) ![Version](https://img.shields.io/github/release/Alexays/Epiboard.svg) [![Paypal Donate](https://img.shields.io/badge/Donate-Paypal-2244dd.svg)](https://paypal.me/ARouillard) ![Licence](https://img.shields.io/github/license/Alexays/Epiboard.svg)
 
-<h4 align="center">
-  A new tab page extension with material design.<br />
-  Highly inspired and full rework of <a href="https://github.com/dotlouis/cardboard">Cardboard</a> by <a href="https://github.com/dotlouis">dotlouis</a>.
-</h4>
+> A new tab page adding a touch of wow and an interface following the lines of the material design. 🆕 🎉.<br>
+> Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png" alt="Epibaord"/>
-</p>
+![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png)
 
 ## Requirement
 
 - [Node](https://nodejs.org/en/) >= 8
-- [Chrome](https://www.google.com/chrome/) >= 54.0
-- [Firefox](https://www.mozilla.org/firefox/) >= 54.0
+- [Chrome](https://www.google.com/chrome/) or [Firefox](https://www.mozilla.org/firefox/) >= 54.0
 
 ## Build Setup
 
