@@ -1,7 +1,6 @@
 // @vue/component
 export default {
   name: 'TopSites',
-  title: 'Top Sites',
   props: {
     settings: {
       type: Object,
