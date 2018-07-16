@@ -29,8 +29,8 @@ $ npm run build:chrome
 # For Firefox
 $ npm run build:firefox
 
-# build for production and view the bundle analyzer report
-$ npm run build:chrome --report
+# build for production with the bundle analyzer report
+$ npm run build:chrome -- --report
 
 # in your browser extension page
 # load unpacked extension from dist folder.

@@ -140,8 +140,5 @@ module.exports = {
         });
       },
     });
-    // Add bundle analyzer
-    // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-    // config.plugins.push(new BundleAnalyzerPlugin());
   },
 };
