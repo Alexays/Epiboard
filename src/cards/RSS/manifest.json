@@ -1,4 +1,5 @@
 {
+  "description": "All your feeds in one place",
   "settings": {
     "feeds": ["https://news.google.com/news/rss/"]
   }

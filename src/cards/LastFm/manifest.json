@@ -1,4 +1,5 @@
 {
+  "description": "See your latest LastFm statistics easily",
   "settings": {
     "apiKey": "10ca053a6585f6de17bde3736500de8b",
     "user": ""

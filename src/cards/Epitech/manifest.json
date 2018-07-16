@@ -1,4 +1,5 @@
 {
+  "description": "See your epitech school informations easly",
   "origins": ["https://intra.epitech.eu/"],
   "settings": {
     "hideInfo": false

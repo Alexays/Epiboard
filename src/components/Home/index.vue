@@ -10,7 +10,8 @@
         </v-btn>
         <v-btn
           v-for="(value, key) in availableCards"
-          :title="key" :key="key" color="green" dark small @click="addCard(key)">
+          :title="(cardsCmp[key].manifest || {}).description || key"
+          :key="key" color="green" dark small @click="addCard(key)">
           {{ key }}
         </v-btn>
       </v-speed-dial>
