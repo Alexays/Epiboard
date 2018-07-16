@@ -10,7 +10,7 @@ const fs = require('fs');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
-const excludeCards = ['Tasks'];
+const excludeCards = [];
 
 const keys = {};
 
@@ -47,6 +47,7 @@ for (let i = 0; i < paths.length; i += 1) {
   }
 }
 
+
 // Remove cards not compatible with browsers listed in manifest
 for (let i = 0; i < excludeCards.length; i += 1) {
   const key = excludeCards[i];
@@ -76,14 +77,16 @@ const removeEvals = file => new Promise((resolve, reject) => {
 module.exports = {
   chainWebpack: (config) => {
     // Exclude cards from build
-    const excluded = excludeCards.join('|');
-    const r = new RegExp(`(${excluded})`);
-    config.externals((context, request, callback) => {
-      if (r.test(path.resolve(context, request))) {
-        return callback(null, 'commonjs');
-      }
-      return callback();
-    });
+    if (excludeCards.length) {
+      const excluded = excludeCards.join('|');
+      const r = new RegExp(`(${excluded})`);
+      config.externals((context, request, callback) => {
+        if (r.test(path.resolve(context, request))) {
+          return callback(null, 'commonjs');
+        }
+        return callback();
+      });
+    }
   },
   configureWebpack: (config) => {
     if (isProduction) {

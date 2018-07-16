@@ -1,6 +1,6 @@
 <template>
   <v-card-text>
-    <h4 class="headline">Feeds</h4>
+    <h4 class="subheading">Feeds</h4>
     <v-list>
       <v-list-tile v-for="(feed, idx) in settings.feeds" :key="feed">
         <v-list-tile-content>

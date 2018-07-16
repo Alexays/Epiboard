@@ -20,7 +20,8 @@
         <h4 class="subheading">Google Trends</h4>
         <v-layout align-center>
           <v-switch
-            v-model="settings.trends.enabled" :label="settings.trends.enabled ? `On` : `Off`"/>
+            v-model="settings.trends.enabled"
+            :label="settings.trends.enabled ? `On` : `Off`" class="mt-0" hide-details/>
           <v-autocomplete
             :items="country"
             :disabled="!settings.trends.enabled"
@@ -50,10 +51,10 @@
         <v-layout align-center>
           <v-switch
             :label="settings.dark.enabled ? `On` : `Off`"
-            v-model="settings.dark.enabled" hide-details/>
+            v-model="settings.dark.enabled" class="mt-0" hide-details/>
           <v-checkbox
-            :label="`Auto`"
-            :disabled="!settings.dark.enabled" v-model="settings.dark.auto" hide-details/>
+            :disabled="!settings.dark.enabled"
+            :label="`Auto`" v-model="settings.dark.auto" class="mt-0" hide-details/>
           <v-menu
             ref="menu_from"
             :disabled="!settings.dark.auto || !settings.dark.enabled"
