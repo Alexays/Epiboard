@@ -1,3 +1,4 @@
 {
+  "description": "View and monitor your system information",
   "browsers": ["chrome"]
 }

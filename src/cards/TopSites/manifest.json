@@ -1,4 +1,5 @@
 {
+  "description": "See your most visited sites",
   "settings": {
     "maxSites": 5
   }
