@@ -1,4 +1,4 @@
-# Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard) ![Version](https://img.shields.io/github/package-json/v/Alexays/Epiboard.svg) [![Paypal Donate](https://img.shields.io/badge/Donate-Paypal-2244dd.svg)](https://paypal.me/ARouillard) ![Licence](https://img.shields.io/badge/License-MIT-yellow.svg)
+# Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard) [![Version](https://img.shields.io/github/package-json/v/Alexays/Epiboard.svg)](https://github.com/Alexays/Epiboard/releases) [![Paypal Donate](https://img.shields.io/badge/Donate-Paypal-2244dd.svg)](https://paypal.me/ARouillard) [![Licence](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > A new tab page adding a touch of wow and an interface following the lines of the material design. 🆕 🎉.<br>
 > Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
