@@ -5,7 +5,6 @@
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:chrome": "cross-env BUILD_TARGET=chrome vue-cli-service build",
     "build:firefox": "cross-env BUILD_TARGET=firefox vue-cli-service build",
