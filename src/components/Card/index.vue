@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :style="{ width: `${(options.size || 1) * 430 - 30}px` }">
+  <div :style="{ width: `${(options.size || 1) * 430 - 30}px` }" class="card">
     <v-card hover raised>
       <v-toolbar
         :color="theme ? 'elevation-0' : 'primary'"
@@ -60,9 +60,9 @@
         </template>
       </v-toolbar>
       <component
-        ref="card"
         v-init="id"
         v-show="!showSettings"
+        ref="card"
         :actions.sync="actions"
         :cardtitle.sync="title"
         :subtitle.sync="subTitle"
