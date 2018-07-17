@@ -111,16 +111,19 @@ export default {
     destroyTypeInterval() {
       if (this.typeInterval) {
         clearInterval(this.typeInterval);
+        this.typeInterval = undefined;
       }
     },
     destroyCharTimeout() {
       if (this.charTimeout) {
         clearTimeout(this.charTimeout);
+        this.charTimeout = undefined;
       }
     },
     destroyFullEraseTimeout() {
       if (this.fullEraseTimeout) {
         clearTimeout(this.fullEraseTimeout);
+        this.fullEraseTimeout = undefined;
       }
     },
     search() {

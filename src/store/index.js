@@ -15,10 +15,8 @@ const vuexSync = new VuexPersistence({
   asyncStorage: true,
   modules: ['settings', 'cards', 'cardsSettings'],
   storage: {
-    getItem: key => browser.storage.sync.get(key).then((data) => {
-      if (!data[key]) return null;
-      return data[key];
-    }),
+    getItem: key => browser.storage.sync.get(key)
+      .then(data => data[key]),
     setItem: (key, value) => browser.storage.sync.set({
       [key]: value,
     }),
@@ -32,10 +30,8 @@ const vuexLocal = new VuexPersistence({
   asyncStorage: true,
   modules: ['cache'],
   storage: {
-    getItem: key => browser.storage.local.get(key).then((data) => {
-      if (!data[key]) return null;
-      return data[key];
-    }),
+    getItem: key => browser.storage.local.get(key)
+      .then(data => data[key]),
     setItem: (key, value) => browser.storage.local.set({
       [key]: value,
     }),

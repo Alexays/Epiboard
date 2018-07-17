@@ -5,7 +5,7 @@
         ref="textInput"
         :value="typing"
         :disabled="$route.path !== '/'"
-        spellcheck="false"
+        :spellcheck="!typeInterval"
         hide-details single-line @keyup.13="search" @input="userInput($event)"/>
     </template>
     <a v-else :href="url" target="_blank">
