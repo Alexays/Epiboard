@@ -19,6 +19,7 @@ import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';
 import '@babel/polyfill'; // eslint-disable-line
+import 'vuetify/src/stylus/app.styl';
 import './style.scss';
 
 Vue.config.productionTip = false;

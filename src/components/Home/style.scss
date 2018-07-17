@@ -44,3 +44,10 @@
     }
   }
 }
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s cubic-bezier(.4,0,.2,1)
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0
+}

@@ -16,13 +16,14 @@
         </v-btn>
       </v-speed-dial>
     </transition>
-    <div
+    <transition-group
       id="card-container"
-      :class="{ 'has-toolbar': $store.state.settings.header.design === 'toolbar' }">
+      :class="{ 'has-toolbar': $store.state.settings.header.design === 'toolbar' }"
+      name="fade" tag="div" appear>
       <card
         v-resize="onResize"
         v-for="card in cards" :key="card" :id="card" :data-id="card" @deleted="delCard(card)"/>
-    </div>
+    </transition-group>
     <div v-if="emptyCards" class="text-xs-center">
       <v-icon x-large>grid_off</v-icon>
       <h2 class="subheading">You have no cards.</h2>
