@@ -40,7 +40,7 @@ export default {
   mounted() {
     this.updateActions();
     this.getNowPlaying();
-    if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
+    if (this.VALID_CACHE && !this.loading) return this.$emit('init', false);
     return this.getAll()
       .finally(() => {
         this.loading = false;
@@ -50,7 +50,7 @@ export default {
         if (keys.length) {
           this.$emit('update:cardtitle', this.items[keys[0]].title);
         }
-        this.$emit('init', this.$data);
+        this.$emit('init', true);
       })
       .catch(err => this.$emit('init', err));
   },

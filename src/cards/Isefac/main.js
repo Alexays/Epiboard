@@ -19,12 +19,12 @@ export default {
     };
   },
   mounted() {
-    if (this.VALID_CACHE && !this.loading) return this.$emit('init', true);
+    if (this.VALID_CACHE && !this.loading) return this.$emit('init', false);
     return Promise.all([this.getCalendar()])
       .finally(() => {
         this.loading = false;
       })
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init', true))
       .catch(err => this.$emit('init', err));
   },
   methods: {

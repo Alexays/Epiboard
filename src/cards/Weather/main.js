@@ -36,13 +36,13 @@ export default {
       weekday: 'long',
     }));
     if (this.VALID_CACHE) {
-      this.$emit('init', true);
+      this.$emit('init', false);
       return;
     }
     this.getLocalisation()
       .then(this.getQuery)
       .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init', true))
       .catch(err => this.$emit('init', err));
   },
   methods: {

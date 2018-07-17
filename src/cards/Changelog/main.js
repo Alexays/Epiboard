@@ -15,7 +15,7 @@ export default {
   mounted() {
     this.$emit('update:cardtitle', `What's new in ${version} ?`);
     if (this.version === version && this.VALID_CACHE) {
-      this.$emit('init', true);
+      this.$emit('init', false);
       return;
     }
     this.axios.get(`${API}${version}`)
@@ -23,7 +23,7 @@ export default {
         this.version = version;
         this.body = Marked(res.data.body);
       })
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init', true))
       .catch(err => this.$emit('init', err));
   },
 };

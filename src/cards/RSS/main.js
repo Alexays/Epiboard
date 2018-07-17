@@ -22,7 +22,7 @@ export default {
   },
   mounted() {
     if (this.VALID_CACHE && !this.loading) {
-      this.$emit('init', true);
+      this.$emit('init', false);
       return;
     }
     Promise.all(this.settings.feeds.map(this.fetch))
@@ -32,7 +32,7 @@ export default {
       .finally(() => {
         this.loading = false;
       })
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init', true))
       .catch(err => this.$emit('init', err));
   },
   methods: {

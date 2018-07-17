@@ -20,13 +20,13 @@ export default {
   mounted() {
     if (this.VALID_CACHE) {
       this.updateMenu();
-      this.$emit('init', true);
+      this.$emit('init', false);
       return;
     }
     this.getToken()
       .then(() => this.getLists())
       .then(() => this.getAll())
-      .then(() => this.$emit('init', this.$data))
+      .then(() => this.$emit('init', true))
       .catch(err => this.$emit('init', err));
   },
   methods: {

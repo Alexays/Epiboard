@@ -146,25 +146,30 @@ export default {
       }
       this.$emit('deleted');
     },
-    init(data) {
+    init(res) {
       this.loaded = true;
-      if (data === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
+      if (res === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
         this.$store.commit('DEL_CARD_CACHE', this.id);
         return;
       }
-      if (data instanceof Error) {
-        this.error = `${this.id} got a loading error,`;
+      if (res instanceof Error) {
+        this.error = `${this.id} got an error,`;
         Toast.show({
           title: `${this.error} please try again later.`,
-          desc: this.$store.state.settings.debug ? data.message : null,
+          desc: this.$store.state.settings.debug ? res.message : null,
           color: 'error',
           timeout: 10000,
           dismissible: false,
         });
         return;
       }
-      if (typeof data === 'object') {
-        this.$store.commit('SET_CARD_CACHE', { key: this.id, data });
+      if (res === true || res === false) {
+        this.$refs.card.$watch('$data', () => {
+          this.$store.commit('SET_CARD_CACHE', { key: this.id, data: this.$refs.card.$data });
+        }, {
+          immediate: res,
+          deep: true,
+        });
       }
     },
     reload() {

@@ -60,6 +60,7 @@
         </template>
       </v-toolbar>
       <component
+        ref="card"
         v-init="id"
         v-show="!showSettings"
         :actions.sync="actions"
