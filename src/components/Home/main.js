@@ -73,6 +73,10 @@ export default {
     delCard(key) {
       const elem = document.querySelector(`[data-id='${key}']`);
       this.grid.hide(elem);
+      this.$ga.event('cards', 'delete', key, 0);
+      this.$store.commit('DEL_CARD_SETTINGS', key);
+      this.$store.commit('DEL_CARD_CACHE', key);
+      this.$store.commit('DEL_CARD', key);
     },
     addCard(key) {
       this.$store.commit(key === 'Changelog' ? 'ADD_CARD_FIRST' : 'ADD_CARD', key);

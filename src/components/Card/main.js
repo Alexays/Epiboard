@@ -144,10 +144,6 @@ export default {
           origins: this.options.origins || [],
         });
       }
-      this.$ga.event('cards', 'delete', this.id, 0);
-      this.$store.commit('DEL_CARD_SETTINGS', this.id);
-      this.$store.commit('DEL_CARD_CACHE', this.id);
-      this.$store.commit('DEL_CARD', this.id);
       this.$emit('deleted');
     },
     init(data) {

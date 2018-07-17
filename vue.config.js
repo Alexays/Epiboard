@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
-const { log } = require('@vue/cli-shared-utils');
+const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
 const { version, name } = require('./package.json');
 const glob = require('glob');
@@ -137,7 +137,7 @@ module.exports = {
           const BUNDLE_DIR = path.join(__dirname, './dist/js');
           glob(`${BUNDLE_DIR}/*.js`, {}, (er, files) => {
             for (let i = 0; i < files.length; i += 1) {
-              removeEvals(files[i]).catch(console.error);
+              removeEvals(files[i]).catch(error);
             }
           });
         });
