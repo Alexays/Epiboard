@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="dark">
     <router-view name="header" keep-alive/>
-    <transition name="fade-transition">
+    <transition name="fade-transition" mode="out-in">
       <router-view keep-alive/>
     </transition>
   </v-app>
