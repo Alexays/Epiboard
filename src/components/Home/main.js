@@ -94,7 +94,7 @@ export default {
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
       if (lastVersion && lastVersion !== version && this.cards.indexOf('Changelog') === -1) {
-        this.addCard('Changelog');
+        this.$store.commit('ADD_CARD_FIRST', 'Changelog');
       }
       if (lastVersion !== version) {
         this.$store.commit('SET_VERSION', version);
