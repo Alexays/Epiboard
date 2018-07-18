@@ -55,6 +55,7 @@ export default {
       typing: null,
       isFullErasing: false,
       repeatCounter: 0,
+      typeInterval: null,
     };
   },
   computed: {

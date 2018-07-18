@@ -55,7 +55,7 @@ export default {
       countries,
       artworks,
       settings: this.$store.state.settings,
-    }
+    };
   },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);

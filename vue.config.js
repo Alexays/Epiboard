@@ -117,6 +117,9 @@ module.exports = {
       transform: (content) => {
         const jsonContent = JSON.parse(content);
         jsonContent.version = version;
+        if (!isProduction) {
+          jsonContent.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+        }
         return JSON.stringify(jsonContent, null, 2);
       },
     }]));
