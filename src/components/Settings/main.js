@@ -1,7 +1,8 @@
 import { VTimePicker, VCheckbox, VSwitch, VAutocomplete, VMenu, VTextField } from 'vuetify';
 import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
 import colors from 'vuetify/es5/util/colors';
-import Countries from './countries';
+import countries from './countries';
+import artworks from './artworks';
 
 // @vue/component
 export default {
@@ -20,24 +21,8 @@ export default {
       version: browser.runtime.getManifest().version,
       settings: {},
       palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),
-      artworks: [
-        { text: 'Random', value: 'random' },
-        { text: 'Unsplash provider', value: 'unsplash' },
-        { text: 'From URL', value: 'url' },
-        { text: 'Default', value: 'default' },
-        { text: 'Austin', value: 'austin' },
-        { text: 'Beach', value: 'beach' },
-        { text: 'Berlin', value: 'berlin' },
-        { text: 'Chicago', value: 'chicago' },
-        { text: 'Great Plains', value: 'greatPlains' },
-        { text: 'London', value: 'london' },
-        { text: 'New York', value: 'newYork' },
-        { text: 'Paris', value: 'paris' },
-        { text: 'San Francisco', value: 'sanFrancisco' },
-        { text: 'Seattle', value: 'seattle' },
-        { text: 'Tahoe', value: 'tahoe' },
-      ],
-      country: Countries,
+      artworks,
+      country: countries,
       menu: {
         from: false,
         to: false,

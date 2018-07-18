@@ -4,6 +4,20 @@
       <h3 class="headline">Some settings before starting</h3>
     </v-card-title>
     <v-card-text>
+      <h4 class="subheading">Choose your preferred design</h4>
+      <v-radio-group v-model="settings.header.design" :mandatory="false">
+        <v-radio label="Full" value="full"/>
+        <v-radio label="Toolbar" value="toolbar"/>
+      </v-radio-group>
+      <v-layout align-center>
+        <v-autocomplete
+          :items="artworks"
+          v-model="settings.header.background" label="Choose your background"/>
+        <v-text-field
+          v-if="settings.header.background === 'url'"
+          v-model.lazy="settings.header.backgroundUrl"
+          label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"/>
+      </v-layout>
       <h4 class="subheading">Google Trends</h4>
       <v-layout align-center>
         <v-switch
@@ -23,18 +37,23 @@
   </v-card>
 </template>
 <script>
-import { VSwitch, VAutocomplete } from 'vuetify';
+import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
+import { VSwitch, VAutocomplete, VTextField } from 'vuetify';
 import countries from '../Settings/countries';
+import artworks from '../Settings/artworks';
 
 export default {
   name: 'Why',
   components: {
+    ...VRadioGroup,
     VSwitch,
     VAutocomplete,
+    VTextField,
   },
   data() {
     return {
       countries,
+      artworks,
       settings: this.$store.state.settings,
     }
   },

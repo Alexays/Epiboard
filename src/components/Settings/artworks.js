@@ -1,0 +1,17 @@
+export default [
+  { text: 'Random', value: 'random' },
+  { text: 'Unsplash provider', value: 'unsplash' },
+  { text: 'From URL', value: 'url' },
+  { text: 'Default', value: 'default' },
+  { text: 'Austin', value: 'austin' },
+  { text: 'Beach', value: 'beach' },
+  { text: 'Berlin', value: 'berlin' },
+  { text: 'Chicago', value: 'chicago' },
+  { text: 'Great Plains', value: 'greatPlains' },
+  { text: 'London', value: 'london' },
+  { text: 'New York', value: 'newYork' },
+  { text: 'Paris', value: 'paris' },
+  { text: 'San Francisco', value: 'sanFrancisco' },
+  { text: 'Seattle', value: 'seattle' },
+  { text: 'Tahoe', value: 'tahoe' },
+];
