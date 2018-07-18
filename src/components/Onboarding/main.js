@@ -1,5 +1,6 @@
 import Hello from './hello';
 import Why from './why';
+import Settings from './settings';
 
 // @vue/component
 export default {
@@ -7,11 +8,12 @@ export default {
   components: {
     Hello,
     Why,
+    Settings,
   },
   data() {
     return {
       index: 0,
-      board: ['hello', 'why'],
+      board: ['hello', 'why', 'settings'],
     };
   },
   methods: {
