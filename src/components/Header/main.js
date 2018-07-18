@@ -73,19 +73,17 @@ export default {
   watch: {
     trendsSettings: {
       handler(val) {
-        if (!val.enabled) {
-          this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
-          this.$store.commit('SET_TRENDS_CACHE', []);
-        } else this.getMessage();
+        this.$store.commit('SET_TRENDS_CACHE', []);
+        if (!val.enabled) this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
+        else this.getMessage();
       },
       deep: true,
     },
     doodleSettings: {
       handler(val) {
-        if (!val.enabled) {
-          this.doodle = null;
-          this.$store.commit('SET_DOODLE_CACHE', {});
-        } else this.getDoodle();
+        this.$store.commit('SET_DOODLE_CACHE', {});
+        if (!val.enabled) this.doodle = null;
+        else this.getDoodle();
       },
       deep: true,
     },
