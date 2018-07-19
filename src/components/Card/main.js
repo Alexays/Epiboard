@@ -1,5 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
 import * as VToolbar from 'vuetify/es5/components/VToolbar';
+import ResizeSensor from 'vue-resize-sensor';
 import { VMenu, VDivider } from 'vuetify';
 import Dialog from '@/components/Dialog';
 import Toast from '@/components/Toast';
@@ -10,6 +11,7 @@ export default {
   components: {
     ...VList,
     ...VToolbar,
+    ResizeSensor,
     VDivider,
     VMenu,
   },

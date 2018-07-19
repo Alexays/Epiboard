@@ -75,8 +75,9 @@
         v-initSettings="settings"
         v-if="showSettings && cmp.settings"
         :is="cmp.settings"
-        :key="hash"
+        :key="`${hash}-settings`"
       />
+      <resize-sensor @resize="$emit('resize')"/>
     </v-card>
   </div>
 </template>

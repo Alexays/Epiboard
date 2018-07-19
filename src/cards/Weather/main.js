@@ -107,7 +107,6 @@ export default {
         });
     },
     getQuery(pos) {
-      console.log(pos);
       if (pos.coords) {
         const { latitude, longitude } = pos.coords;
         return `lat=${latitude}&lon=${longitude}`;
