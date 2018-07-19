@@ -1,4 +1,4 @@
-import VDialog from 'vuetify/es5/components/VDialog';
+import { VDialog } from 'vuetify';
 import { CanvasGantt } from 'gantt';
 import Api from '../api';
 
@@ -60,6 +60,14 @@ export default {
       if (!this.enabled || this.loading) return;
       this.canvas = new CanvasGantt('#canvas', this.timeline, {
         viewMode: 'week',
+        // styleOptions: {
+        //   BG: 'transparent',
+        //   lineColor: '#00000022',
+        //   greenBar: '#00A854',
+        //   groupBg: '#00000055',
+        //   textColor: this.$vuetify.theme.foreground,
+        //   lightTextColor: this.$vuetify.theme.foreground,
+        // },
       });
     },
   },

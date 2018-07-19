@@ -22,10 +22,10 @@
     "vue-axios": "^2.1.2",
     "vue-progressive-image": "^3.1.0",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.1.6",
+    "vuetify": "^1.1.7",
     "vuex": "^3.0.1",
     "vuex-persist": "^1.4.3",
-    "webextension-polyfill": "file:../webextension-polyfill"
+    "webextension-polyfill": "^0.3.0"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.54",
