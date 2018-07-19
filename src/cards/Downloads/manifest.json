@@ -2,5 +2,6 @@
   "description": "Manage and see your downloads easly",
   "settings": {
     "limitDownloads": 5
-  }
+  },
+  "permissions": ["downloads", "downloads.open"]
 }

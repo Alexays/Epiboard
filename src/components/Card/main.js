@@ -1,6 +1,7 @@
 import * as VList from 'vuetify/es5/components/VList';
 import * as VToolbar from 'vuetify/es5/components/VToolbar';
 import { VMenu, VDivider } from 'vuetify';
+import Dialog from '@/components/Dialog';
 import Toast from '@/components/Toast';
 
 // @vue/component
@@ -111,25 +112,19 @@ export default {
     },
   },
   created() {
-    const { id, options } = this;
-    const { permissions, origins } = options;
-    this.cmp.card = () => import(/* webpackInclude: /index\.vue$/, webpackMode: "eager" */`@/cards/${id}/index.vue`)
-      .then((tmp) => {
-        if (!permissions && !origins) return tmp.default;
-        return this.$utils.permissions.allowed({
-          permissions: permissions || [],
-          origins: origins || [],
-        }).then(() => tmp.default)
-          .catch((err) => {
-            Toast.show({
-              title: `${id} needs new permissions that it cannot have, retry later.`,
-              color: 'error',
-              timeout: 10000,
-              dismissible: false,
-            });
-            this.remove();
-            throw err;
-          });
+    const { id } = this;
+    this.cmp.card = () => this.checkPermissions()
+      .then(() => import(/* webpackInclude: /index\.vue$/, webpackMode: "eager" */`@/cards/${id}/index.vue`))
+      .then(tmp => tmp.default)
+      .catch((err) => {
+        Toast.show({
+          title: `${id} needs new permissions that it cannot have, retry later.`,
+          color: 'error',
+          timeout: 10000,
+          dismissible: false,
+        });
+        this.remove();
+        throw err;
       });
     if (Cards[id].settings) {
       this.cmp.settings = () => import(/* webpackInclude: /settings\.vue$/, webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${id}/settings.vue`)
@@ -137,9 +132,25 @@ export default {
     }
   },
   methods: {
+    checkPermissions() {
+      const { permissions, origins } = this.options;
+      if (!permissions && !origins) return Promise.resolve();
+      const payload = { permissions: permissions || [], origins: origins || [] };
+      return browser.permissions.contains(payload)
+        .then(res => res || browser.permissions.request(payload))
+        .catch(() => Dialog.show({
+          title: 'Permissions are required',
+          text: `${this.id} ask for permissions that are necessary for it to work properly, is that okay?`,
+          ok: 'Allow',
+          cancel: 'Deny',
+        }).then((res) => {
+          if (res) return browser.permissions.request(payload);
+          throw new Error('User has refused');
+        }));
+    },
     remove() {
       if (this.options.permissions || this.options.origins) {
-        this.$utils.permissions.remove({
+        browser.permissions.remove({
           permissions: this.options.permissions || [],
           origins: this.options.origins || [],
         });
@@ -150,9 +161,7 @@ export default {
       this.loaded = true;
       if (res === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
         this.$store.commit('DEL_CARD_CACHE', this.id);
-        return;
-      }
-      if (res instanceof Error) {
+      } else if (res instanceof Error) {
         this.error = `${this.id} got an error,`;
         Toast.show({
           title: `${this.error} please try again later.`,
@@ -161,20 +170,16 @@ export default {
           timeout: 10000,
           dismissible: false,
         });
-        return;
-      }
-      if (res === true || res === false) {
+      } else if (res === true || res === false) {
         this.$refs.card.$watch('$data', () => {
           this.$store.commit('SET_CARD_CACHE', { key: this.id, data: this.$refs.card.$data });
-        }, {
-          immediate: res,
-          deep: true,
-        });
+        }, { immediate: res, deep: true });
       }
     },
     reload() {
       this.loaded = false;
       this.error = null;
+      this.subTitle = null;
       this.$store.commit('DEL_CARD_CACHE', this.id);
       this.hash = Date.now().toString();
     },

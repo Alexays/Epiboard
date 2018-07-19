@@ -1,5 +1,4 @@
 // DEPRECATED: Chrome apps will be removed soon
-
 // @vue/component
 export default {
   name: 'Apps',

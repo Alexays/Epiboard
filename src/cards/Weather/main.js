@@ -21,6 +21,7 @@ export default {
     return {
       today: null,
       forecast: null,
+      geoError: null,
     };
   },
   computed: {
@@ -35,11 +36,8 @@ export default {
     this.$emit('update:cardtitle', new Date().toLocaleDateString('en-Us', {
       weekday: 'long',
     }));
-    if (this.VALID_CACHE) {
-      this.$emit('init', false);
-      return;
-    }
-    this.getLocalisation()
+    if (this.VALID_CACHE && this.today && !this.geoError) return this.$emit('init', false);
+    return this.getLocalisation()
       .then(this.getQuery)
       .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
       .then(() => this.$emit('init', true))
@@ -85,7 +83,8 @@ export default {
           this.today.wind.speed = this.today.wind.speed * 3.6 | 0;
           this.today.main.temp |= 0;
           if (this.today.weather[0] && this.today.weather[0].description) {
-            this.today.weather[0].description = this.today.weather[0].description.split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
+            this.today.weather[0].description = this.today.weather[0].description
+              .split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
           }
         });
     },
@@ -108,19 +107,29 @@ export default {
         });
     },
     getQuery(pos) {
+      console.log(pos);
       if (pos.coords) {
         const { latitude, longitude } = pos.coords;
-        return Promise.resolve(`lat=${latitude}&lon=${longitude}`);
+        return `lat=${latitude}&lon=${longitude}`;
       }
-      if (pos.city) {
-        return Promise.resolve(`q=${pos.city}`);
-      }
-      return Promise.reject(new Error('Enter valid city name'));
+      if (pos.city) return `q=${pos.city}`;
+      throw new Error('Enter valid city name');
     },
     getLocalisation() {
+      this.geoError = null;
       if (!this.settings.auto) return Promise.resolve({ city: this.settings.city });
+      if (!navigator.geolocation) {
+        this.$emit('update:subtitle', 'Geolocation error');
+        const error = 'Geolocation is not supported please enter city name in card settings.';
+        this.geoError = error;
+        return Promise.reject(new Error(error));
+      }
       return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
+        navigator.geolocation.getCurrentPosition(resolve, (err) => {
+          this.$emit('update:subtitle', 'Geolocation error');
+          this.geoError = 'Try later or enter a city manually in card settings.';
+          reject(new Error(err.message));
+        }, {
           timeout: 30000,
           enableHighAccuracy: true,
           maximumAge: 75000,

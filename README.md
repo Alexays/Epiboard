@@ -33,21 +33,21 @@ $ npm run build:chrome -- --report
 
 ## Notes on permissions
 
-*Theses permissions are not optional only due to limitations of [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)*
+*Some of theses permissions are not optional only due to manifest/API limitations: learn more: [chrome](https://developer.chrome.com/extensions/permissions), [firefox](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/optional_permissions)*
 
 - **storage**: to save user's settings such as background image
-- **sessions**: to retreive chrome sessions linked to your account and display them in a card
-- **tabs**: to show your recently closed tabs (sessions card)
-- **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
-- **downloads**: to display your recent downloads
-- **downloads.open**: to open files you have downloaded from the download card
-- **system.cpu**: to collect and display your computer's cpu usage
-- **system.memory**: to collect and display your computer's memory usage
-- **system.storage**: to collect and display your computer's storage usage
-- **management**: to display your apps
-- **topSites**: to display your most visited websites
 - **geolocation**: to allow weather cards to detect your location
-- **identity**: to request a connection to your external account
+- [Optional on Chrome] **sessions**: to retreive chrome sessions linked to your account and display them in a card
+- [Optional on Chrome] **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
+- [Optional on Chrome] **identity**: to request a connection to your external account
+- [Optional] **tabs**: to show your recently closed tabs (sessions card)
+- [Optional] **downloads**: to display your recent downloads
+- [Optional] **downloads.open**: to open files you have downloaded from the download card
+- [Optional] **system.cpu**: to collect and display your computer's cpu usage
+- [Optional] **system.memory**: to collect and display your computer's memory usage
+- [Optional] **system.storage**: to collect and display your computer's storage usage
+- [Optional] **management**: to display your apps
+- [Optional] **topSites**: to display your most visited websites
 - **https://trends.google.com/trends/hottrends/visualize/internal/data**: to fetch google trends at this address
 - **https://www.google.com/doodles/search**: to fetch google doodles at this address
 

@@ -19,13 +19,9 @@ export default {
   },
   methods: {
     getTopSites() {
-      return new Promise((resolve, reject) => {
-        browser.topSites.get((topSites) => {
-          if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          this.topSites = topSites.slice(0, this.settings.maxSites)
-            .map(f => ({ ...f, ...{ icon: this.$utils.getFavicon(f.url) } }));
-          return resolve();
-        });
+      return browser.topSites.get().then((topSites) => {
+        this.topSites = topSites.slice(0, this.settings.maxSites)
+          .map(f => ({ ...f, ...{ icon: this.$utils.getFavicon(f.url) } }));
       });
     },
   },

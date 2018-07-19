@@ -19,7 +19,7 @@
           :style="{ color: actionsColor }"
           :size="25" :width="2" indeterminate/>
         <v-btn
-          v-if="error"
+          v-if="error && !showSettings"
           :style="{ color: actionsColor }"
           :title="`${error} click to reload`" flat icon @click="reload()">
           <v-icon>warning</v-icon>

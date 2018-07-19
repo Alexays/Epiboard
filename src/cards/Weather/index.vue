@@ -1,8 +1,8 @@
 <template>
   <div id="weather">
-    <v-layout v-if="today" row wrap>
+    <v-layout row wrap>
       <v-flex xs8 class="left">
-        <v-layout column align-content-space-between fill-height>
+        <v-layout v-if="today" column align-content-space-between fill-height>
           <v-flex xs1 class="text-xs-right">
             <v-icon small>location_on</v-icon> {{ today.name }}
           </v-flex>
@@ -34,9 +34,15 @@
             </v-layout>
           </v-flex>
         </v-layout>
+        <div v-else class="mt-5">
+          <p v-if="geoError" class="subheading ml-2">
+            {{ geoError }}
+          </p>
+          <v-progress-linear v-else indeterminate/>
+        </div>
       </v-flex>
       <v-flex xs4 class="weather-info primary foreground--text head-drag">
-        <v-layout column class="title">
+        <v-layout v-if="today" column class="title">
           <v-flex class="detail my-2">
             <v-icon medium color="foreground">opacity</v-icon>
             <span title="Humidity">
@@ -61,11 +67,11 @@
             </v-layout>
           </v-flex>
         </v-layout>
+        <v-layout v-else-if="geoError" justify-space-around fill-height>
+          <v-icon color="foreground" x-large>gps_off</v-icon>
+        </v-layout>
       </v-flex>
     </v-layout>
-    <div v-else class="weather-loader">
-      <v-progress-linear indeterminate/>
-    </div>
   </div>
 </template>
 <script src="./main.js"></script>

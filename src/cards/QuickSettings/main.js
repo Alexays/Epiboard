@@ -34,7 +34,7 @@ export default {
   methods: {
     clear() {
       this.loading = true;
-      browser.browsingData.remove({}, Object.assign({}, this.types), () => {
+      browser.browsingData.remove({}, Object.assign({}, this.types)).then(() => {
         Toast.show({ title: 'Cleared !' });
         this.types = {
           cache: false,

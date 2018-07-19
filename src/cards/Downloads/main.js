@@ -1,5 +1,5 @@
-import Toast from '@/components/Toast';
 import * as VList from 'vuetify/es5/components/VList';
+import Toast from '@/components/Toast';
 import { VMenu } from 'vuetify';
 
 // @vue/component

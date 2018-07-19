@@ -54,6 +54,18 @@ for (let i = 0; i < excludeCards.length; i += 1) {
   if (keys[key]) delete keys[key];
 }
 
+// Filter permissions listed in cards manifest with optional permissions
+const { optional_permissions } = require(`./src/manifest-${browserName}.json`); // eslint-disable-line
+const cards = Object.keys(keys);
+for (let i = 0; i < cards.length; i += 1) {
+  const key = cards[i];
+  if (keys[key].manifest && keys[key].manifest.permissions) {
+    keys[key].manifest.permissions = keys[key].manifest.permissions
+      .filter(f => optional_permissions.indexOf(f) > -1);
+    if (!keys[key].manifest.permissions.length) delete keys[key].manifest.permissions;
+  }
+}
+
 if (excludeCards.length && isProduction) {
   log(`\nWarning: "${excludeCards.join(',')}" are excludes from build.`);
 }

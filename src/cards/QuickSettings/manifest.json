@@ -1,0 +1,4 @@
+{
+  "description": "Remove your cache, cookies, history and local storage quickly",
+  "permissions": ["browsingData"]
+}
