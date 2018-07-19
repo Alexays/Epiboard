@@ -137,12 +137,10 @@ export default {
       if (!permissions && !origins) return Promise.resolve();
       const payload = { permissions: permissions || [], origins: origins || [] };
       return browser.permissions.contains(payload)
-        .then((res) => {
-          if (res) return res;
-          return browser.permissions.request(payload);
-        }).catch(() => Dialog.show({
+        .then(res => res || browser.permissions.request(payload))
+        .catch(() => Dialog.show({
           title: 'Permissions are required',
-          text: 'Some cards ask for permissions that are necessary for them to work properly, is that okay?',
+          text: `${this.id} ask for permissions that are necessary for it to work properly, is that okay?`,
           ok: 'Allow',
           cancel: 'Deny',
         }).then((res) => {
@@ -163,9 +161,7 @@ export default {
       this.loaded = true;
       if (res === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
         this.$store.commit('DEL_CARD_CACHE', this.id);
-        return;
-      }
-      if (res instanceof Error) {
+      } else if (res instanceof Error) {
         this.error = `${this.id} got an error,`;
         Toast.show({
           title: `${this.error} please try again later.`,
@@ -174,15 +170,10 @@ export default {
           timeout: 10000,
           dismissible: false,
         });
-        return;
-      }
-      if (res === true || res === false) {
+      } else if (res === true || res === false) {
         this.$refs.card.$watch('$data', () => {
           this.$store.commit('SET_CARD_CACHE', { key: this.id, data: this.$refs.card.$data });
-        }, {
-          immediate: res,
-          deep: true,
-        });
+        }, { immediate: res, deep: true });
       }
     },
     reload() {

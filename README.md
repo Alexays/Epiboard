@@ -33,13 +33,14 @@ $ npm run build:chrome -- --report
 
 ## Notes on permissions
 
-*Some of theses permissions are not optional only due to manifest/API limitations: [learn more](https://developer.chrome.com/extensions/permissions)*
+*Some of theses permissions are not optional only due to manifest/API limitations: [learn more for chrome](https://developer.chrome.com/extensions/permissions) [learn more for firefox](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/optional_permissions)*
 
 - **storage**: to save user's settings such as background image
 - **geolocation**: to allow weather cards to detect your location
-- [Optional] **sessions**: to retreive chrome sessions linked to your account and display them in a card
+- [Optional on Chrome] **sessions**: to retreive chrome sessions linked to your account and display them in a card
+- [Optional on Chrome] **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
+- [Optional on Chrome] **identity**: to request a connection to your external account
 - [Optional] **tabs**: to show your recently closed tabs (sessions card)
-- [Optional] **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
 - [Optional] **downloads**: to display your recent downloads
 - [Optional] **downloads.open**: to open files you have downloaded from the download card
 - [Optional] **system.cpu**: to collect and display your computer's cpu usage
@@ -47,7 +48,6 @@ $ npm run build:chrome -- --report
 - [Optional] **system.storage**: to collect and display your computer's storage usage
 - [Optional] **management**: to display your apps
 - [Optional] **topSites**: to display your most visited websites
-- [Optional] **identity**: to request a connection to your external account
 - **https://trends.google.com/trends/hottrends/visualize/internal/data**: to fetch google trends at this address
 - **https://www.google.com/doodles/search**: to fetch google doodles at this address
 
