@@ -33,7 +33,7 @@ $ npm run build:chrome -- --report
 
 ## Notes on permissions
 
-*Some of theses permissions are not optional only due to manifest/API limitations: [learn more for chrome](https://developer.chrome.com/extensions/permissions) [learn more for firefox](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/optional_permissions)*
+*Some of theses permissions are not optional only due to manifest/API limitations: learn more: [chrome](https://developer.chrome.com/extensions/permissions), [firefox](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/optional_permissions)*
 
 - **storage**: to save user's settings such as background image
 - **geolocation**: to allow weather cards to detect your location
