@@ -77,7 +77,7 @@
         :is="cmp.settings"
         :key="`${hash}-settings`"
       />
-      <resize-sensor @resize="$emit('resize')"/>
+      <resize-sensor @resize="$emit('resize')" initial/>
     </v-card>
   </div>
 </template>

@@ -66,6 +66,7 @@ export default {
           this.$ga.event('cards', 'delete', key, 0);
           this.$store.commit('DEL_CARD_SETTINGS', key);
           this.$store.commit('DEL_CARD_CACHE', key);
+          this.$store.commit('DEL_VALID_CARD', key);
           this.$store.commit('DEL_CARD', key);
         },
       });

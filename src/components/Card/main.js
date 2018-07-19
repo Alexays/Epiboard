@@ -136,7 +136,10 @@ export default {
   methods: {
     checkPermissions() {
       const { permissions, origins } = this.options;
-      if (!permissions && !origins) return Promise.resolve();
+      // Speed up first frame rendering
+      if ((!permissions && !origins) || this.$store.state.cache.validCards.indexOf(this.id) > -1) {
+        return Promise.resolve();
+      }
       const payload = { permissions: permissions || [], origins: origins || [] };
       return browser.permissions.contains(payload)
         .then(res => res || browser.permissions.request(payload))
@@ -161,9 +164,13 @@ export default {
     },
     init(res) {
       this.loaded = true;
-      if (res === undefined && this.$store.state.cache.cards[this.id] !== undefined) {
-        this.$store.commit('DEL_CARD_CACHE', this.id);
+      if (res === undefined) {
+        if (this.$store.state.cache.cards[this.id] !== undefined) {
+          this.$store.commit('DEL_CARD_CACHE', this.id);
+        }
+        this.$store.commit('ADD_VALID_CARD', this.id);
       } else if (res instanceof Error) {
+        this.$store.commit('DEL_VALID_CARD', this.id);
         this.error = `${this.id} got an error,`;
         Toast.show({
           title: `${this.error} please try again later.`,
@@ -173,6 +180,7 @@ export default {
           dismissible: false,
         });
       } else if (res === true || res === false) {
+        this.$store.commit('ADD_VALID_CARD', this.id);
         this.$refs.card.$watch('$data', () => {
           this.$store.commit('SET_CARD_CACHE', { key: this.id, data: this.$refs.card.$data });
         }, { immediate: res, deep: true });
@@ -182,6 +190,7 @@ export default {
       this.loaded = false;
       this.error = null;
       this.subTitle = null;
+      this.$store.commit('DEL_VALID_CARD', this.id);
       this.$store.commit('DEL_CARD_CACHE', this.id);
       this.hash = Date.now().toString();
     },

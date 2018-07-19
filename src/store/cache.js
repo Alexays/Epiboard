@@ -2,6 +2,7 @@ export default {
   state: {
     version: null,
     cards: {},
+    validCards: [],
     trends: {
       data: [],
       dt: null,
@@ -29,6 +30,13 @@ export default {
     SET_DOODLE_CACHE(state, doodle) {
       state.doodle.dt = doodle && doodle.url ? Date.now() : null;
       state.doodle.data = doodle;
+    },
+    ADD_VALID_CARD(state, key) {
+      if (state.validCards.indexOf(key) > -1) return;
+      state.validCards.push(key);
+    },
+    DEL_VALID_CARD(state, key) {
+      state.validCards = state.validCards.filter(f => f !== key);
     },
   },
 };
