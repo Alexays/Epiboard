@@ -12,20 +12,20 @@
   },
   "permissions": [
     "storage",
-    "sessions",
-    "browsingData",
-    "downloads",
-    "downloads.open",
-    "tabs",
-    "topSites",
     "geolocation",
-    "identity",
     "https://trends.google.com/trends/hottrends/visualize/internal/data",
     "https://www.google.com/doodles/search"
   ],
   "optional_permissions": [
     "https://*/",
-    "http://*/"
+    "http://*/",
+    "sessions",
+    "tabs",
+    "browsingData",
+    "downloads",
+    "downloads.open",
+    "topSites",
+    "identity"
   ],
   "chrome_settings_overrides": {
     "homepage": "index.html"
