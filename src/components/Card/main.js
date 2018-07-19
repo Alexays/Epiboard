@@ -179,6 +179,7 @@ export default {
     reload() {
       this.loaded = false;
       this.error = null;
+      this.subTitle = null;
       this.$store.commit('DEL_CARD_CACHE', this.id);
       this.hash = Date.now().toString();
     },
