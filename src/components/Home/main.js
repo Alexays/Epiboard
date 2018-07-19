@@ -1,3 +1,4 @@
+import ResizeSensor from 'css-element-queries/src/ResizeSensor';
 import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import Card from '@/components/Card';
 import Muuri from 'muuri';
@@ -8,6 +9,16 @@ export default {
   components: {
     VSpeedDial,
     Card,
+  },
+  directives: {
+    resize: {
+      inserted(el, { value }) {
+        new ResizeSensor(el, () => value(el)); // eslint-disable-line no-new
+      },
+      unbind(el) {
+        ResizeSensor.detach(el);
+      },
+    },
   },
   data() {
     return {
