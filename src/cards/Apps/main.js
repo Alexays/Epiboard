@@ -1,4 +1,6 @@
 // DEPRECATED: Chrome apps will be removed soon
+import Toast from '@/components/Toast';
+
 // @vue/component
 export default {
   name: 'Apps',
@@ -38,6 +40,8 @@ export default {
     launch(app) {
       if (app.launchType && app.enabled) {
         browser.management.launchApp(app.id);
+      } else if (!app.enabled) {
+        Toast.show({ title: `${app.name} is disabled.`, color: 'warning' });
       }
     },
   },

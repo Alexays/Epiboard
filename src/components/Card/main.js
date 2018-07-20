@@ -147,8 +147,14 @@ export default {
           ok: 'Allow',
           cancel: 'Deny',
         }).then((res) => {
-          if (res) return browser.permissions.request(payload);
-          throw new Error('User has refused');
+          if (res) {
+            return browser.permissions.request(payload)
+              .then((granted) => {
+                if (!granted) throw new Error('User has refused');
+                return granted;
+              });
+          }
+          throw new Error('User has refused dialog');
         }));
     },
     remove() {
