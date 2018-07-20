@@ -63,11 +63,16 @@ export default {
       this.grid.refreshItems(el);
       this.grid.layout(true);
     },
-    onDrag() {
+    onDrag(item) {
       const cards = this.grid.getItems()
         .filter(f => f.isActive())
-        .map(item => item.getElement().dataset.id);
+        .map(f => f.getElement().dataset.id);
+      const el = item.getElement();
+      ResizeSensor.detach(el);
       this.$store.commit('SET_CARDS', cards);
+      this.$nextTick(() => {
+        new ResizeSensor(el, () => this.onResize(el)); // eslint-disable-line no-new
+      });
       this.$ga.event('cards', 'order', cards.join(', '), cards.length);
     },
     delCard(key) {
