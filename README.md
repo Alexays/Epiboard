@@ -37,7 +37,7 @@ $ npm run build:chrome -- --report
 
 - **storage**: to save user's settings such as background image
 - **geolocation**: to allow weather cards to detect your location
-- **management**: to display your apps *not optional due to error to access icons*
+- **management**: to display your apps **not optional due to error to access icons**
 - [Optional on Chrome] **sessions**: to retreive chrome sessions linked to your account and display them in a card
 - [Optional on Chrome] **browsingData**: to allow the quick-settings card to remove your cache, cookies, history and local storage
 - [Optional on Chrome] **identity**: to request a connection to your external account
