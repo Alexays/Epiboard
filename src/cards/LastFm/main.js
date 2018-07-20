@@ -40,7 +40,11 @@ export default {
   mounted() {
     this.updateActions();
     this.getNowPlaying();
-    if (this.VALID_CACHE && !this.loading) return this.$emit('init', false);
+    if (this.VALID_CACHE && !this.loading) {
+      const keys = Object.keys(this.items);
+      this.$emit('update:cardtitle', this.items[keys[this.active]].title);
+      return this.$emit('init', false);
+    }
     return this.getAll()
       .finally(() => {
         this.loading = false;
