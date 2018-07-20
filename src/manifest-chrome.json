@@ -20,6 +20,7 @@
   "optional_permissions": [
     "https://*/",
     "http://*/",
+    "chrome://extension-icon/*",
     "system.cpu",
     "system.memory",
     "system.storage",

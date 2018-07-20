@@ -36,7 +36,7 @@ export default {
       });
     },
     launch(app) {
-      if (app.launchType === 'OPEN_AS_REGULAR_TAB' || app.launchType === 'OPEN_AS_WINDOW') {
+      if (app.launchType && app.enabled) {
         browser.management.launchApp(app.id);
       }
     },
