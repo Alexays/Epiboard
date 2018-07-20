@@ -1,5 +1,6 @@
 #home {
   position: relative;
+  flex: 1;
   .v-speed-dial {
     position: absolute;
     top: -35px;
@@ -7,9 +8,9 @@
   }
   #card-container {
     position: relative;
-    margin: 20px auto;
+    margin: 0 auto;
     &.has-toolbar {
-      margin: 35px auto;
+      margin: 20px auto;
     }
   }
   // While waiting for a muuri update this is the easiest way to center the cards.

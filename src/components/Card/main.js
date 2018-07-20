@@ -118,7 +118,7 @@ export default {
       .then(tmp => tmp.default)
       .catch((err) => {
         Toast.show({
-          title: `${id} needs new permissions that it cannot have, retry later.`,
+          title: `${id} needs permissions that it cannot have, retry later.`,
           color: 'error',
           timeout: 10000,
           dismissible: false,

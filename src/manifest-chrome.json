@@ -13,6 +13,7 @@
   "permissions": [
     "storage",
     "geolocation",
+    "management",
     "https://trends.google.com/trends/hottrends/visualize/internal/data",
     "https://www.google.com/doodles/search"
   ],
@@ -20,13 +21,11 @@
   "optional_permissions": [
     "https://*/",
     "http://*/",
-    "chrome://extension-icon/*",
     "system.cpu",
     "system.memory",
     "system.storage",
     "sessions",
     "tabs",
-    "management",
     "browsingData",
     "downloads",
     "downloads.open",
