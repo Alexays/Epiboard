@@ -118,14 +118,14 @@ export default {
       this.geoError = null;
       if (!this.settings.auto) return Promise.resolve({ city: this.settings.city });
       if (!navigator.geolocation) {
-        this.$emit('update:subtitle', 'Geolocation error');
+        if (!this.today) this.$emit('update:subtitle', 'Geolocation error');
         const error = 'Geolocation is not supported please enter city name in card settings.';
         this.geoError = error;
         return Promise.reject(new Error(error));
       }
       return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, (err) => {
-          this.$emit('update:subtitle', 'Geolocation error');
+          if (!this.today) this.$emit('update:subtitle', 'Geolocation error');
           this.geoError = 'Try later or enter a city manually in card settings.';
           reject(new Error(err.message));
         }, {
