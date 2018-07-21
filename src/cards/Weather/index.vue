@@ -8,14 +8,15 @@
           </v-flex>
           <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
             <v-layout row wrap fill-height align-center class="today">
-              <v-flex>
+              <v-flex class="text-xs-center">
                 <img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])">
               </v-flex>
-              <v-flex class="display-3">
+              <v-flex class="display-3 text-xs-center">
                 {{ today.main.temp }}
                 <span v-if="settings.units === 'metric'" class="subheading">°C</span>
                 <span v-else-if="settings.units === 'imperial'" class="subheading">°F</span>
                 <span v-else-if="settings.units === 'kelvin'" class="subheading">K</span>
+                <p class="body-1">{{ today.weather[0].description }}</p>
               </v-flex>
             </v-layout>
           </v-flex>
