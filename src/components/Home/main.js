@@ -1,4 +1,4 @@
-import ResizeSensor from 'css-element-queries/src/ResizeSensor';
+import ResizeObserver from 'resize-observer-polyfill';
 import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import Card from '@/components/Card';
 import Muuri from 'muuri';
@@ -12,17 +12,18 @@ export default {
   },
   directives: {
     resize: {
-      inserted(el, { value }) {
-        new ResizeSensor(el, () => value(el)); // eslint-disable-line no-new
+      inserted(el, binding, { context }) {
+        context.ro.observe(el);
       },
-      unbind(el) {
-        ResizeSensor.detach(el);
+      unbind(el, binding, { context }) {
+        context.ro.unobserve(el);
       },
     },
   },
   data() {
     return {
       grid: null,
+      ro: null,
       fab: false,
     };
   },
@@ -53,26 +54,24 @@ export default {
   },
   created() {
     this.checkVersion();
+    this.ro = new ResizeObserver(this.onResize);
   },
   mounted() {
     this.initGrid();
   },
   methods: {
-    onResize(el) {
+    onResize(entries) {
       if (!this.grid) return;
-      this.grid.refreshItems(el);
+      for (let i = 0; i < entries.length; i += 1) {
+        this.grid.refreshItems(entries[i].target);
+      }
       this.grid.layout(true);
     },
-    onDrag(item) {
+    onDrag() {
       const cards = this.grid.getItems()
         .filter(f => f.isActive())
         .map(f => f.getElement().dataset.id);
-      const el = item.getElement();
-      ResizeSensor.detach(el);
       this.$store.commit('SET_CARDS', cards);
-      this.$nextTick(() => {
-        new ResizeSensor(el, () => this.onResize(el)); // eslint-disable-line no-new
-      });
       this.$ga.event('cards', 'order', cards.join(', '), cards.length);
     },
     delCard(key) {

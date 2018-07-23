@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "css-element-queries": "^1.0.2",
     "gantt": "^2.3.0",
     "marked": "^0.4.0",
     "material-design-icons": "^3.0.1",
     "muuri": "^0.6.2",
+    "resize-observer-polyfill": "^1.5.0",
     "vue": "^2.5.16",
     "vue-analytics": "^5.12.2",
     "vue-axios": "^2.1.2",

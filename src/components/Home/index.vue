@@ -21,7 +21,7 @@
       :class="{ 'has-toolbar': $store.state.settings.header.design === 'toolbar' }"
       name="fade" tag="div" appear>
       <card
-        v-resize="onResize"
+        v-resize
         v-for="card in cards" :key="card" :id="card" :data-id="card" @deleted="delCard(card)"/>
     </transition-group>
     <v-layout v-if="emptyCards" align-center justify-space-around fill-height column>
