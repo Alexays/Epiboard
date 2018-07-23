@@ -71,7 +71,6 @@ export default {
     placeholder() {
       const url = this.background;
       if (url && url.indexOf('data:image/') !== 0 && url.indexOf('i.imgur.com') > -1) {
-        console.log(url);
         const idx = url.lastIndexOf('.');
         return `${url.substr(0, idx)}t${url.substr(idx)}`;
       }
