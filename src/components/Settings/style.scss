@@ -16,4 +16,11 @@
       }
     }
   }
+  .file-btn {
+    display: inline-block;
+  }
+  .file-btn input[type=file] {
+    position: absolute;
+    opacity: 0;
+  }
 }

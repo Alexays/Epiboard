@@ -23,6 +23,8 @@ export default {
       palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),
       artworks,
       country: countries,
+      localLoading: false,
+      backgroundLocal: {},
       menu: {
         from: false,
         to: false,
@@ -39,15 +41,34 @@ export default {
   },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);
+    this.$store.commit('SET_BACKGROUND_LOCAL', this.backgroundLocal);
     if (!this.validateHex(this.settings.theme.primary)) {
       this.$store.commit('RESET_SETTING', 'theme');
     }
   },
   beforeMount() {
     this.settings = this.$store.state.settings;
+    this.backgroundLocal = this.$store.state.cache.backgroundLocal;
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
   methods: {
+    fileChange(event) {
+      if (!event.target.files || !event.target.files.length) return;
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.localLoading = true;
+      reader.onload = (e) => {
+        const { value } = event.target;
+        this.backgroundLocal.filename = value
+          .substring(value.lastIndexOf(value.indexOf('/') > -1 ? '/' : '\\') + 1);
+        this.backgroundLocal.dataUrl = e.target.result;
+        this.localLoading = false;
+      };
+    },
+    deleteBackgroundLocal() {
+      this.$store.commit('DEL_BACKGROUND_LOCAL');
+      this.backgroundLocal = this.$store.state.cache.backgroundLocal;
+    },
     validateHex(hex) {
       return hex && hex[0] === '#' && hex.length === 7;
     },

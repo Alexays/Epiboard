@@ -1,17 +1,23 @@
-export default {
-  state: {
-    version: null,
-    cards: {},
-    validCards: [],
-    trends: {
-      data: [],
-      dt: null,
-    },
-    doodle: {
-      data: {},
-      dt: null,
-    },
+const defaultState = {
+  version: null,
+  cards: {},
+  validCards: [],
+  trends: {
+    data: [],
+    dt: null,
   },
+  doodle: {
+    data: {},
+    dt: null,
+  },
+  backgroundLocal: {
+    filename: null,
+    dataUrl: '',
+  },
+};
+
+export default {
+  state: defaultState,
   mutations: {
     SET_VERSION(state, version) {
       state.version = version;
@@ -37,6 +43,12 @@ export default {
     },
     DEL_VALID_CARD(state, key) {
       state.validCards = state.validCards.filter(f => f !== key);
+    },
+    SET_BACKGROUND_LOCAL(state, data) {
+      state.backgroundLocal = data;
+    },
+    DEL_BACKGROUND_LOCAL(state) {
+      state.backgroundLocal = defaultState.backgroundLocal;
     },
   },
 };

@@ -16,6 +16,17 @@
             v-if="settings.header.background === 'url'"
             v-model.lazy="settings.header.backgroundUrl"
             label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"/>
+          <div v-if="settings.header.background === 'local'" class="file-btn">
+            <input ref="inputLocal" type="file" accept="image/*" @change="fileChange"/>
+            <v-btn :loading="localLoading" @click="$refs.inputLocal.click()">
+              {{ backgroundLocal.filename || 'Browse' }}
+            </v-btn>
+            <v-btn
+              v-show="backgroundLocal.filename"
+              icon @click="deleteBackgroundLocal">
+              <v-icon>delete</v-icon>
+            </v-btn>
+          </div>
         </v-layout>
         <h4 class="subheading">Google Trends</h4>
         <v-layout align-center>

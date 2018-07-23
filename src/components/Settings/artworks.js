@@ -2,6 +2,7 @@ export default [
   { text: 'Random', value: 'random' },
   { text: 'Unsplash provider', value: 'unsplash' },
   { text: 'From URL', value: 'url' },
+  { text: 'From Local', value: 'local' },
   { text: 'Default', value: 'default' },
   { text: 'Austin', value: 'austin' },
   { text: 'Beach', value: 'beach' },

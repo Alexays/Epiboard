@@ -47,23 +47,31 @@ export default {
     },
     background() {
       const { background, backgroundUrl } = this.$store.state.settings.header;
+      const { dataUrl } = this.$store.state.cache.backgroundLocal;
       let key = background || 'default';
       if (background === 'random') {
         const keys = Object.keys(backgrounds);
         if (backgroundUrl && backgroundUrl.length) {
           keys.push('url');
         }
+        if (dataUrl && dataUrl.length) {
+          keys.push('local');
+        }
         [key] = this.$utils.shuffle(keys);
       }
       if (key === 'url') {
         return backgroundUrl;
+      }
+      if (key === 'local') {
+        return dataUrl;
       }
       const tmp = backgrounds[key] || backgrounds.default;
       return this.getBackgroundTime(tmp);
     },
     placeholder() {
       const url = this.background;
-      if (url && url.indexOf('i.imgur.com') > -1) {
+      if (url && url.indexOf('data:image/') !== 0 && url.indexOf('i.imgur.com') > -1) {
+        console.log(url);
         const idx = url.lastIndexOf('.');
         return `${url.substr(0, idx)}t${url.substr(idx)}`;
       }
