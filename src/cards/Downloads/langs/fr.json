@@ -1,3 +1,12 @@
 {
-
+  "title": "Téléchargements",
+  "no_downloads": "Vous n'avez pas de téléchargements",
+  "open": "Ouvrir",
+  "delete": "Supprimer",
+  "remove_list": "Retirer de la liste",
+  "clear": "Effacer tout les téléchargements",
+  "error": {
+    "moved": "Fichier déplacé ou supprimé",
+    "unable": "Impossible à retirer"
+  }
 }

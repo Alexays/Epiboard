@@ -1,3 +1,11 @@
 {
-  "title": "Downloads"
+  "no_downloads": "You have no downloads",
+  "open": "Open",
+  "delete": "Delete",
+  "remove_list": "Remove from list",
+  "clear": "Clear all downloads",
+  "error": {
+    "moved": "File moved or deleted",
+    "unable": "Unable to remove"
+  }
 }

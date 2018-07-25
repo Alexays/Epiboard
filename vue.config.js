@@ -74,7 +74,7 @@ const getCards = () => {
   }
 
   if (excludeCards.length && isProduction) {
-    log(`Warning: "${excludeCards.join(',')}" are excludes from build.`);
+    log(`Warning: "${excludeCards.join(',')}" will be excluded from build.`);
   }
 
   return keys;

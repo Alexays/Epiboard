@@ -8,7 +8,7 @@
           <v-toolbar-title v-if="!showSettings && title" :title="id">
             {{ title }}
           </v-toolbar-title>
-          <v-toolbar-title v-else>{{ id }}</v-toolbar-title>
+          <v-toolbar-title v-else>{{ defaultTitle }}</v-toolbar-title>
           <span v-if="showSettings" class="subheading">Settings</span>
           <span v-else-if="subTitle" :title="subTitle" class="subheading">{{ subTitle }}</span>
         </v-layout>
