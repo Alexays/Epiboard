@@ -81,14 +81,49 @@ const getCards = () => {
 };
 
 
-const getLangs = () => {
-  const langs = [];
-  const langsPath = glob.sync('./src/i18n/*.json');
+const getLangs = (cards) => {
+  const langs = {};
+  log('Retrieve main langs...');
+  let langsPath = glob.sync('./src/i18n/*.json');
   for (let i = 0; i < langsPath.length; i += 1) {
     const lang = langsPath[i].replace('./src/i18n/', '').replace('.json', '');
-    langs.push(lang);
+    langs[lang] = require(langsPath[i]); // eslint-disable-line
+  }
+  log('Retrieve and filter cards langs...');
+  const keys = Object.keys(cards);
+  const langsName = Object.keys(langs);
+  langsPath = glob.sync('./src/cards/*/langs/*.json')
+    .filter((f) => {
+      const splitted = f.split('/');
+      return keys.indexOf(splitted[3]) > -1
+        && langsName.indexOf(splitted[5].replace('.json', '')) > -1;
+    });
+  for (let i = 0; i < langsPath.length; i += 1) {
+    const splitted = langsPath[i].split('/');
+    const cardName = splitted[3];
+    const lang = splitted[5].replace('.json', '');
+    langs[lang][cardName] = require(langsPath[i]); // eslint-disable-line
+    if (cards[cardName].langs) {
+      cards[cardName].langs.push(lang);
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      cards[cardName].langs = [lang];
+    }
   }
   return langs;
+};
+
+const generateLangsFile = (langs) => {
+  log('Generate langs files...');
+  const keys = Object.keys(langs);
+  for (let i = 0; i < keys.length; i += 1) {
+    fs.writeFileSync(
+      `./src/langs/${keys[i]}.js`,
+      `// This file is auto generated, do not modify it manually.
+// To modify translations, files are in the i18n folder
+export default ${JSON.stringify(langs[keys[i]])}\n`,
+    );
+  }
 };
 
 const removeEvals = file => new Promise((resolve, reject) => {
@@ -128,7 +163,7 @@ module.exports = {
       /* eslint-disable no-param-reassign */
       // Remove node polyfill
       config.node = false;
-      // Prefer use size as hash & add version in production
+      // Prefer use size and version as hash in production
       const id = `[id].${version}`;
       config.optimization.moduleIds = 'size';
       config.optimization.chunkIds = 'size';
@@ -169,7 +204,8 @@ module.exports = {
       apply: (compiler) => {
         // Get cards and langs
         const cards = getCards();
-        const langs = getLangs();
+        const langs = getLangs(cards);
+        generateLangsFile(langs);
         const definePlugin = compiler.options.plugins
           .find(f => f.constructor.name === 'DefinePlugin');
         const langKeys = Object.keys(langs);
