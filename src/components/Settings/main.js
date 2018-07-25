@@ -62,6 +62,9 @@ export default {
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
   methods: {
+    labelOnOff(value) {
+      return value ? this.$t('settings.on') : this.$t('settings.off');
+    },
     fileChange(event) {
       if (!event.target.files || !event.target.files.length) return;
       const reader = new FileReader();

@@ -4,6 +4,10 @@
       <h3 class="headline">{{ $t('onboarding.settings.title') }}</h3>
     </v-card-title>
     <v-card-text>
+      <h4 class="headline">{{ $t('settings.langs') }}</h4>
+      <v-autocomplete
+          :items="langs"
+          v-model="settings.lang" :label="$t('settings.choose.lang')"/>
       <h4 class="subheading">{{ $t('settings.choose.design') }}</h4>
       <v-radio-group v-model="settings.header.design" :mandatory="false">
         <v-radio :label="$t('settings.design.full')" value="full"/>
@@ -22,7 +26,7 @@
       <v-layout align-center>
         <v-switch
           v-model="settings.trends.enabled"
-          :label="settings.trends.enabled ? `On` : `Off`" class="mt-0" hide-details/>
+          :label="labelOnOff(settings.trends.enabled)" class="mt-0" hide-details/>
         <v-autocomplete
           :items="countries"
           :disabled="!settings.trends.enabled"
@@ -41,6 +45,7 @@
 <script>
 import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
 import { VSwitch, VAutocomplete, VTextField } from 'vuetify';
+import { loadLang } from '@/i18n';
 import countries from '../Settings/countries';
 import artworks from '../Settings/artworks';
 
@@ -59,8 +64,24 @@ export default {
       settings: this.$store.state.settings,
     };
   },
+  computed: {
+    langs() {
+      return Langs.map(f => ({ value: f.locale, text: f.name }));
+    },
+  },
+  watch: {
+    'settings.lang': function lang(val, old) {
+      if (val === old || old === undefined) return;
+      loadLang(val);
+    },
+  },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);
+  },
+  methods: {
+    labelOnOff(value) {
+      return value ? this.$t('settings.on') : this.$t('settings.off');
+    },
   },
 };
 </script>
