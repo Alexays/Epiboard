@@ -12,6 +12,11 @@
     &.has-toolbar {
       margin: 20px auto;
     }
+    /deep/ .muuri-item-placeholder {
+      background-color: rgba(0,0,0,0.23);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      z-index: 0;
+    }
   }
   // While waiting for a muuri update this is the easiest way to center the cards.
   // 1 column

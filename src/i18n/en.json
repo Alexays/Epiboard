@@ -1,0 +1,34 @@
+{
+  "name": "English",
+  "onboarding": {
+    "hello": {
+      "title": "Hello there !",
+      "content": "This is your shiny new tab page !"
+    },
+    "why": {
+      "title": "Why Epiboard is Awesome",
+      "prefs": "Preferences synced across your browsers (if signed in)",
+      "needs": "One card for each need"
+    },
+    "settings": {
+      "title": "Some settings before starting"
+    },
+    "begin": "Begin",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "settings": {
+    "choose": {
+      "design": "Choose your preferred design",
+      "background": "Choose your background",
+      "trends": "Choose your Google trends country"
+    },
+    "design": {
+      "full": "Full",
+      "toolbar": "Toolbar"
+    },
+    "placeholder": {
+      "background": "From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"
+    }
+  }
+}

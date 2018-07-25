@@ -17,7 +17,7 @@
             v-model.lazy="settings.header.backgroundUrl"
             label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"/>
           <div v-if="settings.header.background === 'local'" class="file-btn">
-            <input ref="inputLocal" type="file" accept="image/*" @change="fileChange"/>
+            <input ref="inputLocal" type="file" accept="image/*" @change="fileChange">
             <v-btn :loading="localLoading" @click="$refs.inputLocal.click()">
               {{ backgroundLocal.filename || 'Browse' }}
             </v-btn>
