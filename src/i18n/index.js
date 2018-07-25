@@ -12,4 +12,10 @@ const i18n = new VueI18n({
   },
 });
 
-export default i18n;
+const loadLang = lang => import(/* webpackMode: "lazy-once" */`@/langs/${lang}.js`)
+  .then((msgs) => {
+    i18n.setLocaleMessage(lang, msgs.default);
+    i18n.locale = lang;
+  });
+
+export { i18n, loadLang };

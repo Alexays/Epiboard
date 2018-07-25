@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { i18n, loadLang } from '@/i18n';
 import store from '@/store';
 
 const Header = () => import(/* webpackChunkName: "header" */ '@/components/Header').then(_ => _.default);
@@ -44,10 +45,19 @@ router.beforeEach((to, from, next) => {
     // Hold the request, until storage is ready.
     store._vm.$root.$on('storageReady', () => {
       const { tutorial } = store.state.settings;
-      if (!tutorial && to.path !== '/onboarding') next('/onboarding');
-      else next();
+      ((i18n.locale === store.state.settings.lang)
+        ? Promise.resolve()
+        : loadLang(store.state.settings.lang))
+        .then(() => {
+          if (!tutorial && to.path !== '/onboarding') next('/onboarding');
+          else next();
+        });
     });
-  } else next();
+  } else {
+    const { tutorial } = store.state.settings;
+    if (!tutorial && to.path !== '/onboarding') next('/onboarding');
+    else next();
+  }
 });
 
 router.replace('/');

@@ -15,7 +15,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
 import App from '@/App';
-import i18n from '@/i18n';
+import { i18n } from '@/i18n';
 import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';

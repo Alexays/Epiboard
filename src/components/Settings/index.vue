@@ -2,6 +2,10 @@
   <v-content id="settings">
     <v-container fluid>
       <v-card class="container">
+        <h4 class="headline">Languages</h4>
+        <v-autocomplete
+            :items="langs"
+            v-model="settings.lang" label="Choose your language"/>
         <h4 class="headline">Header</h4>
         <h4 class="subheading">Choose your preferred design</h4>
         <v-radio-group v-model="settings.header.design" :mandatory="false">

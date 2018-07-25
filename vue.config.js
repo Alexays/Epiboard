@@ -211,7 +211,8 @@ module.exports = {
         const langKeys = Object.keys(langs);
         if (definePlugin) {
           definePlugin.definitions.Cards = JSON.stringify(cards);
-          definePlugin.definitions.Langs = JSON.stringify(langKeys);
+          definePlugin.definitions.Langs = JSON.stringify(langKeys
+            .map(f => ({ locale: f, name: langs[f].name })));
         }
         // Remove eval
         compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {

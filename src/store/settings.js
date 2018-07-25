@@ -22,6 +22,7 @@ const initialState = {
     secondary: '#546E7A',
     light: false,
   },
+  lang: 'en',
   tutorial: false,
   debug: false,
 };
