@@ -17,7 +17,14 @@
     "next": "Next",
     "previous": "Previous"
   },
+  "card": {
+    "loading": "{id} is loading...",
+    "click_reload": "Click to reload",
+    "reload": "Reload",
+    "remove": "Remove"
+  },
   "settings": {
+    "title": "Settings",
     "langs": "Languages",
     "header": "Header",
     "browse": "Browse",
@@ -25,6 +32,8 @@
     "analytics_desc": "Just to see how you use cards",
     "debug_desc": "If you feel up to it",
     "reset": "Reset settings",
+    "save": "Save",
+    "cancel": "Cancel",
     "on": "On",
     "off": "Off",
     "dark": {

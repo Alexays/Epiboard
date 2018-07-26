@@ -9,12 +9,12 @@
       <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
       <v-btn
         v-if="$route.path === '/settings'"
-        id="settings" outline flat icon title="Home" color="white" to="/">
+        id="settings" title="Home" color="white" to="/" outline flat icon>
         <v-icon>&#xE5C4;</v-icon>
       </v-btn>
       <v-btn
         v-else-if="$route.path !== '/onboarding'"
-        id="settings" outline flat icon title="Settings" color="white" to="/settings">
+        id="settings" :title="$t('settings.title')" color="white" to="/settings" outline flat icon>
         <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </template>
@@ -23,10 +23,12 @@
         <v-icon>&#xE8B6;</v-icon>
       </v-btn>
       <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" text-field full-erase/>
-      <v-btn v-if="$route.path === '/settings'" to="/" title="Home" icon>
+      <v-btn v-if="$route.path === '/settings'" :title="$t('settings.save')" to="/" icon>
         <v-icon>&#xE5C4;</v-icon>
       </v-btn>
-      <v-btn v-else-if="$route.path !== '/onboarding'" to="/settings" title="Settings" icon>
+      <v-btn
+        v-else-if="$route.path !== '/onboarding'"
+        :title="$t('settings.title')" to="/settings" icon>
         <v-icon>&#xE5D4;</v-icon>
       </v-btn>
     </v-toolbar>

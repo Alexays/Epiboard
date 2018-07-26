@@ -17,7 +17,14 @@
     "next": "Suivant",
     "previous": "Précédent"
   },
+  "card": {
+    "loading": "{id} est en train de charger...",
+    "click_reload": "Cliquez pour recharger",
+    "reload": "Recharger",
+    "remove": "Enlever"
+  },
   "settings": {
+    "title": "Réglages",
     "langs": "Langues",
     "header": "En-tête",
     "browse": "Parcourir",
@@ -25,6 +32,8 @@
     "analytics_desc": "Juste pour voir comment vous utilisez les cartes",
     "debug_desc": "Si vous vous sentez à la hauteur",
     "reset": "Réinitialiser les réglages",
+    "save": "Sauvegarder",
+    "cancel": "Annulé",
     "on": "Activé",
     "off": "Désactivé",
     "dark": {
