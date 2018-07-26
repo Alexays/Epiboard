@@ -15,6 +15,7 @@ const defaultState = {
 const i18n = new VueI18n(defaultState);
 
 const loadLang = (lang) => {
+  if (!lang || lang === i18n.locale) return Promise.resolve();
   if (lang === defaultState.locale) {
     i18n.locale = lang;
     return Promise.resolve();
@@ -24,6 +25,6 @@ const loadLang = (lang) => {
       i18n.setLocaleMessage(lang, msgs.default);
       i18n.locale = lang;
     });
-}
+};
 
 export { i18n, loadLang };
