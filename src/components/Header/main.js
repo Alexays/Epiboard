@@ -79,10 +79,9 @@ export default {
   },
   watch: {
     trendsSettings: {
-      handler(val) {
+      handler() {
         this.$store.commit('SET_TRENDS_CACHE', []);
-        if (!val.enabled) this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
-        else this.getMessage();
+        this.getMessage();
       },
       deep: true,
     },
@@ -129,7 +128,7 @@ export default {
       }
     },
     getMessage() {
-      this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
+      this.messages = [this.$utils.shuffle(welcomeMessages[this.$i18n.locale])[0]];
       if (this.trendsSettings.enabled) {
         this.getTrends();
       }

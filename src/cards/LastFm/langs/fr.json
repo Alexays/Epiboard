@@ -1,7 +1,7 @@
 {
   "plays": "{nb} lecture | {nb} lectures",
   "overall": "Tout le temps",
-  "years": "{nb} année | {nb} années",
+  "years": "{nb} an | {nb} ans",
   "months": "{nb} mois",
   "days": "{nb} jour | {nb} jours",
   "need_user": "Veuillez entrer votre nom d'utilisateur LastFm dans les paramètres de la carte.",
