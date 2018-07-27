@@ -36,7 +36,7 @@
         <v-layout align-center>
           <v-switch
             v-model="settings.trends.enabled"
-            :label="labelOnOff(settings.trends.enabled)" class="mt-0" hide-details/>
+            :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
           <v-autocomplete
             :items="country"
             :disabled="!settings.trends.enabled"
@@ -44,7 +44,8 @@
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>
         <v-switch
-          :label="labelOnOff(settings.doodle.enabled)" v-model="settings.doodle.enabled"/>
+          :label="$tc('settings.onOff', settings.doodle.enabled)"
+          v-model="settings.doodle.enabled"/>
         <h4 class="headline">{{ $t('settings.theme') }}</h4>
         <h4 class="subheading">{{ $t('settings.choose.color') }}</h4>
         <v-layout>
@@ -65,7 +66,7 @@
         <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>
           <v-switch
-            :label="labelOnOff(settings.dark.enabled)"
+            :label="$tc('settings.onOff', settings.dark.enabled)"
             v-model="settings.dark.enabled" class="mt-0" hide-details/>
           <v-checkbox
             :disabled="!settings.dark.enabled"
@@ -110,10 +111,10 @@
         </v-layout>
         <h4 class="headline">Google Analytics</h4>
         <h4 class="subheading">{{ $t('settings.analytics_desc') }}</h4>
-        <v-switch :label="labelOnOff(settings.analytics)" v-model="settings.analytics"/>
+        <v-switch :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
         <h4 class="headline">Debug</h4>
         <h4 class="subheading">{{ $t('settings.debug_desc') }}</h4>
-        <v-switch :label="labelOnOff(settings.debug)" v-model="settings.debug"/>
+        <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
         <v-layout align-center>
           <v-btn flat small @click="reset">{{ $t('settings.reset') }}</v-btn>
           <v-flex>

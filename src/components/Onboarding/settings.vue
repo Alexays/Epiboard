@@ -26,7 +26,7 @@
       <v-layout align-center>
         <v-switch
           v-model="settings.trends.enabled"
-          :label="labelOnOff(settings.trends.enabled)" class="mt-0" hide-details/>
+          :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
         <v-autocomplete
           :items="countries"
           :disabled="!settings.trends.enabled"
@@ -77,11 +77,6 @@ export default {
   },
   beforeDestroy() {
     this.$store.commit('SET_SETTINGS', this.settings);
-  },
-  methods: {
-    labelOnOff(value) {
-      return value ? this.$t('settings.on') : this.$t('settings.off');
-    },
   },
 };
 </script>

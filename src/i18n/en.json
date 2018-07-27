@@ -23,9 +23,6 @@
     "reload": "Reload",
     "remove": "Remove"
   },
-  "home": {
-    "title": "Home"
-  },
   "settings": {
     "title": "Settings",
     "langs": "Languages",
@@ -37,8 +34,8 @@
     "reset": "Reset settings",
     "save": "Save",
     "cancel": "Cancel",
-    "on": "On",
-    "off": "Off",
+    "onOff": "On | Off",
+    "apiKey": "{name} API Key",
     "dark": {
       "title": "Dark mode",
       "desc": "It's gonna get all dark",

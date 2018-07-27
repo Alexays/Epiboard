@@ -22,13 +22,13 @@
           </v-flex>
           <v-flex v-if="settings.forecast" xs2>
             <v-layout class="forecast" row wrap>
-              <v-flex v-for="day in forecast" :key="day.dayName">
+              <v-flex v-for="day in forecast" :key="day.dt_txt">
                 <v-layout column align-center>
                   <v-flex>
                     <img :title="day.title" :src="getImg(day.weather[0]['id'], false)">
                   </v-flex>
                   <v-flex>
-                    {{ day.dayName }}
+                    {{ new Date(day.dt_txt).toLocaleString($i18n.locale, { weekday: 'short' }) }}
                   </v-flex>
                 </v-layout>
               </v-flex>
@@ -46,13 +46,13 @@
         <v-layout v-if="today" column class="title">
           <v-flex class="detail my-2">
             <v-icon medium color="foreground">opacity</v-icon>
-            <span title="Humidity">
+            <span :title="$t('Weather.humidity')">
               <b>{{ today.main.humidity }}</b> <span class="caption">%</span>
             </span>
           </v-flex>
           <v-flex class="detail my-2">
             <v-icon medium color="foreground">wrap_text</v-icon>
-            <span title="Wind speed">
+            <span :title="$t('Weather.wind_speed')">
               <b>{{ today.wind.speed }}</b> <span class="caption">km/h</span>
             </span>
           </v-flex>
@@ -60,10 +60,10 @@
             <v-icon medium color="foreground">brightness_4</v-icon>
             <v-layout column align-end>
               <v-flex>
-                <span title="Sunrise">{{ sunrise }}</span>
+                <span :title="$t('Weather.sunrise')">{{ sunrise }}</span>
               </v-flex>
               <v-flex>
-                <span title="Sunset">{{ sunset }}</span>
+                <span :title="$t('Weather.sunset')">{{ sunset }}</span>
               </v-flex>
             </v-layout>
           </v-flex>

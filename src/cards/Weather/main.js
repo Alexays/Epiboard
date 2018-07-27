@@ -33,7 +33,7 @@ export default {
     },
   },
   mounted() {
-    this.$emit('update:cardtitle', new Date().toLocaleDateString('en-Us', {
+    this.$emit('update:cardtitle', new Date().toLocaleDateString(this.$i18n.locale, {
       weekday: 'long',
     }));
     if (this.VALID_CACHE && this.today && !this.geoError) return this.$emit('init', false);
@@ -70,7 +70,7 @@ export default {
       return `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}`;
     },
     fetch(mode, query) {
-      let endpoint = `${API}${mode}?${query}&appid=${this.settings.appId}`;
+      let endpoint = `${API}${mode}?${query}&appid=${this.settings.appId}&lang=${this.$i18n.locale}`;
       if (this.settings.units !== 'kelvin') {
         endpoint += `&units=${this.settings.units}`;
       }
@@ -93,8 +93,6 @@ export default {
       return this.fetch('forecast', query)
         .then((res) => {
           this.forecast = res.data.list.map((f) => {
-            f.dt = new Date(f.dt_txt);
-            f.dayName = f.dt.toLocaleString('en-US', { weekday: 'short' });
             f.main.temp |= 0;
             if (f.weather[0] && f.weather[0].description) {
               f.weather[0].description = f.weather[0].description.split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
@@ -103,7 +101,10 @@ export default {
             if (this.settings.units === 'imperial') f.title = `${f.main.temp}°F ${f.weather[0].description}`;
             if (this.settings.units === 'kelvin') f.title = `${f.main.temp}K ${f.weather[0].description}`;
             return f;
-          }).filter(f => f.dt.getDate() !== new Date().getDate() && f.dt.getHours() === 12);
+          }).filter((f) => {
+            const date = new Date(f.dt_txt);
+            return date.getDate() !== new Date().getDate() && date.getHours() === 12;
+          });
         });
     },
     getQuery(pos) {

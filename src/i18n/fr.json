@@ -34,8 +34,8 @@
     "reset": "Réinitialiser les réglages",
     "save": "Sauvegarder",
     "cancel": "Annulé",
-    "on": "Activé",
-    "off": "Désactivé",
+    "onOff": "Activé | Désactivé",
+    "apiKey": "clé d'API {name}",
     "dark": {
       "title": "Mode sombre",
       "desc": "Ça va faire tout noir",

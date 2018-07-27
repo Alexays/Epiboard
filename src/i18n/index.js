@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+import axios from 'axios';
 import en from '@/langs/en';
 
 Vue.use(VueI18n);
@@ -18,12 +19,14 @@ const loadLang = (lang) => {
   if (!lang || lang === i18n.locale) return Promise.resolve();
   if (lang === defaultState.locale) {
     i18n.locale = lang;
+    axios.defaults.headers.common['Accept-Language'] = lang;
     return Promise.resolve();
   }
   return import(/* webpackMode: "lazy-once" */`@/langs/${lang}.js`)
     .then((msgs) => {
       i18n.setLocaleMessage(lang, msgs.default);
       i18n.locale = lang;
+      axios.defaults.headers.common['Accept-Language'] = lang;
     });
 };
 

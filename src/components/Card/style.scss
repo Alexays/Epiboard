@@ -8,6 +8,7 @@
     overflow-x: hidden;
     .v-toolbar__title {
       font-weight: normal;
+      text-transform: capitalize;
     }
     .v-toolbar--absolute {
       background-color: transparent!important;

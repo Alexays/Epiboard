@@ -9,7 +9,7 @@
       <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
       <v-btn
         v-if="$route.path === '/settings'"
-        id="settings" title="Home" color="white" to="/" outline flat icon>
+        id="settings" :title="$t('settings.save')" color="white" to="/" outline flat icon>
         <v-icon>&#xE5C4;</v-icon>
       </v-btn>
       <v-btn
