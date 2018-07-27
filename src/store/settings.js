@@ -1,3 +1,6 @@
+const locales = Langs.map(e => e.locale);
+const langs = navigator.languages.filter(f => locales.indexOf(f) > -1);
+
 const initialState = {
   dark: {
     enabled: true,
@@ -22,7 +25,7 @@ const initialState = {
     secondary: '#546E7A',
     light: false,
   },
-  lang: 'en',
+  lang: langs[0] || 'en',
   tutorial: false,
   debug: false,
 };
