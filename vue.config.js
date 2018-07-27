@@ -12,63 +12,119 @@ const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
 const excludeCards = ['Tasks'];
 
-const keys = {};
 
-const paths = glob
-  .sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
-  .map(f => f.replace('./src/cards/', ''))
-  .filter(f => excludeCards.indexOf(f.split('/')[0]) === -1 || !isProduction)
-  .sort((a, b) => (b.endsWith('index.vue') - a.endsWith('index.vue')
-  || b.endsWith('settings.vue') - a.endsWith('settings.vue')));
+const getCards = () => {
+  const keys = {};
 
-for (let i = 0; i < paths.length; i += 1) {
-  const src = paths[i].replace('./src/cards/', '');
-  const [key, file] = src.split('/');
-  if (file === 'index.vue') {
-    keys[key] = {};
-  }
-  if (file === 'settings.vue' && keys[key]) {
-    keys[key].settings = true;
-  }
-  if (file === 'manifest.json' && keys[key]) {
-    const manifest = require(`./src/cards/${src}`); // eslint-disable-line
-    const { browsers } = manifest;
-    if (browsers && browsers.length && browsers.indexOf(browserName) === -1) {
-      excludeCards.push(key);
-    } else {
-      if (keys[key].settings) {
-        keys[key].settings = manifest.settings;
-        if (manifest.settings) delete manifest.settings;
-      }
-      if (Object.keys(manifest).length) {
-        keys[key].manifest = manifest;
+  log('\nGetting cards...');
+
+  const paths = glob
+    .sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
+    .map(f => f.replace('./src/cards/', ''))
+    .filter(f => excludeCards.indexOf(f.split('/')[0]) === -1 || !isProduction)
+    .sort((a, b) => (b.endsWith('index.vue') - a.endsWith('index.vue')
+    || b.endsWith('settings.vue') - a.endsWith('settings.vue')));
+
+  for (let i = 0; i < paths.length; i += 1) {
+    const src = paths[i].replace('./src/cards/', '');
+    const [key, file] = src.split('/');
+    if (file === 'index.vue') {
+      keys[key] = {};
+    }
+    if (file === 'settings.vue' && keys[key]) {
+      keys[key].settings = true;
+    }
+    if (file === 'manifest.json' && keys[key]) {
+      const manifest = require(`./src/cards/${src}`); // eslint-disable-line
+      const { browsers } = manifest;
+      if (browsers && browsers.length && browsers.indexOf(browserName) === -1) {
+        excludeCards.push(key);
+      } else {
+        if (keys[key].settings) {
+          keys[key].settings = manifest.settings;
+          if (manifest.settings) delete manifest.settings;
+        }
+        if (Object.keys(manifest).length) {
+          keys[key].manifest = manifest;
+        }
       }
     }
   }
-}
 
+  log('Removing uncompatible cards...');
 
-// Remove cards not compatible with browsers listed in manifest
-for (let i = 0; i < excludeCards.length; i += 1) {
-  const key = excludeCards[i];
-  if (keys[key]) delete keys[key];
-}
-
-// Filter permissions listed in cards manifest with optional permissions
-const { optional_permissions } = require(`./src/manifest-${browserName}.json`); // eslint-disable-line
-const cards = Object.keys(keys);
-for (let i = 0; i < cards.length; i += 1) {
-  const key = cards[i];
-  if (keys[key].manifest && keys[key].manifest.permissions) {
-    keys[key].manifest.permissions = keys[key].manifest.permissions
-      .filter(f => optional_permissions.indexOf(f) > -1);
-    if (!keys[key].manifest.permissions.length) delete keys[key].manifest.permissions;
+  // Remove cards not compatible with browsers listed in manifest
+  for (let i = 0; i < excludeCards.length; i += 1) {
+    const key = excludeCards[i];
+    if (keys[key]) delete keys[key];
   }
-}
 
-if (excludeCards.length && isProduction) {
-  log(`\nWarning: "${excludeCards.join(',')}" are excludes from build.`);
-}
+  log('Filtering permissions...');
+
+  // Filter permissions listed in cards manifest with optional permissions
+  const { optional_permissions } = require(`./src/manifest-${browserName}.json`); // eslint-disable-line
+  const cards = Object.keys(keys);
+  for (let i = 0; i < cards.length; i += 1) {
+    const key = cards[i];
+    if (keys[key].manifest && keys[key].manifest.permissions) {
+      keys[key].manifest.permissions = keys[key].manifest.permissions
+        .filter(f => optional_permissions.indexOf(f) > -1);
+      if (!keys[key].manifest.permissions.length) delete keys[key].manifest.permissions;
+    }
+  }
+
+  if (excludeCards.length && isProduction) {
+    log(`Warning: "${excludeCards.join(',')}" will be excluded from build.`);
+  }
+
+  return keys;
+};
+
+
+const getLangs = (cards) => {
+  const langs = {};
+  log('Retrieve main langs...');
+  let langsPath = glob.sync('./src/i18n/*.json');
+  for (let i = 0; i < langsPath.length; i += 1) {
+    const lang = langsPath[i].replace('./src/i18n/', '').replace('.json', '');
+    langs[lang] = require(langsPath[i]); // eslint-disable-line
+  }
+  log('Retrieve and filter cards langs...');
+  const keys = Object.keys(cards);
+  const langsName = Object.keys(langs);
+  langsPath = glob.sync('./src/cards/*/langs/*.json')
+    .filter((f) => {
+      const splitted = f.split('/');
+      return keys.indexOf(splitted[3]) > -1
+        && langsName.indexOf(splitted[5].replace('.json', '')) > -1;
+    });
+  for (let i = 0; i < langsPath.length; i += 1) {
+    const splitted = langsPath[i].split('/');
+    const cardName = splitted[3];
+    const lang = splitted[5].replace('.json', '');
+    langs[lang][cardName] = require(langsPath[i]); // eslint-disable-line
+    if (cards[cardName].langs) {
+      cards[cardName].langs.push(lang);
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      cards[cardName].langs = [lang];
+    }
+  }
+  return langs;
+};
+
+const generateLangsFile = (langs) => {
+  log('Generate langs files...');
+  const keys = Object.keys(langs);
+  for (let i = 0; i < keys.length; i += 1) {
+    fs.writeFileSync(
+      `./src/langs/${keys[i]}.js`,
+      `// This file is auto generated, do not modify it manually.
+// To modify translations, files are in the i18n folder
+export default ${JSON.stringify(langs[keys[i]])}\n`,
+    );
+  }
+};
 
 const removeEvals = file => new Promise((resolve, reject) => {
   fs.readFile(file, 'utf8', (readErr, data) => {
@@ -87,6 +143,8 @@ const removeEvals = file => new Promise((resolve, reject) => {
 });
 
 module.exports = {
+  // Disable source-map in production
+  productionSourceMap: !isProduction,
   chainWebpack: (config) => {
     // Exclude cards from build
     if (excludeCards.length) {
@@ -103,18 +161,16 @@ module.exports = {
   configureWebpack: (config) => {
     if (isProduction) {
       /* eslint-disable no-param-reassign */
-      // Disable source-map in production
-      config.devtool = false;
       // Remove node polyfill
       config.node = false;
-      // Prefer use size as hash & add version in production
+      // Prefer use size and version as hash in production
       const id = `[id].${version}`;
       config.optimization.moduleIds = 'size';
       config.optimization.chunkIds = 'size';
       config.output.filename = config.output.filename.replace('[chunkhash:8]', id);
       config.output.chunkFilename = config.output.chunkFilename.replace('[chunkhash:8]', id);
       // MiniCssExtractPlugin
-      const miniCss = config.plugins.find(f => f.options && f.options.filename);
+      const miniCss = config.plugins.find(f => f.constructor.name === 'MiniCssExtractPlugin');
       if (miniCss) {
         const { options } = miniCss;
         options.filename = options.filename.replace('[contenthash:8]', id);
@@ -137,7 +193,6 @@ module.exports = {
     }]));
     // Define variable in the extension
     config.plugins.push(new DefinePlugin({
-      Cards: JSON.stringify(keys),
       browserName: JSON.stringify(browserName),
     }));
     // Create dist zip
@@ -145,9 +200,21 @@ module.exports = {
       path: '../',
       filename: `${name}-${version}.zip`,
     }));
-    // Remove eval
     config.plugins.push({
       apply: (compiler) => {
+        // Get cards and langs
+        const cards = getCards();
+        const langs = getLangs(cards);
+        generateLangsFile(langs);
+        const definePlugin = compiler.options.plugins
+          .find(f => f.constructor.name === 'DefinePlugin');
+        const langKeys = Object.keys(langs);
+        if (definePlugin) {
+          definePlugin.definitions.Cards = JSON.stringify(cards);
+          definePlugin.definitions.Langs = JSON.stringify(langKeys
+            .map(f => ({ locale: f, name: langs[f].name })));
+        }
+        // Remove eval
         compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
           const BUNDLE_DIR = path.join(__dirname, './dist/js');
           glob(`${BUNDLE_DIR}/*.js`, {}, (er, files) => {

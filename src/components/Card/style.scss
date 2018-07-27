@@ -3,10 +3,12 @@
   min-height: 100px;
   margin: 15px;
   position: absolute;
+  z-index: 1;
   .v-card {
     overflow-x: hidden;
     .v-toolbar__title {
       font-weight: normal;
+      text-transform: capitalize;
     }
     .v-toolbar--absolute {
       background-color: transparent!important;

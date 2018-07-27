@@ -1,7 +1,8 @@
 <template>
   <v-card-text>
-    <v-text-field v-model="settings.user" name="api" label="LastFm Username"/>
-    <v-text-field v-model="settings.apiKey" name="api" label="API Key"/>
+    <v-text-field v-model="settings.user" :label="$t('LastFm.settings.username')" name="api"/>
+    <v-text-field
+      v-model="settings.apiKey" :label="$t('settings.apiKey', { name: 'LastFm'})" name="api" />
   </v-card-text>
 </template>
 <script src="./settings.js"></script>

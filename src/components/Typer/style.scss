@@ -24,6 +24,7 @@
     max-width: calc(100% - 40px);
     vertical-align: middle;
     white-space: nowrap;
+    text-transform: capitalize;
   }
   @keyframes blink {
     0% {
@@ -35,5 +36,8 @@
     100% {
       opacity: 1;
     }
+  }
+  /deep/ input {
+    text-transform: capitalize;
   }
 }

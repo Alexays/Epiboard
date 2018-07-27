@@ -1,0 +1,12 @@
+{
+  "humidity": "Humidité",
+  "wind_speed": "Vitesse du vent",
+  "sunrise": "Lever du soleil",
+  "sunset": "Coucher de soleil",
+  "settings": {
+    "location": "Emplacement",
+    "forecast": "Prévisions",
+    "city": "Ville, e.g. Nantes",
+    "choose_units": "Choisissez votre unité préférée"
+  }
+}

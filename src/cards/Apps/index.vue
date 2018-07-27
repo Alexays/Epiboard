@@ -9,7 +9,7 @@
     </div>
     <div v-if="!apps.length" class="text-xs-center">
       <v-icon x-large="">apps</v-icon>
-      <h2 class="subheading">You have no apps.</h2>
+      <h2 class="subheading">{{ $t('Apps.empty') }}</h2>
     </div>
   </v-card-text>
 </template>

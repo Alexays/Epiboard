@@ -15,6 +15,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      .small-font {
+        font-size: 80%;
+      }
     }
   }
 }

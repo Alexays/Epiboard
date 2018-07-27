@@ -33,7 +33,9 @@ export default {
     active(val, old) {
       if (val !== old) {
         const keys = Object.keys(this.items);
-        this.$emit('update:cardtitle', this.items[keys[val]].title);
+        if (this.items[keys[val]]) {
+          this.$emit('update:cardtitle', this.items[keys[val]].title);
+        }
       }
     },
   },
@@ -47,7 +49,7 @@ export default {
       })
       .then(() => {
         const keys = Object.keys(this.items);
-        if (keys.length && keys.length > this.active) {
+        if (this.items[keys[this.active]]) {
           this.$emit('update:cardtitle', this.items[keys[this.active]].title);
         }
         this.$emit('init', true);
@@ -57,7 +59,7 @@ export default {
   methods: {
     updateActions() {
       this.$emit('update:actions', Periods.map(f => ({
-        title: f.title,
+        title: this.$tc(f.title, f.nb, { nb: f.nb }),
         active: f.value === this.period,
         func: () => this.changePeriod(f.value),
       })));
@@ -80,7 +82,7 @@ export default {
         .then((artists) => {
           if (!artists || !artists.length) return;
           this.items.artists = {
-            title: 'Top Artists',
+            title: this.$t('LastFm.top.artists'),
             data: artists,
           };
         });
@@ -90,7 +92,7 @@ export default {
         .then((albums) => {
           if (!albums || !albums.length) return;
           this.items.albums = {
-            title: 'Top Albums',
+            title: this.$t('LastFm.top.albums'),
             data: albums,
           };
         });
@@ -100,7 +102,7 @@ export default {
         .then((tracks) => {
           if (!tracks || !tracks.length) return;
           this.items.tracks = {
-            title: 'Top Tracks',
+            title: this.$t('LastFm.top.tracks'),
             data: tracks,
           };
         });
@@ -109,7 +111,7 @@ export default {
       return Api.getRecentTracks(this.settings.apiKey, this.user, 1)
         .then((tracks) => {
           if (tracks.length && tracks[0]['@attr'] && tracks[0]['@attr'].nowplaying) {
-            this.$emit('update:subtitle', `Now playing: ${tracks[0].name} / ${tracks[0].artist['#text']}`);
+            this.$emit('update:subtitle', `${this.$t('LastFm.now_playing')} ${tracks[0].name} / ${tracks[0].artist['#text']}`);
           }
         });
     },

@@ -1,0 +1,8 @@
+{
+  "memory": "Memory",
+  "network": "Network",
+  "storage": "Storage",
+  "core": "core | cores",
+  "estimation": "Downlink estimation with a max of 10 Mb/s",
+  "rtt": "Round-trip time estimation"
+}

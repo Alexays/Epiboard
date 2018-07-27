@@ -30,7 +30,7 @@ export default {
   },
   created() {
     this.$emit('update:actions', [{
-      title: 'Clear downloads',
+      title: this.$t('Downloads.clear'),
       func: () => this.removeAll(),
     }]);
     Promise.all([this.getDownloads()])
@@ -65,7 +65,7 @@ export default {
           browser.downloads.open(download.id);
         } else {
           Toast.show({
-            title: 'File moved or deleted',
+            title: this.$t('Downloads.error.moved'),
             color: 'error',
             timeout: 4000,
           });
@@ -75,7 +75,7 @@ export default {
     erase(download) {
       browser.downloads.erase({ id: download.id }).catch((err) => {
         Toast.show({
-          title: 'Unable to remove.',
+          title: this.$t('Downloads.error.unable'),
           desc: err.message,
           color: 'error',
           timeout: 4000,
@@ -86,7 +86,7 @@ export default {
     remove(download) {
       browser.downloads.removeFile(download.id).catch((err) => {
         Toast.show({
-          title: 'Unable to remove.',
+          title: this.$t('Downloads.error.unable'),
           desc: err.message,
           color: 'error',
           timeout: 4000,
@@ -97,7 +97,7 @@ export default {
     removeAll() {
       browser.downloads.erase({}).catch((err) => {
         Toast.show({
-          title: 'Unable to remove all.',
+          title: this.$t('Downloads.error.unable'),
           desc: err.message,
           color: 'error',
           timeout: 4000,

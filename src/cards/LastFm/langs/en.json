@@ -1,0 +1,18 @@
+{
+  "plays": "{nb} play | {nb} plays",
+  "overall": "All times",
+  "years": "{nb} year | {nb} years",
+  "months": "{nb} month | {nb} months",
+  "days": "{nb} day | {nb} days",
+  "need_user": "Please enter your LastFm username in the card settings.",
+  "empty": "Obviously you don't have any top.",
+  "now_playing": "Now playing:",
+  "top": {
+    "artists": "Top Artists",
+    "albums": "Top Albums",
+    "tracks": "Top Tracks"
+  },
+  "settings": {
+    "username": "LastFm Username"
+  }
+}

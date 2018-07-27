@@ -71,6 +71,11 @@ export default {
     };
   },
   computed: {
+    defaultTitle() {
+      const translation = this.$t(`${this.id}.title`);
+      if (translation === `${this.id}.title`) return this.id;
+      return translation;
+    },
     theme() {
       if (this.options.theme && !this.showSettings) {
         return this.options.theme;

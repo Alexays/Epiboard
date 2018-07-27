@@ -1,0 +1,12 @@
+{
+  "humidity": "Humidity",
+  "wind_speed": "Wind speed",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "settings": {
+    "location": "Location",
+    "forecast": "Forecast",
+    "city": "City, e.g. Nantes",
+    "choose_units": "Choose your prefered units"
+  }
+}

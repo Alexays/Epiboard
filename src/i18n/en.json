@@ -1,0 +1,65 @@
+{
+  "name": "English",
+  "onboarding": {
+    "hello": {
+      "title": "Hello there !",
+      "content": "This is your shiny new tab page !"
+    },
+    "why": {
+      "title": "Why Epiboard is Awesome",
+      "prefs": "Preferences synced across your browsers (if signed in)",
+      "needs": "One card for each need"
+    },
+    "settings": {
+      "title": "Some settings before starting"
+    },
+    "begin": "Begin",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "card": {
+    "loading": "{id} is loading...",
+    "click_reload": "Click to reload",
+    "reload": "Reload",
+    "remove": "Remove"
+  },
+  "settings": {
+    "title": "Settings",
+    "langs": "Languages",
+    "header": "Header",
+    "browse": "Browse",
+    "theme": "Theme",
+    "analytics_desc": "Just to see how you use cards",
+    "debug_desc": "If you feel up to it",
+    "reset": "Reset settings",
+    "save": "Save",
+    "cancel": "Cancel",
+    "onOff": "On | Off",
+    "apiKey": "{name} API Key",
+    "dark": {
+      "title": "Dark mode",
+      "desc": "It's gonna get all dark",
+      "auto": "Auto",
+      "from": "From",
+      "to": "To"
+    },
+    "choose": {
+      "lang": "Choose your language",
+      "design": "Choose your preferred design",
+      "background": "Choose your background",
+      "trends": "Choose your Google trends country",
+      "color": "Choose the main color"
+    },
+    "design": {
+      "full": "Full",
+      "toolbar": "Toolbar"
+    },
+    "placeholder": {
+      "background": "From URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Main color, e.g. #607D8B"
+    },
+    "error": {
+      "error": "Invalid hex, e.g. #607D8B"
+    }
+  }
+}

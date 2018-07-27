@@ -4,7 +4,7 @@
       :dark="!$store.state.settings.theme.light"
       slider-color="foreground" color="primary"
       grow show-arrows>
-      <v-tab>Recently Closed</v-tab>
+      <v-tab>{{ $t('Sessions.recents') }}</v-tab>
       <v-tab v-for="device in devices" :key="device.deviceName">
         {{ device.deviceName }}
       </v-tab>
@@ -13,7 +13,7 @@
           <v-card-text>
             <div v-if="!recentlyClosed.length" class="text-xs-center session-empty">
               <v-icon x-large>find_in_page</v-icon>
-              <h2 class="subheading">You have no recently closed page.</h2>
+              <h2 class="subheading">{{ $t('Sessions.empty') }}</h2>
             </div>
             <li v-for="session in recentlyClosed" :key="`${session.title}${session.lastModified}`">
               <a :href="session.url" class="session text--primary">
@@ -21,7 +21,9 @@
                    :style="{'background-image': `url(${session.favIconUrl})`}"/>
                 <v-icon v-else>insert_drive_file</v-icon>
                 <span :title="session.title" class="session-title">{{ session.title }}</span>
-                <span class="time text--secondary">{{ session.lastModified }}</span>
+                <span class="time text--secondary">
+                  {{ session.lastModified.toLocaleDateString($i18n.locale, dateOption) }}
+                </span>
               </a>
             </li>
           </v-card-text>
@@ -35,7 +37,9 @@
                 <i v-if="tab.favIconUrl" :style="{'background-image': `url(${tab.favIconUrl})`}"/>
                 <v-icon v-else>insert_drive_file</v-icon>
                 <span :title="tab.title" class="session-title">{{ tab.title }}</span>
-                <span class="time text--secondary">{{ tab.lastModified }}</span>
+                <span class="time text--secondary">
+                  {{ tab.lastModified.toLocaleDateString($i18n.locale, dateOption) }}
+                </span>
               </a>
             </li>
           </v-card-text>

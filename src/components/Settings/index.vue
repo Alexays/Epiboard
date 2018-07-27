@@ -2,24 +2,28 @@
   <v-content id="settings">
     <v-container fluid>
       <v-card class="container">
-        <h4 class="headline">Header</h4>
-        <h4 class="subheading">Choose your preferred design</h4>
+        <h4 class="headline">{{ $t('settings.langs') }}</h4>
+        <v-autocomplete
+          :items="langs"
+          v-model="settings.lang" :label="$t('settings.choose.lang')"/>
+        <h4 class="headline">{{ $t('settings.header') }}</h4>
+        <h4 class="subheading">{{ $t('settings.choose.design') }}</h4>
         <v-radio-group v-model="settings.header.design" :mandatory="false">
-          <v-radio label="Full" value="full"/>
-          <v-radio label="Toolbar" value="toolbar"/>
+          <v-radio :label="$t('settings.design.full')" value="full"/>
+          <v-radio :label="$t('settings.design.toolbar')" value="toolbar"/>
         </v-radio-group>
         <v-layout align-center>
           <v-autocomplete
             :items="artworks"
-            v-model="settings.header.background" label="Choose your background"/>
+            v-model="settings.header.background" :label="$t('settings.choose.background')"/>
           <v-text-field
             v-if="settings.header.background === 'url'"
             v-model.lazy="settings.header.backgroundUrl"
-            label="From URL, e.g. https://i.imgur.com/foVYQ6T.jpg"/>
+            :label="$t('settings.placeholder.background')"/>
           <div v-if="settings.header.background === 'local'" class="file-btn">
-            <input ref="inputLocal" type="file" accept="image/*" @change="fileChange"/>
+            <input ref="inputLocal" type="file" accept="image/*" @change="fileChange">
             <v-btn :loading="localLoading" @click="$refs.inputLocal.click()">
-              {{ backgroundLocal.filename || 'Browse' }}
+              {{ backgroundLocal.filename || $t('settings.browse') }}
             </v-btn>
             <v-btn
               v-show="backgroundLocal.filename"
@@ -32,17 +36,18 @@
         <v-layout align-center>
           <v-switch
             v-model="settings.trends.enabled"
-            :label="settings.trends.enabled ? `On` : `Off`" class="mt-0" hide-details/>
+            :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
           <v-autocomplete
             :items="country"
             :disabled="!settings.trends.enabled"
-            v-model="settings.trends.country" label="Choose your Google Trends Country"/>
+            v-model="settings.trends.country" :label="$t('settings.choose.trends')"/>
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>
         <v-switch
-          :label="settings.doodle.enabled ? `On` : `Off`" v-model="settings.doodle.enabled"/>
-        <h4 class="headline">Theme</h4>
-        <h4 class="subheading">Choose the main color</h4>
+          :label="$tc('settings.onOff', settings.doodle.enabled)"
+          v-model="settings.doodle.enabled"/>
+        <h4 class="headline">{{ $t('settings.theme') }}</h4>
+        <h4 class="subheading">{{ $t('settings.choose.color') }}</h4>
         <v-layout>
           <v-flex xs6 class="picker">
             <li
@@ -54,18 +59,19 @@
           <v-text-field
             v-model.lazy="settings.theme.primary"
             :rules="[
-            () => validateHex(settings.theme.primary) || 'Invalid hex, e.g. #607D8B']"
-            label="Main color, e.g. #607D8B" @change="themeChange"/>
+            () => validateHex(settings.theme.primary) || $t('settings.error.color')]"
+            :label="$t('settings.placeholder.color')" @change="themeChange"/>
         </v-layout>
-        <h4 class="headline">Dark mode</h4>
-        <h4 class="subheading">It's gonna get all dark</h4>
+        <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
+        <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>
           <v-switch
-            :label="settings.dark.enabled ? `On` : `Off`"
+            :label="$tc('settings.onOff', settings.dark.enabled)"
             v-model="settings.dark.enabled" class="mt-0" hide-details/>
           <v-checkbox
             :disabled="!settings.dark.enabled"
-            :label="`Auto`" v-model="settings.dark.auto" class="mt-0" hide-details/>
+            :label="$t('settings.dark.auto')"
+            v-model="settings.dark.auto" class="mt-0" hide-details/>
           <v-menu
             ref="menu_from"
             :disabled="!settings.dark.auto || !settings.dark.enabled"
@@ -78,7 +84,8 @@
             <v-text-field
               slot="activator"
               :disabled="!settings.dark.auto"
-              v-model="settings.dark.from" label="From" prepend-icon="access_time" readonly/>
+              v-model="settings.dark.from"
+              :label="$t('settings.dark.from')" prepend-icon="access_time" readonly/>
             <v-time-picker
               v-model="settings.dark.from"
               format="24h" @change="$refs.menu_from.save(settings.dark.from)"/>
@@ -95,20 +102,21 @@
             <v-text-field
               slot="activator"
               :disabled="!settings.dark.auto"
-              v-model="settings.dark.to" label="To" prepend-icon="access_time" readonly/>
+              v-model="settings.dark.to"
+              :label="$t('settings.dark.to')" prepend-icon="access_time" readonly/>
             <v-time-picker
               v-model="settings.dark.to"
               format="24h" @change="$refs.menu_to.save(settings.dark.to)"/>
           </v-menu>
         </v-layout>
         <h4 class="headline">Google Analytics</h4>
-        <h4 class="subheading">Just to see how you use cards</h4>
-        <v-switch :label="settings.analytics ? `On` : `Off`" v-model="settings.analytics"/>
+        <h4 class="subheading">{{ $t('settings.analytics_desc') }}</h4>
+        <v-switch :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
         <h4 class="headline">Debug</h4>
-        <h4 class="subheading">If you feel up to it</h4>
-        <v-switch :label="settings.debug ? `On` : `Off`" v-model="settings.debug"/>
+        <h4 class="subheading">{{ $t('settings.debug_desc') }}</h4>
+        <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
         <v-layout align-center>
-          <v-btn flat small @click="reset">Reset settings</v-btn>
+          <v-btn flat small @click="reset">{{ $t('settings.reset') }}</v-btn>
           <v-flex>
             <p class="text-xs-right">
               Made with

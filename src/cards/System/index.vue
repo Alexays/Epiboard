@@ -9,7 +9,7 @@
         <span>{{ cpu.modelName }}</span>
         <p>
           {{ cpu.archName }} -
-          {{ cpu.numOfProcessors }} core{{ cpu.numOfProcessors > 1 ? 's' : '' }}
+          {{ cpu.numOfProcessors }} {{ $tc('System.core', cpu.numOfProcessors) }}
         </p>
         <v-progress-linear
           v-for="(core, key) in cpu.processors" :key="key"
@@ -19,7 +19,7 @@
     <div v-if="memory" class="wrapper">
       <div class="wrapper-name">
         <v-icon>memory</v-icon>
-        <div>Memory</div>
+        <div>{{ $t('System.memory') }}</div>
       </div>
       <div class="wrapper-info">
         <span>
@@ -32,19 +32,19 @@
     <div v-if="connection" class="wrapper">
       <div class="wrapper-name">
         <v-icon>network_cell</v-icon>
-        <div>Network</div>
+        <div>{{ $t('System.network') }}</div>
       </div>
       <div class="wrapper-info">
         <v-layout>
           <v-flex xs3>
-            <span title="Downlink estimation with a max of 10 Mb/s">
+            <span :title="$t('System.estimation')">
               <v-icon class="pr-1" small>cloud_download</v-icon>
               <span v-if="connection.downlink === 10">></span>
               {{ connection.downlink }} Mb/s
             </span>
           </v-flex>
           <v-flex xs3>
-            <span title="Round-trip time estimation">
+            <span :title="$t('System.rtt')">
               <v-icon small>swap_calls</v-icon>{{ connection.rtt }}ms
             </span>
             <sup class="grey--text">RTT</sup>
@@ -55,7 +55,7 @@
     <div v-if="storage.length" class="wrapper">
       <div class="wrapper-name">
         <v-icon>storage</v-icon>
-        <div>Storage</div>
+        <div>{{ $t('System.storage') }}</div>
       </div>
       <div class="wrapper-info">
         <li v-for="unit in storage" :key="unit.name" class="storage-unit">

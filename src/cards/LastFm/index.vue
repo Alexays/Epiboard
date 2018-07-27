@@ -5,7 +5,7 @@
     </v-card-text>
     <div v-else-if="itemsLength" class="top-grid">
       <div
-        title="Previous"
+        :title="$t('onboarding.previous')"
         class="prev" @click.stop="active > 0 ? active -= 1 : active = itemsLength - 1"/>
       <v-tabs v-model="active" grow hide-slider>
         <v-tab v-for="(item, key) in items" :key="key"/>
@@ -16,9 +16,10 @@
                 <img :src="item.data[0].image.extralarge">
                 <a :href="item.data[0].url" target="_blank" class="overlay">
                   <h4 class="subheading">{{ item.data[0].name }}</h4>
-                  <p v-if="item.data[0].artist">{{ item.data[0].artist.name }}</p>
-                  <p>{{ item.data[0].playcount }}
-                    play{{ item.data[0].playcount !== 1 ? 's' : '' }}</p>
+                  <span v-if="item.data[0].artist">{{ item.data[0].artist.name }}</span>
+                  <p>{{
+                    $tc('LastFm.plays', item.data[0].playcount, { nb: item.data[0].playcount })
+                  }}</p>
                 </a>
               </div>
             </v-flex>
@@ -28,9 +29,10 @@
                   <img :src="item.data[j].image.large">
                   <a :href="item.data[j].url" target="_blank" class="overlay">
                     <h4 class="caption">{{ item.data[j].name }}</h4>
-                    <p v-if="item.data[j].artist">{{ item.data[j].artist.name }}</p>
-                    <p>{{ item.data[j].playcount }}
-                      play{{ item.data[j].playcount !== 1 ? 's' : '' }}</p>
+                    <span v-if="item.data[j].artist">{{ item.data[j].artist.name }}</span>
+                    <p>{{
+                      $tc('LastFm.plays', item.data[j].playcount, { nb: item.data[j].playcount })
+                    }}</p>
                   </a>
                 </div>
               </v-layout>
@@ -39,16 +41,16 @@
         </v-tab-item>
       </v-tabs>
       <div
-        title="Next"
+        :title="$t('onboarding.next')"
         class="next" @click.stop="active < itemsLength - 1 ? active += 1 : active = 0"/>
     </div>
     <v-card-text v-else-if="!user || !user.length" class="text-xs-center">
       <v-icon x-large="">library_music</v-icon>
-      <h2 class="subheading">Please enter your LastFm username in the card settings.</h2>
+      <h2 class="subheading">{{ $t('LastFm.need_user') }}</h2>
     </v-card-text>
     <v-card-text v-else class="text-xs-center">
       <v-icon x-large="">library_music</v-icon>
-      <h2 class="subheading">Obviously you don't have any top</h2>
+      <h2 class="subheading">{{ $t('LastFm.empty') }}</h2>
     </v-card-text>
   </div>
 </template>

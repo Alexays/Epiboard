@@ -1,5 +1,6 @@
 import { VTimePicker, VCheckbox, VSwitch, VAutocomplete, VMenu, VTextField } from 'vuetify';
 import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
+import { loadLang } from '@/i18n';
 import colors from 'vuetify/es5/util/colors';
 import countries from './countries';
 import artworks from './artworks';
@@ -31,9 +32,18 @@ export default {
       },
     };
   },
+  computed: {
+    langs() {
+      return Langs.map(f => ({ value: f.locale, text: f.name }));
+    },
+  },
   watch: {
+    'settings.lang': function lang(val, old) {
+      if (val === old || old === undefined) return;
+      loadLang(val);
+    },
     'settings.analytics': function analytics(val, old) {
-      if (val === old) return;
+      if (val === old || old === undefined) return;
       localStorage.setItem('analytics', JSON.stringify(val));
       if (val) this.$ga.enable();
       else this.$ga.disable();

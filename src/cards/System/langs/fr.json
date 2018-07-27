@@ -1,0 +1,9 @@
+{
+  "title": "Système",
+  "memory": "Mémoire",
+  "network": "Réseau",
+  "storage": "Stockage",
+  "core": "cœur | cœurs",
+  "estimation": "Estimation de la liaison descendante avec un maximum de 10 Mb/s",
+  "rtt": "Estimation du temps de trajet aller-retour"
+}

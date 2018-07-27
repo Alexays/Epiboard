@@ -1,13 +1,20 @@
 <template>
   <v-layout id="quick-settings">
     <v-flex>
-      <v-checkbox v-model="types.cache" label="Cache" color="primary" hide-details/>
-      <v-checkbox v-model="types.cookies" label="Cookies" color="primary" hide-details/>
-      <v-checkbox v-model="types.history" label="History" color="primary" hide-details/>
-      <v-checkbox v-model="types.localStorage" label="Local Storage" color="primary" hide-details/>
+      <v-checkbox
+        v-model="types.cache" :label="$t('QuickSettings.cache')" color="primary" hide-details/>
+      <v-checkbox
+        v-model="types.cookies" :label="$t('QuickSettings.cookies')" color="primary" hide-details/>
+      <v-checkbox
+        v-model="types.history" :label="$t('QuickSettings.history')" color="primary" hide-details/>
+      <v-checkbox
+        v-model="types.localStorage"
+        :label="$t('QuickSettings.local_storage')" color="primary" hide-details/>
     </v-flex>
     <v-layout align-end justify-end>
-      <v-btn :disabled="isFalse || loading" :loading="loading" flat @click="clear()">Clear</v-btn>
+      <v-btn :disabled="isFalse || loading" :loading="loading" flat @click="clear()">
+        {{ $t('QuickSettings.clear') }}
+      </v-btn>
     </v-layout>
   </v-layout>
 </template>

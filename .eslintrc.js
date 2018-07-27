@@ -6,6 +6,7 @@ module.exports = {
   globals: {
     browser: true,
     Cards: true,
+    Langs: true,
     browserName: true,
   },
   'extends': [

@@ -1,0 +1,65 @@
+{
+  "name": "Français",
+  "onboarding": {
+    "hello": {
+      "title": "Bienvenue !",
+      "content": "C'est votre nouvelle page nouvel onglet !"
+    },
+    "why": {
+      "title": "Pourquoi Epiboard est génial",
+      "prefs": "Préférences synchronisées entre vos navigateurs (si vous êtes connecté)",
+      "needs": "Une carte pour chaque besoin"
+    },
+    "settings": {
+      "title": "Quelques réglages avant de commencer"
+    },
+    "begin": "Commencer",
+    "next": "Suivant",
+    "previous": "Précédent"
+  },
+  "card": {
+    "loading": "{id} est en train de charger...",
+    "click_reload": "Cliquez pour recharger",
+    "reload": "Recharger",
+    "remove": "Enlever"
+  },
+  "settings": {
+    "title": "Réglages",
+    "langs": "Langues",
+    "header": "En-tête",
+    "browse": "Parcourir",
+    "theme": "Thème",
+    "analytics_desc": "Juste pour voir comment vous utilisez les cartes",
+    "debug_desc": "Si vous vous sentez à la hauteur",
+    "reset": "Réinitialiser les réglages",
+    "save": "Sauvegarder",
+    "cancel": "Annulé",
+    "onOff": "Activé | Désactivé",
+    "apiKey": "clé d'API {name}",
+    "dark": {
+      "title": "Mode sombre",
+      "desc": "Ça va faire tout noir",
+      "auto": "Auto",
+      "from": "De",
+      "to": "À"
+    },
+    "choose": {
+      "lang": "Choisissez votre langues",
+      "design": "Choisissez votre design préféré",
+      "background": "Choisissez votre arrière-plan",
+      "trends": "Choisissez votre pays pour Google trends",
+      "color": "Choisissez votre couleur principale"
+    },
+    "design": {
+      "full": "Étendu",
+      "toolbar": "Barre de recherche"
+    },
+    "placeholder": {
+      "background": "À partir de l'URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Couleur principale, e.g. #607D8B"
+    },
+    "error": {
+      "error": "Valeur incorrect, e.g. #607D8B"
+    }
+  }
+}

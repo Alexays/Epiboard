@@ -8,9 +8,12 @@
     <v-dialog v-model="enabled" lazy scrollable max-width="80%">
       <v-card>
         <v-card-text>
-          <canvas id="canvas">
+          <canvas v-if="loading || timeline.length" id="canvas">
             <v-progress-linear v-show="loading" indeterminate/>
           </canvas>
+          <div v-else class="text-xs-center title">
+            Happy holidays :)
+          </div>
         </v-card-text>
       </v-card>
     </v-dialog>
