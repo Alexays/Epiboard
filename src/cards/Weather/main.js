@@ -26,10 +26,15 @@ export default {
   },
   computed: {
     sunrise() {
-      return this.getTime(this.today.sys.sunrise);
+      return new Date(this.today.sys.sunrise * 1000)
+        .toLocaleTimeString(this.$i18n.locale, this.timeOption);
     },
     sunset() {
-      return this.getTime(this.today.sys.sunset);
+      return new Date(this.today.sys.sunset * 1000)
+        .toLocaleTimeString(this.$i18n.locale, this.timeOption);
+    },
+    timeOption() {
+      return { hour: '2-digit', minute: '2-digit' };
     },
   },
   mounted() {
@@ -64,10 +69,6 @@ export default {
         return `${path}${closest}.png`;
       }
       return `${path}none.png`;
-    },
-    getTime(timestamp) {
-      const date = new Date(timestamp * 1000);
-      return `${(`0${date.getHours()}`).slice(-2)}:${(`0${date.getMinutes()}`).slice(-2)}`;
     },
     fetch(mode, query) {
       let endpoint = `${API}${mode}?${query}&appid=${this.settings.appId}&lang=${this.$i18n.locale}`;

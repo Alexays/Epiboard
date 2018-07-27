@@ -58,7 +58,8 @@
           </v-flex>
           <v-flex class="detail my-2">
             <v-icon medium color="foreground">brightness_4</v-icon>
-            <v-layout column align-end>
+            <v-layout
+              :class="{ 'small-font': sunrise.length > 5 || sunset.length > 5 }" column align-end>
               <v-flex>
                 <span :title="$t('Weather.sunrise')">{{ sunrise }}</span>
               </v-flex>
