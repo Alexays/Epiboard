@@ -17,31 +17,50 @@ export default {
       .catch(err => this.$emit('init', err));
   },
   methods: {
+    getType(info) {
+      if (info.type === 'extension') {
+        const idx = this.extensions.findIndex(f => f.id === info.id);
+        if (idx === -1) this.extensions.push(info);
+        else this.$set(this.extensions, idx, info);
+      } else if (info.type === 'theme') {
+        const idx = this.themes.findIndex(f => f.id === info.id);
+        if (idx === -1) this.themes.push(info);
+        else this.$set(this.themes, idx, info);
+      } else {
+        const app = info;
+        app.icon = app.icons
+          ? app.icons[app.icons.length - 1].url
+          : 'chrome://extension-icon/khopmbdjffemhegeeobelklnbglcdgfh/256/1';
+        if (!app.enabled) {
+          app.icon += '?grayscale=true';
+        }
+        const idx = this.apps.findIndex(f => f.id === info.id);
+        if (idx === -1) this.apps.push(info);
+        else this.$set(this.apps, idx, info);
+      }
+    },
     getAll() {
       return browser.management.getAll().then((all) => {
         for (let i = 0; i < all.length; i += 1) {
-          if (all[i].type === 'extension') {
-            this.extensions.push(all[i]);
-          } else if (all[i].type === 'theme') {
-            this.themes.push(all[i]);
-          } else {
-            const app = all[i];
-            app.icon = app.icons
-              ? app.icons[app.icons.length - 1].url
-              : 'chrome://extension-icon/khopmbdjffemhegeeobelklnbglcdgfh/256/1';
-            if (!app.enabled) {
-              app.icon += '?grayscale=true';
-            }
-            this.apps.push(app);
-          }
+          this.getType(all[i]);
         }
       });
+    },
+    get(id) {
+      return browser.management.get(id)
+        .then(this.getType);
     },
     launch(app) {
       if (app.launchType && app.enabled) {
         browser.management.launchApp(app.id);
       } else if (!app.enabled) {
-        Toast.show({ title: `${app.name} is disabled.`, color: 'warning' });
+        browser.management.setEnabled(app.id, true)
+          .then(() => this.get(app.id))
+          .then(() => {
+            Toast.show({ title: `${app.name} is now enabled.` });
+            browser.management.launchApp(app.id);
+          })
+          .catch(() => Toast.show({ title: `${app.name} is disabled.`, color: 'warning' }));
       }
     },
   },

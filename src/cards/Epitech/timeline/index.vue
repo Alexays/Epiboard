@@ -12,7 +12,7 @@
             <v-progress-linear v-show="loading" indeterminate/>
           </canvas>
           <div v-else class="text-xs-center title">
-              Happy holidays :)
+            Happy holidays :)
           </div>
         </v-card-text>
       </v-card>

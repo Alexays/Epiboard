@@ -4,8 +4,8 @@
       <v-card class="container">
         <h4 class="headline">{{ $t('settings.langs') }}</h4>
         <v-autocomplete
-            :items="langs"
-            v-model="settings.lang" :label="$t('settings.choose.lang')"/>
+          :items="langs"
+          v-model="settings.lang" :label="$t('settings.choose.lang')"/>
         <h4 class="headline">{{ $t('settings.header') }}</h4>
         <h4 class="subheading">{{ $t('settings.choose.design') }}</h4>
         <v-radio-group v-model="settings.header.design" :mandatory="false">
@@ -69,7 +69,8 @@
             v-model="settings.dark.enabled" class="mt-0" hide-details/>
           <v-checkbox
             :disabled="!settings.dark.enabled"
-            :label="$t('settings.dark.auto')" v-model="settings.dark.auto" class="mt-0" hide-details/>
+            :label="$t('settings.dark.auto')"
+            v-model="settings.dark.auto" class="mt-0" hide-details/>
           <v-menu
             ref="menu_from"
             :disabled="!settings.dark.auto || !settings.dark.enabled"

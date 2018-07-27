@@ -6,8 +6,8 @@
     <v-card-text>
       <h4 class="headline">{{ $t('settings.langs') }}</h4>
       <v-autocomplete
-          :items="langs"
-          v-model="settings.lang" :label="$t('settings.choose.lang')"/>
+        :items="langs"
+        v-model="settings.lang" :label="$t('settings.choose.lang')"/>
       <h4 class="subheading">{{ $t('settings.choose.design') }}</h4>
       <v-radio-group v-model="settings.header.design" :mandatory="false">
         <v-radio :label="$t('settings.design.full')" value="full"/>

@@ -23,6 +23,9 @@
     "reload": "Reload",
     "remove": "Remove"
   },
+  "home": {
+    "title": "Home"
+  },
   "settings": {
     "title": "Settings",
     "langs": "Languages",
