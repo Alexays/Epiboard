@@ -18,6 +18,11 @@ export default {
       recentlyClosed: [],
     };
   },
+  computed: {
+    dateOption() {
+      return { hour: '2-digit', minute: '2-digit' };
+    },
+  },
   created() {
     Promise.all([this.getDevices(), this.getRecentlyClosed()])
       .then(() => {
@@ -37,7 +42,7 @@ export default {
         // If it's a tab we push it with lastModified value
         if (item.tab) {
           const { tab } = item;
-          tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
+          tab.lastModified = new Date(item.lastModified * 1e3);
           tab.favIconUrl = tab.favIconUrl || this.$utils.getFavicon(tab.url);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
@@ -46,7 +51,7 @@ export default {
           const subKeys = Object.keys(item.window.tabs);
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
-            tab.lastModified = new Date(item.lastModified * 1e3).toLocaleString();
+            tab.lastModified = new Date(item.lastModified * 1e3);
             if (!tab.favIconUrl) {
               tab.favIconUrl = tab.favIconUrl || this.$utils.getFavicon(tab.url);
             }
