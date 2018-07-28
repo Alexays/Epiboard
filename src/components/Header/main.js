@@ -3,7 +3,6 @@ import { VToolbar } from 'vuetify';
 import VueProgressiveImage from 'vue-progressive-image';
 import VueTyper from '@/components/Typer';
 import backgrounds from './backgrounds';
-import welcomeMessages from './welcomeMessages';
 
 Vue.use(VueProgressiveImage);
 
@@ -128,7 +127,8 @@ export default {
       }
     },
     getMessage() {
-      this.messages = [this.$utils.shuffle(welcomeMessages[this.$i18n.locale])[0]];
+      const { welcomeMessages } = this.$i18n.messages[this.$i18n.locale];
+      this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
       if (this.trendsSettings.enabled) {
         this.getTrends();
       }

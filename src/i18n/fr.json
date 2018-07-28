@@ -23,6 +23,17 @@
     "reload": "Recharger",
     "remove": "Enlever"
   },
+  "welcomeMessages": [
+    "Hey, comment se passe ta journée ?",
+    "J'espère que vous allez bien",
+    "Quelqu'un pense à vous ;)",
+    "Bonjour !",
+    "Essaie de sourire, ça marche !",
+    "Savais-tu que tu déchire ?",
+    "Allez on se motive, d'accord ?",
+    "Allez, mon pote !",
+    "Tu peux être qui tu veux !"
+  ],
   "settings": {
     "title": "Réglages",
     "langs": "Langues",

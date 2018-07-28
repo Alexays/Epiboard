@@ -2,7 +2,7 @@
   <v-card-text>
     <h4 class="subheading">{{ $t('Weather.settings.location') }}</h4>
     <v-layout align-center>
-      <v-checkbox label="Auto" v-model="settings.auto" class="mt-0" hide-details/>
+      <v-checkbox v-model="settings.auto" label="Auto" class="mt-0" hide-details/>
       <v-text-field
         :disabled="settings.auto"
         v-model="settings.city" :label="$t('Weather.settings.city')" name="city"/>
