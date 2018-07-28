@@ -53,7 +53,9 @@
           <v-flex class="detail my-2">
             <v-icon medium color="foreground">wrap_text</v-icon>
             <span :title="$t('Weather.wind_speed')">
-              <b>{{ today.wind.speed }}</b> <span class="caption">km/h</span>
+              <b>{{ today.wind.speed }}</b>
+              <span v-if="settings.units === 'imperial'" class="caption">mph</span>
+              <span v-else class="caption">km/h</span>
             </span>
           </v-flex>
           <v-flex class="detail my-2">
