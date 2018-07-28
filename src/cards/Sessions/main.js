@@ -37,7 +37,7 @@ export default {
     mergeTabsAndWindows(sessionItem) {
       const tabs = [];
       const keys = Object.keys(sessionItem);
-      for (let i = 0; i < keys.length; i += 1) {
+      for (let i = 0; i < keys.length && tabs.length < this.settings.maxDeviceTabs; i += 1) {
         const item = sessionItem[keys[i]];
         // If it's a tab we push it with lastModified value
         if (item.tab) {
@@ -52,15 +52,10 @@ export default {
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
             tab.lastModified = new Date(item.lastModified * 1e3);
-            if (!tab.favIconUrl) {
-              tab.favIconUrl = tab.favIconUrl || this.$utils.getFavicon(tab.url);
-            }
+            tab.favIconUrl = tab.favIconUrl || this.$utils.getFavicon(tab.url);
             tabs.push(tab);
           }
         }
-      }
-      if (tabs.length > this.settings.maxDeviceTabs) {
-        tabs.length = this.settings.maxDeviceTabs;
       }
       return tabs;
     },
