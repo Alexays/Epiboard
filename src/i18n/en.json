@@ -13,6 +13,7 @@
     "settings": {
       "title": "Some settings before starting"
     },
+    "welcome": "Welcome !",
     "begin": "Begin",
     "next": "Next",
     "previous": "Previous"
@@ -23,7 +24,7 @@
     "reload": "Reload",
     "remove": "Remove"
   },
-  "welcomeMessages": [
+  "greetMessages": [
     "Hey, how's your day?",
     "Hope you're doing well",
     "Someone think of you ;)",

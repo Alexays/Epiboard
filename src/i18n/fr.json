@@ -13,6 +13,7 @@
     "settings": {
       "title": "Quelques réglages avant de commencer"
     },
+    "welcome": "Bienvenue !",
     "begin": "Commencer",
     "next": "Suivant",
     "previous": "Précédent"
@@ -23,7 +24,7 @@
     "reload": "Recharger",
     "remove": "Enlever"
   },
-  "welcomeMessages": [
+  "greetMessages": [
     "Hey, comment se passe ta journée ?",
     "J'espère que vous allez bien",
     "Quelqu'un pense à vous ;)",

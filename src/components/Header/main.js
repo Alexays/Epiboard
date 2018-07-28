@@ -28,7 +28,7 @@ export default {
   computed: {
     texts() {
       if (this.$route.path === '/onboarding') {
-        return ['Welcome !'];
+        return [this.$t('onboarding.welcome')];
       }
       return this.$route.path === '/' ? this.messages : [this.$route.name];
     },
@@ -127,8 +127,7 @@ export default {
       }
     },
     getMessage() {
-      const { welcomeMessages } = this.$i18n.messages[this.$i18n.locale];
-      this.messages = [this.$utils.shuffle(welcomeMessages)[0]];
+      this.messages = [this.$utils.shuffle(this.$t('greetMessages'))[0]];
       if (this.trendsSettings.enabled) {
         this.getTrends();
       }
