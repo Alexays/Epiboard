@@ -62,9 +62,6 @@ export default {
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
   methods: {
-    translateList(ev) {
-      return this.$t(ev.text);
-    },
     fileChange(event) {
       if (!event.target.files || !event.target.files.length) return;
       const reader = new FileReader();

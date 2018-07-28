@@ -31,7 +31,11 @@ export default {
       return;
     }
     Promise.all(this.settings.feeds.map(this.fetch))
-      .then((items) => {
+      .then((feeds) => {
+        const items = feeds.map(f => f.items.map((d) => {
+          d.feed = f.feed; // eslint-disable-line
+          return d;
+        }));
         this.items = [].concat(...items).sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
       })
       .finally(() => {
@@ -42,7 +46,7 @@ export default {
   },
   methods: {
     fetch(url) {
-      return this.axios.get(`${API}${encodeURIComponent(url)}`).then(res => res.data.items);
+      return this.axios.get(`${API}${encodeURIComponent(url)}`).then(res => res.data);
     },
   },
 };
