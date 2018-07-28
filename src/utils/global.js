@@ -1,3 +1,5 @@
+import Dialog from '@/components/Dialog';
+
 export default {
   getFavicon(url) {
     const regex = /^(http:|https:)/;
@@ -25,5 +27,23 @@ export default {
       return (!(time > toDate && time < fromDate));
     }
     return (time > fromDate && time < toDate);
+  },
+  checkPermissions(payload, name) {
+    return browser.permissions.contains(payload)
+      .then(res => res || browser.permissions.request(payload))
+      .catch(() => Dialog.show({
+        title: 'Permissions are required',
+        text: `${name} ask for permissions that are necessary for it to work properly, is that okay?`,
+        ok: 'Allow',
+        cancel: 'Deny',
+      }).then((res) => {
+        if (res) {
+          return browser.permissions.request(payload).then((granted) => {
+            if (!granted) throw new Error('User has refused');
+            return granted;
+          });
+        }
+        throw new Error('User has refused dialog');
+      }));
   },
 };

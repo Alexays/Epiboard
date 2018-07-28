@@ -14,8 +14,7 @@
     "storage",
     "geolocation",
     "management",
-    "https://trends.google.com/trends/hottrends/visualize/internal/data",
-    "https://www.google.com/doodles/search"
+    "https://trends.google.com/trends/hottrends/visualize/internal/data"
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com/; object-src 'self'",
   "optional_permissions": [

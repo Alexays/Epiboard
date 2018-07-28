@@ -1,7 +1,6 @@
 import * as VList from 'vuetify/es5/components/VList';
 import * as VToolbar from 'vuetify/es5/components/VToolbar';
 import { VMenu, VDivider } from 'vuetify';
-import Dialog from '@/components/Dialog';
 import Toast from '@/components/Toast';
 
 // @vue/component
@@ -144,23 +143,7 @@ export default {
         return Promise.resolve();
       }
       const payload = { permissions: permissions || [], origins: origins || [] };
-      return browser.permissions.contains(payload)
-        .then(res => res || browser.permissions.request(payload))
-        .catch(() => Dialog.show({
-          title: 'Permissions are required',
-          text: `${this.id} ask for permissions that are necessary for it to work properly, is that okay?`,
-          ok: 'Allow',
-          cancel: 'Deny',
-        }).then((res) => {
-          if (res) {
-            return browser.permissions.request(payload)
-              .then((granted) => {
-                if (!granted) throw new Error('User has refused');
-                return granted;
-              });
-          }
-          throw new Error('User has refused dialog');
-        }));
+      return this.$utils.checkPermissions(payload, this.id);
     },
     remove() {
       if (this.options.permissions || this.options.origins) {

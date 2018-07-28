@@ -138,11 +138,14 @@ export default {
       if (dt && date.getTime() < dt + EXPIRE_DOODLE) {
         this.doodle = data;
       } else {
-        this.axios.get(`${DOODLES_API}${date.getFullYear()}/${date.getMonth() + 1}`).then((res) => {
-          const { title, url } = res.data[0];
-          this.doodle = { title, url };
-          this.$store.commit('SET_DOODLE_CACHE', this.doodle);
-        });
+        const payload = { origins: [DOODLES_API] };
+        this.$utils.checkPermissions(payload, 'Google doodle')
+          .then(() => this.axios.get(`${DOODLES_API}${date.getFullYear()}/${date.getMonth() + 1}`))
+          .then((res) => {
+            const { title, url } = res.data[0];
+            this.doodle = { title, url };
+            this.$store.commit('SET_DOODLE_CACHE', this.doodle);
+          });
       }
     },
   },
