@@ -16,7 +16,6 @@
       <v-layout align-center>
         <v-autocomplete
           :items="artworks"
-          :item-text="(ev) => $t(ev.text)"
           v-model="settings.header.background" :label="$t('settings.choose.background')"/>
         <v-text-field
           v-if="settings.header.background === 'url'"
@@ -61,11 +60,15 @@ export default {
   data() {
     return {
       countries,
-      artworks,
       settings: this.$store.state.settings,
     };
   },
   computed: {
+    artworks() {
+      const { locale } = this.$i18n;
+      if (!locale) return [];
+      return artworks.map(f => ({ text: this.$t(f.text), value: f.value }));
+    },
     langs() {
       return Langs.map(f => ({ value: f.locale, text: f.name }));
     },

@@ -15,7 +15,6 @@
         <v-layout align-center>
           <v-autocomplete
             :items="artworks"
-            :item-text="(ev) => $t(ev.text)"
             v-model="settings.header.background" :label="$t('settings.choose.background')"/>
           <v-text-field
             v-if="settings.header.background === 'url'"

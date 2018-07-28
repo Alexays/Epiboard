@@ -22,7 +22,6 @@ export default {
       version: browser.runtime.getManifest().version,
       settings: {},
       palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),
-      artworks,
       country: countries,
       localLoading: false,
       backgroundLocal: {},
@@ -33,6 +32,11 @@ export default {
     };
   },
   computed: {
+    artworks() {
+      const { locale } = this.$i18n;
+      if (!locale) return [];
+      return artworks.map(f => ({ text: this.$t(f.text), value: f.value }));
+    },
     langs() {
       return Langs.map(f => ({ value: f.locale, text: f.name }));
     },
