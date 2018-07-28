@@ -80,12 +80,10 @@ export default {
     getToday(query) {
       return this.fetch('weather', query)
         .then((f) => {
-          f.wind.speed = Math.round(f.wind.speed * (this.settings.units !== 'imperial' ? 3.6 : 1));
           f.main.temp = Math.round(f.main.temp);
-          if (f.weather[0] && f.weather[0].description) {
-            f.weather[0].description = f.weather[0].description
-              .split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
-          }
+          f.wind.speed = Math.round(f.wind.speed * (this.settings.units !== 'imperial' ? 3.6 : 1));
+          f.weather[0].description = f.weather[0].description
+            .split(' ').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
           this.today = f;
         });
     },
@@ -96,7 +94,7 @@ export default {
           this.forecast = data.list.map((f) => {
             f.main.temp = Math.round(f.main.temp);
             f.weather[0].description = f.weather[0].description.split(' ')
-              .map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
+              .map(w => `${w[0].toUpperCase()}${w.slice(1)}`).join(' ');
             if (this.settings.units === 'metric') f.title = `${f.main.temp}°C ${f.weather[0].description}`;
             if (this.settings.units === 'imperial') f.title = `${f.main.temp}°F ${f.weather[0].description}`;
             if (this.settings.units === 'kelvin') f.title = `${f.main.temp}K ${f.weather[0].description}`;
