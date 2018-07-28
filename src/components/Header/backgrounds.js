@@ -30,7 +30,7 @@ export default {
     dusk: 'https://i.imgur.com/XrJi3O1.jpg',
     night: 'https://i.imgur.com/xDWHJ45.jpg',
   },
-  default: {
+  mountains: {
     dawn: 'https://i.imgur.com/kJFNQLr.jpg',
     day: 'https://i.imgur.com/foVYQ6T.jpg',
     dusk: 'https://i.imgur.com/dW217U5.jpg',

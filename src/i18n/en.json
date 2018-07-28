@@ -55,6 +55,13 @@
       "from": "From",
       "to": "To"
     },
+    "artworks": {
+      "random": "Random",
+      "unsplash": "From Unsplash provider",
+      "url": "From Url",
+      "local": "From local",
+      "mountains": "Mountains"
+    },
     "choose": {
       "lang": "Choose your language",
       "design": "Choose your preferred design",

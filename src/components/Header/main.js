@@ -22,7 +22,7 @@ export default {
     return {
       messages: [],
       doodle: null,
-      fallback: this.getBackgroundTime(backgrounds.default),
+      fallback: this.getBackgroundTime(backgrounds.mountains),
     };
   },
   computed: {
@@ -47,7 +47,7 @@ export default {
     background() {
       const { background, backgroundUrl } = this.$store.state.settings.header;
       const { dataUrl } = this.$store.state.cache.backgroundLocal;
-      let key = background || 'default';
+      let key = background || 'mountains';
       if (background === 'random') {
         const keys = Object.keys(backgrounds);
         if (backgroundUrl && backgroundUrl.length) {
@@ -64,7 +64,7 @@ export default {
       if (key === 'local') {
         return dataUrl;
       }
-      const tmp = backgrounds[key] || backgrounds.default;
+      const tmp = backgrounds[key] || backgrounds.mountains;
       return this.getBackgroundTime(tmp);
     },
     placeholder() {

@@ -29,7 +29,7 @@
     "J'espère que vous allez bien",
     "Quelqu'un pense à vous ;)",
     "Bonjour !",
-    "Essaie de sourire, ça marche !",
+    "Essaie de sourire, ça fonctionne !",
     "Savais-tu que tu déchire ?",
     "Allez on se motive, d'accord ?",
     "Allez, mon pote !",
@@ -54,6 +54,13 @@
       "auto": "Auto",
       "from": "De",
       "to": "À"
+    },
+    "artworks": {
+      "random": "Aléatoire",
+      "unsplash": "Depuis le fournisseur Unsplash",
+      "url": "Depuis un lien",
+      "local": "Depuis l'ordinateur",
+      "mountains": "Montagnes"
     },
     "choose": {
       "lang": "Choisissez votre langues",
