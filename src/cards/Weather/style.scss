@@ -1,6 +1,6 @@
 #weather {
   .left {
-    padding: 26px 16px 16px;
+    padding: 25px 16px 12px 16px;
     .today img {
       width: 100px;
     }
@@ -10,7 +10,7 @@
     }
   }
   .weather-info {
-    padding: 60px 16px 16px;
+    padding: 50px 16px 16px;
     .detail {
       display: flex;
       justify-content: space-between;

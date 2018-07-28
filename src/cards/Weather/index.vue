@@ -44,13 +44,19 @@
       </v-flex>
       <v-flex xs4 class="weather-info primary foreground--text head-drag">
         <v-layout v-if="today" column class="title">
-          <v-flex class="detail my-2">
+          <v-flex class="detail mb-1">
             <v-icon medium color="foreground">opacity</v-icon>
             <span :title="$t('Weather.humidity')">
               <b>{{ today.main.humidity }}</b> <span class="caption">%</span>
             </span>
           </v-flex>
-          <v-flex class="detail my-2">
+          <v-flex class="detail mb-1">
+            <v-icon medium color="foreground">cloud</v-icon>
+            <span :title="$t('Weather.cloudiness')">
+              <b>{{ today.clouds.all }}</b> <span class="caption">%</span>
+            </span>
+          </v-flex>
+          <v-flex class="detail mb-1">
             <v-icon medium color="foreground">wrap_text</v-icon>
             <span :title="$t('Weather.wind_speed')">
               <b>{{ today.wind.speed }}</b>
@@ -58,7 +64,7 @@
               <span v-else class="caption">km/h</span>
             </span>
           </v-flex>
-          <v-flex class="detail my-2">
+          <v-flex class="detail mt-1">
             <v-icon medium color="foreground">brightness_4</v-icon>
             <v-layout
               :class="{ 'small-font': sunrise.length > 5 || sunset.length > 5 }" column align-end>

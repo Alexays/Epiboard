@@ -75,26 +75,25 @@ export default {
       if (this.settings.units !== 'kelvin') {
         endpoint += `&units=${this.settings.units}`;
       }
-      return this.$http.get(endpoint);
+      return this.$http.get(endpoint).then(res => res.data);
     },
     getToday(query) {
       return this.fetch('weather', query)
-        .then((res) => {
-          this.today = res.data;
-          this.today.wind.speed = Math.round(this.today.wind.speed *
-            (this.settings.units !== 'imperial' ? 3.6 : 1));
-          this.today.main.temp = Math.round(this.today.main.temp);
-          if (this.today.weather[0] && this.today.weather[0].description) {
-            this.today.weather[0].description = this.today.weather[0].description
+        .then((f) => {
+          f.wind.speed = Math.round(f.wind.speed * (this.settings.units !== 'imperial' ? 3.6 : 1));
+          f.main.temp = Math.round(f.main.temp);
+          if (f.weather[0] && f.weather[0].description) {
+            f.weather[0].description = f.weather[0].description
               .split(' ').map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
           }
+          this.today = f;
         });
     },
     getForecast(query) {
       if (!this.settings.forecast) return Promise.resolve();
       return this.fetch('forecast', query)
-        .then((res) => {
-          this.forecast = res.data.list.map((f) => {
+        .then((data) => {
+          this.forecast = data.list.map((f) => {
             f.main.temp = Math.round(f.main.temp);
             f.weather[0].description = f.weather[0].description.split(' ')
               .map(w => w[0].toUpperCase() + w.substr(1)).join(' ');
