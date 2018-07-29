@@ -43,7 +43,7 @@
         </div>
       </v-flex>
       <v-flex xs4 class="weather-info primary foreground--text head-drag">
-        <v-layout v-if="today" column class="title">
+        <v-layout v-if="today" class="title" column fill-height>
           <v-flex class="detail mb-1">
             <v-icon medium color="foreground">opacity</v-icon>
             <span :title="$t('Weather.humidity')">

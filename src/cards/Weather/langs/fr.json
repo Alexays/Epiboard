@@ -3,10 +3,15 @@
   "wind_speed": "Vitesse du vent",
   "sunrise": "Lever du soleil",
   "sunset": "Coucher de soleil",
+  "error": {
+    "title": "Erreur de géolocalisation",
+    "unsupported": "La géolocalisation n'est pas prise en charge, veuillez entrer le nom de la ville dans les paramètres de la carte.",
+    "sample": "Essayez plus tard ou entrez une ville manuellement dans les paramètres de la carte."
+  },
   "settings": {
     "location": "Emplacement",
     "forecast": "Prévisions",
-    "city": "Ville, e.g. Nantes",
+    "city": "Ville, e.g. Nantes, FR",
     "choose_units": "Choisissez votre unité préférée"
   }
 }

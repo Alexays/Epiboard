@@ -3,10 +3,15 @@
   "wind_speed": "Wind speed",
   "sunrise": "Sunrise",
   "sunset": "Sunset",
+  "error": {
+    "title": "Geolocation error",
+    "unsupported": "Geolocation is not supported please enter city name in card settings.",
+    "sample": "Try later or enter a city manually in card settings."
+  },
   "settings": {
     "location": "Location",
     "forecast": "Forecast",
-    "city": "City, e.g. Nantes",
+    "city": "City, e.g. Nantes, FR",
     "choose_units": "Choose your prefered units"
   }
 }
