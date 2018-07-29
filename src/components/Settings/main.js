@@ -1,6 +1,5 @@
 import { VTimePicker, VCheckbox, VSwitch, VAutocomplete, VMenu, VTextField } from 'vuetify';
 import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
-import Toast from '@/components/Toast';
 import { loadLang } from '@/i18n';
 import colors from 'vuetify/es5/util/colors';
 import countries from './countries';
@@ -46,7 +45,7 @@ export default {
     'settings.lang': function lang(val, old) {
       if (val === old || old === undefined) return;
       loadLang(val).then(() => {
-        Toast.show({ title: this.$t('settings.reload_card_lang') });
+        this.$store.commit('DEL_CARDS_CACHE');
       });
     },
     'settings.analytics': function analytics(val, old) {

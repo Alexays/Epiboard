@@ -29,6 +29,9 @@ export default {
     DEL_CARD_CACHE(state, key) {
       if (state.cards[key]) delete state.cards[key];
     },
+    DEL_CARDS_CACHE(state) {
+      state.cards = {};
+    },
     SET_TRENDS_CACHE(state, trends) {
       state.trends.dt = trends && trends.length ? Date.now() : null;
       state.trends.data = trends;

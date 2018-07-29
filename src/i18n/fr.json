@@ -48,7 +48,6 @@
     "cancel": "Annulé",
     "onOff": "Activé | Désactivé",
     "apiKey": "clé d'API {name}",
-    "reload_card_lang": "Certaines cartes doivent être rechargées pour une traduction complète.",
     "dark": {
       "title": "Mode sombre",
       "desc": "Ça va faire tout noir",

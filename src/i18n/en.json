@@ -48,7 +48,6 @@
     "cancel": "Cancel",
     "onOff": "On | Off",
     "apiKey": "{name} API Key",
-    "reload_card_lang": "Some cards must be reloaded for a complete translation",
     "dark": {
       "title": "Dark mode",
       "desc": "It's gonna get all dark",
