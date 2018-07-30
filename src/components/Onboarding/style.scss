@@ -1,11 +1,11 @@
 #onboarding {
-  .slide-fade-enter-active {
+  .slide-fade-transition-enter-active {
     transition: all .3s ease;
   }
-  .slide-fade-leave-active {
+  .slide-fade-transition-leave-active {
     transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
-  .slide-fade-enter, .slide-fade-leave-to {
+  .slide-fade-transition-enter, .slide-fade-transition-leave-to {
     transform: translateX(50px);
     opacity: 0;
   }

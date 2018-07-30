@@ -56,11 +56,9 @@ export default {
       } else if (!app.enabled) {
         browser.management.setEnabled(app.id, true)
           .then(() => this.get(app.id))
-          .then(() => {
-            Toast.show({ title: `${app.name} is now enabled.` });
-            browser.management.launchApp(app.id);
-          })
-          .catch(() => Toast.show({ title: `${app.name} is disabled.`, color: 'warning' }));
+          .then(() => Toast.show({ title: `${app.name} is now enabled.` }))
+          .catch(() => Toast.show({ title: `${app.name} is disabled.`, color: 'warning' }))
+          .finally(() => browser.management.launchApp(app.id));
       }
     },
   },

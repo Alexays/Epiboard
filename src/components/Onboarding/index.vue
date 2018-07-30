@@ -2,7 +2,7 @@
   <v-content id="onboarding">
     <v-container fluid>
       <v-layout align-center>
-        <transition name="slide-fade" mode="out-in">
+        <transition name="slide-fade-transition" mode="out-in">
           <component :is="board[index]" @next="next" @prev="prev"/>
         </transition>
       </v-layout>

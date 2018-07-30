@@ -215,7 +215,11 @@ export default {
           } else {
             this.typePos -= 1;
           }
-          this.typing = this.currentWord.substr(0, this.typePos);
+          if (this.currentWord) {
+            this.typing = this.currentWord.substr(0, this.typePos);
+          } else {
+            this.destroyTypeInterval();
+          }
         }
       }, this.speed);
     },
