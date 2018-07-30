@@ -44,7 +44,7 @@ export default {
   watch: {
     'settings.lang': function lang(val, old) {
       if (val === old || old === undefined) return;
-      loadLang(val).then(() => {
+      loadLang(this, val).then(() => {
         this.$store.commit('DEL_CARDS_CACHE');
       });
     },

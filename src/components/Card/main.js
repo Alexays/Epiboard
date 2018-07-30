@@ -63,8 +63,7 @@ export default {
       },
       showSettings: false,
       pendingSave: false,
-      loaded: false,
-      error: null,
+      loaded: 0,
       hash: '',
       actions: [],
     };
@@ -122,7 +121,7 @@ export default {
       .then(tmp => tmp.default)
       .catch((err) => {
         Toast.show({
-          title: `${id} needs permissions that it cannot have, retry later.`,
+          title: this.$t('card.permissions_failed', { id }),
           color: 'error',
           timeout: 10000,
           dismissible: false,
@@ -155,7 +154,7 @@ export default {
       this.$emit('deleted');
     },
     init(res) {
-      this.loaded = true;
+      this.loaded = 1;
       if (res === undefined) {
         if (this.$store.state.cache.cards[this.id] !== undefined) {
           this.$store.commit('DEL_CARD_CACHE', this.id);
@@ -163,9 +162,9 @@ export default {
         this.$store.commit('ADD_VALID_CARD', this.id);
       } else if (res instanceof Error) {
         this.$store.commit('DEL_VALID_CARD', this.id);
-        this.error = `${this.id} got an error,`;
+        this.loaded = 2;
         Toast.show({
-          title: `${this.error} please try again later.`,
+          title: this.$t('card.error', { id: this.id }),
           desc: this.$store.state.settings.debug ? res.message : null,
           color: 'error',
           timeout: 10000,
@@ -179,8 +178,7 @@ export default {
       }
     },
     reload() {
-      this.loaded = false;
-      this.error = null;
+      this.loaded = 0;
       this.subTitle = null;
       this.$store.commit('DEL_VALID_CARD', this.id);
       this.$store.commit('DEL_CARD_CACHE', this.id);

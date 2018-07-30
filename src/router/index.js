@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
   // Hold the request, until storage is ready if necessary.
   waitStorage()
     // Load lang if necessary.
-    .then(() => loadLang(store.state.settings.lang))
+    .then(() => loadLang(store._vm, store.state.settings.lang))
     .then(() => checkTutorial(to, next));
 });
 

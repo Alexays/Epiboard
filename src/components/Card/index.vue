@@ -19,9 +19,9 @@
           :style="{ color: actionsColor }"
           :size="25" :width="2" indeterminate/>
         <v-btn
-          v-if="error && !showSettings"
+          v-if="loaded === 2 && !showSettings"
           :style="{ color: actionsColor }"
-          :title="`${error} ${$t('card.click_reload')}`" flat icon @click="reload()">
+          :title="$t('card.error_reload')" flat icon @click="reload()">
           <v-icon>warning</v-icon>
         </v-btn>
         <v-menu v-if="!showSettings" lazy bottom offset-y>

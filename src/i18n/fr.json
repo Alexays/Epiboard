@@ -20,9 +20,11 @@
   },
   "card": {
     "loading": "{id} est en train de charger...",
-    "click_reload": "Cliquez pour recharger",
     "reload": "Recharger",
-    "remove": "Enlever"
+    "remove": "Enlever",
+    "permissions_failed": "{id} a besoin de permissions qu'il ne peut pas avoir, réessayez plus tard",
+    "error": "{id} a eu une erreur, veuillez réessayer plus tard",
+    "error_reload": "{id} a eu une erreur, cliquez pour recharger"
   },
   "greetMessages": [
     "Hey, comment se passe ta journée ?",

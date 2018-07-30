@@ -76,7 +76,7 @@ export default {
   watch: {
     'settings.lang': function lang(val, old) {
       if (val === old || old === undefined) return;
-      loadLang(val);
+      loadLang(this, val);
     },
   },
   beforeDestroy() {

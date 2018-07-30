@@ -20,9 +20,11 @@
   },
   "card": {
     "loading": "{id} is loading...",
-    "click_reload": "Click to reload",
     "reload": "Reload",
-    "remove": "Remove"
+    "remove": "Remove",
+    "permissions_failed": "{id} needs permissions that it cannot have, retry later",
+    "error": "{id} got an error, please try again later",
+    "error_reload": "{id} got an error, click to reload"
   },
   "greetMessages": [
     "Hey, how's your day?",
