@@ -3,7 +3,7 @@
     <template v-if="textField">
       <v-text-field
         ref="textInput"
-        :value="typing"
+        :value="capitalized"
         :disabled="$route.path !== '/'"
         :spellcheck="!typeInterval"
         hide-details single-line @keyup.13="search" @input="userInput($event)"/>

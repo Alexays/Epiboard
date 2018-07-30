@@ -59,6 +59,10 @@ export default {
     };
   },
   computed: {
+    capitalized() {
+      if (!this.typing) return '';
+      return `${this.typing[0].toUpperCase()}${this.typing.substring(1)}`;
+    },
     url() {
       if (this.currentWord && this.$route.path === '/') {
         return `https://www.google.com/#q=${this.currentWord}`;
@@ -183,7 +187,7 @@ export default {
         this.fullEraseTimeout = setTimeout(() => {
           this.isFullErasing = true;
           if (this.textField) {
-            this.$refs.textInput.$el.children[0].children[0].children[0].children[0].select();
+            this.$refs.textInput.$refs.input.select();
           }
           clearTimeout(this.fullEraseTimeout);
           const tmp = setTimeout(() => {
