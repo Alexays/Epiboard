@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Epiboard - New Tab",
   "short_name": "Epiboard",
-  "description": "A new tab page extension with material design",
+  "description": "$description",
   "author": "Alexays",
   "version": "$version",
   "icons": {

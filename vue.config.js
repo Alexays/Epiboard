@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
-const { version, name } = require('./package.json');
+const { version, name, description } = require('./package.json');
 const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
@@ -169,6 +169,7 @@ module.exports = {
       transform: (content) => {
         const jsonContent = JSON.parse(content);
         jsonContent.version = version;
+        jsonContent.description = description;
         if (!isProduction) {
           jsonContent.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'";
         }
