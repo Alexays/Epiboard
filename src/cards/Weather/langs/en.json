@@ -3,6 +3,7 @@
   "wind_speed": "Wind speed",
   "sunrise": "Sunrise",
   "sunset": "Sunset",
+  "cloudiness": "Cloudiness",
   "error": {
     "title": "Geolocation error",
     "unsupported": "Geolocation is not supported please enter city name in card settings.",

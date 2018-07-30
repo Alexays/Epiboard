@@ -3,6 +3,7 @@
   "wind_speed": "Vitesse du vent",
   "sunrise": "Lever du soleil",
   "sunset": "Coucher de soleil",
+  "cloudiness": "Taux de nuages",
   "error": {
     "title": "Erreur de géolocalisation",
     "unsupported": "La géolocalisation n'est pas prise en charge, veuillez entrer le nom de la ville dans les paramètres de la carte.",
