@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
 const { version, name } = require('./package.json');
@@ -176,18 +175,6 @@ module.exports = {
         return JSON.stringify(jsonContent, null, 2);
       },
     }]));
-    // Remove unused css
-    config.plugins.push(new PurgecssPlugin({
-      paths: [
-        path.join(__dirname, './public/index.html'),
-        ...glob.sync('./src/**/*.vue'),
-        ...glob.sync('./src/**/*.js'),
-        ...glob.sync('./node_modules/vuetify/src/**/*.js'),
-        ...glob.sync('./node_modules/vuetify/src/**/*.ts'),
-      ],
-      whitelist: ['html', 'body', 'material-icons', 'muuri-item-placeholder'],
-      whitelistPatterns: [/v-input/, /transition/, /--text/],
-    }));
     // Define variable in the extension
     config.plugins.push(new DefinePlugin({
       browserName: JSON.stringify(browserName),

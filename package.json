@@ -40,7 +40,6 @@
     "cross-env": "^5.2.0",
     "glob": "^7.1.2",
     "node-sass": "^4.9.2",
-    "purgecss-webpack-plugin": "^1.2.0",
     "sass-loader": "^7.0.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
