@@ -186,7 +186,7 @@ module.exports = {
         ...glob.sync('./node_modules/vuetify/src/**/*.ts'),
       ],
       whitelist: ['html', 'body', 'material-icons', 'added', 'changed', 'removed', 'credits'],
-      whitelistPatterns: [/v-input/, /transition/],
+      whitelistPatterns: [/v-input/, /transition/, /--text/],
     }));
     // Define variable in the extension
     config.plugins.push(new DefinePlugin({
