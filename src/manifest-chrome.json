@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Epiboard - New Tab",
+  "name": "__MSG_appName__",
   "short_name": "Epiboard",
-  "description": "$description",
+  "description": "__MSG_appDesc__",
   "author": "Alexays",
   "version": "$version",
   "icons": {
@@ -10,6 +10,7 @@
     "48": "imgs/icon48.png",
     "128": "imgs/icon128.png"
   },
+  "default_locale": "en",
   "permissions": [
     "storage",
     "geolocation",
