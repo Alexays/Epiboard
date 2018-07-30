@@ -25,14 +25,11 @@
   }
 }
 
-// Causes bugs due to tabs in the session cards, see next updates
-// .v-card:not(.muuri-item-shown) {
-//   visibility: hidden;
-// }
+/* purgecss start ignore */
 .muuri-item-dragging {
   z-index: 3 !important;
   .head-drag {
-    cursor: grabbing;
+    cursor: grabbing!important;
   }
 }
 .muuri-item-releasing {
@@ -41,3 +38,4 @@
 .muuri-item-hidden {
   z-index: 0 !important;
 }
+/* purgecss end ignore */
