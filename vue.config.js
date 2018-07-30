@@ -13,76 +13,61 @@ const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
 const excludeCards = ['Tasks'];
 
+const cards = {};
 
-const getCards = () => {
-  const keys = {};
+const paths = glob
+  .sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
+  .map(f => f.replace('./src/cards/', ''))
+  .filter(f => excludeCards.indexOf(f.split('/')[0]) === -1 || !isProduction)
+  .sort((a, b) => (b.endsWith('index.vue') - a.endsWith('index.vue')
+  || b.endsWith('settings.vue') - a.endsWith('settings.vue')));
 
-  log('\nGetting cards...');
-
-  const paths = glob
-    .sync('./src/cards/*/+(index.vue|settings.vue|manifest.json)')
-    .map(f => f.replace('./src/cards/', ''))
-    .filter(f => excludeCards.indexOf(f.split('/')[0]) === -1 || !isProduction)
-    .sort((a, b) => (b.endsWith('index.vue') - a.endsWith('index.vue')
-    || b.endsWith('settings.vue') - a.endsWith('settings.vue')));
-
-  for (let i = 0; i < paths.length; i += 1) {
-    const src = paths[i].replace('./src/cards/', '');
-    const [key, file] = src.split('/');
-    if (file === 'index.vue') {
-      keys[key] = {};
-    }
-    if (file === 'settings.vue' && keys[key]) {
-      keys[key].settings = true;
-    }
-    if (file === 'manifest.json' && keys[key]) {
-      const manifest = require(`./src/cards/${src}`); // eslint-disable-line
-      const { browsers } = manifest;
-      if (browsers && browsers.length && browsers.indexOf(browserName) === -1) {
-        excludeCards.push(key);
-      } else {
-        if (keys[key].settings) {
-          keys[key].settings = manifest.settings;
-          if (manifest.settings) delete manifest.settings;
-        }
-        if (Object.keys(manifest).length) {
-          keys[key].manifest = manifest;
-        }
+for (let i = 0; i < paths.length; i += 1) {
+  const src = paths[i].replace('./src/cards/', '');
+  const [key, file] = src.split('/');
+  if (file === 'index.vue') {
+    cards[key] = {};
+  }
+  if (file === 'settings.vue' && cards[key]) {
+    cards[key].settings = true;
+  }
+  if (file === 'manifest.json' && cards[key]) {
+    const manifest = require(`./src/cards/${src}`); // eslint-disable-line
+    const { browsers } = manifest;
+    if (browsers && browsers.length && browsers.indexOf(browserName) === -1) {
+      excludeCards.push(key);
+    } else {
+      if (cards[key].settings) {
+        cards[key].settings = manifest.settings;
+        if (manifest.settings) delete manifest.settings;
+      }
+      if (Object.keys(manifest).length) {
+        cards[key].manifest = manifest;
       }
     }
   }
+}
 
-  log('Removing uncompatible cards...');
+// Remove cards not compatible with browsers listed in manifest
+for (let i = 0; i < excludeCards.length; i += 1) {
+  const key = excludeCards[i];
+  if (cards[key]) delete cards[key];
+}
 
-  // Remove cards not compatible with browsers listed in manifest
-  for (let i = 0; i < excludeCards.length; i += 1) {
-    const key = excludeCards[i];
-    if (keys[key]) delete keys[key];
+// Filter permissions listed in cards manifest with optional permissions
+const { optional_permissions } = require(`./src/manifest-${browserName}.json`); // eslint-disable-line
+const cardsKeys = Object.keys(cards);
+for (let i = 0; i < cardsKeys.length; i += 1) {
+  const key = cardsKeys[i];
+  if (cards[key].manifest && cards[key].manifest.permissions) {
+    cards[key].manifest.permissions = cards[key].manifest.permissions
+      .filter(f => optional_permissions.indexOf(f) > -1);
+    if (!cards[key].manifest.permissions.length) delete cards[key].manifest.permissions;
   }
-
-  log('Filtering permissions...');
-
-  // Filter permissions listed in cards manifest with optional permissions
-  const { optional_permissions } = require(`./src/manifest-${browserName}.json`); // eslint-disable-line
-  const cards = Object.keys(keys);
-  for (let i = 0; i < cards.length; i += 1) {
-    const key = cards[i];
-    if (keys[key].manifest && keys[key].manifest.permissions) {
-      keys[key].manifest.permissions = keys[key].manifest.permissions
-        .filter(f => optional_permissions.indexOf(f) > -1);
-      if (!keys[key].manifest.permissions.length) delete keys[key].manifest.permissions;
-    }
-  }
-
-  if (excludeCards.length && isProduction) {
-    log(`Warning: "${excludeCards.join(',')}" will be excluded from build.`);
-  }
-
-  return keys;
-};
+}
 
 
-const getLangs = (cards) => {
+const getLangs = () => {
   const langs = {};
   log('Retrieve main langs...');
   let langsPath = glob.sync('./src/i18n/*.json');
@@ -91,12 +76,11 @@ const getLangs = (cards) => {
     langs[lang] = require(langsPath[i]); // eslint-disable-line
   }
   log('Retrieve and filter cards langs...');
-  const keys = Object.keys(cards);
   const langsName = Object.keys(langs);
   langsPath = glob.sync('./src/cards/*/langs/*.json')
     .filter((f) => {
       const splitted = f.split('/');
-      return keys.indexOf(splitted[3]) > -1
+      return cardsKeys.indexOf(splitted[3]) > -1
         && langsName.indexOf(splitted[5].replace('.json', '')) > -1;
     });
   for (let i = 0; i < langsPath.length; i += 1) {
@@ -115,14 +99,14 @@ const getLangs = (cards) => {
 };
 
 const generateLangsFile = (langs) => {
-  log('Generate langs files...');
-  const keys = Object.keys(langs);
-  for (let i = 0; i < keys.length; i += 1) {
+  log('Generating langs files...');
+  const langsNames = Object.keys(langs);
+  for (let i = 0; i < langsNames.length; i += 1) {
     fs.writeFileSync(
-      `./src/langs/${keys[i]}.js`,
+      `./src/langs/${langsNames[i]}.js`,
       `// This file is auto generated, do not modify it manually.
 // To modify translations, files are in the i18n folder
-export default ${JSON.stringify(langs[keys[i]])}\n`,
+export default ${JSON.stringify(langs[langsNames[i]])}\n`,
     );
   }
 };
@@ -165,9 +149,9 @@ module.exports = {
       // Remove node polyfill
       config.node = false;
       // Prefer use size and version as hash in production
-      const id = `[id].${version}`;
-      config.optimization.moduleIds = 'size';
-      config.optimization.chunkIds = 'size';
+      const id = `${version}`;
+      // config.optimization.moduleIds = 'size';
+      // config.optimization.chunkIds = 'size';
       config.output.filename = config.output.filename.replace('[chunkhash:8]', id);
       config.output.chunkFilename = config.output.chunkFilename.replace('[chunkhash:8]', id);
       // MiniCssExtractPlugin
@@ -215,8 +199,10 @@ module.exports = {
     }));
     config.plugins.push({
       apply: (compiler) => {
-        // Get cards and langs
-        const cards = getCards();
+        if (excludeCards.length && isProduction) {
+          log(`\nWarning: "${excludeCards.join(',')}" will be excluded from build.`);
+        }
+        // Get langs
         const langs = getLangs(cards);
         generateLangsFile(langs);
         const definePlugin = compiler.options.plugins
