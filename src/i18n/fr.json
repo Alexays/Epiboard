@@ -21,7 +21,7 @@
   "card": {
     "loading": "{id} est en train de charger...",
     "reload": "Recharger",
-    "remove": "Enlever",
+    "remove": "Retirer",
     "permissions_failed": "{id} a besoin de permissions qu'il ne peut pas avoir, réessayez plus tard",
     "error": "{id} a eu une erreur, veuillez réessayer plus tard",
     "error_reload": "{id} a eu une erreur, cliquez pour recharger"
@@ -37,6 +37,10 @@
     "Allez, mon pote !",
     "Tu peux être qui tu veux !"
   ],
+  "home": {
+    "no_cards": "Pas de cartes.",
+    "add_cards": "Vous pouvez ajouter des cartes en cliquant sur le bouton flottant en haut à droite."
+  },
   "settings": {
     "title": "Réglages",
     "langs": "Langues",

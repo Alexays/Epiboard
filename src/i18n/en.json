@@ -37,6 +37,10 @@
     "Come on buddy !",
     "You can be whoever you want !"
   ],
+  "home": {
+    "no_cards": "No cards.",
+    "add_cards": "You can add cards by click on fab button in top right."
+  },
   "settings": {
     "title": "Settings",
     "langs": "Languages",

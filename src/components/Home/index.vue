@@ -27,8 +27,8 @@
     <v-layout v-if="emptyCards" align-center justify-space-around fill-height column>
       <v-card class="text-xs-center" color="transparent" flat>
         <v-icon x-large>grid_off</v-icon>
-        <h2 class="subheading">No cards.</h2>
-        <h2 class="caption">You can add cards by click on fab button in top right.</h2>
+        <h2 class="subheading">{{ $t('home.no_cards') }}</h2>
+        <h2 class="caption">{{ $t('home.add_cards') }}</h2>
       </v-card>
       <div/>
     </v-layout>
