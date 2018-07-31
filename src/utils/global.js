@@ -1,4 +1,5 @@
 import Dialog from '@/components/Dialog';
+import { i18n } from '@/i18n';
 
 export default {
   getFavicon(url) {
@@ -32,10 +33,10 @@ export default {
     return browser.permissions.contains(payload)
       .then(res => res || browser.permissions.request(payload))
       .catch(() => Dialog.show({
-        title: 'Permissions are required',
-        text: `${name} ask for permissions that are necessary for it to work properly, is that okay?`,
-        ok: 'Allow',
-        cancel: 'Deny',
+        title: i18n.t('permissions.required'),
+        text: i18n.t('permissions.message', { name }),
+        ok: i18n.t('permissions.allow'),
+        cancel: i18n.t('permissions.deny'),
       }).then((res) => {
         if (res) {
           return browser.permissions.request(payload).then((granted) => {

@@ -142,7 +142,7 @@ export default {
         return Promise.resolve();
       }
       const payload = { permissions: permissions || [], origins: origins || [] };
-      return this.$utils.checkPermissions(payload, this.id);
+      return this.$utils.checkPermissions(payload, this.defaultTitle);
     },
     remove() {
       if (this.options.permissions || this.options.origins) {

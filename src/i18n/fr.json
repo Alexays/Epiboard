@@ -37,6 +37,12 @@
     "Allez, mon pote !",
     "Tu peux être qui tu veux !"
   ],
+  "permissions": {
+    "required": "Des permissions sont nécessaires",
+    "message": "'{name}' demande des permissions qui sont nécessaires pour qu'il fonctionne correctement, c'est d'accord ?",
+    "allow": "Permettre",
+    "deny": "Refuser"
+  },
   "home": {
     "no_cards": "Pas de cartes.",
     "add_cards": "Vous pouvez ajouter des cartes en cliquant sur le bouton flottant en haut à droite."

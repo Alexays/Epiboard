@@ -37,6 +37,12 @@
     "Come on buddy !",
     "You can be whoever you want !"
   ],
+  "permissions": {
+    "required": "Permissions are required",
+    "message": "'{name}' ask for permissions that are necessary for it to work properly, is that okay?",
+    "allow": "Allow",
+    "deny": "Deny"
+  },
   "home": {
     "no_cards": "No cards.",
     "add_cards": "You can add cards by click on fab button in top right."
