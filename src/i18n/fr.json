@@ -52,7 +52,7 @@
     "apiKey": "clé d'API {name}",
     "dark": {
       "title": "Mode sombre",
-      "desc": "Ça va faire tout noir",
+      "desc": "Ça va être tout noir",
       "auto": "Auto",
       "from": "De",
       "to": "À"

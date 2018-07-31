@@ -37,7 +37,7 @@
       <v-list>
         <v-list-tile
           v-if="download.state === 'complete' && download.exists" @click="open(download)">
-          <v-list-tile-title>{{ $t('Downloads.Open') }}</v-list-tile-title>
+          <v-list-tile-title>{{ $t('Downloads.open') }}</v-list-tile-title>
         </v-list-tile>
         <v-list-tile
           v-if="download.state === 'complete' && download.exists" @click="remove(download)">
