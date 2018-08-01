@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       tabs: [],
+      foldersId: [],
       rootId: '0',
       active: 0,
     };
@@ -27,41 +28,44 @@ export default {
     },
   },
   created() {
-    Promise.all([this.getRecent(), this.getAll()])
-      .then((tabs) => {
-        this.tabs = tabs;
-      })
+    Promise.all([this.getRecent(), this.getAll(), this.getFolders()])
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {
+    addTab(item) {
+      this.foldersId.push(item.id);
+      this.getFolders();
+    },
+    removeTab(item) {
+      this.foldersId = this.foldersId.filter(f => f !== item.id);
+      this.tabs = this.tabs.filter(f => f.id !== item.id);
+    },
     backParent(tab) {
       if (tab.parentNode && tab.parentNode[0].parentId === this.rootId) {
-        this.$set(this.tabs[1], 'data', tab.parentNode);
-        this.$set(this.tabs[1], 'parentNode', null);
+        this.$set(tab, 'data', tab.parentNode);
+        this.$set(tab, 'parentNode', null);
         return;
       }
       browser.bookmarks.get(tab.data[0].parentId)
         .then((parent) => {
-          this.$set(this.tabs[1], 'data', tab.parentNode);
-          this.$set(this.tabs[1], 'parentNode', parent);
+          this.$set(tab, 'data', tab.parentNode);
+          this.$set(tab, 'parentNode', parent);
         });
     },
-    getSubFolder(item) {
+    getSubFolder(tab, item) {
       if (item.url) return;
       browser.bookmarks.getChildren(item.id)
         .then((children) => {
-          this.$set(this.tabs[1], 'parentNode', this.tabs[1].data);
-          this.$set(this.tabs[1], 'data', children);
+          this.$set(tab, 'parentNode', tab.data);
+          this.$set(tab, 'data', children);
         });
     },
     getRecent() {
       return browser.bookmarks.getRecent(this.settings.maxRecents)
-        .then(recents => ({
-          name: 'Bookmarks.recents',
-          id: 'recents',
-          data: recents,
-        }));
+        .then((recents) => {
+          this.tabs.unshift({ name: 'Bookmarks.recents', id: 'recents', data: recents });
+        });
     },
     getAll() {
       return browser.bookmarks.getTree()
@@ -69,11 +73,23 @@ export default {
           this.rootId = tree[0].id;
           return browser.bookmarks.getChildren(tree[0].id);
         })
-        .then(all => ({
-          name: 'Bookmarks.all',
-          id: 'all',
-          data: all,
-        }));
+        .then((all) => {
+          this.tabs = [
+            ...this.tabs.slice(0, 1),
+            { name: 'Bookmarks.all', id: 'all', data: all },
+            ...this.tabs.slice(1),
+          ];
+        });
+    },
+    getFolders() {
+      if (!this.foldersId.length) return Promise.resolve();
+      return Promise.all(this.foldersId
+        .map(f => browser.bookmarks.get(f)
+          .then(folder => browser.bookmarks.getChildren(f)
+            .then(children => ({ name: folder[0].title, id: f, data: children })))))
+        .then((folders) => {
+          this.tabs = [...this.tabs, ...folders];
+        });
     },
   },
 };

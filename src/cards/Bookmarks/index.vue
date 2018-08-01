@@ -27,24 +27,35 @@
                   <v-list-tile-sub-title>{{ $t('Bookmarks.back_parent') }}</v-list-tile-sub-title>
                 </v-list-tile-content>
               </v-list-tile>
+              <!-- TODO: @click with empty callback is needed to have hover effect -->
               <v-list-tile
-                v-for="item in tab.data"
-                :key="item.id" :href="item.url" @click="getSubFolder(item)">
+                v-for="item in tab.data" :key="item.id" :href="item.url" @click="() => {}">
                 <v-list-tile-avatar :size="16">
-                  <img v-if="item.url && $utils.getFavicon(item.url)" :src="$utils.getFavicon(item.url)">
+                  <img
+                    v-if="item.url && $utils.getFavicon(item.url)"
+                    :src="$utils.getFavicon(item.url)">
                   <v-icon v-else-if="item.url">insert_drive_file</v-icon>
                   <v-icon v-else>folder</v-icon>
                 </v-list-tile-avatar>
-                <v-list-tile-content :title="item.url" class="caption">
+                <v-list-tile-content
+                  :title="item.url" class="caption" @click="getSubFolder(tab, item)">
                   <v-list-tile-sub-title v-if="item.title && item.title.length">
                     {{ item.title }}
                   </v-list-tile-sub-title>
                   <v-list-tile-sub-title v-else>{{ item.url }}</v-list-tile-sub-title>
                 </v-list-tile-content>
                 <v-list-tile-action>
-                  <v-list-tile-action-text>
+                  <v-list-tile-action-text v-if="item.url">
                     {{ new Date(item.dateAdded).toLocaleDateString($i18n.locale, dateOption) }}
                   </v-list-tile-action-text>
+                  <v-icon
+                    v-else-if="foldersId.indexOf(item.id) === -1"
+                    :title="$t('Bookmarks.add_folder')" @click="addTab(item)">
+                    add
+                  </v-icon>
+                  <v-icon v-else :title="$t('Bookmarks.remove_folder')" @click="removeTab(item)">
+                    delete
+                  </v-icon>
                 </v-list-tile-action>
               </v-list-tile>
             </v-list>

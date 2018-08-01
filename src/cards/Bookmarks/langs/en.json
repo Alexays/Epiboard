@@ -2,5 +2,7 @@
   "recents": "Recents",
   "all": "All",
   "empty": "You have no bookmarks here.",
-  "back_parent": "Back to parent folder"
+  "back_parent": "Back to parent folder",
+  "add_folder": "Pin this folder as tab",
+  "remove_folder": "Remove tab"
 }
