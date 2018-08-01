@@ -28,9 +28,13 @@ export default {
     },
   },
   created() {
-    Promise.all([this.getRecent(), this.getAll(), this.getFolders()])
-      .then(() => this.$emit('init'))
+    Promise.all([this.getRecent(), this.getAll()])
+      .then(() => this.$emit('init', ['foldersId', 'active']))
       .catch(err => this.$emit('init', err));
+  },
+  mounted() {
+    // getFolders is run in 'mounted' because it needs cache.
+    this.getFolders();
   },
   methods: {
     addTab(item) {
@@ -86,9 +90,11 @@ export default {
       return Promise.all(this.foldersId
         .map(f => browser.bookmarks.get(f)
           .then(folder => browser.bookmarks.getChildren(f)
-            .then(children => ({ name: folder[0].title, id: f, data: children })))))
+            .then(children => ({
+              name: folder[0].title, folder: true, id: f, data: children,
+            })))))
         .then((folders) => {
-          this.tabs = [...this.tabs, ...folders];
+          this.tabs = [...this.tabs.filter(f => !f.folder), ...folders];
         });
     },
   },

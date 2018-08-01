@@ -32,7 +32,7 @@ export default {
         if (!data) return;
         const keys = Object.keys(data);
         const { CACHE_DT } = data;
-        if (CACHE_DT) {
+        if (CACHE_DT && context.$store.state.cache.validCards.indexOf(value) > -1) {
           // Default cache timeout is 60s
           const cacheValidity = ((Cards[value].manifest || {}).cacheValidity || 60) * 1000;
           componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
@@ -170,18 +170,22 @@ export default {
           timeout: 10000,
           dismissible: false,
         });
-      } else if (res === true || res === false) {
+      } else if (res === true || res === false || Array.isArray(res)) {
         this.$store.commit('ADD_VALID_CARD', this.id);
-        this.$refs.card.$watch('$data', () => {
-          this.$store.commit('SET_CARD_CACHE', { key: this.id, data: this.$refs.card.$data });
-        }, { immediate: res, deep: true });
+        const toWatch = Array.isArray(res) ? vm => res.map(f => vm[f]) : '$data';
+        this.$refs.card.$watch(toWatch, () => {
+          const o = this.$refs.card.$data;
+          const data = Array.isArray(res)
+            ? res.reduce((r, p) => (p in o ? { ...r, [p]: o[p] } : r), {}) : o;
+          this.$store.commit('SET_CARD_CACHE', { key: this.id, data });
+        }, { immediate: !!res, deep: true });
       }
     },
-    reload() {
+    reload(delCache = true) {
       this.loaded = 0;
       this.subTitle = null;
       this.$store.commit('DEL_VALID_CARD', this.id);
-      this.$store.commit('DEL_CARD_CACHE', this.id);
+      if (delCache) this.$store.commit('DEL_CARD_CACHE', this.id);
       this.hash = Date.now().toString();
     },
     resetSettings() {
@@ -194,7 +198,7 @@ export default {
     },
     saveSettings(data) {
       this.$store.commit('SET_CARD_SETTINGS', { key: this.id, data });
-      this.reload();
+      this.reload(false);
       this.pendingSave = false;
     },
   },

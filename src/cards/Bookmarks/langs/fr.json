@@ -5,5 +5,8 @@
   "empty": "Vous n'avez pas de marques pages ici.",
   "back_parent": "Retour au dossier parent",
   "add_folder": "Épingler ce dossier comme onglet",
-  "remove_folder": "Enlever l'onglet"
+  "remove_folder": "Enlever l'onglet",
+  "settings": {
+    "maxRecents": "Nombres maximum de marque-pages récents"
+  }
 }
