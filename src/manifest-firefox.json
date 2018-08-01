@@ -25,7 +25,8 @@
     "tabs",
     "downloads",
     "downloads.open",
-    "topSites"
+    "topSites",
+    "bookmarks"
   ],
   "chrome_settings_overrides": {
     "homepage": "index.html"

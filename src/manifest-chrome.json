@@ -30,7 +30,8 @@
     "downloads",
     "downloads.open",
     "topSites",
-    "identity"
+    "identity",
+    "bookmarks"
   ],
   "chrome_url_overrides": {
     "newtab": "index.html"

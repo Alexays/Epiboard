@@ -1,5 +1,5 @@
 <template>
-  <div id="sessions">
+  <div id="bookmarks">
     <v-tabs
       v-model="active"
       :dark="!$store.state.settings.theme.light"
@@ -8,18 +8,28 @@
       <v-tab v-for="tab in tabs" :key="tab.id">{{ $t(tab.name) }}</v-tab>
       <v-tabs-items>
         <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
-          <v-card-text>
+          <v-card-text class="scroll-content">
             <div v-if="!tab.data.length" class="text-xs-center">
               <v-icon x-large>find_in_page</v-icon>
-              <h2 class="subheading">{{ $t('Sessions.empty') }}</h2>
+              <h2 class="subheading">{{ $t('Bookmarks.empty') }}</h2>
+              <v-btn v-if="tab.parentNode" @click="backParent(tab)" class="body-2" small>
+                {{ $t('Bookmarks.back_parent') }}
+              </v-btn>
             </div>
             <v-list v-else dense>
-              <v-list-tile
-                v-for="item in tab.data"
-                :key="`${item.title}${item.lastModified}`" :href="item.url">
+              <v-list-tile v-if="tab.parentNode" @click="backParent(tab)">
                 <v-list-tile-avatar :size="16">
-                  <img v-if="item.favIconUrl" :src="item.favIconUrl">
-                  <v-icon v-else>insert_drive_file</v-icon>
+                  <v-icon>arrow_back</v-icon>
+                </v-list-tile-avatar>
+                <v-list-tile-content class="caption">
+                  <v-list-tile-sub-title>{{ $t('Bookmarks.back_parent') }}</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-list-tile
+                v-for="item in tab.data" :key="item.id" :href="item.url" @click="getSubFolder(item)">
+                <v-list-tile-avatar :size="16">
+                  <img v-if="item.url" :src="$utils.getFavicon(item.url)">
+                  <v-icon v-else>folder</v-icon>
                 </v-list-tile-avatar>
                 <v-list-tile-content :title="item.url" class="caption">
                   <v-list-tile-sub-title v-if="item.title && item.title.length">
@@ -29,7 +39,7 @@
                 </v-list-tile-content>
                 <v-list-tile-action>
                   <v-list-tile-action-text>
-                    {{ item.lastModified.toLocaleDateString($i18n.locale, dateOption) }}
+                    {{ new Date(item.dateAdded).toLocaleDateString($i18n.locale, dateOption) }}
                   </v-list-tile-action-text>
                 </v-list-tile-action>
               </v-list-tile>

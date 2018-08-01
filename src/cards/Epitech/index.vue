@@ -8,7 +8,9 @@
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </v-card-text>
     <v-tabs
-      v-else :dark="!$store.state.settings.theme.light"
+      v-else
+      :dark="!$store.state.settings.theme.light"
+      :light="$store.state.settings.theme.light"
       slider-color="foreground" color="primary" grow>
       <v-tab>Infos</v-tab>
       <v-tab>Upcoming</v-tab>

@@ -28,7 +28,7 @@ for (let i = 0; i < paths.length; i += 1) {
     cards[key] = {};
   }
   if (file === 'settings.vue' && cards[key]) {
-    cards[key].settings = true;
+    cards[key].settingsCmp = true;
   }
   if (file === 'manifest.json' && cards[key]) {
     const manifest = require(`./src/cards/${src}`); // eslint-disable-line
@@ -36,10 +36,8 @@ for (let i = 0; i < paths.length; i += 1) {
     if (browsers && browsers.length && browsers.indexOf(browserName) === -1) {
       excludeCards.push(key);
     } else {
-      if (cards[key].settings) {
-        cards[key].settings = manifest.settings;
-        if (manifest.settings) delete manifest.settings;
-      }
+      cards[key].settings = manifest.settings;
+      if (manifest.settings) delete manifest.settings;
       if (Object.keys(manifest).length) {
         cards[key].manifest = manifest;
       }

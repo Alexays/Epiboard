@@ -1,9 +1,11 @@
+import * as VList from 'vuetify/es5/components/VList';
 import * as VTabs from 'vuetify/es5/components/VTabs';
 
 // @vue/component
 export default {
   name: 'Sessions',
   components: {
+    ...VList,
     ...VTabs,
   },
   props: {
@@ -14,8 +16,8 @@ export default {
   },
   data() {
     return {
-      devices: [],
-      recentlyClosed: [],
+      tabs: [],
+      active: 0,
     };
   },
   computed: {
@@ -24,8 +26,9 @@ export default {
     },
   },
   created() {
-    Promise.all([this.getDevices(), this.getRecentlyClosed()])
-      .then(() => {
+    Promise.all([this.getRecentlyClosed(), this.getDevices()])
+      .then((tabs) => {
+        this.tabs = [].concat(...tabs);
         browser.sessions.onChanged.addListener(() => {
           Promise.all([this.getDevices(), this.getRecentlyClosed()]);
         });
@@ -61,23 +64,30 @@ export default {
     },
     getDevices() {
       // TODO: Firefox doesn't support getDevices
-      if (!browser.sessions.getDevices) return Promise.resolve();
+      if (!browser.sessions.getDevices) return Promise.resolve([]);
       return browser.sessions.getDevices({ maxResults: this.settings.maxDevices })
         .then((devices) => {
-          this.devices = devices;
+          const tabs = [];
           for (let i = 0; i < devices.length; i += 1) {
-            this.devices[i].tabs = this.mergeTabsAndWindows(devices[i].sessions);
-            if (!devices[i].tabs.length) {
-              this.devices.splice(i, 1);
+            const data = this.mergeTabsAndWindows(devices[i].sessions);
+            if (data.length) {
+              tabs.push({
+                name: devices[i].deviceName,
+                id: devices[i].deviceName,
+                data,
+              });
             }
           }
+          return tabs;
         });
     },
     getRecentlyClosed() {
       return browser.sessions.getRecentlyClosed({ maxResults: this.settings.maxRecentlyClosed })
-        .then((recentlyClosed) => {
-          this.recentlyClosed = this.mergeTabsAndWindows(recentlyClosed);
-        });
+        .then(recentlyClosed => ({
+          name: 'Sessions.recents',
+          id: 'recents',
+          data: this.mergeTabsAndWindows(recentlyClosed),
+        }));
     },
   },
 };

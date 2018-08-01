@@ -1,4 +1,4 @@
-#sessions {
+#bookmarks {
   .v-list__tile__avatar {
     min-width: 29px;
   }
@@ -7,5 +7,9 @@
   }
   .v-list__tile__action {
     flex-shrink: 0;
+  }
+  .scroll-content {
+    max-height: 300px;
+    overflow-y: auto;
   }
 }

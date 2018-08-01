@@ -101,8 +101,8 @@ export default {
       return this.$vuetify.theme.foreground;
     },
     settings() {
-      if (!this.cmp.settings || this.hash == null) return {};
       const data = Cards[this.id].settings;
+      if (!data || this.hash == null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.id];
       if (!tmp) return data;
       const keys = Object.keys(data);
@@ -129,7 +129,7 @@ export default {
         this.remove();
         throw err;
       });
-    if (Cards[id].settings) {
+    if (Cards[id].settings && Cards[id].settingsCmp) {
       this.cmp.settings = () => import(/* webpackInclude: /settings\.vue$/, webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${id}/settings.vue`)
         .then(tmp => tmp.default);
     }

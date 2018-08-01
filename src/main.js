@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import 'material-design-icons/iconfont/material-icons.css';
 import {
   Vuetify,
   VApp,
@@ -11,6 +12,7 @@ import {
   VProgressCircular,
   transitions,
 } from 'vuetify';
+import 'vuetify/src/stylus/app.styl';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -20,8 +22,7 @@ import router from '@/router';
 import store from '@/store';
 import utils from '@/utils';
 import '@babel/polyfill'; // eslint-disable-line
-import 'vuetify/src/stylus/app.styl';
-import './style.scss';
+import '@/style.scss';
 
 Vue.config.productionTip = false;
 
