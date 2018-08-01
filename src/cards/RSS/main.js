@@ -32,6 +32,7 @@ export default {
     }
     Promise.all(this.settings.feeds.map(this.fetch))
       .then((feeds) => {
+        if (!feeds) throw new Error('Unexpected response from API');
         const items = feeds.map(f => f.items.map((d) => {
           d.feed = f.feed; // eslint-disable-line
           return d;

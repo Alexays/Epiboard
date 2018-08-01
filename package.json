@@ -17,7 +17,7 @@
     "material-design-icons": "^3.0.1",
     "muuri": "Alexays/muuri#drag_placeholder",
     "resize-observer-polyfill": "^1.5.0",
-    "vue": "^2.5.16",
+    "vue": "^2.5.17",
     "vue-analytics": "^5.12.3",
     "vue-axios": "^2.1.2",
     "vue-i18n": "^8.0.0",
@@ -40,11 +40,11 @@
     "cross-env": "^5.2.0",
     "glob": "^7.1.2",
     "node-sass": "^4.9.2",
-    "sass-loader": "^7.0.3",
+    "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.1.6",
-    "vue-template-compiler": "^2.5.16",
+    "vue-template-compiler": "^2.5.17",
     "zip-webpack-plugin": "^3.0.0"
   },
   "browserslist": [
