@@ -27,8 +27,7 @@ export default {
   },
   created() {
     Promise.all([this.getRecentlyClosed(), this.getDevices()])
-      .then((tabs) => {
-        this.tabs = [].concat(...tabs);
+      .then(() => {
         browser.sessions.onChanged.addListener(() => {
           Promise.all([this.getDevices(), this.getRecentlyClosed()]);
         });
@@ -67,27 +66,27 @@ export default {
       if (!browser.sessions.getDevices) return Promise.resolve([]);
       return browser.sessions.getDevices({ maxResults: this.settings.maxDevices })
         .then((devices) => {
-          const tabs = [];
           for (let i = 0; i < devices.length; i += 1) {
             const data = this.mergeTabsAndWindows(devices[i].sessions);
             if (data.length) {
-              tabs.push({
+              this.tabs.push({
                 name: devices[i].deviceName,
                 id: devices[i].deviceName,
                 data,
               });
             }
           }
-          return tabs;
         });
     },
     getRecentlyClosed() {
       return browser.sessions.getRecentlyClosed({ maxResults: this.settings.maxRecentlyClosed })
-        .then(recentlyClosed => ({
-          name: 'Sessions.recents',
-          id: 'recents',
-          data: this.mergeTabsAndWindows(recentlyClosed),
-        }));
+        .then((recentlyClosed) => {
+          this.tabs.unshift({
+            name: 'Sessions.recents',
+            id: 'recents',
+            data: this.mergeTabsAndWindows(recentlyClosed),
+          });
+        });
     },
   },
 };
