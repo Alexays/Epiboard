@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       tabs: [],
+      rootId: '0',
       active: 0,
     };
   },
@@ -35,7 +36,7 @@ export default {
   },
   methods: {
     backParent(tab) {
-      if (tab.parentNode && tab.parentNode[0].parentId === '0') {
+      if (tab.parentNode && tab.parentNode[0].parentId === this.rootId) {
         this.$set(this.tabs[1], 'data', tab.parentNode);
         this.$set(this.tabs[1], 'parentNode', null);
         return;
@@ -63,7 +64,11 @@ export default {
         }));
     },
     getAll() {
-      return browser.bookmarks.getChildren('0')
+      return browser.bookmarks.getTree()
+        .then((tree) => {
+          this.rootId = tree[0].id;
+          return browser.bookmarks.getChildren(tree[0].id);
+        })
         .then(all => ({
           name: 'Bookmarks.all',
           id: 'all',

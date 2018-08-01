@@ -23,7 +23,7 @@
     "vue-i18n": "^8.0.0",
     "vue-progressive-image": "^3.1.0",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.1.9",
+    "vuetify": "^1.2.0-beta.0",
     "vuex": "^3.0.1",
     "vuex-persist": "^1.4.3",
     "webextension-polyfill": "^0.3.0"

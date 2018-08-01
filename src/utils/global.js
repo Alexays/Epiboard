@@ -3,8 +3,7 @@ import { i18n } from '@/i18n';
 
 export default {
   getFavicon(url) {
-    const regex = /^(http:|https:)/;
-    if (regex.test(url)) {
+    if (url.indexOf('https://') === 0 || url.indexOf('http://') === 0) {
       return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
     }
     return null;

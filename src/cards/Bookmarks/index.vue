@@ -2,17 +2,19 @@
   <div id="bookmarks">
     <v-tabs
       v-model="active"
-      :dark="!$store.state.settings.theme.light"
-      :light="$store.state.settings.theme.light"
       slider-color="foreground" color="primary" grow show-arrows>
-      <v-tab v-for="tab in tabs" :key="tab.id">{{ $t(tab.name) }}</v-tab>
+      <v-tab
+        v-for="tab in tabs"
+        :key="tab.id" :class="{ 'white--text': !$store.state.settings.theme.light }">
+        {{ $t(tab.name) }}
+      </v-tab>
       <v-tabs-items>
         <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
           <v-card-text class="scroll-content">
             <div v-if="!tab.data.length" class="text-xs-center">
               <v-icon x-large>find_in_page</v-icon>
               <h2 class="subheading">{{ $t('Bookmarks.empty') }}</h2>
-              <v-btn v-if="tab.parentNode" @click="backParent(tab)" class="body-2" small>
+              <v-btn v-if="tab.parentNode" class="body-2" small @click="backParent(tab)">
                 {{ $t('Bookmarks.back_parent') }}
               </v-btn>
             </div>
@@ -26,9 +28,11 @@
                 </v-list-tile-content>
               </v-list-tile>
               <v-list-tile
-                v-for="item in tab.data" :key="item.id" :href="item.url" @click="getSubFolder(item)">
+                v-for="item in tab.data"
+                :key="item.id" :href="item.url" @click="getSubFolder(item)">
                 <v-list-tile-avatar :size="16">
-                  <img v-if="item.url" :src="$utils.getFavicon(item.url)">
+                  <img v-if="item.url && $utils.getFavicon(item.url)" :src="$utils.getFavicon(item.url)">
+                  <v-icon v-else-if="item.url">insert_drive_file</v-icon>
                   <v-icon v-else>folder</v-icon>
                 </v-list-tile-avatar>
                 <v-list-tile-content :title="item.url" class="caption">

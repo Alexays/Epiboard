@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { VToolbar } from 'vuetify';
+import * as VToolbar from 'vuetify/es5/components/VToolbar';
 import VueProgressiveImage from 'vue-progressive-image';
 import VueTyper from '@/components/Typer';
 import backgrounds from './backgrounds';
@@ -15,7 +15,7 @@ const EXPIRE_DOODLE = 57600000; // 16h
 export default {
   name: 'Header',
   components: {
-    VToolbar,
+    ...VToolbar,
     VueTyper,
   },
   data() {
