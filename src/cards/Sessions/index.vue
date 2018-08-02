@@ -2,15 +2,13 @@
   <div id="sessions">
     <v-tabs
       v-model="active"
+      :dark="!$store.state.settings.theme.light"
+      :light="$store.state.settings.theme.light"
       slider-color="foreground" color="primary" grow show-arrows>
-      <v-tab
-        v-for="tab in tabs"
-        :key="tab.id" :class="{ 'white--text': !$store.state.settings.theme.light }">
-        {{ $t(tab.name) }}
-      </v-tab>
+      <v-tab v-for="tab in tabs" :key="tab.id">{{ $t(tab.name) }}</v-tab>
       <v-tabs-items>
         <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
-          <v-card-text>
+          <v-card-text class="scroll-content">
             <div v-if="!tab.data.length" class="text-xs-center">
               <v-icon x-large>find_in_page</v-icon>
               <h2 class="subheading">{{ $t('Sessions.empty') }}</h2>

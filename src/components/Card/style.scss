@@ -22,6 +22,10 @@
     .head-drag {
       cursor: grab;
     }
+    /deep/ .scroll-content {
+      max-height: 300px;
+      overflow-y: auto;
+    }
   }
 }
 

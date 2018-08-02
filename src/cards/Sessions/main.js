@@ -16,11 +16,18 @@ export default {
   },
   data() {
     return {
-      tabs: [],
+      recents: [],
+      devices: [],
       active: 0,
     };
   },
   computed: {
+    tabs() {
+      return [
+        { name: 'Sessions.recents', id: 'recents', data: this.recents },
+        ...this.devices.map(f => ({ name: f.deviceName, id: f.deviceName, data: f.data })),
+      ];
+    },
     dateOption() {
       return { hour: '2-digit', minute: '2-digit' };
     },
@@ -29,7 +36,7 @@ export default {
     Promise.all([this.getRecentlyClosed(), this.getDevices()])
       .then(() => {
         browser.sessions.onChanged.addListener(() => {
-          Promise.all([this.getDevices(), this.getRecentlyClosed()]);
+          Promise.all([this.getRecentlyClosed(), this.getDevices()]);
         });
       })
       .then(() => this.$emit('init'))
@@ -66,26 +73,16 @@ export default {
       if (!browser.sessions.getDevices) return Promise.resolve([]);
       return browser.sessions.getDevices({ maxResults: this.settings.maxDevices })
         .then((devices) => {
-          for (let i = 0; i < devices.length; i += 1) {
-            const data = this.mergeTabsAndWindows(devices[i].sessions);
-            if (data.length) {
-              this.tabs.push({
-                name: devices[i].deviceName,
-                id: devices[i].deviceName,
-                data,
-              });
-            }
-          }
+          this.devices = devices.map((f) => {
+            f.data = this.mergeTabsAndWindows(f.sessions);
+            return f;
+          });
         });
     },
     getRecentlyClosed() {
       return browser.sessions.getRecentlyClosed({ maxResults: this.settings.maxRecentlyClosed })
         .then((recentlyClosed) => {
-          this.tabs.unshift({
-            name: 'Sessions.recents',
-            id: 'recents',
-            data: this.mergeTabsAndWindows(recentlyClosed),
-          });
+          this.recents = this.mergeTabsAndWindows(recentlyClosed);
         });
     },
   },

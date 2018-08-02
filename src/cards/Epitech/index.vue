@@ -7,12 +7,14 @@
       <v-icon x-large="">error_outline</v-icon>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </v-card-text>
-    <v-tabs v-else slider-color="foreground" color="primary" grow>
+    <v-tabs
+      v-else
+      :dark="!$store.state.settings.theme.light"
+      :light="$store.state.settings.theme.light"
+      slider-color="foreground" color="primary" grow>
       <v-tab
         v-for="tab in ['Infos', 'Upcoming', 'Occuped Rooms']"
-        :key="tab" :class="{ 'white--text': !$store.state.settings.theme.light }">
-        {{ tab }}
-      </v-tab>
+        :key="tab">{{ tab }}</v-tab>
       <v-tabs-items>
         <v-tab-item id="tab-infos" lazy>
           <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">

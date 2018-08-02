@@ -2,12 +2,10 @@
   <div id="bookmarks">
     <v-tabs
       v-model="active"
+      :dark="!$store.state.settings.theme.light"
+      :light="$store.state.settings.theme.light"
       slider-color="foreground" color="primary" grow show-arrows>
-      <v-tab
-        v-for="tab in tabs"
-        :key="tab.id" :class="{ 'white--text': !$store.state.settings.theme.light }">
-        {{ $t(tab.name) }}
-      </v-tab>
+      <v-tab v-for="tab in tabs" :key="tab.id">{{ $t(tab.name) }}</v-tab>
       <v-tabs-items>
         <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
           <v-card-text class="scroll-content">
