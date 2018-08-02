@@ -12,8 +12,8 @@
           {{ cpu.numOfProcessors }} {{ $tc('System.core', cpu.numOfProcessors) }}
         </p>
         <v-progress-linear
-          v-for="(core, key) in cpu.processors" :key="key"
-          :height="6" :value="coresLoad[key]" color="accent"/>
+          v-for="(core, key) in cpu.loads"
+          :key="key" :height="6" :value="core.value" :title="`${core.value}%`" color="accent"/>
       </div>
     </div>
     <div v-if="memory" class="wrapper">
@@ -26,7 +26,8 @@
           {{ memory.capacity - memory.availableCapacity | bytes }} /
           <span class="grey--text">{{ memory.capacity | bytes }}</span>
         </span>
-        <v-progress-linear :height="6" :value="memoryLoad" color="accent"/>
+        <v-progress-linear
+          :height="6" :value="memory.load.value" :title="`${memory.load.value}%`" color="accent"/>
       </div>
     </div>
     <div v-if="connection" class="wrapper">
@@ -64,7 +65,7 @@
             <template v-if="unit.name">{{ unit.name | truncate(25) }}</template>
             <template v-else>{{ unit.capacity | bytes }} Volume</template>
           </span>
-          <template v-if="developper">
+          <template v-if="unit.used">
             <span class="disk-capacity">
               {{ unit.used | bytes }} / <span class="grey--text">{{ unit.capacity | bytes }}</span>
             </span>

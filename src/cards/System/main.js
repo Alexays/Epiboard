@@ -7,49 +7,13 @@ export default {
       memory: null,
       connection: null,
       storage: [],
-      developper: false,
     };
-  },
-  computed: {
-    memoryLoad() {
-      const total = this.memory.capacity;
-      const progress = total - this.memory.availableCapacity;
-      if (this.memory.prev) {
-        const prev = this.memory.prev.capacity - this.memory.prev.availableCapacity;
-        const prevTotal = this.memory.prev.capacity;
-        return Math.floor(((progress - prev) / (total - prevTotal)) * 100);
-      }
-      return Math.floor((progress / total) * 100);
-    },
-    coresLoad() {
-      const cores = (this.cpu.processors || []).map(f => ({
-        progress: f.usage.kernel + f.usage.user,
-        total: f.usage.total,
-      }));
-      if (this.cpu.prev) {
-        const prev = this.cpu.prev.processors.map(f => ({
-          progress: f.usage.kernel + f.usage.user,
-          total: f.usage.total,
-        }));
-        const res = [];
-        for (let i = 0; i < cores.length; i += 1) {
-          const progress = cores[i].progress - prev[i].progress;
-          res.push(Math.floor((progress / (cores[i].total - prev[i].total)) * 100));
-        }
-        return res;
-      }
-      return cores.map(f => Math.floor((f.progress / f.total) * 100));
-    },
   },
   created() {
     return Promise.all([
       this.getCpu(),
       this.getMemory(),
-      this.getStorage()
-        .then(this.getDevelopper)
-        .then((storage) => {
-          this.storage = storage;
-        }),
+      this.getStorage(),
     ]).then(() => {
       if (navigator.connection) {
         this.getConnection();
@@ -71,7 +35,15 @@ export default {
       return new Promise((resolve, reject) => {
         browser.system.cpu.getInfo((cpu) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          this.cpu = { ...cpu, ...{ prev: this.cpu } };
+          const { loads } = this.cpu || {};
+          this.cpu = cpu;
+          this.$set(this.cpu, 'loads', this.cpu.processors.map((core, idx) => {
+            const { total, kernel, user } = core.usage;
+            const progress = kernel + user;
+            const newLoad = loads && loads[idx]
+              ? (progress - loads[idx].progress) / (total - loads[idx].total) : progress / total;
+            return { value: Math.floor(newLoad * 100), progress, total };
+          }));
           return resolve();
         });
       });
@@ -80,7 +52,13 @@ export default {
       return new Promise((resolve, reject) => {
         browser.system.memory.getInfo((memory) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          this.memory = { ...memory, ...{ prev: this.memory } };
+          const { load } = this.memory || {};
+          this.memory = memory;
+          const { capacity } = memory;
+          const progress = capacity - memory.availableCapacity;
+          const newLoad = load
+            ? (progress - load.value) / (capacity - load.capacity) : progress / capacity;
+          this.$set(this.memory, 'load', { value: Math.floor(newLoad * 100), capacity });
           return resolve();
         });
       });
@@ -108,21 +86,20 @@ export default {
         });
       });
     },
-    getDevelopper(storage) {
-      if (!browser.system.storage.getAvailableCapacity) return storage;
-      this.developper = true;
-      return Promise.all(storage.map(this.getAvailableCapacity));
-    },
     getStorage() {
       return new Promise((resolve, reject) => {
         browser.system.storage.getInfo((storage) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          return resolve(storage.filter(f => f.capacity > 0)
+          return resolve(Promise.all(storage
+            .filter(f => f.capacity > 0)
             .map((f) => {
               f.name = f.name.replace(/[^ -~]+/g, '');
-              return f;
-            }));
+              if (!browser.system.storage.getAvailableCapacity) return f;
+              return this.getAvailableCapacity(f);
+            })));
         });
+      }).then((storage) => {
+        this.storage = storage;
       });
     },
   },
