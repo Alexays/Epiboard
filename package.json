@@ -1,6 +1,6 @@
 {
   "name": "epiboard",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "A new tab page adding a touch of WOW whith an interface following the lines of material design, One card for each need",
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,

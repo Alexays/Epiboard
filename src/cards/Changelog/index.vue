@@ -9,7 +9,7 @@
         <p>Maybe it's just loading</p>
       </h2>
     </v-card-text>
-    <p class="previous">
+    <p class="previous caption">
       Missed an update?
       <a
         href="https://github.com/Alexays/Epiboard/releases"
