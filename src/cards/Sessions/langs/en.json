@@ -1,4 +1,9 @@
 {
   "recents": "Recently closed",
-  "empty": "You have no recently closed page."
+  "empty": "You have no recently closed page.",
+  "settings": {
+    "maxRecents": "Max recently closed",
+    "maxSessions": "Max sessions",
+    "maxDevices": "Max devices"
+  }
 }

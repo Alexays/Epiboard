@@ -8,5 +8,8 @@
   "error": {
     "moved": "Fichier déplacé ou supprimé",
     "unable": "Impossible à retirer"
+  },
+  "settings": {
+    "max": "Nombre maximum de téléchargements"
   }
 }

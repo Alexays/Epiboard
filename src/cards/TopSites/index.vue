@@ -11,7 +11,7 @@
     </div>
     <div v-else class="text-xs-center">
       <v-icon x-large>find_in_page</v-icon>
-      <h2 class="subheading">You have no top sites.</h2>
+      <h2 class="subheading">{{ $t('TopSites.empty') }}</h2>
     </div>
   </v-card-text>
 </template>

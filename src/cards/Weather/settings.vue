@@ -4,8 +4,7 @@
     <v-layout align-center>
       <v-checkbox v-model="settings.auto" label="Auto" class="mt-0" hide-details/>
       <v-text-field
-        :disabled="settings.auto"
-        v-model="settings.city" :label="$t('Weather.settings.city')" name="city"/>
+        :disabled="settings.auto" v-model="settings.city" :label="$t('Weather.settings.city')"/>
     </v-layout>
     <v-select
       v-model="settings.units" :items="allUnits" :label="$t('Weather.settings.choose_units')"/>
@@ -14,8 +13,7 @@
       :label="$tc('settings.onOff', settings.forecast)"
       v-model="settings.forecast" class="mt-0" hide-details/>
     <v-text-field
-      :label="$t('settings.apiKey', { name: 'OpenWeatherMap'})"
-      v-model="settings.appId" name="api"/>
+      v-model="settings.appId" :label="$t('settings.apiKey', { name: 'OpenWeatherMap'})"/>
   </v-card-text>
 </template>
 <script src="./settings.js"></script>

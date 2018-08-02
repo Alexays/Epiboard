@@ -1,4 +1,9 @@
 {
   "recents": "Récemment fermé",
-  "empty": "Vous n'avez pas de page récemment fermée."
+  "empty": "Vous n'avez pas de page récemment fermée.",
+  "settings": {
+    "maxRecents": "Nombre maximum de page récemment fermée",
+    "maxSessions": "Nombre maximum de sessions",
+    "maxDevices": "Nombre maximum d'appareils"
+  }
 }

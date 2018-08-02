@@ -2,11 +2,13 @@
   <v-card-text>
     <v-text-field
       v-model.number="settings.maxRecentlyClosed"
-      name="maxRecentlyClosed" mask="#" label="Max recently closed"/>
+      :label="$t('Sessions.settings.maxRecents')" mask="#"/>
     <v-text-field
-      v-model.number="settings.maxDeviceTabs" name="maxSessions" mask="#" label="Max sessions"/>
+      v-model.number="settings.maxDeviceTabs"
+      :label="$t('Sessions.settings.maxSessions')" mask="#"/>
     <v-text-field
-      v-model.number="settings.maxDevices" name="maxDevices" mask="#" label="Max devices"/>
+      v-model.number="settings.maxDevices"
+      :label="$t('Sessions.settings.maxDevices')" mask="#"/>
   </v-card-text>
 </template>
 <script src="./settings.js"></script>

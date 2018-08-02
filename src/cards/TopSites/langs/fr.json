@@ -1,0 +1,7 @@
+{
+  "title": "Top sites",
+  "empty": "Vous n'avez pas de top sites.",
+  "settings": {
+    "maxTopSites": "Nombre maximum de top sites"
+  }
+}

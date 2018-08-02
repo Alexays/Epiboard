@@ -12,7 +12,7 @@
       </v-list-tile>
     </v-list>
     <v-layout align-center>
-      <v-text-field v-model="newFeed" name="feed" label="e.g. https://exemple.com/rss"/>
+      <v-text-field v-model="newFeed" label="e.g. https://exemple.com/rss"/>
       <v-btn flat @click="addFeed(newFeed)">{{ $t('RSS.settings.add') }}</v-btn>
     </v-layout>
   </v-card-text>
