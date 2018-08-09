@@ -25,7 +25,9 @@ export default {
     tabs() {
       return [
         { name: 'Sessions.recents', id: 'recents', data: this.recents },
-        ...this.devices.map(f => ({ name: f.deviceName, id: f.deviceName, data: f.data })),
+        ...this.devices.map(f => ({
+          name: f.deviceName, id: `${f.deviceName}${f.sessions.length}${f.data.length}`, data: f.data,
+        })),
       ];
     },
     dateOption() {

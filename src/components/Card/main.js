@@ -170,6 +170,7 @@ export default {
           timeout: 10000,
           dismissible: false,
         });
+        if (this.$store.state.settings.debug) throw res;
       } else if (res === true || res === false || Array.isArray(res)) {
         this.$store.commit('ADD_VALID_CARD', this.id);
         const toWatch = Array.isArray(res) ? vm => res.map(f => vm[f]) : '$data';

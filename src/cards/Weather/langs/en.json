@@ -12,7 +12,7 @@
   "settings": {
     "location": "Location",
     "forecast": "Forecast",
-    "city": "City, e.g. Nantes, FR",
+    "city": "City, e.g. `Nantes, FR` or its id",
     "choose_units": "Choose your prefered units"
   }
 }

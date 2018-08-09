@@ -110,7 +110,12 @@ export default {
         const { latitude, longitude } = pos.coords;
         return `lat=${latitude}&lon=${longitude}`;
       }
-      if (pos.city) return `q=${pos.city}`;
+      if (pos.city) {
+        if (!Number.isNaN(parseFloat(pos.city))) {
+          return `id=${pos.city}`;
+        }
+        return `q=${pos.city}`;
+      }
       throw new Error('Enter valid city name');
     },
     getLocalisation() {

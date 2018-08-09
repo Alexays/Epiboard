@@ -3,7 +3,7 @@
     <v-card hover raised>
       <v-toolbar
         :color="theme ? 'elevation-0' : 'primary'"
-        :absolute="!!theme" class="head-drag" card prominent>
+        :absolute="!!theme" class="head-drag" card>
         <v-layout :style="{ color: titleColor }" column wrap>
           <v-toolbar-title v-if="!showSettings && title" :title="id">
             {{ title }}
