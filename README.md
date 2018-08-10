@@ -1,8 +1,8 @@
 # Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard) [![Version](https://img.shields.io/github/package-json/v/Alexays/Epiboard.svg)](https://github.com/Alexays/Epiboard/releases) [![Paypal Donate](https://img.shields.io/badge/Donate-Paypal-2244dd.svg)](https://paypal.me/ARouillard) [![Licence](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > A new tab page adding a touch of wow and an interface following the lines of the material design. 🆕 🎉.<br>
-> Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
-> Available on [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or for [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
+> Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).<br>
+> **Available on [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) and [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)**
 
 ![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png)
 
