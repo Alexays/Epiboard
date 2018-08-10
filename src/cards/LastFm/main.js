@@ -81,30 +81,30 @@ export default {
       return Api.getTopArtists(this.settings.apiKey, this.user, 5, this.period)
         .then((artists) => {
           if (!artists || !artists.length) return;
-          this.items.artists = {
+          this.$set(this.items, 'artists', {
             title: this.$t('LastFm.top.artists'),
             data: artists,
-          };
+          });
         });
     },
     getTopAlbums() {
       return Api.getTopAlbums(this.settings.apiKey, this.user, 5, this.period)
         .then((albums) => {
           if (!albums || !albums.length) return;
-          this.items.albums = {
+          this.$set(this.items, 'albums', {
             title: this.$t('LastFm.top.albums'),
             data: albums,
-          };
+          });
         });
     },
     getTopTracks() {
       return Api.getTopTracks(this.settings.apiKey, this.user, 5, this.period)
         .then((tracks) => {
           if (!tracks || !tracks.length) return;
-          this.items.tracks = {
+          this.$set(this.items, 'tracks', {
             title: this.$t('LastFm.top.tracks'),
             data: tracks,
-          };
+          });
         });
     },
     getNowPlaying() {
