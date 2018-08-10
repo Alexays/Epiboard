@@ -2,6 +2,7 @@
 
 > A new tab page adding a touch of wow and an interface following the lines of the material design. 🆕 🎉.<br>
 > Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).
+> Available on [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or for [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)
 
 ![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png)
 
