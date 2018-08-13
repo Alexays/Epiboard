@@ -5,9 +5,6 @@
     position: absolute;
     top: -35px;
     z-index: 2;
-    /deep/ .v-btn__content {
-      height: inherit
-    }
   }
   #card-container {
     position: relative;
