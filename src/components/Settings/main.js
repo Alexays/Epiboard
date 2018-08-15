@@ -75,15 +75,16 @@ export default {
       this.localLoading = true;
       reader.onload = (e) => {
         const { value } = event.target;
-        this.backgroundLocal.filename = value
-          .substring(value.lastIndexOf(value.indexOf('/') > -1 ? '/' : '\\') + 1);
-        this.backgroundLocal.dataUrl = e.target.result;
+        const filename = value.substring(value.lastIndexOf(value.indexOf('/') > -1 ? '/' : '\\') + 1);
+        this.$set(this.backgroundLocal, 'filename', filename);
+        this.$set(this.backgroundLocal, 'dataUrl', e.target.result);
         this.localLoading = false;
       };
     },
     deleteBackgroundLocal() {
-      this.$store.commit('DEL_BACKGROUND_LOCAL');
-      this.backgroundLocal = this.$store.state.cache.backgroundLocal;
+      this.$set(this.backgroundLocal, 'filename', null);
+      this.$set(this.backgroundLocal, 'dataUrl', '');
+      this.$refs.inputLocal.value = '';
     },
     validateHex(hex) {
       return hex && hex[0] === '#' && hex.length === 7;

@@ -50,8 +50,5 @@ export default {
     SET_BACKGROUND_LOCAL(state, data) {
       state.backgroundLocal = data;
     },
-    DEL_BACKGROUND_LOCAL(state) {
-      state.backgroundLocal = defaultState.backgroundLocal;
-    },
   },
 };
