@@ -145,12 +145,10 @@ module.exports = {
       /* eslint-disable no-param-reassign */
       // Remove node polyfill
       config.node = false;
-      // Prefer use size and version as hash in production
+      // Prefer version as hash for production for long caching
       const id = `${version}`;
-      // config.optimization.moduleIds = 'size';
-      // config.optimization.chunkIds = 'size';
-      config.output.filename = config.output.filename.replace('[chunkhash:8]', id);
-      config.output.chunkFilename = config.output.chunkFilename.replace('[chunkhash:8]', id);
+      config.output.filename = config.output.filename.replace('[contenthash:8]', id);
+      config.output.chunkFilename = config.output.chunkFilename.replace('[contenthash:8]', id);
       // MiniCssExtractPlugin
       const miniCss = config.plugins.find(f => f.constructor.name === 'MiniCssExtractPlugin');
       if (miniCss) {
