@@ -79,7 +79,8 @@
       "design": "Choose your preferred design",
       "background": "Choose your background",
       "trends": "Choose your Google trends country",
-      "color": "Choose the main color"
+      "color": "Choose the main color",
+      "systemFont": "Use your system font"
     },
     "design": {
       "full": "Full",

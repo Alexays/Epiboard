@@ -24,6 +24,7 @@ const initialState = {
     primary: '#607D8B',
     secondary: '#546E7A',
     light: false,
+    systemFont: false,
   },
   lang: langs[0] || 'en',
   tutorial: false,

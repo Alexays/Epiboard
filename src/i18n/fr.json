@@ -79,7 +79,8 @@
       "design": "Choisissez votre design préféré",
       "background": "Choisissez votre arrière-plan",
       "trends": "Choisissez votre pays pour Google trends",
-      "color": "Choisissez votre couleur principale"
+      "color": "Choisissez votre couleur principale",
+      "systemFont": "Utiliser la police de votre système"
     },
     "design": {
       "full": "Étendu",

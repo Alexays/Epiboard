@@ -62,6 +62,10 @@
             () => validateHex(settings.theme.primary) || $t('settings.error.color')]"
             :label="$t('settings.placeholder.color')" @change="themeChange"/>
         </v-layout>
+        <h4 class="subheading">{{ $t('settings.choose.systemFont') }}</h4>
+        <v-switch
+          :label="$tc('settings.onOff', settings.theme.systemFont)"
+          v-model="settings.theme.systemFont" class="mt-0 mb-1" hide-details/>
         <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
         <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>
