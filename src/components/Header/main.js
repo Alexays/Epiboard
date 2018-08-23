@@ -8,11 +8,15 @@ Vue.use(VueLazyload, {
   observer: true,
   filter: {
     progressive(listener) {
-      if (listener.src && listener.src.indexOf('data:image/') !== 0
-        && listener.src.indexOf('i.imgur.com') > -1) {
+      if (!listener.src || listener.src.indexOf('data:image/') === 0) return;
+      if (listener.src.indexOf('i.imgur.com') > -1) {
         const idx = listener.src.lastIndexOf('.');
         // eslint-disable-next-line
         listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
+      } else if (listener.src.indexOf('ggpht.com') > -1) {
+        const idx = listener.src.lastIndexOf('=w');
+        // eslint-disable-next-line
+        listener.loading = `${listener.src.substr(0, idx)}=w${window.innerWidth}-h150`;
       }
     },
   },
