@@ -1,5 +1,14 @@
 <template>
   <div id="lastfm">
+    <v-system-bar
+      v-if="!loading && showTip"
+      :dark="!$store.state.settings.theme.light"
+      :light="$store.state.settings.theme.light"
+      status color="primary">
+      <span>{{ $t('LastFm.tip') }}</span>
+      <v-spacer/>
+      <v-icon @click.stop="showTip=false">close</v-icon>
+    </v-system-bar>
     <v-card-text v-if="loading">
       <v-progress-linear indeterminate/>
     </v-card-text>

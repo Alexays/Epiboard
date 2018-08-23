@@ -1,4 +1,5 @@
 import * as VTabs from 'vuetify/es5/components/VTabs';
+import { VSystemBar } from 'vuetify';
 import { Api, Periods } from './api';
 
 // @vue/component
@@ -6,6 +7,7 @@ export default {
   name: 'LastFm',
   components: {
     ...VTabs,
+    VSystemBar,
   },
   props: {
     settings: {
@@ -18,6 +20,7 @@ export default {
       loading: true,
       active: null,
       period: 'overall',
+      showTip: true,
       items: {},
     };
   },

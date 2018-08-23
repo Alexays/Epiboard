@@ -12,6 +12,7 @@
     "albums": "Top Albums",
     "tracks": "Top Tracks"
   },
+  "tip": "Click on the edges of the card to change top",
   "settings": {
     "username": "LastFm Username"
   }

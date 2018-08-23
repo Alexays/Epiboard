@@ -12,6 +12,7 @@
     "albums": "Top Albums",
     "tracks": "Top Titres"
   },
+  "tip": "Cliquez sur les bords de la carte pour changer de top",
   "settings": {
     "username": "Nom d'utilisateur LastFm"
   }
