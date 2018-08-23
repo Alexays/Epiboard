@@ -49,7 +49,7 @@
         <h4 class="headline">{{ $t('settings.theme') }}</h4>
         <h4 class="subheading">{{ $t('settings.choose.color') }}</h4>
         <v-layout>
-          <v-flex xs6 class="picker">
+          <v-flex xs6 class="picker mr-3">
             <li
               v-for="color in palette"
               :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
@@ -65,7 +65,7 @@
         <h4 class="subheading">{{ $t('settings.choose.systemFont') }}</h4>
         <v-switch
           :label="$tc('settings.onOff', settings.theme.systemFont)"
-          v-model="settings.theme.systemFont" class="mt-0 mb-1" hide-details/>
+          v-model="settings.theme.systemFont" class="mt-0 mb-3" hide-details/>
         <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
         <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>
