@@ -2,6 +2,9 @@
   padding: 0 16px 16px;
   .previous {
     padding-top: 10px;
+    a {
+      text-decoration: underline;
+    }
   }
   /deep/ .markdown {
     h3 {
