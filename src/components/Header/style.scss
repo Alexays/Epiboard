@@ -7,11 +7,17 @@ header {
   z-index: 1;
   .background {
     position: absolute;
+    background-size: cover;
+    background-position: center 55%;
+    background-repeat: no-repeat;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 0;
+    &[lazy=loading] {
+      filter: blur(5px);
+    }
   }
   .v-toolbar {
     width: 66%;

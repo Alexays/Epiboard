@@ -1,10 +1,10 @@
 // imgur album: https://imgur.com/a/NAaUE
 export default {
   unsplash: {
-    dawn: `https://source.unsplash.com/random/${window.innerWidth}x300/?dawn`,
-    day: `https://source.unsplash.com/random/${window.innerWidth}x300/`,
-    dusk: `https://source.unsplash.com/random/${window.innerWidth}x300/?dusk`,
-    night: `https://source.unsplash.com/random/${window.innerWidth}x300/?night`,
+    dawn: `https://source.unsplash.com/random/${window.innerWidth}x${window.innerHeight}/?dawn`,
+    day: `https://source.unsplash.com/random/${window.innerWidth}x${window.innerHeight}/`,
+    dusk: `https://source.unsplash.com/random/${window.innerWidth}x${window.innerHeight}/?dusk`,
+    night: `https://source.unsplash.com/random/${window.innerWidth}x${window.innerHeight}/?night`,
   },
   austin: {
     dawn: 'https://i.imgur.com/7ndeJog.jpg',
@@ -55,10 +55,10 @@ export default {
     night: 'https://i.imgur.com/lh0LV5L.jpg',
   },
   paris: {
-    dawn: 'https://i.imgur.com/c3wAjp2.jpg',
-    day: 'https://i.imgur.com/c3wAjp2.jpg',
-    dusk: 'https://i.imgur.com/vmfdH9T.jpg',
-    night: 'https://i.imgur.com/vmfdH9T.jpg',
+    dawn: `http://lh6.ggpht.com/F9QFQqIVAPulSHCiMuobs4m0fYReFB55NiOaY8RUbyzqb1rOSqeu0Q4cVVRsOSA=w${window.innerWidth}-h${window.innerHeight}`,
+    day: `https://lh4.ggpht.com/wHsOCpRMA92KGQ3pHl6tBWuVY-ruvOKxYrjIZM-1mZIX7VUfLYAkIli4u1XMFTg=w${window.innerWidth}-h${window.innerHeight}`,
+    dusk: `https://lh4.ggpht.com/n3FKbvIraVzxbxvq3B3btqg5Kx4dSC935cDuNRYZ7BomnyumsqA4Mr46KmY5N5Q=w${window.innerWidth}-h${window.innerHeight}`,
+    night: `https://lh4.ggpht.com/4tlgfGMLRz4OpfhJWRXLEFAZeudAGozJgq3ak45DVzcQVHJeTYaw5knl7ce17Q=w${window.innerWidth}-h${window.innerHeight}`,
   },
   sanFrancisco: {
     dawn: 'https://i.imgur.com/fqewVsW.jpg',

@@ -1,9 +1,8 @@
 <template>
   <header class="grey">
-    <progressive-background
-      v-if="background"
-      :src="background"
-      :placeholder="placeholder" :fallback="fallback" no-ratio class="background"/>
+    <div
+      v-lazy:background-image="{ src: background, error: fallback }"
+      :key="background" class="background"/>
     <img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle">
     <template v-if="$store.state.settings.header.design === 'full'">
       <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>

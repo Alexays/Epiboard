@@ -1,10 +1,22 @@
 import Vue from 'vue';
 import * as VToolbar from 'vuetify/es5/components/VToolbar';
-import VueProgressiveImage from 'vue-progressive-image';
+import VueLazyload from 'vue-lazyload';
 import VueTyper from '@/components/Typer';
 import backgrounds from './backgrounds';
 
-Vue.use(VueProgressiveImage);
+Vue.use(VueLazyload, {
+  observer: true,
+  filter: {
+    progressive(listener) {
+      if (listener.src && listener.src.indexOf('data:image/') !== 0
+        && listener.src.indexOf('i.imgur.com') > -1) {
+        const idx = listener.src.lastIndexOf('.');
+        // eslint-disable-next-line
+        listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
+      }
+    },
+  },
+});
 
 const API = 'https://trends.google.com/trends/hottrends/visualize/internal/data';
 const DOODLES_API = 'https://www.google.com/doodles/json/';
@@ -66,14 +78,6 @@ export default {
       }
       const tmp = backgrounds[key] || backgrounds.mountains;
       return this.getBackgroundTime(tmp);
-    },
-    placeholder() {
-      const url = this.background;
-      if (url && url.indexOf('data:image/') !== 0 && url.indexOf('i.imgur.com') > -1) {
-        const idx = url.lastIndexOf('.');
-        return `${url.substr(0, idx)}t${url.substr(idx)}`;
-      }
-      return null;
     },
   },
   watch: {
