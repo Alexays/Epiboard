@@ -6,6 +6,7 @@
     <v-card-text>
       <v-checkbox :label="$t('onboarding.why.prefs')" input-value="true" value readonly/>
       <v-checkbox :label="$t('onboarding.why.needs')" input-value="true" value readonly/>
+      <v-checkbox :label="$t('onboarding.why.privacy')" input-value="true" value readonly/>
       <v-checkbox label="Material Design" input-value="true" value readonly/>
     </v-card-text>
     <v-card-actions class="secondary">

@@ -8,7 +8,8 @@
     "why": {
       "title": "Pourquoi Epiboard est génial",
       "prefs": "Préférences synchronisées entre vos navigateurs (si vous êtes connecté)",
-      "needs": "Une carte pour chaque besoin"
+      "needs": "Une carte pour chaque besoin",
+      "privacy": "Epiboard ne demande des permissions qu'en cas de besoin"
     },
     "settings": {
       "title": "Quelques réglages avant de commencer"
