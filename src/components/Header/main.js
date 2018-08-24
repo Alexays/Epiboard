@@ -109,18 +109,18 @@ export default {
   },
   methods: {
     getBackgroundTime(background) {
-      if (this.dark) return background.night;
+      if (this.dark) return background[3];
       const hour = new Date().getHours();
       if (hour > 5 && hour < 8) {
-        return background.dawn;
+        return background[0];
       }
       if (hour > 8 && hour < 19) {
-        return background.day;
+        return background[1];
       }
       if (hour > 19 && hour < 21) {
-        return background.dusk;
+        return background[2];
       }
-      return background.night;
+      return background[3];
     },
     getTrends() {
       const { data, dt } = this.$store.state.cache.trends;
