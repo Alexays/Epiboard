@@ -26,6 +26,7 @@ export default {
       country: countries,
       localLoading: false,
       backgroundLocal: {},
+      tipShown: false,
       menu: {
         from: false,
         to: false,
@@ -57,8 +58,9 @@ export default {
     },
     settings: {
       handler(val, old) {
-        if (Object.keys(old).length) {
+        if (Object.keys(old).length && !this.tipShown) {
           Toast.show({ title: null, desc: this.$t('settings.apply_change') });
+          this.tipShown = true;
         }
       },
       deep: true,
@@ -122,7 +124,11 @@ export default {
       }).join('')}`;
     },
     reset() {
+      this.tipShown = true;
       this.$store.commit('RESET_SETTINGS');
+      this.$nextTick(() => {
+        this.tipShown = false;
+      });
     },
   },
 };
