@@ -12,7 +12,7 @@
           v-for="(value, key) in availableCards"
           :title="(cardsCmp[key].manifest || {}).description || key"
           :key="key" color="green" dark small @click="addCard(key)">
-          {{ key }}
+          {{ $t(`${key}.title`) === `${key}.title` ? key : $t(`${key}.title`) }}
         </v-btn>
       </v-speed-dial>
     </transition>
