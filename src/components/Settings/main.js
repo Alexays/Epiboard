@@ -1,6 +1,7 @@
 import { VTimePicker, VCheckbox, VSwitch, VAutocomplete, VMenu, VTextField } from 'vuetify';
 import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
 import { loadLang } from '@/i18n';
+import Toast from '@/components/Toast';
 import colors from 'vuetify/es5/util/colors';
 import countries from './countries';
 import artworks from './artworks';
@@ -54,13 +55,17 @@ export default {
       if (val) this.$ga.enable();
       else this.$ga.disable();
     },
+    settings: {
+      handler(val, old) {
+        if (Object.keys(old).length) {
+          Toast.show({ title: null, desc: this.$t('settings.apply_change') });
+        }
+      },
+      deep: true,
+    },
   },
   beforeDestroy() {
-    this.$store.commit('SET_SETTINGS', this.settings);
-    this.$store.commit('SET_BACKGROUND_LOCAL', this.backgroundLocal);
-    if (!this.validateHex(this.settings.theme.primary)) {
-      this.$store.commit('RESET_SETTING', 'theme');
-    }
+    this.save(false);
   },
   beforeMount() {
     this.settings = this.$store.state.settings;
@@ -68,6 +73,16 @@ export default {
     this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
   },
   methods: {
+    save(showToast = true) {
+      this.$store.commit('SET_SETTINGS', this.settings);
+      this.$store.commit('SET_BACKGROUND_LOCAL', this.backgroundLocal);
+      if (!this.validateHex(this.settings.theme.primary)) {
+        this.$store.commit('RESET_SETTING', 'theme');
+      }
+      if (showToast) {
+        Toast.show({ title: this.$t('settings.saved') });
+      }
+    },
     fileChange(event) {
       if (!event.target.files || !event.target.files.length) return;
       const reader = new FileReader();

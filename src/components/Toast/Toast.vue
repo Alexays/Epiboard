@@ -6,7 +6,7 @@
       {{ icon }}
     </v-icon>
     <v-layout column>
-      <v-flex class="subheading">{{ title }}</v-flex>
+      <v-flex v-if="title" class="subheading">{{ title }}</v-flex>
       <v-flex v-if="desc" class="caption">{{ desc }}</v-flex>
     </v-layout>
     <v-btn v-if="dismissible" flat @click="dismiss">Close</v-btn>
