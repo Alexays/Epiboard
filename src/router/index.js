@@ -15,7 +15,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       components: {
         default: Home,
         header: Header,
@@ -23,7 +23,7 @@ const router = new Router({
     },
     {
       path: '/settings',
-      name: 'Settings',
+      name: 'settings',
       components: {
         default: Settings,
         header: Header,
@@ -31,7 +31,7 @@ const router = new Router({
     },
     {
       path: '/onboarding',
-      name: 'OnBoarding',
+      name: 'onboarding',
       components: {
         default: OnBoarding,
         header: Header,

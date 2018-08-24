@@ -46,7 +46,15 @@ export default {
       if (this.$route.path === '/onboarding') {
         return [this.$t('onboarding.welcome')];
       }
-      return this.$route.path === '/' ? this.messages : [this.$route.name];
+      if (this.$route.path === '/') {
+        return this.messages;
+      }
+      const route = this.$route.name;
+      const translation = this.$t(`${route}.title`);
+      if (translation === `${route}.title`) {
+        return [route];
+      }
+      return [translation];
     },
     messagesRepeat() {
       return this.messages.length === 1 || this.$route.path !== '/' ? 0 : Infinity;
@@ -158,3 +166,4 @@ export default {
     },
   },
 };
+ 
