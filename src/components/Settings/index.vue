@@ -150,7 +150,7 @@
         <v-text-field
               class="mt-0" hide-details
               v-model="settings.custom_css_url"
-              :label="URL"/>
+              label="URL"/>
         <h4 class="headline">Debug</h4>
         <h4 class="subheading">{{ $t('settings.debug_desc') }}</h4>
         <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
