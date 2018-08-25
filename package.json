@@ -1,6 +1,6 @@
 {
   "name": "epiboard",
-  "version": "1.5.9",
+  "version": "1.5.10",
   "description": "A new tab page adding a touch of WOW whith an interface following the lines of material design, One card for each need",
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,
@@ -29,7 +29,7 @@
     "webextension-polyfill": "^0.3.1"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.0.0-rc.2",
+    "@babel/polyfill": "^7.0.0-rc.3",
     "@vue/cli": "^3.0.1",
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-plugin-eslint": "^3.0.1",
