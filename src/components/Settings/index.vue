@@ -34,13 +34,22 @@
         </v-layout>
         <h4 class="subheading">Google Trends</h4>
         <v-layout align-center>
-          <v-switch
-            v-model="settings.trends.enabled"
-            :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
+          <v-flex xs2>
+            <v-switch
+              v-model="settings.trends.enabled"
+              :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
+          </v-flex>
           <v-autocomplete
             :items="country"
             :disabled="!settings.trends.enabled"
             v-model="settings.trends.country" :label="$t('settings.choose.trends')"/>
+        </v-layout>
+        <v-layout align-center>
+          <h4 class="subheading mr-3">{{ $t('settings.customMessage') }}</h4>
+          <v-text-field
+            v-model.lazy="settings.header.message"
+            :disabled="settings.trends.enabled"
+            :label="$t('settings.placeholder.customMessage')"/>
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>
         <v-switch
@@ -69,13 +78,17 @@
         <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
         <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>
-          <v-switch
-            :label="$tc('settings.onOff', settings.dark.enabled)"
-            v-model="settings.dark.enabled" class="mt-0" hide-details/>
-          <v-checkbox
-            :disabled="!settings.dark.enabled"
-            :label="$t('settings.dark.auto')"
-            v-model="settings.dark.auto" class="mt-0" hide-details/>
+          <v-flex xs2>
+            <v-switch
+              :label="$tc('settings.onOff', settings.dark.enabled)"
+              v-model="settings.dark.enabled" class="mt-0" hide-details/>
+          </v-flex>
+          <v-flex xs2>
+            <v-checkbox
+              :disabled="!settings.dark.enabled"
+              :label="$t('settings.dark.auto')"
+              v-model="settings.dark.auto" class="mt-0" hide-details/>
+          </v-flex>
           <v-menu
             ref="menu_from"
             :disabled="!settings.dark.auto || !settings.dark.enabled"

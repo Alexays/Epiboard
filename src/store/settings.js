@@ -19,6 +19,7 @@ const initialState = {
     design: 'full',
     background: 'random',
     backgroundUrl: '',
+    message: '',
   },
   theme: {
     primary: '#607D8B',

@@ -63,6 +63,7 @@
     "cancel": "Annulé",
     "onOff": "Activé | Désactivé",
     "apiKey": "clé d'API {name}",
+    "customMessage": "Message d'en-tête personnalisé",
     "dark": {
       "title": "Mode sombre",
       "desc": "Ça va être tout noir",
@@ -91,7 +92,8 @@
     },
     "placeholder": {
       "background": "À partir de l'URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
-      "color": "Couleur principale, e.g. #607D8B"
+      "color": "Couleur principale, e.g. #607D8B",
+      "customMessage": "e.g. Message de motivation ? (Désactivé quand Google Trends est activé)"
     },
     "error": {
       "error": "Valeur incorrect, e.g. #607D8B"

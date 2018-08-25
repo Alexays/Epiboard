@@ -47,6 +47,10 @@ export default {
         return [this.$t('onboarding.welcome')];
       }
       if (this.$route.path === '/') {
+        const { message } = this.$store.state.settings.header;
+        if (!this.trendsSettings.enabled && message.length) {
+          return [message];
+        }
         return this.messages;
       }
       const route = this.$route.name;
