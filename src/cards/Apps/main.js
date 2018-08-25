@@ -35,8 +35,8 @@ export default {
           app.icon += '?grayscale=true';
         }
         const idx = this.apps.findIndex(f => f.id === info.id);
-        if (idx === -1) this.apps.push(info);
-        else this.$set(this.apps, idx, info);
+        if (idx === -1) this.apps.push(app);
+        else this.$set(this.apps, idx, app);
       }
     },
     getAll() {
