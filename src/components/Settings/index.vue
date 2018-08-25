@@ -34,7 +34,7 @@
         </v-layout>
         <h4 class="subheading">Google Trends</h4>
         <v-layout align-center>
-          <v-flex xs2>
+          <v-flex xs1>
             <v-switch
               v-model="settings.trends.enabled"
               :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
@@ -44,12 +44,19 @@
             :disabled="!settings.trends.enabled"
             v-model="settings.trends.country" :label="$t('settings.choose.trends')"/>
         </v-layout>
+        <h4 class="subheading">{{ $t('settings.customMessage') }}</h4>
         <v-layout align-center>
-          <h4 class="subheading mr-3">{{ $t('settings.customMessage') }}</h4>
+          <v-flex xs1>
+            <v-switch
+              v-model="settings.header.customMessage"
+              :disabled="settings.trends.enabled"
+              :label="$tc('settings.onOff', settings.header.customMessage)" class="mt-0" hide-details/>
+          </v-flex>
           <v-text-field
             v-model.lazy="settings.header.message"
-            :disabled="settings.trends.enabled"
-            :label="$t('settings.placeholder.customMessage')"/>
+            :disabled="settings.trends.enabled || !settings.header.customMessage"
+            :label="$t(`settings.placeholder.${settings.trends.enabled
+              ? 'customDesactived' : 'customMessage'}`)"/>
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>
         <v-switch

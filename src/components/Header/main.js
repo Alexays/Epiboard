@@ -48,7 +48,8 @@ export default {
       }
       if (this.$route.path === '/') {
         const { message } = this.$store.state.settings.header;
-        if (!this.trendsSettings.enabled && message.length) {
+        if (!this.trendsSettings.enabled
+          && this.$store.state.settings.header.customMessage && message.length) {
           return [message];
         }
         return this.messages;

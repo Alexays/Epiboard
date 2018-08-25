@@ -19,6 +19,7 @@ const initialState = {
     design: 'full',
     background: 'random',
     backgroundUrl: '',
+    customMessage: false,
     message: '',
   },
   theme: {

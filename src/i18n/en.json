@@ -93,7 +93,8 @@
     "placeholder": {
       "background": "From URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
       "color": "Main color, e.g. #607D8B",
-      "customMessage": "e.g. Motivational message? (Disabled when Google trends is enabled)"
+      "customMessage": "e.g. Motivational message?",
+      "customDesactived": "Disabled when Google trends is enabled"
     },
     "error": {
       "error": "Invalid hex, e.g. #607D8B"
