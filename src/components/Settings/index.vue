@@ -154,9 +154,6 @@
         <h4 class="headline">Debug</h4>
         <h4 class="subheading">{{ $t('settings.debug_desc') }}</h4>
         <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
-        <h4 class="headline">Debug</h4>
-        <h4 class="subheading">{{ $t('settings.debug_desc') }}</h4>
-        <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
         <v-layout align-center>
           <v-btn flat small @click="save">{{ $t('settings.save') }}</v-btn>
           <v-btn flat small @click="reset">{{ $t('settings.reset') }}</v-btn>
