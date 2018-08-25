@@ -29,6 +29,7 @@ const initialState = {
     customFont: false,
     font: '',
   },
+  custom_css_url: '',
   lang: langs[0] || 'en',
   tutorial: false,
   debug: false,

@@ -56,6 +56,10 @@ export default {
       if (val) this.$ga.enable();
       else this.$ga.disable();
     },
+    'settings.custom_css_url': function customCss(val, old) {
+      if (val === old || old === undefined || val === '') return;
+      document.getElementById('custom_css').href = val;
+    },
     settings: {
       handler(val, old) {
         if (Object.keys(old).length && !this.tipShown) {
