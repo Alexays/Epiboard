@@ -84,7 +84,7 @@
       "background": "Choose your background",
       "trends": "Choose your Google trends country",
       "color": "Choose the main color",
-      "systemFont": "Use your system font"
+      "customFont": "Use custom font"
     },
     "design": {
       "full": "Full",
@@ -94,6 +94,7 @@
       "background": "From URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
       "color": "Main color, e.g. #607D8B",
       "customMessage": "e.g. Motivational message?",
+      "customFont": "e.g. Roboto",
       "customDesactived": "Disabled when Google trends is enabled"
     },
     "error": {

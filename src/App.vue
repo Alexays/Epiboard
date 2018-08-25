@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark" :class="{ 'system-font': systemFont }">
+  <v-app :dark="dark" :style="{ 'font-family': systemFont }">
     <router-view name="header" keep-alive/>
     <transition name="fade-transition" mode="out-in">
       <router-view keep-alive/>
@@ -12,7 +12,10 @@ export default {
   name: 'App',
   computed: {
     systemFont() {
-      return this.$store.state.settings.theme.systemFont;
+      if (this.$store.state.settings.theme.customFont) {
+        return this.$store.state.settings.theme.font;
+      }
+      return null;
     },
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);

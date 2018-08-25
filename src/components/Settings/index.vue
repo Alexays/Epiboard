@@ -34,7 +34,7 @@
         </v-layout>
         <h4 class="subheading">Google Trends</h4>
         <v-layout align-center>
-          <v-flex xs1>
+          <v-flex xs2>
             <v-switch
               v-model="settings.trends.enabled"
               :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
@@ -46,7 +46,7 @@
         </v-layout>
         <h4 class="subheading">{{ $t('settings.customMessage') }}</h4>
         <v-layout align-center>
-          <v-flex xs1>
+          <v-flex xs2>
             <v-switch
               v-model="settings.header.customMessage"
               :disabled="settings.trends.enabled"
@@ -78,10 +78,18 @@
             () => validateHex(settings.theme.primary) || $t('settings.error.color')]"
             :label="$t('settings.placeholder.color')" @change="themeChange"/>
         </v-layout>
-        <h4 class="subheading">{{ $t('settings.choose.systemFont') }}</h4>
-        <v-switch
-          :label="$tc('settings.onOff', settings.theme.systemFont)"
-          v-model="settings.theme.systemFont" class="mt-0 mb-3" hide-details/>
+        <h4 class="subheading">{{ $t('settings.choose.customFont') }}</h4>
+        <v-layout align-center>
+          <v-flex xs2>
+            <v-switch
+              v-model="settings.theme.customFont"
+              :label="$tc('settings.onOff', settings.theme.customFont)" class="mt-0" hide-details/>
+          </v-flex>
+          <v-text-field
+            v-model.lazy="settings.theme.font"
+            :disabled="!settings.theme.customFont"
+            :label="$t('settings.placeholder.customFont')"/>
+        </v-layout>
         <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
         <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>
