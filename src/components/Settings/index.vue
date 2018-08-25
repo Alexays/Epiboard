@@ -50,13 +50,14 @@
             <v-switch
               v-model="settings.header.customMessage"
               :disabled="settings.trends.enabled"
-              :label="$tc('settings.onOff', settings.header.customMessage)" class="mt-0" hide-details/>
+              :label="$tc('settings.onOff', settings.header.customMessage)"
+              class="mt-0" hide-details/>
           </v-flex>
           <v-text-field
             v-model.lazy="settings.header.message"
             :disabled="settings.trends.enabled || !settings.header.customMessage"
             :label="$t(`settings.placeholder.${settings.trends.enabled
-              ? 'customDesactived' : 'customMessage'}`)"/>
+            ? 'customDesactived' : 'customMessage'}`)"/>
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>
         <v-switch

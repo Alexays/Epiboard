@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   globals: {
     browser: true,
@@ -9,9 +9,9 @@ module.exports = {
     Langs: true,
     browserName: true,
   },
-  'extends': [
+  extends: [
     'plugin:vue/recommended',
-    '@vue/airbnb'
+    '@vue/airbnb',
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -22,7 +22,7 @@ module.exports = {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',
-      vue: 'never'
+      vue: 'never',
     }],
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions
@@ -32,11 +32,11 @@ module.exports = {
         'state', // for vuex state
         'acc', // for reduce accumulators
         'e', // for e.returnvalue
-        'f'
-      ]
+        'f',
+      ],
     }],
   },
   parserOptions: {
-    parser: 'babel-eslint'
-  }
-}
+    parser: 'babel-eslint',
+  },
+};

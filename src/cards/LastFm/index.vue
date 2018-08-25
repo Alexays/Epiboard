@@ -1,11 +1,13 @@
 <template>
   <div id="lastfm">
-    <v-btn flat small
+    <v-btn
       v-if="!loading && showTip && itemsLength"
       :dark="!$store.state.settings.theme.light"
       :light="$store.state.settings.theme.light"
-      @click.stop="showTip=false"
-      block color="primary" class="ma-0">
+      color="primary"
+      class="ma-0"
+      block
+      flat small @click.stop="showTip=false">
       <span>{{ $t('LastFm.tip') }}</span>
       <v-spacer/>
       <v-icon>close</v-icon>
