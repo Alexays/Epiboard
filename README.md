@@ -55,6 +55,13 @@ $ npm run build:chrome -- --report
 # load unpacked extension from dist folder.
 ```
 
+## Opera
+
+1. Install the Opera Extension that allows you to Add Chrome Extensions: [HERE](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/).
+2. Install Epiboard from [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) or local install
+3. Install the [Custom New Tab Page](https://addons.opera.com/en/extensions/details/custom-new-tab-page/) extension
+4. In Custom New Tab page setting enter URL: `chrome-extension://eblmkpheecdcbflbhbadgfciakhlhdnm/index.html`
+
 ## Notes on permissions
 
 *Some of theses permissions are not optional only due to manifest/API limitations: learn more: [chrome](https://developer.chrome.com/extensions/permissions), [firefox](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/optional_permissions)*
