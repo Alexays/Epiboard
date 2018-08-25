@@ -1,10 +1,33 @@
 # Epiboard [![Build Status](https://travis-ci.org/Alexays/Epiboard.svg?branch=master)](https://travis-ci.org/Alexays/Epiboard) [![Version](https://img.shields.io/github/package-json/v/Alexays/Epiboard.svg)](https://github.com/Alexays/Epiboard/releases) [![Paypal Donate](https://img.shields.io/badge/Donate-Paypal-2244dd.svg)](https://paypal.me/ARouillard) [![Licence](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > A new tab page adding a touch of wow and an interface following the lines of the material design. 🆕 🎉.<br>
+> You can simply and quickly access the weather, your RSS feeds, downloads, sessions, keep a look on Google Trends and much more.
+
 > Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).<br>
 > **Available on [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) and [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)**
 
 ![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png)
+
+## Introduction
+
+Epiboard replaces the default new tab page. Where you can add cards, reorder them with drag and drop.<br>
+Colors, Dark mone, Languages, Google Trends city can be customized from the settings page.<br>
+Weather city, RSS, Downloads can be customized from the card settings.<br>
+All settings are synchronized between browsers.
+
+**Current cards:**
+ - Weather
+ - System (Chrome only)
+ - Bookmarks
+ - Sessions
+ - Downloads
+ - Quick settings
+ - RSS
+ - Top Sites
+ - Apps (Chrome only)
+ - LastFm
+ - Epitech
+ - Isefac
 
 ## Requirement
 
