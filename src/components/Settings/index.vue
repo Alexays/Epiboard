@@ -44,7 +44,7 @@
             :disabled="!settings.trends.enabled"
             v-model="settings.trends.country" :label="$t('settings.choose.trends')"/>
         </v-layout>
-        <h4 class="subheading">{{ $t('settings.customMessage') }}</h4>
+        <h4 class="subheading">{{ $t('settings.custom_message') }}</h4>
         <v-layout align-center>
           <v-flex xs2>
             <v-switch
@@ -57,7 +57,7 @@
             v-model.lazy="settings.header.message"
             :disabled="settings.trends.enabled || !settings.header.customMessage"
             :label="$t(`settings.placeholder.${settings.trends.enabled
-            ? 'customDesactived' : 'customMessage'}`)"/>
+            ? 'custom_desactived' : 'custom_message'}`)"/>
         </v-layout>
         <h4 class="subheading">Google Doodles</h4>
         <v-switch
@@ -79,7 +79,7 @@
             () => validateHex(settings.theme.primary) || $t('settings.error.color')]"
             :label="$t('settings.placeholder.color')" @change="themeChange"/>
         </v-layout>
-        <h4 class="subheading">{{ $t('settings.choose.customFont') }}</h4>
+        <h4 class="subheading">{{ $t('settings.choose.custom_font') }}</h4>
         <v-layout align-center>
           <v-flex xs2>
             <v-switch
@@ -89,8 +89,15 @@
           <v-text-field
             v-model.lazy="settings.theme.font"
             :disabled="!settings.theme.customFont"
-            :label="$t('settings.placeholder.customFont')"/>
+            :label="$t('settings.placeholder.custom_font')"/>
         </v-layout>
+        <template v-if="settings.debug">
+          <h4 class="subheading">{{ $t('settings.custom_css') }}</h4>
+          <h3 class="body-2 error--text">{{ $t('settings.custom_css_warning') }}</h3>
+          <v-text-field
+            v-model="settings.theme.customCssUrl"
+            :label="$t('settings.custom_css_desc')"/>
+        </template>
         <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
         <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
         <v-layout align-center>

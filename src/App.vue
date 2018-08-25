@@ -23,6 +23,12 @@ export default {
     primary() {
       return this.$store.state.settings.theme.primary;
     },
+    customCssUrl() {
+      return this.$store.state.settings.theme.customCssUrl;
+    },
+    debug() {
+      return this.$store.state.settings.debug;
+    },
   },
   watch: {
     primary(hex) {
@@ -32,6 +38,37 @@ export default {
         this.$vuetify.theme.secondary = secondary;
         this.$vuetify.theme.foreground = light ? '#000000' : '#ffffff';
       }
+    },
+    customCssUrl(val, old) {
+      if (val === old) return;
+      if (!this.customCssUrl.length) {
+        this.unloadCustomCss();
+      } else this.loadCustomCss();
+    },
+    debug(val, old) {
+      if (val === old) return;
+      if (val && this.customCssUrl.length) this.loadCustomCss();
+      else this.unloadCustomCss();
+    },
+  },
+  methods: {
+    unloadCustomCss() {
+      const el = document.getElementById('custom-css');
+      if (el) {
+        el.remove();
+      }
+    },
+    loadCustomCss() {
+      let el = document.getElementById('custom-css');
+      if (!el) {
+        el = document.createElement('style');
+        el.setAttribute('type', 'text/css');
+        el.setAttribute('id', 'custom-css');
+        document.head.appendChild(el);
+      }
+      this.axios.get(this.customCssUrl).then((res) => {
+        el.textContent = res.data;
+      });
     },
   },
 };
