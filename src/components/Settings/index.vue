@@ -145,8 +145,8 @@
         <h4 class="headline">Google Analytics</h4>
         <h4 class="subheading">{{ $t('settings.analytics_desc') }}</h4>
         <v-switch :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
-        <h4 class="headline">Custom CSS</h4>
-        <h4 class="subheading">{{ $t('settings.custom_css_desc') }}</h4>
+        <h4 class="headline">$t('settings.custom_css')</h4>
+        <h4 class="subheading">$t('settings.custom_css_desc')</h4>
         <v-text-field
               class="mt-0" hide-details
               v-model="settings.custom_css_url"
