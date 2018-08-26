@@ -27,6 +27,7 @@
     "error": "{id} got an error, please try again later",
     "error_reload": "{id} got an error, click to reload"
   },
+  "add": "Add",
   "greetMessages": [
     "Hey, how's your day?",
     "Hope you're doing well",

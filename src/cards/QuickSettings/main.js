@@ -4,7 +4,6 @@ import { VCheckbox } from 'vuetify';
 // @vue/component
 export default {
   name: 'QuickSettings',
-  title: 'Quick Settings',
   components: {
     VCheckbox,
   },

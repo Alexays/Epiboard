@@ -5,6 +5,9 @@
     position: absolute;
     top: -35px;
     z-index: 2;
+    /deep/ .v-speed-dial__list {
+      align-items: flex-end !important;
+    }
   }
   #card-container {
     position: relative;

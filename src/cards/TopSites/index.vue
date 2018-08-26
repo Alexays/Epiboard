@@ -1,14 +1,19 @@
 <template>
   <v-card-text id="top-sites">
-    <div v-if="topSites.length">
-      <li v-for="node in topSites" :key="node.url">
-        <a :href="node.url" class="text--primary">
-          <i v-if="node.icon" :style="{'background-image': 'url('+node.icon+')'}"/>
-          <v-icon v-else x-large>insert_drive_file</v-icon>
-          <span class="n-title">{{ node.title || node.url }}</span>
-        </a>
-      </li>
-    </div>
+    <v-list v-if="topSites.length" dense>
+      <v-list-tile v-for="item in topSites" :key="item.url" :href="item.url">
+        <v-list-tile-avatar :size="16">
+          <img v-if="item.icon" :src="item.icon">
+          <v-icon v-else>insert_drive_file</v-icon>
+        </v-list-tile-avatar>
+        <v-list-tile-content :title="item.url" class="caption">
+          <v-list-tile-sub-title v-if="item.title && item.title.length">
+            {{ item.title }}
+          </v-list-tile-sub-title>
+          <v-list-tile-sub-title v-else>{{ item.url }}</v-list-tile-sub-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
     <div v-else class="text-xs-center">
       <v-icon x-large>find_in_page</v-icon>
       <h2 class="subheading">{{ $t('TopSites.empty') }}</h2>

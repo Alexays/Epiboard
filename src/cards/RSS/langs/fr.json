@@ -1,7 +1,6 @@
 {
   "empty": "Flux vides",
   "settings": {
-    "feeds": "Flux",
-    "add": "Ajouter"
+    "feeds": "Flux"
   }
 }

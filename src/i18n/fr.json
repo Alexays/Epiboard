@@ -27,6 +27,7 @@
     "error": "{id} a eu une erreur, veuillez réessayer plus tard",
     "error_reload": "{id} a eu une erreur, cliquez pour recharger"
   },
+  "add": "Ajouter",
   "greetMessages": [
     "Hey, comment se passe ta journée ?",
     "J'espère que vous allez bien",
