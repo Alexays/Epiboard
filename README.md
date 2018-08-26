@@ -22,6 +22,7 @@ All settings are synchronized between browsers.
  - Sessions
  - Downloads
  - Quick settings
+ - Quick Links
  - RSS
  - Top Sites
  - Apps (Chrome only)

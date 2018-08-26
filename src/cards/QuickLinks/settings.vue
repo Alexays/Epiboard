@@ -1,5 +1,5 @@
 <template>
-  <v-card-text>
+  <v-card-text id="quick-links">
     <h4 class="subheading">{{ $t('QuickLinks.settings.links') }}</h4>
     <v-list dense>
       <v-list-tile v-for="(link, idx) in settings.links" :key="link">
@@ -18,3 +18,4 @@
   </v-card-text>
 </template>
 <script src="./settings.js"></script>
+<style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>
