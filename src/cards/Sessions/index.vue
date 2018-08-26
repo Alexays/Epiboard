@@ -5,7 +5,9 @@
       :dark="!$store.state.settings.theme.light"
       :light="$store.state.settings.theme.light"
       slider-color="foreground" color="primary" grow show-arrows>
-      <v-tab v-for="tab in tabs" :key="tab.id">{{ $t(tab.name) }}</v-tab>
+      <v-tab v-for="tab in tabs" :key="tab.id">
+        {{ tab.id === 'recents' ? $t(tab.name) : tab.name }}
+      </v-tab>
       <v-tabs-items>
         <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
           <v-card-text class="scroll-content">

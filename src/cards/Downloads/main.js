@@ -13,7 +13,10 @@ export default {
     drag: {
       bind(el, { value }) {
         if (!value) return;
-        el.addEventListener('dragstart', () => browser.downloads.drag(parseInt(el.id, 10)));
+        el.addEventListener('dragstart', (ev) => {
+          if (ev.srcElement === ev.target) return;
+          browser.downloads.drag(parseInt(el.id, 10));
+        });
       },
     },
   },
