@@ -9,7 +9,7 @@
         hide-details single-line @keyup.13="search" @input="userInput($event)"/>
     </template>
     <a v-else :href="url" target="_blank">
-      <h1 :title="currentWord">
+      <h1 :title="currentWord" dir="auto">
         <slot/>
         <span :class="{ 'typewriter-selected': isFullErasing }" class="typewriter-msg">
           {{ typing }}

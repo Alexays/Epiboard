@@ -102,6 +102,9 @@ export default {
     },
   },
   mounted() {
+    if (this.textField) {
+      this.$refs.textInput.$refs.input.dir = 'auto';
+    }
     this.type();
   },
   beforeDestroy() {
