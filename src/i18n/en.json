@@ -55,6 +55,9 @@
     "browse": "Browse",
     "theme": "Theme",
     "analytics_desc": "Just to see how you use cards",
+    "custom_css": "Custom CSS",
+    "custom_css_desc": "Insert the URL of your CSS file, e.g. https://example.com/style.css",
+    "custom_css_warning": "Warning CSS customization is for advanced users, leave blank for the default theme",
     "debug_desc": "If you feel up to it",
     "apply_change": "To apply the changes you must use the back button or click on save at the bottom of the page",
     "reset": "Reset settings",
@@ -63,7 +66,7 @@
     "cancel": "Cancel",
     "onOff": "On | Off",
     "apiKey": "{name} API Key",
-    "customMessage": "Custom header message",
+    "custom_message": "Custom header message",
     "dark": {
       "title": "Dark mode",
       "desc": "It's gonna get all dark",
@@ -84,7 +87,7 @@
       "background": "Choose your background",
       "trends": "Choose your Google trends country",
       "color": "Choose the main color",
-      "customFont": "Use custom font"
+      "custom_font": "Use custom font"
     },
     "design": {
       "full": "Full",
@@ -93,9 +96,9 @@
     "placeholder": {
       "background": "From URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
       "color": "Main color, e.g. #607D8B",
-      "customMessage": "e.g. Motivational message?",
-      "customFont": "e.g. Roboto",
-      "customDesactived": "Disabled when Google trends is enabled"
+      "custom_message": "e.g. Motivational message?",
+      "custom_font": "e.g. Roboto",
+      "custom_desactived": "Disabled when Google trends is enabled"
     },
     "error": {
       "error": "Invalid hex, e.g. #607D8B"

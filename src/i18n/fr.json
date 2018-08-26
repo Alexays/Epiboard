@@ -55,6 +55,9 @@
     "browse": "Parcourir",
     "theme": "Thème",
     "analytics_desc": "Juste pour voir comment vous utilisez les cartes",
+    "custom_css": "CSS personnalisé",
+    "custom_css_desc": "Insérer l'URL de votre fichier CSS, e.g. https://example.com/style.css",
+    "custom_css_warning": "Avertissement la personalisation du css est pour les utilisateurs avancés, laisser vide pour le thème par défaut",
     "debug_desc": "Si vous vous sentez à la hauteur",
     "apply_change": "Pour appliquer les changements, vous devez utiliser le bouton retour ou cliquez sur Sauvegarder au bas de la page",
     "reset": "Réinitialiser les réglages",
@@ -63,7 +66,7 @@
     "cancel": "Annulé",
     "onOff": "Activé | Désactivé",
     "apiKey": "clé d'API {name}",
-    "customMessage": "Message d'en-tête personnalisé",
+    "custom_message": "Message d'en-tête personnalisé",
     "dark": {
       "title": "Mode sombre",
       "desc": "Ça va être tout noir",
@@ -84,7 +87,7 @@
       "background": "Choisissez votre arrière-plan",
       "trends": "Choisissez votre pays pour Google trends",
       "color": "Choisissez votre couleur principale",
-      "customFont": "Utiliser une police personnalisée"
+      "custom_font": "Utiliser une police personnalisée"
     },
     "design": {
       "full": "Étendu",
@@ -93,9 +96,9 @@
     "placeholder": {
       "background": "À partir de l'URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
       "color": "Couleur principale, e.g. #607D8B",
-      "customMessage": "e.g. Message de motivation ?",
-      "customFont": "e.g. Roboto",
-      "customDesactived": "Désactivé quand Google Trends est activé"
+      "custom_message": "e.g. Message de motivation ?",
+      "custom_font": "e.g. Roboto",
+      "custom_desactived": "Désactivé quand Google Trends est activé"
     },
     "error": {
       "error": "Valeur incorrect, e.g. #607D8B"

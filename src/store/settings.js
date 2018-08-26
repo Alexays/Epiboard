@@ -28,6 +28,7 @@ const initialState = {
     light: false,
     customFont: false,
     font: '',
+    customCssUrl: '',
   },
   lang: langs[0] || 'en',
   tutorial: false,
