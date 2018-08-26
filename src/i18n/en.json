@@ -56,7 +56,7 @@
     "theme": "Theme",
     "analytics_desc": "Just to see how you use cards",
     "custom_css": "Custom CSS URL",
-    "custom_css_desc": "Insert custom CSS URL (https://example.com/style.css)",
+    "custom_css_desc": "Insert custom CSS URL (https://example.com/style.css) REQUIRES DEBUG",
     "debug_desc": "If you feel up to it",
     "apply_change": "To apply the changes you must use the back button or click on save at the bottom of the page",
     "reset": "Reset settings",

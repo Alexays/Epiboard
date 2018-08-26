@@ -60,6 +60,10 @@ export default {
       if (val === old || old === undefined || val === '') return;
       document.getElementById('custom_css').href = val;
     },
+    'settings.debug': function debug(val, old) {
+      if (val === old || old === undefined || val === true) return;
+      this.settings.custom_css_url = '';
+    },
     settings: {
       handler(val, old) {
         if (Object.keys(old).length && !this.tipShown) {
