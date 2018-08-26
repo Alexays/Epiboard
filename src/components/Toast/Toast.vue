@@ -9,7 +9,9 @@
       <v-flex v-if="title">{{ title }}</v-flex>
       <v-flex v-if="desc">{{ desc }}</v-flex>
     </v-layout>
-    <v-btn v-if="dismissible" flat @click="dismiss">Close</v-btn>
+    <v-btn v-if="dismissible" flat @click="dismiss">
+      <v-icon>close</v-icon>
+    </v-btn>
   </v-snackbar>
 </template>
 <script src="./main.js"></script>
