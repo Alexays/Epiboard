@@ -11,7 +11,7 @@
 ## Introduction
 
 Epiboard replaces the default new tab page. Where you can add cards, reorder them with drag and drop.<br>
-Colors, Dark mone, Languages, Google Trends city can be customized from the settings page.<br>
+Colors, Dark mode, Languages, Google Trends city can be customized from the settings page.<br>
 Weather city, RSS, Downloads can be customized from the card settings.<br>
 All settings are synchronized between browsers.
 
