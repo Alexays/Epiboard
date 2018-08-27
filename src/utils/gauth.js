@@ -13,13 +13,14 @@ const apiUrl = {
 };
 
 export default {
-  authorize(scope) {
+  authorize(scope, state) {
     const params = [
       `client_id=${clientId}`,
       'response_type=code',
       'access_type=offline',
       'include_granted_scopes=true',
       'prompt=consent',
+      `state=${encodeURIComponent(state)}`,
       `redirect_uri=${encodeURIComponent(redirectUrl)}`,
       `scope=${encodeURIComponent(scope)}`,
     ].join('&');
@@ -28,20 +29,30 @@ export default {
       url: `${apiUrl.webAuth}?${params}`,
     });
   },
-  extractCode(redirectUri) {
+  extractCode(redirectUri, state) {
     const m = redirectUri.match(/[#?](.*)/);
     if (!m || m.length < 1) {
       return null;
     }
     const params = new URLSearchParams(m[1].split('#')[0]);
-    return params.get('code');
+    const paramState = params.get('state');
+    if (paramState !== state) {
+      throw new Error('State differ');
+    }
+    const code = params.get('code');
+    if (!code) {
+      throw new Error('Invalid code');
+    }
+    return code;
   },
   isConnected() {
     return store.state.cache.google.accessToken && store.state.cache.google.refreshToken;
   },
   initialize(scope) {
     if (!this.isConnected()) {
-      return this.authorize(scope).then(url => this.getTokens(this.extractCode(url)));
+      const state = btoa(window.crypto.getRandomValues(new Uint8Array(16)));
+      return this.authorize(scope, state)
+        .then(url => this.getTokens(this.extractCode(url, state)));
     }
     return this.validateTokens(scope);
   },
@@ -60,7 +71,6 @@ export default {
     return Axios.post(`${apiUrl.token}?${params}`)
       .then((res) => {
         store.commit('SET_GOOGLE', {
-          refreshToken: store.state.cache.google.refreshToken,
           accessToken: res.data.access_token,
           exp: Date.now() + (res.data.expire_in * 1000),
         });
@@ -94,10 +104,11 @@ export default {
         return res.data.access_token;
       });
   },
-  fetch(url) {
+  http(method, url, data = {}) {
     return Axios({
       url,
-      method: 'GET',
+      method,
+      data,
       headers: {
         Authorization: `Bearer ${store.state.cache.google.accessToken}`,
         'Content-type': 'application/json',

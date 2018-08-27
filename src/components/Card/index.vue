@@ -3,7 +3,9 @@
     <v-card hover raised>
       <v-toolbar
         :color="theme ? 'elevation-0' : 'primary'"
-        :absolute="!!theme" :prominent="showSettings || subTitle" class="head-drag" card>
+        :absolute="!!theme"
+        :prominent="!!showSettings || !!subTitle"
+        :dense="!showSettings && !subTitle" class="head-drag" card>
         <v-layout :style="{ color: titleColor }" column wrap>
           <v-toolbar-title v-if="!showSettings && title" :title="id">
             {{ title }}
@@ -64,18 +66,20 @@
           </v-btn>
         </template>
       </v-toolbar>
-      <component
-        v-init="id"
-        v-show="!showSettings"
-        ref="card"
-        :actions.sync="actions"
-        :cardtitle.sync="title"
-        :subtitle.sync="subTitle"
-        :settings="settings"
-        :is="cmp.card"
-        :key="hash"
-        @init="init"
-      />
+      <keep-alive>
+        <component
+          v-init="id"
+          v-show="!showSettings"
+          ref="card"
+          :actions.sync="actions"
+          :cardtitle.sync="title"
+          :subtitle.sync="subTitle"
+          :settings="settings"
+          :is="cmp.card"
+          :key="hash"
+          @init="init"
+        />
+      </keep-alive>
       <component
         v-initSettings="settings"
         v-if="showSettings && cmp.settings"

@@ -190,7 +190,8 @@ export default {
         this.fullEraseTimeout = setTimeout(() => {
           this.isFullErasing = true;
           if (this.textField) {
-            this.$refs.textInput.$refs.input.select();
+            // TODO: Cause some unwanted focus
+            // this.$refs.textInput.$refs.input.select();
           }
           clearTimeout(this.fullEraseTimeout);
           const tmp = setTimeout(() => {

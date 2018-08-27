@@ -1,5 +1,5 @@
 import * as VList from 'vuetify/es5/components/VList';
-import { VCheckbox } from 'vuetify';
+import { VCheckbox, VTextField } from 'vuetify';
 import Api from './api';
 
 // @vue/component
@@ -8,12 +8,14 @@ export default {
   components: {
     ...VList,
     VCheckbox,
+    VTextField,
   },
   data() {
     return {
       currentId: null,
       tasks: [],
       lists: [],
+      editMode: [],
     };
   },
   computed: {
@@ -70,6 +72,21 @@ export default {
           this.updateMenu();
         });
       });
+    },
+    editTask(task) {
+      const idx = this.editMode.indexOf(task.id);
+      Api.updateTask(this.currentId, task);
+      this.editMode.splice(idx, 1);
+    },
+    onStatus(task) {
+      if (task.completed) {
+        delete task.completed; // eslint-disable-line
+      }
+      Api.updateTask(this.currentId, task);
+    },
+    delTask(task, idx) {
+      Api.delTask(this.currentId, task.id);
+      this.tasks.splice(idx, 1);
     },
   },
 };

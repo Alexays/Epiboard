@@ -18,7 +18,7 @@
             <v-list v-else dense>
               <v-list-tile
                 v-for="item in tab.data"
-                :key="`${item.title}${item.lastModified}`" :href="item.url">
+                :key="item.sessionId" :href="item.url">
                 <v-list-tile-avatar :size="16">
                   <img v-if="item.favIconUrl" :src="item.favIconUrl">
                   <v-icon v-else>insert_drive_file</v-icon>
