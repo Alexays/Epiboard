@@ -1,16 +1,32 @@
 <template>
   <div id="tasks">
     <v-list v-if="connected && tasks.length">
-      <v-list-tile v-for="task in tasks" :key="task.id" avatar>
+      <v-list-tile v-for="(task, idx) in tasks" :key="task.id" avatar>
         <v-list-tile-action>
-          <v-checkbox v-model="task.status" value="completed"/>
+          <v-checkbox
+            v-model="task.status"
+            true-value="completed" false-value="needsAction" @change="onStatus(task)"/>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title v-if="task.status === 'completed'">
+          <v-text-field
+            v-if="editMode.indexOf(task.id) > -1"
+            v-model="task.title" hide-details @keyup.13="editTask(task)"/>
+          <v-list-tile-title v-else-if="task.status === 'completed'">
             <strike>{{ task.title }}</strike>
           </v-list-tile-title>
           <v-list-tile-title v-else>{{ task.title }}</v-list-tile-title>
         </v-list-tile-content>
+        <v-list-tile-action>
+          <v-btn v-if="task.status === 'completed'" icon ripple @click="delTask(task, idx)">
+            <v-icon color="grey">delete</v-icon>
+          </v-btn>
+          <v-btn v-else-if="editMode.indexOf(task.id) > -1" icon ripple @click="editTask(task)">
+            <v-icon>check</v-icon>
+          </v-btn>
+          <v-btn v-else icon ripple @click="editMode.push(task.id)">
+            <v-icon color="grey">edit</v-icon>
+          </v-btn>
+        </v-list-tile-action>
       </v-list-tile>
     </v-list>
     <v-card-text v-else class="text-xs-center">

@@ -3,10 +3,10 @@
     <v-layout row wrap>
       <v-flex xs8 class="left">
         <v-layout v-if="today" column align-content-space-between fill-height>
-          <v-flex xs1 class="text-xs-right pt-1">
+          <v-flex xs1 class="text-xs-right">
             <v-icon small>location_on</v-icon> {{ today.name }}
           </v-flex>
-          <v-flex :xs9="settings.forecast" :xs11="!settings.forecast" class="pt-1">
+          <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
             <v-layout row wrap fill-height align-center class="today">
               <v-flex class="text-xs-center">
                 <img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])">

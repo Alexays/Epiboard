@@ -56,7 +56,7 @@ export default {
       state.backgroundLocal = data;
     },
     SET_GOOGLE(state, data) {
-      state.google = data;
+      state.google = { ...state.google, ...data };
     },
     DEL_GOOGLE(state) {
       state.google = defaultState.google;
