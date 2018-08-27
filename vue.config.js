@@ -10,7 +10,7 @@ const fs = require('fs');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
-const excludeCards = ['Tasks'];
+const excludeCards = [];
 
 const cards = {};
 

@@ -45,6 +45,10 @@
     "allow": "Permettre",
     "deny": "Refuser"
   },
+  "auth": {
+    "connect_to": "Se connecter à {service}",
+    "disconnect_from": "Se déconnecter de {service}"
+  },
   "home": {
     "no_cards": "Pas de cartes.",
     "add_cards": "Vous pouvez ajouter des cartes en cliquant sur le bouton flottant en haut à droite."
@@ -93,6 +97,10 @@
     "design": {
       "full": "Étendu",
       "toolbar": "Barre de recherche"
+    },
+    "auth": {
+      "title": "Services connectés",
+      "desc": "Permettre aux cartes d'accéder aux caractéristiques de ces services"
     },
     "placeholder": {
       "background": "À partir de l'URL, e.g. https://i.imgur.com/foVYQ6T.jpg",

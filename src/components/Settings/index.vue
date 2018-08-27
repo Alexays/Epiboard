@@ -149,6 +149,13 @@
               format="24h" @change="$refs.menu_to.save(settings.dark.to)"/>
           </v-menu>
         </v-layout>
+        <h4 class="headline">{{ $t('settings.auth.title') }}</h4>
+        <h4 class="subheading">{{ $t('settings.auth.desc') }}</h4>
+        <v-btn
+          :disabled="!$utils.gauth.isConnected()"
+          color="blue" class="white--text" @click="$utils.gauth.revoke()">
+          {{ $t('auth.disconnect_from', { service: 'Google'}) }}
+        </v-btn>
         <h4 class="headline">Google Analytics</h4>
         <h4 class="subheading">{{ $t('settings.analytics_desc') }}</h4>
         <v-switch :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
