@@ -11,11 +11,16 @@ export default {
   },
   data() {
     return {
-      token: null,
       currentId: null,
       tasks: [],
       lists: [],
     };
+  },
+  computed: {
+    connected() {
+      return this.$store.state.cache.google.accessToken
+        && this.$store.state.cache.google.refreshToken;
+    },
   },
   mounted() {
     if (this.VALID_CACHE) {
@@ -23,19 +28,19 @@ export default {
       this.$emit('init', false);
       return;
     }
-    this.getToken()
-      .then(() => this.getLists())
-      .then(() => this.getAll())
-      .then(() => this.$emit('init', true))
-      .catch(err => this.$emit('init', err));
+    if (!this.connected) {
+      this.$emit('init');
+      return;
+    }
+    this.init();
   },
   methods: {
-    getToken() {
-      return Api.validate(this.token)
-        .catch(() => Api.getAccessToken('https://www.googleapis.com/auth/tasks'))
-        .then((token) => {
-          this.token = token;
-        });
+    init() {
+      this.$utils.gauth.initialize('https://www.googleapis.com/auth/tasks')
+        .then(() => this.getLists())
+        .then(() => this.getAll())
+        .then(() => this.$emit('init', ['currentId', 'tasks', 'lists']))
+        .catch(err => this.$emit('init', err));
     },
     updateMenu() {
       const action = this.lists.map(f => ({

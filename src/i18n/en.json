@@ -45,6 +45,10 @@
     "allow": "Allow",
     "deny": "Deny"
   },
+  "auth": {
+    "connect_to": "Connect to {service}",
+    "disconnect_from": "Disconnect from {service}"
+  },
   "home": {
     "no_cards": "No cards.",
     "add_cards": "You can add cards by click on fab button in top right."
@@ -93,6 +97,10 @@
     "design": {
       "full": "Full",
       "toolbar": "Toolbar"
+    },
+    "auth": {
+      "title": "Connected services",
+      "desc": "Enabling cards to access features of these services"
     },
     "placeholder": {
       "background": "From URL, e.g. https://i.imgur.com/foVYQ6T.jpg",

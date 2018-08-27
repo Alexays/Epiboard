@@ -14,6 +14,11 @@ const defaultState = {
     filename: null,
     dataUrl: '',
   },
+  google: {
+    accessToken: null,
+    refreshToken: null,
+    exp: 0,
+  },
 };
 
 export default {
@@ -49,6 +54,12 @@ export default {
     },
     SET_BACKGROUND_LOCAL(state, data) {
       state.backgroundLocal = data;
+    },
+    SET_GOOGLE(state, data) {
+      state.google = data;
+    },
+    DEL_GOOGLE(state) {
+      state.google = defaultState.google;
     },
   },
 };
