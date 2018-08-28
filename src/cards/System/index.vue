@@ -3,13 +3,14 @@
     <div v-if="cpu" class="wrapper">
       <div class="wrapper-name">
         <v-icon>nfc</v-icon>
-        <div>CPU</div>
+        <span v-t="'System.cpu'"/>
       </div>
       <div class="wrapper-info">
         <span>{{ cpu.modelName }}</span>
         <p>
           {{ cpu.archName }} -
-          {{ cpu.numOfProcessors }} {{ $tc('System.core', cpu.numOfProcessors) }}
+          {{ cpu.numOfProcessors }}
+          <span v-t="{ path: 'System.core', choice: cpu.numOfProcessors }"/>
         </p>
         <v-progress-linear
           v-for="(core, key) in cpu.loads"
@@ -19,7 +20,7 @@
     <div v-if="memory" class="wrapper">
       <div class="wrapper-name">
         <v-icon>memory</v-icon>
-        <div>{{ $t('System.memory') }}</div>
+        <span v-t="'System.memory'"/>
       </div>
       <div class="wrapper-info">
         <span>
@@ -33,7 +34,7 @@
     <div v-if="connection" class="wrapper">
       <div class="wrapper-name">
         <v-icon>network_cell</v-icon>
-        <div>{{ $t('System.network') }}</div>
+        <span v-t="'System.network'"/>
       </div>
       <div class="wrapper-info">
         <v-layout>
@@ -56,7 +57,7 @@
     <div v-if="storage.length" class="wrapper">
       <div class="wrapper-name">
         <v-icon>storage</v-icon>
-        <div>{{ $t('System.storage') }}</div>
+        <span v-t="'System.storage'"/>
       </div>
       <div class="wrapper-info">
         <li v-for="unit in storage" :key="unit.name" class="storage-unit">

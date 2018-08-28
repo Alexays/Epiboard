@@ -33,12 +33,12 @@
       <template v-if="!connected">
         <v-btn color="blue" class="white--text" @click="init()">
           <v-icon right dark>lock_open</v-icon>
-          {{ $t('auth.connect_to', { service: 'Google'} ) }}
+          <span v-t="{ path: 'auth.connect_to', args: { service: 'Google' } }"/>
         </v-btn>
       </template>
       <template v-else>
         <v-icon x-large>assignment</v-icon>
-        <h2 class="subheading">{{ $t('Tasks.empty') }}</h2>
+        <h2 v-t="'Tasks.empty'" class="subheading"/>
       </template>
     </v-card-text>
   </div>

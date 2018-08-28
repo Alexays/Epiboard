@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       active: false,
-      titie: '',
+      title: '',
       text: '',
       ok: 'Ok',
       cancel: 'Cancel',

@@ -8,7 +8,7 @@
       class="ma-0"
       block
       flat small @click.stop="showTip=false">
-      <span>{{ $t('LastFm.tip') }}</span>
+      <span v-t="'LastFm.tip'"/>
       <v-spacer/>
       <v-icon>close</v-icon>
     </v-btn>
@@ -58,11 +58,11 @@
     </div>
     <v-card-text v-else-if="!user || !user.length" class="text-xs-center">
       <v-icon x-large="">library_music</v-icon>
-      <h2 class="subheading">{{ $t('LastFm.need_user') }}</h2>
+      <h2 v-t="'LastFm.need_user'" class="subheading"/>
     </v-card-text>
     <v-card-text v-else class="text-xs-center">
       <v-icon x-large="">library_music</v-icon>
-      <h2 class="subheading">{{ $t('LastFm.empty') }}</h2>
+      <h2 v-t="'LastFm.empty'" class="subheading"/>
     </v-card-text>
   </div>
 </template>

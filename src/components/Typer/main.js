@@ -161,7 +161,6 @@ export default {
         this.currentWord = this.text[this.currentWordPos];
         this.typePos = this.isTyping ? this.currentWord.length : 0;
         this.isTyping = !this.isTyping;
-        this.$emit('nextMessage', this.currentWord);
       }, this.startDelay);
     },
     canContinue() {

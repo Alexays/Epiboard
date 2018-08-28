@@ -1,7 +1,7 @@
 <template>
   <v-card :width="500" hover raised dark class="primary foreground--text mx-auto mt-3">
     <v-card-title class="secondary">
-      <h3 class="headline">{{ $t('onboarding.why.title') }}</h3>
+      <h3 v-t="'onboarding.why.title'" class="headline"/>
     </v-card-title>
     <v-card-text>
       <v-checkbox :label="$t('onboarding.why.prefs')" input-value="true" value readonly/>
@@ -10,11 +10,9 @@
       <v-checkbox label="Material Design" input-value="true" value readonly/>
     </v-card-text>
     <v-card-actions class="secondary">
-      <v-btn color="teal lighten-4" flat @click="$emit('prev')">
-        {{ $t('onboarding.previous') }}
-      </v-btn>
+      <v-btn v-t="'onboarding.previous'" color="teal lighten-4" flat @click="$emit('prev')"/>
       <v-spacer/>
-      <v-btn color="teal lighten-4" flat @click="$emit('next')">{{ $t('onboarding.next') }}</v-btn>
+      <v-btn v-t="'onboarding.next'" color="teal lighten-4" flat @click="$emit('next')"/>
     </v-card-actions>
   </v-card>
 </template>

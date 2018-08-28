@@ -18,12 +18,12 @@ export default {
     VMenu,
     VTextField,
   },
+  version: browser.runtime.getManifest().version,
+  countries,
+  palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),
   data() {
     return {
-      version: browser.runtime.getManifest().version,
       settings: {},
-      palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),
-      country: countries,
       localLoading: false,
       backgroundLocal: {},
       tipShown: false,

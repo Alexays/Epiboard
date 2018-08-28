@@ -14,16 +14,12 @@ export default {
       required: true,
     },
   },
+  dateOption: { hour: '2-digit', minute: '2-digit' },
   data() {
     return {
       items: [],
       loading: true,
     };
-  },
-  computed: {
-    dateOption() {
-      return { hour: '2-digit', minute: '2-digit' };
-    },
   },
   mounted() {
     if (this.VALID_CACHE && !this.loading) {

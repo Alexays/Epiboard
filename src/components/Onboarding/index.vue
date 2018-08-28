@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-layout align-center>
         <transition name="slide-fade-transition" mode="out-in">
-          <component :is="board[index]" @next="next" @prev="prev"/>
+          <component :is="$options.board[index]" @next="next" @prev="prev"/>
         </transition>
       </v-layout>
     </v-container>
