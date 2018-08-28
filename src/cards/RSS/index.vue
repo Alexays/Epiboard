@@ -7,7 +7,7 @@
           <v-list-tile-title class="caption text--secondary">
             <v-layout>
               <v-flex>
-                {{ new Date(item.pubDate).toLocaleDateString($i18n.locale, dateOption) }}
+                {{ new Date(item.pubDate).toLocaleDateString($i18n.locale, $options.dateOption) }}
               </v-flex>
               <v-flex class="text-xs-right">
                 <a :href="item.feed.link" :title="item.feed.description">
@@ -23,7 +23,7 @@
       <v-progress-linear v-if="loading" indeterminate/>
       <div v-else class="text-xs-center">
         <v-icon x-large>rss_feed</v-icon>
-        <h2 class="subheading">{{ $t('RSS.empty') }}</h2>
+        <h2 v-t="'RSS.empty'" class="subheading"/>
       </div>
     </v-card-text>
   </div>

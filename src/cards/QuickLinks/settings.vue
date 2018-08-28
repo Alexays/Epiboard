@@ -1,6 +1,6 @@
 <template>
   <v-card-text id="quick-links">
-    <h4 class="subheading">{{ $t('QuickLinks.settings.links') }}</h4>
+    <h4 v-t="'QuickLinks.settings.links'" class="subheading"/>
     <v-list dense>
       <v-list-tile v-for="(link, idx) in settings.links" :key="link">
         <v-list-tile-content>
@@ -13,7 +13,7 @@
     </v-list>
     <v-layout align-center>
       <v-text-field v-model="newLink" label="e.g. https://exemple.com"/>
-      <v-btn flat @click="addLink(newLink)">{{ $t('add') }}</v-btn>
+      <v-btn v-t="'add'" flat @click="addLink(newLink)"/>
     </v-layout>
   </v-card-text>
 </template>

@@ -2,12 +2,12 @@
   <v-content id="settings">
     <v-container fluid>
       <v-card class="container">
-        <h4 class="headline">{{ $t('settings.langs') }}</h4>
+        <h4 v-t="'settings.langs'" class="headline"/>
         <v-autocomplete
           :items="langs"
           v-model="settings.lang" :label="$t('settings.choose.lang')"/>
-        <h4 class="headline">{{ $t('settings.header') }}</h4>
-        <h4 class="subheading">{{ $t('settings.choose.design') }}</h4>
+        <h4 v-t="'settings.header'" class="headline"/>
+        <h4 v-t="'settings.choose.design'" class="subheading"/>
         <v-radio-group v-model="settings.header.design" :mandatory="false">
           <v-radio :label="$t('settings.design.full')" value="full"/>
           <v-radio :label="$t('settings.design.toolbar')" value="toolbar"/>
@@ -40,11 +40,11 @@
               :label="$tc('settings.onOff', settings.trends.enabled)" class="mt-0" hide-details/>
           </v-flex>
           <v-autocomplete
-            :items="country"
+            :items="$options.countries"
             :disabled="!settings.trends.enabled"
             v-model="settings.trends.country" :label="$t('settings.choose.trends')"/>
         </v-layout>
-        <h4 class="subheading">{{ $t('settings.custom_message') }}</h4>
+        <h4 v-t="'settings.custom_message'" class="subheading"/>
         <v-layout align-center>
           <v-flex xs2>
             <v-switch
@@ -63,12 +63,12 @@
         <v-switch
           :label="$tc('settings.onOff', settings.doodle.enabled)"
           v-model="settings.doodle.enabled"/>
-        <h4 class="headline">{{ $t('settings.theme') }}</h4>
-        <h4 class="subheading">{{ $t('settings.choose.color') }}</h4>
+        <h4 v-t="'settings.theme'" class="headline"/>
+        <h4 v-t="'settings.choose.color'" class="subheading"/>
         <v-layout>
           <v-flex xs6 class="picker mr-3">
             <li
-              v-for="color in palette"
+              v-for="color in $options.palette"
               :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
               <div v-show="settings.theme.primary.toLowerCase() === color" class="color-dot"/>
             </li>
@@ -79,7 +79,7 @@
             () => validateHex(settings.theme.primary) || $t('settings.error.color')]"
             :label="$t('settings.placeholder.color')" @change="themeChange"/>
         </v-layout>
-        <h4 class="subheading">{{ $t('settings.choose.custom_font') }}</h4>
+        <h4 v-t="'settings.choose.custom_font'" class="subheading"/>
         <v-layout align-center>
           <v-flex xs2>
             <v-switch
@@ -92,14 +92,14 @@
             :label="$t('settings.placeholder.custom_font')"/>
         </v-layout>
         <template v-if="settings.debug">
-          <h4 class="subheading">{{ $t('settings.custom_css') }}</h4>
-          <h3 class="body-2 error--text">{{ $t('settings.custom_css_warning') }}</h3>
+          <h4 v-t="'settings.custom_css'" class="subheading"/>
+          <h3 v-t="'settings.custom_css_warning'" class="body-2 error--text"/>
           <v-text-field
             v-model="settings.theme.customCssUrl"
             :label="$t('settings.custom_css_desc')"/>
         </template>
-        <h4 class="headline">{{ $t('settings.dark.title') }}</h4>
-        <h4 class="subheading">{{ $t('settings.dark.desc') }}</h4>
+        <h4 v-t="'settings.dark.title'" class="headline"/>
+        <h4 v-t="'settings.dark.desc'" class="subheading"/>
         <v-layout align-center>
           <v-flex xs2>
             <v-switch
@@ -149,29 +149,28 @@
               format="24h" @change="$refs.menu_to.save(settings.dark.to)"/>
           </v-menu>
         </v-layout>
-        <h4 class="headline">{{ $t('settings.auth.title') }}</h4>
-        <h4 class="subheading">{{ $t('settings.auth.desc') }}</h4>
+        <h4 v-t="'settings.auth.title'" class="headline"/>
+        <h4 v-t="'settings.auth.desc'" class="subheading"/>
         <v-btn
+          v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
           :disabled="!$utils.gauth.isConnected()"
-          color="blue" class="white--text" @click="$utils.gauth.revoke()">
-          {{ $t('auth.disconnect_from', { service: 'Google'}) }}
-        </v-btn>
+          color="blue" class="white--text" @click="$utils.gauth.revoke()"/>
         <h4 class="headline">Google Analytics</h4>
-        <h4 class="subheading">{{ $t('settings.analytics_desc') }}</h4>
+        <h4 v-t="'settings.analytics_desc'" class="subheading"/>
         <v-switch :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
         <h4 class="headline">Debug</h4>
-        <h4 class="subheading">{{ $t('settings.debug_desc') }}</h4>
+        <h4 v-t="'settings.debug_desc'" class="subheading"/>
         <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
         <v-layout align-center>
-          <v-btn flat small @click="save">{{ $t('settings.save') }}</v-btn>
-          <v-btn flat small @click="reset">{{ $t('settings.reset') }}</v-btn>
+          <v-btn v-t="'settings.save'" flat small @click="save"/>
+          <v-btn v-t="'settings.reset'" flat small @click="reset"/>
           <v-flex>
             <p class="text-xs-right">
               Made with
               <a alt="Donate" href="https://paypal.me/ARouillard">
                 <v-icon small color="red">favorite</v-icon>
               </a> by
-              <span><a href="https://arouillard.fr">Alexis Rouillard</a> | {{ version }}</span>
+              <a href="https://arouillard.fr">Alexis Rouillard</a> | {{ $options.version }}
             </p>
           </v-flex>
         </v-layout>

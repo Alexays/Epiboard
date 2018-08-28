@@ -192,7 +192,7 @@ module.exports = {
           .find(f => f.constructor.name === 'DefinePlugin');
         const langKeys = Object.keys(langs);
         if (definePlugin) {
-          definePlugin.definitions.Cards = JSON.stringify(cards);
+          definePlugin.definitions.CardsObj = JSON.stringify(cards);
           definePlugin.definitions.Langs = JSON.stringify(langKeys
             .map(f => ({ locale: f, name: langs[f].name })));
         }

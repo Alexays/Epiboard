@@ -1,6 +1,7 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import Card from '@/components/Card';
+import Cards from '@/cards';
 import Muuri from 'muuri';
 
 // @vue/component
@@ -13,27 +14,24 @@ export default {
   directives: {
     resize: {
       inserted(el, binding, { context }) {
-        context.ro.observe(el);
+        context.$options.ro.observe(el);
       },
       unbind(el, binding, { context }) {
-        context.ro.unobserve(el);
+        context.$options.ro.unobserve(el);
       },
     },
   },
+  grid: null,
+  ro: null,
   data() {
     return {
-      grid: null,
-      ro: null,
       fab: false,
     };
   },
   computed: {
-    cardsCmp() {
-      return Cards;
-    },
     cards() {
       const { cards } = this.$store.state;
-      return [...new Set(cards)].filter(f => this.cardsCmp[f]);
+      return [...new Set(cards)].filter(f => Cards[f]);
     },
     emptyCards() {
       return Object.keys(this.cards).length === 0;
@@ -46,7 +44,7 @@ export default {
       return keys.reduce((obj, key) => {
         const { [key]: _, ...tmp } = obj;
         return tmp;
-      }, this.cardsCmp);
+      }, Cards);
     },
     showFab() {
       return Object.keys(this.availableCards).length;
@@ -54,29 +52,32 @@ export default {
   },
   created() {
     this.checkVersion();
-    this.ro = new ResizeObserver(this.onResize);
+    this.$options.ro = new ResizeObserver(this.onResize);
   },
   mounted() {
     this.initGrid();
   },
+  beforeDetroy() {
+    this.$options.ro.detach();
+  },
   methods: {
     onResize(entries) {
-      if (!this.grid) return;
+      if (!this.$options.grid) return;
       for (let i = 0; i < entries.length; i += 1) {
-        this.grid.refreshItems(entries[i].target);
+        this.$options.grid.refreshItems(entries[i].target);
       }
-      this.grid.layout(true);
+      this.$options.grid.layout(true);
     },
     onDrag() {
-      const cards = this.grid.getItems()
+      const cards = this.$options.grid.getItems()
         .filter(f => f.isActive())
-        .map(f => f.getElement().dataset.id);
+        .map(f => f.getElement().id);
       this.$store.commit('SET_CARDS', cards);
       this.$ga.event('cards', 'order', cards.join(', '), cards.length);
     },
     delCard(key) {
-      const elem = document.querySelector(`[data-id='${key}']`);
-      this.grid.hide(elem, {
+      const elem = document.getElementById(key);
+      this.$options.grid.hide(elem, {
         onFinish: () => {
           this.$ga.event('cards', 'delete', key, 0);
           this.$store.commit('DEL_CARD_SETTINGS', key);
@@ -89,9 +90,9 @@ export default {
     addCard(key) {
       this.$store.commit(key === 'Changelog' ? 'ADD_CARD_FIRST' : 'ADD_CARD', key);
       this.$nextTick(() => {
-        const elem = document.querySelector(`[data-id='${key}']`);
-        if (key === 'Changelog') this.grid.add(elem, { index: 0 });
-        else this.grid.add(elem);
+        const elem = document.getElementById(key);
+        if (key === 'Changelog') this.$options.grid.add(elem, { index: 0 });
+        else this.$options.grid.add(elem);
       });
       this.$ga.event('cards', 'add', key, 1);
     },
@@ -106,20 +107,20 @@ export default {
       }
     },
     initGrid() {
-      this.grid = new Muuri('#card-container', {
+      this.$options.grid = new Muuri('#card-container', {
         dragEnabled: true,
         layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
-          index: (item, el) => this.cards.indexOf(el.dataset.id),
+          index: (item, el) => this.cards.indexOf(el.id),
         },
       });
       if (this.cards.length) {
-        this.grid.sort('index', { layout: 'instant' });
+        this.$options.grid.sort('index', { layout: 'instant' });
       }
-      this.grid.on('dragEnd', this.onDrag);
+      this.$options.grid.on('dragEnd', this.onDrag);
     },
   },
 };

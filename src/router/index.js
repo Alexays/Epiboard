@@ -3,8 +3,8 @@ import Router from 'vue-router';
 import { loadLang } from '@/i18n';
 import store from '@/store';
 
-const Header = () => import(/* webpackChunkName: "header" */ '@/components/Header').then(_ => _.default);
-const Home = () => import(/* webpackChunkName: "home" */ '@/components/Home').then(_ => _.default);
+const Header = () => import(/* webpackChunkName: "main" */ '@/components/Header').then(_ => _.default);
+const Home = () => import(/* webpackChunkName: "main" */ '@/components/Home').then(_ => _.default);
 const Settings = () => import(/* webpackChunkName: "settings" */ '@/components/Settings').then(_ => _.default);
 const OnBoarding = () => import(/* webpackChunkName: "onboarding" */ '@/components/Onboarding').then(_ => _.default);
 

@@ -1,5 +1,6 @@
 {
   "title": "Système",
+  "cpu": "CPU",
   "memory": "Mémoire",
   "network": "Réseau",
   "storage": "Stockage",

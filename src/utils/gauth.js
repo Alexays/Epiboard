@@ -71,8 +71,8 @@ export default {
     return Axios.post(`${apiUrl.token}?${params}`)
       .then((res) => {
         store.commit('SET_GOOGLE', {
-          accessToken: res.data.access_token,
           exp: Date.now() + (res.data.expire_in * 1000),
+          accessToken: res.data.access_token,
         });
       })
       .catch((err) => {

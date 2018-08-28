@@ -1,7 +1,7 @@
 <template>
   <header class="grey">
     <div
-      v-lazy:background-image="{ src: background, error: fallback }"
+      v-lazy:background-image="{ src: background, error: $options.fallback }"
       :key="background" class="background"/>
     <img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle">
     <template v-if="$store.state.settings.header.design === 'full'">

@@ -1,10 +1,10 @@
-import * as VList from 'vuetify/es5/components/VList';
+import List from '@/components/List';
 
 // @vue/component
 export default {
   name: 'TopSites',
   components: {
-    ...VList,
+    List,
   },
   props: {
     settings: {

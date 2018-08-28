@@ -1,4 +1,5 @@
 {
+  "cpu": "CPU",
   "memory": "Memory",
   "network": "Network",
   "storage": "Storage",

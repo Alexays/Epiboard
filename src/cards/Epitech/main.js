@@ -2,6 +2,7 @@ import * as VTabs from 'vuetify/es5/components/VTabs';
 import * as VList from 'vuetify/es5/components/VList';
 import { VChip } from 'vuetify';
 import API from './api';
+import Timeline from './timeline';
 
 // @vue/component
 export default {
@@ -10,7 +11,7 @@ export default {
     ...VTabs,
     ...VList,
     VChip,
-    Timeline: () => import(/* webpackMode: "lazy" */'./timeline').then(_ => _.default),
+    Timeline,
   },
   props: {
     settings: {

@@ -1,11 +1,11 @@
-import * as VList from 'vuetify/es5/components/VList';
 import * as VTabs from 'vuetify/es5/components/VTabs';
+import List from '@/components/List';
 
 // @vue/component
 export default {
   name: 'Sessions',
   components: {
-    ...VList,
+    List,
     ...VTabs,
   },
   props: {
@@ -18,20 +18,16 @@ export default {
     return {
       recents: [],
       devices: [],
-      active: 0,
     };
   },
   computed: {
     tabs() {
       return [
-        { name: 'Sessions.recents', id: 'recents', data: this.recents },
+        { id: 'recents', data: this.recents },
         ...this.devices.map(f => ({
-          name: f.deviceName, id: `${f.deviceName}${f.sessions.length}${f.data.length}`, data: f.data,
+          id: `${f.deviceName}${f.sessions.length}${f.data.length}`, data: f.data,
         })),
       ];
-    },
-    dateOption() {
-      return { hour: '2-digit', minute: '2-digit' };
     },
   },
   created() {
@@ -53,8 +49,8 @@ export default {
         // If it's a tab we push it with lastModified value
         if (item.tab) {
           const { tab } = item;
-          tab.lastModified = new Date(item.lastModified * 1e3);
-          tab.favIconUrl = tab.favIconUrl || this.$utils.getFavicon(tab.url);
+          tab.date = new Date(item.lastModified * 1e3);
+          tab.icon = tab.favIconUrl || this.$utils.getFavicon(tab.url);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
           // e.g: we don't care about the difference between tabs and windows
@@ -62,8 +58,8 @@ export default {
           const subKeys = Object.keys(item.window.tabs);
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
-            tab.lastModified = new Date(item.lastModified * 1e3);
-            tab.favIconUrl = tab.favIconUrl || this.$utils.getFavicon(tab.url);
+            tab.date = new Date(item.lastModified * 1e3);
+            tab.icon = tab.favIconUrl || this.$utils.getFavicon(tab.url);
             tabs.push(tab);
           }
         }

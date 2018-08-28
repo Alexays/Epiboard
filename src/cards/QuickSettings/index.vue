@@ -12,9 +12,9 @@
         :label="$t('QuickSettings.local_storage')" color="primary" hide-details/>
     </v-flex>
     <v-layout align-end justify-end>
-      <v-btn :disabled="isFalse || loading" :loading="loading" flat @click="clear()">
-        {{ $t('QuickSettings.clear') }}
-      </v-btn>
+      <v-btn
+        v-t="'QuickSettings.clear'"
+        :disabled="isFalse || loading" :loading="loading" flat @click="clear()"/>
     </v-layout>
   </v-layout>
 </template>

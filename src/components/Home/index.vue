@@ -10,9 +10,8 @@
         </v-btn>
         <v-btn
           v-for="(value, key) in availableCards"
-          :title="(cardsCmp[key].manifest || {}).description || key"
           :key="key" color="green" dark small @click="addCard(key)">
-          {{ $t(`${key}.title`) === `${key}.title` ? key : $t(`${key}.title`) }}
+          {{ key }}
         </v-btn>
       </v-speed-dial>
     </transition>
@@ -22,15 +21,14 @@
       name="fade" tag="div" appear>
       <card
         v-resize
-        v-for="card in cards" :key="card" :id="card" :data-id="card" @deleted="delCard(card)"/>
+        v-for="card in cards" :key="card" :id="card" @deleted="delCard(card)"/>
     </transition-group>
     <v-layout v-if="emptyCards" align-center justify-space-around fill-height column>
       <v-card class="text-xs-center" color="transparent" flat>
         <v-icon x-large>grid_off</v-icon>
-        <h2 class="subheading">{{ $t('home.no_cards') }}</h2>
-        <h2 class="caption">{{ $t('home.add_cards') }}</h2>
+        <h2 v-t="'home.no_cards'" class="subheading"/>
+        <h2 v-t="'home.add_cards'" class="caption"/>
       </v-card>
-      <div/>
     </v-layout>
   </v-container>
 </template>

@@ -5,7 +5,7 @@ module.exports = {
   },
   globals: {
     browser: true,
-    Cards: true,
+    CardsObj: true,
     Langs: true,
     browserName: true,
   },

@@ -1,6 +1,6 @@
 <template>
   <v-card-text>
-    <h4 class="subheading">{{ $t('RSS.settings.feeds') }}</h4>
+    <h4 v-t="'RSS.settings.feeds'" class="subheading"/>
     <v-list dense>
       <v-list-tile v-for="(feed, idx) in settings.feeds" :key="feed">
         <v-list-tile-content>
@@ -13,7 +13,7 @@
     </v-list>
     <v-layout align-center>
       <v-text-field v-model="newFeed" label="e.g. https://exemple.com/rss"/>
-      <v-btn flat @click="addFeed(newFeed)">{{ $t('add') }}</v-btn>
+      <v-btn v-t="'add'" flat @click="addFeed(newFeed)"/>
     </v-layout>
   </v-card-text>
 </template>

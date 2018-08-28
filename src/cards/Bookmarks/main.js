@@ -14,17 +14,24 @@ export default {
       required: true,
     },
   },
+  dateOption: { hour: '2-digit', minute: '2-digit' },
   data() {
     return {
-      tabs: [],
+      recents: [],
+      all: [],
+      folders: [],
       foldersId: [],
       rootId: '0',
       active: 0,
     };
   },
   computed: {
-    dateOption() {
-      return { hour: '2-digit', minute: '2-digit' };
+    tabs() {
+      return [
+        { id: 'recents', data: this.recents },
+        { id: 'all', data: this.all },
+        ...this.folders,
+      ];
     },
   },
   created() {
@@ -68,7 +75,7 @@ export default {
     getRecent() {
       return browser.bookmarks.getRecent(this.settings.maxRecents)
         .then((recents) => {
-          this.tabs.unshift({ name: 'Bookmarks.recents', id: 'recents', data: recents });
+          this.recents = recents;
         });
     },
     getAll() {
@@ -78,11 +85,7 @@ export default {
           return browser.bookmarks.getChildren(tree[0].id);
         })
         .then((all) => {
-          this.tabs = [
-            ...this.tabs.slice(0, 1),
-            { name: 'Bookmarks.all', id: 'all', data: all },
-            ...this.tabs.slice(1),
-          ];
+          this.all = all;
         });
     },
     getFolders() {
@@ -94,7 +97,7 @@ export default {
               name: folder[0].title, folder: true, id: f, data: children,
             })))))
         .then((folders) => {
-          this.tabs = [...this.tabs.filter(f => !f.folder), ...folders];
+          this.folders = folders;
         });
     },
   },

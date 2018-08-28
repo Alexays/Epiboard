@@ -10,10 +10,10 @@ export default {
     Why,
     Settings,
   },
+  board: ['hello', 'why', 'settings'],
   data() {
     return {
       index: 0,
-      board: ['hello', 'why', 'settings'],
     };
   },
   methods: {
@@ -21,7 +21,7 @@ export default {
       this.index -= this.index > 0;
     },
     next() {
-      if (this.index + 1 < this.board.length) {
+      if (this.index + 1 < this.$options.board.length) {
         this.index += 1;
       } else this.finish();
     },

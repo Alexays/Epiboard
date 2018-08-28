@@ -37,20 +37,20 @@
       <v-list>
         <v-list-tile
           v-if="download.state === 'complete' && download.exists" @click="open(download)">
-          <v-list-tile-title>{{ $t('Downloads.open') }}</v-list-tile-title>
+          <v-list-tile-title v-t="'Downloads.open'"/>
         </v-list-tile>
         <v-list-tile
           v-if="download.state === 'complete' && download.exists" @click="remove(download)">
-          <v-list-tile-title>{{ $t('Downloads.delete') }}</v-list-tile-title>
+          <v-list-tile-title v-t="'Downloads.delete'"/>
         </v-list-tile>
         <v-list-tile @click="erase(download)">
-          <v-list-tile-title>{{ $t('Downloads.remove_list') }}</v-list-tile-title>
+          <v-list-tile-title v-t="'Downloads.remove_list'"/>
         </v-list-tile>
       </v-list>
     </v-menu>
     <div v-if="!downloads.length" class="text-xs-center">
       <v-icon x-large>file_download</v-icon>
-      <h2 class="subheading">{{ $t('Downloads.no_downloads') }}</h2>
+      <h2 v-t="'Downloads.no_downloads'" class="subheading"/>
     </div>
   </v-card-text>
 </template>

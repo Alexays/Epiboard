@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import * as VToolbar from 'vuetify/es5/components/VToolbar';
 import VueLazyload from 'vue-lazyload';
 import VueTyper from '@/components/Typer';
 import backgrounds from './backgrounds';
@@ -31,16 +30,15 @@ const EXPIRE_DOODLE = 57600000; // 16h
 export default {
   name: 'Header',
   components: {
-    ...VToolbar,
     VueTyper,
   },
   data() {
     return {
       messages: [],
       doodle: null,
-      fallback: this.getBackgroundTime(backgrounds.mountains),
     };
   },
+  fallback: backgrounds.mountains.day,
   computed: {
     texts() {
       if (this.$route.path === '/onboarding') {
