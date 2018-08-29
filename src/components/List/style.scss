@@ -1,0 +1,9 @@
+.v-list__tile__avatar {
+  min-width: 29px!important;
+}
+/deep/ .v-list__tile {
+  height: 34px!important;
+}
+.v-list__tile__action {
+  flex-shrink: 0!important;
+}

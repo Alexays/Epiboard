@@ -1,11 +1,11 @@
-import * as VList from 'vuetify/es5/components/VList';
 import * as VTabs from 'vuetify/es5/components/VTabs';
+import List from '@/components/List';
 
 // @vue/component
 export default {
   name: 'Boomarks',
   components: {
-    ...VList,
+    List,
     ...VTabs,
   },
   props: {
@@ -50,7 +50,7 @@ export default {
     },
     removeTab(item) {
       this.foldersId = this.foldersId.filter(f => f !== item.id);
-      this.tabs = this.tabs.filter(f => f.id !== item.id);
+      this.folders = this.folders.filter(f => f.id !== item.id);
     },
     backParent(tab) {
       if (tab.parentNode && tab.parentNode[0].parentId === this.rootId) {
