@@ -6,7 +6,8 @@
         :value="capitalized"
         :disabled="$route.path !== '/'"
         :spellcheck="!typeInterval"
-        single-line @keyup.13="search" @input="userInput($event)"/>
+        hide-details single-line
+        class="pt-0" @keyup.13="search" @input="userInput($event)"/>
     </template>
     <a v-else :href="url" target="_blank">
       <h1 :title="currentWord" dir="auto">

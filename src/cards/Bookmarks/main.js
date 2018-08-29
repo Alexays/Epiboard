@@ -17,8 +17,14 @@ export default {
   dateOption: { hour: '2-digit', minute: '2-digit' },
   data() {
     return {
-      recents: [],
-      all: [],
+      recents: {
+        id: 'recents',
+        data: [],
+      },
+      all: {
+        id: 'all',
+        data: [],
+      },
       folders: [],
       foldersId: [],
       rootId: '0',
@@ -28,8 +34,8 @@ export default {
   computed: {
     tabs() {
       return [
-        { id: 'recents', data: this.recents },
-        { id: 'all', data: this.all },
+        this.recents,
+        this.all,
         ...this.folders,
       ];
     },
@@ -75,7 +81,7 @@ export default {
     getRecent() {
       return browser.bookmarks.getRecent(this.settings.maxRecents)
         .then((recents) => {
-          this.recents = recents;
+          this.recents.data = recents;
         });
     },
     getAll() {
@@ -85,7 +91,7 @@ export default {
           return browser.bookmarks.getChildren(tree[0].id);
         })
         .then((all) => {
-          this.all = all;
+          this.all.data = all;
         });
     },
     getFolders() {

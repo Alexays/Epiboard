@@ -1,8 +1,9 @@
 <template>
   <v-tabs
+    id="sessions"
     :dark="!$store.state.settings.theme.light"
     :light="$store.state.settings.theme.light"
-    slider-color="foreground" color="primary" id="sessions" grow show-arrows>
+    slider-color="foreground" color="primary" grow show-arrows>
     <v-tab><span v-t="'Sessions.recents'"/></v-tab>
     <v-tab v-for="device in devices" :key="device.deviceName">{{ device.deviceName }}</v-tab>
     <v-tabs-items class="scroll-content">
