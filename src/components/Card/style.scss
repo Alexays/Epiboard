@@ -22,7 +22,7 @@
     .head-drag {
       cursor: grab;
     }
-    /deep/ .scroll-content {
+    /deep/ .scroller {
       max-height: 300px;
       overflow-y: auto;
     }

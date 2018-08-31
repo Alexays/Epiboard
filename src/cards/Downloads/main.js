@@ -1,6 +1,7 @@
 import * as VList from 'vuetify/es5/components/VList';
 import Toast from '@/components/Toast';
 import { VMenu } from 'vuetify';
+import { RecycleList } from 'vue-virtual-scroller';
 
 // @vue/component
 export default {
@@ -8,6 +9,7 @@ export default {
   components: {
     ...VList,
     VMenu,
+    RecycleList,
   },
   directives: {
     drag: {

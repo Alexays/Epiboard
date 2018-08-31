@@ -25,7 +25,8 @@
     "remove": "Retirer",
     "permissions_failed": "{id} a besoin de permissions qu'il ne peut pas avoir, réessayez plus tard",
     "error": "{id} a eu une erreur, veuillez réessayer plus tard",
-    "error_reload": "{id} a eu une erreur, cliquez pour recharger"
+    "error_reload": "{id} a eu une erreur, cliquez pour recharger",
+    "more": "Voir plus"
   },
   "add": "Ajouter",
   "greetMessages": [

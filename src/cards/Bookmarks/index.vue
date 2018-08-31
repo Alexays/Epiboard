@@ -10,7 +10,7 @@
     <v-tab v-for="tab in folders" :key="tab.id">{{ tab.name }}</v-tab>
     <v-tabs-items>
       <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
-        <v-card-text class="scroll-content">
+        <v-card-text>
           <div v-if="!tab.data.length" class="text-xs-center">
             <v-icon x-large>find_in_page</v-icon>
             <h2 v-t="'Bookmarks.empty'" class="subheading"/>

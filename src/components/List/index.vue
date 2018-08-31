@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <virtual-scroller :items="data" :item-height="34" class="scroller">
+    <recycle-list :items="data" :item-height="34" class="scroller">
       <template scope="{item}">
         <!-- TODO: @click with empty callback is needed to have hover effect -->
         <v-list-tile :href="item.url" @click="() => {}">
@@ -28,19 +28,19 @@
           </v-list-tile-action>
         </v-list-tile>
       </template>
-    </virtual-scroller>
+    </recycle-list>
   </v-list>
 </template>
 <script>
 import * as VList from 'vuetify/es5/components/VList';
-import { VirtualScroller } from 'vue-virtual-scroller';
+import { RecycleList } from 'vue-virtual-scroller';
 
 // @vue/component
 export default {
   name: 'List',
   components: {
     ...VList,
-    VirtualScroller,
+    RecycleList,
   },
   props: {
     data: {
