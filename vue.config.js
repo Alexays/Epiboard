@@ -37,6 +37,11 @@ for (let i = 0; i < paths.length; i += 1) {
       excludeCards.push(key);
     } else {
       cards[key].settings = manifest.settings;
+      if (manifest.more) {
+        if (manifest.more[browserName]) {
+          manifest.more = manifest.more[browserName];
+        }
+      }
       if (manifest.settings) delete manifest.settings;
       if (Object.keys(manifest).length) {
         cards[key].manifest = manifest;

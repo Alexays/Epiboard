@@ -6,7 +6,7 @@
     slider-color="foreground" color="primary" grow show-arrows>
     <v-tab><span v-t="'Sessions.recents'"/></v-tab>
     <v-tab v-for="device in devices" :key="device.deviceName">{{ device.deviceName }}</v-tab>
-    <v-tabs-items class="scroll-content">
+    <v-tabs-items>
       <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
         <v-card-text>
           <list v-if="tab.data.length" :data="tab.data" icon/>

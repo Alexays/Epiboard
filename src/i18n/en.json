@@ -25,7 +25,8 @@
     "remove": "Remove",
     "permissions_failed": "{id} needs permissions that it cannot have, retry later",
     "error": "{id} got an error, please try again later",
-    "error_reload": "{id} got an error, click to reload"
+    "error_reload": "{id} got an error, click to reload",
+    "more": "See more"
   },
   "add": "Add",
   "greetMessages": [

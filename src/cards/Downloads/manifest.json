@@ -3,5 +3,9 @@
   "settings": {
     "limitDownloads": 5
   },
+  "more": {
+    "chrome": "chrome://downloads",
+    "firefox": "chrome://browser/content/places/places.xul"
+  },
   "permissions": ["downloads", "downloads.open"]
 }

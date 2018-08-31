@@ -1,4 +1,8 @@
 {
   "description": "Remove your cache, cookies, history and local storage quickly",
+  "more": {
+    "chrome": "chrome://settings/clearBrowserData",
+    "firefox": "chrome://browser/content/sanitize.xul"
+  },
   "permissions": ["browsingData"]
 }

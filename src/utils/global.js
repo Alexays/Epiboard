@@ -46,4 +46,12 @@ export default {
         throw new Error('User has refused dialog');
       }));
   },
+  gotTo(url) {
+    const payload = { permissions: ['tabs'] };
+    browser.permissions.contains(payload)
+      .then(res => res || browser.permissions.request(payload))
+      .then(() => {
+        browser.tabs.update({ url });
+      });
+  },
 };

@@ -5,7 +5,7 @@
         :color="theme ? 'elevation-0' : 'primary'"
         :absolute="!!theme"
         :prominent="showSettings || !!subTitle"
-        :dense="!showSettings && !subTitle" class="head-drag" card>
+        :dense="!!theme" class="head-drag" card>
         <v-layout :style="{ color: titleColor }" column wrap>
           <v-toolbar-title v-if="!showSettings && title" :title="$vnode.key">
             {{ title }}
@@ -38,6 +38,9 @@
               <v-list-tile-title>{{ action.title }}</v-list-tile-title>
             </v-list-tile>
             <v-divider v-if="actions.length"/>
+            <v-list-tile v-if="options.more" @click="$utils.gotTo(options.more)">
+              <v-list-tile-title v-t="'card.more'"/>
+            </v-list-tile>
             <v-list-tile v-if="$options.settings" @click.stop="showSettings=true">
               <v-list-tile-title v-t="'settings.title'"/>
             </v-list-tile>

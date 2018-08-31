@@ -3,5 +3,9 @@
   "settings": {
     "maxRecents": 7
   },
+  "more": {
+    "chrome": "chrome://bookmarks/",
+    "firefox": "chrome://browser/content/places/places.xul"
+  },
   "permissions": ["bookmarks"]
 }
