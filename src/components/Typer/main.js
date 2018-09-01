@@ -144,6 +144,10 @@ export default {
       this.destroyTimers();
       this.typing = text;
     },
+    stop() {
+      this.destroyTimers();
+      this.$refs.textInput.$refs.input.select();
+    },
     next() {
       if (!this.canContinue()) return;
       if (!this.hasStarted) {
