@@ -4,7 +4,6 @@ header {
   position: relative;
   display: flex;
   align-items: flex-end;
-  z-index: 1;
   .background {
     position: absolute;
     background-size: cover;
@@ -22,6 +21,7 @@ header {
     width: 66%;
     margin: 0 auto;
     top: 46px;
+    z-index: 1;
   }
   #settings {
     position: absolute;

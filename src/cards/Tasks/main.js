@@ -53,21 +53,21 @@ export default {
       this.$emit('update:actions', action);
     },
     getLists() {
-      return Api.getLists(this.token).then((lists) => {
+      return Api.getLists().then((lists) => {
         this.lists = lists.items;
       });
     },
     getTasksList(id) {
-      return Api.getAll(this.token, id).then((tasks) => {
+      return Api.getAll(id).then((tasks) => {
         this.tasks = tasks.items;
         this.currentId = id;
         this.updateMenu();
       });
     },
     getAll() {
-      return Api.getAll(this.token).then((tasks) => {
+      return Api.getAll().then((tasks) => {
         this.tasks = tasks.items;
-        Api.getList(this.token).then((list) => {
+        Api.getList().then((list) => {
           this.currentId = list.id;
           this.updateMenu();
         });
