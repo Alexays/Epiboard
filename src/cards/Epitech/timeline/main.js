@@ -27,7 +27,6 @@ export default {
   methods: {
     getTimeline() {
       this.enabled = true;
-      this.loading = true;
       this.axios.get(`${API}/course/filter?format=json&location[]=${this.user.location}&course[]=${this.user.course_code}&scolaryear[]=${this.user.scolaryear}`)
         .then(res => res.data.filter((f) => {
           const end = f.end.split('-');
