@@ -5,13 +5,12 @@
       block dark depressed small @click="getTimeline()">
       timeline
     </v-btn>
-    <v-dialog v-model="enabled" lazy scrollable max-width="80%">
+    <v-dialog v-model="enabled" lazy scrollable max-width="80%" width="unset">
       <v-card>
-        <v-card-text>
-          <canvas v-if="loading || timeline.length" id="canvas">
-            <v-progress-linear v-show="loading" indeterminate/>
-          </canvas>
-          <div v-else class="text-xs-center title">
+        <v-card-text class="text-xs-center">
+          <canvas v-show="timeline.length" id="canvas"/>
+          <v-progress-linear v-if="loading" :style="{ 'min-width': '150px' }" indeterminate/>
+          <div v-else-if="!timeline.length" class="text-xs-center title">
             Happy holidays :)
           </div>
         </v-card-text>
