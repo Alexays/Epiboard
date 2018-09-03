@@ -1,5 +1,6 @@
 {
   "description": "All your feeds in one place",
+  "cacheValidity": 300,
   "settings": {
     "feeds": ["https://news.google.com/news/rss/"]
   }

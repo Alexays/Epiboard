@@ -2,6 +2,7 @@
   "description": "See your epitech school informations easly",
   "origins": ["https://intra.epitech.eu/"],
   "more": "https://intra.epitech.eu/",
+  "cacheValidity": 1800,
   "settings": {
     "hideInfo": false
   }
