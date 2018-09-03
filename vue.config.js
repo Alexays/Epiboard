@@ -187,8 +187,9 @@ module.exports = {
     }));
     config.plugins.push({
       apply: (compiler) => {
+        log('');
         if (excludeCards.length && isProduction) {
-          log(`\nWarning: "${excludeCards.join(',')}" will be excluded from build.`);
+          log(`Warning: "${excludeCards.join(',')}" will be excluded from build.`);
         }
         // Get langs
         const langs = getLangs(cards);

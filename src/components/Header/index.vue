@@ -2,9 +2,9 @@
   <header class="grey">
     <div
       v-lazy:background-image="{ src: background, error: $options.fallback }"
-      :key="background" class="background"/>
+      :key="background" class="background" :class="{ gradient: design === 'full' }"/>
     <img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle">
-    <template v-if="$store.state.settings.header.design === 'full'">
+    <template v-if="design === 'full'">
       <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
       <v-btn
         v-if="$route.path === '/settings'"
@@ -18,10 +18,12 @@
       </v-btn>
     </template>
     <v-toolbar v-else prominent>
-      <v-btn icon disabled>
+      <v-btn icon :disabled="$route.path !== '/'" @click="$refs.typer.search()">
         <v-icon>&#xE8B6;</v-icon>
       </v-btn>
-      <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" text-field full-erase/>
+      <vue-typer
+        ref="typer"
+        :text="texts" :erase-delay="5000" :repeat="messagesRepeat" text-field full-erase/>
       <v-btn v-if="$route.path === '/settings'" :title="$t('settings.save')" to="/" icon>
         <v-icon>&#xE5C4;</v-icon>
       </v-btn>
@@ -35,8 +37,3 @@
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>
-<style>
-.progressive-image-preloader {
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.35));
-}
-</style>
