@@ -71,6 +71,9 @@ export default {
     dark() {
       return this.$utils.isDark(this.$store.state.settings.dark);
     },
+    design() {
+      return this.$store.state.settings.header.design;
+    },
     background() {
       const { background, backgroundUrl } = this.$store.state.settings.header;
       const { dataUrl } = this.$store.state.cache.backgroundLocal;

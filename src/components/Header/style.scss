@@ -16,6 +16,13 @@ header {
     &[lazy=loading] {
       filter: blur(5px);
     }
+    &.gradient::after {
+      content: "";
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.30));
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   }
   .v-toolbar {
     width: 66%;
