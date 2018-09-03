@@ -76,7 +76,9 @@ export default {
         });
       })
       .catch((err) => {
-        store.commit('DEL_GOOGLE');
+        if (err.response) {
+          store.commit('DEL_GOOGLE');
+        }
         throw err;
       });
   },
