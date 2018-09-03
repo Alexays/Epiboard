@@ -15,8 +15,7 @@ export default {
     drag: {
       bind(el, { value }) {
         if (!value) return;
-        el.addEventListener('dragstart', (ev) => {
-          if (ev.srcElement === ev.target) return;
+        el.addEventListener('dragstart', () => {
           browser.downloads.drag(parseInt(el.id, 10));
         });
       },
