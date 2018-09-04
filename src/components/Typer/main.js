@@ -45,6 +45,7 @@ export default {
       default: false,
     },
   },
+  userTyped: false,
   data() {
     return {
       typePos: 0,
@@ -64,8 +65,11 @@ export default {
       return `${this.typing[0].toUpperCase()}${this.typing.substring(1)}`;
     },
     url() {
-      if (this.currentWord && this.$route.path === '/') {
-        return `https://www.google.com/#q=${this.currentWord}`;
+      const se = 'https://www.google.com/#q=';
+      if (this.$options.userTyped && this.typing) {
+        return `${se}${this.typing}`;
+      } else if (this.currentWord && this.$route.path === '/') {
+        return `${se}${this.currentWord}`;
       }
       return null;
     },
@@ -142,6 +146,7 @@ export default {
     },
     userInput(text) {
       this.destroyTimers();
+      this.$options.userTyped = true;
       this.typing = text;
     },
     stop() {
