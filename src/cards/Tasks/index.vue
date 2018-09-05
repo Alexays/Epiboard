@@ -1,7 +1,7 @@
 <template>
   <div id="tasks">
     <v-list v-if="connected && tasks.length">
-      <v-list-tile v-for="(task, idx) in tasks" :key="task.id" avatar>
+      <v-list-tile v-for="(task, idx) in tasks" :key="task.id">
         <v-list-tile-action>
           <v-checkbox
             v-model="task.status"
@@ -28,6 +28,10 @@
           </v-btn>
         </v-list-tile-action>
       </v-list-tile>
+      <v-text-field
+        v-model="newTask"
+        :disabled="loading"
+        :placeholder="$t('Tasks.add')" hide-details @keyup.13="addTask()" class="pa-3"/>
     </v-list>
     <v-card-text v-else class="text-xs-center">
       <template v-if="!connected">

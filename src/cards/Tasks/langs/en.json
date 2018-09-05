@@ -1,3 +1,4 @@
 {
-  "empty": "You don't have any tasks"
+  "empty": "You don't have any tasks",
+  "add": "Name your new task"
 }

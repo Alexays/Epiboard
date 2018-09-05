@@ -25,4 +25,12 @@ export default {
     return Vue.utils.gauth
       .http('DELETE', `https://www.googleapis.com/tasks/v1/lists/${list}/tasks/${id}`);
   },
+  addTask(list, payload) {
+    return Vue.utils.gauth
+      .http(
+        'POST',
+        `https://www.googleapis.com/tasks/v1/lists/${list}/tasks`,
+        payload,
+      );
+  },
 };

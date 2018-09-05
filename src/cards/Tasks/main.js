@@ -16,6 +16,8 @@ export default {
       tasks: [],
       lists: [],
       editMode: [],
+      newTask: '',
+      loading: false,
     };
   },
   computed: {
@@ -58,18 +60,22 @@ export default {
       });
     },
     getTasksList(id) {
+      this.loading = true;
       return Api.getAll(id).then((tasks) => {
         this.tasks = tasks.items;
         this.currentId = id;
         this.updateMenu();
+        this.loading = false;
       });
     },
     getAll() {
+      this.loading = true;
       return Api.getAll().then((tasks) => {
         this.tasks = tasks.items;
         Api.getList().then((list) => {
           this.currentId = list.id;
           this.updateMenu();
+          this.loading = false;
         });
       });
     },
@@ -87,6 +93,16 @@ export default {
     delTask(task, idx) {
       Api.delTask(this.currentId, task.id);
       this.tasks.splice(idx, 1);
+    },
+    addTask() {
+      this.loading = true;
+      Api.addTask(this.currentId, {
+        title: this.newTask,
+      }).then(() => this.getTasksList(this.currentId))
+        .then(() => {
+          this.newTask = '';
+          this.loading = false;
+        });
     },
   },
 };
