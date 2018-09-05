@@ -1,6 +1,7 @@
 <template>
   <div id="downloads">
-    <recycle-list :items="downloads" :item-height="54" class="scroller pa-3">
+    <recycle-list
+      v-if="downloads.length" :items="downloads" :item-height="54" class="scroller pa-3">
       <template scope="{item: download}">
         <v-menu lazy bottom offset-y>
           <li
@@ -52,7 +53,7 @@
         </v-menu>
       </template>
     </recycle-list>
-    <v-card-text v-if="!downloads.length" class="text-xs-center">
+    <v-card-text v-else class="text-xs-center">
       <v-icon x-large>file_download</v-icon>
       <h2 v-t="'Downloads.no_downloads'" class="subheading"/>
     </v-card-text>
