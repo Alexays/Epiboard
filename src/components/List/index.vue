@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <recycle-list :items="data" :item-height="34" class="scroller">
+    <recycle-list :items="data" :item-height="34" :class="{ 'pa-3': padding }" class="scroller">
       <template scope="{item}">
         <!-- TODO: @click with empty callback is needed to have hover effect -->
         <v-list-tile :href="item.url" @click="() => {}">
@@ -48,6 +48,10 @@ export default {
       required: true,
     },
     icon: {
+      type: Boolean,
+      default: false,
+    },
+    padding: {
       type: Boolean,
       default: false,
     },
