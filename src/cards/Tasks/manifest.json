@@ -1,3 +1,4 @@
 {
-  "permissions": ["identity"]
+  "permissions": ["identity"],
+  "origins": ["https://www.googleapis.com/tasks/"]
 }
