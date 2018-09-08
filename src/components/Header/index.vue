@@ -2,7 +2,7 @@
   <header class="grey">
     <div
       v-lazy:background-image="{ src: background, error: $options.fallback }"
-      :key="background" class="background" :class="{ gradient: design === 'full' }"/>
+      :key="background" :class="{ gradient: design === 'full' }" class="background"/>
     <img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle">
     <template v-if="design === 'full'">
       <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
@@ -18,7 +18,7 @@
       </v-btn>
     </template>
     <v-toolbar v-else prominent>
-      <v-btn icon :disabled="$route.path !== '/'" @click="$refs.typer.search()">
+      <v-btn :disabled="$route.path !== '/'" icon @click="$refs.typer.search()">
         <v-icon>&#xE8B6;</v-icon>
       </v-btn>
       <vue-typer

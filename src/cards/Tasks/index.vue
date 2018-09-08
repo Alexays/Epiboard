@@ -31,7 +31,7 @@
       <v-text-field
         v-model="newTask"
         :disabled="loading"
-        :placeholder="$t('Tasks.add')" hide-details @keyup.13="addTask()" class="pa-3"/>
+        :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
     </v-list>
     <v-card-text v-else class="text-xs-center">
       <template v-if="!connected">
