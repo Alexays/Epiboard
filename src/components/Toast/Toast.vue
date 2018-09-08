@@ -1,7 +1,8 @@
 <template>
   <v-snackbar
     v-model="active"
-    :timeout="timeout" :color="color" :multi-line="!!desc" top right @click="dismiss">
+    :timeout="timeout"
+    :color="color" :multi-line="!!desc" top right class="application" @click="dismiss">
     <v-icon v-if="icon.length > 0" dark left>
       {{ icon }}
     </v-icon>

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="active" :max-width="500" persistent>
+  <v-dialog v-model="active" :max-width="500" class="application" persistent>
     <v-card>
       <v-card-title class="headline">
         {{ title }}
