@@ -78,13 +78,17 @@ export default {
         .filter(f => f.isActive())
         .map(f => f.getElement().id);
       this.$store.commit('SET_CARDS', cards);
-      this.$ga.event('cards', 'order', cards.join(', '), cards.length);
+      if (this.$ga) {
+        this.$ga.event('cards', 'order', cards.join(', '), cards.length);
+      }
     },
     delCard(key) {
       const elem = document.getElementById(key);
       this.$options.grid.hide(elem, {
         onFinish: () => {
-          this.$ga.event('cards', 'delete', key, 0);
+          if (this.$ga) {
+            this.$ga.event('cards', 'delete', key, 0);
+          }
           this.$store.commit('DEL_CARD_SETTINGS', key);
           this.$store.commit('DEL_CARD_CACHE', key);
           this.$store.commit('DEL_VALID_CARD', key);
@@ -99,7 +103,9 @@ export default {
         if (key === 'Changelog') this.$options.grid.add(elem, { index: 0 });
         else this.$options.grid.add(elem);
       });
-      this.$ga.event('cards', 'add', key, 1);
+      if (this.$ga) {
+        this.$ga.event('cards', 'add', key, 1);
+      }
     },
     checkVersion() {
       const lastVersion = this.$store.state.cache.version;

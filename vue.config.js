@@ -213,6 +213,11 @@ module.exports = {
               route.html = route.html
                 .replace(/<script (.*?)>/g, '<script $1 defer>')
                 .replace('id="app"', 'id="app" data-server-rendered="true"');
+              if (browserName !== 'chrome') {
+                // eslint-disable-next-line
+                route.html = route.html
+                  .replace(/<script(.*?)src="https:\/\/www.google-analytics.com\/analytics.js"(.*?)><\/script>/g, '');
+              }
               return route;
             },
             minify: {

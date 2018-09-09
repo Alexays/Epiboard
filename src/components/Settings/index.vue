@@ -159,7 +159,9 @@
         </v-layout>
         <h4 class="headline">Google Analytics</h4>
         <h4 v-t="'settings.analytics_desc'" class="subheading"/>
-        <v-switch :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
+        <v-switch
+          :disabled="!$ga"
+          :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
         <h4 class="headline">Debug</h4>
         <h4 v-t="'settings.debug_desc'" class="subheading"/>
         <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>

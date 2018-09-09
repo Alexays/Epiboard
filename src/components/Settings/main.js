@@ -53,6 +53,7 @@ export default {
     'settings.analytics': function analytics(val, old) {
       if (val === old || old === undefined) return;
       localStorage.setItem('analytics', JSON.stringify(val));
+      if (!this.$ga) return;
       if (val) this.$ga.enable();
       else this.$ga.disable();
     },
@@ -72,7 +73,8 @@ export default {
   beforeMount() {
     this.settings = this.$store.state.settings;
     this.backgroundLocal = this.$store.state.cache.backgroundLocal;
-    this.$set(this.settings, 'analytics', localStorage.getItem('analytics') !== 'false');
+    const ga = this.$ga ? localStorage.getItem('analytics') !== 'false' : false;
+    this.$set(this.settings, 'analytics', ga);
   },
   methods: {
     save(showToast = true) {
