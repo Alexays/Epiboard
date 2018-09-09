@@ -26,7 +26,7 @@
     "vue-virtual-scroller": "^0.12.0",
     "vuetify": "1.1.16",
     "vuex": "^3.0.1",
-    "vuex-persist": "^1.4.3",
+    "vuex-persist": "^1.5.2",
     "webextension-polyfill": "^0.3.1"
   },
   "devDependencies": {
@@ -41,6 +41,7 @@
     "cross-env": "^5.2.0",
     "glob": "^7.1.3",
     "node-sass": "^4.9.3",
+    "prerender-spa-plugin": "^3.4.0",
     "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
