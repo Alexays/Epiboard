@@ -3,7 +3,6 @@ import store from '@/store';
 
 const clientId = '746645565897-flmj7tj1hu754tl4uul2do8cq1sslp27.apps.googleusercontent.com';
 const clientSecret = 'vP98OJ0nebq8qbeoBzKT5HvG';
-const redirectUrl = browser.identity.getRedirectURL();
 
 const apiUrl = {
   webAuth: 'https://accounts.google.com/o/oauth2/v2/auth',
@@ -21,7 +20,7 @@ export default {
       'include_granted_scopes=true',
       'prompt=consent',
       `state=${encodeURIComponent(state)}`,
-      `redirect_uri=${encodeURIComponent(redirectUrl)}`,
+      `redirect_uri=${encodeURIComponent(browser.identity.getRedirectURL())}`,
       `scope=${encodeURIComponent(scope)}`,
     ].join('&');
     return browser.identity.launchWebAuthFlow({
@@ -92,7 +91,7 @@ export default {
     const params = [
       `client_id=${clientId}`,
       `client_secret=${clientSecret}`,
-      `redirect_uri=${encodeURIComponent(redirectUrl)}`,
+      `redirect_uri=${encodeURIComponent(browser.identity.getRedirectURL())}`,
       'grant_type=authorization_code',
       `code=${code}`,
     ].join('&');
