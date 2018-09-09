@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
@@ -201,6 +202,33 @@ module.exports = {
           definePlugin.definitions.CardsObj = JSON.stringify(cards);
           definePlugin.definitions.Langs = JSON.stringify(langKeys
             .map(f => ({ locale: f, name: langs[f].name })));
+        }
+        // Pre-render
+        if (isProduction) {
+          config.plugins.push(new PrerenderSPAPlugin({
+            staticDir: path.join(__dirname, 'dist'),
+            routes: ['/'],
+            postProcess(route) {
+              // eslint-disable-next-line
+              route.html = route.html
+                .replace(/<script (.*?)>/g, '<script $1 defer>')
+                .replace('id="app"', 'id="app" data-server-rendered="true"');
+              return route;
+            },
+            minify: {
+              collapseBooleanAttributes: true,
+              collapseWhitespace: true,
+              decodeEntities: true,
+              keepClosingSlash: true,
+              sortAttributes: true,
+            },
+            renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
+              inject: {},
+              renderAfterDocumentEvent: 'render-event',
+              headless: false,
+              skipThirdPartyRequests: true,
+            }),
+          }));
         }
         // Remove eval
         compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {

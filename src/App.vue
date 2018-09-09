@@ -18,7 +18,7 @@ export default {
       return null;
     },
     dark() {
-      return this.$utils.isDark(this.$store.state.settings.dark);
+      return !window.__PRERENDER_INJECTED && this.$utils.isDark(this.$store.state.settings.dark);
     },
     primary() {
       return this.$store.state.settings.theme.primary;

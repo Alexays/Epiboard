@@ -65,6 +65,11 @@ new Vue({
   i18n,
   router,
   store,
+  mounted() {
+    if (window.__PRERENDER_INJECTED) {
+      document.dispatchEvent(new Event('render-event'));
+    }
+  },
   render: h => h(App),
 });
 

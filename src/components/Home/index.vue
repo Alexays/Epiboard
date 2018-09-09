@@ -2,6 +2,7 @@
   <v-container id="home" fluid>
     <transition name="fab-transition" mode="out-in">
       <v-speed-dial
+        v-if="!isPreRender"
         v-show="showFab"
         v-model="fab" direction="bottom" transition="slide-y-transition" right>
         <v-btn slot="activator" v-model="fab" color="accent" fab>
@@ -16,12 +17,19 @@
       </v-speed-dial>
     </transition>
     <transition-group
+      v-if="!isPreRender"
       id="card-container"
       :class="{ 'has-toolbar': $store.state.settings.header.design === 'toolbar' }"
       name="fade" tag="div">
       <card v-resize v-for="card in cards" :key="card" :id="card" @deleted="delCard(card)"/>
     </transition-group>
-    <v-layout v-if="emptyCards" align-center justify-space-around fill-height column>
+    <div v-else id="card-container" class="placeholder">
+      <div
+        v-for="i in 5"
+        :key="i" :style="{ height: `${[, 350, 250, 200, 300, 200][i]}px` }" class="placeholder-item"/>
+    </div>
+    <v-layout
+      v-if="!isPreRender && emptyCards" align-center justify-space-around fill-height column>
       <v-card class="text-xs-center" color="transparent" flat>
         <v-icon x-large>grid_off</v-icon>
         <h2 v-t="'home.no_cards'" class="subheading"/>

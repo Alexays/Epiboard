@@ -29,6 +29,9 @@ export default {
     };
   },
   computed: {
+    isPreRender() {
+      return !!window.__PRERENDER_INJECTED;
+    },
     cards() {
       const { cards } = this.$store.state;
       return [...new Set(cards)].filter(f => Cards[f]);
@@ -55,7 +58,9 @@ export default {
     this.$options.ro = new ResizeObserver(this.onResize);
   },
   mounted() {
-    this.initGrid();
+    if (!this.isPreRender) {
+      this.initGrid();
+    }
   },
   beforeDetroy() {
     this.$options.ro.detach();
@@ -108,6 +113,7 @@ export default {
     },
     initGrid() {
       this.$options.grid = new Muuri('#card-container', {
+        items: '.v-card',
         dragEnabled: true,
         layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },

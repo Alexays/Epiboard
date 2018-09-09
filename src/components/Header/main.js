@@ -40,6 +40,9 @@ export default {
   },
   fallback: backgrounds.mountains.day,
   computed: {
+    isPreRender() {
+      return !!window.__PRERENDER_INJECTED;
+    },
     texts() {
       if (this.$route.path === '/onboarding') {
         return [this.$t('onboarding.welcome')];

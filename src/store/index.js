@@ -8,6 +8,22 @@ import cardsSettings from './cards_settings';
 
 window.browser = require('webextension-polyfill');
 
+if (window.__PRERENDER_INJECTED) {
+  window.browser = {
+    storage: {
+      sync: {
+        get: () => Promise.resolve({ vuex: '{"settings":{"tutorial":true}}' }),
+      },
+      local: {
+        get: () => Promise.resolve({}),
+      },
+    },
+    identity: {
+      getRedirectURL: () => '',
+    },
+  };
+}
+
 Vue.use(Vuex);
 
 const vuexSync = new VuexPersistence({

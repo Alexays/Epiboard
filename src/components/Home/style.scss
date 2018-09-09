@@ -15,6 +15,18 @@
     &.has-toolbar {
       margin: 20px auto;
     }
+    &.placeholder {
+      padding: 15px 0;
+      column-gap: 15px;
+    }
+    .placeholder-item {
+      width: 400px;
+      margin-bottom: 15px;
+      page-break-inside: avoid;
+      will-change: transform;
+      break-inside: avoid;
+      background-color: #eee;
+    }
     /deep/ .muuri-item-placeholder {
       background-color: rgba(0,0,0,0.23);
       box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -26,30 +38,45 @@
   @media (max-width: 859px) {
     #card-container {
       width: 430px;
+      &.placeholder {
+        column-count: 1;
+      }
     }
   }
   // 2 columns
   @media (min-width: 860px) and (max-width: 1289px) {
     #card-container {
       width: 860px;
+      &.placeholder {
+        column-count: 2;
+      }
     }
   }
   // 3 columns
   @media (min-width: 1290px) and (max-width: 1719px) {
     #card-container {
       width: 1290px;
+      &.placeholder {
+        column-count: 3;
+      }
     }
   }
   // 4 columns
   @media (min-width: 1720px) and (max-width: 2149px) {
     #card-container {
       width: 1720px;
+      &.placeholder {
+        column-count: 4;
+      }
     }
   }
   // 5 columns
   @media (min-width: 2150px) {
     #card-container {
       width: 2150px;
+      &.placeholder {
+        column-count: 5;
+      }
     }
   }
 }
