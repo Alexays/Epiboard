@@ -21,11 +21,11 @@
     }
     .placeholder-item {
       width: 400px;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
       page-break-inside: avoid;
       will-change: transform;
       break-inside: avoid;
-      background-color: #eee;
+      background-color: rgba(164, 163, 164, .35);
     }
     /deep/ .muuri-item-placeholder {
       background-color: rgba(0,0,0,0.23);
