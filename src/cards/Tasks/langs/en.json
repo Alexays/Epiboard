@@ -1,4 +1,5 @@
 {
   "empty": "You don't have any tasks",
-  "add": "Name your new task"
+  "add": "Name your new task",
+  "need_login": "The card uses Google Tasks and must be connected to your Google account."
 }

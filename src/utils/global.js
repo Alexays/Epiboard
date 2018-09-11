@@ -28,6 +28,7 @@ export default {
     }
     return (time > fromDate && time < toDate);
   },
+  // TODO: avoid useless dialog
   checkPermissions(payload, name) {
     return browser.permissions.contains(payload)
       .then(res => res || browser.permissions.request(payload))

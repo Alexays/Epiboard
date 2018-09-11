@@ -35,6 +35,7 @@
     </v-list>
     <v-card-text v-else class="text-xs-center">
       <template v-if="!connected">
+        <h2 v-t="'Tasks.need_login'" class="subheading"/>
         <v-btn color="blue" class="white--text" @click="init()">
           <v-icon right dark>lock_open</v-icon>
           <span v-t="{ path: 'auth.connect_to', args: { service: 'Google' } }"/>
