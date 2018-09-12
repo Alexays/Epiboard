@@ -1,0 +1,26 @@
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: hidden;
+  .node {
+    list-style: none;
+    :hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+    div {
+      cursor: pointer;
+      width: 115px;
+      height: 115px;
+      i {
+        display: block;
+        width: inherit;
+        height: inherit;
+        background-size: 90px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+}

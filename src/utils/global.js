@@ -2,9 +2,11 @@ import Dialog from '@/components/Dialog';
 import { i18n } from '@/i18n';
 
 export default {
-  getFavicon(url) {
-    if (url.indexOf('https://') === 0 || url.indexOf('http://') === 0) {
+  getFavicon(url, size) {
+    if (!size && (url.indexOf('https://') === 0 || url.indexOf('http://') === 0)) {
       return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
+    } else if (size) {
+      return `https://api.faviconkit.com/${encodeURI(url)}/${size}`;
     }
     return null;
   },

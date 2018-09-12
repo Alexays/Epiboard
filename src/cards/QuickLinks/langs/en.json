@@ -2,6 +2,7 @@
   "title": "Quick Links",
   "empty": "You don't have quick links, add some in the card settings",
   "settings": {
-    "links": "Links"
+    "links": "Links",
+    "grid": "Use grid layout"
   }
 }

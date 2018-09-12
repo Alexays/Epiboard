@@ -1,5 +1,5 @@
 import * as VList from 'vuetify/es5/components/VList';
-import VTextField from 'vuetify/es5/components/VTextField';
+import { VTextField, VSwitch } from 'vuetify';
 
 // @vue/component
 export default {
@@ -7,6 +7,7 @@ export default {
   components: {
     ...VList,
     VTextField,
+    VSwitch,
   },
   data() {
     return {

@@ -2,8 +2,7 @@
   <v-list dense>
     <recycle-list :items="data" :item-height="34" :class="{ 'pa-3': padding }" class="scroller">
       <template scope="{item}">
-        <!-- TODO: @click with empty callback is needed to have hover effect -->
-        <v-list-tile :href="item.url" @click="() => {}">
+        <v-list-tile :href="item.url" @click="$emit('clicked', item)">
           <v-list-tile-avatar :size="16">
             <slot :item="item" name="icon">
               <img v-if="item.icon" :src="item.icon">

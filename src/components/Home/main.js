@@ -119,7 +119,7 @@ export default {
     },
     initGrid() {
       this.$options.grid = new Muuri('#card-container', {
-        items: '.v-card',
+        items: '.card',
         dragEnabled: true,
         layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },

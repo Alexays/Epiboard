@@ -1,29 +1,31 @@
-.v-card {
+.card {
   min-width: 400px;
   min-height: 100px;
   margin: 15px;
   position: absolute;
   z-index: 1;
-  overflow-x: hidden;
-  .v-toolbar__title {
-    font-weight: normal;
-    text-transform: capitalize;
-  }
-  .v-toolbar--absolute {
-    background-color: transparent!important;
-  }
-  .subheading {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-  .head-drag {
-    cursor: grab;
-  }
-  /deep/ .scroller {
-    max-height: 300px;
-    overflow-y: auto;
+  .v-card {
+    overflow-x: hidden;
+    .v-toolbar__title {
+      font-weight: normal;
+      text-transform: capitalize;
+    }
+    .v-toolbar--absolute {
+      background-color: transparent!important;
+    }
+    .subheading {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .head-drag {
+      cursor: grab;
+    }
+    /deep/ .scroller {
+      max-height: 300px;
+      overflow-y: auto;
+    }
   }
 }
 

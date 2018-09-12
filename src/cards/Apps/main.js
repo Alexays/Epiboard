@@ -1,9 +1,13 @@
 // DEPRECATED: Chrome apps will be removed soon
 import Toast from '@/components/Toast';
+import GridList from '@/components/GridList';
 
 // @vue/component
 export default {
   name: 'Apps',
+  components: {
+    GridList,
+  },
   data() {
     return {
       apps: [],

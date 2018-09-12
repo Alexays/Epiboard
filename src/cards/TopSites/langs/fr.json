@@ -2,6 +2,7 @@
   "title": "Top sites",
   "empty": "Vous n'avez pas de top sites.",
   "settings": {
-    "maxTopSites": "Nombre maximum de top sites"
+    "maxTopSites": "Nombre maximum de top sites",
+    "grid": "Utiliser une disposition en grille"
   }
 }

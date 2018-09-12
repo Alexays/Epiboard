@@ -8,12 +8,10 @@
     <v-tab v-for="device in devices" :key="device.deviceName">{{ device.deviceName }}</v-tab>
     <v-tabs-items>
       <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
-        <v-card-text>
-          <list v-if="tab.data.length" :data="tab.data" icon/>
-          <div v-else class="text-xs-center">
-            <v-icon x-large>find_in_page</v-icon>
-            <h2 v-t="'Sessions.empty'" class="subheading"/>
-          </div>
+        <list v-if="tab.data.length" :data="tab.data" icon padding/>
+        <v-card-text v-else class="text-xs-center">
+          <v-icon x-large>find_in_page</v-icon>
+          <h2 v-t="'Sessions.empty'" class="subheading"/>
         </v-card-text>
       </v-tab-item>
     </v-tabs-items>

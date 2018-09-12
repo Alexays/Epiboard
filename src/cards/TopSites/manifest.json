@@ -1,7 +1,8 @@
 {
   "description": "See your most visited sites",
   "settings": {
-    "maxSites": 5
+    "maxSites": 5,
+    "grid": false
   },
   "permissions": ["topSites"]
 }

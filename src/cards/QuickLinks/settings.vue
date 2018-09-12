@@ -1,5 +1,9 @@
 <template>
   <v-card-text id="quick-links">
+    <h4 v-t="'QuickLinks.settings.grid'" class="subheading"/>
+    <v-switch
+      :label="$tc('settings.onOff', settings.grid)"
+      v-model="settings.grid" class="mt-0" hide-details/>
     <h4 v-t="'QuickLinks.settings.links'" class="subheading"/>
     <v-list dense>
       <v-list-tile v-for="(link, idx) in settings.links" :key="link">

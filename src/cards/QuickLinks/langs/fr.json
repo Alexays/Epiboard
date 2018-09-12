@@ -2,6 +2,7 @@
   "title": "Liens rapides",
   "empty": "Vous n'avez pas de liens rapides, ajoutez-en dans les paramètres de la carte",
   "settings": {
-    "links": "Liens"
+    "links": "Liens",
+    "grid": "Utiliser une disposition en grille"
   }
 }

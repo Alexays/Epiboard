@@ -1,10 +1,11 @@
-import VTextField from 'vuetify/es5/components/VTextField';
+import { VTextField, VSwitch } from 'vuetify';
 
 // @vue/component
 export default {
   name: 'TopSites',
   components: {
     VTextField,
+    VSwitch,
   },
   data() {
     return {
