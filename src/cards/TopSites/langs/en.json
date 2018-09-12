@@ -2,6 +2,6 @@
   "empty": "You have no top sites.",
   "settings": {
     "maxTopSites": "Max top sites",
-    "grid": "Use grid layout"
+    "grid": "Use a grid layout"
   }
 }
