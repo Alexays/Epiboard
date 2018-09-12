@@ -9,18 +9,13 @@
     :hover {
       background-color: rgba(0, 0, 0, .1);
     }
-    div {
-      cursor: pointer;
-      width: 115px;
-      height: 115px;
-      i {
-        display: block;
-        width: inherit;
-        height: inherit;
-        background-size: 90px;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
+    a {
+      display: block;
+      width: 121px;
+      height: 121px;
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 }
