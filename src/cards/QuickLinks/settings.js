@@ -1,5 +1,5 @@
 import * as VList from 'vuetify/es5/components/VList';
-import { VTextField, VSwitch } from 'vuetify';
+import { VTextField, VSwitch, VSlider } from 'vuetify';
 
 // @vue/component
 export default {
@@ -8,7 +8,9 @@ export default {
     ...VList,
     VTextField,
     VSwitch,
+    VSlider,
   },
+  tickLabels: [32, 64, 96, 128],
   data() {
     return {
       settings: {},

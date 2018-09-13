@@ -3,6 +3,7 @@
   "empty": "Vous n'avez pas de liens rapides, ajoutez-en dans les paramètres de la carte",
   "settings": {
     "links": "Liens",
-    "grid": "Utiliser une disposition en grille"
+    "grid": "Utiliser une disposition en grille",
+    "grid_size": "Taille des blocs de la grille"
   }
 }

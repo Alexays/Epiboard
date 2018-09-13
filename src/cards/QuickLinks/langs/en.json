@@ -3,6 +3,7 @@
   "empty": "You don't have quick links, add some in the card settings",
   "settings": {
     "links": "Links",
-    "grid": "Use a grid layout"
+    "grid": "Use a grid layout",
+    "grid_size": "Grid block size"
   }
 }

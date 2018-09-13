@@ -25,6 +25,9 @@ export default {
       }
       return List;
     },
+    size() {
+      return [32, 64, 96, 128][this.settings.size];
+    },
   },
   created() {
     Promise.all([this.getTopSites()])
@@ -37,7 +40,7 @@ export default {
         this.topSites = topSites.slice(0, this.settings.maxSites)
           .map((f) => {
             const icon = this.settings.grid
-              ? this.$utils.getFavicon(new URL(f.url).hostname, 128)
+              ? this.$utils.getFavicon(new URL(f.url).hostname, this.size)
               : this.$utils.getFavicon(f.url);
             return { ...f, icon };
           });
