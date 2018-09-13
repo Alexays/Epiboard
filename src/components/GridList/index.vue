@@ -4,7 +4,10 @@
       <a
         :href="node.url"
         :title="node.name"
-        :style="{ 'background-image': `url(${node.icon})`, width: `${size}px`, height: `${size}px` }"
+        :style="{
+          'background-image': `url(${node.icon})`,
+          width: `${size}px`, height: `${size}px`,
+        }"
         @click="$emit('clicked', node)"/>
     </li>
   </div>
@@ -22,7 +25,7 @@ export default {
     },
     size: {
       type: Number,
-      default: 128
+      default: 128,
     },
   },
 };

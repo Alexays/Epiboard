@@ -26,7 +26,8 @@
     <div v-else id="card-container" class="placeholder">
       <div
         v-for="i in 5"
-        :key="i" :style="{ height: `${[, 350, 250, 200, 300, 200][i]}px` }" class="placeholder-item"/>
+        :key="i"
+        :style="{ height: `${[, 350, 250, 200, 300, 200][i]}px` }" class="placeholder-item"/>
     </div>
     <v-layout
       v-if="!isPreRender && emptyCards" align-center justify-space-around fill-height column>

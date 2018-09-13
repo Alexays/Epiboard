@@ -14,7 +14,8 @@
         </v-btn>
         <v-btn
           v-else-if="$route.path !== '/onboarding'"
-          id="settings" :title="$t('settings.title')" color="white" to="/settings" outline flat icon>
+          id="settings"
+          :title="$t('settings.title')" color="white" to="/settings" outline flat icon>
           <v-icon>&#xE5D4;</v-icon>
         </v-btn>
       </template>
