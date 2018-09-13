@@ -95,10 +95,11 @@ export default {
       return this.$vuetify.theme.foreground;
     },
     settings() {
-      const data = { ...Cards[this.$vnode.key].settings };
-      if (!data || this.hash == null) return {};
+      const defaultSettings = Cards[this.$vnode.key].settings;
+      if (!defaultSettings || this.hash == null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.$vnode.key];
-      if (!tmp) return data;
+      if (!tmp) return defaultSettings;
+      const data = { ...defaultSettings };
       const keys = Object.keys(data);
       for (let i = 0; i < keys.length; i += 1) {
         if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
