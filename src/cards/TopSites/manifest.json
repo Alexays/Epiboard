@@ -3,7 +3,7 @@
   "settings": {
     "maxSites": 5,
     "grid": false,
-    "size": 128
+    "size": 2
   },
   "permissions": ["topSites"]
 }

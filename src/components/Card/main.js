@@ -95,7 +95,7 @@ export default {
       return this.$vuetify.theme.foreground;
     },
     settings() {
-      const data = Cards[this.$vnode.key].settings;
+      const data = { ...Cards[this.$vnode.key].settings };
       if (!data || this.hash == null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.$vnode.key];
       if (!tmp) return data;
