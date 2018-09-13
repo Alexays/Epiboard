@@ -1,7 +1,7 @@
 {
   "settings": {
     "links": [],
-    "grid": false,
+    "grid": true,
     "size": 2
   }
 }

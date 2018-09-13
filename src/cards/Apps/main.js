@@ -8,12 +8,23 @@ export default {
   components: {
     GridList,
   },
+  props: {
+    settings: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       apps: [],
       extensions: [],
       themes: [],
     };
+  },
+  computed: {
+    size() {
+      return [32, 64, 96, 128][this.settings.size];
+    },
   },
   created() {
     Promise.all([this.getAll()])
@@ -32,6 +43,7 @@ export default {
         else this.$set(this.themes, idx, info);
       } else {
         const app = info;
+        // TODO: get closest size
         app.icon = app.icons
           ? app.icons[app.icons.length - 1].url
           : 'chrome://extension-icon/khopmbdjffemhegeeobelklnbglcdgfh/256/1';
