@@ -5,7 +5,7 @@ const initialState = {
   dark: {
     enabled: true,
     auto: true,
-    from: '22:00',
+    from: '21:00',
     to: '9:00',
   },
   trends: {
