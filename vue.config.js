@@ -204,7 +204,7 @@ module.exports = {
             .map(f => ({ locale: f, name: langs[f].name })));
         }
         // Pre-render
-        if (isProduction) {
+        if (isProduction && (!process.env.TRAVIS || !process.env.CI)) {
           config.plugins.push(new PrerenderSPAPlugin({
             staticDir: path.join(__dirname, 'dist'),
             routes: ['/'],
