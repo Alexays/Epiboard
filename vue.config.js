@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const ZipPlugin = require('zip-webpack-plugin');
+const zipafolder = require('zip-a-folder');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
 const { version, name } = require('./package.json');
@@ -181,11 +181,6 @@ module.exports = {
     config.plugins.push(new DefinePlugin({
       browserName: JSON.stringify(browserName),
     }));
-    // Create dist zip
-    config.plugins.push(new ZipPlugin({
-      path: '../',
-      filename: `${name}-${version}.zip`,
-    }));
     config.plugins.push({
       apply: (compiler) => {
         log('');
@@ -235,14 +230,19 @@ module.exports = {
             }),
           }));
         }
-        // Remove eval
-        compiler.hooks.afterEmit.tap('AfterEmitPlugin', () => {
+        // Remove eval and create dist zip
+        compiler.hooks.done.tap('DonePlugin', () => {
           const BUNDLE_DIR = path.join(__dirname, './dist/js');
           glob(`${BUNDLE_DIR}/*.js`, {}, (er, files) => {
             for (let i = 0; i < files.length; i += 1) {
               removeEvals(files[i]).catch(error);
             }
           });
+          if (isProduction && (!process.env.TRAVIS || !process.env.CI)) {
+            zipafolder.zip('./dist', `${name}-${version}.zip`, (err) => {
+              if (err) log(err);
+            });
+          }
         });
       },
     });
