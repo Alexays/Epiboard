@@ -1,0 +1,20 @@
+{
+  "title": "Clíma",
+  "description": "Vea el clíma de hoy y pronósticos",
+  "humidity": "Humedad",
+  "wind_speed": "Velocidad del viento",
+  "sunrise": "Amanecer",
+  "sunset": "Atardecer",
+  "cloudiness": "Abundancia de nubes",
+  "error": {
+    "title": "Error de geo-localización",
+    "unsupported": "La geo-localización no está disponible, favor de ingresar ciudad en los ajustes de tarjeta.",
+    "sample": "Intente de nuevo más tarde o entre una ciudad manualmente en los ajustes de tarjeta."
+  },
+  "settings": {
+    "location": "Localidad",
+    "forecast": "Pronóstico",
+    "city": "Ciudad, ejemplo: `Nantes, FR` o su ID",
+    "choose_units": "Escoja sus medidas preferidas"
+  }
+}

@@ -1,5 +1,4 @@
 {
-  "description": "View and monitor your system information",
   "browsers": ["chrome"],
   "permissions": ["system.cpu", "system.memory", "system.storage"]
 }

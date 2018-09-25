@@ -1,0 +1,11 @@
+{
+  "title": "Sistema",
+  "description": "Vea y monitoree información del sistema",
+  "cpu": "CPU",
+  "memory": "Memoria",
+  "network": "Red",
+  "storage": "Almacenamiento",
+  "core": "núcleo | núcleos",
+  "estimation": "La estimación de la velocidad de descarga tiene un máximo de 10 Mb/s",
+  "rtt": "Estimación del tiempo de ída y vuelta"
+}

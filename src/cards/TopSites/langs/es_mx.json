@@ -1,0 +1,10 @@
+{
+  "title": "Sitios recientes",
+  "description": "Vea sus sitios más visitados",
+  "empty": "No tienes sítios recientes.",
+  "settings": {
+    "maxTopSites": "Límite de sitios recientes",
+    "grid": "Usar diseño de cuadrícula",
+    "grid_size": "Tamaño de la cuadrícula"
+  }
+}

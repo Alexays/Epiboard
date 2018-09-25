@@ -1,0 +1,16 @@
+{
+  "title": "Descargas",
+  "description": "Manejar y ver sus descargas fácilmente",
+  "no_downloads": "No tienes descargas",
+  "open": "Abrir",
+  "delete": "Eliminar",
+  "remove_list": "Quitar de la lísta",
+  "clear": "Limpiar todas las descargas",
+  "error": {
+    "moved": "Archivo movido o eliminado",
+    "unable": "Imposible de eliminar"
+  },
+  "settings": {
+    "max": "Límite de descargas"
+  }
+}

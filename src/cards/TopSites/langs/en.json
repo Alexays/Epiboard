@@ -1,4 +1,5 @@
 {
+  "description": "See your most visited sites",
   "empty": "You have no top sites.",
   "settings": {
     "maxTopSites": "Max top sites",

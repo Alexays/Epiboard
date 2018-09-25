@@ -9,11 +9,15 @@
           <v-icon>add</v-icon>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-btn
-          v-for="(value, key) in availableCards"
-          :key="key" color="green" dark small @click="addCard(key)">
-          {{ key }}
-        </v-btn>
+        <template v-if="showFab">
+          <v-btn
+            v-for="(value, key) in availableCards"
+            :key="key"
+            :title="getTranslation(`${key}.description`)"
+            color="green" dark small @click="addCard(key)">
+            {{ getTranslation(`${key}.title`) || key }}
+          </v-btn>
+        </template>
       </v-speed-dial>
     </transition>
     <transition-group

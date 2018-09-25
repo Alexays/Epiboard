@@ -1,4 +1,5 @@
 {
+  "description": "Tous vos flux en un seul endroit",
   "empty": "Flux vides",
   "settings": {
     "feeds": "Flux"

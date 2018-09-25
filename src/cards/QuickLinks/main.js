@@ -11,14 +11,14 @@ export default {
     },
   },
   computed: {
+    size() {
+      return [32, 64, 96, 128][this.settings.size];
+    },
     cmp() {
       if (this.settings.grid) {
         return GridList;
       }
       return List;
-    },
-    size() {
-      return [32, 64, 96, 128][this.settings.size];
     },
     links() {
       return this.settings.links

@@ -1,5 +1,6 @@
 {
   "title": "Système",
+  "description": "Visualisez et surveillez les informations de votre système",
   "cpu": "CPU",
   "memory": "Mémoire",
   "network": "Réseau",

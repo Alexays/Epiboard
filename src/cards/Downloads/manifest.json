@@ -1,5 +1,4 @@
 {
-  "description": "Manage and see your downloads easly",
   "settings": {
     "limitDownloads": 5
   },

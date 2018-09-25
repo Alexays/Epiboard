@@ -1,0 +1,13 @@
+{
+  "title": "Marcadores",
+  "description": "Para ver y abrir sus marcadores",
+  "recents": "Recientes",
+  "all": "Todo",
+  "empty": "No tienes marcadores aquí",
+  "back_parent": "Volver a la carpeta anterior",
+  "add_folder": "Marcar esta carpeta como una pestaña",
+  "remove_folder": "Eliminar pestaña",
+  "settings": {
+    "maxRecents": "Límite de marcadores recientes"
+  }
+}

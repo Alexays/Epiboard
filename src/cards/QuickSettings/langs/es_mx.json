@@ -1,0 +1,9 @@
+{
+  "title": "Ajustes rápidos",
+  "description": "Elimina tu caché, cookies, historia y almacenamiento local rápidamente",
+  "cache": "Caché",
+  "cookies": "Cookies",
+  "history": "Historial",
+  "local_storage": "Almancenamiento local",
+  "clear": "Limpiar"
+}

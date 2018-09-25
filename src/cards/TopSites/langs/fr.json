@@ -1,5 +1,6 @@
 {
   "title": "Top sites",
+  "description": "Voir vos sites les plus visités",
   "empty": "Vous n'avez pas de top sites.",
   "settings": {
     "maxTopSites": "Nombre maximum de top sites",

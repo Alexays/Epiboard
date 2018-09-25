@@ -1,4 +1,5 @@
 {
+  "description": "Visualisez facilement vos dernières statistiques LastFm",
   "plays": "{nb} lecture | {nb} lectures",
   "overall": "Tout le temps",
   "years": "{nb} an | {nb} ans",

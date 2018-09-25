@@ -1,0 +1,11 @@
+{
+  "title": "Sesiónes",
+  "description": "Vea sus páginas cerradas recientemente y páginas abiertas en sus otros dispositivos",
+  "recents": "Cerradas recientemente",
+  "empty": "No has cerrado páginas recientemente",
+  "settings": {
+    "maxRecents": "Límite de recientes",
+    "maxSessions": "Límite de sesiones",
+    "maxDevices": "Límite de dispositivos"
+  }
+}

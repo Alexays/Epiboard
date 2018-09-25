@@ -1,4 +1,5 @@
 {
+  "description": "Voir la météo et les prévisions d'aujourd'hui simplement",
   "humidity": "Humidité",
   "wind_speed": "Vitesse du vent",
   "sunrise": "Lever du soleil",

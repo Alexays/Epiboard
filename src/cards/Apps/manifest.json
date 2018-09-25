@@ -1,5 +1,4 @@
 {
-  "description": "To view and use your chrome apps",
   "more": "chrome://apps",
   "browsers": ["chrome"],
   "settings": {

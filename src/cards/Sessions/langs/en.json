@@ -1,4 +1,5 @@
 {
+  "description": "View your recently closed pages and pages opened on your other devices",
   "recents": "Recently closed",
   "empty": "You have no recently closed page.",
   "settings": {

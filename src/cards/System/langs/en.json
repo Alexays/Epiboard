@@ -1,4 +1,5 @@
 {
+  "description": "View and monitor your system information",
   "cpu": "CPU",
   "memory": "Memory",
   "network": "Network",

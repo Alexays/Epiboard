@@ -1,0 +1,7 @@
+{
+  "description": "Tódos sus clasificados en un lugar",
+  "empty": "Clasificados vacíos",
+  "settings": {
+    "feeds": "Clasificados"
+  }
+}

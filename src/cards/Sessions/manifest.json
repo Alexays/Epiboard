@@ -1,5 +1,4 @@
 {
-  "description": "View your recently closed pages and pages opened on your other devices",
   "settings": {
     "maxRecentlyClosed": 7,
     "maxDevices": 9,

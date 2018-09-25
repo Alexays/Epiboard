@@ -1,0 +1,19 @@
+{
+  "plays": "Reproducír {nb} | Está sonando {nb}",
+  "overall": "Todos los tiempos",
+  "years": "Año {nb} | {nb} años",
+  "months": "Mes {nb} | {nb} meses",
+  "days": "Día {nb} | {nb} días",
+  "need_user": "Por favor ingrese su usuario de LastFm en los ajustes de tarjeta.",
+  "empty": "Obviamente no tienes ningún top.",
+  "now_playing": "Reproduciendo:",
+  "top": {
+    "artists": "Top Artistas",
+    "albums": "Top Álbums",
+    "tracks": "Top Pistas"
+  },
+  "tip": "Haga clic en los bordes de la tarjeta para cambiar el top",
+  "settings": {
+    "username": "Usuario de LastFm"
+  }
+}

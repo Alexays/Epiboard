@@ -66,6 +66,13 @@ export default {
     this.$options.ro.detach();
   },
   methods: {
+    getTranslation(path) {
+      const tmp = this.$t(path);
+      if (tmp === path) {
+        return null;
+      }
+      return tmp;
+    },
     onResize(entries) {
       if (!this.$options.grid) return;
       for (let i = 0; i < entries.length; i += 1) {

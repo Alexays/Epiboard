@@ -1,0 +1,117 @@
+{
+  "name": "Español (México)",
+  "onboarding": {
+    "hello": {
+      "title": "¡Buenas!",
+      "content": "¡Esta es tu rediseñada nueva pestaña!"
+    },
+    "why": {
+      "title": "¿Porqué Epiboard es genial?",
+      "prefs": "Tus ajustes se sincronizan en todos tus dispositivos (si está activado)",
+      "needs": "Una tarjeta para cada necesidad",
+      "privacy": "Epiboard solo pide permisos cuando los necesita"
+    },
+    "settings": {
+      "title": "Unos ajustes antes de empezar"
+    },
+    "welcome": "¡Bienvenido!",
+    "begin": "Empezar",
+    "next": "Siguiente",
+    "previous": "Anterior"
+  },
+  "card": {
+    "loading": "{id} está cargando...",
+    "reload": "Recargar",
+    "remove": "Eliminar",
+    "permissions_failed": "{id} necesita permisos a los que no tiene acceso, intentelo luego",
+    "error": "{id} tuvo un error, intente de nuevo más tarde",
+    "error_reload": "{id} tuvo un error, haga clic para recargar",
+    "more": "Ver más"
+  },
+  "add": "Agregar",
+  "greetMessages": [
+    "Hey, ¿qué tal tu día?",
+    "Espero que te vaya bien",
+    "Alguien está pensando en ti ;)",
+    "¡Hola!",
+    "Intenta sonreír, ¡funciona!",
+    "¿Sabías que eres genial?",
+    "Hay que motivarnos, ¿no crees?",
+    "¡Tú puedes hacerlo!",
+    "¡Puedes ser lo que quieras ser!"
+  ],
+  "permissions": {
+    "required": "Permisos son requeridos",
+    "message": "'{name}' está pidiendo los permisos necesarios para funcionar correctamente, ¿no le molesta?",
+    "allow": "Permitir",
+    "deny": "Denegar"
+  },
+  "auth": {
+    "connect_to": "Conectado a {service}",
+    "disconnect_from": "Desconectado de {service}"
+  },
+  "home": {
+    "no_cards": "Sin tarjetas.",
+    "add_cards": "Puedes agregar tarjetas seleccionandolas en el menú que está arriba a la derecha."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "langs": "Idiomas",
+    "header": "Portada",
+    "browse": "Navegar",
+    "theme": "Tema",
+    "analytics_desc": "Sólo para ver como usas tus tarjetas",
+    "custom_css": "CSS Personalizado",
+    "custom_css_desc": "Inserta la URL de tu archivo CSS, Ejemplo: https://ejemplo.com/estilo.css",
+    "custom_css_warning": "Advertencia: la personalización CSS es para usuarios avanzados, dejelo en blanco para el tema por defecto",
+    "debug_desc": "Por si te interesa",
+    "apply_change": "Para aplicar los cambios debes de usar el botón de retorno o hacer clic en ''Guardar en'' al fóndo de la página",
+    "reset": "Restablecer ajustes",
+    "save": "Guardar",
+    "saved": "¡Guardado!",
+    "cancel": "Cancelar",
+    "onOff": "Encendido | Apagado",
+    "apiKey": "{name} API Key",
+    "custom_message": "Mensaje personalizado de portada",
+    "dark": {
+      "title": "Modo oscuro",
+      "desc": "Todo se pondrá oscuro",
+      "auto": "Automático",
+      "from": "Desde la(s):",
+      "to": "Hasta la(s):"
+    },
+    "artworks": {
+      "random": "Aleatorio",
+      "unsplash": "Del proveedor Unsplash",
+      "url": "Desde una URL",
+      "local": "Desde archivo local",
+      "mountains": "Montañas"
+    },
+    "choose": {
+      "lang": "Escoje tu idioma",
+      "design": "Escoje tu diseño preferido",
+      "background": "Escoje tu fondo",
+      "trends": "Escoje tu país de Tendencias de Google",
+      "color": "Escoje el color principal",
+      "custom_font": "Usar fuente personalizada"
+    },
+    "design": {
+      "full": "Completo",
+      "toolbar": "Barra"
+    },
+    "auth": {
+      "title": "Servicios conectados",
+      "desc": "Activar tarjetas para acceder a las funciones de estos servicios"
+    },
+    "placeholder": {
+      "background": "Desde una URL, ejemplo: https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Color principal, ejemplo: #607D8B",
+      "custom_message": "ejemplo: ¿Mensaje motivacional?",
+      "custom_font": "ejemplo: Roboto",
+      "custom_desactived": "Desactivado cuando las Tendencias de Google están activadas"
+    },
+    "error": {
+      "error": "Código HEX inválido, ejemplo: #607D8B"
+    }
+  }
+}

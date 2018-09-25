@@ -1,5 +1,6 @@
 {
   "title": "Réglages rapides",
+  "description": "Supprimez rapidement votre cache, vos cookies, votre historique et votre stockage local",
   "cache": "Cache",
   "cookies": "Cookies",
   "history": "Historique",

@@ -1,0 +1,9 @@
+{
+  "title": "Enlaces rápidos",
+  "empty": "No tienes ningún enlace rápido, agrega algúnos en los ajustes de tarjeta",
+  "settings": {
+    "links": "Enlaces",
+    "grid": "Usar diseño de cuadrícula",
+    "grid_size": "Tamaño de la cuadrícula"
+  }
+}
