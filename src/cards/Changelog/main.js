@@ -10,10 +10,11 @@ export default {
     return {
       version: null,
       body: null,
+      loading: true,
     };
   },
   mounted() {
-    this.$emit('update:cardtitle', `What's new in ${version} ?`);
+    this.$emit('update:cardtitle', this.$t('Changelog.whatsnew', { version }));
     if (this.version === version && this.VALID_CACHE) {
       this.$emit('init', false);
       return;
@@ -24,6 +25,9 @@ export default {
         this.body = Marked(res.data.body);
       })
       .then(() => this.$emit('init', true))
-      .catch(err => this.$emit('init', err));
+      .catch(err => this.$emit('init', err))
+      .finally(() => {
+        this.loading = false;
+      });
   },
 };

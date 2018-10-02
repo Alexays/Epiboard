@@ -2,6 +2,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const zipafolder = require('zip-a-folder');
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin } = require('webpack');
 const { version, name } = require('./package.json');
@@ -181,6 +182,7 @@ module.exports = {
     config.plugins.push(new DefinePlugin({
       browserName: JSON.stringify(browserName),
     }));
+    config.plugins.push(new VuetifyLoaderPlugin());
     config.plugins.push({
       apply: (compiler) => {
         log('');

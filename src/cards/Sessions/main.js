@@ -1,4 +1,3 @@
-import * as VTabs from 'vuetify/es5/components/VTabs';
 import List from '@/components/List';
 
 // @vue/component
@@ -6,7 +5,6 @@ export default {
   name: 'Sessions',
   components: {
     List,
-    ...VTabs,
   },
   props: {
     settings: {

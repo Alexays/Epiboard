@@ -1,13 +1,8 @@
-import * as VList from 'vuetify/es5/components/VList';
-
 const API = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 // @vue/component
 export default {
   name: 'RSS',
-  components: {
-    ...VList,
-  },
   props: {
     settings: {
       type: Object,

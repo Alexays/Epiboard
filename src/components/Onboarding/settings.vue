@@ -32,6 +32,7 @@
           :disabled="!settings.trends.enabled"
           v-model="settings.trends.country" :label="$t('settings.choose.trends')"/>
       </v-layout>
+      <v-switch :label="$t('settings.whatsnew')" v-model="settings.whatsnew" hide-details/>
     </v-card-text>
     <v-card-actions class="secondary">
       <v-btn v-t="'onboarding.previous'" color="teal lighten-4" flat @click="$emit('prev')"/>
@@ -41,20 +42,12 @@
   </v-card>
 </template>
 <script>
-import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
-import { VSwitch, VAutocomplete, VTextField } from 'vuetify';
 import { loadLang } from '@/i18n';
 import countries from '../Settings/countries';
 import artworks from '../Settings/artworks';
 
 export default {
   name: 'Why',
-  components: {
-    ...VRadioGroup,
-    VSwitch,
-    VAutocomplete,
-    VTextField,
-  },
   countries,
   data() {
     return {

@@ -1,10 +1,5 @@
-import { VTextField } from 'vuetify';
-
 // @vue/component
 export default {
-  components: {
-    VTextField,
-  },
   props: {
     text: {
       type: Array,

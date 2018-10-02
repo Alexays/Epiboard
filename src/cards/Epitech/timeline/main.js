@@ -1,4 +1,3 @@
-import { VDialog } from 'vuetify';
 import { CanvasGantt } from 'gantt';
 import Api from '../api';
 
@@ -7,9 +6,6 @@ const API = 'https://intra.epitech.eu';
 // @vue/component
 export default {
   name: 'EpitechTimeline',
-  components: {
-    VDialog,
-  },
   props: {
     user: {
       type: Object,

@@ -1,5 +1,3 @@
-import { VTimePicker, VCheckbox, VSwitch, VAutocomplete, VMenu, VTextField } from 'vuetify';
-import * as VRadioGroup from 'vuetify/es5/components/VRadioGroup';
 import { loadLang } from '@/i18n';
 import Toast from '@/components/Toast';
 import colors from 'vuetify/es5/util/colors';
@@ -9,15 +7,6 @@ import artworks from './artworks';
 // @vue/component
 export default {
   name: 'Settings',
-  components: {
-    ...VRadioGroup,
-    VTimePicker,
-    VCheckbox,
-    VSwitch,
-    VAutocomplete,
-    VMenu,
-    VTextField,
-  },
   version: browser.runtime.getManifest().version,
   countries,
   palette: Object.keys(colors).map(f => colors[f].base).filter(f => f),

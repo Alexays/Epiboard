@@ -33,6 +33,7 @@ const initialState = {
   lang: langs[0] || 'en',
   tutorial: false,
   debug: false,
+  whatsnew: true,
 };
 
 export default {
@@ -55,6 +56,9 @@ export default {
     },
     SET_TUTORIAL(state, tutorial) {
       state.tutorial = tutorial;
+    },
+    SET_WHATSNEW(state, whatsnew) {
+      state.whatsnew = whatsnew;
     },
   },
 };

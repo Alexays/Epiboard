@@ -16,8 +16,6 @@
 // @vue/component
 export default {
   name: 'GridList',
-  components: {
-  },
   props: {
     data: {
       type: Array,

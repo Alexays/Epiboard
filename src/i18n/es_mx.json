@@ -73,6 +73,7 @@
     "onOff": "Encendido | Apagado",
     "apiKey": "{name} API Key",
     "custom_message": "Mensaje personalizado de portada",
+    "whatsnew": "manténgase al tanto de las últimas actualizaciones",
     "dark": {
       "title": "Modo oscuro",
       "desc": "Todo se pondrá oscuro",

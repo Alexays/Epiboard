@@ -1,12 +1,8 @@
-import * as VTabs from 'vuetify/es5/components/VTabs';
 import { Api, Periods } from './api';
 
 // @vue/component
 export default {
   name: 'LastFm',
-  components: {
-    ...VTabs,
-  },
   props: {
     settings: {
       type: Object,

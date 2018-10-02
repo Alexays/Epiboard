@@ -1,6 +1,3 @@
-import * as VTabs from 'vuetify/es5/components/VTabs';
-import * as VList from 'vuetify/es5/components/VList';
-import { VChip } from 'vuetify';
 import API from './api';
 import Timeline from './timeline';
 
@@ -8,9 +5,6 @@ import Timeline from './timeline';
 export default {
   name: 'Epitech',
   components: {
-    ...VTabs,
-    ...VList,
-    VChip,
     Timeline,
   },
   props: {

@@ -1,5 +1,4 @@
 import ResizeObserver from 'resize-observer-polyfill';
-import VSpeedDial from 'vuetify/es5/components/VSpeedDial';
 import Card from '@/components/Card';
 import Cards from '@/cards';
 import Muuri from 'muuri';
@@ -8,7 +7,6 @@ import Muuri from 'muuri';
 export default {
   name: 'Home',
   components: {
-    VSpeedDial,
     Card,
   },
   directives: {
@@ -117,7 +115,8 @@ export default {
     checkVersion() {
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
-      if (lastVersion && lastVersion !== version && this.cards.indexOf('Changelog') === -1) {
+      if (lastVersion && lastVersion !== version && this.cards.indexOf('Changelog') === -1
+        && this.$store.state.settings.whatsnew) {
         this.$store.commit('ADD_CARD_FIRST', 'Changelog');
       }
       if (lastVersion !== version) {

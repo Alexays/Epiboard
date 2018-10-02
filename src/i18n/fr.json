@@ -73,6 +73,7 @@
     "onOff": "Activé | Désactivé",
     "apiKey": "clé d'API {name}",
     "custom_message": "Message d'en-tête personnalisé",
+    "whatsnew": "Restez à l'écoute des dernières mises à jour",
     "dark": {
       "title": "Mode sombre",
       "desc": "Ça va être tout noir",

@@ -16,13 +16,3 @@
     </v-card-actions>
   </v-card>
 </template>
-<script>
-import { VCheckbox } from 'vuetify';
-
-export default {
-  name: 'Why',
-  components: {
-    VCheckbox,
-  },
-};
-</script>

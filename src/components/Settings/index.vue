@@ -165,6 +165,10 @@
         <h4 class="headline">Debug</h4>
         <h4 v-t="'settings.debug_desc'" class="subheading"/>
         <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
+        <h4 v-t="'settings.whatsnew'" class="subheading"/>
+        <v-switch
+          :label="$tc('settings.onOff', settings.whatsnew)"
+          v-model="settings.whatsnew" hide-details/>
         <v-layout align-center>
           <v-btn v-t="'settings.save'" flat small @click="save"/>
           <v-btn v-t="'settings.reset'" flat small @click="reset"/>

@@ -1,12 +1,8 @@
 import Toast from '@/components/Toast';
-import { VCheckbox } from 'vuetify';
 
 // @vue/component
 export default {
   name: 'QuickSettings',
-  components: {
-    VCheckbox,
-  },
   data() {
     return {
       loading: false,

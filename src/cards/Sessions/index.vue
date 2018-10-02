@@ -3,11 +3,11 @@
     id="sessions"
     :dark="!$store.state.settings.theme.light"
     :light="$store.state.settings.theme.light"
-    slider-color="foreground" color="primary" grow show-arrows>
+    slider-color="foreground" color="primary" show-arrows>
     <v-tab><span v-t="'Sessions.recents'"/></v-tab>
     <v-tab v-for="device in devices" :key="device.deviceName">{{ device.deviceName }}</v-tab>
     <v-tabs-items>
-      <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
+      <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" lazy>
         <list v-if="tab.data.length" :data="tab.data" icon padding/>
         <v-card-text v-else class="text-xs-center">
           <v-icon x-large>find_in_page</v-icon>

@@ -1,16 +1,9 @@
-import * as VList from 'vuetify/es5/components/VList';
-import { VMenu, VDivider } from 'vuetify';
 import Toast from '@/components/Toast';
 import Cards from '@/cards';
 
 // @vue/component
 export default {
   name: 'Card',
-  components: {
-    ...VList,
-    VDivider,
-    VMenu,
-  },
   directives: {
     initSettings: {
       isLiteral: true,

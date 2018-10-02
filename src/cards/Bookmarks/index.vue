@@ -5,11 +5,12 @@
     :dark="!$store.state.settings.theme.light"
     :light="$store.state.settings.theme.light"
     slider-color="foreground" color="primary" grow show-arrows>
-    <v-tab><span v-t="'Bookmarks.recents'"/></v-tab>
-    <v-tab><span v-t="'Bookmarks.all'"/></v-tab>
-    <v-tab v-for="tab in folders" :key="tab.id">{{ tab.name }}</v-tab>
+    <v-tab v-for="tab in tabs" :key="tab.id">
+      <span v-if="!tab.folder" v-t="`Bookmarks.${tab.id}`"/>
+      <span v-else>{{ tab.name }}</span>
+    </v-tab>
     <v-tabs-items>
-      <v-tab-item v-for="tab in tabs" :key="`tab-${tab.id}`" :id="`tab-${tab.id}`" lazy>
+      <v-tab-item v-for="tab in tabs" :key="tab.id" lazy>
         <v-card-text v-if="!tab.data.length" class="text-xs-center">
           <v-icon x-large>find_in_page</v-icon>
           <h2 v-t="'Bookmarks.empty'" class="subheading"/>

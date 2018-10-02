@@ -31,14 +31,12 @@
   </v-list>
 </template>
 <script>
-import * as VList from 'vuetify/es5/components/VList';
 import { RecycleList } from 'vue-virtual-scroller';
 
 // @vue/component
 export default {
   name: 'List',
   components: {
-    ...VList,
     RecycleList,
   },
   props: {

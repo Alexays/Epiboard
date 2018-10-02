@@ -1,10 +1,5 @@
-import { VDialog } from 'vuetify';
-
 // @vue/component
 export default {
-  components: {
-    VDialog,
-  },
   data() {
     return {
       active: false,

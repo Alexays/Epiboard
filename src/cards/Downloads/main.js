@@ -1,14 +1,10 @@
-import * as VList from 'vuetify/es5/components/VList';
 import Toast from '@/components/Toast';
-import { VMenu } from 'vuetify';
 import { RecycleList } from 'vue-virtual-scroller';
 
 // @vue/component
 export default {
   name: 'Downloads',
   components: {
-    ...VList,
-    VMenu,
     RecycleList,
   },
   directives: {

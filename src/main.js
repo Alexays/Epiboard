@@ -1,18 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import 'material-design-icons/iconfont/material-icons.css';
-import {
-  Vuetify,
-  VApp,
-  VGrid,
-  VToolbar,
-  VCard,
-  VBtn,
-  VIcon,
-  VProgressLinear,
-  VProgressCircular,
-  transitions,
-} from 'vuetify';
+import { Vuetify, VApp, transitions } from 'vuetify';
 import 'vuetify/src/stylus/app.styl';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
@@ -45,13 +34,6 @@ Vue.use(Vuetify, {
   components: {
     Vuetify,
     VApp,
-    VToolbar,
-    VCard,
-    VGrid,
-    VBtn,
-    VIcon,
-    VProgressLinear,
-    VProgressCircular,
   },
   theme: {
     primary: '#607D8B',

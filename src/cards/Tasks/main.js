@@ -1,15 +1,8 @@
-import * as VList from 'vuetify/es5/components/VList';
-import { VCheckbox, VTextField } from 'vuetify';
 import Api from './api';
 
 // @vue/component
 export default {
   name: 'Tasks',
-  components: {
-    ...VList,
-    VCheckbox,
-    VTextField,
-  },
   data() {
     return {
       currentId: null,

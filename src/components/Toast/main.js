@@ -1,10 +1,5 @@
-import { VSnackbar } from 'vuetify';
-
 // @vue/component
 export default {
-  components: {
-    VSnackbar,
-  },
   data() {
     return {
       active: false,
