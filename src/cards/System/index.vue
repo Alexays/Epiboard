@@ -24,7 +24,7 @@
       </div>
       <div class="wrapper-info">
         <span>
-          {{ memory.capacity - memory.availableCapacity | bytes }} /
+          {{ memory.load.progress | bytes }} /
           <span class="grey--text">{{ memory.capacity | bytes }}</span>
         </span>
         <v-progress-linear

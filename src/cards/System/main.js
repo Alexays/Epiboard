@@ -22,7 +22,7 @@ export default {
       browser.system.storage.onAttached.addListener(this.addStorage);
       browser.system.storage.onDetached.addListener(this.removeStorage);
       setInterval(this.getCpu, 3000);
-      setInterval(this.getMemory, 10000);
+      setInterval(this.getMemory, 20000);
     })
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
@@ -52,13 +52,10 @@ export default {
       return new Promise((resolve, reject) => {
         browser.system.memory.getInfo((memory) => {
           if (browser.runtime.lastError) return reject(browser.runtime.lastError);
-          const { load } = this.memory || {};
           this.memory = memory;
           const { capacity } = memory;
           const progress = capacity - memory.availableCapacity;
-          const newLoad = load
-            ? (progress - load.value) / (capacity - load.capacity) : progress / capacity;
-          this.$set(this.memory, 'load', { value: Math.floor(newLoad * 100), capacity });
+          this.$set(this.memory, 'load', { value: Math.floor((progress / capacity) * 100), progress });
           return resolve();
         });
       });
