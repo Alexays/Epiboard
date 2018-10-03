@@ -46,9 +46,9 @@
     "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-cli-plugin-vuetify": "^0.2.0",
+    "vue-cli-plugin-vuetify": "^0.2.1",
     "vue-template-compiler": "^2.5.17",
-    "vuetify-loader": "^1.0.1",
+    "vuetify-loader": "^1.0.2",
     "zip-a-folder": "0.0.6"
   },
   "browserslist": [
