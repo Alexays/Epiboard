@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import 'material-design-icons/iconfont/material-icons.css';
-import { Vuetify, VApp, transitions } from 'vuetify';
+import { Vuetify, transitions } from 'vuetify';
 import 'vuetify/src/stylus/app.styl';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
@@ -33,7 +33,6 @@ Vue.use(Vuex);
 Vue.use(Vuetify, {
   components: {
     Vuetify,
-    VApp,
   },
   theme: {
     primary: '#607D8B',
