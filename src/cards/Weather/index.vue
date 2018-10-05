@@ -9,7 +9,7 @@
           <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
             <v-layout row wrap fill-height align-center class="today">
               <v-flex class="text-xs-center">
-                <img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])">
+                <v-img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])"/>
               </v-flex>
               <v-flex class="display-3 text-xs-center" fill-height>
                 {{ today.main.temp }}
@@ -25,10 +25,10 @@
               <v-flex v-for="day in forecast" :key="day.dt_txt">
                 <v-layout column align-center>
                   <v-flex>
-                    <img :title="day.title" :src="getImg(day.weather[0]['id'], false)">
+                    <v-img :title="day.title" :src="getImg(day.weather[0]['id'], false)"/>
                   </v-flex>
                   <v-flex>
-                    {{ new Date(day.dt_txt).toLocaleString($i18n.locale, { weekday: 'short' }) }}
+                    {{ new Date(day.dt_txt).toLocaleString($t('locale'), { weekday: 'short' }) }}
                   </v-flex>
                 </v-layout>
               </v-flex>

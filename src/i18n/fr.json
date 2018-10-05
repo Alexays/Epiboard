@@ -1,5 +1,6 @@
 {
   "name": "Français",
+  "locale": "fr-FR",
   "onboarding": {
     "hello": {
       "title": "Bienvenue !",
@@ -90,6 +91,7 @@
     },
     "choose": {
       "lang": "Choisissez votre langues",
+      "24h": "Forcer le format 24 heures",
       "design": "Choisissez votre design préféré",
       "background": "Choisissez votre arrière-plan",
       "trends": "Choisissez votre pays pour Google trends",

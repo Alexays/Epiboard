@@ -24,6 +24,10 @@ export default {
   },
   methods: {
     getCalendar() {
+      const timeOption = { weekday: 'long' };
+      if (this.$store.state.settings.hour24) {
+        timeOption.hour12 = false;
+      }
       return this.axios.get(`${API}index.php/apps/planning/`)
         .then((res) => {
           if (res.data.indexOf('name="login"') > -1) {
@@ -48,9 +52,7 @@ export default {
             .map((f) => {
               f.startString = `${f.start.getHours()}h${(`0${f.start.getMinutes()}`).substr(-2)}`;
               f.endString = `${f.end.getHours()}h${(`0${f.end.getMinutes()}`).substr(-2)}`;
-              f.header = `${f.start.toLocaleDateString('en-Us', {
-                weekday: 'long',
-              })} ${f.start.getDate()}/${f.start.getMonth() + 1}`;
+              f.header = `${f.start.toLocaleDateString('en-Us', timeOption)} ${f.start.getDate()}/${f.start.getMonth() + 1}`;
               return f;
             })
             .sort((a, b) => a.start - b.start);

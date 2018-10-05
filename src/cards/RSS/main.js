@@ -9,12 +9,20 @@ export default {
       required: true,
     },
   },
-  dateOption: { hour: '2-digit', minute: '2-digit' },
   data() {
     return {
       items: [],
       loading: true,
     };
+  },
+  computed: {
+    dateOption() {
+      const options = { hour: '2-digit', minute: '2-digit' };
+      if (this.$store.state.settings.hour24) {
+        options.hour12 = false;
+      }
+      return options;
+    },
   },
   mounted() {
     if (this.VALID_CACHE && !this.loading) {

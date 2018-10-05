@@ -88,7 +88,7 @@ export default {
       return this.$vuetify.theme.foreground;
     },
     settings() {
-      const defaultSettings = Cards[this.$vnode.key].settings;
+      const defaultSettings = Object.freeze(Cards[this.$vnode.key].settings);
       if (!defaultSettings || this.hash == null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.$vnode.key];
       if (!tmp) return defaultSettings;

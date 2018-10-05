@@ -27,18 +27,22 @@ export default {
   computed: {
     sunrise() {
       return new Date(this.today.sys.sunrise * 1000)
-        .toLocaleTimeString(this.$i18n.locale, this.timeOption);
+        .toLocaleTimeString(this.$t('locale'), this.timeOption);
     },
     sunset() {
       return new Date(this.today.sys.sunset * 1000)
-        .toLocaleTimeString(this.$i18n.locale, this.timeOption);
+        .toLocaleTimeString(this.$t('locale'), this.timeOption);
     },
     timeOption() {
-      return { hour: '2-digit', minute: '2-digit' };
+      const options = { hour: '2-digit', minute: '2-digit' };
+      if (this.$store.state.settings.hour24) {
+        options.hour12 = false;
+      }
+      return options;
     },
   },
   mounted() {
-    this.$emit('update:cardtitle', new Date().toLocaleDateString(this.$i18n.locale, {
+    this.$emit('update:cardtitle', new Date().toLocaleDateString(this.$t('locale'), {
       weekday: 'long',
     }));
     if (this.VALID_CACHE && this.today && !this.geoError) return this.$emit('init', false);

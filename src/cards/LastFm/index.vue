@@ -25,7 +25,7 @@
           <v-layout wrap>
             <v-flex xs6>
               <div class="cover">
-                <img :src="item.data[0].image.extralarge">
+                <v-img :src="item.data[0].image.extralarge" :lazy-src="item.data[0].image.small"/>
                 <a :href="item.data[0].url" target="_blank" class="overlay">
                   <h4 class="subheading">{{ item.data[0].name }}</h4>
                   <span v-if="item.data[0].artist">{{ item.data[0].artist.name }}</span>
@@ -38,7 +38,7 @@
             <v-flex v-for="i in 2" v-if="item.data[i]" :key="i" xs3>
               <v-layout row wrap>
                 <div v-for="j in [i, i + 2]" v-if="item.data[j]" :key="j" class="cover">
-                  <img :src="item.data[j].image.large">
+                  <v-img :src="item.data[j].image.large" :lazy-src="item.data[j].image.small"/>
                   <a :href="item.data[j].url" target="_blank" class="overlay">
                     <h4 class="caption">{{ item.data[j].name }}</h4>
                     <span v-if="item.data[j].artist">{{ item.data[j].artist.name }}</span>

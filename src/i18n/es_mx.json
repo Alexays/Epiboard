@@ -1,5 +1,6 @@
 {
   "name": "Español (México)",
+  "locale": "es-MX",
   "onboarding": {
     "hello": {
       "title": "¡Buenas!",
@@ -90,6 +91,7 @@
     },
     "choose": {
       "lang": "Escoje tu idioma",
+      "24h": "Forzar el formato de 24 horas",
       "design": "Escoje tu diseño preferido",
       "background": "Escoje tu fondo",
       "trends": "Escoje tu país de Tendencias de Google",

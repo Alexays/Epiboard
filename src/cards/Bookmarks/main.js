@@ -12,7 +12,6 @@ export default {
       required: true,
     },
   },
-  dateOption: { hour: '2-digit', minute: '2-digit' },
   data() {
     return {
       recents: {
@@ -30,6 +29,13 @@ export default {
     };
   },
   computed: {
+    dateOption() {
+      const options = { hour: '2-digit', minute: '2-digit' };
+      if (this.$store.state.settings.hour24) {
+        options.hour12 = false;
+      }
+      return options;
+    },
     tabs() {
       return [
         this.recents,

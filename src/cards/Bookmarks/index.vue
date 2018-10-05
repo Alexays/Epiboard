@@ -6,7 +6,7 @@
     :light="$store.state.settings.theme.light"
     slider-color="foreground" color="primary" grow show-arrows>
     <v-tab v-for="tab in tabs" :key="tab.id">
-      <span v-if="!tab.folder" v-t="`Bookmarks.${tab.id}`"/>
+      <span v-t="`Bookmarks.${tab.id}`" v-if="!tab.folder"/>
       <span v-else>{{ tab.name }}</span>
     </v-tab>
     <v-tabs-items>
@@ -25,9 +25,8 @@
           </v-btn>
           <list :data="tab.data" icon padding>
             <template slot="icon" slot-scope="{item}">
-              <img
-                v-if="item.url && $utils.getFavicon(item.url)"
-                :src="$utils.getFavicon(item.url)">
+              <v-img
+                v-if="item.url && $utils.getFavicon(item.url)" :src="$utils.getFavicon(item.url)"/>
               <v-icon v-else-if="item.url">insert_drive_file</v-icon>
               <v-icon v-else>folder</v-icon>
             </template>
@@ -39,7 +38,7 @@
             <template slot="action" slot-scope="{item}">
               <templace v-if="item.url">
                 {{ new Date(item.dateAdded)
-                .toLocaleDateString($i18n.locale, $options.dateOption) }}
+                .toLocaleDateString($t('locale'), dateOption) }}
               </templace>
               <v-icon
                 v-else-if="foldersId.indexOf(item.id) === -1"

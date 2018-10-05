@@ -4,7 +4,7 @@
       <div
         v-lazy:background-image="{ src: background, error: $options.fallback }"
         :key="background" :class="{ gradient: design === 'full' }" class="background"/>
-      <img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle">
+      <v-img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle"/>
       <template v-if="design === 'full'">
         <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
         <v-btn

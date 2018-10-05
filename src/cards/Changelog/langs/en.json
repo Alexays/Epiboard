@@ -1,5 +1,5 @@
 {
-    "whatsnew": "What's new in {version} ?",
+    "whatsnew": "What's new in {version}?",
     "empty": "No changelog, that's weird.",
     "missed": "Missed an update?",
     "previous": "Look at the previous changelogs"

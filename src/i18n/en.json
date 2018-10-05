@@ -1,5 +1,6 @@
 {
   "name": "English",
+  "locale": "en-US",
   "onboarding": {
     "hello": {
       "title": "Hello there !",
@@ -90,6 +91,7 @@
     },
     "choose": {
       "lang": "Choose your language",
+      "24h": "Force the 24-hour format",
       "design": "Choose your preferred design",
       "background": "Choose your background",
       "trends": "Choose your Google trends country",

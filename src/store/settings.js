@@ -31,6 +31,7 @@ const initialState = {
     customCssUrl: '',
   },
   lang: langs[0] || 'en',
+  hour24: false,
   tutorial: false,
   debug: false,
   whatsnew: true,

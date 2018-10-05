@@ -5,7 +5,7 @@
         <v-list-tile :href="item.url" @click="$emit('clicked', item)">
           <v-list-tile-avatar :size="16">
             <slot :item="item" name="icon">
-              <img v-if="item.icon" :src="item.icon">
+              <v-img v-if="item.icon" :src="item.icon"/>
               <v-icon v-else-if="icon">insert_drive_file</v-icon>
             </slot>
           </v-list-tile-avatar>
@@ -20,7 +20,7 @@
             <v-list-tile-action-text>
               <slot :item="item" name="action">
                 <span v-if="item.date">
-                  {{ item.date.toLocaleDateString($i18n.locale, $options.dateOption) }}
+                  {{ item.date.toLocaleDateString($t('locale'), dateOption) }}
                 </span>
               </slot>
             </v-list-tile-action-text>
@@ -53,7 +53,15 @@ export default {
       default: false,
     },
   },
-  dateOption: { hour: '2-digit', minute: '2-digit' },
+  computed: {
+    dateOption() {
+      const options = { hour: '2-digit', minute: '2-digit' };
+      if (this.$store.state.settings.hour24) {
+        options.hour12 = false;
+      }
+      return options;
+    },
+  },
 };
 </script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

@@ -5,15 +5,14 @@
     <v-progress-linear v-else-if="loading" indeterminate/>
     <v-card-text v-else class="text-xs-center">
       <v-icon x-large="">note_add</v-icon>
-      <h2 class="subheading" v-t="Changelog.empty"/>
+      <h2 v-t="Changelog.empty" class="subheading"/>
     </v-card-text>
     <p class="previous caption">
       <span v-t="Changelog.missed">
-      <a
-        v-t="Changelog.previous"
-        href="https://github.com/Alexays/Epiboard/releases"
-        target="_blank" class="foreground--text/">
-    </p>
+        <a
+          v-t="Changelog.previous"
+          href="https://github.com/Alexays/Epiboard/releases"
+          target="_blank" class="foreground--text/"/></span></p>
   </div>
 </template>
 <script src="./main.js"></script>
