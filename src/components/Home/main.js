@@ -42,10 +42,7 @@ export default {
       if (!this.$store.state.settings.debug) {
         keys = keys.concat(['Changelog']);
       }
-      return keys.reduce((obj, key) => {
-        const { [key]: _, ...tmp } = obj;
-        return tmp;
-      }, Cards);
+      return Object.keys(Cards).filter(f => keys.indexOf(f) === -1);
     },
     showFab() {
       return Object.keys(this.availableCards).length;

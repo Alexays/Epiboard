@@ -50,6 +50,7 @@ export default {
       loaded: 0,
       hash: '',
       actions: [],
+      options: Object.freeze(Cards[this.$vnode.key].manifest || {}),
     };
   },
   computed: {
@@ -63,9 +64,6 @@ export default {
         return this.options.theme;
       }
       return null;
-    },
-    options() {
-      return Cards[this.$vnode.key].manifest || {};
     },
     debug() {
       return this.$store.state.settings.debug;

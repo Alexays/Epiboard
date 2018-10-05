@@ -29,7 +29,8 @@ export default {
       return artworks.map(f => ({ text: this.$t(f.text), value: f.value }));
     },
     langs() {
-      return Langs.map(f => ({ value: f.locale, text: f.name }));
+      return Langs.map(f => ({ value: f.locale, text: f.name }))
+        .sort((a, b) => a.text.localeCompare(b.text), { text: '' });
     },
   },
   watch: {

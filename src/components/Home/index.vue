@@ -11,11 +11,11 @@
         </v-btn>
         <template v-if="showFab">
           <v-btn
-            v-for="(value, key) in availableCards"
-            :key="key"
-            :title="getTranslation(`${key}.description`)"
-            color="green" dark small @click="addCard(key)">
-            {{ getTranslation(`${key}.title`) || key }}
+            v-for="card in availableCards"
+            :key="card"
+            :title="getTranslation(`${card}.description`)"
+            color="green" dark small @click="addCard(card)">
+            {{ getTranslation(`${card}.title`) || card }}
           </v-btn>
         </template>
       </v-speed-dial>
