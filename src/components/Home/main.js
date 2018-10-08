@@ -124,6 +124,7 @@ export default {
       this.$options.grid = new Muuri('#card-container', {
         items: '.card',
         dragEnabled: true,
+        dragPlaceholder: true,
         layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },
         dragSortInterval: 0,
