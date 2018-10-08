@@ -39,7 +39,7 @@
               <sup>{{ ordinal }}</sup> year, Promo {{ user.promo }}
             </p>
           </v-card-text>
-          <v-card-text v-if="projects.length" class="projects">
+          <v-card-text v-if="projects.length" class="projects scroller">
             <div v-for="project in projects" :key="project.title" class="project">
               <a :href="project.link" target="_blank">
                 <h4>{{ project.title }}</h4>
@@ -66,7 +66,7 @@
           <timeline :user="user"/>
         </v-tab-item>
         <v-tab-item lazy>
-          <v-list v-if="upcoming.length" three-line dense>
+          <v-list v-if="upcoming.length" class="scroller" three-line dense>
             <v-list-tile v-for="activity of upcoming" :key="activity.acti_title">
               <v-list-tile-content>
                 <v-list-tile-title>{{ activity.room.code | filename }}</v-list-tile-title>
