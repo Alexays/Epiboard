@@ -21,21 +21,16 @@ export default {
   },
   grid: null,
   ro: null,
+  isPreRender: !!window.__PRERENDER_INJECTED,
   data() {
     return {
       fab: false,
     };
   },
   computed: {
-    isPreRender() {
-      return !!window.__PRERENDER_INJECTED;
-    },
     cards() {
       const { cards } = this.$store.state;
       return [...new Set(cards)].filter(f => Cards[f]);
-    },
-    emptyCards() {
-      return Object.keys(this.cards).length === 0;
     },
     availableCards() {
       let keys = this.cards;
@@ -44,16 +39,13 @@ export default {
       }
       return Object.keys(Cards).filter(f => keys.indexOf(f) === -1);
     },
-    showFab() {
-      return Object.keys(this.availableCards).length;
-    },
   },
   created() {
     this.checkVersion();
     this.$options.ro = new ResizeObserver(this.onResize);
   },
   mounted() {
-    if (!this.isPreRender) {
+    if (!this.$options.isPreRender) {
       this.initGrid();
     }
   },

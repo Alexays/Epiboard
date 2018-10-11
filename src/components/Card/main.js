@@ -50,7 +50,6 @@ export default {
       loaded: 0,
       hash: '',
       actions: [],
-      options: Object.freeze(Cards[this.$vnode.key].manifest || {}),
     };
   },
   computed: {
@@ -60,8 +59,8 @@ export default {
       return translation;
     },
     theme() {
-      if (this.options.theme && !this.showSettings) {
-        return this.options.theme;
+      if (this.$options.manifest.theme && !this.showSettings) {
+        return this.$options.manifest.theme;
       }
       return null;
     },
@@ -69,7 +68,7 @@ export default {
       return this.$store.state.settings.debug;
     },
     size() {
-      return ((this.options.size || 1) * 430) - 30;
+      return ((this.$options.manifest.size || 1) * 430) - 30;
     },
     titleColor() {
       if (this.theme && this.theme.title) {
@@ -101,6 +100,7 @@ export default {
     },
   },
   beforeCreate() {
+    this.$options.manifest = Cards[this.$vnode.key].manifest || {};
     this.$options.card = () => this.checkPermissions()
       .then(() => import(/* webpackInclude: /index\.vue$/, webpackMode: "eager" */`@/cards/${this.$vnode.key}/index.vue`))
       .then(tmp => tmp.default)
@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     checkPermissions() {
-      const { permissions, origins } = this.options;
+      const { permissions, origins } = this.$options.manifest;
       // Speed up first frame rendering
       if ((!permissions && !origins)
         || this.$store.state.cache.validCards.indexOf(this.$vnode.key) > -1) {
@@ -131,26 +131,28 @@ export default {
       return this.$utils.checkPermissions(payload, this.defaultTitle);
     },
     remove() {
-      if (this.options.permissions || this.options.origins) {
+      const { permissions, origins } = this.$options.manifest;
+      if (permissions || origins) {
         browser.permissions.remove({
-          permissions: this.options.permissions || [],
-          origins: this.options.origins || [],
+          permissions: permissions || [],
+          origins: origins || [],
         });
       }
       this.$emit('deleted');
     },
     init(res) {
       this.loaded = 1;
+      const { key } = this.$vnode;
       if (res === undefined) {
-        if (this.$store.state.cache.cards[this.$vnode.key] !== undefined) {
-          this.$store.commit('DEL_CARD_CACHE', this.$vnode.key);
+        if (this.$store.state.cache.cards[key] !== undefined) {
+          this.$store.commit('DEL_CARD_CACHE', key);
         }
-        this.$store.commit('ADD_VALID_CARD', this.$vnode.key);
+        this.$store.commit('ADD_VALID_CARD', key);
       } else if (res instanceof Error) {
-        this.$store.commit('DEL_VALID_CARD', this.$vnode.key);
+        this.$store.commit('DEL_VALID_CARD', key);
         this.loaded = 2;
         Toast.show({
-          title: this.$t('card.error', { id: this.$vnode.key }),
+          title: this.$t('card.error', { id: key }),
           desc: this.$store.state.settings.debug ? res.message : null,
           color: 'error',
           timeout: 10000,
@@ -158,13 +160,13 @@ export default {
         });
         if (this.$store.state.settings.debug) throw res;
       } else if (res === true || res === false || Array.isArray(res)) {
-        this.$store.commit('ADD_VALID_CARD', this.$vnode.key);
+        this.$store.commit('ADD_VALID_CARD', key);
         const toWatch = Array.isArray(res) ? vm => res.map(f => vm[f]) : '$data';
         this.$refs.card.$watch(toWatch, () => {
           const o = this.$refs.card.$data;
           const data = Array.isArray(res)
             ? res.reduce((r, p) => (p in o ? { ...r, [p]: o[p] } : r), {}) : o;
-          this.$store.commit('SET_CARD_CACHE', { key: this.$vnode.key, data });
+          this.$store.commit('SET_CARD_CACHE', { key, data });
         }, { immediate: !!res, deep: true });
       }
     },
