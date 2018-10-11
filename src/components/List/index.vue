@@ -20,7 +20,7 @@
             <v-list-tile-action-text>
               <slot :item="item" name="action">
                 <span v-if="item.date">
-                  {{ item.date.toLocaleDateString($t('locale'), dateOption) }}
+                  {{ item.date.toLocaleDateString($t('locale'), timeOptions) }}
                 </span>
               </slot>
             </v-list-tile-action-text>
@@ -32,6 +32,7 @@
 </template>
 <script>
 import { RecycleList } from 'vue-virtual-scroller';
+import date from '@/mixins/date';
 
 // @vue/component
 export default {
@@ -39,6 +40,7 @@ export default {
   components: {
     RecycleList,
   },
+  mixins: [date],
   props: {
     data: {
       type: Array,
@@ -51,15 +53,6 @@ export default {
     padding: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    dateOption() {
-      const options = { hour: '2-digit', minute: '2-digit' };
-      if (this.$store.state.settings.hour24) {
-        options.hour12 = false;
-      }
-      return options;
     },
   },
 };

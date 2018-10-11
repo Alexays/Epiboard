@@ -1,4 +1,6 @@
 import List from '@/components/List';
+import date from '@/mixins/date';
+import utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -6,6 +8,7 @@ export default {
   components: {
     List,
   },
+  mixins: [date, utils],
   props: {
     settings: {
       type: Object,
@@ -29,13 +32,6 @@ export default {
     };
   },
   computed: {
-    dateOption() {
-      const options = { hour: '2-digit', minute: '2-digit' };
-      if (this.$store.state.settings.hour24) {
-        options.hour12 = false;
-      }
-      return options;
-    },
     tabs() {
       return [
         this.recents,

@@ -10,7 +10,6 @@ import App from '@/App';
 import { i18n } from '@/i18n';
 import router from '@/router';
 import store from '@/store';
-import utils from '@/utils';
 import '@/style.scss';
 
 Vue.config.productionTip = false;
@@ -43,7 +42,6 @@ Vue.use(Vuetify, {
   transitions,
 });
 Vue.use(VueAxios, axios);
-Vue.use(utils);
 // eslint-disable-next-line no-new
 new Vue({
   el: '#app',

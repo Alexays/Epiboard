@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueLazyload from 'vue-lazyload';
 import VueTyper from '@/components/Typer';
+import dark from '@/mixins/dark';
+import utils from '@/mixins/utils';
 import backgrounds from './backgrounds';
 
 Vue.use(VueLazyload, {
@@ -32,17 +34,16 @@ export default {
   components: {
     VueTyper,
   },
+  mixins: [dark, utils],
+  fallback: backgrounds.mountains.day,
+  isPreRender: !!window.__PRERENDER_INJECTED,
   data() {
     return {
       messages: [],
       doodle: null,
     };
   },
-  fallback: backgrounds.mountains.day,
   computed: {
-    isPreRender() {
-      return !!window.__PRERENDER_INJECTED;
-    },
     texts() {
       if (this.$route.path === '/onboarding') {
         return [this.$t('onboarding.welcome')];
@@ -71,9 +72,6 @@ export default {
     doodleSettings() {
       return this.$store.state.settings.doodle;
     },
-    dark() {
-      return this.$utils.isDark(this.$store.state.settings.dark);
-    },
     design() {
       return this.$store.state.settings.header.design;
     },
@@ -89,7 +87,7 @@ export default {
         if (dataUrl && dataUrl.length) {
           keys.push('local');
         }
-        [key] = this.$utils.shuffle(keys);
+        [key] = this.shuffle(keys);
       }
       if (key === 'url') {
         return backgroundUrl;
@@ -126,7 +124,7 @@ export default {
   },
   methods: {
     getBackgroundTime(background) {
-      if (this.dark) return background[3];
+      if (this.isDark) return background[3];
       const hour = new Date().getHours();
       if (hour > 5 && hour < 8) {
         return background[0];
@@ -142,17 +140,17 @@ export default {
     getTrends() {
       const { data, dt } = this.$store.state.cache.trends;
       if (dt && data.length && Date.now() < dt + EXPIRE_TRENDS) {
-        this.messages = [...this.messages, ...this.$utils.shuffle(data)];
+        this.messages = [...this.messages, ...this.shuffle(data)];
       } else {
         this.axios.get(API).then((res) => {
           const trends = res.data[this.trendsSettings.country];
           this.$store.commit('SET_TRENDS_CACHE', trends);
-          this.messages = [...this.messages, ...this.$utils.shuffle(trends)];
+          this.messages = [...this.messages, ...this.shuffle(trends)];
         });
       }
     },
     getMessage() {
-      this.messages = [this.$utils.shuffle(this.$t('greetMessages'))[0]];
+      this.messages = [this.shuffle(this.$t('greetMessages'))[0]];
       if (this.trendsSettings.enabled) {
         this.getTrends();
       }
@@ -164,7 +162,7 @@ export default {
         this.doodle = data;
       } else {
         const payload = { origins: [DOODLES_API] };
-        this.$utils.checkPermissions(payload, 'Google doodle')
+        this.checkPermissions(payload, 'Google doodle')
           .then(() => this.axios.get(`${DOODLES_API}${date.getFullYear()}/${date.getMonth() + 1}`))
           .then((res) => {
             const { title, url } = res.data[0];

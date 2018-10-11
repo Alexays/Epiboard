@@ -1,5 +1,6 @@
 import GridList from '@/components/GridList';
 import List from '@/components/List';
+import utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -7,6 +8,7 @@ export default {
   components: {
     List,
   },
+  mixins: [utils],
   props: {
     settings: {
       type: Object,
@@ -40,8 +42,8 @@ export default {
         this.topSites = topSites.slice(0, this.settings.maxSites)
           .map((f) => {
             const icon = this.settings.grid
-              ? this.$utils.getFavicon(new URL(f.url).hostname, this.size)
-              : this.$utils.getFavicon(f.url);
+              ? this.getFavicon(new URL(f.url).hostname, this.size)
+              : this.getFavicon(f.url);
             return { ...f, icon };
           });
       });

@@ -1,5 +1,6 @@
 import Toast from '@/components/Toast';
 import Cards from '@/cards';
+import Permissions from '@/mixins/permissions';
 
 // @vue/component
 export default {
@@ -39,6 +40,7 @@ export default {
       },
     },
   },
+  mixins: [Permissions],
   card: null,
   settings: null,
   pendingSave: false,
@@ -101,7 +103,7 @@ export default {
   },
   beforeCreate() {
     this.$options.manifest = Cards[this.$vnode.key].manifest || {};
-    this.$options.card = () => this.checkPermissions()
+    this.$options.card = () => this.hasPermissions()
       .then(() => import(/* webpackInclude: /index\.vue$/, webpackMode: "eager" */`@/cards/${this.$vnode.key}/index.vue`))
       .then(tmp => tmp.default)
       .catch((err) => {
@@ -120,7 +122,7 @@ export default {
     }
   },
   methods: {
-    checkPermissions() {
+    hasPermissions() {
       const { permissions, origins } = this.$options.manifest;
       // Speed up first frame rendering
       if ((!permissions && !origins)
@@ -128,7 +130,7 @@ export default {
         return Promise.resolve();
       }
       const payload = { permissions: permissions || [], origins: origins || [] };
-      return this.$utils.checkPermissions(payload, this.defaultTitle);
+      return this.checkPermissions(payload, this.defaultTitle);
     },
     remove() {
       const { permissions, origins } = this.$options.manifest;
@@ -168,6 +170,8 @@ export default {
             ? res.reduce((r, p) => (p in o ? { ...r, [p]: o[p] } : r), {}) : o;
           this.$store.commit('SET_CARD_CACHE', { key, data });
         }, { immediate: !!res, deep: true });
+      } else if (this.$store.state.settings.debug) {
+        console.log(res);
       }
     },
     reload(delCache = true) {

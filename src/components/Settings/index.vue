@@ -158,8 +158,8 @@
         <v-layout align-center class="py-3">
           <v-btn
             v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
-            :disabled="!$utils.gauth.isConnected()"
-            color="blue" class="white--text ma-0" @click="$utils.gauth.revoke()"/>
+            :disabled="!$gauth_isConnected"
+            color="blue" class="white--text ma-0" @click="$gauth_revoke()"/>
         </v-layout>
         <h4 class="headline">Google Analytics</h4>
         <h4 v-t="'settings.analytics_desc'" class="subheading"/>

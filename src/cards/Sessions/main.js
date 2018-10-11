@@ -1,4 +1,5 @@
 import List from '@/components/List';
+import utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -6,6 +7,7 @@ export default {
   components: {
     List,
   },
+  mixins: [utils],
   props: {
     settings: {
       type: Object,
@@ -48,7 +50,7 @@ export default {
         if (item.tab) {
           const { tab } = item;
           tab.date = new Date(item.lastModified * 1e3);
-          tab.icon = tab.favIconUrl || this.$utils.getFavicon(tab.url);
+          tab.icon = tab.favIconUrl || this.getFavicon(tab.url);
           tabs.push(tab);
           // If it's a window we gather each tab and add them to the others
           // e.g: we don't care about the difference between tabs and windows
@@ -57,7 +59,7 @@ export default {
           for (let j = 0; j < subKeys.length; j += 1) {
             const tab = item.window.tabs[subKeys[j]];
             tab.date = new Date(item.lastModified * 1e3);
-            tab.icon = tab.favIconUrl || this.$utils.getFavicon(tab.url);
+            tab.icon = tab.favIconUrl || this.getFavicon(tab.url);
             tabs.push(tab);
           }
         }

@@ -1,8 +1,11 @@
+import date from '@/mixins/date';
+
 const API = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 // @vue/component
 export default {
   name: 'RSS',
+  mixins: [date],
   props: {
     settings: {
       type: Object,
@@ -14,15 +17,6 @@ export default {
       items: [],
       loading: true,
     };
-  },
-  computed: {
-    dateOption() {
-      const options = { hour: '2-digit', minute: '2-digit' };
-      if (this.$store.state.settings.hour24) {
-        options.hour12 = false;
-      }
-      return options;
-    },
   },
   mounted() {
     if (this.VALID_CACHE && !this.loading) {

@@ -7,7 +7,7 @@
           <v-list-tile-title class="caption text--secondary">
             <v-layout>
               <v-flex>
-                {{ new Date(item.pubDate).toLocaleDateString($t('locale'), dateOption) }}
+                {{ new Date(item.pubDate).toLocaleDateString($t('locale'), timeOptions) }}
               </v-flex>
               <v-flex class="text-xs-right">
                 <a :href="item.feed.link" :title="item.feed.description">

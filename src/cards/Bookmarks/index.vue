@@ -26,7 +26,7 @@
           <list :data="tab.data" icon padding>
             <template slot="icon" slot-scope="{item}">
               <v-img
-                v-if="item.url && $utils.getFavicon(item.url)" :src="$utils.getFavicon(item.url)"/>
+                v-if="item.url && getFavicon(item.url)" :src="getFavicon(item.url)"/>
               <v-icon v-else-if="item.url">insert_drive_file</v-icon>
               <v-icon v-else>folder</v-icon>
             </template>
@@ -38,7 +38,7 @@
             <template slot="action" slot-scope="{item}">
               <templace v-if="item.url">
                 {{ new Date(item.dateAdded)
-                .toLocaleDateString($t('locale'), dateOption) }}
+                .toLocaleDateString($t('locale'), timeOptions) }}
               </templace>
               <v-icon
                 v-else-if="foldersId.indexOf(item.id) === -1"

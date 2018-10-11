@@ -3,6 +3,7 @@ import Api from './api';
 // @vue/component
 export default {
   name: 'Tasks',
+  mixins: [Api],
   data() {
     return {
       currentId: null,
@@ -13,19 +14,13 @@ export default {
       loading: false,
     };
   },
-  computed: {
-    connected() {
-      return this.$store.state.cache.google.accessToken
-        && this.$store.state.cache.google.refreshToken;
-    },
-  },
   mounted() {
     if (this.VALID_CACHE) {
       this.updateMenu();
       this.$emit('init', false);
       return;
     }
-    if (!this.connected) {
+    if (!this.$gauth_isConnected) {
       this.$emit('init');
       return;
     }
@@ -33,7 +28,7 @@ export default {
   },
   methods: {
     init() {
-      this.$utils.gauth.initialize('https://www.googleapis.com/auth/tasks')
+      this.$gauth_initialize('https://www.googleapis.com/auth/tasks')
         .then(() => this.getLists())
         .then(() => this.getAll())
         .then(() => this.$emit('init', ['currentId', 'tasks', 'lists']))
@@ -48,13 +43,13 @@ export default {
       this.$emit('update:actions', action);
     },
     getLists() {
-      return Api.getLists().then((lists) => {
+      return this.$getLists().then((lists) => {
         this.lists = lists.items;
       });
     },
     getTasksList(id) {
       this.loading = true;
-      return Api.getAll(id).then((tasks) => {
+      return this.$getAll(id).then((tasks) => {
         this.tasks = tasks.items;
         this.currentId = id;
         this.updateMenu();
@@ -63,9 +58,9 @@ export default {
     },
     getAll() {
       this.loading = true;
-      return Api.getAll().then((tasks) => {
+      return this.$getAll().then((tasks) => {
         this.tasks = tasks.items;
-        Api.getList().then((list) => {
+        this.$getList().then((list) => {
           this.currentId = list.id;
           this.updateMenu();
           this.loading = false;
@@ -74,22 +69,22 @@ export default {
     },
     editTask(task) {
       const idx = this.editMode.indexOf(task.id);
-      Api.updateTask(this.currentId, task);
+      this.$updateTask(this.currentId, task);
       this.editMode.splice(idx, 1);
     },
     onStatus(task) {
       if (task.completed) {
         delete task.completed; // eslint-disable-line
       }
-      Api.updateTask(this.currentId, task);
+      this.$updateTask(this.currentId, task);
     },
     delTask(task, idx) {
-      Api.delTask(this.currentId, task.id);
+      this.$delTask(this.currentId, task.id);
       this.tasks.splice(idx, 1);
     },
     addTask() {
       this.loading = true;
-      Api.addTask(this.currentId, {
+      this.$addTask(this.currentId, {
         title: this.newTask,
       }).then(() => this.getTasksList(this.currentId))
         .then(() => {

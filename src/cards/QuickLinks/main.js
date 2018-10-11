@@ -1,9 +1,11 @@
 import GridList from '@/components/GridList';
 import List from '@/components/List';
+import utils from '@/mixins/utils';
 
 // @vue/component
 export default {
   name: 'QuickLinks',
+  mixins: [utils],
   props: {
     settings: {
       type: Object,
@@ -24,8 +26,8 @@ export default {
       return this.settings.links
         .map((f) => {
           const Url = new URL(f);
-          const icon = this.settings.grid ? this.$utils.getFavicon(Url.hostname, this.size)
-            : this.$utils.getFavicon(f);
+          const icon = this.settings.grid ? this.getFavicon(Url.hostname, this.size)
+            : this.getFavicon(f);
           return { name: Url.hostname, url: f, icon };
         });
     },

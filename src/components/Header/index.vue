@@ -1,6 +1,6 @@
 <template>
   <header class="grey">
-    <template v-if="!isPreRender">
+    <template v-if="!$options.isPreRender">
       <div
         v-lazy:background-image="{ src: background, error: $options.fallback }"
         :key="background" :class="{ gradient: design === 'full' }" class="background"/>

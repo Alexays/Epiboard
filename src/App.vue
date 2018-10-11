@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark" :style="{ 'font-family': systemFont }">
+  <v-app :dark="isDark" :style="{ 'font-family': customFont }">
     <router-view name="header" keep-alive/>
     <transition name="fade-transition" mode="out-in">
       <router-view keep-alive/>
@@ -8,17 +8,17 @@
 </template>
 
 <script>
+import dark from '@/mixins/dark';
+
 export default {
   name: 'App',
+  mixins: [dark],
   computed: {
-    systemFont() {
+    customFont() {
       if (this.$store.state.settings.theme.customFont) {
         return this.$store.state.settings.theme.font;
       }
       return null;
-    },
-    dark() {
-      return !window.__PRERENDER_INJECTED && this.$utils.isDark(this.$store.state.settings.dark);
     },
     primary() {
       return this.$store.state.settings.theme.primary;

@@ -1,3 +1,5 @@
+import DateMixin from '@/mixins/date';
+
 const API = 'https://api.openweathermap.org/data/2.5/';
 
 const imgs = {
@@ -11,6 +13,7 @@ const imgs = {
 // @vue/component
 export default {
   name: 'Weather',
+  mixins: [DateMixin],
   props: {
     settings: {
       type: Object,
@@ -27,18 +30,11 @@ export default {
   computed: {
     sunrise() {
       return new Date(this.today.sys.sunrise * 1000)
-        .toLocaleTimeString(this.$t('locale'), this.timeOption);
+        .toLocaleTimeString(this.$t('locale'), this.timeOptions);
     },
     sunset() {
       return new Date(this.today.sys.sunset * 1000)
-        .toLocaleTimeString(this.$t('locale'), this.timeOption);
-    },
-    timeOption() {
-      const options = { hour: '2-digit', minute: '2-digit' };
-      if (this.$store.state.settings.hour24) {
-        options.hour12 = false;
-      }
-      return options;
+        .toLocaleTimeString(this.$t('locale'), this.timeOptions);
     },
   },
   mounted() {
