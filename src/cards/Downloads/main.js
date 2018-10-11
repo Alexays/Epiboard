@@ -1,5 +1,6 @@
 import Toast from '@/components/Toast';
 import { RecycleList } from 'vue-virtual-scroller';
+import utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -17,6 +18,7 @@ export default {
       },
     },
   },
+  mixins: [utils],
   props: {
     settings: {
       type: Object,

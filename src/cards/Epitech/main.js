@@ -1,3 +1,4 @@
+import utils from '@/mixins/utils';
 import API from './api';
 import Timeline from './timeline';
 
@@ -7,6 +8,7 @@ export default {
   components: {
     Timeline,
   },
+  mixins: [utils],
   props: {
     settings: {
       type: Object,

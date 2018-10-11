@@ -1,6 +1,9 @@
+import utils from '@/mixins/utils';
+
 // @vue/component
 export default {
   name: 'System',
+  mixins: [utils],
   data() {
     return {
       cpu: null,
