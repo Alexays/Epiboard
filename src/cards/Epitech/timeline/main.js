@@ -39,11 +39,12 @@ export default {
               .map((activity) => {
                 const from = Api.parseCalendarDate(activity.begin);
                 const to = Api.parseCalendarDate(activity.end);
+                const percentage = ((today > to ? to : today) - from) / (to - from);
                 return {
                   name: activity.title,
                   from,
                   to,
-                  percent: ((today - from) / (to - from)) * 100,
+                  percent: percentage > parseFloat(0) ? percentage : 0,
                 };
               }),
           })).filter(f => f.children.length);
