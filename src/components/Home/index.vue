@@ -32,7 +32,8 @@
         :style="{ height: `${[, 350, 250, 200, 300, 200][i]}px` }" class="placeholder-item"/>
     </div>
     <v-layout
-      v-if="!$options.isPreRender && !cards.length" align-center justify-space-around fill-height column>
+      v-if="!$options.isPreRender && !cards.length"
+      align-center justify-space-around fill-height column>
       <v-card class="text-xs-center" color="transparent" flat>
         <v-icon x-large>grid_off</v-icon>
         <h2 v-t="'home.no_cards'" class="subheading"/>

@@ -98,11 +98,12 @@ export default {
       ].join('&');
       return this.axios.post(`${apiUrl.token}?${params}`)
         .then((res) => {
-          this.$store.commit('SET_GOOGLE', {
+          const payload = {
             accessToken: res.data.access_token,
             refreshToken: res.data.refresh_token,
             exp: Date.now() + (res.data.expire_in * 1000),
-          });
+          };
+          this.$store.commit('SET_GOOGLE', payload);
           return res.data.access_token;
         });
     },
