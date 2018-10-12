@@ -26,47 +26,51 @@ if (window.__PRERENDER_INJECTED) {
 
 Vue.use(Vuex);
 
+const restoreState = (key, storage) => new Promise((resolve) => {
+  storage
+    .getItem(key)
+    .then((data) => {
+      if (data) resolve(JSON.parse(data));
+      else resolve();
+      document.dispatchEvent(new Event('storageReady'));
+    });
+});
+
 const vuexSync = new VuexPersistence({
-  strictMode: true,
+  strictMode: false,
   asyncStorage: true,
   modules: ['settings', 'cards', 'cardsSettings'],
   storage: {
-    getItem: key => browser.storage.sync.get(key)
-      .then(data => data[key]),
-    setItem: (key, value) => browser.storage.sync.set({
-      [key]: value,
-    }),
+    getItem: key => browser.storage.sync.get(key).then(data => data[key]),
+    setItem: (key, value) => browser.storage.sync.set({ [key]: value }),
     removeItem: key => browser.storage.sync.remove(key),
     clear: () => browser.storage.sync.clear(),
   },
+  restoreState,
 });
 
 const vuexLocal = new VuexPersistence({
-  strictMode: true,
+  strictMode: false,
   asyncStorage: true,
   modules: ['cache'],
   storage: {
-    getItem: key => browser.storage.local.get(key)
-      .then(data => data[key]),
-    setItem: (key, value) => browser.storage.local.set({
-      [key]: value,
-    }),
+    getItem: key => browser.storage.local.get(key).then(data => data[key]),
+    setItem: (key, value) => browser.storage.local.set({ [key]: value }),
     removeItem: key => browser.storage.local.remove(key),
     clear: () => browser.storage.local.clear(),
   },
+  restoreState,
 });
 
-const vuexPersistEmitter = () => (store) => {
+const vuexPersistEmitter = (store) => {
   /* eslint-disable no-param-reassign */
   store._vm.$root.$data['vuex-persit-wait'] = 0;
-  store.subscribe((mutation) => {
-    if (mutation.type === 'RESTORE_MUTATION') {
-      store._vm.$root.$data['vuex-persit-wait'] += 1;
-      if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
-        store._vm.$root.$emit('storageReady');
-      }
+  document.addEventListener('storageReady', () => {
+    store._vm.$root.$data['vuex-persit-wait'] += 1;
+    if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
+      store._vm.$root.$emit('storageReady');
     }
-  });
+  }, false);
   /* eslint-enable no-param-reassign */
 };
 
@@ -80,10 +84,6 @@ export default new Vuex.Store({
   plugins: [
     vuexSync.plugin,
     vuexLocal.plugin,
-    vuexPersistEmitter(),
+    vuexPersistEmitter,
   ],
-  mutations: {
-    RESTORE_MUTATION: vuexSync.RESTORE_MUTATION,
-    RESTORE_MUTATION_LOCAL: vuexLocal.RESTORE_MUTATION,
-  },
 });

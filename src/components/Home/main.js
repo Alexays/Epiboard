@@ -47,6 +47,8 @@ export default {
   mounted() {
     if (!this.$options.isPreRender) {
       this.initGrid();
+    } else {
+      document.dispatchEvent(new Event('render-event'));
     }
   },
   beforeDetroy() {
