@@ -84,6 +84,10 @@ $ npm run build:chrome -- --report
 - **https://trends.google.com/trends/hottrends/visualize/internal/data**: to fetch google trends at this address
 - **https://www.google.com/doodles/search**: to fetch google doodles at this address
 
+## Wiki
+
+Do you have any questions? Maybe the answer is in the [Wiki](https://github.com/Alexays/Epiboard/wiki)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
