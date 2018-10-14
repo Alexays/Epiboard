@@ -21,7 +21,7 @@
     "vue": "^2.5.17",
     "vue-analytics": "^5.16.0",
     "vue-axios": "^2.1.4",
-    "vue-i18n": "^8.1.0",
+    "vue-i18n": "^8.2.0",
     "vue-lazyload": "^1.2.6",
     "vue-router": "^3.0.1",
     "vue-virtual-scroller": "^0.12.2",
@@ -48,7 +48,7 @@
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.2.1",
     "vue-template-compiler": "^2.5.17",
-    "vuetify-loader": "^1.0.2",
+    "vuetify-loader": "^1.0.3",
     "zip-a-folder": "0.0.6"
   },
   "browserslist": [
