@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import 'material-design-icons/iconfont/material-icons.css';
-import { Vuetify, transitions } from 'vuetify';
-import 'vuetify/src/stylus/app.styl';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -10,6 +8,8 @@ import App from '@/App';
 import { i18n } from '@/i18n';
 import router from '@/router';
 import store from '@/store';
+import Vuetify from 'vuetify/lib';
+import 'vuetify/src/stylus/app.styl';
 import '@/style.scss';
 
 Vue.config.productionTip = false;
@@ -30,16 +30,12 @@ if (browserName === 'chrome') {
 
 Vue.use(Vuex);
 Vue.use(Vuetify, {
-  components: {
-    Vuetify,
-  },
   theme: {
     primary: '#607D8B',
     secondary: '#546E7A',
     accent: '#2196F3',
     foreground: '#ffffff',
   },
-  transitions,
 });
 Vue.use(VueAxios, axios);
 // eslint-disable-next-line no-new
