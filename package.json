@@ -1,6 +1,6 @@
 {
   "name": "epiboard",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "A new tab page adding a touch of WOW whith an interface following the lines of material design, One card for each need",
   "author": "Alexis Rouillard <contact@arouillard.fr>",
   "private": true,
@@ -46,7 +46,7 @@
     "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-cli-plugin-vuetify": "^0.4.4",
+    "vue-cli-plugin-vuetify": "^0.4.5",
     "vue-template-compiler": "^2.5.17",
     "vuetify-loader": "^1.0.5",
     "zip-a-folder": "0.0.6"
