@@ -1,0 +1,19 @@
+{
+  "description": "Sehen Sie sich das heutige Wetter und die Vorhersagen einfach an.",
+  "humidity": "Luftfeuchtigkeit",
+  "wind_speed": "Windgeschwindigkeit",
+  "sunrise": "Sonnenaufgang",
+  "sunset": "Sonnenuntergang",
+  "cloudiness": "Bewölktheit",
+  "error": {
+    "title": "Fehler bei der Standorterkennung",
+    "unsupported": "Standorterkennung wird nicht unterstützt. Bitte geben Sie eine Ortschaft in den Wetter-Einstellungen an.",
+    "sample": "Versuchen Sie es später wieder oder geben Sie eine Ortschaft in den Wetter-Einstellungen an."
+  },
+  "settings": {
+    "location": "Standort",
+    "forecast": "Vorhersage",
+    "city": "Stadt, z.B. `Nantes, FR` oder die ID",
+    "choose_units": "Wählen Sie eine Masseinheit"
+  }
+}
