@@ -25,7 +25,8 @@ export default {
     getFavicon(url, size) {
       if (!size && (url.indexOf('https://') === 0 || url.indexOf('http://') === 0)) {
         return `https://www.google.com/s2/favicons?domain_url=${encodeURI(url)}`;
-      } else if (size) {
+      }
+      if (size) {
         return `https://api.faviconkit.com/${encodeURI(url)}/${size}`;
       }
       return null;

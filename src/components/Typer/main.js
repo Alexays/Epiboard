@@ -63,7 +63,8 @@ export default {
       const se = 'https://www.google.com/#q=';
       if (this.$options.userTyped && this.typing) {
         return `${se}${this.typing}`;
-      } else if (this.currentWord && this.$route.path === '/') {
+      }
+      if (this.currentWord && this.$route.path === '/') {
         return `${se}${this.currentWord}`;
       }
       return null;

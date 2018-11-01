@@ -4,10 +4,10 @@ const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const zipafolder = require('zip-a-folder');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin, ContextReplacementPlugin } = require('webpack');
-const { version, name } = require('./package.json');
 const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
+const { version, name } = require('./package.json');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const browserName = process.env.BUILD_TARGET || 'chrome';
@@ -166,9 +166,14 @@ module.exports = {
     }]));
     // Exclude cards from build
     if (excludeCards.length) {
-      const excluded = excludeCards.join('|');
-      const r = new RegExp(`^(?!.*(?:(${excluded}))).*.js$`);
-      // TODO: exclude cards from build
+      const nonExcluded = Object.keys(cards)
+        .filter(f => excludeCards.indexOf(f) === -1);
+      if (nonExcluded.length > 0) {
+        config.plugins.push(new ContextReplacementPlugin(
+          /cards$/,
+          new RegExp(`${nonExcluded.join('|')}`),
+        ));
+      }
     }
     // Define variable in the extension
     config.plugins.push(new DefinePlugin({
