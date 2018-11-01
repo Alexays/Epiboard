@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const zipafolder = require('zip-a-folder');
 const { log, error } = require('@vue/cli-shared-utils');
-const { DefinePlugin } = require('webpack');
+const { DefinePlugin, ContextReplacementPlugin } = require('webpack');
 const { version, name } = require('./package.json');
 const glob = require('glob');
 const path = require('path');
@@ -133,19 +133,6 @@ const removeEvals = file => new Promise((resolve, reject) => {
 module.exports = {
   // Disable source-map in production
   productionSourceMap: !isProduction,
-  chainWebpack: (config) => {
-    // Exclude cards from build
-    if (excludeCards.length) {
-      const excluded = excludeCards.join('|');
-      const r = new RegExp(`(${excluded})`);
-      config.externals((context, request, callback) => {
-        if (r.test(path.resolve(context, request))) {
-          return callback(null, 'commonjs');
-        }
-        return callback();
-      });
-    }
-  },
   configureWebpack: (config) => {
     if (isProduction) {
       /* eslint-disable no-param-reassign */
@@ -177,6 +164,12 @@ module.exports = {
         return JSON.stringify(jsonContent, null, 2);
       },
     }]));
+    // Exclude cards from build
+    if (excludeCards.length) {
+      const excluded = excludeCards.join('|');
+      const r = new RegExp(`^(?!.*(?:(${excluded}))).*.js$`);
+      // TODO: exclude cards from build
+    }
     // Define variable in the extension
     config.plugins.push(new DefinePlugin({
       browserName: JSON.stringify(browserName),
