@@ -1,0 +1,121 @@
+{
+  "name": "Deutsch",
+  "locale": "de-DE",
+  "onboarding": {
+    "hello": {
+      "title": "Guten Tag !",
+      "content": "Dies ist die neue Startseite eines Tabs !"
+    },
+    "why": {
+      "title": "Wieso Epiboard so toll ist",
+      "prefs": "Einstellungen werden mit allen Geräten synchroniert (falls angemeldet)",
+      "needs": "Eine Karte für jeden Anspruch",
+      "privacy": "Epiboard verlangt nur Berechtigungen wenn nötig"
+    },
+    "settings": {
+      "title": "Einige Einstellungen bevor es losgeht"
+    },
+    "welcome": "Willkommen !",
+    "begin": "Start",
+    "next": "Weiter",
+    "previous": "Zurück"
+  },
+  "card": {
+    "loading": "{id} wird geladen...",
+    "reload": "Neu laden",
+    "remove": "Entfernen",
+    "permissions_failed": "{id} braucht eine nicht erteilte Berechtigung, bitte versuchen Sie es später noch einmal",
+    "error": "{id} hat einen Fehler, bitte versuchen Sie es später noch einmal",
+    "error_reload": "{id} hat einen Fehler, klicken um neu zu laden",
+    "more": "Mehr anzeigen"
+  },
+  "add": "Hinzufügen",
+  "greetMessages": [
+    "Hey, wie war dein Tag?",
+    "Hoffentlich geht es dir gut.",
+    "Jemand denkt an dich ;)",
+    "Hallo!",
+    "Versuche zu lächeln, es funktioniert!",
+    "Wusstest du, das du toll bist?",
+    "Lass uns motiviert werden!",
+    "Komm schon!",
+    "Du kannst sein, wer du willst!"
+  ],
+  "permissions": {
+    "required": "Berechtigungen werden benötigt",
+    "message": "'{name}' braucht Berechtigungen um zu funktionieren, ist das ok?",
+    "allow": "Erlauben",
+    "deny": "Verweigern"
+  },
+  "auth": {
+    "connect_to": "Verbinden mit {service}",
+    "disconnect_from": "Verbindung trennen mit {service}"
+  },
+  "home": {
+    "no_cards": "Keine Karten.",
+    "add_cards": "Mit dem schwebenden Button oben rechts können Sie Karten hinzufügen."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "langs": "Sprachen",
+    "header": "Header",
+    "browse": "Datei wählen",
+    "theme": "Theme",
+    "analytics_desc": "Nur um zu schauen wie du die Karten benutzt",
+    "custom_css": "Benutzerdefiniertes CSS",
+    "custom_css_desc": "Füge die URL deines CSS-Files ein, z.B. https://example.com/style.css",
+    "custom_css_warning": "Warnung: Änderungen am CSS sind nur für fortgeschrittene Benutzer empfohlen, leer lassen für das Standard-Theme",
+    "debug_desc": "Falls Sie sich trauen",
+    "apply_change": "Um vorgenommene Änderungen zu speichern, verwenden Sie den Zurück-Button oder den Speichern-Button am unteren Ende der Seite",
+    "reset": "Einstellungen zurücksetzen",
+    "save": "Speichern",
+    "saved": "Gespeichert !",
+    "cancel": "Abbrechen",
+    "onOff": "Ein | Aus",
+    "apiKey": "{name} API Key",
+    "custom_message": "Benutzerdefinierte Header-Nachricht",
+    "whatsnew": "Bleiben Sie auf dem Laufenden über die neuesten Updates.",
+    "dark": {
+      "title": "Dunkler modus",
+      "desc": "Alles wird dunkel",
+      "auto": "Automatisch",
+      "from": "Von",
+      "to": "Bis"
+    },
+    "artworks": {
+      "random": "Zufällig",
+      "unsplash": "Von Unsplash",
+      "url": "Von URL",
+      "local": "Von lokaler Datei",
+      "mountains": "Berge"
+    },
+    "choose": {
+      "lang": "Wählen Sie ihre Sprache",
+      "24h": "Erzwinge das 24-h Format",
+      "design": "Wählen Sie ihr bevorzugtes Design",
+      "background": "Wählen Sie den Hintergrund",
+      "trends": "Wählen Sie ihr Land für Google Trends",
+      "color": "Wählen Sie die Hauptfarbe",
+      "custom_font": "Eine benutzerdefinierte Schriftart verwenden"
+    },
+    "design": {
+      "full": "Erweitert",
+      "toolbar": "Toolbar"
+    },
+    "auth": {
+      "title": "Verbundene Services",
+      "desc": "Ermöglicht Karten den Zugriff auf diese Services"
+    },
+    "placeholder": {
+      "background": "Von URL, z.B. https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Hauptfarbe, z.B. #607D8B",
+      "custom_message": "z.B. Motivierende Nachricht?",
+      "custom_font": "z.B. Roboto",
+      "custom_desactived": "Deaktiviert wenn Google Trends Aktiviert ist"
+    },
+    "error": {
+        "error": "Ungültiges Format, z.B. #607D8B",
+        "color": "Ungültiges Format, z.B. #607D8B"
+    }
+  }
+}
