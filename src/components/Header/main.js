@@ -3,6 +3,7 @@ import VueLazyload from 'vue-lazyload';
 import VueTyper from '@/components/Typer';
 import dark from '@/mixins/dark';
 import utils from '@/mixins/utils';
+import Permissions from '@/mixins/permissions';
 import backgrounds from './backgrounds';
 
 Vue.use(VueLazyload, {
@@ -34,7 +35,7 @@ export default {
   components: {
     VueTyper,
   },
-  mixins: [dark, utils],
+  mixins: [dark, utils, Permissions],
   fallback: backgrounds.mountains.day,
   isPreRender: !!window.__PRERENDER_INJECTED,
   data() {
