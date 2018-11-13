@@ -1,0 +1,20 @@
+{
+  "description": "Sehen Sie Ihre neuesten LastFm-Statistiken.",
+  "plays": "{nb} spielt ab | {nb} abspielen",
+  "overall": "Gesamter Zeitraum",
+  "years": "{nb} Jahr | {nb} Jahre",
+  "months": "{nb} Monat | {nb} Monate",
+  "days": "{nb} Tag | {nb} Tage",
+  "need_user": "Bitte geben Sie Ihren LastFm-Nutzernamen in den Karteneinstellungen ein.",
+  "empty": "Offenbar haben Sie keine Top-Einträge.",
+  "now_playing": "läuft jetzt:",
+  "top": {
+    "artists": "Top-Küstler",
+    "albums": "Top-Alben",
+    "tracks": "Top-Lieder"
+  },
+  "tip": "Kicken Sie den Rand der Karte an, um die Top-Einträge zu ändern",
+  "settings": {
+    "username": "LastFm Nutzername"
+  }
+}
