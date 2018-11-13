@@ -1,0 +1,9 @@
+{
+  "title": "Schnellzugriff",
+  "empty": "Sie haben keine Schnellzugriff-Links, fügen Sie welche in den Karteneinstellungen hinzu",
+  "settings": {
+    "links": "Links",
+    "grid": "Grid-Layout verwenden",
+    "grid_size": "Blockgrösse im Grid"
+  }
+}

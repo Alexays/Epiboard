@@ -1,0 +1,11 @@
+
+{
+  "description": "Überwachen Sie Systeminformationen",
+  "cpu": "CPU",
+  "memory": "Arbeitsspeicher",
+  "network": "Netzwerk",
+  "storage": "Speicher",
+  "core": "Kern | Kerne",
+  "estimation": "Geschätzte Download-Geschwindigkeit",
+  "rtt": "Geschätzte Paketumlaufzeit"
+}

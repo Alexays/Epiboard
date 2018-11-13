@@ -1,0 +1,15 @@
+{
+  "description": "Verwalten und Anzeigen Ihrer Downloads",
+  "no_downloads": "Keine Downloads",
+  "open": "Öffnen",
+  "delete": "Löschen",
+  "remove_list": "Von der Liste entfernen",
+  "clear": "Alle Downloads entfernen",
+  "error": {
+    "moved": "Datei verschoben oder gelöscht",
+    "unable": "Kann nicht entfernt werden"
+  },
+  "settings": {
+    "max": "Maximale Anzahl Downloads"
+  }
+}

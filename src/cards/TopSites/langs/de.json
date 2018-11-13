@@ -1,0 +1,9 @@
+{
+  "description": "Zeigt Ihre meistbesuchten Seiten an",
+  "empty": "Sie haben keine meistbesuchten Seiten.",
+  "settings": {
+    "maxTopSites": "Maximale Anzahl Seiten",
+    "grid": "Ein Grid-Layout verwenden",
+    "grid_size": "Blockgrösse im Grid"
+  }
+}

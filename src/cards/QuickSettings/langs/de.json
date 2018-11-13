@@ -1,0 +1,9 @@
+{
+  "title": "Schnelleinstellungen",
+  "description": "Leeren Sie Cache, Cookies, Verlauf und lokalen Speicher",
+  "cache": "Cache",
+  "cookies": "Cookies",
+  "history": "Verlauf",
+  "local_storage": "Lokaler Speicher",
+  "clear": "Leeren"
+}

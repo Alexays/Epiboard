@@ -1,0 +1,5 @@
+{
+  "empty": "Sie haben keine Tasks",
+  "add": "Name des neuen Tasks",
+  "need_login": "Diese Karte verwendet Google Tasks und muss mit Ihrem Google-Account verbunden werden."
+}
