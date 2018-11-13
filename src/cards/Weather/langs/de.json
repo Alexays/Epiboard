@@ -1,0 +1,19 @@
+{
+  "description": "Sehen Sie sich das heutige Wetter und die Vorhersagen einfach an.",
+  "humidity": "Luftfeuchtigkeit",
+  "wind_speed": "Windgeschwindigkeit",
+  "sunrise": "Sonnenaufgang",
+  "sunset": "Sonnenuntergang",
+  "cloudiness": "Bewölktheit",
+  "error": {
+    "title": "Standortfehler",
+    "unsupported": "Standort wird nicht unterstützt, bitte geben Sie ihn in den Karteneinstellungen an.",
+    "sample": "Versuchen Sie es später noch einmal, oder geben Sie einen Standort in den Karteneinstellungen an"
+  },
+  "settings": {
+    "location": "Standort",
+    "forecast": "Vorhersage",
+    "city": "Stadt, z.B. `Nantes, FR` oder den ZIP-Code",
+    "choose_units": "Wählen Sie die Masseinheit"
+  }
+}
