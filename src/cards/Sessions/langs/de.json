@@ -1,0 +1,10 @@
+{
+  "description": "Sehen Sie zuletzt geschlossene Seiten und Seiten von anderen Geräten",
+  "recents": "Zuletzt geschlossen",
+  "empty": "Sie haben keine zuletzt geschlossenen Seiten.",
+  "settings": {
+    "maxRecents": "Maximale Anzahl geschlossener Seiten",
+    "maxSessions": "Maximale Anzahl Sitzungen",
+    "maxDevices": "Maximale Anzahl Geräte"
+  }
+}
