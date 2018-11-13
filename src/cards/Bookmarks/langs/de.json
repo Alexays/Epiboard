@@ -1,0 +1,13 @@
+{
+  "title": "Lesezeichen",
+  "description": "Um Ihre Lesezeichen anzuzeigen und zu verwenden",
+  "recents": "Aktuell",
+  "all": "Alle",
+  "empty": "Sie haben hier keine Lesezeichen.",
+  "back_parent": "Zurück zum übergeordneten Ordner",
+  "add_folder": "Diesen Ordner als Tab kennzeichnen",
+  "remove_folder": "Tab entfernen",
+  "settings": {
+    "maxRecents": "Maximale aktuelle Lesezeichen"
+  }
+}
