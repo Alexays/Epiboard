@@ -52,7 +52,7 @@ export default {
       if (!this.$gauth_isConnected) {
         const state = btoa(window.crypto.getRandomValues(new Uint8Array(16)));
         return this.$gauth_authorize(scope, state)
-          .then(url => this.$gauth_getTokens(this.extractCode(url, state)));
+          .then(url => this.$gauth_getTokens(this.$gauth_extractCode(url, state)));
       }
       return this.$gauth_validateTokens(scope);
     },

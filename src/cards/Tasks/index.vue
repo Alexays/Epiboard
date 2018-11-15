@@ -1,6 +1,6 @@
 <template>
   <div id="tasks">
-    <v-list v-if="connected && tasks.length">
+    <v-list v-if="$gauth_isConnected && tasks.length">
       <v-list-tile v-for="(task, idx) in tasks" :key="task.id">
         <v-list-tile-action>
           <v-checkbox
@@ -34,7 +34,7 @@
         :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
     </v-list>
     <v-card-text v-else class="text-xs-center">
-      <template v-if="!connected">
+      <template v-if="!$gauth_isConnected">
         <h2 v-t="'Tasks.need_login'" class="subheading"/>
         <v-btn color="blue" class="white--text" @click="init()">
           <v-icon right dark>lock_open</v-icon>

@@ -170,6 +170,8 @@ export default {
             ? res.reduce((r, p) => (p in o ? { ...r, [p]: o[p] } : r), {}) : o;
           this.$store.commit('SET_CARD_CACHE', { key, data });
         }, { immediate: !!res, deep: true });
+      } else if (this.$store.state.settings.debug) {
+        console.log(res); // eslint-disable-line
       }
     },
     reload(delCache = true) {
