@@ -6,8 +6,8 @@
 > Highly inspired and full rework of [Cardboard](https://github.com/dotlouis/cardboard) by [dotlouis](https://github.com/dotlouis).<br>
 > **Available on [Chrome Web Store](https://chrome.google.com/webstore/detail/epiboard/eblmkpheecdcbflbhbadgfciakhlhdnm) and [Firefox](https://addons.mozilla.org/fr/firefox/addon/epiboard/)**
 
-![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot-2.png)
-![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.png)
+![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot-2.jpg)
+![Epiboard](https://raw.githubusercontent.com/alexays/epiboard/master/screenshot.jpg)
 
 ## What is it?
 
