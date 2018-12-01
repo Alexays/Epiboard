@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'http://ws.audioscrobbler.com/2.0/?format=json';
+const API = 'https://ws.audioscrobbler.com/2.0/?format=json';
 const fallback = 'https://lastfm-img2.akamaized.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb';
 
 export const Periods = [
