@@ -1,0 +1,9 @@
+{
+  "title": "Rýchle odkazy",
+  "empty": "Nemáte žiadne rýchle odkazy, pridajte nejaké v nastaveniach karty",
+  "settings": {
+    "links": "Odkazy",
+    "grid": "Použiť usporiadanie mriežky",
+    "grid_size": "Veľkosť bloku siete"
+  }
+}
