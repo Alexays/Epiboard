@@ -1,0 +1,19 @@
+{
+  "description": "See today's weather and forecasts simply",
+  "humidity": "Vlhkosť",
+  "wind_speed": "Rýchlosť vetra",
+  "sunrise": "Východ slnka",
+  "sunset": "Západ slnka",
+  "cloudiness": "Oblačnosť",
+  "error": {
+    "title": "Chyba Geolokácie",
+    "unsupported": "Geolokácia nieje podporovaná, napíšte prosím názov mesta v nastaveniach karty.",
+    "sample": "Pokúste sa neskôr alebo vpíšte názov mesta manuálne v nastaveniach karty." 
+  },
+  "settings": {
+    "location": "Lokácia",
+    "forecast": "Predpoveď",
+    "city": "Mesto, napr. `Bratislava, SK` alebo id mesta",
+    "choose_units": "Vyberte si preferovanú jednotku."
+  }
+}
