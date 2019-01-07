@@ -1,0 +1,120 @@
+{
+  "name": "Slovensky",
+  "locale": "sk-SK",
+  "onboarding": {
+    "hello": {
+      "title": "Ahoj !",
+      "content": "Toto je vaša nová, úžasná karta !"
+    },
+    "why": {
+      "title": "Prečo je Epiboard úžasný? ",
+      "prefs": "Predvoľby sú synchronizované naprieč vašimi prehliadačmi (ak ste prihlásený)",
+      "needs": "Jedna karta pre každú potrebu",
+      "privacy": "Epiboard vyžaduje oprávnenia iba v prípade potreby"
+    },
+    "settings": {
+      "title": "Niektoré nastavenia pred spustením"
+    },
+    "welcome": "Vitajte !",
+    "begin": "Začať",
+    "next": "Ďaľší",
+    "previous": "Predošlý"
+  },
+  "card": {
+    "loading": "{id} sa načítava...",
+    "reload": "Obnoviť",
+    "remove": "Odstrániť",
+    "permissions_failed": "{id} potrebuje oprávnenia, ktoré nemôže získať, skúste to neskôr",
+    "error": "{id} nastala chyba, skúste to prosím neskôr",
+    "error_reload": "{id} nastala chyba, kliknite na tlačidlo obnovenia",
+    "more": "Pozrieť viac"
+  },
+  "add": "Pridať",
+  "greetMessages": [
+    "Čauko, aký máš deň?",
+    "Dúfam, že sa máš dobre",
+    "Niekto na teba myslí ;)",
+    "Servus!",
+    "Skús sa usmievať, funguje to!",
+    "Ide ti to!",
+    "Poďme sa motivovať, čo ty na to?", 
+    "Do toho kamoš!",
+    "Môžeš sa stať kýmkoľvek len chceš!"
+  ],
+  "permissions": {
+    "required": "Oprávnenia sú vyžadované",
+    "message": "'{name}' žiada o oprávnenia, ktoré sú potrebné na to, aby '{name}' fungovalo správne, je to v poriadku?", 
+    "allow": "Povoliť",
+    "deny": "Zamietnuť"
+  },
+  "auth": {
+    "connect_to": "Pripojiť sa na {service}",
+    "disconnect_from": "Odpojiť sa od {service}"
+  },
+  "home": {
+    "no_cards": "Žiadne karty.",
+    "add_cards": "Karty môžete pridať kliknutím na tlačidlo fab umiestnené vpravo hore."
+  },
+  "settings": {
+    "title": "Nastavenia",
+    "langs": "Jazyk",
+    "header": "Hlavička",
+    "browse": "prehľadávať",
+    "theme": "Téma",
+    "analytics_desc": "Náhľad, ako použijete karty", 
+    "custom_css": "Voliteľné CSS",
+    "custom_css_desc": "Vložte URL vášho CSS súboru, napr. https://example.com/style.css",
+    "custom_css_warning": "Varovanie! Úprava CSS je iba pre pokročilých uživateľov, zanechajte prázdne pre predvolenú tému",
+    "debug_desc": "Ak si na to trúfaš",
+    "apply_change": "Ak chcete použiť zmeny, musíte použiť tlačidlo Späť alebo kliknite na tlačidlo Uložiť v spodnej časti stránky", 
+    "reset": "Obnova nastavení",
+    "save": "Uložiť",
+    "saved": "Uložené !",
+    "cancel": "Zrušiť",
+    "onOff": "Zapnúť | Vypnúť",
+    "apiKey": "{name} kľúč API",
+    "custom_message": "Vlastná správa hlavičky",
+    "whatsnew": "Zostante pozorný pre najnovšie aktualizácie",
+    "dark": {
+      "title": "Tmavý režim",
+      "desc": "Všetko sa stane tmavým", 
+      "auto": "Auto",
+      "from": "Od",
+      "to": "Do"
+    },
+    "artworks": {
+      "random": "Náhodné",
+      "unsplash": "Od poskytovateľa Unsplash",
+      "url": "Z URL",
+      "local": "Z lokálneho úložiska",
+      "mountains": "Hory"
+    },
+    "choose": {
+      "lang": "Vyberte si jazyk",
+      "24h": "Vynútiť 24-hodinový formát",
+      "design": "Vyberte si váš preferovaný dizajn", 
+      "background": "Vyberte si pozadie",
+      "trends": "Vyberte si krajinu Google trendov", 
+      "color": "Vyberte si hlavnú farbu",
+      "custom_font": "Použiť špeciálny font"
+    },
+    "design": {
+      "full": "Celý",
+      "toolbar": "Toolbar"
+    },
+    "auth": {
+      "title": "Pripojené služby",
+      "desc": "Povolenie kariet na prístup k funkciám týchto služieb" 
+    },
+    "placeholder": {
+      "background": "Z URL, napr. https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Hlavná farba, napr. #607D8B",
+      "custom_message": "e.g. Motivačná správa?",
+      "custom_font": "napr. Roboto",
+      "custom_desactived": "Deaktivovaný ak sú Google trendy aktivované"
+    },
+    "error": {
+      "error": "Nesprávny hex, napr. #607D8B"
+    }
+  }
+}
