@@ -63,7 +63,7 @@
     "theme": "Thème",
     "analytics_desc": "Juste pour voir comment vous utilisez les cartes",
     "custom_css": "CSS personnalisé",
-    "custom_css_desc": "Insérer l'URL de votre fichier CSS, e.g. https://example.com/style.css",
+    "custom_css_desc": "Insérer l'URL de votre fichier CSS, ex. https://example.com/style.css",
     "custom_css_warning": "Avertissement la personalisation du css est pour les utilisateurs avancés, laisser vide pour le thème par défaut",
     "debug_desc": "Si vous vous sentez à la hauteur",
     "apply_change": "Pour appliquer les changements, vous devez utiliser le bouton retour ou cliquez sur Sauvegarder au bas de la page",
@@ -90,7 +90,7 @@
       "mountains": "Montagnes"
     },
     "choose": {
-      "lang": "Choisissez votre langues",
+      "lang": "Choisissez votre langue",
       "24h": "Forcer le format 24 heures",
       "design": "Choisissez votre design préféré",
       "background": "Choisissez votre arrière-plan",
@@ -107,14 +107,14 @@
       "desc": "Permettre aux cartes d'accéder aux caractéristiques de ces services"
     },
     "placeholder": {
-      "background": "À partir de l'URL, e.g. https://i.imgur.com/foVYQ6T.jpg",
-      "color": "Couleur principale, e.g. #607D8B",
-      "custom_message": "e.g. Message de motivation ?",
-      "custom_font": "e.g. Roboto",
+      "background": "À partir de l'URL, ex. https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Couleur principale, ex. #607D8B",
+      "custom_message": "ex. Message de motivation ?",
+      "custom_font": "ex.. Roboto",
       "custom_desactived": "Désactivé quand Google Trends est activé"
     },
     "error": {
-      "error": "Valeur incorrect, e.g. #607D8B"
+      "error": "Valeur incorrecte, ex. #607D8B"
     }
   }
 }
