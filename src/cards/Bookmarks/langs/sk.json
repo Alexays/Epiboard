@@ -1,0 +1,12 @@
+{
+  "description": "Zobrazenie a používanie záložiek",
+  "recents": "Nedávne",
+  "all": "Všetky",
+  "empty": "Nemáte žiadne záložky.",
+  "back_parent": "Späť do nadradenej zložky",
+  "add_folder": "Priradiť tento priečinok ako kartu",
+  "remove_folder": "Odstrániť kartu",
+  "settings": {
+    "maxRecents": "Maximálny počet nedávnych záložiek"
+  }
+}

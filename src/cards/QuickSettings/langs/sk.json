@@ -1,0 +1,9 @@
+{
+  "title": "Rýchle nastavenia",
+  "description": "Zmažte vaše cache, cookies, históriu a lokálne úložisku rýchlo",
+  "cache": "Cache",
+  "cookies": "Cookies",
+  "history": "História",
+  "local_storage": "Lokálne úložisko",
+  "clear": "Zmazať"
+}

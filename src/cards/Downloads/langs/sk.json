@@ -1,0 +1,15 @@
+{
+  "description": "Pozrite si a zľahka spravujte vaše stiahnuté súbory", 
+  "no_downloads": "Nemáte žiadne stiahnuté súbory",
+  "open": "Otvoriť",
+  "delete": "Vymazať",
+  "remove_list": "Odstrániť zo zoznamu",
+  "clear": "Odstrániť všetky stiahnuté súbory zo zoznamu",
+  "error": {
+    "moved": "Súbor bol premiestnený alebo zmazaný",
+    "unable": "Nemožno odstrániť"
+  },
+  "settings": {
+    "max": "Maximálny počet stiahnutých"
+  }
+}
