@@ -13,7 +13,7 @@
       :light="$store.state.settings.theme.light"
       slider-color="foreground" color="primary" grow>
       <v-tab
-        v-for="tab in ['Infos', 'Upcoming', 'Occuped Rooms']"
+        v-for="tab in ['Infos', 'Upcoming', 'Occupied Rooms']"
         :key="tab">{{ tab }}</v-tab>
       <v-tabs-items>
         <v-tab-item lazy>
