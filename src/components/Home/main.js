@@ -119,7 +119,6 @@ export default {
         items: '.card',
         dragEnabled: true,
         dragPlaceholder: true,
-        layout: { fillGaps: true },
         dragStartPredicate: { handle: '.head-drag' },
         dragSortInterval: 0,
         layoutOnInit: false,
