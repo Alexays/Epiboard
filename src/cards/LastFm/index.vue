@@ -21,7 +21,7 @@
         class="prev" @click.stop="active > 0 ? active -= 1 : active = itemsLength - 1"/>
       <v-tabs v-model="active" grow hide-slider>
         <v-tab v-for="(item, key) in items" :key="key"/>
-        <v-tab-item v-for="(item, key) in items" :key="key">
+        <v-tab-item v-for="(item, key) in items" :key="key" lazy>
           <v-layout wrap>
             <v-flex xs6>
               <div class="cover">
