@@ -114,8 +114,7 @@
       "custom_desactived": "Deaktiviert wenn Google Trends Aktiviert ist"
     },
     "error": {
-        "error": "Ungültiges Format, z.B. #607D8B",
-        "color": "Ungültiges Format, z.B. #607D8B"
+      "color": "Ungültiges Format, z.B. #607D8B"
     }
   }
 }

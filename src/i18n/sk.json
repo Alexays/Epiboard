@@ -114,7 +114,7 @@
       "custom_desactived": "Deaktivovaný ak sú Google trendy aktivované"
     },
     "error": {
-      "error": "Nesprávny hex, napr. #607D8B"
+      "color": "Nesprávny hex, napr. #607D8B"
     }
   }
 }
