@@ -20,7 +20,6 @@ if (browserName === 'chrome') {
     id: 'UA-78514802-2',
     // In Chrome extension, must close checking protocol.
     set: [{ field: 'checkProtocolTask', value: null }],
-    checkDuplicate: true,
     router,
     debug: {
       sendHitTask: localStorage.getItem('analytics') !== 'false',
