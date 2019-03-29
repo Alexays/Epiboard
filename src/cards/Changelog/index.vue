@@ -12,7 +12,7 @@
       <a
         v-t="'Changelog.previous'"
         href="https://github.com/Alexays/Epiboard/releases"
-        target="_blank" class="foreground--text"/>
+        target="_blank" rel="noopener" class="foreground--text"/>
     </p>
   </div>
 </template>
