@@ -9,7 +9,7 @@
         <h4 v-t="'settings.choose.24h'" class="subheading"/>
         <v-switch
           v-model="settings.hour24"
-          :label="$tc('settings.onOff', settings.hour24)" class="mt-0" hide-details/>
+          :label="$tc('settings.onOff', settings.hour24)" class="mt-0 mb-2" hide-details/>
         <h4 v-t="'settings.header'" class="headline"/>
         <h4 v-t="'settings.choose.design'" class="subheading"/>
         <v-radio-group v-model="settings.header.design" :mandatory="false">
