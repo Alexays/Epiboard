@@ -15,7 +15,7 @@ import '@/style.scss';
 Vue.config.productionTip = false;
 
 // TODO: Firefox doesnt allow to load external script
-if (browserName === 'chrome') {
+if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {
   Vue.use(VueAnalytics, {
     id: 'UA-78514802-2',
     // In Chrome extension, must close checking protocol.
