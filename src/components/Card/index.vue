@@ -39,7 +39,7 @@
             </v-list-tile>
             <v-divider v-if="actions.length"/>
             <v-list-tile
-              v-if="$options.manifest.more" @click="$utils.gotTo($options.manifest.more)">
+              v-if="$options.manifest.more" @click="gotTo($options.manifest.more)">
               <v-list-tile-title v-t="'card.more'"/>
             </v-list-tile>
             <v-list-tile v-if="$options.settings" @click.stop="showSettings=true">

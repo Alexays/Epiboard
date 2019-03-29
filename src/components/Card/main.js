@@ -1,6 +1,7 @@
 import Toast from '@/components/Toast';
 import Cards from '@/cards';
 import Permissions from '@/mixins/permissions';
+import Utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -23,13 +24,13 @@ export default {
         /* eslint-disable no-param-reassign */
         const data = context.$store.state.cache.cards[value];
         if (!data) return;
-        const keys = Object.keys(data);
         const { CACHE_DT } = data;
         if (CACHE_DT && context.$store.state.cache.validCards.indexOf(value) > -1) {
           // Default cache timeout is 60s
           const cacheValidity = ((Cards[value].manifest || {}).cacheValidity || 60) * 1000;
           componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
         }
+        const keys = Object.keys(data);
         for (let i = 0; i < keys.length; i += 1) {
           const key = keys[i];
           if (componentInstance.$data[key] !== undefined) {
@@ -40,7 +41,7 @@ export default {
       },
     },
   },
-  mixins: [Permissions],
+  mixins: [Permissions, Utils],
   card: null,
   settings: null,
   pendingSave: false,
