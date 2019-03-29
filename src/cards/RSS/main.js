@@ -40,7 +40,11 @@ export default {
   },
   methods: {
     fetch(url) {
-      return this.axios.get(`${API}${encodeURIComponent(url)}`).then(res => res.data);
+      let endpoint = `${API}${encodeURIComponent(url)}`;
+      if (this.settings.apiKey.length) {
+        endpoint += `&api_key=${this.settings.apiKey}`;
+      }
+      return this.axios.get(endpoint).then(res => res.data);
     },
   },
 };
