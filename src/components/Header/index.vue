@@ -1,7 +1,9 @@
 <template>
   <header class="grey">
     <template v-if="!$options.isPreRender">
-      <v-img :src="background" :lazy-src="lazyBackground"
+      <v-img
+        :src="background"
+        :lazy-src="lazyBackground"
         :gradient="design === 'full' ? 'to bottom, transparent, rgba(0, 0, 0, 0.30)' : null"
         position="center 55%" width="100%" height="100%" class="background" />
       <v-img v-if="doodle" :src="`https:${doodle.url}`" :alt="doodle.title" class="doodle" contain/>
