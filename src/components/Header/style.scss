@@ -6,22 +6,10 @@ header {
   align-items: flex-end;
   .background {
     position: absolute;
-    background-size: cover;
-    background-position: center 55%;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
     top: 0;
     left: 0;
     &[lazy=loading] {
       filter: blur(5px);
-    }
-    &.gradient::after {
-      content: "";
-      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.30));
-      position: absolute;
-      width: 100%;
-      height: 100%;
     }
   }
   .v-toolbar {

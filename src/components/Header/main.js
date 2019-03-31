@@ -1,28 +1,8 @@
-import Vue from 'vue';
-import VueLazyload from 'vue-lazyload';
 import VueTyper from '@/components/Typer';
 import dark from '@/mixins/dark';
 import utils from '@/mixins/utils';
 import Permissions from '@/mixins/permissions';
 import backgrounds from './backgrounds';
-
-Vue.use(VueLazyload, {
-  observer: true,
-  filter: {
-    progressive(listener) {
-      if (!listener.src || listener.src.indexOf('data:image/') === 0) return;
-      if (listener.src.indexOf('i.imgur.com') > -1) {
-        const idx = listener.src.lastIndexOf('.');
-        // eslint-disable-next-line
-        listener.loading = `${listener.src.substr(0, idx)}t${listener.src.substr(idx)}`;
-      } else if (listener.src.indexOf('ggpht.com') > -1) {
-        const idx = listener.src.lastIndexOf('=w');
-        // eslint-disable-next-line
-        listener.loading = `${listener.src.substr(0, idx)}=w${window.innerWidth}-h150`;
-      }
-    },
-  },
-});
 
 const API = 'https://trends.google.com/trends/hottrends/visualize/internal/data';
 const DOODLES_API = 'https://www.google.com/doodles/json/';
@@ -98,6 +78,18 @@ export default {
       }
       const tmp = backgrounds[key] || backgrounds.mountains;
       return this.getBackgroundTime(tmp);
+    },
+    lazyBackground() {
+      if (!this.background.indexOf('data:image/') === 0) return null;
+      if (this.background.indexOf('i.imgur.com') > -1) {
+        const idx = this.background.lastIndexOf('.');
+        return `${this.background.substr(0, idx)}t${this.background.substr(idx)}`;
+      }
+      if (this.background.indexOf('ggpht.com') > -1) {
+        const idx = this.background.lastIndexOf('=w');
+        return `${this.background.substr(0, idx)}=w${window.innerWidth}-h150`;
+      }
+      return null;
     },
   },
   watch: {
