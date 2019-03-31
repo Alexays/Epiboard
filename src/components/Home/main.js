@@ -125,11 +125,12 @@ export default {
         sortData: {
           index: (item, el) => this.cards.indexOf(el.id),
         },
-      });
+      }).on('move', this.onDrag);
       if (this.cards.length) {
         this.$options.grid.sort('index', { layout: 'instant' });
+      } else {
+        this.$options.grid.layout(true);
       }
-      this.$options.grid.on('dragEnd', this.onDrag);
     },
   },
 };
