@@ -3,7 +3,7 @@
     <!-- v-html is safe here, is just markdown without html parsing -->
     <div v-if="body" class="markdown" v-html="body"/>
     <v-card-text v-else class="text-xs-center">
-      <v-progress-linear v-if="loading" color="white" indeterminate/>
+      <v-progress-linear v-if="loading" color="foreground" indeterminate/>
       <template v-else>
         <v-icon x-large="">note_add</v-icon>
         <h2 v-t="'Changelog.empty'" class="subheading"/>
