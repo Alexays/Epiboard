@@ -92,7 +92,7 @@ export default {
       if (!defaultSettings || this.hash == null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.$vnode.key];
       if (!tmp) return defaultSettings;
-      const data = Object.create(defaultSettings);
+      const data = { ...defaultSettings };
       const keys = Object.keys(data);
       for (let i = 0; i < keys.length; i += 1) {
         if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
