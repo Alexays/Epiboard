@@ -109,8 +109,8 @@ const generateLangsFile = (langs) => {
     fs.writeFileSync(
       `./src/langs/${langsNames[i]}.js`,
       `// This file is auto generated, do not modify it manually.
-// To modify translations, files are in the i18n folder
-export default ${JSON.stringify(langs[langsNames[i]])}\n`,
+// To modify it look in the i18n folder
+export default ${JSON.stringify(langs[langsNames[i]], null, 0)}\n`,
     );
   }
 };
