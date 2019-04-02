@@ -1,13 +1,9 @@
 import utils from '@/mixins/utils';
 import API from './api';
-import Timeline from './timeline';
 
 // @vue/component
 export default {
   name: 'Epitech',
-  components: {
-    Timeline,
-  },
   mixins: [utils],
   props: {
     settings: {

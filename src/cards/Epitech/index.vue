@@ -63,7 +63,6 @@
             <v-icon v-if="settings.hideInfo" x-large>work</v-icon>
             <h2 class="subheading">No on going projects, well done !</h2>
           </v-card-text>
-          <timeline :user="user"/>
         </v-tab-item>
         <v-tab-item lazy>
           <v-list v-if="upcoming.length" class="scroller" three-line dense>
