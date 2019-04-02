@@ -5,7 +5,7 @@
   position: absolute;
   z-index: 1;
   .v-card {
-    overflow-x: hidden;
+    overflow: hidden;
     .v-toolbar__title {
       font-weight: normal;
       text-transform: capitalize;

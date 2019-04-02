@@ -1,13 +1,9 @@
 import Toast from '@/components/Toast';
-import { RecycleList } from 'vue-virtual-scroller';
 import utils from '@/mixins/utils';
 
 // @vue/component
 export default {
   name: 'Downloads',
-  components: {
-    RecycleList,
-  },
   directives: {
     drag: {
       bind(el, { value }) {

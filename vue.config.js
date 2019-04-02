@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const zipafolder = require('zip-a-folder');
 const { log, error } = require('@vue/cli-shared-utils');
 const { DefinePlugin, ContextReplacementPlugin } = require('webpack');
