@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import 'material-design-icons/iconfont/material-icons.css';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -29,6 +29,7 @@ if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {
 
 Vue.use(Vuex);
 Vue.use(Vuetify, {
+  iconfont: 'md',
   theme: {
     primary: '#607D8B',
     secondary: '#546E7A',

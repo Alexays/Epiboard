@@ -15,7 +15,7 @@
     "gantt": "^2.4.0",
     "hammerjs": "^2.0.8",
     "marked": "^0.6.1",
-    "material-design-icons": "^3.0.1",
+    "material-design-icons-iconfont": "^4.0.5",
     "muuri": "github:Alexays/muuri#drag_placeholder",
     "resize-observer-polyfill": "^1.5.1",
     "vue": "^2.6.10",
@@ -30,8 +30,8 @@
     "webextension-polyfill": "^0.4.0"
   },
   "devDependencies": {
-    "@vue/cli": "^3.5.3",
-    "@vue/cli-plugin-babel": "^3.5.3",
+    "@vue/cli": "^3.5.5",
+    "@vue/cli-plugin-babel": "^3.5.5",
     "@vue/cli-plugin-eslint": "^3.5.1",
     "@vue/cli-service": "^3.5.3",
     "@vue/eslint-config-airbnb": "^4.0.0",
