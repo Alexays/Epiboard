@@ -1,5 +1,5 @@
 <template>
-  <div id="downloads" class="scroller pa-3">
+  <div id="downloads" class="pa-3">
     <template v-if="downloads.length">
       <v-menu v-for="download of downloads" :key="download.filename" lazy bottom offset-y>
         <li

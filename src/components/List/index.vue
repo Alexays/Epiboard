@@ -1,5 +1,5 @@
 <template>
-  <v-list :class="{ 'pa-3': padding }" class="scroller" dense>
+  <v-list :class="{ 'pa-3': padding }" dense>
     <v-list-tile
       v-for="item of data"
       :key="item.url+item.date" :href="item.url" @click="$emit('clicked', item)">
