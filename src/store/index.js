@@ -26,18 +26,15 @@ if (window.__PRERENDER_INJECTED) {
 
 Vue.use(Vuex);
 
-const restoreState = (key, storage) => new Promise((resolve) => {
-  storage
-    .getItem(key)
-    .then((data) => {
-      if (data) resolve(JSON.parse(data));
-      else resolve();
-      document.dispatchEvent(new Event('storageReady'));
-    });
-});
+const restoreState = (key, storage) => storage
+  .getItem(key)
+  .then((data) => {
+    document.dispatchEvent(new Event('storageReady'));
+    if (data) return JSON.parse(data);
+    return null;
+  });
 
 const vuexSync = new VuexPersistence({
-  strictMode: false,
   asyncStorage: true,
   modules: ['settings', 'cards', 'cardsSettings'],
   storage: {
@@ -50,7 +47,6 @@ const vuexSync = new VuexPersistence({
 });
 
 const vuexLocal = new VuexPersistence({
-  strictMode: false,
   asyncStorage: true,
   modules: ['cache'],
   storage: {
