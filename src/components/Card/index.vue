@@ -16,7 +16,7 @@
         </v-layout>
         <v-spacer/>
         <v-progress-circular
-          v-show="!loaded"
+          v-show="!loaded && !showSettings"
           :title="$t('card.loading', { id: $vnode.key })"
           :style="{ color: actionsColor }"
           :size="25" :width="2" indeterminate/>

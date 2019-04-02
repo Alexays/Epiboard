@@ -25,7 +25,7 @@ const loadLang = (vm, lang) => {
     setLang(vm, lang);
     return Promise.resolve();
   }
-  return import(/* webpackMode: "lazy-once" */`@/langs/${lang}.js`)
+  return import(/* webpackChunkName: "lang-[request]" */`@/langs/${lang}.js`)
     .then((msgs) => {
       i18n.setLocaleMessage(lang, msgs.default);
       setLang(vm, lang);
