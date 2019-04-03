@@ -50,7 +50,7 @@ export default {
     getTasksList(id) {
       this.loading = true;
       return this.$getAll(id).then((tasks) => {
-        this.tasks = tasks.items;
+        this.tasks = tasks.items || [];
         this.currentId = id;
         this.updateMenu();
         this.loading = false;
@@ -59,7 +59,7 @@ export default {
     getAll() {
       this.loading = true;
       return this.$getAll().then((tasks) => {
-        this.tasks = tasks.items;
+        this.tasks = tasks.items || [];
         this.$getList().then((list) => {
           this.currentId = list.id;
           this.updateMenu();

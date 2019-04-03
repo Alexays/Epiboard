@@ -28,10 +28,6 @@
           </v-btn>
         </v-list-tile-action>
       </v-list-tile>
-      <v-text-field
-        v-model="newTask"
-        :disabled="loading"
-        :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
     </v-list>
     <v-card-text v-else class="text-xs-center">
       <template v-if="!$gauth_isConnected">
@@ -46,6 +42,11 @@
         <h2 v-t="'Tasks.empty'" class="subheading"/>
       </template>
     </v-card-text>
+    <v-text-field
+        v-if="$gauth_isConnected"
+        v-model="newTask"
+        :disabled="loading"
+        :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
   </div>
 </template>
 <script src="./main.js"></script>
