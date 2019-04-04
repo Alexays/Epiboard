@@ -43,10 +43,10 @@
       </template>
     </v-card-text>
     <v-text-field
-        v-if="$gauth_isConnected"
-        v-model="newTask"
-        :disabled="loading"
-        :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
+      v-if="$gauth_isConnected"
+      v-model="newTask"
+      :disabled="loading"
+      :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
   </div>
 </template>
 <script src="./main.js"></script>

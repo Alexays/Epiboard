@@ -25,7 +25,8 @@
       name="fade" tag="div">
       <card
         v-resize
-        v-for="card in cards" :key="card.name" :name="card.id" :id="card.id" @deleted="delCard(card.id)"/>
+        v-for="card in cards"
+        :key="card.name" :name="card.id" :id="card.id" @deleted="delCard(card.id)"/>
     </transition-group>
     <div v-else id="card-container" class="placeholder">
       <div
