@@ -30,14 +30,19 @@ export default {
   computed: {
     cards() {
       const { cards } = this.$store.state;
-      return [...new Set(cards)].filter(f => Cards[f]);
+      return cards.map((f) => {
+        const idx = f.indexOf('_');
+        if (idx > 0) return { name: f.substring(0, idx), id: f };
+        return { name: f, id: f };
+      }).filter(f => Cards[f.name]);
     },
     availableCards() {
-      let keys = this.cards;
+      let keys = this.cards.map(f => f.name);
       if (!this.$store.state.settings.debug) {
         keys = keys.concat(['Changelog']);
       }
-      return Object.keys(Cards).filter(f => keys.indexOf(f) === -1);
+      return Object.keys(Cards).filter(f => keys.indexOf(f) === -1
+        || Cards[f].manifest.allowMultiple);
     },
   },
   created() {
@@ -92,8 +97,12 @@ export default {
         },
       });
     },
-    addCard(key) {
-      this.$store.commit(key === 'Changelog' ? 'ADD_CARD_FIRST' : 'ADD_CARD', key);
+    addCard(name) {
+      let key = name;
+      if (this.cards.find(f => f.name === name)) {
+        key += `_${Math.floor(Math.random() * Math.floor(99))}`;
+      }
+      this.$store.commit(name === 'Changelog' ? 'ADD_CARD_FIRST' : 'ADD_CARD', key);
       this.$nextTick(() => {
         const elem = document.getElementById(key);
         if (key === 'Changelog') this.$options.grid.add(elem, { index: 0 });
@@ -106,8 +115,8 @@ export default {
     checkVersion() {
       const lastVersion = this.$store.state.cache.version;
       const { version } = browser.runtime.getManifest();
-      if (lastVersion && lastVersion !== version && this.cards.indexOf('Changelog') === -1
-        && this.$store.state.settings.whatsnew) {
+      if (this.$store.state.settings.whatsnew && lastVersion
+        && lastVersion !== version && this.cards.find(f => f.name === 'Changelog')) {
         this.$store.commit('ADD_CARD_FIRST', 'Changelog');
       }
       if (lastVersion !== version) {
@@ -123,7 +132,7 @@ export default {
         dragSortInterval: 0,
         layoutOnInit: false,
         sortData: {
-          index: (item, el) => this.cards.indexOf(el.id),
+          index: (item, el) => this.cards.findIndex(f => f.id === el.id),
         },
       }).on('move', this.onDrag);
       if (this.cards.length) {

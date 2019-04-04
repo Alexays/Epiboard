@@ -23,7 +23,9 @@
       id="card-container"
       :class="{ 'has-toolbar': $store.state.settings.header.design === 'toolbar' }"
       name="fade" tag="div">
-      <card v-resize v-for="card in cards" :key="card" :id="card" @deleted="delCard(card)"/>
+      <card
+        v-resize
+        v-for="card in cards" :key="card.name" :name="card.id" :id="card.id" @deleted="delCard(card.id)"/>
     </transition-group>
     <div v-else id="card-container" class="placeholder">
       <div

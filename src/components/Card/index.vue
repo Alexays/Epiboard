@@ -72,7 +72,7 @@
       </v-toolbar>
       <keep-alive>
         <component
-          v-init="$vnode.key"
+          v-init="{ id: name, key: $vnode.key }"
           v-show="!showSettings"
           ref="card"
           :actions.sync="actions"
