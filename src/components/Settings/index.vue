@@ -153,14 +153,16 @@
               format="24h" @change="$refs.menu_to.save(settings.dark.to)"/>
           </v-menu>
         </v-layout>
-        <h4 v-t="'settings.auth.title'" class="headline"/>
-        <h4 v-t="'settings.auth.desc'" class="subheading"/>
-        <v-layout align-center class="py-3">
-          <v-btn
-            v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
-            :disabled="!$gauth_isConnected"
-            color="blue" class="white--text ma-0" @click="$gauth_revoke()"/>
-        </v-layout>
+        <template v-if="$gauth_isConnected">
+          <h4 v-t="'settings.auth.title'" class="headline"/>
+          <h4 v-t="'settings.auth.desc'" class="subheading"/>
+          <v-layout align-center class="py-3">
+            <v-btn
+              v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
+              :disabled="!$gauth_isConnected"
+              color="blue" class="white--text ma-0" @click="$gauth_revoke()"/>
+          </v-layout>
+        </template>
         <h4 class="headline">Google Analytics</h4>
         <h4 v-t="'settings.analytics_desc'" class="subheading"/>
         <v-switch
@@ -173,8 +175,8 @@
         <v-switch
           :label="$tc('settings.onOff', settings.whatsnew)"
           v-model="settings.whatsnew" hide-details/>
-        <v-layout align-center>
-          <v-btn v-t="'settings.save'" flat small @click="save"/>
+        <v-layout class="pt-3" align-center>
+          <v-btn v-t="'settings.save'" color="primary" small @click="save"/>
           <v-btn v-t="'settings.reset'" flat small @click="reset"/>
           <v-flex>
             <p class="text-xs-right">

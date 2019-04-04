@@ -84,7 +84,7 @@ export default {
     },
     $gauth_revoke() {
       return this.axios.post(`${apiUrl.revoke}?token=${this.$store.state.cache.google.accessToken}`)
-        .then(() => {
+        .finally(() => {
           this.$store.commit('DEL_GOOGLE');
         });
     },
