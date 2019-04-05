@@ -104,9 +104,22 @@ export default {
             [this.detectedLang] = data.detected_languages.srclangs;
           }
           this.text = data.sentences.map(f => f.trans).join('\n');
+          if (this.detectedLang === this.to) {
+            // Try different languages based on navigator languages or Epiboard language
+            const lang = navigator.languages.find(f => languages[f] && f !== this.to);
+            if (lang) {
+              this.to = lang;
+              this.getTranslation(text);
+            } else if (languages[this.$i18n.locale] && this.$i18n.locale !== this.to) {
+              this.to = this.$i18n.locale;
+              this.getTranslation(text);
+            }
+          }
         })
         .catch((err) => {
-          console.error(err);
+          if (this.$store.state.settings.debug) {
+            console.error(err);
+          }
           this.text = 'Error';
         })
         .finally(() => {
