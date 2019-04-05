@@ -1,0 +1,7 @@
+{
+  "theme": {
+    "title": "#ffffff",
+    "actions": "#202020"
+  },
+  "origins": ["https://www.google.com/async/translate"]
+}

@@ -1,0 +1,31 @@
+#translate {
+  .left, .right {
+    padding: 50px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    button {
+      margin: 0;
+    }
+  }
+  .left {
+    position: relative;
+    background-color: #2787f4;
+  }
+  /deep/ .right textarea {
+    color: #2787F4;
+  }
+  .v-btn--floating {
+    transform: rotate(90deg);
+    right: -20px;
+    top: 43%;
+  }
+  .languages {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

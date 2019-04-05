@@ -42,7 +42,7 @@ export default {
         keys = keys.concat(['Changelog']);
       }
       return Object.keys(Cards).filter(f => keys.indexOf(f) === -1
-        || Cards[f].manifest.allowMultiple);
+        || (Cards[f].manifest && Cards[f].manifest.allowMultiple));
     },
   },
   created() {
