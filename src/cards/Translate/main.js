@@ -50,7 +50,7 @@ export default {
         this.menu = side;
       }
     },
-    switchLangs() {
+    switchLangs(switchText = true) {
       const tmp = this.to;
       if (this.from === 'auto') {
         this.to = this.detectedLang || 'en';
@@ -58,16 +58,24 @@ export default {
         this.to = this.from;
       }
       this.from = tmp;
-      const tmpText = this.text;
-      this.text = this.cachedText;
-      this.cachedText = tmpText;
+      if (switchText) {
+        const tmpText = this.text;
+        this.text = this.cachedText;
+        this.cachedText = tmpText;
+      }
     },
     setLang(lang) {
       if (this.menu === 'from') {
         this.detectedLang = null;
+        if (this.to === lang) {
+          this.switchLangs(false);
+        }
         this.from = lang;
       }
       if (this.menu === 'to') {
+        if (this.from === lang) {
+          this.switchLangs(false);
+        }
         this.to = lang;
       }
       this.menu = null;
