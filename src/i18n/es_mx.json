@@ -75,6 +75,10 @@
     "apiKey": "{name} API Key",
     "custom_message": "Mensaje personalizado de portada",
     "whatsnew": "manténgase al tanto de las últimas actualizaciones",
+    "donate": {
+      "title": "¿Te gusta mi trabajo?",
+      "desc": "Haz clic aquí para comprarme una cerveza <3"
+    },
     "dark": {
       "title": "Modo oscuro",
       "desc": "Todo se pondrá oscuro",

@@ -8,6 +8,8 @@ const defaultOptions = {
   color: 'info',
   timeout: 4000,
   dismissible: true,
+  callback: null,
+  dismissCb: null,
 };
 
 let toastCmp = null;

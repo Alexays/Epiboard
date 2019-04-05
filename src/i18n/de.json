@@ -75,6 +75,10 @@
     "apiKey": "{name} API Key",
     "custom_message": "Benutzerdefinierte Header-Nachricht",
     "whatsnew": "Bleiben Sie auf dem Laufenden über die neuesten Updates.",
+    "donate": {
+      "title": "Gefällt dir meine Arbeit?",
+      "desc": "Klicken Sie hier, um mir ein Bier zu kaufen <3"
+    },
     "dark": {
       "title": "Dunkler modus",
       "desc": "Alles wird dunkel",

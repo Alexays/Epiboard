@@ -1,5 +1,6 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import Card from '@/components/Card';
+import Toast from '@/components/Toast';
 import Cards from '@/cards';
 import Muuri from 'muuri';
 
@@ -52,6 +53,7 @@ export default {
   mounted() {
     if (!this.$options.isPreRender) {
       this.initGrid();
+      this.showDonateToast();
     } else {
       document.dispatchEvent(new Event('render-event'));
     }
@@ -120,6 +122,9 @@ export default {
         this.$store.commit('ADD_CARD_FIRST', 'Changelog');
       }
       if (lastVersion !== version) {
+        if (this.$store.state.settings.donate < 0) {
+          this.$store.commit('RESET_DONATE');
+        }
         this.$store.commit('SET_VERSION', version);
       }
     },
@@ -139,6 +144,27 @@ export default {
         this.$options.grid.sort('index', { layout: 'instant' });
       } else {
         this.$options.grid.layout(true);
+      }
+    },
+    showDonateToast() {
+      const { donate } = this.$store.state.settings;
+      if (donate > 0) {
+        this.$store.commit('DECREASE_DONATE');
+      } else if (donate === 0) {
+        Toast.show({
+          title: this.$t('settings.donate.title'),
+          desc: this.$t('settings.donate.desc'),
+          icon: 'card_giftcard',
+          color: '#27ae60',
+          timeout: 0,
+          callback: () => {
+            this.$store.commit('DECREASE_DONATE');
+            window.location.href = 'https://paypal.me/ARouillard';
+          },
+          dismissCb: () => {
+            this.$store.commit('DECREASE_DONATE');
+          },
+        });
       }
     },
   },

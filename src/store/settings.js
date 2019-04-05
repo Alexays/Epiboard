@@ -35,6 +35,7 @@ const initialState = {
   tutorial: false,
   debug: false,
   whatsnew: true,
+  donate: 500,
 };
 
 export default {
@@ -60,6 +61,12 @@ export default {
     },
     SET_WHATSNEW(state, whatsnew) {
       state.whatsnew = whatsnew;
+    },
+    DECREASE_DONATE(state) {
+      state.donate -= 1;
+    },
+    RESET_DONATE(state) {
+      state.donate = initialState.donate;
     },
   },
 };

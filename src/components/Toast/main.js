@@ -9,6 +9,8 @@ export default {
       color: 'info',
       timeout: 3000,
       dismissible: true,
+      callback: null,
+      dismissCb: null,
     };
   },
   methods: {
@@ -30,6 +32,9 @@ export default {
     dismiss() {
       if (this.dismissible) {
         this.active = false;
+        if (this.dismissCb) {
+          this.dismissCb();
+        }
       }
     },
   },

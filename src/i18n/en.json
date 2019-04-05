@@ -75,6 +75,10 @@
     "apiKey": "{name} API Key",
     "custom_message": "Custom header message",
     "whatsnew": "Stay tuned about last updates",
+    "donate": {
+      "title": "Do you like my work?",
+      "desc": "Click here to buy me a beer <3"
+    },
     "dark": {
       "title": "Dark mode",
       "desc": "It's gonna get all dark",

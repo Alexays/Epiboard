@@ -75,6 +75,10 @@
     "apiKey": "clé d'API {name}",
     "custom_message": "Message d'en-tête personnalisé",
     "whatsnew": "Restez à l'écoute des dernières mises à jour",
+    "donate": {
+      "title": "Vous aimez mon travail ?",
+      "desc": "Cliquez ici pour m'acheter une bière <3"
+    },
     "dark": {
       "title": "Mode sombre",
       "desc": "Ça va être tout noir",
