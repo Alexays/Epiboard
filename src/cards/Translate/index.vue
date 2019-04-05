@@ -16,7 +16,7 @@
           {{ fromLang }}
         </v-btn>
         <v-btn @click="switchLangs()" color="#006CED" dark fab absolute small>
-          <v-icon>import_export</v-icon>
+          <v-icon>swap_horiz</v-icon>
         </v-btn>
       </v-flex>
       <v-flex class="right">
