@@ -2,5 +2,6 @@
   "title": "Traducir",
   "auto": "Automático",
   "from_ph": "Introducir texto",
-  "to_ph": "Traducción"
+  "to_ph": "Traducción",
+  "copied": "Copiado"
 }

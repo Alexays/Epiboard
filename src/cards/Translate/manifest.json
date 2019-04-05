@@ -3,5 +3,6 @@
     "title": "#ffffff",
     "actions": "#202020"
   },
+  "more": "https://translate.google.com/",
   "origins": ["https://www.google.com/async/translate"]
 }

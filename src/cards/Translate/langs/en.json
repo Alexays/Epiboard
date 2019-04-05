@@ -1,5 +1,6 @@
 {
   "auto": "Auto",
   "from_ph": "Enter text",
-  "to_ph": "Translation"
+  "to_ph": "Translation",
+  "copied": "Copied"
 }

@@ -1,3 +1,4 @@
+import Toast from '@/components/Toast';
 import languages from './languages';
 
 // @vue/component
@@ -36,6 +37,12 @@ export default {
     this.$emit('init', ['from', 'to']);
   },
   methods: {
+    copyTranslation() {
+      if (!this.text || !this.text.length) return;
+      this.$refs.translated.$refs.input.select();
+      document.execCommand('copy');
+      Toast.show({ title: this.$t('Translate.copied') });
+    },
     showLangs(side) {
       if (this.menu) {
         this.menu = null;

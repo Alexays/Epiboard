@@ -21,10 +21,12 @@
       </v-flex>
       <v-flex class="right">
         <v-textarea
+          @click="copyTranslation()"
           :value="text"
           :loading="loading"
           :rows="3"
           :placeholder="$t('Translate.to_ph')"
+          ref="translated"
           background-color="transparent" readonly auto-grow solo flat light full-width></v-textarea>
         <v-btn @click="showLangs('to')" flat light small>
           <v-icon v-if="!menu" dark left>arrow_drop_down</v-icon>
