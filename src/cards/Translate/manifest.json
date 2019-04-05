@@ -1,7 +1,7 @@
 {
   "theme": {
     "title": "#ffffff",
-    "actions": "#202020"
+    "actions": "auto"
   },
   "more": "https://translate.google.com/",
   "origins": ["https://www.google.com/async/translate"]

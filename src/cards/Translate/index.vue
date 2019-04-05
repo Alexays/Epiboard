@@ -27,8 +27,8 @@
           :rows="3"
           :placeholder="$t('Translate.to_ph')"
           background-color="transparent"
-          readonly auto-grow solo flat light full-width @click="copyTranslation()"/>
-        <v-btn flat light small @click="showLangs('to')">
+          readonly auto-grow solo flat full-width @click="copyTranslation()"/>
+        <v-btn flat small @click="showLangs('to')">
           <v-icon v-if="!menu" dark left>arrow_drop_down</v-icon>
           <v-icon v-else dark left>arrow_drop_up</v-icon>
           {{ $options.languages[to] }}
