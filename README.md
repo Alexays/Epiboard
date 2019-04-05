@@ -28,6 +28,7 @@ All settings are synchronized between browsers.
  - Top Sites
  - Apps (Chrome only)
  - LastFm
+ - Translate
  - Epitech
  - Isefac
 
