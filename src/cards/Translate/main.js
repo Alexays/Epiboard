@@ -53,7 +53,7 @@ export default {
     switchLangs(switchText = true) {
       const tmp = this.to;
       if (this.from === 'auto') {
-        this.to = this.detectedLang || 'en';
+        this.to = this.detectedLang || this.detectLang() || 'en';
       } else {
         this.to = this.from;
       }
@@ -83,6 +83,16 @@ export default {
         this.getTranslation(this.cachedText);
       }
     },
+    detectLang() {
+      const lang = navigator.languages.find(f => languages[f] && f !== this.to);
+      if (lang) {
+        return lang;
+      }
+      if (languages[this.$i18n.locale] && this.$i18n.locale !== this.to) {
+        return this.$i18n.locale;
+      }
+      return null;
+    },
     getTranslation(text) {
       if (!text || !text.length) {
         this.text = '';
@@ -107,13 +117,9 @@ export default {
           }
           if (this.detectedLang === this.to) {
             // Try different languages based on navigator languages or Epiboard language
-            const lang = navigator.languages.find(f => languages[f] && f !== this.to);
+            const lang = this.detectLang();
             if (lang) {
               this.to = lang;
-              return this.getTranslation(text);
-            }
-            if (languages[this.$i18n.locale] && this.$i18n.locale !== this.to) {
-              this.to = this.$i18n.locale;
               return this.getTranslation(text);
             }
           }
