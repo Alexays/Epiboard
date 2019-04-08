@@ -100,10 +100,11 @@ export default {
         .then((res) => {
           const data = JSON.parse(res.data.replace(")]}'", '').trim()).translateData.response;
           if (!data) throw new Error('Unexpected response');
+          this.text = data.sentences.map(f => f.trans).join('\n');
+          if (text !== this.cachedText) return;
           if (this.from === 'auto' && data.detected_languages && data.detected_languages.srclangs) {
             [this.detectedLang] = data.detected_languages.srclangs;
           }
-          this.text = data.sentences.map(f => f.trans).join('\n');
           if (this.detectedLang === this.to) {
             // Try different languages based on navigator languages or Epiboard language
             const lang = navigator.languages.find(f => languages[f] && f !== this.to);
