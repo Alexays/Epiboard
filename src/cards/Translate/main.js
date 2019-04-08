@@ -86,10 +86,10 @@ export default {
     getTranslation(text) {
       if (!text || !text.length) {
         this.text = '';
-        return;
+        return Promise.resolve('');
       }
       this.loading = true;
-      this.axios.post(`https://www.google.com/async/translate?nocache=${Date.now()}`,
+      return this.axios.post(`https://www.google.com/async/translate?nocache=${Date.now()}`,
         `async=translate,sl:${this.from},tl:${this.to},st:${
           encodeURIComponent(text)},qc:true,ac:true,id:1,_pms:qd,_fmt:json`,
         {
@@ -101,7 +101,7 @@ export default {
           const data = JSON.parse(res.data.replace(")]}'", '').trim()).translateData.response;
           if (!data) throw new Error('Unexpected response');
           this.text = data.sentences.map(f => f.trans).join('\n');
-          if (text !== this.cachedText) return;
+          if (text !== this.cachedText) return res;
           if (this.from === 'auto' && data.detected_languages && data.detected_languages.srclangs) {
             [this.detectedLang] = data.detected_languages.srclangs;
           }
@@ -110,12 +110,14 @@ export default {
             const lang = navigator.languages.find(f => languages[f] && f !== this.to);
             if (lang) {
               this.to = lang;
-              this.getTranslation(text);
-            } else if (languages[this.$i18n.locale] && this.$i18n.locale !== this.to) {
+              return this.getTranslation(text);
+            }
+            if (languages[this.$i18n.locale] && this.$i18n.locale !== this.to) {
               this.to = this.$i18n.locale;
-              this.getTranslation(text);
+              return this.getTranslation(text);
             }
           }
+          return res;
         })
         .catch((err) => {
           if (this.$store.state.settings.debug) {
