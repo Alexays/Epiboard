@@ -96,6 +96,7 @@ export default {
     getTranslation(text) {
       if (!text || !text.length) {
         this.text = '';
+        this.detectedLang = null;
         return Promise.resolve('');
       }
       this.loading = true;
