@@ -132,9 +132,13 @@ export default {
       this.$options.grid = new Muuri('#card-container', {
         items: '.card',
         dragEnabled: true,
-        dragPlaceholder: true,
+        dragPlaceholder: {
+          enabled: true,
+        },
         dragStartPredicate: { handle: '.head-drag' },
-        dragSortInterval: 0,
+        dragSortHeuristics: {
+          sortInterval: 0,
+        },
         layoutOnInit: false,
         sortData: {
           index: (item, el) => this.cards.findIndex(f => f.id === el.id),
