@@ -3,6 +3,7 @@ import DateMixin from '@/mixins/date';
 const API = 'https://api.openweathermap.org/data/2.5/';
 
 const imgs = {
+  path: '/imgs/weather/weather-',
   day: [
     200, 201, 300, 500, 501, 502, 503, 511,
     600, 601, 602, 700, 800, 801, 803, 804, 952, 953,
@@ -52,25 +53,24 @@ export default {
   },
   methods: {
     getImg(nb, night = true) {
-      const path = '/imgs/weather/weather-';
       const date = Date.now() / 1000;
       if (night && !(date > this.today.sys.sunrise && date < this.today.sys.sunset)) {
         const closest = imgs.night.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
         if (imgs.night.includes(nb)) {
-          return `${path}${nb}-n.png`;
+          return `${imgs.path}${nb}-n.png`;
         }
         if (`${closest}`[0] === `${nb}`[0]) {
-          return `${path}${closest}-n.png`;
+          return `${imgs.path}${closest}-n.png`;
         }
       }
       const closest = imgs.day.reduce((a, b) => (Math.abs(b - nb) < Math.abs(a - nb) ? b : a));
       if (imgs.day.includes(nb)) {
-        return `${path}${nb}.png`;
+        return `${imgs.path}${nb}.png`;
       }
       if (`${closest}`[0] === `${nb}`[0]) {
-        return `${path}${closest}.png`;
+        return `${imgs.path}${closest}.png`;
       }
-      return `${path}none.png`;
+      return `${imgs.path}none.png`;
     },
     fetch(mode, query) {
       let endpoint = `${API}${mode}?${query}&appid=${this.settings.appId}&lang=${this.$i18n.locale}`;
