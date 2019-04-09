@@ -37,10 +37,12 @@ export default {
         .toLocaleTimeString(this.$t('locale'), this.timeOptions);
     },
   },
-  mounted() {
+  created() {
     this.$emit('update:cardtitle', new Date().toLocaleDateString(this.$t('locale'), {
       weekday: 'long',
     }));
+  },
+  mounted() {
     if (this.VALID_CACHE && this.today && !this.geoError) return this.$emit('init', false);
     return this.getLocalisation()
       .then(this.getQuery)

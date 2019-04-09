@@ -13,8 +13,10 @@ export default {
       loading: true,
     };
   },
-  mounted() {
+  created() {
     this.$emit('update:cardtitle', this.$t('Changelog.whatsnew', { version }));
+  },
+  mounted() {
     if (this.version === version && this.VALID_CACHE) {
       this.$emit('init', false);
       return;

@@ -36,9 +36,11 @@ export default {
       }
     },
   },
-  mounted() {
-    this.updateActions();
+  created() {
     this.getNowPlaying();
+    this.updateActions();
+  },
+  mounted() {
     if (this.VALID_CACHE && !this.loading) return this.$emit('init', false);
     return this.getAll()
       .finally(() => {
