@@ -18,7 +18,7 @@ export default {
               return granted;
             });
           }
-          throw new Error('User has refused dialog');
+          throw new Error('User has refused the dialog');
         }));
     },
   },
