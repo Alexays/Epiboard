@@ -51,7 +51,7 @@ export default {
     'https://i.imgur.com/lh0LV5L.jpg',
   ],
   paris: [
-    `http://lh6.ggpht.com/F9QFQqIVAPulSHCiMuobs4m0fYReFB55NiOaY8RUbyzqb1rOSqeu0Q4cVVRsOSA=w${window.innerWidth}-h${window.innerHeight}`,
+    `https://lh6.ggpht.com/F9QFQqIVAPulSHCiMuobs4m0fYReFB55NiOaY8RUbyzqb1rOSqeu0Q4cVVRsOSA=w${window.innerWidth}-h${window.innerHeight}`,
     `https://lh4.ggpht.com/wHsOCpRMA92KGQ3pHl6tBWuVY-ruvOKxYrjIZM-1mZIX7VUfLYAkIli4u1XMFTg=w${window.innerWidth}-h${window.innerHeight}`,
     `https://lh4.ggpht.com/n3FKbvIraVzxbxvq3B3btqg5Kx4dSC935cDuNRYZ7BomnyumsqA4Mr46KmY5N5Q=w${window.innerWidth}-h${window.innerHeight}`,
     `https://lh4.ggpht.com/4tlgfGMLRz4OpfhJWRXLEFAZeudAGozJgq3ak45DVzcQVHJeTYaw5knl7ce17Q=w${window.innerWidth}-h${window.innerHeight}`,
