@@ -5,7 +5,7 @@
         :color="theme ? 'elevation-0' : 'primary'"
         :absolute="!!theme"
         :prominent="showSettings || !!subTitle"
-        :dense="!!theme" class="head-drag" card>
+        :dense="!!theme" class="head-drag" flat>
         <v-layout :style="{ color: titleColor }" column wrap>
           <v-toolbar-title v-if="!showSettings && title" :title="$vnode.key">
             {{ title }}
@@ -23,11 +23,11 @@
         <v-btn
           v-if="loaded === 2 && !showSettings"
           :style="{ color: actionsColor }"
-          :title="$t('card.error_reload', { id: $vnode.key })" flat icon @click="reload()">
+          :title="$t('card.error_reload', { id: $vnode.key })" text icon @click="reload()">
           <v-icon>warning</v-icon>
         </v-btn>
-        <v-menu v-if="!showSettings" lazy bottom offset-y>
-          <v-btn slot="activator" :style="{ color: actionsColor }" flat icon>
+        <v-menu v-if="!showSettings" bottom offset-y>
+          <v-btn slot="activator" :style="{ color: actionsColor }" text icon>
             <v-icon>more_vert</v-icon>
           </v-btn>
           <v-list>
@@ -55,17 +55,17 @@
         </v-menu>
         <template v-else>
           <v-btn
-            :title="$t('settings.reset')" color="foreground" flat icon @click="resetSettings()">
+            :title="$t('settings.reset')" color="foreground" text icon @click="resetSettings()">
             <v-icon>settings_backup_restore</v-icon>
           </v-btn>
           <v-btn
             :title="$t('settings.cancel')"
-            color="foreground" flat icon @click="closeSettings(false)">
+            color="foreground" text icon @click="closeSettings(false)">
             <v-icon>close</v-icon>
           </v-btn>
           <v-btn
             :title="$t('settings.save')"
-            color="foreground" flat icon @click="closeSettings(true)">
+            color="foreground" text icon @click="closeSettings(true)">
             <v-icon>done</v-icon>
           </v-btn>
         </template>

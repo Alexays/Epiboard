@@ -12,7 +12,7 @@
       <v-flex v-if="title">{{ title }}</v-flex>
       <v-flex v-if="desc">{{ desc }}</v-flex>
     </v-layout>
-    <v-btn v-if="dismissible" flat @click.stop.prevent="dismiss">
+    <v-btn v-if="dismissible" text @click.stop.prevent="dismiss">
       <v-icon>close</v-icon>
     </v-btn>
   </v-snackbar>

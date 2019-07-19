@@ -9,8 +9,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer/>
-        <v-btn color="green darken-1" flat="flat" @click="close()">{{ cancel }}</v-btn>
-        <v-btn color="green darken-1" flat="flat" @click="valid()">{{ ok }}</v-btn>
+        <v-btn color="green darken-1" text @click="close()">{{ cancel }}</v-btn>
+        <v-btn color="green darken-1" text @click="valid()">{{ ok }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -1,7 +1,7 @@
 #rss {
   max-height: 350px;
   overflow-y: auto;
-  /deep/ .v-list__tile {
+  ::v-deep .v-list__tile {
     height: auto;
     padding: 10px 16px;
   }

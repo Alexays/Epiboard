@@ -124,7 +124,7 @@
             :return-value.sync="settings.dark.from"
             v-model="menu.from"
             offset-y
-            full-width lazy transition="scale-transition" max-width="290px" min-width="290px">
+            full-width transition="scale-transition" max-width="290px" min-width="290px">
             <v-text-field
               slot="activator"
               :disabled="!settings.dark.auto"
@@ -142,7 +142,7 @@
             :return-value.sync="settings.dark.to"
             v-model="menu.to"
             offset-y
-            full-width lazy transition="scale-transition" max-width="290px" min-width="290px">
+            full-width transition="scale-transition" max-width="290px" min-width="290px">
             <v-text-field
               slot="activator"
               :disabled="!settings.dark.auto"
@@ -177,7 +177,7 @@
           v-model="settings.whatsnew" hide-details/>
         <v-layout class="pt-3" align-center>
           <v-btn v-t="'settings.save'" color="primary" small @click="save"/>
-          <v-btn v-t="'settings.reset'" flat small @click="reset"/>
+          <v-btn v-t="'settings.reset'" text small @click="reset"/>
           <v-flex>
             <p class="text-xs-right">
               Made with

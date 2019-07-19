@@ -35,9 +35,9 @@
       <v-switch :label="$t('settings.whatsnew')" v-model="settings.whatsnew" hide-details/>
     </v-card-text>
     <v-card-actions class="secondary">
-      <v-btn v-t="'onboarding.previous'" color="teal lighten-4" flat @click="$emit('prev')"/>
+      <v-btn v-t="'onboarding.previous'" color="teal lighten-4" text @click="$emit('prev')"/>
       <v-spacer/>
-      <v-btn v-t="'onboarding.next'" color="teal lighten-4" flat @click="$emit('next')"/>
+      <v-btn v-t="'onboarding.next'" color="teal lighten-4" text @click="$emit('next')"/>
     </v-card-actions>
   </v-card>
 </template>

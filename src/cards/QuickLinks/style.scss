@@ -4,7 +4,7 @@
   .v-list__tile__avatar {
     min-width: 29px;
   }
-  /deep/ .v-list__tile {
+  ::v-deep .v-list__tile {
     height: 34px;
   }
   .v-list__tile__action {

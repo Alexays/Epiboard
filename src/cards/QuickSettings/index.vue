@@ -14,7 +14,7 @@
     <v-layout align-end justify-end>
       <v-btn
         v-t="'QuickSettings.clear'"
-        :disabled="isFalse || loading" :loading="loading" flat @click="clear()"/>
+        :disabled="isFalse || loading" :loading="loading" text @click="clear()"/>
     </v-layout>
   </v-layout>
 </template>

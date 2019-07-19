@@ -10,7 +10,7 @@
       <span v-else>{{ tab.name }}</span>
     </v-tab>
     <v-tabs-items>
-      <v-tab-item v-for="tab in tabs" :key="tab.id" lazy>
+      <v-tab-item v-for="tab in tabs" :key="tab.id">
         <v-card-text v-if="!tab.data.length" class="text-xs-center">
           <v-icon x-large>find_in_page</v-icon>
           <h2 v-t="'Bookmarks.empty'" class="subheading"/>
@@ -19,7 +19,7 @@
             v-if="tab.parentNode" class="body-2" small @click="backParent(tab)"/>
         </v-card-text>
         <template v-else>
-          <v-btn v-if="tab.parentNode" small flat block @click="backParent(tab)">
+          <v-btn v-if="tab.parentNode" small text block @click="backParent(tab)">
             <v-icon>arrow_back</v-icon>
             <span v-t="'Bookmarks.back_parent'"/>
           </v-btn>

@@ -16,7 +16,7 @@
         v-for="tab in ['Infos', 'Upcoming', 'Occupied Rooms']"
         :key="tab">{{ tab }}</v-tab>
       <v-tabs-items>
-        <v-tab-item lazy>
+        <v-tab-item>
           <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">
             <h3>{{ user.title }}</h3>
             <v-chip label>
@@ -64,7 +64,7 @@
             <h2 class="subheading">No on going projects, well done !</h2>
           </v-card-text>
         </v-tab-item>
-        <v-tab-item lazy>
+        <v-tab-item>
           <v-list v-if="upcoming.length" class="upcoming" three-line dense>
             <v-list-tile v-for="activity of upcoming" :key="activity.acti_title">
               <v-list-tile-content>
@@ -90,7 +90,7 @@
             <h2 class="subheading">No upcoming activities, go get some rest !</h2>
           </v-card-text>
         </v-tab-item>
-        <v-tab-item lazy>
+        <v-tab-item>
           <v-list v-if="rooms.length" three-line dense>
             <v-list-tile v-for="room of rooms" :key="room.acti_title">
               <v-list-tile-content>

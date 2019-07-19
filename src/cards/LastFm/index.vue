@@ -7,7 +7,7 @@
       color="primary"
       class="ma-0"
       block
-      flat small @click.stop="showTip=false">
+      text small @click.stop="showTip=false">
       <span v-t="'LastFm.tip'"/>
       <v-spacer/>
       <v-icon>close</v-icon>
@@ -21,7 +21,7 @@
         class="prev" @click.stop="active > 0 ? active -= 1 : active = itemsLength - 1"/>
       <v-tabs v-model="active" grow hide-slider>
         <v-tab v-for="(item, key) in items" :key="key"/>
-        <v-tab-item v-for="(item, key) in items" :key="key" lazy>
+        <v-tab-item v-for="(item, key) in items" :key="key">
           <v-layout wrap>
             <v-flex xs6>
               <div class="cover">

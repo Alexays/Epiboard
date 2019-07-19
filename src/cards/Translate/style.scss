@@ -12,11 +12,11 @@
     position: relative;
     background-color: #2787f4;
   }
-  /deep/ .right textarea {
+  ::v-deep .right textarea {
     color: #2787F4;
   }
-  .v-btn--floating {
-    right: -20px;
+  .v-btn--absolute {
+    right: -17px;
     top: 43%;
   }
   .languages {

@@ -13,7 +13,7 @@
     </v-list>
     <v-layout align-center>
       <v-text-field v-model="newFeed" label="e.g. https://exemple.com/rss"/>
-      <v-btn v-t="'add'" flat @click="addFeed(newFeed)"/>
+      <v-btn v-t="'add'" text @click="addFeed(newFeed)"/>
     </v-layout>
     <v-text-field
       v-model="settings.apiKey" :label="$t('settings.apiKey', { name: 'RSS2Json'})"/>

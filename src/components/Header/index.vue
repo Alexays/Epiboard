@@ -1,5 +1,5 @@
 <template>
-  <header class="grey">
+  <div id="header" class="grey">
     <template v-if="!$options.isPreRender">
       <v-img
         :src="background"
@@ -11,17 +11,17 @@
         <vue-typer :text="texts" :erase-delay="5000" :repeat="messagesRepeat" full-erase/>
         <v-btn
           v-if="$route.path === '/settings'"
-          id="settings" :title="$t('settings.save')" color="white" to="/" outline flat icon>
+          id="settings" :title="$t('settings.save')" color="white" to="/" outline text icon>
           <v-icon>&#xE5C4;</v-icon>
         </v-btn>
         <v-btn
           v-else-if="$route.path !== '/onboarding'"
           id="settings"
-          :title="$t('settings.title')" color="white" to="/settings" outline flat icon>
+          :title="$t('settings.title')" color="white" to="/settings" outline text icon>
           <v-icon>&#xE5D4;</v-icon>
         </v-btn>
       </template>
-      <v-toolbar v-else prominent>
+      <v-toolbar v-else>
         <v-btn :disabled="$route.path !== '/'" icon @click="$refs.typer.search()">
           <v-icon>&#xE8B6;</v-icon>
         </v-btn>
@@ -38,7 +38,7 @@
         </v-btn>
       </v-toolbar>
     </template>
-  </header>
+  </div id="header">
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

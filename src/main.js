@@ -4,12 +4,11 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
+import Vuetify from 'vuetify/lib';
 import App from '@/App';
 import { i18n } from '@/i18n';
 import router from '@/router';
 import store from '@/store';
-import Vuetify from 'vuetify/lib';
-import 'vuetify/src/stylus/app.styl';
 import '@/style.scss';
 
 Vue.config.productionTip = false;
@@ -28,15 +27,7 @@ if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {
 }
 
 Vue.use(Vuex);
-Vue.use(Vuetify, {
-  iconfont: 'md',
-  theme: {
-    primary: '#607D8B',
-    secondary: '#546E7A',
-    accent: '#2196F3',
-    foreground: '#ffffff',
-  },
-});
+Vue.use(Vuetify);
 Vue.use(VueAxios, axios);
 // eslint-disable-next-line no-new
 new Vue({
@@ -44,5 +35,14 @@ new Vue({
   i18n,
   router,
   store,
+  vuetify: new Vuetify({
+    iconfont: 'md',
+    theme: {
+      primary: '#607D8B',
+      secondary: '#546E7A',
+      accent: '#2196F3',
+      foreground: '#ffffff',
+    },
+  }),
   render: h => h(App),
 });

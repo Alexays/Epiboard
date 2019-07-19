@@ -1,4 +1,4 @@
-header {
+#header {
   height: 233px;
   padding: 15px 50px;
   position: relative;
@@ -13,7 +13,7 @@ header {
     }
   }
   .v-toolbar {
-    width: 66%;
+    max-width: 66%;
     margin: 0 auto;
     top: 46px;
     z-index: 1;

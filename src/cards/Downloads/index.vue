@@ -1,7 +1,7 @@
 <template>
   <div id="downloads" class="pa-3">
     <template v-if="downloads.length">
-      <v-menu v-for="download of downloads" :key="download.filename" lazy bottom offset-y>
+      <v-menu v-for="download of downloads" :key="download.filename" bottom offset-y>
         <li
           v-drag="download.exists && download.state === 'complete'"
           slot="activator" :id="download.id" class="download" draggable>
