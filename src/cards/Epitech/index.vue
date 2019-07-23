@@ -3,7 +3,7 @@
     <v-card-text v-if="loading">
       <v-progress-linear indeterminate/>
     </v-card-text>
-    <v-card-text v-else-if="!is_logged" class="text-xs-center">
+    <v-card-text v-else-if="!is_logged" class="text-center">
       <v-icon x-large="">error_outline</v-icon>
       <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
     </v-card-text>
@@ -17,7 +17,7 @@
         :key="tab">{{ tab }}</v-tab>
       <v-tabs-items>
         <v-tab-item>
-          <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-xs-center">
+          <v-card-text v-if="!settings.hideInfo && user" class="pb-0 text-center">
             <h3>{{ user.title }}</h3>
             <v-chip label>
               <span>
@@ -59,7 +59,7 @@
                 :height="6" color="red" background-color="red lighten-2"/>
             </div>
           </v-card-text>
-          <v-card-text v-else-if="!projects.length" class="text-xs-center">
+          <v-card-text v-else-if="!projects.length" class="text-center">
             <v-icon v-if="settings.hideInfo" x-large>work</v-icon>
             <h2 class="subheading">No on going projects, well done !</h2>
           </v-card-text>
@@ -85,7 +85,7 @@
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
-          <v-card-text v-else class="text-xs-center">
+          <v-card-text v-else class="text-center">
             <v-icon x-large>assignment_turned_in</v-icon>
             <h2 class="subheading">No upcoming activities, go get some rest !</h2>
           </v-card-text>
@@ -111,7 +111,7 @@
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
-          <v-card-text v-else class="text-xs-center">
+          <v-card-text v-else class="text-center">
             <v-icon x-large>room</v-icon>
             <h2 class="subheading">No occuped rooms, have fun !</h2>
           </v-card-text>

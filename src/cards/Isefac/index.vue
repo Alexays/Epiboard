@@ -1,11 +1,11 @@
 <template>
   <v-card-text id="isefac">
-    <div v-if="!is_logged" class="text-xs-center">
+    <div v-if="!is_logged" class="text-center">
       <v-icon x-large>error_outline</v-icon>
       <h2 class="subheading">You must be logged to Isefac to use this card.</h2>
     </div>
     <div v-else-if="!loading">
-      <div class="text-xs-center">
+      <div class="text-center">
         <h3>{{ user.name }}</h3>
       </div>
       <v-list class="dates" three-line dense>
@@ -30,7 +30,7 @@
           </v-list-tile>
         </template>
       </v-list>
-      <div v-if="!dates.length" class="text-xs-center">
+      <div v-if="!dates.length" class="text-center">
         <v-icon x-large>room</v-icon>
         <h2 class="subheading">No more activities today, go get some rest !</h2>
       </div>

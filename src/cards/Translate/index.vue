@@ -15,7 +15,7 @@
           <v-icon v-else dark left>arrow_drop_up</v-icon>
           {{ fromLang }}
         </v-btn>
-        <v-btn color="#006CED" dark fab absolute @click="switchLangs()">
+        <v-btn color="#006CED" dark fab small absolute @click="switchLangs()">
           <v-icon>swap_horiz</v-icon>
         </v-btn>
       </v-flex>

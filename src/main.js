@@ -38,10 +38,14 @@ new Vue({
   vuetify: new Vuetify({
     iconfont: 'md',
     theme: {
-      primary: '#607D8B',
-      secondary: '#546E7A',
-      accent: '#2196F3',
-      foreground: '#ffffff',
+      themes: {
+        light: {
+          primary: '#607D8B',
+          secondary: '#546E7A',
+          accent: '#2196F3',
+          foreground: '#ffffff',
+        },
+      },
     },
   }),
   render: h => h(App),

@@ -9,11 +9,17 @@ module.exports = {
     Langs: true,
     browserName: true,
   },
+  plugins: [
+    'vuetify'
+  ],
   extends: [
     'plugin:vue/recommended',
     '@vue/airbnb',
   ],
   rules: {
+    'vuetify/no-deprecated-classes': 'error',
+    'vuetify/grid-unknown-attributes': 'error',
+    'vuetify/no-legacy-grid': 'error',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/max-attributes-per-line': 0,

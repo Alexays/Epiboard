@@ -1,9 +1,9 @@
 <template>
-  <v-card :width="400" hover raised dark class="primary foreground--text mx-auto mt-3">
+  <v-card :width="400" hover raised dark class="primary foreground--text mx-auto mt-4">
     <v-card-title class="secondary">
       <h3 v-t="'onboarding.hello.title'" class="headline"/>
     </v-card-title>
-    <v-card-text class="text-xs-center">
+    <v-card-text class="text-center">
       <v-icon color="white" x-large>insert_emoticon</v-icon>
       <h3 v-t="'onboarding.hello.content'" class="subheading"/>
     </v-card-text>

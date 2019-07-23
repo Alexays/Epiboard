@@ -1,5 +1,5 @@
 <template>
-  <v-container id="home" fluid>
+  <v-container class="home" fluid>
     <v-speed-dial
       v-if="!$options.isPreRender"
       v-show="availableCards.length"
@@ -55,7 +55,7 @@
       fill-height
       column
     >
-      <v-card class="text-xs-center" color="transparent" flat>
+      <v-card class="text-center" color="transparent" flat>
         <v-icon x-large>grid_off</v-icon>
         <h2 v-t="'home.no_cards'" class="subheading" />
         <h2 v-t="'home.add_cards'" class="caption" />

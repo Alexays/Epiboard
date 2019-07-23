@@ -29,7 +29,7 @@
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
-    <v-card-text v-else class="text-xs-center">
+    <v-card-text v-else class="text-center">
       <template v-if="!$gauth_isConnected">
         <h2 v-t="'Tasks.need_login'" class="subheading"/>
         <v-btn color="blue" class="white--text" @click="init()">
@@ -46,7 +46,7 @@
       v-if="$gauth_isConnected"
       v-model="newTask"
       :disabled="loading"
-      :placeholder="$t('Tasks.add')" hide-details class="pa-3" @keyup.13="addTask()"/>
+      :placeholder="$t('Tasks.add')" hide-details class="pa-4" @keyup.13="addTask()"/>
   </div>
 </template>
 <script src="./main.js"></script>

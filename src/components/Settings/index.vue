@@ -70,7 +70,7 @@
         <h4 v-t="'settings.theme'" class="headline"/>
         <h4 v-t="'settings.choose.color'" class="subheading"/>
         <v-layout>
-          <v-flex xs6 class="picker mr-3">
+          <v-flex xs6 class="picker mr-4">
             <li
               v-for="color in $options.palette"
               :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
@@ -156,7 +156,7 @@
         <template v-if="$gauth_isConnected">
           <h4 v-t="'settings.auth.title'" class="headline"/>
           <h4 v-t="'settings.auth.desc'" class="subheading"/>
-          <v-layout align-center class="py-3">
+          <v-layout align-center class="py-4">
             <v-btn
               v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
               :disabled="!$gauth_isConnected"
@@ -175,11 +175,11 @@
         <v-switch
           :label="$tc('settings.onOff', settings.whatsnew)"
           v-model="settings.whatsnew" hide-details/>
-        <v-layout class="pt-3" align-center>
+        <v-layout class="pt-4" align-center>
           <v-btn v-t="'settings.save'" color="primary" small @click="save"/>
           <v-btn v-t="'settings.reset'" text small @click="reset"/>
           <v-flex>
-            <p class="text-xs-right">
+            <p class="text-right">
               Made with
               <a alt="Donate" href="https://paypal.me/ARouillard">
                 <v-icon small color="red">favorite</v-icon>

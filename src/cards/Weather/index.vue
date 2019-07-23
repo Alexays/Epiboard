@@ -1,42 +1,40 @@
 <template>
   <div id="weather">
-    <v-layout row wrap>
+    <v-layout wrap>
       <v-flex xs8 class="left">
         <v-layout v-if="today" column align-content-space-between fill-height>
-          <v-flex xs1 class="text-xs-right">
+          <div class="text-right">
             <v-icon small>location_on</v-icon> {{ today.name }}
-          </v-flex>
+          </div>
           <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
             <v-layout row wrap fill-height align-center class="today">
-              <v-flex class="text-xs-center">
+              <v-flex class="text-center">
                 <v-img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])"/>
               </v-flex>
-              <v-flex class="display-3 text-xs-center" fill-height>
+              <v-flex class="display-3 text-center">
                 {{ today.main.temp }}
-                <span v-if="settings.units === 'metric'" class="subheading">°C</span>
-                <span v-else-if="settings.units === 'imperial'" class="subheading">°F</span>
-                <span v-else-if="settings.units === 'kelvin'" class="subheading">K</span>
-                <p class="body-1">{{ today.weather[0].description }}</p>
+                <span v-if="settings.units === 'metric'" class="subtitle-1">°C</span>
+                <span v-else-if="settings.units === 'imperial'" class="subtitle-1">°F</span>
+                <span v-else-if="settings.units === 'kelvin'" class="subtitle-1">K</span>
+                <div class="body-1">{{ today.weather[0].description }}</div>
               </v-flex>
             </v-layout>
           </v-flex>
-          <v-flex v-if="settings.forecast" xs2>
-            <v-layout class="forecast" row wrap>
-              <v-flex v-for="day in forecast" :key="day.dt_txt">
-                <v-layout column align-center>
-                  <v-flex>
-                    <v-img :title="day.title" :src="getImg(day.weather[0]['id'], false)"/>
-                  </v-flex>
-                  <v-flex>
-                    {{ new Date(day.dt_txt).toLocaleString($t('locale'), { weekday: 'short' }) }}
-                  </v-flex>
-                </v-layout>
-              </v-flex>
-            </v-layout>
-          </v-flex>
+          <v-layout v-if="settings.forecast" class="forecast" justify-space-evenly wrap>
+            <v-flex v-for="day in forecast" :key="day.dt_txt">
+              <v-layout column align-center>
+                <v-flex>
+                  <v-img :title="day.title" :src="getImg(day.weather[0]['id'], false)"/>
+                </v-flex>
+                <v-flex>
+                  {{ new Date(day.dt_txt).toLocaleString($t('locale'), { weekday: 'short' }) }}
+                </v-flex>
+              </v-layout>
+            </v-flex>
+          </v-layout>
         </v-layout>
-        <div v-else class="mt-5">
-          <p v-if="geoError" class="subheading ml-2">
+        <div v-else class="mt-12">
+          <p v-if="geoError" class="subtitle-1 ml-2">
             {{ geoError }}
           </p>
           <v-progress-linear v-else indeterminate/>
@@ -68,12 +66,8 @@
             <v-icon medium color="foreground">brightness_4</v-icon>
             <v-layout
               :class="{ 'small-font': sunrise.length > 5 || sunset.length > 5 }" column align-end>
-              <v-flex>
-                <span :title="$t('Weather.sunrise')">{{ sunrise }}</span>
-              </v-flex>
-              <v-flex>
-                <span :title="$t('Weather.sunset')">{{ sunset }}</span>
-              </v-flex>
+              <span :title="$t('Weather.sunrise')">{{ sunrise }}</span>
+              <span :title="$t('Weather.sunset')">{{ sunset }}</span>
             </v-layout>
           </v-flex>
         </v-layout>

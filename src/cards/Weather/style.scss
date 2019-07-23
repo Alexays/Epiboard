@@ -2,7 +2,8 @@
   .left {
     padding: 16px 16px 12px;
     .today .v-image {
-      width: 100px;
+      max-width: 100px;
+      margin: auto;
     }
     .forecast .v-image {
       width: 24px;
@@ -15,6 +16,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      span {
+        line-height: normal;
+      }
       .small-font {
         font-size: 80%;
       }

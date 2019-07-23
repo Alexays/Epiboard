@@ -84,14 +84,14 @@ export default {
         if (this.theme.title === 'auto') return undefined;
         return this.theme.title;
       }
-      return this.$vuetify.theme.foreground;
+      return this.$vuetify.theme.currentTheme.foreground;
     },
     actionsColor() {
       if (this.theme && this.theme.actions) {
         if (this.theme.actions === 'auto') return undefined;
         return this.theme.actions;
       }
-      return this.$vuetify.theme.foreground;
+      return this.$vuetify.theme.currentTheme.foreground;
     },
     settings() {
       const defaultSettings = Object.freeze(Cards[this.$vnode.key].settings);

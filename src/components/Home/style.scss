@@ -1,9 +1,8 @@
-#home {
+.home {
   position: relative;
-  flex: 1;
   .v-speed-dial {
     position: absolute;
-    top: -35px;
+    top: -28px;
     z-index: 2;
     ::v-deep .v-speed-dial__list {
       align-items: flex-end !important;

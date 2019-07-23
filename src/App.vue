@@ -1,17 +1,17 @@
 <template>
-  <v-app :dark="isDark" :style="{ 'font-family': customFont }">
-    <router-view name="header" keep-alive/>
+  <v-app :style="{ 'font-family': customFont }">
+    <router-view name="header" keep-alive />
     <transition name="fade-transition" mode="out-in">
-      <router-view keep-alive/>
+      <router-view keep-alive />
     </transition>
   </v-app>
 </template>
 
 <script>
-import dark from '@/mixins/dark';
+import dark from "@/mixins/dark";
 
 export default {
-  name: 'App',
+  name: "App",
   mixins: [dark],
   computed: {
     customFont() {
@@ -28,16 +28,20 @@ export default {
     },
     debug() {
       return this.$store.state.settings.debug;
-    },
+    }
   },
   watch: {
     primary(hex) {
-      if (hex && hex.toUpperCase() !== this.$vuetify.theme.primary) {
+      const theme = this.$vuetify.theme.currentTheme;
+      if (hex && hex.toUpperCase() !== theme.primary) {
         const { light, secondary } = this.$store.state.settings.theme;
-        this.$vuetify.theme.primary = hex;
-        this.$vuetify.theme.secondary = secondary;
-        this.$vuetify.theme.foreground = light ? '#000000' : '#ffffff';
+        theme.primary = hex;
+        theme.secondary = secondary;
+        theme.foreground = light ? "#000000" : "#ffffff";
       }
+    },
+    isDark(val) {
+      this.$vuetify.theme.dark = val;
     },
     customCssUrl(val, old) {
       if (val === old) return;
@@ -49,27 +53,27 @@ export default {
       if (val === old) return;
       if (val && this.customCssUrl.length) this.loadCustomCss();
       else this.unloadCustomCss();
-    },
+    }
   },
   methods: {
     unloadCustomCss() {
-      const el = document.getElementById('custom-css');
+      const el = document.getElementById("custom-css");
       if (el) {
         el.remove();
       }
     },
     loadCustomCss() {
-      let el = document.getElementById('custom-css');
+      let el = document.getElementById("custom-css");
       if (!el) {
-        el = document.createElement('style');
-        el.setAttribute('type', 'text/css');
-        el.setAttribute('id', 'custom-css');
+        el = document.createElement("style");
+        el.setAttribute("type", "text/css");
+        el.setAttribute("id", "custom-css");
         document.head.appendChild(el);
       }
-      this.axios.get(this.customCssUrl).then((res) => {
+      this.axios.get(this.customCssUrl).then(res => {
         el.textContent = res.data;
       });
-    },
-  },
+    }
+  }
 };
 </script>

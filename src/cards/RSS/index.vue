@@ -9,7 +9,7 @@
               <v-flex>
                 {{ new Date(item.pubDate).toLocaleDateString($t('locale'), timeOptions) }}
               </v-flex>
-              <v-flex class="text-xs-right">
+              <v-flex class="text-right">
                 <a :href="item.feed.link" :title="item.feed.description">
                   {{ item.feed.title }}
                 </a>
@@ -21,7 +21,7 @@
     </v-list>
     <v-card-text v-else>
       <v-progress-linear v-if="loading" indeterminate/>
-      <div v-else class="text-xs-center">
+      <div v-else class="text-center">
         <v-icon x-large>rss_feed</v-icon>
         <h2 v-t="'RSS.empty'" class="subheading"/>
       </div>

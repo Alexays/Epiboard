@@ -27,9 +27,11 @@
           <v-icon>warning</v-icon>
         </v-btn>
         <v-menu v-if="!showSettings" bottom offset-y>
-          <v-btn slot="activator" :style="{ color: actionsColor }" text icon>
-            <v-icon>more_vert</v-icon>
-          </v-btn>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" :style="{ color: actionsColor }" text icon>
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+          </template>
           <v-list>
             <v-list-tile
               v-for="action in actions"

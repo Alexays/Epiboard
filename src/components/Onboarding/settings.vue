@@ -1,5 +1,5 @@
 <template>
-  <v-card :width="500" hover raised dark class="primary foreground--text mx-auto mt-3">
+  <v-card :width="500" hover raised dark class="primary foreground--text mx-auto mt-4">
     <v-card-title class="secondary">
       <h3 v-t="'onboarding.settings.title'" class="headline"/>
     </v-card-title>

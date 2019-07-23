@@ -36,7 +36,7 @@
               </div>
             </v-flex>
             <v-flex v-for="i in 2" v-if="item.data[i]" :key="i" xs3>
-              <v-layout row wrap>
+              <v-layout wrap>
                 <div v-for="j in [i, i + 2]" v-if="item.data[j]" :key="j" class="cover">
                   <v-img :src="item.data[j].image.large" :lazy-src="item.data[j].image.small"/>
                   <a :href="item.data[j].url" target="_blank" rel="noopener" class="overlay">
@@ -56,11 +56,11 @@
         :title="$t('onboarding.next')"
         class="next" @click.stop="active < itemsLength - 1 ? active += 1 : active = 0"/>
     </div>
-    <v-card-text v-else-if="!user || !user.length" class="text-xs-center">
+    <v-card-text v-else-if="!user || !user.length" class="text-center">
       <v-icon x-large="">library_music</v-icon>
       <h2 v-t="'LastFm.need_user'" class="subheading"/>
     </v-card-text>
-    <v-card-text v-else class="text-xs-center">
+    <v-card-text v-else class="text-center">
       <v-icon x-large="">library_music</v-icon>
       <h2 v-t="'LastFm.empty'" class="subheading"/>
     </v-card-text>
