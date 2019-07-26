@@ -1,6 +1,6 @@
 <template>
   <div :style="{ width: `${size}px` }" class="card">
-    <v-card :width="size" hover raised>
+    <v-card :width="size" hover>
       <v-toolbar
         :color="theme ? 'elevation-0' : 'primary'"
         :absolute="!!theme"

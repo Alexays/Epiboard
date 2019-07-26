@@ -141,7 +141,7 @@ export default {
         },
         layoutOnInit: false,
         sortData: {
-          index: (item, el) => this.cards.findIndex(f => f.id === el.id),
+          index: (_, el) => this.cards.findIndex(f => f.id === el.id),
         },
       }).on('move', this.onDrag);
       if (this.cards.length) {
