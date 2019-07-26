@@ -1,11 +1,11 @@
 <template>
   <v-card-text>
-    <h4 v-t="'TopSites.settings.grid'" class="subheading"/>
+    <h4 v-t="'TopSites.settings.grid'" class="subtitle-1"/>
     <v-switch
       :label="$tc('settings.onOff', settings.grid)"
       v-model="settings.grid" class="mt-0" hide-details/>
     <template v-if="settings.grid">
-      <h4 v-t="'TopSites.settings.grid_size'" class="subheading"/>
+      <h4 v-t="'TopSites.settings.grid_size'" class="subtitle-1"/>
       <v-slider
         v-model="settings.size"
         :tick-labels="$options.tickLabels"

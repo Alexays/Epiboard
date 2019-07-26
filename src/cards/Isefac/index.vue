@@ -1,8 +1,8 @@
 <template>
   <v-card-text id="isefac">
     <div v-if="!is_logged" class="text-center">
-      <v-icon x-large>error_outline</v-icon>
-      <h2 class="subheading">You must be logged to Isefac to use this card.</h2>
+      <v-icon x-large>mdi-alert-circle</v-icon>
+      <h2 class="subtitle-1">You must be logged to Isefac to use this card.</h2>
     </div>
     <div v-else-if="!loading">
       <div class="text-center">
@@ -31,8 +31,8 @@
         </template>
       </v-list>
       <div v-if="!dates.length" class="text-center">
-        <v-icon x-large>room</v-icon>
-        <h2 class="subheading">No more activities today, go get some rest !</h2>
+        <v-icon x-large>mdi-briefcase</v-icon>
+        <h2 class="subtitle-1">No more activities today, go get some rest !</h2>
       </div>
     </div>
     <v-progress-linear v-else indeterminate/>

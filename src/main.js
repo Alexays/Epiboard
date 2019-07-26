@@ -1,6 +1,6 @@
+import '@mdi/font/css/materialdesignicons.css';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -36,7 +36,6 @@ new Vue({
   router,
   store,
   vuetify: new Vuetify({
-    iconfont: 'md',
     theme: {
       themes: {
         light: {

@@ -8,7 +8,7 @@
       <v-autocomplete
         :items="langs"
         v-model="settings.lang" :label="$t('settings.choose.lang')"/>
-      <h4 v-t="'settings.choose.design'" class="subheading"/>
+      <h4 v-t="'settings.choose.design'" class="subtitle-1"/>
       <v-radio-group v-model="settings.header.design" :mandatory="false">
         <v-radio :label="$t('settings.design.full')" value="full"/>
         <v-radio :label="$t('settings.design.toolbar')" value="toolbar"/>
@@ -22,7 +22,7 @@
           v-model.lazy="settings.header.backgroundUrl"
           :label="$t('settings.placeholder.background')"/>
       </v-layout>
-      <h4 class="subheading">Google Trends</h4>
+      <h4 class="subtitle-1">Google Trends</h4>
       <v-layout align-center>
         <v-switch
           v-model="settings.trends.enabled"

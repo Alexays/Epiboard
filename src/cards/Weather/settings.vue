@@ -1,6 +1,6 @@
 <template>
   <v-card-text>
-    <h4 v-t="'Weather.settings.location'" class="subheading"/>
+    <h4 v-t="'Weather.settings.location'" class="subtitle-1"/>
     <v-layout align-center>
       <v-checkbox v-model="settings.auto" label="Auto" class="mt-0" hide-details/>
       <v-text-field
@@ -8,7 +8,7 @@
     </v-layout>
     <v-select
       v-model="settings.units" :items="allUnits" :label="$t('Weather.settings.choose_units')"/>
-    <h4 v-t="'Weather.settings.forecast'" class="subheading"/>
+    <h4 v-t="'Weather.settings.forecast'" class="subtitle-1"/>
     <v-switch
       :label="$tc('settings.onOff', settings.forecast)"
       v-model="settings.forecast" class="mt-0" hide-details/>

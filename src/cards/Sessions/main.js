@@ -22,12 +22,7 @@ export default {
   },
   computed: {
     tabs() {
-      return [
-        { id: 'recents', data: this.recents },
-        ...this.devices.map(f => ({
-          id: `${f.deviceName}${f.sessions.length}${f.data.length}`, data: f.data,
-        })),
-      ];
+      return [this.recents, ...this.devices.map(device => device.data)];
     },
   },
   created() {

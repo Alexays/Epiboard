@@ -11,12 +11,12 @@
           auto-grow
           solo flat dark full-width @input="getTranslation"/>
         <v-btn text dark small @click="showLangs('from')">
-          <v-icon v-if="!menu" dark left>arrow_drop_down</v-icon>
-          <v-icon v-else dark left>arrow_drop_up</v-icon>
+          <v-icon v-if="!menu" dark left>mdi-chevron-down</v-icon>
+          <v-icon v-else dark left>mdi-chevron-up</v-icon>
           {{ fromLang }}
         </v-btn>
         <v-btn color="#006CED" dark fab small absolute @click="switchLangs()">
-          <v-icon>swap_horiz</v-icon>
+          <v-icon>mdi-swap-horizontal</v-icon>
         </v-btn>
       </v-flex>
       <v-flex class="right">
@@ -29,8 +29,8 @@
           background-color="transparent"
           readonly auto-grow solo flat full-width @click="copyTranslation()"/>
         <v-btn text small @click="showLangs('to')">
-          <v-icon v-if="!menu" dark left>arrow_drop_down</v-icon>
-          <v-icon v-else dark left>arrow_drop_up</v-icon>
+          <v-icon v-if="!menu" dark left>mdi-chevron-down</v-icon>
+          <v-icon v-else dark left>mdi-chevron-up</v-icon>
           {{ $options.languages[to] }}
         </v-btn>
       </v-flex>

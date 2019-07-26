@@ -12,33 +12,33 @@
         <v-btn
           v-if="$route.path === '/settings'"
           id="settings" :title="$t('settings.save')" color="white" to="/" outline text icon>
-          <v-icon>&#xE5C4;</v-icon>
+          <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-btn
           v-else-if="$route.path !== '/onboarding'"
           id="settings"
           :title="$t('settings.title')" color="white" to="/settings" outline text icon>
-          <v-icon>&#xE5D4;</v-icon>
+          <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
       <v-toolbar v-else>
         <v-btn :disabled="$route.path !== '/'" icon @click="$refs.typer.search()">
-          <v-icon>&#xE8B6;</v-icon>
+          <v-icon>mdi-magnify</v-icon>
         </v-btn>
         <vue-typer
           ref="typer"
           :text="texts" :erase-delay="5000" :repeat="messagesRepeat" text-field full-erase/>
         <v-btn v-if="$route.path === '/settings'" :title="$t('settings.save')" to="/" icon>
-          <v-icon>&#xE5C4;</v-icon>
+          <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         <v-btn
           v-else-if="$route.path !== '/onboarding'"
           :title="$t('settings.title')" to="/settings" icon>
-          <v-icon>&#xE5D4;</v-icon>
+          <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-toolbar>
     </template>
-  </div id="header">
+  </div>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

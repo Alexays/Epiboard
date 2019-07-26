@@ -1,13 +1,13 @@
 <template>
   <v-card-text>
-    <h4 v-t="'RSS.settings.feeds'" class="subheading"/>
+    <h4 v-t="'RSS.settings.feeds'" class="subtitle-1"/>
     <v-list dense>
       <v-list-tile v-for="(feed, idx) in settings.feeds" :key="feed">
         <v-list-tile-content>
           <v-list-tile-title>{{ feed }}</v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>
-          <v-icon @click="removeFeed(idx)">close</v-icon>
+          <v-icon @click="removeFeed(idx)">mdi-close</v-icon>
         </v-list-tile-action>
       </v-list-tile>
     </v-list>

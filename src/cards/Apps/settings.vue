@@ -1,6 +1,6 @@
 <template>
   <v-card-text>
-    <h4 v-t="'Apps.settings.size'" class="subheading"/>
+    <h4 v-t="'Apps.settings.size'" class="subtitle-1"/>
     <v-slider
       v-model="settings.size"
       :tick-labels="$options.tickLabels"

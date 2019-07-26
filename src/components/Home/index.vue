@@ -10,8 +10,8 @@
     >
       <template v-slot:activator>
         <v-btn v-model="fab" color="accent" fab>
-          <v-icon v-if="fab">close</v-icon>
-          <v-icon v-else>add</v-icon>
+          <v-icon v-if="fab">mdi-close</v-icon>
+          <v-icon v-else>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-btn
@@ -56,8 +56,8 @@
       column
     >
       <v-card class="text-center" color="transparent" flat>
-        <v-icon x-large>grid_off</v-icon>
-        <h2 v-t="'home.no_cards'" class="subheading" />
+        <v-icon x-large>grid-off</v-icon>
+        <h2 v-t="'home.no_cards'" class="subtitle-1" />
         <h2 v-t="'home.add_cards'" class="caption" />
       </v-card>
     </v-layout>

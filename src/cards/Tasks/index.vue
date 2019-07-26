@@ -18,28 +18,28 @@
         </v-list-tile-content>
         <v-list-tile-action>
           <v-btn v-if="task.status === 'completed'" icon ripple @click="delTask(task, idx)">
-            <v-icon color="grey">delete</v-icon>
+            <v-icon color="grey">mdi-delete</v-icon>
           </v-btn>
           <v-btn v-else-if="editMode.indexOf(task.id) > -1" icon ripple @click="editTask(task)">
-            <v-icon>check</v-icon>
+            <v-icon>mid-check</v-icon>
           </v-btn>
           <v-btn v-else icon ripple @click="editMode.push(task.id)">
-            <v-icon color="grey">edit</v-icon>
+            <v-icon color="grey">mdi-pencil</v-icon>
           </v-btn>
         </v-list-tile-action>
       </v-list-tile>
     </v-list>
     <v-card-text v-else class="text-center">
       <template v-if="!$gauth_isConnected">
-        <h2 v-t="'Tasks.need_login'" class="subheading"/>
+        <h2 v-t="'Tasks.need_login'" class="subtitle-1"/>
         <v-btn color="blue" class="white--text" @click="init()">
-          <v-icon right dark>lock_open</v-icon>
+          <v-icon right dark>mdi-lock-open</v-icon>
           <span v-t="{ path: 'auth.connect_to', args: { service: 'Google' } }"/>
         </v-btn>
       </template>
       <template v-else>
-        <v-icon x-large>assignment</v-icon>
-        <h2 v-t="'Tasks.empty'" class="subheading"/>
+        <v-icon x-large>mid-clipboard-check</v-icon>
+        <h2 v-t="'Tasks.empty'" class="subtitle-1"/>
       </template>
     </v-card-text>
     <v-text-field

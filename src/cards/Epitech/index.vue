@@ -4,8 +4,8 @@
       <v-progress-linear indeterminate/>
     </v-card-text>
     <v-card-text v-else-if="!is_logged" class="text-center">
-      <v-icon x-large="">error_outline</v-icon>
-      <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
+      <v-icon x-large="">mdi-alert-circle-outline</v-icon>
+      <h2 class="subtitle-1">You must be logged to Epitech to use this card.</h2>
     </v-card-text>
     <v-tabs
       v-else
@@ -60,8 +60,8 @@
             </div>
           </v-card-text>
           <v-card-text v-else-if="!projects.length" class="text-center">
-            <v-icon v-if="settings.hideInfo" x-large>work</v-icon>
-            <h2 class="subheading">No on going projects, well done !</h2>
+            <v-icon v-if="settings.hideInfo" x-large>mdi-briefcase</v-icon>
+            <h2 class="subtitle-1">No on going projects, well done !</h2>
           </v-card-text>
         </v-tab-item>
         <v-tab-item>
@@ -86,8 +86,8 @@
             </v-list-tile>
           </v-list>
           <v-card-text v-else class="text-center">
-            <v-icon x-large>assignment_turned_in</v-icon>
-            <h2 class="subheading">No upcoming activities, go get some rest !</h2>
+            <v-icon x-large>mdi-clipboard-text</v-icon>
+            <h2 class="subtitle-1">No upcoming activities, go get some rest !</h2>
           </v-card-text>
         </v-tab-item>
         <v-tab-item>
@@ -112,8 +112,8 @@
             </v-list-tile>
           </v-list>
           <v-card-text v-else class="text-center">
-            <v-icon x-large>room</v-icon>
-            <h2 class="subheading">No occuped rooms, have fun !</h2>
+            <v-icon x-large>mdi-map-marker</v-icon>
+            <h2 class="subtitle-1">No occuped rooms, have fun !</h2>
           </v-card-text>
         </v-tab-item>
       </v-tabs-items>

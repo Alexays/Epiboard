@@ -5,8 +5,8 @@
     <v-card-text v-else class="text-center">
       <v-progress-linear v-if="loading" color="foreground" indeterminate/>
       <template v-else>
-        <v-icon x-large="">note_add</v-icon>
-        <h2 v-t="'Changelog.empty'" class="subheading"/>
+        <v-icon x-large="">mdi-note-plus</v-icon>
+        <h2 v-t="'Changelog.empty'" class="subtitle-1"/>
       </template>
     </v-card-text>
     <p class="previous caption">

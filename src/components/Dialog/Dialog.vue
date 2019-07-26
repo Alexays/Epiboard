@@ -4,7 +4,7 @@
       <v-card-title class="headline">
         {{ title }}
       </v-card-title>
-      <v-card-text class="subheading">
+      <v-card-text class="subtitle-1">
         {{ text }}
       </v-card-text>
       <v-card-actions>

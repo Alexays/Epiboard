@@ -13,7 +13,7 @@
       <v-flex v-if="desc">{{ desc }}</v-flex>
     </v-layout>
     <v-btn v-if="dismissible" text @click.stop.prevent="dismiss">
-      <v-icon>close</v-icon>
+      <v-icon>mdi-close</v-icon>
     </v-btn>
   </v-snackbar>
 </template>

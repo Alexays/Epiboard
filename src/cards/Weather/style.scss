@@ -1,24 +1,38 @@
 #weather {
   .left {
     padding: 16px 16px 12px;
-    .today .v-image {
-      max-width: 100px;
-      margin: auto;
+
+    .today {
+      padding: 10px 0;
+
+      .v-image {
+        max-width: 100px;
+        margin: auto;
+      }
     }
+
     .forecast .v-image {
       width: 24px;
       height: 24px;
     }
   }
+
   .weather-info {
     padding: 50px 16px 16px;
+
     .detail {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      .rotate {
+        transform: rotate(90deg);
+      }
+
       span {
         line-height: normal;
       }
+
       .small-font {
         font-size: 80%;
       }

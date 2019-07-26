@@ -12,23 +12,23 @@
     <v-tabs-items>
       <v-tab-item v-for="tab in tabs" :key="tab.id">
         <v-card-text v-if="!tab.data.length" class="text-center">
-          <v-icon x-large>find_in_page</v-icon>
-          <h2 v-t="'Bookmarks.empty'" class="subheading"/>
+          <v-icon x-large>mdi-file-find</v-icon>
+          <h2 v-t="'Bookmarks.empty'" class="subtitle-1"/>
           <v-btn
             v-t="'Bookmarks.back_parent'"
             v-if="tab.parentNode" class="body-2" small @click="backParent(tab)"/>
         </v-card-text>
         <template v-else>
           <v-btn v-if="tab.parentNode" small text block @click="backParent(tab)">
-            <v-icon>arrow_back</v-icon>
+            <v-icon>mdi-arrow-left</v-icon>
             <span v-t="'Bookmarks.back_parent'"/>
           </v-btn>
           <list :data="tab.data" icon padding>
             <template slot="icon" slot-scope="{item}">
               <v-img
                 v-if="item.url && getFavicon(item.url)" :src="getFavicon(item.url)"/>
-              <v-icon v-else-if="item.url">insert_drive_file</v-icon>
-              <v-icon v-else>folder</v-icon>
+              <v-icon v-else-if="item.url">mdi-file</v-icon>
+              <v-icon v-else>mdi-folder</v-icon>
             </template>
             <template slot="content" slot-scope="{item}">
               <div @click="getSubFolder(tab, item)">
@@ -43,10 +43,10 @@
               <v-icon
                 v-else-if="foldersId.indexOf(item.id) === -1"
                 :title="$t('Bookmarks.add_folder')" @click="addTab(item)">
-                add
+                mdi-plus
               </v-icon>
               <v-icon v-else :title="$t('Bookmarks.remove_folder')" @click="removeTab(item)">
-                delete
+                mdi-delete
               </v-icon>
             </template>
           </list>

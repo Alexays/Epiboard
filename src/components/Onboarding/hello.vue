@@ -4,8 +4,8 @@
       <h3 v-t="'onboarding.hello.title'" class="headline"/>
     </v-card-title>
     <v-card-text class="text-center">
-      <v-icon color="white" x-large>insert_emoticon</v-icon>
-      <h3 v-t="'onboarding.hello.content'" class="subheading"/>
+      <v-icon color="white" x-large>mdi-emoticon</v-icon>
+      <h3 v-t="'onboarding.hello.content'" class="subtitle-1"/>
     </v-card-text>
     <v-card-actions class="secondary">
       <v-spacer/>

@@ -4,7 +4,7 @@
       <v-flex xs8 class="left">
         <v-layout v-if="today" column align-content-space-between fill-height>
           <div class="text-right">
-            <v-icon small>location_on</v-icon> {{ today.name }}
+            <v-icon small>mdi-map-marker</v-icon> {{ today.name }}
           </div>
           <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
             <v-layout row wrap fill-height align-center class="today">
@@ -16,7 +16,7 @@
                 <span v-if="settings.units === 'metric'" class="subtitle-1">°C</span>
                 <span v-else-if="settings.units === 'imperial'" class="subtitle-1">°F</span>
                 <span v-else-if="settings.units === 'kelvin'" class="subtitle-1">K</span>
-                <div class="body-1">{{ today.weather[0].description }}</div>
+                <div class="body-2">{{ today.weather[0].description }}</div>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -42,20 +42,20 @@
       </v-flex>
       <v-flex xs4 class="weather-info primary foreground--text head-drag">
         <v-layout v-if="today" class="title" column fill-height>
-          <v-flex class="detail mb-1">
-            <v-icon medium color="foreground">opacity</v-icon>
+          <v-flex class="detail">
+            <v-icon medium color="foreground">mdi-opacity</v-icon>
             <span :title="$t('Weather.humidity')">
               <b>{{ today.main.humidity }}</b> <span class="caption">%</span>
             </span>
           </v-flex>
-          <v-flex class="detail mb-1">
-            <v-icon medium color="foreground">cloud</v-icon>
+          <v-flex class="detail">
+            <v-icon medium color="foreground">mdi-cloud</v-icon>
             <span :title="$t('Weather.cloudiness')">
               <b>{{ today.clouds.all }}</b> <span class="caption">%</span>
             </span>
           </v-flex>
-          <v-flex class="detail mb-1">
-            <v-icon medium color="foreground">wrap_text</v-icon>
+          <v-flex class="detail">
+            <v-icon medium color="foreground" class="rotate">mdi-rewind</v-icon>
             <span :title="$t('Weather.wind_speed')">
               <b>{{ today.wind.speed }}</b>
               <span v-if="settings.units === 'imperial'" class="caption">mph</span>
@@ -63,7 +63,7 @@
             </span>
           </v-flex>
           <v-flex class="detail mt-1">
-            <v-icon medium color="foreground">brightness_4</v-icon>
+            <v-icon medium color="foreground">mdi-brightness-4</v-icon>
             <v-layout
               :class="{ 'small-font': sunrise.length > 5 || sunset.length > 5 }" column align-end>
               <span :title="$t('Weather.sunrise')">{{ sunrise }}</span>
@@ -72,7 +72,7 @@
           </v-flex>
         </v-layout>
         <v-layout v-else-if="geoError" justify-space-around fill-height>
-          <v-icon color="foreground" x-large>gps_off</v-icon>
+          <v-icon color="foreground" x-large>mdi-crosshairs-gps</v-icon>
         </v-layout>
       </v-flex>
     </v-layout>

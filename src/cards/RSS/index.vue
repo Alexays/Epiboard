@@ -22,8 +22,8 @@
     <v-card-text v-else>
       <v-progress-linear v-if="loading" indeterminate/>
       <div v-else class="text-center">
-        <v-icon x-large>rss_feed</v-icon>
-        <h2 v-t="'RSS.empty'" class="subheading"/>
+        <v-icon x-large>mdi-rss</v-icon>
+        <h2 v-t="'RSS.empty'" class="subtitle-1"/>
       </div>
     </v-card-text>
   </div>

@@ -9,12 +9,12 @@ export default {
       required: true,
     },
   },
+  fallback: 'https://lastfm-img2.akamaized.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb',
   data() {
     return {
       loading: true,
       active: null,
       period: 'overall',
-      showTip: true,
       items: {},
     };
   },

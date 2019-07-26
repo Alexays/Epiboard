@@ -6,7 +6,7 @@
       <v-list-tile-avatar :size="16">
         <slot :item="item" name="icon">
           <v-img v-if="item.icon" :src="item.icon"/>
-          <v-icon v-else-if="icon">insert_drive_file</v-icon>
+          <v-icon v-else-if="icon">mdi-file</v-icon>
         </slot>
       </v-list-tile-avatar>
       <v-list-tile-content :title="item.url" class="caption">
