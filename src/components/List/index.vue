@@ -1,31 +1,31 @@
 <template>
   <v-list :class="{ 'pa-3': padding }" dense>
-    <v-list-tile
+    <v-list-item
       v-for="item of data"
-      :key="item.url+item.date" :href="item.url" @click="$emit('clicked', item)">
-      <v-list-tile-avatar :size="16">
-        <slot :item="item" name="icon">
-          <v-img v-if="item.icon" :src="item.icon"/>
-          <v-icon v-else-if="icon">mdi-file</v-icon>
-        </slot>
-      </v-list-tile-avatar>
-      <v-list-tile-content :title="item.url" class="caption">
-        <v-list-tile-sub-title>
-          <slot :item="item" name="content">
-            {{ item.title && item.title.length ? item.title : item.url }}
-          </slot>
-        </v-list-tile-sub-title>
-      </v-list-tile-content>
-      <v-list-tile-action>
-        <v-list-tile-action-text>
+      :key="item.url+item.date"
+      :href="item.url"
+      @click="$emit('clicked', item)"
+    >
+      <v-list-item-avatar :size="16">
+        <v-img v-if="item.icon" :src="item.icon" />
+        <v-icon v-else-if="icon">mdi-file</v-icon>
+      </v-list-item-avatar>
+      <v-list-item-content :title="item.url" class="caption">
+        <v-list-item-subtitle>
+          <slot
+            :item="item"
+            name="content"
+          >{{ item.title && item.title.length ? item.title : item.url }}</slot>
+        </v-list-item-subtitle>
+      </v-list-item-content>
+      <v-list-item-action>
+        <v-list-item-action-text>
           <slot :item="item" name="action">
-            <span v-if="item.date">
-              {{ item.date.toLocaleDateString($t('locale'), timeOptions) }}
-            </span>
+            <span v-if="item.date">{{ item.date.toLocaleDateString($t('locale'), timeOptions) }}</span>
           </slot>
-        </v-list-tile-action-text>
-      </v-list-tile-action>
-    </v-list-tile>
+        </v-list-item-action-text>
+      </v-list-item-action>
+    </v-list-item>
   </v-list>
 </template>
 <script>

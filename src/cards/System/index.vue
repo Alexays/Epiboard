@@ -1,5 +1,5 @@
 <template>
-  <v-card-text id="system">
+  <div id="system" class="pa-4">
     <div v-if="cpu" class="wrapper">
       <div class="wrapper-name">
         <v-icon>mdi-nfc-variant</v-icon>
@@ -82,7 +82,7 @@
         </li>
       </div>
     </div>
-  </v-card-text>
+  </div>
 </template>
 <script src="./main.js"></script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

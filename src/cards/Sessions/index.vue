@@ -5,15 +5,13 @@
     :light="$store.state.settings.theme.light"
     background-color="primary"
     grow
+    v-model="tab"
     show-arrows
   >
-    <v-tab :href="'#tab-recents'">
-      <span v-t="'Sessions.recents'" />
-    </v-tab>
-    <v-tab v-for="device in devices" :key="device.deviceName">{{ device.deviceName }}</v-tab>
-    <v-tabs-items>
+    <v-tab v-for="(tab, i) in tabs" :key="i">{{ tab.name }}</v-tab>
+    <v-tabs-items v-model="tab">
       <v-tab-item v-for="(tab, i) in tabs" :key="i">
-        <list v-if="tab.length" :data="tab" icon padding />
+        <List v-if="tab.data.length" :data="tab.data" icon padding />
         <v-card-text v-else class="text-center">
           <v-icon x-large>mdi-book-open-page-variant</v-icon>
           <h2 v-t="'Sessions.empty'" class="subtitle-1" />

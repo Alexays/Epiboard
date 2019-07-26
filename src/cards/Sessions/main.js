@@ -16,13 +16,20 @@ export default {
   },
   data() {
     return {
+      tab: 0,
       recents: [],
       devices: [],
     };
   },
   computed: {
     tabs() {
-      return [this.recents, ...this.devices.map(device => device.data)];
+      return [{
+        name: this.$t('Sessions.recents'),
+        data: this.recents,
+      }, ...this.devices.map(device => ({
+        name: device.deviceName,
+        data: device.data,
+      }))];
     },
   },
   created() {

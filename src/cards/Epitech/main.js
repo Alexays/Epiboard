@@ -16,6 +16,7 @@ export default {
       is_logged: false,
       loading: true,
       user: null,
+      tab: 0,
       projects: [],
       rooms: [],
       upcoming: [],

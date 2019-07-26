@@ -1,8 +1,8 @@
 import ResizeObserver from 'resize-observer-polyfill';
+import Muuri from 'muuri';
 import Card from '@/components/Card';
 import Toast from '@/components/Toast';
 import Cards from '@/cards';
-import Muuri from 'muuri';
 
 // @vue/component
 export default {

@@ -1,10 +1,10 @@
 <template>
   <div id="rss">
     <v-list v-if="items.length" three-line>
-      <v-list-tile v-for="item in items" :key="item.title" :href="item.link">
-        <v-list-tile-content :title="item.title">
-          <v-list-tile-sub-title class="text--primary">{{ item.title }}</v-list-tile-sub-title>
-          <v-list-tile-title class="caption text--secondary">
+      <v-list-item v-for="item in items" :key="item.title" :href="item.link">
+        <v-list-item-content :title="item.title">
+          <v-list-item-subtitle class="text--primary">{{ item.title }}</v-list-item-subtitle>
+          <v-list-item-title class="caption text--secondary">
             <v-layout>
               <v-flex>
                 {{ new Date(item.pubDate).toLocaleDateString($t('locale'), timeOptions) }}
@@ -15,9 +15,9 @@
                 </a>
               </v-flex>
             </v-layout>
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
     <v-card-text v-else>
       <v-progress-linear v-if="loading" indeterminate/>
