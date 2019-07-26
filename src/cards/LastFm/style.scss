@@ -36,7 +36,7 @@
 
     &:hover .overlay {
       opacity: 1;
-      background: linear-gradient(0deg, transparent 0%, #000 100%);
+      background: rgba(0, 0, 0, 0.5);
       padding-top: 10px
     }
 
