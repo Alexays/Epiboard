@@ -40,7 +40,7 @@
           <v-progress-linear v-else indeterminate/>
         </div>
       </v-flex>
-      <v-flex xs4 class="weather-info primary foreground--text head-drag">
+      <v-flex class="weather-info primary foreground--text head-drag">
         <v-layout v-if="today" class="title" column fill-height>
           <v-flex class="detail">
             <v-icon medium color="foreground">mdi-opacity</v-icon>
