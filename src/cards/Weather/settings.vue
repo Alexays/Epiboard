@@ -2,7 +2,7 @@
   <v-card-text>
     <h4 v-t="'Weather.settings.location'" class="subtitle-1"/>
     <v-layout align-center>
-      <v-checkbox v-model="settings.auto" label="Auto" class="mt-0" hide-details/>
+      <v-checkbox v-model="settings.auto" label="Auto" class="mt-0 mr-3"/>
       <v-text-field
         :disabled="settings.auto" v-model="settings.city" :label="$t('Weather.settings.city')"/>
     </v-layout>

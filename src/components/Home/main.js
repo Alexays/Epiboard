@@ -135,7 +135,18 @@ export default {
         dragPlaceholder: {
           enabled: true,
         },
-        dragStartPredicate: { handle: '.head-drag' },
+        dragStartPredicate: (item, e) => {
+          const headDrag = e.target.closest('.head-drag');
+          if (!headDrag || headDrag.closest('.card') !== item._element) {
+            return false;
+          }
+          // Check if it's a action button
+          const actions = headDrag.querySelector('.actions');
+          if (actions && actions.contains(e.target)) {
+            return false;
+          }
+          return true;
+        },
         dragSortHeuristics: {
           sortInterval: 0,
         },

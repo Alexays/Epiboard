@@ -9,7 +9,12 @@
           color="white"
           background-color="transparent"
           auto-grow
-          solo flat dark full-width @input="getTranslation"/>
+          solo
+          flat
+          dark
+          full-width
+          @input="getTranslation"
+        />
         <v-btn text dark small @click="showLangs('from')">
           <v-icon v-if="!menu" dark left>mdi-chevron-down</v-icon>
           <v-icon v-else dark left>mdi-chevron-up</v-icon>
@@ -27,7 +32,13 @@
           :rows="3"
           :placeholder="$t('Translate.to_ph')"
           background-color="transparent"
-          readonly auto-grow solo flat full-width @click="copyTranslation()"/>
+          readonly
+          auto-grow
+          solo
+          flat
+          full-width
+          @click="copyTranslation()"
+        />
         <v-btn text small @click="showLangs('to')">
           <v-icon v-if="!menu" dark left>mdi-chevron-down</v-icon>
           <v-icon v-else dark left>mdi-chevron-up</v-icon>
@@ -38,16 +49,23 @@
     <v-card-text v-show="!!menu" class="languages">
       <v-btn
         v-if="menu === 'from'"
-        :text="'auto' !== from" color="#2787F4" small dark depressed @click="setLang('auto')">
-        {{ $t('Translate.auto') }}
-      </v-btn>
+        :text="'auto' !== from"
+        color="#2787F4"
+        small
+        dark
+        depressed
+        @click="setLang('auto')"
+      >{{ $t('Translate.auto') }}</v-btn>
       <v-btn
         v-for="(val, key) of $options.languages"
         :key="key"
-        :text="key !== (menu === 'to' ? to : from)" color="#2787F4"
-        small dark depressed @click="setLang(key)">
-        {{ val }}
-      </v-btn>
+        :text="key !== (menu === 'to' ? to : from)"
+        color="#2787F4"
+        small
+        dark
+        depressed
+        @click="setLang(key)"
+      >{{ val }}</v-btn>
     </v-card-text>
   </div>
 </template>
