@@ -55,7 +55,7 @@
             </span>
           </v-flex>
           <v-flex class="detail">
-            <v-icon medium color="foreground" class="rotate">mdi-rewind</v-icon>
+            <v-icon medium color="foreground">mdi-weather-windy</v-icon>
             <span :title="$t('Weather.wind_speed')">
               <b>{{ today.wind.speed }}</b>
               <span v-if="settings.units === 'imperial'" class="caption">mph</span>

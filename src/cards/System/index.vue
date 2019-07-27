@@ -2,12 +2,13 @@
   <div id="system" class="pa-4">
     <div v-if="cpu" class="wrapper">
       <div class="wrapper-name">
-        <v-icon>mdi-nfc-variant</v-icon>
+        <v-icon v-if="cpu.archName.indexOf('64') > -1">mdi-cpu-64-bit</v-icon>
+        <v-icon v-else>mdi-cpu-32-bit</v-icon>
         <span class="caption" v-t="'System.cpu'" />
       </div>
       <div class="wrapper-info">
         {{ cpu.modelName }}
-        <p>
+        <p class="caption">
           {{ cpu.archName }} - {{ cpu.numOfProcessors }}
           <span
             v-t="{ path: 'System.core', choice: cpu.numOfProcessors }"
@@ -41,18 +42,18 @@
     </div>
     <div v-if="connection" class="wrapper">
       <div class="wrapper-name">
-        <v-icon>mdi-cloud-download</v-icon>
+        <v-icon>mdi-wan</v-icon>
         <span class="caption" v-t="'System.network'" />
       </div>
       <div class="wrapper-info">
         <v-layout>
           <div class="mr-3" :title="$t('System.estimation')">
-            <v-icon class="pr-1" small>mdi-download</v-icon>
+            <v-icon small>mdi-download</v-icon>
             <span v-if="connection.downlink === 10">></span>
             {{ connection.downlink }} Mb/s
           </div>
           <div :title="$t('System.rtt')">
-            <v-icon small>mdi-swap-verical</v-icon>
+            <v-icon small>mdi-autorenew</v-icon>
             {{ connection.rtt }}ms
             <sup class="grey--text">RTT</sup>
           </div>
@@ -61,7 +62,7 @@
     </div>
     <div v-if="storage.length" class="wrapper">
       <div class="wrapper-name">
-        <v-icon>mdi-sd</v-icon>
+        <v-icon>mdi-nas</v-icon>
         <span class="caption" v-t="'System.storage'" />
       </div>
       <div class="wrapper-info">

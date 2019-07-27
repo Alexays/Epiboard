@@ -4,27 +4,38 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+
     .v-progress-linear {
       margin: .5rem 0;
     }
+
+    .caption {
+      color: rgba(0, 0, 0, .54);
+    }
+
     .wrapper-name {
       margin-right: 20px;
       text-align: center;
       width: 50px;
     }
+
     .wrapper-info {
       width: 100%;
+
       .storage-unit {
         width: 100%;
         list-style: none;
       }
+
       i {
         vertical-align: middle;
       }
+
       .disk-name {
         text-overflow: ellipsis;
         vertical-align: middle;
       }
+
       .disk-capacity {
         float: right;
       }
