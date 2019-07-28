@@ -13,7 +13,6 @@ export const Periods = [
 
 export const Api = {
   parseRes(res) {
-    console.log(res);
     return res.map((f) => {
       f.image = {
         small: f.image[0]['#text'],

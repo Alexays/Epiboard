@@ -5,9 +5,7 @@
     :color="color"
     :style="{ cursor: callback ? 'pointer' : null }"
     :multi-line="!!desc" top right class="application" @click="(callback || dismiss)()">
-    <v-icon v-if="icon.length > 0" dark left>
-      {{ icon }}
-    </v-icon>
+    <v-icon v-if="icon.length > 0" v-text="icon" dark left />
     <v-layout column>
       <v-flex v-if="title">{{ title }}</v-flex>
       <v-flex v-if="desc">{{ desc }}</v-flex>
