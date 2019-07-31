@@ -29,18 +29,21 @@ export default {
     },
   },
   mounted() {
-    if (this.VALID_CACHE && !this.loading) return this.$emit('init', false);
-    return Promise.all([this.getUser(), this.getProjects()])
+    if (this.VALID_CACHE && !this.loading) {
+      this.$emit('init', false);
+      return;
+    }
+    Promise.all([this.getUser(), this.getProjects()])
       .then(() => API.getPlanning(this.user))
       .then((planning) => {
         this.getRoom(planning);
         this.getUpcoming(planning);
       })
+      .then(() => this.$emit('init', true))
+      .catch(err => this.$emit('init', err))
       .finally(() => {
         this.loading = false;
-      })
-      .then(() => this.$emit('init', true))
-      .catch(err => this.$emit('init', err));
+      });
   },
   methods: {
     getUser() {

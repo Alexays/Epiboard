@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import dark from "@/mixins/dark";
+import dark from '@/mixins/dark';
 
 export default {
-  name: "App",
+  name: 'App',
   mixins: [dark],
   computed: {
     customFont() {
@@ -28,7 +28,7 @@ export default {
     },
     debug() {
       return this.$store.state.settings.debug;
-    }
+    },
   },
   watch: {
     primary(hex) {
@@ -37,7 +37,7 @@ export default {
         const { light, secondary } = this.$store.state.settings.theme;
         theme.primary = hex;
         theme.secondary = secondary;
-        theme.foreground = light ? "#000000" : "#ffffff";
+        theme.foreground = light ? '#000000' : '#ffffff';
       }
     },
     isDark(val) {
@@ -53,27 +53,27 @@ export default {
       if (val === old) return;
       if (val && this.customCssUrl.length) this.loadCustomCss();
       else this.unloadCustomCss();
-    }
+    },
   },
   methods: {
     unloadCustomCss() {
-      const el = document.getElementById("custom-css");
+      const el = document.getElementById('custom-css');
       if (el) {
         el.remove();
       }
     },
     loadCustomCss() {
-      let el = document.getElementById("custom-css");
+      let el = document.getElementById('custom-css');
       if (!el) {
-        el = document.createElement("style");
-        el.setAttribute("type", "text/css");
-        el.setAttribute("id", "custom-css");
+        el = document.createElement('style');
+        el.setAttribute('type', 'text/css');
+        el.setAttribute('id', 'custom-css');
         document.head.appendChild(el);
       }
-      this.axios.get(this.customCssUrl).then(res => {
+      this.axios.get(this.customCssUrl).then((res) => {
         el.textContent = res.data;
       });
-    }
-  }
+    },
+  },
 };
 </script>

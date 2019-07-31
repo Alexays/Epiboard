@@ -130,14 +130,14 @@ export default {
     },
     initGrid() {
       this.$options.grid = new Muuri('#card-container', {
-        items: '.card',
+        items: '.v-card',
         dragEnabled: true,
         dragPlaceholder: {
           enabled: true,
         },
         dragStartPredicate: (item, e) => {
           const headDrag = e.target.closest('.head-drag');
-          if (!headDrag || headDrag.closest('.card') !== item._element) {
+          if (!headDrag || headDrag.closest('.v-card') !== item._element) {
             return false;
           }
           // Check if it's a action button

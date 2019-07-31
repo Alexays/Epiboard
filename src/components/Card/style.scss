@@ -1,42 +1,48 @@
-.card {
+.v-card {
   min-width: 400px;
   min-height: 100px;
   margin: 15px;
   position: absolute;
   z-index: 1;
-  .v-card {
+  overflow: hidden;
+
+  .v-toolbar__title {
+    font-weight: normal;
+    text-transform: capitalize;
+  }
+
+  .v-toolbar--absolute {
+    background-color: transparent !important;
+  }
+
+  .subtitle-1 {
     overflow: hidden;
-    .v-toolbar__title {
-      font-weight: normal;
-      text-transform: capitalize;
-    }
-    .v-toolbar--absolute {
-      background-color: transparent!important;
-    }
-    .subtitle-1 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-    .head-drag {
-      cursor: grab;
-    }
-    .v-toolbar--dense {
-      padding: 5px 0;
-    }
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .head-drag {
+    cursor: grab;
+  }
+
+  .v-toolbar--dense {
+    padding: 5px 0;
   }
 }
 
 .muuri-item-dragging {
   z-index: 3 !important;
+
   .head-drag {
-    cursor: grabbing!important;
+    cursor: grabbing !important;
   }
 }
+
 .muuri-item-releasing {
   z-index: 2 !important;
 }
+
 .muuri-item-hidden {
   z-index: 0 !important;
 }

@@ -7,7 +7,7 @@
       "content": "This is your shiny new tab page !"
     },
     "why": {
-      "title": "Why Epiboard is Awesome",
+      "title": "Why Epiboard is Awesome?",
       "prefs": "Preferences synced across your browsers (if signed in)",
       "needs": "One card for each need",
       "privacy": "Epiboard only requests permissions when needed"

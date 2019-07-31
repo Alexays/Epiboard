@@ -7,7 +7,7 @@
       "content": "Toto je vaša nová, úžasná karta !"
     },
     "why": {
-      "title": "Prečo je Epiboard úžasný? ",
+      "title": "Prečo je Epiboard úžasný?",
       "prefs": "Predvoľby sú synchronizované naprieč vašimi prehliadačmi (ak ste prihlásený)",
       "needs": "Jedna karta pre každú potrebu",
       "privacy": "Epiboard vyžaduje oprávnenia iba v prípade potreby"
@@ -37,13 +37,13 @@
     "Servus!",
     "Skús sa usmievať, funguje to!",
     "Ide ti to!",
-    "Poďme sa motivovať, čo ty na to?", 
+    "Poďme sa motivovať, čo ty na to?",
     "Do toho kamoš!",
     "Môžeš sa stať kýmkoľvek len chceš!"
   ],
   "permissions": {
     "required": "Oprávnenia sú vyžadované",
-    "message": "'{name}' žiada o oprávnenia, ktoré sú potrebné na to, aby '{name}' fungovalo správne, je to v poriadku?", 
+    "message": "'{name}' žiada o oprávnenia, ktoré sú potrebné na to, aby '{name}' fungovalo správne, je to v poriadku?",
     "allow": "Povoliť",
     "deny": "Zamietnuť"
   },
@@ -61,12 +61,12 @@
     "header": "Hlavička",
     "browse": "prehľadávať",
     "theme": "Téma",
-    "analytics_desc": "Náhľad, ako použijete karty", 
+    "analytics_desc": "Náhľad, ako použijete karty",
     "custom_css": "Voliteľné CSS",
     "custom_css_desc": "Vložte URL vášho CSS súboru, napr. https://example.com/style.css",
     "custom_css_warning": "Varovanie! Úprava CSS je iba pre pokročilých uživateľov, zanechajte prázdne pre predvolenú tému",
     "debug_desc": "Ak si na to trúfaš",
-    "apply_change": "Ak chcete použiť zmeny, musíte použiť tlačidlo Späť alebo kliknite na tlačidlo Uložiť v spodnej časti stránky", 
+    "apply_change": "Ak chcete použiť zmeny, musíte použiť tlačidlo Späť alebo kliknite na tlačidlo Uložiť v spodnej časti stránky",
     "reset": "Obnova nastavení",
     "save": "Uložiť",
     "saved": "Uložené !",
@@ -81,7 +81,7 @@
     },
     "dark": {
       "title": "Tmavý režim",
-      "desc": "Všetko sa stane tmavým", 
+      "desc": "Všetko sa stane tmavým",
       "auto": "Auto",
       "from": "Od",
       "to": "Do"
@@ -96,9 +96,9 @@
     "choose": {
       "lang": "Vyberte si jazyk",
       "24h": "Vynútiť 24-hodinový formát",
-      "design": "Vyberte si váš preferovaný dizajn", 
+      "design": "Vyberte si váš preferovaný dizajn",
       "background": "Vyberte si pozadie",
-      "trends": "Vyberte si krajinu Google trendov", 
+      "trends": "Vyberte si krajinu Google trendov",
       "color": "Vyberte si hlavnú farbu",
       "custom_font": "Použiť špeciálny font"
     },
@@ -108,7 +108,7 @@
     },
     "auth": {
       "title": "Pripojené služby",
-      "desc": "Povolenie kariet na prístup k funkciám týchto služieb" 
+      "desc": "Povolenie kariet na prístup k funkciám týchto služieb"
     },
     "placeholder": {
       "background": "Z URL, napr. https://i.imgur.com/foVYQ6T.jpg",

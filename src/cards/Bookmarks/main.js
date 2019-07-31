@@ -40,13 +40,10 @@ export default {
       ];
     },
   },
-  created() {
+  mounted() {
     Promise.all([this.getRecent(), this.getAll()])
       .then(() => this.$emit('init', ['foldersId', 'active']))
       .catch(err => this.$emit('init', err));
-  },
-  mounted() {
-    // getFolders is run in 'mounted' because it needs cache.
     this.getFolders();
   },
   methods: {

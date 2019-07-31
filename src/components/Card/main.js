@@ -62,10 +62,8 @@ export default {
     };
   },
   computed: {
-    defaultTitle() {
-      const translation = this.$t(`${this.$vnode.key}.title`);
-      if (translation === `${this.$vnode.key}.title`) return this.$vnode.key;
-      return translation;
+    cardTitle() {
+      return `${this.$vnode.key}.title`;
     },
     theme() {
       if (this.$options.manifest.theme && !this.showSettings) {
@@ -75,9 +73,6 @@ export default {
     },
     debug() {
       return this.$store.state.settings.debug;
-    },
-    size() {
-      return ((this.$options.manifest.size || 1) * 430) - 30;
     },
     titleColor() {
       if (this.theme && this.theme.title) {

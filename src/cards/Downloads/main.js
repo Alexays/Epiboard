@@ -31,7 +31,7 @@ export default {
       title: this.$t('Downloads.clear'),
       func: () => this.removeAll(),
     }]);
-    Promise.all([this.getDownloads()])
+    this.getDownloads()
       .then(() => {
         this.listenChange();
         this.listenCreate();

@@ -1,9 +1,12 @@
 <template>
   <v-content id="onboarding">
-    <v-container fluid>
+    <v-container
+      fluid
+      :class="{ 'has-toolbar': $store.state.settings.header.design === 'toolbar' }"
+    >
       <v-layout align-center>
         <transition name="slide-fade-transition" mode="out-in">
-          <component :is="$options.board[index]" @next="next" @prev="prev"/>
+          <component :is="$options.board[index]" @next="next" @prev="prev" />
         </transition>
       </v-layout>
     </v-container>

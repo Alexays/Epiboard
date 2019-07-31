@@ -1,18 +1,23 @@
 <template>
   <v-card :width="500" hover raised dark class="primary foreground--text mx-auto mt-4">
     <v-card-title class="secondary">
-      <h3 v-t="'onboarding.why.title'" class="headline"/>
+      <h3 v-t.preserve="'onboarding.why.title'" class="headline" />
     </v-card-title>
-    <v-card-text>
-      <v-checkbox :label="$t('onboarding.why.prefs')" input-value="true" value readonly/>
-      <v-checkbox :label="$t('onboarding.why.needs')" input-value="true" value readonly/>
-      <v-checkbox :label="$t('onboarding.why.privacy')" input-value="true" value readonly/>
-      <v-checkbox label="Material Design" input-value="true" value readonly/>
+    <v-card-text class="pt-4">
+      <v-checkbox :label="$t('onboarding.why.prefs')" input-value="true" value readonly />
+      <v-checkbox :label="$t('onboarding.why.needs')" input-value="true" value readonly />
+      <v-checkbox :label="$t('onboarding.why.privacy')" input-value="true" value readonly />
+      <v-checkbox label="Material Design" input-value="true" value readonly />
     </v-card-text>
     <v-card-actions class="secondary">
-      <v-btn v-t="'onboarding.previous'" color="teal lighten-4" text @click="$emit('prev')"/>
-      <v-spacer/>
-      <v-btn v-t="'onboarding.next'" color="teal lighten-4" text @click="$emit('next')"/>
+      <v-btn
+        v-t.preserve="'onboarding.previous'"
+        color="teal lighten-4"
+        text
+        @click="$emit('prev')"
+      />
+      <v-spacer />
+      <v-btn v-t.preserve="'onboarding.next'" color="teal lighten-4" text @click="$emit('next')" />
     </v-card-actions>
   </v-card>
 </template>

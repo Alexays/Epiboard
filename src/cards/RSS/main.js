@@ -32,11 +32,11 @@ export default {
         }));
         this.items = [].concat(...items).sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
       })
+      .then(() => this.$emit('init', true))
+      .catch(err => this.$emit('init', err))
       .finally(() => {
         this.loading = false;
-      })
-      .then(() => this.$emit('init', true))
-      .catch(err => this.$emit('init', err));
+      });
   },
   methods: {
     fetch(url) {

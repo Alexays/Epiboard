@@ -23,7 +23,7 @@ export default {
       return true;
     },
   },
-  created() {
+  beforeCreate() {
     this.$emit('init');
   },
   methods: {

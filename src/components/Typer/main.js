@@ -73,8 +73,7 @@ export default {
       return !this.isTyping;
     },
     finishTyping() {
-      if (this.typing === null || this.currentWord === null) return false;
-      if (!this.hasStarted) return false;
+      if (!this.hasStarted || this.typing === null) return false;
       return this.isTyping && this.typing.length >= this.currentWord.length;
     },
     hasStarted() {
