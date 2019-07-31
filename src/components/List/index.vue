@@ -6,12 +6,10 @@
       :href="item.url"
       @click="$emit('clicked', item)"
     >
-      <v-list-item-avatar v-if="item.icon" :size="16">
-        <v-img :src="item.icon" @error="() => item.icon = null"/>
+      <v-list-item-avatar :size="16">
+        <v-img v-if="item.icon" :src="item.icon" @error="() => item.icon = null"/>
+        <v-icon v-else-if="icon" small>mdi-file</v-icon>
       </v-list-item-avatar>
-      <v-list-item-icon v-else-if="icon">
-        <v-icon small>mdi-file</v-icon>
-      </v-list-item-icon>
       <v-list-item-content :title="item.url" class="caption">
         <v-list-item-subtitle>
           <slot

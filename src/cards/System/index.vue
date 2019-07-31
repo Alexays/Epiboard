@@ -66,7 +66,7 @@
         <span class="caption" v-t="'System.storage'" />
       </div>
       <div class="wrapper-info">
-        <li v-for="unit in storage" :key="unit.name" class="storage-unit">
+        <div v-for="unit in storage" :key="unit.name" class="storage-unit">
           <v-icon v-if="unit.type === 'removable'" small>mdi-usb</v-icon>
           <span class="disk-name">
             <template v-if="unit.name">{{ unit.name | truncate(25) }}</template>
@@ -80,7 +80,7 @@
             <v-progress-linear :height="6" :value="unit.percent" color="accent" />
           </template>
           <span v-else class="disk-capacity">{{ unit.capacity | bytes }}</span>
-        </li>
+        </div>
       </div>
     </div>
   </div>

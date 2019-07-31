@@ -82,14 +82,14 @@
       <h4 v-t="'settings.choose.color'" class="subtitle-1" />
       <v-layout>
         <v-flex xs6 class="picker mr-4">
-          <li
+          <div
             v-for="color in $options.palette"
             :key="color"
             :style="{ 'background-color': color }"
             @click="themeChange(color)"
           >
             <div v-show="settings.theme.primary.toLowerCase() === color" class="color-dot" />
-          </li>
+          </div>
         </v-flex>
         <v-text-field
           v-model.lazy="settings.theme.primary"

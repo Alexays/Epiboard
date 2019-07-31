@@ -1,6 +1,6 @@
 <template>
   <div class="grid-list">
-    <li v-for="node in data" :key="node.name" class="node">
+    <div v-for="node in data" :key="node.name" class="node">
       <a
         :href="node.url"
         :title="node.name"
@@ -9,7 +9,7 @@
           width: `${size}px`, height: `${size}px`,
         }"
         @click="$emit('clicked', node)"/>
-    </li>
+    </div>
   </div>
 </template>
 <script>
