@@ -32,7 +32,7 @@
           </v-layout>
         </v-layout>
         <div v-else class="mt-12">
-          <p v-if="geoError" class="subtitle-1 red lighten-1">{{ geoError }}</p>
+          <p v-if="geoError" class="subtitle-1 red--text text--lighten-1">{{ geoError }}</p>
           <v-progress-linear v-else indeterminate />
         </div>
       </v-flex>
@@ -73,7 +73,7 @@
           </v-flex>
         </v-layout>
         <v-layout v-else-if="geoError" justify-space-around fill-height>
-          <v-icon color="foreground" x-large>mdi-crosshairs-gps</v-icon>
+          <v-icon color="foreground" x-large>map-marker-off</v-icon>
         </v-layout>
       </v-flex>
     </v-layout>
