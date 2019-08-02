@@ -73,7 +73,7 @@
           </v-flex>
         </v-layout>
         <v-layout v-else-if="geoError" justify-space-around fill-height>
-          <v-icon color="foreground" x-large>map-marker-off</v-icon>
+          <v-icon color="foreground" x-large>mdi-map-marker-off</v-icon>
         </v-layout>
       </v-flex>
     </v-layout>
