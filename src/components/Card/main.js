@@ -1,7 +1,6 @@
 import Toast from '@/components/Toast';
 import Cards from '@/cards';
 import Permissions from '@/mixins/permissions';
-import Utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -41,7 +40,7 @@ export default {
       },
     },
   },
-  mixins: [Permissions, Utils],
+  mixins: [Permissions],
   card: null,
   settings: null,
   pendingSave: false,
@@ -90,13 +89,13 @@ export default {
     },
     settings() {
       const defaultSettings = Object.freeze(Cards[this.$vnode.key].settings);
-      if (!defaultSettings || this.hash == null) return {};
+      if (!defaultSettings && this.hash !== null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.name];
       if (!tmp) return defaultSettings;
       const data = { ...defaultSettings };
       const keys = Object.keys(data);
       for (let i = 0; i < keys.length; i += 1) {
-        if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
+        if (tmp[keys[i]]) {
           data[keys[i]] = tmp[keys[i]];
         }
       }
@@ -104,10 +103,10 @@ export default {
     },
   },
   beforeCreate() {
-    this.$options.manifest = Cards[this.$vnode.key].manifest || {};
+    const card = Cards[this.$vnode.key];
+    this.$options.manifest = card.manifest || {};
     this.$options.card = () => this.hasPermissions()
       .then(() => import(/* webpackMode: "eager" */`@/cards/${this.$vnode.key}/index.vue`))
-      .then(tmp => tmp.default)
       .catch((err) => {
         Toast.show({
           title: this.$t('card.permissions_failed', { id: this.$vnode.key }),
@@ -118,9 +117,8 @@ export default {
         this.remove();
         throw err;
       });
-    if (Cards[this.$vnode.key].settings && Cards[this.$vnode.key].settingsCmp) {
-      this.$options.settings = () => import(/* webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${this.$vnode.key}/settings.vue`)
-        .then(tmp => tmp.default);
+    if (card.settings && card.settingsCmp) {
+      this.$options.settings = () => import(/* webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${this.$vnode.key}/settings.vue`);
     }
   },
   methods: {
@@ -131,8 +129,10 @@ export default {
         || this.$store.state.cache.validCards.indexOf(this.name) > -1) {
         return Promise.resolve();
       }
-      const payload = { permissions: permissions || [], origins: origins || [] };
-      return this.checkPermissions(payload, this.defaultTitle);
+      return this.checkPermissions({
+        permissions: permissions || [],
+        origins: origins || [],
+      }, this.defaultTitle);
     },
     remove() {
       const { permissions, origins } = this.$options.manifest;

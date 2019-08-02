@@ -14,15 +14,20 @@
           <v-icon v-else>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-btn
-        v-for="card in availableCards"
-        :key="card"
-        :title="getTranslation(`${card}.description`)"
-        color="green"
-        dark
-        small
-        @click="addCard(card)"
-      >{{ getTranslation(`${card}.title`) || card }}</v-btn>
+      <template v-if="fab">
+        <v-btn
+          v-for="card in availableCards"
+          :key="card"
+          :title="$te(`${card}.description`) ? $t(`${card}.description`) : null"
+          color="green"
+          dark
+          small
+          @click="addCard(card)"
+        >
+          <template v-if="$te(`${card}.title`)">{{ $t(`${card}.title`) }}</template>
+          <template v-else>{{ card }}</template>
+        </v-btn>
+      </template>
     </v-speed-dial>
     <transition-group
       v-if="!$options.isPreRender"

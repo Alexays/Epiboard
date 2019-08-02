@@ -1,4 +1,3 @@
-import '@mdi/font/css/materialdesignicons.css';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';

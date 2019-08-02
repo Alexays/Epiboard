@@ -8,7 +8,7 @@
   "error": {
     "title": "Geolocation error",
     "unsupported": "Geolocation is not supported please enter city name in card settings.",
-    "sample": "Try later or enter a city manually in card settings."
+    "sample": "Retry later or enter a city manually in card settings."
   },
   "settings": {
     "location": "Location",
