@@ -4,12 +4,7 @@
       <h4 v-t="'settings.langs'" class="headline" />
       <v-autocomplete :items="langs" v-model="settings.lang" :label="$t('settings.choose.lang')" />
       <h4 v-t="'settings.choose.24h'" class="subtitle-1" />
-      <v-switch
-        v-model="settings.hour24"
-        :label="$tc('settings.onOff', settings.hour24)"
-        class="mt-0 mb-2"
-        hide-details
-      />
+      <v-switch v-model="settings.hour24" :label="$tc('settings.onOff', settings.hour24)" />
       <h4 v-t="'settings.header'" class="headline" />
       <h4 v-t="'settings.choose.design'" class="subtitle-1" />
       <v-radio-group v-model="settings.header.design" :mandatory="false">
@@ -26,8 +21,9 @@
           v-if="settings.header.background === 'url'"
           v-model.lazy="settings.header.backgroundUrl"
           :label="$t('settings.placeholder.background')"
+          class="ml-3"
         />
-        <div v-if="settings.header.background === 'local'" class="file-btn">
+        <div v-if="settings.header.background === 'local'" class="file-btn ml-3">
           <input ref="inputLocal" type="file" accept="image/*" @change="fileChange" />
           <v-btn
             :loading="localLoading"
@@ -39,13 +35,12 @@
         </div>
       </v-layout>
       <h4 class="subtitle-1">Google Trends</h4>
-      <v-layout align-center>
+      <v-layout align-baseline>
         <v-flex xs2>
           <v-switch
             v-model="settings.trends.enabled"
             :label="$tc('settings.onOff', settings.trends.enabled)"
             class="mt-0"
-            hide-details
           />
         </v-flex>
         <v-autocomplete
@@ -56,14 +51,13 @@
         />
       </v-layout>
       <h4 v-t="'settings.custom_message'" class="subtitle-1" />
-      <v-layout align-center>
+      <v-layout align-baseline>
         <v-flex xs2>
           <v-switch
             v-model="settings.header.customMessage"
             :disabled="settings.trends.enabled"
             :label="$tc('settings.onOff', settings.header.customMessage)"
             class="mt-0"
-            hide-details
           />
         </v-flex>
         <v-text-field
@@ -71,6 +65,7 @@
           :disabled="settings.trends.enabled || !settings.header.customMessage"
           :label="$t(`settings.placeholder.${settings.trends.enabled
             ? 'custom_desactived' : 'custom_message'}`)"
+          persistent-hint
         />
       </v-layout>
       <h4 class="subtitle-1">Google Doodles</h4>
@@ -125,13 +120,11 @@
       </template>
       <h4 v-t="'settings.dark.title'" class="headline" />
       <h4 v-t="'settings.dark.desc'" class="subtitle-1" />
-      <v-layout align-center>
+      <v-layout align-baseline>
         <v-flex xs2>
           <v-switch
             :label="$tc('settings.onOff', settings.dark.enabled)"
             v-model="settings.dark.enabled"
-            class="mt-0"
-            hide-details
           />
         </v-flex>
         <v-flex xs2>
@@ -139,8 +132,6 @@
             :disabled="!settings.dark.enabled"
             :label="$t('settings.dark.auto')"
             v-model="settings.dark.auto"
-            class="mt-0"
-            hide-details
           />
         </v-flex>
         <v-menu
@@ -227,18 +218,17 @@
         v-model="settings.whatsnew"
         hide-details
       />
-      <v-layout class="pt-4" align-center>
+      <v-divider class="ma-5"></v-divider>
+      <v-layout align-center>
         <v-btn v-t="'settings.save'" color="primary" @click="save" />
         <v-btn v-t="'settings.reset'" text @click="reset" />
-        <v-flex>
-          <p class="text-right">
-            Made with
-            <a alt="Donate" href="https://paypal.me/ARouillard">
-              <v-icon small color="red">heart</v-icon>
-            </a> by
-            <a href="https://arouillard.fr">Alexis Rouillard</a>
-            | {{ $options.version }}
-          </p>
+        <v-flex class="text-right">
+          Made with
+          <a alt="Donate" href="https://paypal.me/ARouillard">
+            <v-icon small color="red">mdi-heart</v-icon>
+          </a> by
+          <a href="https://arouillard.fr">Alexis Rouillard</a>
+          | {{ $options.version }}
         </v-flex>
       </v-layout>
     </v-card>

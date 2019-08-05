@@ -7,6 +7,10 @@
   color: #2c3e50;
 }
 
+a {
+  text-decoration: none;
+}
+
 .v-application.theme--dark {
   ::-webkit-scrollbar-thumb {
     background: #ddd;

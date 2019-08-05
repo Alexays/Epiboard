@@ -2,10 +2,13 @@
   .v-card {
     padding: 25px;
   }
+  .headline {
+    margin-top: 8px;
+  }
   .picker {
     display: flex;
     margin: auto;
-    li {
+    div {
       width: 25px;
       height: 25px;
       display: flex;
