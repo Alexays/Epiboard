@@ -41,10 +41,10 @@ export default {
       return browser.topSites.get().then((topSites) => {
         this.topSites = topSites.slice(0, this.settings.maxSites)
           .map((f) => {
-            const icon = this.settings.grid
+            f.icon = this.settings.grid
               ? this.getFavicon(new URL(f.url).hostname, this.size)
               : this.getFavicon(f.url);
-            return { ...f, icon };
+            return f;
           });
       });
     },
