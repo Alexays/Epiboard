@@ -140,8 +140,8 @@ export default {
     },
     init(res) {
       this.loaded = 1;
-      if (res === undefined) {
-        if (this.$store.state.cache.cards[this.name] !== undefined) {
+      if (res === undefined || res === false) {
+        if (res === undefined && this.$store.state.cache.cards[this.name] !== undefined) {
           this.$store.commit('DEL_CARD_CACHE', this.name);
         }
         this.$store.commit('ADD_VALID_CARD', this.name);
@@ -156,10 +156,9 @@ export default {
           dismissible: false,
         });
         if (this.$store.state.settings.debug) throw res;
-      } else if (res === true || res === false || Array.isArray(res)) {
+      } else if (res === true || Array.isArray(res)) {
         this.$store.commit('ADD_VALID_CARD', this.name);
         const toWatch = Array.isArray(res) ? vm => res.map(f => vm[f]) : '$data';
-        console.log(this.$refs.card);
         this.$refs.card.$watch(toWatch, () => {
           const o = this.$refs.card.$data;
           const data = Array.isArray(res)
