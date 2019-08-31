@@ -28,3 +28,8 @@ a {
 ::-webkit-scrollbar-thumb {
   background: #666;
 }
+
+// TODO: Remove after vuetify update
+.v-menu--inline {
+  display: none !important;
+}

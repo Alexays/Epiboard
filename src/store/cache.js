@@ -14,11 +14,6 @@ const defaultState = {
     filename: null,
     dataUrl: '',
   },
-  google: {
-    accessToken: null,
-    refreshToken: null,
-    exp: 0,
-  },
 };
 
 export default {

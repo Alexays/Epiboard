@@ -29,6 +29,7 @@ Vue.use(Vuex);
 const restoreState = (key, storage) => storage
   .getItem(key)
   .then((data) => {
+    console.log(data);
     document.dispatchEvent(new Event('storageReady'));
     if (data) return JSON.parse(data);
     return null;

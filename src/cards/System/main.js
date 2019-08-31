@@ -13,15 +13,15 @@ export default {
     };
   },
   created() {
-    return Promise.all([
+    if (navigator.connection) {
+      this.getConnection();
+      navigator.connection.onchange = this.getConnection;
+    }
+    Promise.all([
       this.getCpu(),
       this.getMemory(),
       this.getStorage(),
     ]).then(() => {
-      if (navigator.connection) {
-        this.getConnection();
-        navigator.connection.onchange = this.getConnection;
-      }
       browser.system.storage.onAttached.addListener(this.addStorage);
       browser.system.storage.onDetached.addListener(this.removeStorage);
       setInterval(this.getCpu, 3000);

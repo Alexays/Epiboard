@@ -11,6 +11,7 @@ import store from '@/store';
 import '@/style.scss';
 
 Vue.config.productionTip = false;
+Vue.config.performance = true;
 
 // TODO: Firefox doesnt allow to load external script
 if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {

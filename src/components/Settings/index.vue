@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid id="settings">
+  <v-container id="settings">
     <v-card class="container">
       <h4 v-t="'settings.langs'" class="headline" />
       <v-autocomplete :items="langs" v-model="settings.lang" :label="$t('settings.choose.lang')" />
@@ -189,19 +189,6 @@
           />
         </v-menu>
       </v-layout>
-      <template v-if="$gauth_isConnected">
-        <h4 v-t="'settings.auth.title'" class="headline" />
-        <h4 v-t="'settings.auth.desc'" class="subtitle-1" />
-        <v-layout align-center class="py-4">
-          <v-btn
-            v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
-            :disabled="!$gauth_isConnected"
-            color="blue"
-            class="white--text ma-0"
-            @click="$gauth_revoke()"
-          />
-        </v-layout>
-      </template>
       <h4 class="headline">Google Analytics</h4>
       <h4 v-t="'settings.analytics_desc'" class="subtitle-1" />
       <v-switch

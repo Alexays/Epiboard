@@ -159,6 +159,7 @@ export default {
       } else if (res === true || res === false || Array.isArray(res)) {
         this.$store.commit('ADD_VALID_CARD', this.name);
         const toWatch = Array.isArray(res) ? vm => res.map(f => vm[f]) : '$data';
+        console.log(this.$refs.card);
         this.$refs.card.$watch(toWatch, () => {
           const o = this.$refs.card.$data;
           const data = Array.isArray(res)
@@ -185,7 +186,19 @@ export default {
       this.showSettings = false;
     },
     saveSettings(data) {
-      this.$store.commit('SET_CARD_SETTINGS', { key: this.name, data });
+      const defaultSettings = Cards[this.$vnode.key].settings;
+      const keys = Object.keys(defaultSettings);
+      const diff = keys.reduce((acc, key) => {
+        if (data[key] !== defaultSettings[key]) {
+          acc[key] = data[key];
+        }
+        return acc;
+      }, {});
+      if (Object.keys(diff).length > 0) {
+        this.$store.commit('SET_CARD_SETTINGS', { key: this.name, data: diff });
+      } else {
+        this.$store.commit('DEL_CARD_SETTINGS', this.name);
+      }
       this.reload(false);
       this.$options.pendingSave = false;
     },

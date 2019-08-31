@@ -162,7 +162,7 @@ export default {
         Toast.show({
           title: this.$t('settings.donate.title'),
           desc: this.$t('settings.donate.desc'),
-          icon: 'card_giftcard',
+          icon: 'mdi-wallet-giftcard',
           color: '#27ae60',
           timeout: 0,
           callback: () => {
