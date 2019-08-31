@@ -29,7 +29,6 @@ Vue.use(Vuex);
 const restoreState = (key, storage) => storage
   .getItem(key)
   .then((data) => {
-    console.log(data);
     document.dispatchEvent(new Event('storageReady'));
     if (data) return JSON.parse(data);
     return null;
@@ -63,10 +62,11 @@ const vuexPersistEmitter = (store) => {
   /* eslint-disable no-param-reassign */
   store._vm.$root.$data['vuex-persit-wait'] = 0;
   document.addEventListener('storageReady', () => {
-    store._vm.$root.$data['vuex-persit-wait'] += 1;
-    if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
+    if (store._vm.$root.$data['vuex-persit-wait'] === 1) {
       store._vm.$root.$emit('storageReady');
+      return;
     }
+    store._vm.$root.$data['vuex-persit-wait'] += 1;
   }, false);
   /* eslint-enable no-param-reassign */
 };
