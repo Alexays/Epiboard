@@ -9,13 +9,13 @@
         <h2 v-t="'Changelog.empty'" class="subtitle-1"/>
       </template>
     </v-card-text>
-    <p class="previous caption">
+    <span class="previous caption">
       <span v-t="'Changelog.missed'"/>&nbsp;
       <a
         v-t="'Changelog.previous'"
         href="https://github.com/Alexays/Epiboard/releases"
         target="_blank" rel="noopener" class="foreground--text"/>
-    </p>
+    </span>
   </div>
 </template>
 <script src="./main.js"></script>
