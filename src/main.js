@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
@@ -11,7 +10,6 @@ import store from '@/store';
 import '@/style.scss';
 
 Vue.config.productionTip = false;
-Vue.config.performance = true;
 
 // TODO: Firefox doesnt allow to load external script
 if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {
@@ -26,7 +24,6 @@ if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {
   });
 }
 
-Vue.use(Vuex);
 Vue.use(Vuetify);
 Vue.use(VueAxios, axios);
 // eslint-disable-next-line no-new
