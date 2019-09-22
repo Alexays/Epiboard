@@ -100,7 +100,7 @@ export default {
     const card = Cards[this.$vnode.key];
     this.$options.manifest = card.manifest || {};
     this.$options.card = () => this.hasPermissions()
-      .then(() => import(/* webpackMode: "eager" */`@/cards/${this.$vnode.key}/index.vue`))
+      .then(() => import(/* webpackChunkName: "cards", webpackMode: "lazy-once" */`@/cards/${this.$vnode.key}/index.vue`))
       .catch((err) => {
         Toast.show({
           title: this.$t('card.permissions_failed', { id: this.$vnode.key }),

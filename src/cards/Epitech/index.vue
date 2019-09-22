@@ -9,11 +9,11 @@
     </v-card-text>
     <v-tabs
       v-else
+      v-model="tab"
       :dark="!$store.state.settings.theme.light"
       :light="$store.state.settings.theme.light"
       slider-color="foreground"
       background-color="primary"
-      v-model="tab"
       grow
     >
       <v-tab v-for="tab in ['Infos', 'Upcoming', 'Occupied Rooms']" :key="tab">{{ tab }}</v-tab>
@@ -85,7 +85,9 @@
               <v-list-item-content>
                 <v-list-item-title>{{ activity.room.code | filename }}</v-list-item-title>
                 <v-list-item-subtitle>{{ activity.acti_title }}</v-list-item-subtitle>
-                <v-list-item-subtitle>{{ activity.startString }}&#8594;{{ activity.endString }}</v-list-item-subtitle>
+                <v-list-item-subtitle>
+                  {{ activity.startString }}&#8594;{{ activity.endString }}
+                </v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action
                 :title="`${activity.total_students_registered} student(s)`
@@ -109,7 +111,9 @@
               <v-list-item-content>
                 <v-list-item-title>{{ room.room.code | filename }}</v-list-item-title>
                 <v-list-item-subtitle>{{ room.acti_title }}</v-list-item-subtitle>
-                <v-list-item-subtitle>{{ room.startString }}&#8594;{{ room.endString }}</v-list-item-subtitle>
+                <v-list-item-subtitle>
+                  {{ room.startString }}&#8594;{{ room.endString }}
+                </v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action
                 :title="`${room.total_students_registered} student(s)`

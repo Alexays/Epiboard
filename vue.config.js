@@ -150,8 +150,8 @@ module.exports = {
         options.filename = options.filename.replace('[contenthash:8]', id);
         options.chunkFilename = options.chunkFilename.replace('[contenthash:8]', id);
       }
-      /* eslint-enable no-param-reassign */
       config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
+      /* eslint-enable no-param-reassign */
     }
     // Copy proper manifest to dist
     config.plugins.push(new CopyWebpackPlugin([{

@@ -4,7 +4,7 @@
       <div class="wrapper-name">
         <v-icon v-if="cpu.archName.indexOf('64') > -1">mdi-cpu-64-bit</v-icon>
         <v-icon v-else>mdi-cpu-32-bit</v-icon>
-        <span class="caption" v-t="'System.cpu'" />
+        <span v-t="'System.cpu'" class="caption" />
       </div>
       <div class="wrapper-info">
         {{ cpu.modelName }}
@@ -27,7 +27,7 @@
     <div v-if="memory" class="wrapper">
       <div class="wrapper-name">
         <v-icon>mdi-memory</v-icon>
-        <span class="caption" v-t="'System.memory'" />
+        <span v-t="'System.memory'" class="caption" />
       </div>
       <div class="wrapper-info">
         {{ memory.load.progress | bytes }} /
@@ -43,11 +43,11 @@
     <div v-if="connection" class="wrapper">
       <div class="wrapper-name">
         <v-icon>mdi-wan</v-icon>
-        <span class="caption" v-t="'System.network'" />
+        <span v-t="'System.network'" class="caption" />
       </div>
       <div class="wrapper-info">
         <v-layout>
-          <div class="mr-3" :title="$t('System.estimation')">
+          <div :title="$t('System.estimation')" class="mr-3">
             <v-icon small>mdi-download</v-icon>
             <span v-if="connection.downlink === 10">></span>
             {{ connection.downlink }} Mb/s
@@ -63,7 +63,7 @@
     <div v-if="storage.length" class="wrapper">
       <div class="wrapper-name">
         <v-icon>mdi-nas</v-icon>
-        <span class="caption" v-t="'System.storage'" />
+        <span v-t="'System.storage'" class="caption" />
       </div>
       <div class="wrapper-info">
         <div v-for="unit in storage" :key="unit.name" class="storage-unit">

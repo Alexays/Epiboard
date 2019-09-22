@@ -7,7 +7,7 @@
       @click="$emit('clicked', item)"
     >
       <v-list-item-avatar :size="16">
-        <v-img v-if="item.icon" :src="item.icon" @error="() => item.icon = null"/>
+        <v-img v-if="item.icon" :src="item.icon" @error="() => item.icon = null" />
         <v-icon v-else-if="icon" small>mdi-file</v-icon>
       </v-list-item-avatar>
       <v-list-item-content :title="item.url" class="caption">
@@ -21,7 +21,9 @@
       <v-list-item-action>
         <v-list-item-action-text>
           <slot :item="item" name="action">
-            <span v-if="item.date">{{ item.date.toLocaleDateString($t('locale'), timeOptions) }}</span>
+            <span v-if="item.date">
+              {{ item.date.toLocaleDateString($t('locale'), timeOptions) }}
+            </span>
           </slot>
         </v-list-item-action-text>
       </v-list-item-action>
@@ -29,26 +31,26 @@
   </v-list>
 </template>
 <script>
-import date from '@/mixins/date';
+import date from "@/mixins/date";
 
 // @vue/component
 export default {
-  name: 'List',
+  name: "List",
   mixins: [date],
   props: {
     data: {
       type: Array,
-      required: true,
+      required: true
     },
     icon: {
       type: Boolean,
-      default: false,
+      default: false
     },
     padding: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
 <style lang="scss" rel='stylesheet/scss' src="./style.scss" scoped></style>

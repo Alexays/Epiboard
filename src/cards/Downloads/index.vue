@@ -4,10 +4,10 @@
       <template v-slot:activator="{ on }">
         <div
           v-drag="download.exists && download.state === 'complete'"
-          v-on="on"
           :id="download.id"
-          class="download"
           draggable
+          v-on="on"
+          class="download"
         >
           <div class="icon">
             <v-progress-circular

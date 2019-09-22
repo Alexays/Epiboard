@@ -1,11 +1,11 @@
 <template>
   <v-tabs
+    v-model="tab"
     id="sessions"
     :dark="!$store.state.settings.theme.light"
     :light="$store.state.settings.theme.light"
     background-color="primary"
     grow
-    v-model="tab"
     show-arrows
   >
     <v-tab v-for="(tab, i) in tabs" :key="i">{{ tab.name }}</v-tab>

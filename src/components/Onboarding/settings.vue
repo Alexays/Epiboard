@@ -11,7 +11,7 @@
         <v-radio :label="$t('settings.design.full')" value="full" />
         <v-radio :label="$t('settings.design.toolbar')" value="toolbar" />
       </v-radio-group>
-      <v-layout align-center>
+      <v-layout align="center">
         <v-autocomplete
           :items="artworks"
           v-model="settings.header.background"
@@ -24,7 +24,7 @@
         />
       </v-layout>
       <h4 class="subtitle-1">Google Trends</h4>
-      <v-layout align-center>
+      <v-layout align="center">
         <v-switch
           v-model="settings.trends.enabled"
           :label="$tc('settings.onOff', settings.trends.enabled)"
@@ -53,16 +53,16 @@
   </v-card>
 </template>
 <script>
-import { loadLang } from "@/i18n";
-import countries from "../Settings/countries";
-import artworks from "../Settings/artworks";
+import { loadLang } from '@/i18n';
+import countries from '../Settings/countries';
+import artworks from '../Settings/artworks';
 
 export default {
-  name: "Why",
+  name: 'Settings',
   countries,
   data() {
     return {
-      settings: this.$store.state.settings
+      settings: this.$store.state.settings,
     };
   },
   computed: {
@@ -73,16 +73,16 @@ export default {
     },
     langs() {
       return Langs.map(f => ({ value: f.locale, text: f.name }));
-    }
+    },
   },
   watch: {
-    "settings.lang": function lang(val, old) {
+    'settings.lang': function lang(val, old) {
       if (val === old || old === undefined) return;
       loadLang(this, val);
     }
   },
   beforeDestroy() {
-    this.$store.commit("SET_SETTINGS", this.settings);
-  }
+    this.$store.commit('SET_SETTINGS', this.settings);
+  },
 };
 </script>
