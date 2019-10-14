@@ -142,7 +142,6 @@
           :return-value.sync="settings.dark.from"
           v-model="menu.from"
           offset-y
-          full-width
           transition="scale-transition"
           max-width="290px"
           min-width="290px"
@@ -169,7 +168,6 @@
           :return-value.sync="settings.dark.to"
           v-model="menu.to"
           offset-y
-          full-width
           transition="scale-transition"
           max-width="290px"
           min-width="290px"

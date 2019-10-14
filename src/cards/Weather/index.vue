@@ -7,7 +7,7 @@
             <v-icon small>mdi-map-marker</v-icon> {{ today.name }}
           </div>
           <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
-            <v-layout row wrap fill-height align-center class="today">
+            <v-layout row fill-height align-center class="today">
               <v-flex class="text-center">
                 <v-img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])" />
               </v-flex>

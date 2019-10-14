@@ -12,7 +12,6 @@
           solo
           flat
           dark
-          full-width
           @input="getTranslation"
         />
         <v-btn text dark small @click="showLangs('from')">
@@ -36,7 +35,6 @@
           auto-grow
           solo
           flat
-          full-width
           @click="copyTranslation()"
         />
         <v-btn text small @click="showLangs('to')">
