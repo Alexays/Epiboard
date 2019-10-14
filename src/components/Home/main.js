@@ -47,7 +47,9 @@ export default {
     },
   },
   created() {
-    this.checkVersion();
+    if (!this.$options.isPreRender) {
+      this.checkVersion();
+    }
     this.$options.ro = new ResizeObserver(this.onResize);
   },
   mounted() {
