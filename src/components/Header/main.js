@@ -110,9 +110,11 @@ export default {
     },
   },
   created() {
-    this.getMessage();
-    if (this.doodleSettings.enabled) {
-      this.getDoodle();
+    if (!this.$options.isPreRender) {
+      this.getMessage();
+      if (this.doodleSettings.enabled) {
+        this.getDoodle();
+      }
     }
   },
   methods: {
