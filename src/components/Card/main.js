@@ -103,7 +103,6 @@ export default {
     this.$options.manifest = Cards[this.$vnode.key].manifest || {};
     this.$options.card = () => this.hasPermissions()
       .then(() => import(/* webpackMode: "eager" */`@/cards/${this.$vnode.key}/index.vue`))
-      .then(tmp => tmp.default)
       .catch((err) => {
         Toast.show({
           title: this.$t('card.permissions_failed', { id: this.$vnode.key }),
@@ -115,8 +114,7 @@ export default {
         throw err;
       });
     if (Cards[this.$vnode.key].settings && Cards[this.$vnode.key].settingsCmp) {
-      this.$options.settings = () => import(/* webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${this.$vnode.key}/settings.vue`)
-        .then(tmp => tmp.default);
+      this.$options.settings = () => import(/* webpackChunkName: "cards-settings", webpackMode: "lazy-once" */`@/cards/${this.$vnode.key}/settings.vue`);
     }
   },
   methods: {
