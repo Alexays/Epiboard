@@ -198,13 +198,6 @@ module.exports = {
           }
           return route;
         },
-        minify: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          decodeEntities: true,
-          keepClosingSlash: true,
-          sortAttributes: true,
-        },
         renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
           inject: {},
           renderAfterDocumentEvent: 'render-event',

@@ -32,7 +32,7 @@
       <div
         v-for="i in 5"
         :key="i"
-        :style="{ height: `${[, 350, 250, 200, 300, 200][i]}px` }" class="placeholder-item"/>
+        :style="{ height: `${[, 350, 250, 200, 300, 200][i]}px` }" class="card placeholder-item"/>
     </div>
     <v-layout
       v-if="!$options.isPreRender && !cards.length"

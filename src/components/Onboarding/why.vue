@@ -10,7 +10,8 @@
       <v-checkbox label="Material Design" input-value="true" value readonly/>
     </v-card-text>
     <v-card-actions class="secondary">
-      <v-btn v-t.preserve="'onboarding.previous'" color="teal lighten-4" flat @click="$emit('prev')"/>
+      <v-btn
+        v-t.preserve="'onboarding.previous'" color="teal lighten-4" flat @click="$emit('prev')"/>
       <v-spacer/>
       <v-btn v-t.preserve="'onboarding.next'" color="teal lighten-4" flat @click="$emit('next')"/>
     </v-card-actions>

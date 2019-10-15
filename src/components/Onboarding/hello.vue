@@ -9,7 +9,8 @@
     </v-card-text>
     <v-card-actions class="secondary">
       <v-spacer/>
-      <v-btn v-t.preserve="'onboarding.begin'" color="teal lighten-4" flat @click.stop="$emit('next')"/>
+      <v-btn
+        v-t.preserve="'onboarding.begin'" color="teal lighten-4" flat @click.stop="$emit('next')"/>
     </v-card-actions>
   </v-card>
 </template>
