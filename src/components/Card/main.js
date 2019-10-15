@@ -25,19 +25,13 @@ export default {
         /* eslint-disable no-param-reassign */
         const data = context.$store.state.cache.cards[value.id];
         if (!data) return;
-        const { CACHE_DT } = data;
+        const { CACHE_DT, ...cache } = data;
         if (CACHE_DT && context.$store.state.cache.validCards.indexOf(value.id) > -1) {
           // Default cache timeout is 60s
           const cacheValidity = ((Cards[value.key].manifest || {}).cacheValidity || 60) * 1000;
           componentInstance.VALID_CACHE = Date.now() < CACHE_DT + cacheValidity;
         }
-        const keys = Object.keys(data);
-        for (let i = 0; i < keys.length; i += 1) {
-          const key = keys[i];
-          if (componentInstance.$data[key] !== undefined) {
-            componentInstance.$data[key] = data[key];
-          }
-        }
+        Object.assign(componentInstance.$data, cache);
         /* eslint-enable no-param-reassign */
       },
     },
