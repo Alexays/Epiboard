@@ -44,8 +44,11 @@ export default {
     }));
   },
   mounted() {
-    if (this.VALID_CACHE && this.today && !this.geoError) return this.$emit('init', false);
-    return this.getLocalisation()
+    if (this.VALID_CACHE && this.today && !this.geoError) {
+      this.$emit('init', false);
+      return;
+    }
+    this.getLocalisation()
       .then(this.getQuery)
       .then(query => Promise.all([this.getToday(query), this.getForecast(query)]))
       .then(() => this.$emit('init', true))

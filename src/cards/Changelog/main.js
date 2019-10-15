@@ -13,7 +13,7 @@ export default {
       loading: true,
     };
   },
-  created() {
+  beforeCreate() {
     this.$emit('update:cardtitle', this.$t('Changelog.whatsnew', { version }));
   },
   mounted() {

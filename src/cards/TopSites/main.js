@@ -32,7 +32,7 @@ export default {
     },
   },
   created() {
-    Promise.all([this.getTopSites()])
+    this.getTopSites()
       .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },

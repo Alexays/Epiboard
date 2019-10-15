@@ -41,11 +41,11 @@ export default {
     this.updateActions();
   },
   mounted() {
-    if (this.VALID_CACHE && !this.loading) return this.$emit('init', false);
-    return this.getAll()
-      .finally(() => {
-        this.loading = false;
-      })
+    if (this.VALID_CACHE && !this.loading) {
+      this.$emit('init', false);
+      return;
+    }
+    this.getAll()
       .then(() => {
         const keys = Object.keys(this.items);
         if (this.items[keys[this.active]]) {
@@ -53,7 +53,10 @@ export default {
         }
         this.$emit('init', true);
       })
-      .catch(err => this.$emit('init', err));
+      .catch(err => this.$emit('init', err))
+      .finally(() => {
+        this.loading = false;
+      });
   },
   methods: {
     updateActions() {

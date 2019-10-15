@@ -77,9 +77,6 @@ export default {
     debug() {
       return this.$store.state.settings.debug;
     },
-    size() {
-      return ((this.$options.manifest.size || 1) * 430) - 30;
-    },
     titleColor() {
       if (this.theme && this.theme.title) {
         if (this.theme.title === 'auto') return undefined;
