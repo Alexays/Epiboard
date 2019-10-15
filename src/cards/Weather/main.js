@@ -135,9 +135,8 @@ export default {
           this.geoError = this.$t('Weather.error.sample');
           reject(new Error(err.message));
         }, {
-          timeout: 30000,
-          enableHighAccuracy: true,
-          maximumAge: 75000,
+          timeout: 15000,
+          maximumAge: 0,
         });
       });
     },

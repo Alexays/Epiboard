@@ -10,7 +10,8 @@ export default {
     initSettings: {
       isLiteral: true,
       bind: (el, { value }, { componentInstance }) => {
-        componentInstance.$data.settings = { ...value }; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        componentInstance.$data.settings = Object.assign({}, value);
       },
       unbind: (el, binding, { context, componentInstance }) => {
         if (context.$options.pendingSave && componentInstance.$data.settings) {
@@ -94,18 +95,11 @@ export default {
       return this.$vuetify.theme.foreground;
     },
     settings() {
-      const defaultSettings = Object.freeze(Cards[this.$vnode.key].settings);
-      if (!defaultSettings || this.hash == null) return {};
+      const defaultSettings = Cards[this.$vnode.key].settings;
+      if (!defaultSettings || this.hash === null) return {};
       const tmp = this.$store.state.cardsSettings.cards[this.name];
       if (!tmp) return defaultSettings;
-      const data = { ...defaultSettings };
-      const keys = Object.keys(data);
-      for (let i = 0; i < keys.length; i += 1) {
-        if (typeof data[keys[i]] === typeof tmp[keys[i]]) {
-          data[keys[i]] = tmp[keys[i]];
-        }
-      }
-      return data;
+      return Object.assign({}, defaultSettings, tmp);
     },
   },
   beforeCreate() {

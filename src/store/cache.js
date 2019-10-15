@@ -29,7 +29,7 @@ export default {
     },
     SET_CARD_CACHE(state, { key, data }) {
       if (!data || !Object.keys(data).length) return;
-      state.cards[key] = { ...data, ...{ CACHE_DT: Date.now() } };
+      state.cards[key] = Object.assign({}, data, { CACHE_DT: Date.now() });
     },
     DEL_CARD_CACHE(state, key) {
       if (state.cards[key]) delete state.cards[key];
