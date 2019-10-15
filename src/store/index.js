@@ -6,8 +6,6 @@ import settings from './settings';
 import cache from './cache';
 import cardsSettings from './cards_settings';
 
-window.browser = require('webextension-polyfill');
-
 if (window.__PRERENDER_INJECTED) {
   window.browser = {
     storage: {
@@ -22,6 +20,8 @@ if (window.__PRERENDER_INJECTED) {
       getRedirectURL: () => '',
     },
   };
+} else {
+  window.browser = require('webextension-polyfill'); // eslint-disable-line
 }
 
 Vue.use(Vuex);
