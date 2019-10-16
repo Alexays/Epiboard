@@ -58,9 +58,8 @@ export default {
   },
   computed: {
     defaultTitle() {
-      const translation = this.$t(`${this.$vnode.key}.title`);
-      if (translation === `${this.$vnode.key}.title`) return this.$vnode.key;
-      return translation;
+      if (this.$te(`${this.$vnode.key}.title`)) return this.$t(`${this.$vnode.key}.title`);
+      return this.$vnode.key;
     },
     theme() {
       if (this.$options.manifest.theme && !this.showSettings) {
