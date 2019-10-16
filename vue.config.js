@@ -190,6 +190,7 @@ module.exports = {
           // eslint-disable-next-line
           route.html = route.html
             .replace(/<script (.*?)>/g, '<script $1 defer>')
+            .replace(/<style(.*?)id="vuetify-theme-stylesheet"(.*?)>(.*?)<\/style>/gs, '')
             .replace('id="app"', 'id="app" data-server-rendered="true"');
           if (browserName !== 'chrome') {
             // eslint-disable-next-line

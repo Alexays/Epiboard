@@ -67,9 +67,6 @@ export default {
       }
       return null;
     },
-    debug() {
-      return this.$store.state.settings.debug;
-    },
     titleColor() {
       if (this.theme && this.theme.title) {
         if (this.theme.title === 'auto') return undefined;

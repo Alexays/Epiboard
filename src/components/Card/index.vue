@@ -45,7 +45,7 @@
             <v-list-tile v-if="$options.settings" @click.stop="showSettings=true">
               <v-list-tile-title v-t="'settings.title'"/>
             </v-list-tile>
-            <v-list-tile v-if="debug" @click="reload()">
+            <v-list-tile v-if="$store.state.settings.debug" @click="reload()">
               <v-list-tile-title v-t="'card.reload'"/>
             </v-list-tile>
             <v-list-tile @click="remove()">
