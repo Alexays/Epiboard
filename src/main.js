@@ -1,14 +1,13 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueAnalytics from 'vue-analytics';
+import Vuetify from 'vuetify/lib';
 import App from '@/App';
 import { i18n } from '@/i18n';
 import router from '@/router';
 import store from '@/store';
-import Vuetify from 'vuetify/lib';
 import 'vuetify/src/stylus/app.styl';
 import '@/style.scss';
 
@@ -27,7 +26,6 @@ if (browserName === 'chrome' && !window.__PRERENDER_INJECTED) {
   });
 }
 
-Vue.use(Vuex);
 Vue.use(Vuetify, {
   iconfont: 'md',
   theme: {

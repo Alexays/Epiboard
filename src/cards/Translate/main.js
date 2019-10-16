@@ -128,7 +128,7 @@ export default {
         })
         .catch((err) => {
           if (this.$store.state.settings.debug) {
-            console.error(err);
+            console.error(err); // eslint-disable-line
           }
           this.text = 'Error';
         })

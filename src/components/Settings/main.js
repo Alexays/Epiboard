@@ -1,6 +1,6 @@
+import colors from 'vuetify/es5/util/colors';
 import { loadLang } from '@/i18n';
 import Toast from '@/components/Toast';
-import colors from 'vuetify/es5/util/colors';
 import gauth from '@/mixins/auth/google';
 import countries from './countries';
 import artworks from './artworks';
