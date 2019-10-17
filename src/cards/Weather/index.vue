@@ -7,7 +7,7 @@
             <v-icon small>location_on</v-icon> {{ today.name }}
           </v-flex>
           <v-flex :xs9="settings.forecast" :xs11="!settings.forecast">
-            <v-layout row wrap fill-height align-center class="today">
+            <v-layout row fill-height align-center class="today">
               <v-flex class="text-xs-center">
                 <v-img :title="today.weather[0].description" :src="getImg(today.weather[0]['id'])"/>
               </v-flex>
