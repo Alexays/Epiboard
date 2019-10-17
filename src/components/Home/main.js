@@ -65,11 +65,10 @@ export default {
   },
   methods: {
     getTranslation(path) {
-      const tmp = this.$t(path);
-      if (tmp === path) {
-        return null;
+      if (this.$te(path)) {
+        return this.$t(path);
       }
-      return tmp;
+      return null;
     },
     onResize(entries) {
       if (!this.$options.grid) return;
