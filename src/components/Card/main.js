@@ -1,7 +1,6 @@
 import Toast from '@/components/Toast';
 import Cards from '@/cards';
 import Permissions from '@/mixins/permissions';
-import Utils from '@/mixins/utils';
 
 // @vue/component
 export default {
@@ -36,7 +35,7 @@ export default {
       },
     },
   },
-  mixins: [Permissions, Utils],
+  mixins: [Permissions],
   card: null,
   settings: null,
   pendingSave: false,

@@ -16,7 +16,8 @@
         </v-layout>
         <v-spacer/>
         <v-progress-circular
-          v-show="$options.manifest.externalsRequests && !loaded && !showSettings"
+          v-if="$options.manifest.externalsRequests"
+          v-show="!loaded && !showSettings"
           :title="$t('card.loading', { id: $vnode.key })"
           :style="{ color: actionsColor }"
           :size="25" :width="2" indeterminate/>
