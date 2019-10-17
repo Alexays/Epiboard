@@ -37,7 +37,6 @@ export default {
         this.listenCreate();
         this.listenErased();
       })
-      .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {

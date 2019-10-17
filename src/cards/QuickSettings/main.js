@@ -23,9 +23,6 @@ export default {
       return true;
     },
   },
-  beforeCreate() {
-    this.$emit('init');
-  },
   methods: {
     clear() {
       this.loading = true;

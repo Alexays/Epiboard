@@ -33,7 +33,6 @@ export default {
   },
   created() {
     this.getTopSites()
-      .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {

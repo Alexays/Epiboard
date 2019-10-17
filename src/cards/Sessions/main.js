@@ -37,7 +37,6 @@ export default {
           Promise.all([this.getRecentlyClosed(), this.getDevices()]);
         });
       })
-      .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {

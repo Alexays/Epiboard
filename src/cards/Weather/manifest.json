@@ -9,6 +9,7 @@
     "appId": "0c9042777e3128fab0244da248184801",
     "units": "metric"
   },
+  "externalsRequests": true,
   "cacheValidity": 3600,
   "allowMultiple": true
 }

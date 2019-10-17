@@ -1,3 +1,4 @@
 {
-  "cacheValidity": 86400
+  "cacheValidity": 86400,
+  "externalsRequests": true
 }

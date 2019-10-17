@@ -4,5 +4,6 @@
     "grid": false,
     "size": 2
   },
+  "externalsRequests": true,
   "permissions": ["topSites"]
 }

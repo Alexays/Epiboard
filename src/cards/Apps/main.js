@@ -28,7 +28,6 @@ export default {
   },
   created() {
     this.getAll()
-      .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {

@@ -32,7 +32,4 @@ export default {
         });
     },
   },
-  beforeCreate() {
-    this.$emit('init');
-  },
 };

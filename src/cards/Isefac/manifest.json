@@ -1,4 +1,5 @@
 {
   "origins": ["https://nantes.campus-isefac.fr/bachelor/"],
-  "cacheValidity": 1800
+  "cacheValidity": 1800,
+  "externalsRequests": true
 }

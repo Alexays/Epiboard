@@ -2,6 +2,7 @@
   "origins": ["https://intra.epitech.eu/"],
   "more": "https://intra.epitech.eu/",
   "cacheValidity": 1800,
+  "externalsRequests": true,
   "settings": {
     "hideInfo": false
   }

@@ -27,7 +27,6 @@ export default {
       setInterval(this.getCpu, 3000);
       setInterval(this.getMemory, 20000);
     })
-      .then(() => this.$emit('init'))
       .catch(err => this.$emit('init', err));
   },
   methods: {

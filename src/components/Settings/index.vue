@@ -153,16 +153,6 @@
               format="24h" @change="$refs.menu_to.save(settings.dark.to)"/>
           </v-menu>
         </v-layout>
-        <template v-if="$gauth_isConnected">
-          <h4 v-t="'settings.auth.title'" class="headline"/>
-          <h4 v-t="'settings.auth.desc'" class="subheading"/>
-          <v-layout align-center class="py-3">
-            <v-btn
-              v-t="{ path: 'auth.disconnect_from', args: { service: 'Google' } }"
-              :disabled="!$gauth_isConnected"
-              color="blue" class="white--text ma-0" @click="$gauth_revoke()"/>
-          </v-layout>
-        </template>
         <h4 class="headline">Google Analytics</h4>
         <h4 v-t="'settings.analytics_desc'" class="subheading"/>
         <v-switch

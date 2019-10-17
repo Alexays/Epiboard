@@ -5,5 +5,6 @@
     "user": ""
   },
   "cacheValidity": 21600,
+  "externalsRequests": true,
   "allowMultiple": true
 }
