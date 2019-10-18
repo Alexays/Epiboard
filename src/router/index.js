@@ -46,18 +46,9 @@ const checkTutorial = (to, next) => {
   else next();
 };
 
-const waitStorage = () => {
-  if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
-    return Promise.resolve();
-  }
-  return new Promise((resolve) => {
-    store._vm.$root.$once('storageReady', () => resolve());
-  });
-};
-
 router.beforeEach((to, from, next) => {
   // Hold the request, until storage is ready if necessary.
-  waitStorage()
+  store.restored
     // Load lang if necessary.
     .then(() => loadLang(store._vm, store.state.settings.lang))
     .then(() => checkTutorial(to, next));

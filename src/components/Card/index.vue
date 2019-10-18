@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <v-card :width="((this.$options.manifest.size || 1) * 430) - 30" hover raised>
+    <v-card :width="((this.$options.manifest.size || 1) * 430) - 30" hover>
       <v-toolbar
         :color="theme ? 'elevation-0' : 'primary'"
         :absolute="!!theme"

@@ -26,14 +26,6 @@ if (window.__PRERENDER_INJECTED) {
 
 Vue.use(Vuex);
 
-const restoreState = (key, storage) => storage
-  .getItem(key)
-  .then((data) => {
-    document.dispatchEvent(new Event('storageReady'));
-    if (data) return JSON.parse(data);
-    return null;
-  });
-
 const vuexSync = new VuexPersistence({
   asyncStorage: true,
   modules: ['settings', 'cards', 'cardsSettings'],
@@ -43,7 +35,6 @@ const vuexSync = new VuexPersistence({
     removeItem: key => browser.storage.sync.remove(key),
     clear: () => browser.storage.sync.clear(),
   },
-  restoreState,
 });
 
 const vuexLocal = new VuexPersistence({
@@ -55,20 +46,7 @@ const vuexLocal = new VuexPersistence({
     removeItem: key => browser.storage.local.remove(key),
     clear: () => browser.storage.local.clear(),
   },
-  restoreState,
 });
-
-const vuexPersistEmitter = (store) => {
-  /* eslint-disable no-param-reassign */
-  store._vm.$root.$data['vuex-persit-wait'] = 0;
-  document.addEventListener('storageReady', () => {
-    store._vm.$root.$data['vuex-persit-wait'] += 1;
-    if (store._vm.$root.$data['vuex-persit-wait'] === 2) {
-      store._vm.$root.$emit('storageReady');
-    }
-  }, false);
-  /* eslint-enable no-param-reassign */
-};
 
 export default new Vuex.Store({
   modules: {
@@ -80,6 +58,5 @@ export default new Vuex.Store({
   plugins: [
     vuexSync.plugin,
     vuexLocal.plugin,
-    vuexPersistEmitter,
   ],
 });
