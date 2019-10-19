@@ -66,8 +66,10 @@ export default {
       return tabs;
     },
     getDevices() {
-      // TODO: Firefox doesn't support getDevices
-      if (!browser.sessions.getDevices) return Promise.resolve([]);
+      // Firefox doesn't support getDevices
+      if (browserName !== 'chrome') {
+        return Promise.resolve([]);
+      }
       return browser.sessions.getDevices({ maxResults: this.settings.maxDevices })
         .then((devices) => {
           this.devices = devices.map((f) => {

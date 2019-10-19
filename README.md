@@ -44,6 +44,8 @@ All settings are synchronized between browsers.
 ``` bash
 # install dependencies
 $ npm install
+# or using yarn
+$ yarn install
 
 # build for production with minification and generate zip
 # For Chromium browser
