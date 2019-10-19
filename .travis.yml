@@ -12,13 +12,11 @@ install:
   - npm install
 
 before_script:
-  - npm install -g jsinspect
   - npm install -g bundlesize
 
 script:
   - npm run build
   - npm run lint
-  - jsinspect ./src
   - bundlesize
 
 branches:
