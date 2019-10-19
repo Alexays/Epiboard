@@ -7,7 +7,7 @@ export default {
   directives: {
     drag: {
       bind(el, { value }) {
-        if (!value) return;
+        if (!value || browserName !== 'chrome') return;
         el.addEventListener('dragstart', () => {
           browser.downloads.drag(parseInt(el.id, 10));
         });
