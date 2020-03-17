@@ -1,0 +1,13 @@
+{
+  "title": "Html block",
+  "description": "Show custom HTML block in card",
+  "empty": "Please set HTML in settings",
+  "loading": "Loading...",
+  "settings": {
+    "cardName": "Card title",
+    "html": "HTML code. <script> tags will be ignored. If you need to run JS you can use JS-playground service and copy embedded result code there as <iframe> tag.",
+    "padding": "block padding",
+    "height": "Block height",
+    "autoHeight": "Automatic block height"
+  }
+}

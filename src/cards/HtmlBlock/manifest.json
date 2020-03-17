@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "cardName": "HTML Block",
+    "html": "",
+    "autoHeight": true,
+    "padding": 5,
+    "height": 0
+  },
+  "allowMultiple": true
+}
