@@ -1,8 +1,6 @@
 <template>
   <div id="html-block">
-    <v-layout v-if="html.length" align-center justify-center>
-      <div v-html="html" :style="{ height: height, padding: padding }"></div>
-    </v-layout>
+    <div v-if="html.length" v-html="html" :style="{ height: height, padding: padding }"></div>
     <v-card-text v-else>
       <div class="text-xs-center">
         <h2 v-t="'HtmlBlock.empty'" class="subheading"/>
