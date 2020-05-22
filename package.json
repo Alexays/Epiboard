@@ -28,6 +28,7 @@
     "webextension-polyfill": "^0.5.0"
   },
   "devDependencies": {
+    "@babel/parser": "^7.7.5",
     "@vue/cli": "^3.12.0",
     "@vue/cli-plugin-babel": "^3.12.0",
     "@vue/cli-plugin-eslint": "^3.12.0",
@@ -37,7 +38,7 @@
     "copy-webpack-plugin": "^5.0.4",
     "cross-env": "^6.0.3",
     "glob": "^7.1.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prerender-spa-plugin": "^3.4.0",
     "sass-loader": "^7.3.1",
@@ -47,6 +48,9 @@
     "vue-template-compiler": "^2.6.10",
     "vuetify-loader": "^1.2.2",
     "zip-a-folder": "0.0.9"
+  },
+  "resolutions": {
+    "@babel/parser": "7.7.5"
   },
   "browserslist": [
     "Firefox >= 54",
