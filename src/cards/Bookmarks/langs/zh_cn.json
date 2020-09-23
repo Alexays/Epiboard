@@ -1,0 +1,12 @@
+{
+  "description": "查看和使用您的书签",
+  "recents": "最近的",
+  "all": "全部",
+  "empty": "您在这里没有书签。",
+  "back_parent": "返回上级文件夹",
+  "add_folder": "将此文件夹固定为卡片",
+  "remove_folder": "移除卡片",
+  "settings": {
+    "maxRecents": "最近的书签最多数量"
+  }
+}

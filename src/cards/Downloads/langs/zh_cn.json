@@ -1,0 +1,15 @@
+{
+  "description": "轻松管理和查看您的下载",
+  "no_downloads": "您没有下载内容",
+  "open": "打开",
+  "delete": "删除",
+  "remove_list": "从列表中删除",
+  "clear": "清除所有下载",
+  "error": {
+    "moved": "文件已移动或删除",
+    "unable": "无法删除"
+  },
+  "settings": {
+    "max": "显示下载的最多数量"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "title": "快速设置",
+  "description": "快速清除缓存，Cookie，历史记录和本地存储",
+  "cache": "缓存",
+  "cookies": "Cookies",
+  "history": "历史",
+  "local_storage": "本地存储",
+  "clear": "清除"
+}

@@ -1,0 +1,124 @@
+{
+  "name": "Chinese (Simplified)",
+  "locale": "zh-CN",
+  "onboarding": {
+    "hello": {
+      "title": "你好 ！",
+      "content": "这是你的崭新的标签页！"
+    },
+    "why": {
+      "title": "为什么 Epiboard 这么棒",
+      "prefs": "首选项已跨浏览器同步（如果已登录）",
+      "needs": "一卡多用",
+      "privacy": "Epiboard 只在需要时请求权限"
+    },
+    "settings": {
+      "title": "开始之前的一些设置"
+    },
+    "welcome": "欢迎！",
+    "begin": "开始",
+    "next": "下一步",
+    "previous": "上一步"
+  },
+  "card": {
+    "loading": "{id} 正在加载...",
+    "reload": "刷新",
+    "remove": "移除",
+    "permissions_failed": "{id} 需要它没有的权限，请稍后重试",
+    "error": "{id} 发生错误，请稍后再试",
+    "error_reload": "{id} 发生错误，请点击以重新加载",
+    "more": "查看更多"
+  },
+  "add": "Add",
+  "greetMessages": [
+    "嘿，你今天好吗？",
+    "希望你一切都好",
+    "有人在想你 ;)",
+    "你好！",
+    "没有不可能",
+    "你知道你摇滚吗？",
+    "人之所以能，是相信能",
+    "加油！",
+    "您可以随心所欲！"
+  ],
+  "permissions": {
+    "required": "权限请求",
+    "message": "'{name}' 要求它正常工作所必需的权限，可以吗？",
+    "allow": "允许",
+    "deny": "拒绝"
+  },
+  "auth": {
+    "connect_to": "连接到 {service}",
+    "disconnect_from": "与 {service} 断开连接"
+  },
+  "home": {
+    "no_cards": "没有卡片",
+    "add_cards": "您可以通过单击右上方的＋号按钮以添加卡片。"
+  },
+  "settings": {
+    "title": "设置",
+    "langs": "语言",
+    "header": "搜索框",
+    "browse": "Browse",
+    "theme": "主题",
+    "analytics_desc": "只是看你如何使用本新标签页",
+    "custom_css": "自定义CSS",
+    "custom_css_desc": "插入您的CSS文件的URL，比如 https://example.com/style.css",
+    "custom_css_warning": "警告：CSS定制是针对高级用户的，恢复默认主题留空即可",
+    "debug_desc": "如果你愿意的话",
+    "apply_change": "为了保存您所修改的设置，必须使用页面顶部附近的后退按钮或单击页面底部的保存。",
+    "reset": "重置设置",
+    "save": "保存",
+    "saved": "已保存！",
+    "cancel": "Cancel",
+    "onOff": "开启 | 关闭",
+    "apiKey": "{name} API Key",
+    "custom_message": "自定义搜索框消息",
+    "whatsnew": "请随时关注最新更新",
+    "donate": {
+      "title": "你喜欢我的工作吗？",
+      "desc": "点击这里为我买啤酒 <3"
+    },
+    "dark": {
+      "title": "黑暗模式",
+      "desc": "让一切变黑",
+      "auto": "自动",
+      "from": "从",
+      "to": "到"
+    },
+    "artworks": {
+      "random": "随机",
+      "unsplash": "从照片库供应商 Unsplash 获取",
+      "url": "从 Url 获取",
+      "local": "从本地获取",
+      "mountains": "山脉"
+    },
+    "choose": {
+      "lang": "选择你的语言",
+      "24h": "强制使用24小时制",
+      "design": "选择你喜欢的搜索框主题设计",
+      "background": "选择你的背景图",
+      "trends": "选择您的Google趋势国家/地区(指搜索框里会出现热门搜索词)",
+      "color": "选择强调色",
+      "custom_font": "使用自定义字体"
+    },
+    "design": {
+      "full": "充满顶部空间",
+      "toolbar": "工具栏"
+    },
+    "auth": {
+      "title": "关联服务",
+      "desc": "使卡能够访问这些服务的功能"
+    },
+    "placeholder": {
+      "background": "从 Url 获取，比如 https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Main color，比如 #607D8B",
+      "custom_message": "比如励志名言？",
+      "custom_font": "比如 Source Han Sans SC",
+      "custom_desactived": "Google趋势启用时不能使用此功能"
+    },
+    "error": {
+      "color": "这是无效的十六进制码，请使用正确颜色代码，比如 #607D8B"
+    }
+  }
+}

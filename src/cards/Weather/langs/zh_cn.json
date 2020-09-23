@@ -1,0 +1,19 @@
+{
+  "description": "只需查看今天的天气和天气预报",
+  "humidity": "湿度",
+  "wind_speed": "风速",
+  "sunrise": "日出",
+  "sunset": "日落",
+  "cloudiness": "云量",
+  "error": {
+    "title": "地理位置错误",
+    "unsupported": "不支持自动获取地理位置，请在卡设置中输入城市名称。",
+    "sample": "请稍后再试或在卡片设置中手动输入城市。"
+  },
+  "settings": {
+    "location": "位置",
+    "forecast": "预报",
+    "city": "城市，如 `Nantes, FR` or its id",
+    "choose_units": "选择您喜欢的单位"
+  }
+}
