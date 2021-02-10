@@ -1,4 +1,8 @@
 {
+  "title": "Apps",
   "description": "To view and use your chrome apps",
-  "empty": "You have no apps."
+  "empty": "You have no apps.",
+  "settings": {
+    "size": "Block size"
+  }
 }

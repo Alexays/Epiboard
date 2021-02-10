@@ -2,6 +2,7 @@
   "description": "All your feeds in one place",
   "empty": "Empty feeds",
   "settings": {
+    "label": "e.g. https://example.com/rss",
     "feeds": "Feeds"
   }
 }
