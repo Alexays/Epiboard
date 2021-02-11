@@ -1,0 +1,20 @@
+{
+  "description": "En güncel LastFm istatistiklerinizi görüntüleyin",
+  "plays": "{nb} oynatma | {nb} oynatma",
+  "overall": "Tüm zamanlar",
+  "years": "{nb} yıl | {nb} yıl",
+  "months": "{nb} ay | {nb} ay",
+  "days": "{nb} gün | {nb} gün",
+  "need_user": "Lütfen kart ayarlarından LastFm kullanıcı adınızı girin.",
+  "empty": "Elbette, hiçbir şeyi beğenmiyorsunuz.",
+  "now_playing": "Oynatılıyor:",
+  "top": {
+    "artists": "Sanatçılar",
+    "albums": "Albümler",
+    "tracks": "Şarkılar"
+  },
+  "tip": "Kenarlara tıklayarak listeyi değiştirebilirsiniz",
+  "settings": {
+    "username": "LastFm Kullanıcı Adı"
+  }
+}

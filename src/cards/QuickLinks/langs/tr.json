@@ -1,0 +1,10 @@
+{
+  "title": "Hızlı Bağlantılar",
+  "empty": "Herhangi bir hızlı bağlantınız yok, hemen kart ayarlarından birkaç tane ekleyin",
+  "settings": {
+    "label": "örn. https://ornek.com",
+    "links": "Linkler",
+    "grid": "Izgara görünümü kullan",
+    "grid_size": "Izgara eleman boyutu"
+  }
+}

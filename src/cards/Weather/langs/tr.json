@@ -1,0 +1,20 @@
+{
+  "title": "Hava Durumu",
+  "description": "Bugüne ait hava bilgisini görüntüleyin",
+  "humidity": "Basınç",
+  "wind_speed": "Rüzgar hızı",
+  "sunrise": "Güneş doğuşu",
+  "sunset": "Güneş batışı",
+  "cloudiness": "Bulut oranı",
+  "error": {
+    "title": "Geolokasyon hatası",
+    "unsupported": "Geolokasyon desteklenmiyor, lütfen kart ayarlarıandan şehrinizin ismini girin.",
+    "sample": "Daha sonra tekrar deneyin veya kart ayarlarından şehrinizi el ile ekleyin."
+  },
+  "settings": {
+    "location": "Bölge",
+    "forecast": "Tahminler",
+    "city": "Şehir, örn. `İstanbul` veya şehrin ID'si",
+    "choose_units": "Tercih ettiğiniz birimi seçin"
+  }
+}

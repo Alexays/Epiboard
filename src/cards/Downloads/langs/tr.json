@@ -1,0 +1,16 @@
+{
+  "title": "İndirilenler",
+  "description": "İndirmelerinizi kolayca görüntüleyin ve yönetin",
+  "no_downloads": "Herhangi bir indirmeniz yok",
+  "open": "Aç",
+  "delete": "Sil",
+  "remove_list": "Listeden kaldır",
+  "clear": "Tüm indirmeleri temizle",
+  "error": {
+    "moved": "Dosya taşınmış veya silinmiş",
+    "unable": "Silinemedi"
+  },
+  "settings": {
+    "max": "Gösterilecek indirilenler sayısı"
+  }
+}

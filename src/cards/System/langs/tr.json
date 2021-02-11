@@ -1,0 +1,11 @@
+{
+  "title": "Sistem",
+  "description": "Sistem bilgilerinizi görüntüleyin",
+  "cpu": "İşlemci",
+  "memory": "Hafıza",
+  "network": "Ağ",
+  "storage": "Depolama",
+  "core": "çekirdek | çekirdek",
+  "estimation": "Maksimum 10 Mb/sn ile aşağı bağlantı tahmini",
+  "rtt": "Gidiş dönüş süresi tahmini "
+}

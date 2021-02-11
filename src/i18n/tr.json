@@ -1,0 +1,125 @@
+{
+  "name": "Turkish",
+  "locale": "tr-TR",
+  "onboarding": {
+    "hello": {
+      "title": "Merhaba!",
+      "content": "Havalı yeni sekme sayfana hoş geldin!"
+    },
+    "why": {
+      "title": "Epiboard Neden mi Muhteşem?",
+      "prefs": "Ayarlarınız farklı tarayıcılarda senkronize edilir (sadece giriş yaparsanız)",
+      "needs": "Gerekli olan her şey için tek bir kart",
+      "privacy": "Epiboard sadece gerektiğinde izin ister"
+    },
+    "settings": {
+      "title": "Başlamadan önce birkaç ayar"
+    },
+    "welcome": "Hoş Geldin!",
+    "begin": "Başla",
+    "next": "Sonraki",
+    "previous": "Önceki"
+  },
+  "card": {
+    "loading": "{id} yükleniyor...",
+    "reload": "Yenile",
+    "remove": "Kaldır",
+    "permissions_failed": "{id} alamadığı izinlere ihtiyaç duyduğu için yüklenemiyor, daha sonra tekrar deneyin",
+    "error": "{id} bir hata ile karşılaştı, daha sonra tekrar deneyin",
+    "error_reload": "{id} bir hata ile karşılaştı, yenilemek için tıklayın",
+    "more": "Daha fazla"
+  },
+  "add": "Ekle",
+  "greetMessages": [
+    "Merhaba, günün nasıl geçiyor?",
+    "Umarım iyisindir!",
+    "Birileri seni düşünüyor ;)",
+    "Merhaba!",
+    "Gülümsemeyi dene, işe yarıyor!",
+    "Harika birisin!",
+    "Motivasyon mu lazım, hemen!",
+    "Yapabilirsin dostum!",
+    "Ne istersen o olabilirsin!"
+  ],
+  "permissions": {
+    "required": "İzin gerekiyor",
+    "message": "'{name}' servisi çalışabilmesi için izinlere ihtiyaç duyuyor, bu sizin için uygun mu?",
+    "allow": "İzin Ver",
+    "deny": "Reddet"
+  },
+  "auth": {
+    "connect_to": "{service} Servisine Bağlan",
+    "disconnect_from": "{service} Bağlantısını Kes"
+  },
+  "home": {
+    "no_cards": "Hiç kart yok.",
+    "add_cards": "Sayfanın sağ üstünde bulunan tuşa basarak kart ekleyebilirsiniz."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "langs": "Diller",
+    "header": "Başlık",
+    "browse": "Göz At",
+    "theme": "Tema",
+    "analytics_desc": "Sadece kartları nasıl kullandığınızı görmek için",
+    "custom_css": "Özel CSS",
+    "custom_css_desc": "CSS dosyanızın URL bağlantısını girin,, örn. https://ornek.com/style.css",
+    "custom_css_warning": "Dikkat, CSS düzenlemeleri gelişmiş kullanıcılar içindir, varsayılan tema için bu alanı boş bırakın",
+    "debug_desc": "Eğer size lazımsa",
+    "apply_change": "Değişiklikleri kaydetmek için sayfanın üstünden geri tuşuna basmalı veya sayfanın altındaki kaydet tuşuna tıklamalısınız",
+    "reset": "Ayarları yenile",
+    "save": "Kaydet",
+    "saved": "Kaydedildi!",
+    "cancel": "İptal",
+    "onOff": "Açık | Kapalı",
+    "debug": "Hata Giderme",
+    "apiKey": "{name} API Anahtarı",
+    "custom_message": "Özel başlık mesajı",
+    "whatsnew": "Güncellemelerden haberdar kal",
+    "donate": {
+      "title": "Çalışmamı beğendiniz mi?",
+      "desc": "Bana bir içecek ısmarlamak için tıklayın <3"
+    },
+    "dark": {
+      "title": "Karanlık mod",
+      "desc": "Her şey karanlık olacak!",
+      "auto": "Otomatik",
+      "from": "Şu zamandan",
+      "to": "Şu zamana"
+    },
+    "artworks": {
+      "random": "Rastgele",
+      "unsplash": "Unsplash sağlayıcısından",
+      "url": "URL'den",
+      "local": "Yerel dosyadan",
+      "mountains": "Dağlar"
+    },
+    "choose": {
+      "lang": "Dilinizi seçin",
+      "24h": "24 saat formatına zorla",
+      "design": "Tercih ettiğiniz tasarımı seçin",
+      "background": "Arkaplanınızı seçin",
+      "trends": "Google Trends ülkenizi seçin",
+      "color": "Ana renk kodunu girin",
+      "custom_font": "Özel yazı tipi kullan"
+    },
+    "design": {
+      "full": "Tamamını Kapla",
+      "toolbar": "Araç Çubuğu"
+    },
+    "auth": {
+      "title": "Bağlı Servisler",
+      "desc": "Bu servislere erişebilmek için kartlar etkinleştiriliyor"
+    },
+    "placeholder": {
+      "background": "URL'den, örn. https://i.imgur.com/foVYQ6T.jpg",
+      "color": "Ana renk kodu, örn. #607D8B",
+      "custom_message": "örn. Motive edici bir mesaj!",
+      "custom_font": "örn. Roboto",
+      "custom_desactived": "Google Trends aktifken aktifleştirilemez"
+    },
+    "error": {
+      "color": "Geçersiz HEX kodu, örn. #607D8B"
+    }
+  }
+}
