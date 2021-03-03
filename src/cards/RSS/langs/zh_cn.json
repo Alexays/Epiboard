@@ -1,0 +1,7 @@
+{
+  "description": "所有的 feed 都聚合在一个地方",
+  "empty": "无 feed",
+  "settings": {
+    "feeds": "Feeds"
+  }
+}

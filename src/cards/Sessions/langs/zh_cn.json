@@ -1,0 +1,10 @@
+{
+  "description": "查看您最近关闭的页面和在其他设备上打开的页面",
+  "recents": "最近关闭",
+  "empty": "您没有最近关闭的页面。",
+  "settings": {
+    "maxRecents": "最近关闭数量 最多数量",
+    "maxSessions": "Max sessions",
+    "maxDevices": "显示设备最多数量"
+  }
+}

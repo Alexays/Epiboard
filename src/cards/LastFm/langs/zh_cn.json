@@ -1,0 +1,20 @@
+{
+  "description": "轻松查看最新的 LastFm 统计信息",
+  "plays": "{nb} play | {nb} plays",
+  "overall": "所有时间",
+  "years": "{nb} 年 | {nb} 年",
+  "months": "{nb} 月 | {nb} 月",
+  "days": "{nb} 日 | {nb} 日",
+  "need_user": "请在卡片设置中输入您的 LastFm 用户名。",
+  "empty": "显然你的 LastFm 还没有个人榜单",
+  "now_playing": "正在播放：",
+  "top": {
+    "artists": "艺术家榜单",
+    "albums": "专辑榜单",
+    "tracks": "单曲榜单"
+  },
+  "tip": "单击卡的左右边缘以更改榜单类型",
+  "settings": {
+    "username": "LastFm 用户名"
+  }
+}

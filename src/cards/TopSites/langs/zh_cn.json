@@ -1,0 +1,9 @@
+{
+  "description": "查看您最常用的网站",
+  "empty": "您没有常用网站。",
+  "settings": {
+    "maxTopSites": "最常用的网站",
+    "grid": "使用网格布局",
+    "grid_size": "网格块大小"
+  }
+}

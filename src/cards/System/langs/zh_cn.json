@@ -1,0 +1,10 @@
+{
+  "description": "查看和监视您的系统信息",
+  "cpu": "CPU",
+  "memory": "内存",
+  "network": "网络",
+  "storage": "硬盘",
+  "core": "核心 | 核心",
+  "estimation": "网络下载速度最高估计为 10 Mb/s",
+  "rtt": "往返时间估计"
+}
