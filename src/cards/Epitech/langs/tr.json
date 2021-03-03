@@ -1,0 +1,8 @@
+{
+  "alldone": "Devam eden bir proje yok, tebrikler!",
+  "noupcoming": "Yapılacak bir şey yok, dinlenmene bak!",
+  "noneocuupied": "Oda yok, eğlenmene bak!",
+  "error": {
+    "login": "Bu kartı kullanabilmek için Epitech'e giriş yapmanız gerekmektedir"
+  }
+}

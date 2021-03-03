@@ -1,0 +1,8 @@
+{
+  "description": "Tüm kaynaklarınızı bir arada",
+  "empty": "Hiçbir kaynak yok",
+  "settings": {
+    "label": "örn. https://ornek.com/rss",
+    "feeds": "Kaynaklar"
+  }
+}

@@ -70,7 +70,7 @@
         <h4 v-t="'settings.theme'" class="headline"/>
         <h4 v-t="'settings.choose.color'" class="subheading"/>
         <v-layout>
-          <v-flex xs6 class="picker mr-3">
+          <v-flex xs6 class="mr-3 picker">
             <li
               v-for="color in $options.palette"
               :key="color" :style="{ 'background-color': color }" @click="themeChange(color)">
@@ -158,7 +158,7 @@
         <v-switch
           :disabled="!$ga"
           :label="$tc('settings.onOff', settings.analytics)" v-model="settings.analytics"/>
-        <h4 class="headline">Debug</h4>
+        <h4 v-t="'settings.debug'" class="headline" />
         <h4 v-t="'settings.debug_desc'" class="subheading"/>
         <v-switch :label="$tc('settings.onOff', settings.debug)" v-model="settings.debug"/>
         <h4 v-t="'settings.whatsnew'" class="subheading"/>

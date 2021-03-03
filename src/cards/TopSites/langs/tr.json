@@ -1,0 +1,10 @@
+{
+  "title": "Sık Ziyaret Edilenler",
+  "description": "En çok ziyaret ettiğiniz siteleri görün",
+  "empty": "Hiç en çok ziyaret ettiğiniz site yok.",
+  "settings": {
+    "maxTopSites": "Görüntülenecek site sayısı",
+    "grid": "Izgara görünümü kullan",
+    "grid_size": "Izgara eleman boyutu"
+  }
+}

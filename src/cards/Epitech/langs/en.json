@@ -1,0 +1,8 @@
+{
+  "alldone": "No on going projects, well done!",
+  "noupcoming": "No upcoming activities, go get some rest!",
+  "noneocuupied": "No occupied rooms, have fun!",
+  "error": {
+    "login": "You must be logged to Epitech to use this card"
+  }
+}

@@ -2,7 +2,7 @@
   <v-card-text id="isefac">
     <div v-if="!is_logged" class="text-xs-center">
       <v-icon x-large>error_outline</v-icon>
-      <h2 class="subheading">You must be logged to Isefac to use this card.</h2>
+      <h2 v-t="'Isefac.error.login'" class="subheading" />
     </div>
     <div v-else-if="!loading">
       <div class="text-xs-center">
@@ -32,7 +32,7 @@
       </v-list>
       <div v-if="!dates.length" class="text-xs-center">
         <v-icon x-large>room</v-icon>
-        <h2 class="subheading">No more activities today, go get some rest !</h2>
+        <h2 v-t="'Isefac.nomore'" class="subheading" />
       </div>
     </div>
     <v-progress-linear v-else indeterminate/>

@@ -72,6 +72,7 @@
     "saved": "Saved !",
     "cancel": "Cancel",
     "onOff": "On | Off",
+    "debug": "Debug",
     "apiKey": "{name} API Key",
     "custom_message": "Custom header message",
     "whatsnew": "Stay tuned about last updates",

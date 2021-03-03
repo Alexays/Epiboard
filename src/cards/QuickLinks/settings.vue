@@ -23,7 +23,7 @@
       </v-list-tile>
     </v-list>
     <v-layout align-center>
-      <v-text-field v-model="newLink" label="e.g. https://exemple.com"/>
+      <v-text-field v-model="newLink" :label="$t('QuickLinks.settings.label')"/>
       <v-btn v-t="'add'" flat @click="addLink(newLink)"/>
     </v-layout>
   </v-card-text>

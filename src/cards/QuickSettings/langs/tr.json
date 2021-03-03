@@ -1,0 +1,9 @@
+{
+  "title": "Hızlı ayarlar",
+  "description": "Önbellek, çerez, geçmiş ve yerel depolama bilgilerinizi hızlıca temizleyin",
+  "cache": "Önbellek",
+  "cookies": "Çerezler",
+  "history": "Geçmiş",
+  "local_storage": "Yerel depolama",
+  "clear": "Temizle"
+}

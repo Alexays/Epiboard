@@ -1,0 +1,11 @@
+{
+  "title": "Oturumlar",
+  "description": "En son kapattığınız sayfaları ve diğer cihazlarınızda açık olan sayfaları görüntüleyin",
+  "recents": "En son kapatılanlar",
+  "empty": "Son kapatılan hiçbir sayfanız yok.",
+  "settings": {
+    "maxRecents": "Gösterilecek kapatılan sayısı",
+    "maxSessions": "Gösterilecek oturum sayısı",
+    "maxDevices": "Gösterilecek cihaz sayısı"
+  }
+}

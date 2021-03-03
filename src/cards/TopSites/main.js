@@ -33,18 +33,18 @@ export default {
   },
   created() {
     this.getTopSites()
+      .then(() => this.$emit('init', true))
       .catch(err => this.$emit('init', err));
   },
   methods: {
     getTopSites() {
       return browser.topSites.get().then((topSites) => {
-        this.topSites = topSites.slice(0, this.settings.maxSites)
-          .map((f) => {
-            f.icon = this.settings.grid
-              ? this.getFavicon(new URL(f.url).hostname, this.size)
-              : this.getFavicon(f.url);
-            return f;
-          });
+        this.topSites = topSites.slice(0, this.settings.maxSites).map((f) => {
+          f.icon = this.settings.grid
+            ? this.getFavicon(new URL(f.url).hostname, this.size)
+            : this.getFavicon(f.url);
+          return f;
+        });
       });
     },
   },

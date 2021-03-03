@@ -1,0 +1,13 @@
+{
+  "title": "Yer İmleri",
+  "description": "Yer imlerinizi görüntülemek ve kullanmak için",
+  "recents": "En Yeniler",
+  "all": "Tümü",
+  "empty": "Burada herhangi bir yer iminiz yok.",
+  "back_parent": "Önceki klasöre geri dön",
+  "add_folder": "Bu klasörü sekme olarak sabitle",
+  "remove_folder": "Sekmeyi kaldır",
+  "settings": {
+    "maxRecents": "En yenilerde görüntülenecek yer imi sayısı"
+  }
+}

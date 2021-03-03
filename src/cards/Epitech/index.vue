@@ -5,7 +5,7 @@
     </v-card-text>
     <v-card-text v-else-if="!is_logged" class="text-xs-center">
       <v-icon x-large="">error_outline</v-icon>
-      <h2 class="subheading">You must be logged to Epitech to use this card.</h2>
+      <h2 v-t="'Epitech.error.login'" class="subheading" />
     </v-card-text>
     <v-tabs
       v-else
@@ -61,7 +61,7 @@
           </v-card-text>
           <v-card-text v-else-if="!projects.length" class="text-xs-center">
             <v-icon v-if="settings.hideInfo" x-large>work</v-icon>
-            <h2 class="subheading">No on going projects, well done !</h2>
+            <h2 v-t="'Epitech.alldone'" class="subheading" />
           </v-card-text>
         </v-tab-item>
         <v-tab-item lazy>
@@ -87,7 +87,7 @@
           </v-list>
           <v-card-text v-else class="text-xs-center">
             <v-icon x-large>assignment_turned_in</v-icon>
-            <h2 class="subheading">No upcoming activities, go get some rest !</h2>
+            <h2 v-t="'Epitech.noupcoming'" class="subheading" />
           </v-card-text>
         </v-tab-item>
         <v-tab-item lazy>
@@ -113,7 +113,7 @@
           </v-list>
           <v-card-text v-else class="text-xs-center">
             <v-icon x-large>room</v-icon>
-            <h2 class="subheading">No occuped rooms, have fun !</h2>
+            <h2 v-t="'Epitech.noneocuupied'" class="subheading" />
           </v-card-text>
         </v-tab-item>
       </v-tabs-items>
